@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../styles/pages/login.scss";
 import history from "../history/history";
+import mySvg from "../styles/images/redo.svg";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -76,8 +79,11 @@ const Login = () => {
     clicked();
   };
   /****************SUBMITTING**************** */
+
   const onSubmitLogin = e => {
     e.preventDefault();
+    setLoading(true);
+
     axios
       .get(
         `http://pensionswebapi.azurewebsites.net/api/Users?email=${loginEmail}&password=${loginPassword}`
@@ -90,6 +96,7 @@ const Login = () => {
             pathname: "/dashboard",
             state: res.data
           });
+          setLoading(false);
         }
       })
       .catch(e => {
@@ -99,6 +106,8 @@ const Login = () => {
 
   const onSubmitReg = e => {
     e.preventDefault();
+    setLoading(true);
+
     const data = {
       firstname: firstName,
       lastname: lastName,
@@ -112,6 +121,7 @@ const Login = () => {
       .post(`http://pensionswebapi.azurewebsites.net/api/Users`, data)
       .then(res => {
         if (res.status === 200) {
+          setLoading(false);
           popupfunction();
         }
       })
@@ -122,7 +132,7 @@ const Login = () => {
 
   return (
     <div className="cont2">
-      <div expand="lg" className="container-fluid">
+      <div expand="lg" className="login-container-fluid container-fluid">
         <h1>logo</h1>
         <h1>Welcome to Wealth Analytica</h1>
         <h1>
@@ -148,7 +158,19 @@ const Login = () => {
               </label>
             </div>
             <p className="forgot-pass">Forgot password?</p>
-            <input className="submit" type="submit" value="Sign In" />
+            {loading && (
+              <img
+                alt="svg"
+                className="loading-img"
+                align="middle"
+                width={35}
+                height={35}
+                src={mySvg}
+              />
+            )}
+            {!loading && (
+              <input className="submit" type="submit" value="Sign In" />
+            )}
           </div>
         </form>
         <div className="sub-cont">
@@ -211,7 +233,19 @@ const Login = () => {
                   <input type="text" onChange={onAddressChange} required />
                 </label>
               </div>
-              <input className="submit" type="submit" value="Sign Up" />
+              {loading && (
+                <img
+                  alt="svg"
+                  className="loading-img"
+                  align="middle"
+                  width={35}
+                  height={35}
+                  src={mySvg}
+                />
+              )}
+              {!loading && (
+                <input className="submit" type="submit" value="Sign Up" />
+              )}
             </form>
           </div>
         </div>

@@ -320,7 +320,7 @@ input {
   display: flex;
   align-items: center;
 }
-.container-fluid {
+.login-container-fluid {
   width: $contW;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -617,4 +617,19 @@ ul.social-footer2 li a {
 .error-message {
   text-align: center;
   color: red;
+}
+.loading-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transform-origin: 44% 50%;
+  animation: rotate 2s infinite linear;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
