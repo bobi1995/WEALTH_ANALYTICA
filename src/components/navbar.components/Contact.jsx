@@ -1,211 +1,238 @@
 import React from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
+import "../../styles/pages/contact.css";
+
 const Contact = () => {
   return (
-    <div>
+    <div class="cont2">
       <Navbar />
-      <div
-        className="slide"
-        id="slide5"
-        data-slide="5"
-        data-stellar-background-ratio="0.5"
-      >
-        <div className="container clearfix">
-          <div
-            className="content grid_2 contactype active"
-            id="contact-mapClick"
-          >
-            <div className="icon-map"></div>
-            <p>Map</p>
-          </div>
-          <div className="content grid_2 contactype" id="contact-carClick">
-            <div className="icon-car"></div>
-            <p>Car</p>
-          </div>
-          <div className="content grid_2 contactype" id="contact-busClick">
-            <div className="icon-bus"></div>
-            <p>Bus</p>
-          </div>
-
-          <div className="content grid_2 contactype" id="contact-bikeClick">
-            <div className="icon-bike-2"></div>
-            <p>Bicycle</p>
-          </div>
-          <div className="content grid_2 contactype" id="contact-phoneClick">
-            <div className="icon-phone"></div>
-            <p>Telephone</p>
-          </div>
-          <div
-            className="content grid_2 contactype omega"
-            id="contact-mailClick"
-          >
-            <div className="icon-mail"></div>
-            <p>E-Mail</p>
-          </div>
-
-          <div className="content grid_12 contactmap" id="contact-map">
-            <div className="grid_4">
-              <h2>CONTACT</h2>
-              <p className="information">
-                <span className="icon-location"> ADRESS: </span>Maecenas
-                faucibus mollis interdum.
-              </p>
-              <p className="information">
-                <span className="icon-phone-2"> TELEPHONE: </span> 0 (123) 456
-                789
-              </p>
-              <a
-                className="btn"
-                href="https://goo.gl/maps/8GlbZ"
-                target="_blank"
-              >
-                Get Direction
-              </a>
-              <div className="clear"></div>
-            </div>
-            <div className="grid_8 omega">
-              <div id="map_canvas"></div>
-            </div>
-          </div>
-
-          <div className="content grid_12 contactmap dn" id="contact-car">
-            <div className="grid_4">
-              <h2>CAR</h2>
-              <p className="information">
-                <span className="icon-location"> ADRESS: </span>Maecenas
-                faucibus mollis interdum.
-              </p>
-              <br />
-              <br />
-              <div className="btn">
-                <span className="icon-checkmark"></span> Car Park
+      <section class="contact-address-area">
+        <div class="container">
+          <div class="sec-title-style1 text-center max-width">
+            <div class="title">Contact Us</div>
+            <div class="text">
+              <div class="decor-left">
+                <span></span>
+              </div>
+              <p>Quick Contact</p>
+              <div class="decor-right">
+                <span></span>
               </div>
             </div>
-            <div className="grid_8 omega">
-              <div className="grid_6 omega">
-                <strong>Lorem ipsum</strong> Nulla vitae elit libero, a pharetra
-                augue. Integer posuere erat a ante venenatis dapibus posuere
-                velit aliquet. Donec sed odio dui. Nullam quis risus eget urna
-                mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis
-                dis parturient montes, nascetur ridiculus mus. Fusce dapibus,
-                tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-                fermentum massa justo sit amet risus.
-                <a
-                  className="btn"
-                  href="https://goo.gl/maps/8GlbZ"
-                  target="_blank"
-                >
-                  Get Direction
-                </a>
-              </div>
+            <div class="bottom-text">
+              <p>
+                Wealth Analytica allows our clients to quickly engage through
+                social media with insightful client information designed to
+                enhance your organic growth.
+              </p>
             </div>
           </div>
-
-          <div className="content grid_12 contactmap dn" id="contact-bus">
-            <div className="grid_4">
-              <h2>BUS</h2>
-              <p className="information">
-                <span className="icon-location"> ADRESS: </span>Maecenas
-                faucibus mollis interdum.
-              </p>
-              <br />
-              <br />
-              <div className="btn">
-                <span className="icon-checkmark"></span> OTOPARK MEVCUT
-              </div>
-            </div>
-            <div className="grid_8 omega">
-              <div className="grid_6 omega" id="scroll2">
-                Sed posuere consectetur est at lobortis. Donec ullamcorper nulla
-                non metus auctor fringilla. Morbi leo risus, porta ac
-                consectetur ac, vestibulum at eros. Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Fusce dapibus, tellus ac cursus
-                commodo, tortor mauris condimentum nibh, ut fermentum massa
-                justo sit amet risus. Maecenas sed diam eget risus varius
-                blandit sit amet non magna. Maecenas sed diam eget risus varius
-                blandit sit amet non magna. Nullam id dolor id nibh ultricies
-                vehicula ut id elit. Aenean eu leo quam. Pellentesque ornare sem
-                lacinia quam venenatis vestibulum. Cum sociis natoque penatibus
-                et magnis dis parturient montes, nascetur ridiculus mus. Sed
-                posuere consectetur est at lobortis. Etiam porta sem malesuada
-                magna mollis euismod. Sed posuere consectetur est at lobortis.
-                Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-                auctor. Donec ullamcorper nulla non metus auctor fringilla.
-                Fusce dapibus, tellus ac cursus commodo, tortor mauris
-                condimentum nibh, ut fermentum massa justo sit amet risus. Fusce
-                dapibus, tellus ac cursus commodo, tortor mauris condimentum
-                nibh, ut fermentum massa justo sit amet risus. Maecenas sed diam
-                eget risus varius blandit sit amet non magna. Curabitur blandit
-                tempus porttitor. Sed posuere consectetur est at lobortis.
-              </div>
-            </div>
-          </div>
-
-          <div className="content grid_12 contactmap dn" id="contact-bike">
-            <div className="grid_4">
-              <h2>BIKE</h2>
-              <p className="information">
-                <span className="icon-location"> ADRESS: </span>Maecenas
-                faucibus mollis interdum.
-              </p>
-              <br />
-              <br />
-              <div className="btn">
-                <span className="icon-checkmark"></span> BİSİKLETLİK MEVCUT
-              </div>
-            </div>
-            <div className="grid_8 omega">
-              <div className="grid_6 omega">
-                <span className="icon-calendar">
-                  {" "}
-                  Maecenas faucibus mollis interdum.
+          <div class="contact-address-box row">
+            <div class="col-sm-4 single-contact-address-box text-center">
+              <div class="icon-holder">
+                <span class="icon-clock-1">
+                  <span class="path1"></span>
+                  <span class="path2"></span>
+                  <span class="path3"></span>
+                  <span class="path4"></span>
+                  <span class="path5"></span>
+                  <span class="path6"></span>
+                  <span class="path7"></span>
+                  <span class="path8"></span>
+                  <span class="path9"></span>
+                  <span class="path10"></span>
+                  <span class="path11"></span>
+                  <span class="path12"></span>
+                  <span class="path13"></span>
+                  <span class="path14"></span>
+                  <span class="path15"></span>
+                  <span class="path16"></span>
+                  <span class="path17"></span>
+                  <span class="path18"></span>
+                  <span class="path19"></span>
+                  <span class="path20"></span>
                 </span>
               </div>
+              <h3 className="contact-h3">Call us</h3>
+              <h2 className="contact-h2">anytime during Office Hours</h2>
+            </div>
+            <div class="col-sm-4 single-contact-address-box main-branch">
+              <h3 className="contact-h3">CAN REACH US HERE</h3>
+              <div class="inner">
+                <ul className="contact-ul">
+                  <li>
+                    <div class="title">
+                      <h4 className="contact-h4">Address:</h4>
+                    </div>
+                    <div class="text">
+                      <p>
+                        2828 Connecticut Avenue,
+                        <br /> NW Washington DC 20008
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="title">
+                      <h4 className="contact-h4">Phone:</h4>
+                    </div>
+                    <div class="text">
+                      <p>
+                        +1 (516) 732 3364
+                        <br /> +359 878 880 564
+                      </p>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="title">
+                      <h4 className="contact-h4">Office Hrs:</h4>
+                    </div>
+                    <div class="text">
+                      <p>
+                        Mon-Fri: 9:30am - 6:30pm
+                        <br /> Sat-Sun: Closed
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-sm-4 single-contact-address-box text-center">
+              <div class="icon-holder">
+                <span class="icon-question-2">
+                  <span class="path1"></span>
+                  <span class="path2"></span>
+                  <span class="path3"></span>
+                  <span class="path4"></span>
+                </span>
+              </div>
+              <h3 className="contact-h3">Email us</h3>
+              <h2 className="contact-h2">anytime during the whole week</h2>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="content grid_12 contactmap dn" id="contact-phone">
-            <div className="grid_4">
-              <h2>TELEPHONE</h2>
-              <p className="information">
-                <span className="icon-location"> ADRESS: </span>Maecenas
-                faucibus mollis interdum.
-              </p>
-            </div>
-            <div className="grid_8 omega">
-              <div className="grid_6 omega">0 (123) 456 789</div>
-            </div>
-          </div>
-
-          <div className="content grid_12 contactmap dn" id="contact-mail">
-            <div className="grid_4">
-              <h2>E-MAIL</h2>
-              <p className="information">
-                <span className="icon-location"> ADRESS: </span>Maecenas
-                faucibus mollis interdum.
-              </p>
-            </div>
-            <div className="grid_8 omega">
-              <div className="grid_6 omega">
-                <a
-                  href="mailto:mail@loremipsum.com?Subject=Hello"
-                  className="btn"
-                >
-                  mail@loremipsum.com
-                </a>
+      <section class="contact-info-area">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+              <div class="contact-form">
+                <div class="row">
+                  <div class="col-xl-12">
+                    <div class="sec-title-style1 float-left">
+                      <div class="title">Send Your Message</div>
+                      <div class="text">
+                        <div class="decor-left">
+                          <span></span>
+                        </div>
+                        <p>Contact Form</p>
+                      </div>
+                    </div>
+                    <div class="text-box float-right">
+                      <p>
+                        Email us and we will try to answer as soon as possible
+                        to your question or offer.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="inner-box">
+                  <form
+                    id="contact-form"
+                    name="contact_form"
+                    class="default-form"
+                    action="inc/sendmail.php"
+                    method="post"
+                  >
+                    <div class="row">
+                      <div class="col-xl-6 col-lg-12">
+                        <div class="row">
+                          <div class="col-xl-6">
+                            <div class="input-box">
+                              <input
+                                type="text"
+                                name="form_name"
+                                value=""
+                                placeholder="Name"
+                                required=""
+                              />
+                            </div>
+                            <div class="input-box">
+                              <input
+                                type="text"
+                                name="form_phone"
+                                value=""
+                                placeholder="Phone"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-xl-6">
+                            <div class="input-box">
+                              <input
+                                type="email"
+                                name="form_email"
+                                value=""
+                                placeholder="Email"
+                                required=""
+                              />
+                            </div>
+                            <div class="input-box">
+                              <input
+                                type="text"
+                                name="form_company"
+                                value=""
+                                placeholder="Company"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xl-12">
+                            <div class="input-box">
+                              <input
+                                type="text"
+                                name="form_subject"
+                                value=""
+                                placeholder="Subject"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-6 col-lg-12">
+                        <div class="input-box">
+                          <textarea
+                            name="form_message"
+                            placeholder="Your Message..."
+                            required=""
+                          ></textarea>
+                        </div>
+                        <div class="button-box">
+                          <input
+                            id="form_botcheck"
+                            name="form_botcheck"
+                            class="form-control"
+                            type="hidden"
+                            value=""
+                          />
+                          <button
+                            type="submit"
+                            data-loading-text="Please wait..."
+                          >
+                            Send Message<span class="flaticon-next"></span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-
-          <div className="clear"></div>
-
-          <footer className="content grid_12">
-            <div className="btn2">&copy; Copyright</div>
-            <hr />
-          </footer>
-          <div className="clear"></div>
         </div>
-      </div>
+      </section>
+      <Footer />
     </div>
   );
 };

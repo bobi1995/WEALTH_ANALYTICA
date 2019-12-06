@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/pages/navbar.scss";
 
 const NavBar = () => {
+  const [logged, setLogged] = useState(
+    sessionStorage.getItem("logged") || false
+  );
+  useEffect(() => {
+    sessionStorage.setItem("logged", logged);
+  });
   return (
     <div expand="lg" className="menu-wrapper">
       <h1>logo</h1>
@@ -10,9 +16,6 @@ const NavBar = () => {
           <ul className="menu">
             <li>
               <a href="#">Home</a>
-            </li>
-            <li>
-              <a href="#">News</a>
             </li>
             <li className="dropdown">
               <a href="#" className="dropbtn">
@@ -23,18 +26,34 @@ const NavBar = () => {
               </div>
             </li>
             <li>
-              <a href="#">Our Work</a>
+              <a href="/about">About us</a>
             </li>
             <li>
               <a href="/contact">Contact us</a>
+            </li>
+            <li>
+              <a href="#">Blog</a>
             </li>
           </ul>
         </div>
       </nav>
       <h1>
-        <a className="login" href="/login">
-          Login/Sign up
-        </a>
+        {!logged && (
+          <a className="login" href="/login">
+            Login/Sign up
+          </a>
+        )}
+        {logged && (
+          <a
+            href="#"
+            onClick={() => {
+              setLogged(false);
+            }}
+            className="login"
+          >
+            Sign out
+          </a>
+        )}
       </h1>
     </div>
   );
