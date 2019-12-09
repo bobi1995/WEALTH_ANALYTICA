@@ -5,3 +5,7 @@ $contW: 900px;
     width: $contW;
   }
 }
+.nabvar-first-appear {
+  z-index: 1000;
+  position: absolute;
+}

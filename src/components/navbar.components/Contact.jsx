@@ -6,7 +6,12 @@ import "../../styles/pages/contact.css";
 const Contact = () => {
   return (
     <div class="cont2">
-      <Navbar />
+      <div className="nabvar-first-appear">
+        <Navbar />
+      </div>
+      <section className="contact-img">
+        <h1 className="contact-header1">Reach us</h1>
+      </section>
       <section class="contact-address-area">
         <div class="container">
           <div class="sec-title-style1 text-center max-width">

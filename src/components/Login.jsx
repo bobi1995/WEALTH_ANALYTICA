@@ -90,10 +90,18 @@ const Login = () => {
         `http://pensionswebapi.azurewebsites.net/api/Users?email=${loginEmail}&password=${loginPassword}`
       )
       .then(res => {
-        console.log(res);
         if (res.status === 200) {
           setLoading(false);
           sessionStorage.setItem("logged", true);
+          sessionStorage.setItem("FirstName", res.data.FirstName);
+          sessionStorage.setItem("Token", res.data.Token);
+          sessionStorage.setItem("LastName", res.data.LastName);
+          sessionStorage.setItem("Email", res.data.Email);
+          sessionStorage.setItem("CompanyName", res.data.ComapnyName);
+          sessionStorage.setItem("CompanyPhone", res.data.CompanyPhone);
+          sessionStorage.setItem("Address", res.data.Address);
+          sessionStorage.setItem("States", res.data.States);
+
           history.push({
             pathname: "/dashboard",
             state: res.data
