@@ -5,27 +5,27 @@ import "../../styles/pages/contact.css";
 
 const Contact = () => {
   return (
-    <div class="cont2">
+    <div className="cont2">
       <div className="nabvar-first-appear">
         <Navbar />
       </div>
       <section className="contact-img">
         <h1 className="contact-header1">Reach us</h1>
       </section>
-      <section class="contact-address-area">
-        <div class="container">
-          <div class="sec-title-style1 text-center max-width">
-            <div class="title">Contact Us</div>
-            <div class="text">
-              <div class="decor-left">
+      <section className="contact-address-area">
+        <div className="container">
+          <div className="sec-title-style1 text-center max-width">
+            <div className="title">Contact Us</div>
+            <div className="text">
+              <div className="decor-left">
                 <span></span>
               </div>
               <p>Quick Contact</p>
-              <div class="decor-right">
+              <div className="decor-right">
                 <span></span>
               </div>
             </div>
-            <div class="bottom-text">
+            <div className="bottom-text">
               <p>
                 Wealth Analytica allows our clients to quickly engage through
                 social media with insightful client information designed to
@@ -33,44 +33,44 @@ const Contact = () => {
               </p>
             </div>
           </div>
-          <div class="contact-address-box row">
-            <div class="col-sm-4 single-contact-address-box text-center">
-              <div class="icon-holder">
-                <span class="icon-clock-1">
-                  <span class="path1"></span>
-                  <span class="path2"></span>
-                  <span class="path3"></span>
-                  <span class="path4"></span>
-                  <span class="path5"></span>
-                  <span class="path6"></span>
-                  <span class="path7"></span>
-                  <span class="path8"></span>
-                  <span class="path9"></span>
-                  <span class="path10"></span>
-                  <span class="path11"></span>
-                  <span class="path12"></span>
-                  <span class="path13"></span>
-                  <span class="path14"></span>
-                  <span class="path15"></span>
-                  <span class="path16"></span>
-                  <span class="path17"></span>
-                  <span class="path18"></span>
-                  <span class="path19"></span>
-                  <span class="path20"></span>
+          <div className="contact-address-box row">
+            <div className="col-sm-4 single-contact-address-box text-center">
+              <div className="icon-holder">
+                <span className="icon-clock-1">
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                  <span className="path3"></span>
+                  <span className="path4"></span>
+                  <span className="path5"></span>
+                  <span className="path6"></span>
+                  <span className="path7"></span>
+                  <span className="path8"></span>
+                  <span className="path9"></span>
+                  <span className="path10"></span>
+                  <span className="path11"></span>
+                  <span className="path12"></span>
+                  <span className="path13"></span>
+                  <span className="path14"></span>
+                  <span className="path15"></span>
+                  <span className="path16"></span>
+                  <span className="path17"></span>
+                  <span className="path18"></span>
+                  <span className="path19"></span>
+                  <span className="path20"></span>
                 </span>
               </div>
               <h3 className="contact-h3">Call us</h3>
               <h2 className="contact-h2">anytime during Office Hours</h2>
             </div>
-            <div class="col-sm-4 single-contact-address-box main-branch">
+            <div className="col-sm-4 single-contact-address-box main-branch">
               <h3 className="contact-h3">CAN REACH US HERE</h3>
-              <div class="inner">
+              <div className="inner">
                 <ul className="contact-ul">
                   <li>
-                    <div class="title">
+                    <div className="title">
                       <h4 className="contact-h4">Address:</h4>
                     </div>
-                    <div class="text">
+                    <div className="text">
                       <p>
                         2828 Connecticut Avenue,
                         <br /> NW Washington DC 20008
@@ -78,10 +78,10 @@ const Contact = () => {
                     </div>
                   </li>
                   <li>
-                    <div class="title">
+                    <div className="title">
                       <h4 className="contact-h4">Phone:</h4>
                     </div>
-                    <div class="text">
+                    <div className="text">
                       <p>
                         +1 (516) 732 3364
                         <br /> +359 878 880 564
@@ -89,10 +89,10 @@ const Contact = () => {
                     </div>
                   </li>
                   <li>
-                    <div class="title">
+                    <div className="title">
                       <h4 className="contact-h4">Office Hrs:</h4>
                     </div>
-                    <div class="text">
+                    <div className="text">
                       <p>
                         Mon-Fri: 9:30am - 6:30pm
                         <br /> Sat-Sun: Closed
@@ -102,13 +102,13 @@ const Contact = () => {
                 </ul>
               </div>
             </div>
-            <div class="col-sm-4 single-contact-address-box text-center">
-              <div class="icon-holder">
-                <span class="icon-question-2">
-                  <span class="path1"></span>
-                  <span class="path2"></span>
-                  <span class="path3"></span>
-                  <span class="path4"></span>
+            <div className="col-sm-4 single-contact-address-box text-center">
+              <div className="icon-holder">
+                <span className="icon-question-2">
+                  <span className="path1"></span>
+                  <span className="path2"></span>
+                  <span className="path3"></span>
+                  <span className="path4"></span>
                 </span>
               </div>
               <h3 className="contact-h3">Email us</h3>
@@ -118,23 +118,23 @@ const Contact = () => {
         </div>
       </section>
 
-      <section class="contact-info-area">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-              <div class="contact-form">
-                <div class="row">
-                  <div class="col-xl-12">
-                    <div class="sec-title-style1 float-left">
-                      <div class="title">Send Your Message</div>
-                      <div class="text">
-                        <div class="decor-left">
+      <section className="contact-info-area">
+        <div className="container">
+          <div className="row">
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+              <div className="contact-form">
+                <div className="row">
+                  <div className="col-xl-12">
+                    <div className="sec-title-style1 float-left">
+                      <div className="title">Send Your Message</div>
+                      <div className="text">
+                        <div className="decor-left">
                           <span></span>
                         </div>
                         <p>Contact Form</p>
                       </div>
                     </div>
-                    <div class="text-box float-right">
+                    <div className="text-box float-right">
                       <p>
                         Email us and we will try to answer as soon as possible
                         to your question or offer.
@@ -142,19 +142,19 @@ const Contact = () => {
                     </div>
                   </div>
                 </div>
-                <div class="inner-box">
+                <div className="inner-box">
                   <form
                     id="contact-form"
                     name="contact_form"
-                    class="default-form"
+                    className="default-form"
                     action="inc/sendmail.php"
                     method="post"
                   >
-                    <div class="row">
-                      <div class="col-xl-6 col-lg-12">
-                        <div class="row">
-                          <div class="col-xl-6">
-                            <div class="input-box">
+                    <div className="row">
+                      <div className="col-xl-6 col-lg-12">
+                        <div className="row">
+                          <div className="col-xl-6">
+                            <div className="input-box">
                               <input
                                 type="text"
                                 name="form_name"
@@ -163,7 +163,7 @@ const Contact = () => {
                                 required=""
                               />
                             </div>
-                            <div class="input-box">
+                            <div className="input-box">
                               <input
                                 type="text"
                                 name="form_phone"
@@ -172,8 +172,8 @@ const Contact = () => {
                               />
                             </div>
                           </div>
-                          <div class="col-xl-6">
-                            <div class="input-box">
+                          <div className="col-xl-6">
+                            <div className="input-box">
                               <input
                                 type="email"
                                 name="form_email"
@@ -182,7 +182,7 @@ const Contact = () => {
                                 required=""
                               />
                             </div>
-                            <div class="input-box">
+                            <div className="input-box">
                               <input
                                 type="text"
                                 name="form_company"
@@ -192,9 +192,9 @@ const Contact = () => {
                             </div>
                           </div>
                         </div>
-                        <div class="row">
-                          <div class="col-xl-12">
-                            <div class="input-box">
+                        <div className="row">
+                          <div className="col-xl-12">
+                            <div className="input-box">
                               <input
                                 type="text"
                                 name="form_subject"
@@ -205,19 +205,19 @@ const Contact = () => {
                           </div>
                         </div>
                       </div>
-                      <div class="col-xl-6 col-lg-12">
-                        <div class="input-box">
+                      <div className="col-xl-6 col-lg-12">
+                        <div className="input-box">
                           <textarea
                             name="form_message"
                             placeholder="Your Message..."
                             required=""
                           ></textarea>
                         </div>
-                        <div class="button-box">
+                        <div className="button-box">
                           <input
                             id="form_botcheck"
                             name="form_botcheck"
-                            class="form-control"
+                            className="form-control"
                             type="hidden"
                             value=""
                           />
@@ -225,7 +225,7 @@ const Contact = () => {
                             type="submit"
                             data-loading-text="Please wait..."
                           >
-                            Send Message<span class="flaticon-next"></span>
+                            Send Message<span className="flaticon-next"></span>
                           </button>
                         </div>
                       </div>
