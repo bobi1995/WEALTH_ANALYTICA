@@ -45,6 +45,7 @@ const DataNavbar = () => {
             <li className="logout-li">
               <a href="/contact">LogOut</a>
             </li>
+            
           </ul>
           <span
             onClick={navTrigger}

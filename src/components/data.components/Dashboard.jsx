@@ -9,8 +9,32 @@ import "../../styles/fonts/font-awesome-4.7.0/css/font-awesome.min.css";
 const Dashboard = props => {
   const [chartInfo, setChartInfo] = useState([]);
   const [stateInput, setStateInput] = useState([]);
+  const [fetchedData, setFetchedData] = useState([])
+  const data = {
+    'Authorization':`Basic ${sessionStorage.getItem("Token")}`,
+    "Content-Type": "application/json",
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Expose-Headers':'headers'
+}
+  useEffect(() => {
 
-  useEffect(() => {}, []);
+    axios.get(`http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?year=2017&year=2018&state=${stateInput[0]}`,{
+      headers: {
+        'Authorization': 'Basic ' + sessionStorage.getItem("Token"),
+        'Access-Control-Allow-Origin': '*',
+
+      }
+     })
+        .then(res=>{
+          setFetchedData(res.data)
+          console.log(res)
+          
+       })
+       .then(()=>{
+         console.log(fetchedData)
+       })
+       .catch(error=>console.log(error))
+  },[stateInput]);
 
   const statesNames = () => {
     const statesString = sessionStorage.getItem("States");
@@ -48,7 +72,6 @@ const Dashboard = props => {
     e.preventDefault();
     const stateField = document.getElementById("stateInput").value;
     setStateInput([...stateInput, stateField]);
-    console.log(stateField);
     document.getElementById("stateInput").value = "";
   };
 
@@ -56,7 +79,7 @@ const Dashboard = props => {
   const renderStates = () => {
     return stateInput.map((state, index) => {
       return (
-        <li id="individual-state" key={index}>
+        <li value={state} id="individual-state" key={index}>
           {state}
           <i onClick={removeState} className="fa fa-trash fa"></i>
         </li>
@@ -67,9 +90,10 @@ const Dashboard = props => {
   const removeState = e => {
     console.log("delete me");
     const target = e.target;
-    const elem = document.getElementById("individual-state");
-    console.log(stateInput);
-    return target.parentNode.remove(target);
+    //const arr = stateInput.filter(state => state!==target.parentNode.getAttribute("value"))
+    setStateInput(stateInput.filter(state => state!==target.parentNode.getAttribute("value")))
+    
+    //return target.parentNode.remove(target);
   };
   return (
     <div>
@@ -140,9 +164,11 @@ const Dashboard = props => {
                   States you want to check will apear on the right.
                 </small>
               </div>
-              <button type="submit" className="btn btn-primary">
+              {stateInput.length<3 ? <button type="submit" className="btn btn-primary">
                 Add
-              </button>
+              </button> : <button disabled type="submit" className="btn btn-primary">
+                Add
+              </button> }
             </form>
           </div>
           <div className="addState-innerDiv">
@@ -152,7 +178,8 @@ const Dashboard = props => {
           </div>
         </div>
       </div>
-
+      <div>
+      </div>
       <Footer />
     </div>
   );
