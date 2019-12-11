@@ -35,7 +35,83 @@
   color: black;
 }
 
-@media screen and (max-width: 900px) {
+/**********DIAGRAMS ********************/
+.dashboard-diagrams-addState {
+  display: flex;
+  margin-bottom: 5%;
+}
+
+.dasboard-diagrams-addstate-stateInput {
+  padding: 0 10px;
+  width: 80%;
+  border-radius: 3px 0 0 3px;
+  height: 44px;
+  display: block;
+  float: left;
+  margin: 1em 0 2em;
+  border: none;
+  border: 1px solid lightblue;
+  font-size: 1em;
+}
+.dasboard-diagrams-addstate-submit {
+  height: 44px;
+  display: block;
+  float: left;
+  margin: 1em 0 2em;
+  border: none;
+  border: 1px solid lightblue;
+  font-size: 1em;
+  background: green;
+  color: #fff;
+  padding: 0;
+  cursor: pointer;
+  width: 20%;
+  border-radius: 0 3px 3px 0;
+}
+
+.addstate-form {
+  display: inline-block;
+  float: right;
+  padding-right: 5%;
+}
+.addState-innerDiv {
+  width: 50%;
+}
+
+.notes-list {
+  margin: 0;
+  list-style-type: none;
+  background: #fff;
+  padding-left: 5%;
+}
+
+.notes-list li {
+  font-weight: 400;
+  color: #222;
+  font-size: 1em;
+  line-height: 1.5;
+  background: #fff;
+  text-align: left;
+  padding: 8px 0;
+  transition: all 0.3s linear;
+  height: 44px;
+  width: 50%;
+}
+
+.notes-list li:hover {
+  background: #dee2e6;
+}
+
+.notes-list li i {
+  padding-right: 10%;
+  float: right;
+}
+
+.notes-list li i:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 950px) {
   .dashboard-client-info-main {
     height: 100%;
     display: block;
@@ -46,6 +122,6 @@
     margin-bottom: 20%;
   }
   .dashboard-info-states {
-    padding-right: 0;
+    padding: 0;
   }
 }

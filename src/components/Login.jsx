@@ -97,7 +97,7 @@ const Login = () => {
           sessionStorage.setItem("Token", res.data.Token);
           sessionStorage.setItem("LastName", res.data.LastName);
           sessionStorage.setItem("Email", res.data.Email);
-          sessionStorage.setItem("CompanyName", res.data.ComapnyName);
+          sessionStorage.setItem("CompanyName", res.data.CompanyName);
           sessionStorage.setItem("CompanyPhone", res.data.CompanyPhone);
           sessionStorage.setItem("Address", res.data.Address);
           sessionStorage.setItem("States", res.data.States);
@@ -271,7 +271,7 @@ const Login = () => {
       <div id="popup1" className="overlay">
         <div className="popup">
           <h2>Congratulations</h2>
-          <a className="close" href="#">
+          <a className="close" href="">
             &times;
           </a>
           <div className="popup-content">
