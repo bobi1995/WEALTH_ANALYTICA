@@ -111,6 +111,26 @@
   cursor: pointer;
 }
 
+/*************************CHARTs DIV**************************/
+
+.dashboard-graphs {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.individual-chart {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  text-align: center;
+  align-content: center;
+}
+.individual-chart h1 {
+  color: black;
+}
+
 @media screen and (max-width: 950px) {
   .dashboard-client-info-main {
     height: 100%;
@@ -123,5 +143,12 @@
   }
   .dashboard-info-states {
     padding: 0;
+  }
+  .dashboard-graphs {
+    display: block;
+    width: 100%;
+  }
+  .individual-chart {
+    margin-bottom: 5em;
   }
 }
