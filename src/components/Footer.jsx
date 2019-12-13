@@ -60,9 +60,13 @@ const Footer = () => {
                   Get Started<span></span>
                 </h5>
                 <p>Get your full or partial access to our Business database.</p>
-                <a className="btn" href="#." target="_blank">
-                  Register Now
-                </a>
+                {sessionStorage.getItem("logged") === "true" ? (
+                  ""
+                ) : (
+                  <a className="footer-btn" href="/login">
+                    Log In/Register
+                  </a>
+                )}
               </div>
             </div>
 

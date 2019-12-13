@@ -5,8 +5,8 @@ import "../../styles/dataPages/clientDashboard.scss";
 import axios from "axios";
 import "../../styles/fonts/font-awesome-4.7.0/css/font-awesome.min.css";
 import functions from "./dashboardFunctions/functions";
-import dataReturn from "./dashboardFunctions/charts";
-import { Doughnut } from "react-chartjs-2";
+import charts from "./dashboardFunctions/charts";
+import { Bar } from "react-chartjs-2";
 import Loader from "./dashboardFunctions/loader";
 
 const Dashboard = props => {
@@ -93,10 +93,19 @@ const Dashboard = props => {
     setParticipantsAccountBal([]);
 
     const stateField = document.getElementById("stateInput").value;
-    const parts = stateField.split(" - ");
-    setStateAbbriviation([...stateAbbriviation, parts[1]]);
-    setStateInput([...stateInput, stateField]);
-    document.getElementById("stateInput").value = "";
+    const allowedStates = functions.commonFunction();
+    if (allowedStates.includes(stateField)) {
+      const parts = stateField.split(" - ");
+      setStateAbbriviation([...stateAbbriviation, parts[1]]);
+      setStateInput([...stateInput, stateField]);
+      document.getElementById("emailHelp").innerHTML =
+        "States you want to check will apear on the right.";
+      document.getElementById("stateInput").value = "";
+    } else {
+      console.log("false");
+      document.getElementById("emailHelp").innerHTML =
+        "PICK CORRECT STATE VALUE";
+    }
   };
 
   //***********RENDER STATES********* */
@@ -130,52 +139,8 @@ const Dashboard = props => {
     <div>
       <Datanavbar />
       <section className="clientDash-img">
-        <h1 className="clientDash-header1">Your Profile</h1>
+        <h1 className="clientDash-header1">Dashboard</h1>
       </section>
-
-      {/* ************** USER INFORMATIONS***********************/}
-      <div className="dashboard-client-info-main">
-        <div className="dashboard-info">
-          <h1 className="dashboard-h1">Your info</h1>
-          <table className="dashboard-table table">
-            <tbody>
-              <tr>
-                <th>Name</th>
-                <td>
-                  {sessionStorage.getItem("FirstName")}{" "}
-                  {sessionStorage.getItem("LastName")}
-                </td>
-              </tr>
-              <tr>
-                <th>Email</th>
-                <td>{sessionStorage.getItem("Email")}</td>
-              </tr>
-              <tr>
-                <th>Company</th>
-                <td>{sessionStorage.getItem("CompanyName")}</td>
-              </tr>
-              <tr>
-                <th>Phone</th>
-                <td>{sessionStorage.getItem("CompanyPhone")}</td>
-              </tr>
-              <tr>
-                <th>Address</th>
-                <td>{sessionStorage.getItem("Address")}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="dashboard-info-states">
-          <table className="table table-hover">
-            <thead className="thead-dark">
-              <tr>
-                <th>Paid States and abbreviations</th>
-              </tr>
-            </thead>
-            <tbody className="table-hover">{functions.statesNames()}</tbody>
-          </table>
-        </div>
-      </div>
 
       {/* ************** CHARTS AND DIAGRAMS***********************/}
       <div className="dashboard-diagrams">
@@ -206,7 +171,7 @@ const Dashboard = props => {
                 </button>
               )}
               <datalist id="state-dataList">
-                {functions.dataListStates()}
+                {functions.dataListStates(stateInput)}
               </datalist>
             </form>
           </div>
@@ -223,12 +188,19 @@ const Dashboard = props => {
           <h1>Net Assets EOY</h1>
           {stateInput.length > 0 ? (
             netAssetsEndOfYear.length > 0 ? (
-              <Doughnut data={dataReturn(netAssetsEndOfYear)} />
+              <div className="chart-content">
+                <Bar
+                  data={charts.dataReturn(netAssetsEndOfYear, "Net Assets EOY")}
+                  options={charts.optionReturn(netAssetsEndOfYear)}
+                  width={100}
+                  height={50}
+                />
+              </div>
             ) : (
               <Loader />
             )
           ) : (
-            <h2>Select State</h2>
+            <h3>Select State</h3>
           )}
         </div>
 
@@ -236,12 +208,19 @@ const Dashboard = props => {
           <h1>Net Income</h1>
           {stateInput.length > 0 ? (
             netIncome.length > 0 ? (
-              <Doughnut data={dataReturn(netIncome)} />
+              <div className="chart-content">
+                <Bar
+                  data={charts.dataReturn(netIncome, "Net Income")}
+                  options={charts.optionReturn(netIncome)}
+                  width={150}
+                  height={100}
+                />
+              </div>
             ) : (
               <Loader />
             )
           ) : (
-            <h2>Select State</h2>
+            <h3>Select State</h3>
           )}
         </div>
       </div>
@@ -251,12 +230,22 @@ const Dashboard = props => {
           <h1>Income Contributed By Employee</h1>
           {stateInput.length > 0 ? (
             employeesContributionIncome.length > 0 ? (
-              <Doughnut data={dataReturn(employeesContributionIncome)} />
+              <div className="chart-content">
+                <Bar
+                  data={charts.dataReturn(
+                    employeesContributionIncome,
+                    "Income Contributed By Employee"
+                  )}
+                  options={charts.optionReturn(employeesContributionIncome)}
+                  width={150}
+                  height={100}
+                />
+              </div>
             ) : (
               <Loader />
             )
           ) : (
-            <h2>Select State</h2>
+            <h3>Select State</h3>
           )}
         </div>
 
@@ -264,12 +253,22 @@ const Dashboard = props => {
           <h1>Participant Account Balance</h1>
           {stateInput.length > 0 ? (
             participantsAccountBal.length > 0 ? (
-              <Doughnut data={dataReturn(participantsAccountBal)} />
+              <div className="chart-content">
+                <Bar
+                  data={charts.dataReturn(
+                    participantsAccountBal,
+                    "Participant Account Balance"
+                  )}
+                  options={charts.optionReturn(participantsAccountBal)}
+                  width={150}
+                  height={100}
+                />
+              </div>
             ) : (
               <Loader />
             )
           ) : (
-            <h2>Select State</h2>
+            <h3>Select State</h3>
           )}
         </div>
       </div>
@@ -280,12 +279,19 @@ const Dashboard = props => {
           <h1>Total Expenses</h1>
           {stateInput.length > 0 ? (
             totalExpenses.length > 0 ? (
-              <Doughnut data={dataReturn(totalExpenses)} />
+              <div className="chart-content">
+                <Bar
+                  data={charts.dataReturn(totalExpenses, "Total Expenses")}
+                  options={charts.optionReturn(totalExpenses)}
+                  width={150}
+                  height={100}
+                />
+              </div>
             ) : (
               <Loader />
             )
           ) : (
-            <h2>Select State</h2>
+            <h3>Select State</h3>
           )}
         </div>
 
@@ -293,12 +299,19 @@ const Dashboard = props => {
           <h1>Total Income</h1>
           {stateInput.length > 0 ? (
             totalIncome.length > 0 ? (
-              <Doughnut data={dataReturn(totalIncome)} />
+              <div className="chart-content">
+                <Bar
+                  data={charts.dataReturn(totalIncome, "Total Income")}
+                  options={charts.optionReturn(totalIncome)}
+                  width={150}
+                  height={100}
+                />
+              </div>
             ) : (
               <Loader />
             )
           ) : (
-            <h2>Select State</h2>
+            <h3>Select State</h3>
           )}
         </div>
       </div>

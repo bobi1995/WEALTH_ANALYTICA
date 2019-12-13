@@ -39,6 +39,7 @@
 .dashboard-diagrams-addState {
   display: flex;
   margin-bottom: 5%;
+  margin-top: 2%;
 }
 
 .dasboard-diagrams-addstate-stateInput {
@@ -70,7 +71,7 @@
 }
 
 .addstate-form {
-  display: inline-block;
+  display: block;
   float: right;
   padding-right: 5%;
 }
@@ -83,6 +84,7 @@
   list-style-type: none;
   background: #fff;
   padding-left: 5%;
+  padding-top: 3%;
 }
 
 .notes-list li {
@@ -129,6 +131,14 @@
 }
 .individual-chart h1 {
   color: black;
+  font-size: 2rem;
+}
+.chart-content {
+  width: 50%;
+  text-align: center;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (max-width: 950px) {

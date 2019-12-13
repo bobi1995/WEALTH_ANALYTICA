@@ -39,11 +39,13 @@ const statesNames = () => {
 };
 
 //*************INPUT FIELD FOR STATES***************** */
-const dataListStates = () => {
+const dataListStates = arr => {
   const array = commonFunction();
   return array.map((state, index) => {
-    return <option key={state}>{state}</option>;
+    if (!arr.includes(state)) {
+      return <option key={state}>{state}</option>;
+    }
   });
 };
 
-export default { statesNames, dataListStates };
+export default { commonFunction, statesNames, dataListStates };

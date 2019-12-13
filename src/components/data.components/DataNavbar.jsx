@@ -25,13 +25,13 @@ const DataNavbar = () => {
         <div id="data-mainListDiv" className="data-main_list">
           <ul className="data-navlinks">
             <li>
-              <a href="/about">Dashboard</a>
+              <a href="/dashboard">Dashboard</a>
+            </li>
+            <li>
+              <a href="/filters">Filters</a>
             </li>
             <li>
               <a href="#">Heatmap</a>
-            </li>
-            <li>
-              <a href="/contact">Filters</a>
             </li>
             <li>
               <a href="/contact">Bookmakrs</a>
@@ -42,10 +42,24 @@ const DataNavbar = () => {
             <li>
               <a href="/contact">PlanProfile</a>
             </li>
-            <li className="logout-li">
-              <a href="/contact">LogOut</a>
+            <li className="dropdown">
+              <div>
+                <a className="dropbtn" href="#">
+                  Hi,{sessionStorage.getItem("FirstName")}
+                </a>
+                <div className="dropdown-content">
+                  <a href="/profile">Your Profile</a>
+                  <a
+                    href=""
+                    onClick={() => {
+                      sessionStorage.clear();
+                    }}
+                  >
+                    Sign Out
+                  </a>
+                </div>
+              </div>
             </li>
-            
           </ul>
           <span
             onClick={navTrigger}

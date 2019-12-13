@@ -160,7 +160,7 @@ const Contact = () => {
                                 name="form_name"
                                 value=""
                                 placeholder="Name"
-                                required=""
+                                required
                               />
                             </div>
                             <div className="input-box">
