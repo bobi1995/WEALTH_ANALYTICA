@@ -1,0 +1,74 @@
+/***********************TOP DIV*************************************/
+
+.filter-top-main {
+  display: flex;
+  width: 100%;
+}
+.filter-top-filters {
+  width: 30%;
+}
+.filter-top-charts {
+  background-color: lightblue;
+  width: 70%;
+}
+
+/*********STATES LIST********************************/
+.filter-notes-list {
+  margin: 0;
+  list-style-type: none;
+  background: #fff;
+  padding-left: 5%;
+  padding-top: 3%;
+}
+
+.filter-notes-list li {
+  font-weight: 400;
+  color: #222;
+  font-size: 1em;
+  line-height: 1.5;
+  background: #fff;
+  text-align: left;
+  padding: 8px 0;
+  transition: all 0.3s linear;
+  height: 44px;
+  width: 70%;
+}
+
+.filter-notes-list li:hover {
+  background: #dee2e6;
+}
+
+.filter-notes-list li i {
+  float: right;
+  padding-top: 1.5%;
+}
+
+.notes-list li i:hover {
+  cursor: pointer;
+}
+@media screen and (max-width: 900px) {
+  .filter-top-main {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .filter-innerDiv {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .filter-top-filters {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .filter-form {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+  .filter-top-charts {
+    width: 100%;
+  }
+}

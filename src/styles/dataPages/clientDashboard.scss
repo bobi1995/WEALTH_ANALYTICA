@@ -140,8 +140,13 @@
   margin-left: auto;
   margin-right: auto;
 }
-
+.filter-inner {
+  float: left;
+}
 @media screen and (max-width: 950px) {
+  .addstatediv {
+    margin-left: 15%;
+  }
   .dashboard-client-info-main {
     height: 100%;
     display: block;

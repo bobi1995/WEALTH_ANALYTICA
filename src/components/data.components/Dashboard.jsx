@@ -94,18 +94,12 @@ const Dashboard = props => {
 
     const stateField = document.getElementById("stateInput").value;
     const allowedStates = functions.commonFunction();
-    if (allowedStates.includes(stateField)) {
-      const parts = stateField.split(" - ");
-      setStateAbbriviation([...stateAbbriviation, parts[1]]);
-      setStateInput([...stateInput, stateField]);
-      document.getElementById("emailHelp").innerHTML =
-        "States you want to check will apear on the right.";
-      document.getElementById("stateInput").value = "";
-    } else {
-      console.log("false");
-      document.getElementById("emailHelp").innerHTML =
-        "PICK CORRECT STATE VALUE";
-    }
+    const parts = stateField.split(" - ");
+    setStateAbbriviation([...stateAbbriviation, parts[1]]);
+    setStateInput([...stateInput, stateField]);
+    document.getElementById("emailHelp").innerHTML =
+      "States you want to check will apear on the right.";
+    document.getElementById("stateInput").value = "";
   };
 
   //***********RENDER STATES********* */
@@ -144,7 +138,7 @@ const Dashboard = props => {
 
       {/* ************** CHARTS AND DIAGRAMS***********************/}
       <div className="dashboard-diagrams">
-        <div className="dashboard-diagrams-addState">
+        <div className="dashboard-diagrams-addState ">
           <div className="addState-innerDiv">
             <form className="addstate-form" onSubmit={addState}>
               <div className="form-group">
@@ -156,6 +150,7 @@ const Dashboard = props => {
                   placeholder="Enter state"
                   list="state-dataList"
                   autoComplete="off"
+                  required
                 />
                 <small id="emailHelp" className="form-text text-muted">
                   States you want to check will apear on the right.
