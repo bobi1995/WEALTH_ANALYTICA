@@ -17,6 +17,13 @@
   font-size: 4rem;
 }
 
+.dashboard-btn {
+  width: 100%;
+}
+.dashboard-label {
+  text-align: center;
+}
+
 /***CLIENT INFO DIV*/
 .dashboard-client-info-main {
   margin-top: 4em;
@@ -84,7 +91,6 @@
   list-style-type: none;
   background: #fff;
   padding-left: 5%;
-  padding-top: 3%;
 }
 
 .notes-list li {
@@ -106,6 +112,7 @@
 
 .notes-list li i {
   padding-right: 10%;
+  padding-top: 1%;
   float: right;
 }
 
@@ -165,5 +172,10 @@
   }
   .individual-chart {
     margin-bottom: 5em;
+  }
+  .notes-list li i {
+    padding-right: 0;
+    padding-top: 0;
+    float: right;
   }
 }

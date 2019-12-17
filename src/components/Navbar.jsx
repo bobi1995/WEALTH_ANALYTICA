@@ -32,7 +32,7 @@ const NavBar = () => {
                 <a href="/about">About</a>
               </li>
               <li>
-                <a href="#">Data</a>
+                <a href="/login">Data</a>
               </li>
               <li>
                 <a href="/contact">Contact</a>
@@ -40,13 +40,13 @@ const NavBar = () => {
               <li className="dropdown">
                 {logged ? (
                   <div>
-                    <a className="dropbtn" href="#">
+                    <a className="dropbtn" href="/">
                       Hi,{sessionStorage.getItem("FirstName")}
                     </a>
                     <div className="dropdown-content">
                       <a href="/dashboard">Dashboard</a>
                       <a
-                        href=""
+                        href="/"
                         onClick={() => {
                           sessionStorage.clear();
                           setLogged(undefined);

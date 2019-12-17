@@ -10,7 +10,6 @@ import { Bar } from "react-chartjs-2";
 import Loader from "./dashboardFunctions/loader";
 
 const Dashboard = props => {
-  const [chartInfo, setChartInfo] = useState([]);
   const [stateInput, setStateInput] = useState([]);
   const [fetchedData, setFetchedData] = useState([]);
   const [stateAbbriviation, setStateAbbriviation] = useState([]);
@@ -32,17 +31,11 @@ const Dashboard = props => {
   );
   const [totalExpenses, setTotalExpenses] = useState([]);
   const [totalIncome, setTotalIncome] = useState([]);
-  //**************HEADERS FOR FETCHING****************** */
-  const data = {
-    Authorization: `Basic ${sessionStorage.getItem("Token")}`,
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Expose-Headers": "headers"
-  };
-  let url;
 
   //***************USEEFECT FUNTCTION FOR FETCHING DATA********************* */
   useEffect(() => {
+    let url;
+
     if (stateAbbriviation.length === 1) {
       url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?year=2016&year=2017&year=2018&state=${stateAbbriviation[0]}`;
     } else if (stateAbbriviation.length === 2) {
@@ -77,29 +70,34 @@ const Dashboard = props => {
     }
   }, [stateInput]);
 
-  //***********ONCHANGE***************** */
-  const stateAbbr = () => {};
-
   //*********ADD STATE IN LIST********** */
 
   const addState = e => {
-    e.preventDefault();
-    setNetAssetsEndOfYear([]);
-    setNetIncome([]);
-    setEmployeesContributionIncome([]);
-    setParticipantsContributionIncome([]);
-    setTotalExpenses([]);
-    setTotalIncome([]);
-    setParticipantsAccountBal([]);
-
-    const stateField = document.getElementById("stateInput").value;
     const allowedStates = functions.commonFunction();
-    const parts = stateField.split(" - ");
-    setStateAbbriviation([...stateAbbriviation, parts[1]]);
-    setStateInput([...stateInput, stateField]);
-    document.getElementById("emailHelp").innerHTML =
-      "States you want to check will apear on the right.";
-    document.getElementById("stateInput").value = "";
+    const stateField = document.getElementById("stateInput").value;
+
+    e.preventDefault();
+
+    if (allowedStates.includes(stateField)) {
+      setNetAssetsEndOfYear([]);
+      setNetIncome([]);
+      setEmployeesContributionIncome([]);
+      setParticipantsContributionIncome([]);
+      setTotalExpenses([]);
+      setTotalIncome([]);
+      setParticipantsAccountBal([]);
+
+      const parts = stateField.split(" - ");
+      setStateAbbriviation([...stateAbbriviation, parts[1]]);
+      setStateInput([...stateInput, stateField]);
+      document.getElementById("emailHelp").innerHTML =
+        "States you want to check will apear on the right.";
+      document.getElementById("stateInput").value = "";
+    } else {
+      console.log("false");
+      document.getElementById("emailHelp").innerHTML =
+        "PICK CORRECT STATE VALUE";
+    }
   };
 
   //***********RENDER STATES********* */
@@ -142,7 +140,6 @@ const Dashboard = props => {
           <div className="addState-innerDiv">
             <form className="addstate-form" onSubmit={addState}>
               <div className="form-group">
-                <label>States to inspect</label>
                 <input
                   type="text"
                   className="form-control"
@@ -157,11 +154,15 @@ const Dashboard = props => {
                 </small>
               </div>
               {stateInput.length < 3 ? (
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary dashboard-btn">
                   Add
                 </button>
               ) : (
-                <button disabled type="submit" className="btn btn-primary">
+                <button
+                  disabled
+                  type="submit"
+                  className="btn btn-primary dashboard-btn"
+                >
                   Add
                 </button>
               )}
@@ -171,7 +172,7 @@ const Dashboard = props => {
             </form>
           </div>
           <div className="addState-innerDiv">
-            <ul onChange={stateAbbr} id="notes-004" className="notes-list">
+            <ul id="notes-004" className="notes-list">
               {renderStates()}
             </ul>
           </div>

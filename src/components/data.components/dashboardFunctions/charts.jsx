@@ -1,5 +1,3 @@
-import React from "react";
-
 const arrayReducer = array => {
   let newArr = [];
   let total = 0;
@@ -21,7 +19,6 @@ const arrayReducer = array => {
 };
 
 const arrayCategory = array => {
-  let newArr = [];
   let total = 0;
   for (let i = 0; i < array.length; i++) {
     total += array[i];

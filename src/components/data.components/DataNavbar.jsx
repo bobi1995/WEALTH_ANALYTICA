@@ -31,20 +31,20 @@ const DataNavbar = () => {
               <a href="/filters">Filters</a>
             </li>
             <li>
-              <a href="#">Heatmap</a>
+              <a href="/heatmap">Heatmap</a>
             </li>
             <li>
-              <a href="/contact">Bookmakrs</a>
+              <a href="/bookmarks">Bookmakrs</a>
             </li>
             <li>
-              <a href="/contact">OnePager</a>
+              <a href="/onepager">OnePager</a>
             </li>
             <li>
-              <a href="/contact">PlanProfile</a>
+              <a href="/planprofile">PlanProfile</a>
             </li>
             <li className="dropdown">
               <div>
-                <a className="dropbtn" href="#">
+                <a className="dropbtn" href="/profile">
                   Hi,{sessionStorage.getItem("FirstName")}
                 </a>
                 <div className="dropdown-content">

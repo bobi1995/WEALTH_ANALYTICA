@@ -160,17 +160,25 @@ const Login = () => {
       <div className="cont">
         <form onSubmit={onSubmitLogin}>
           <div className="form sign-in">
-            <h2>Hello again,</h2>
+            <h2 className="login-h2">Hello again,</h2>
             <div className="div-label">
-              <label>
-                <span>Email</span>
-                <input type="email" onChange={onLoginEmailChange} />
+              <label className="login-label">
+                <span className="login-span">Email</span>
+                <input
+                  className="login-input"
+                  type="email"
+                  onChange={onLoginEmailChange}
+                />
               </label>
             </div>
             <div className="div-label">
-              <label>
-                <span>Password</span>
-                <input type="password" onChange={onLoginPasswordChange} />
+              <label className="login-label">
+                <span className="login-span">Password</span>
+                <input
+                  className="login-input"
+                  type="password"
+                  onChange={onLoginPasswordChange}
+                />
               </label>
             </div>
             <p className="forgot-pass">Forgot password?</p>
@@ -192,61 +200,94 @@ const Login = () => {
         <div className="sub-cont">
           <div className="img">
             <div className="img__text m--up">
-              <h2>New here?</h2>
-              <p>Sign up and discover great amount of new opportunities!</p>
+              <h2 className="login-h2">New here?</h2>
+              <p className="login-paragr">
+                Sign up and discover great amount of new opportunities!
+              </p>
             </div>
             <div className="img__text m--in">
-              <h2>One of us?</h2>
-              <p>
+              <h2 className="login-h2">One of us?</h2>
+              <p className="login-paragr">
                 If you already has an account, just sign in. We've missed you!
               </p>
             </div>
             <div onClick={clicked} className="img__btn">
-              <span className="m--up">Sign Up</span>
-              <span className="m--in">Sign In</span>
+              <span className="m--up login-span">Sign Up</span>
+              <span className="m--in login-span">Sign In</span>
             </div>
           </div>
           <div className="form sign-up">
-            <h2>Time to feel like home,</h2>
+            <h2 className="login-h2">Time to feel like home,</h2>
             <form onSubmit={onSubmitReg}>
               <div className="div-label">
-                <label>
-                  <span>First Name</span>
-                  <input type="text" onChange={onFirstNameChange} required />
-                </label>
-                <label>
-                  <span>Last Name</span>
-                  <input type="text" onChange={onLastNameChange} required />
-                </label>
-              </div>
-              <div className="div-label">
-                <label>
-                  <span>Email</span>
-                  <input type="email" onChange={onEmailChange} required />
-                </label>
-              </div>
-              <div className="div-label">
-                <label>
-                  <span>Password</span>
-                  <input type="password" onChange={onPasswordChange} required />
-                </label>
-                <label>
-                  <span>Confirm Password</span>
+                <label className="login-label">
+                  <span className="login-span">First Name</span>
                   <input
-                    type="password"
-                    onChange={onPasswordConfirmChange}
+                    className="login-input"
+                    type="text"
+                    onChange={onFirstNameChange}
+                    required
+                  />
+                </label>
+                <label className="login-label">
+                  <span className="login-span">Last Name</span>
+                  <input
+                    className="login-input"
+                    type="text"
+                    onChange={onLastNameChange}
                     required
                   />
                 </label>
               </div>
               <div className="div-label">
-                <label>
-                  <span>Company Name</span>
-                  <input type="text" onChange={onCompanyChange} required />
+                <label className="login-label">
+                  <span className="login-span">Email</span>
+                  <input
+                    className="login-input"
+                    type="email"
+                    onChange={onEmailChange}
+                    required
+                  />
                 </label>
-                <label>
-                  <span>Address</span>
-                  <input type="text" onChange={onAddressChange} required />
+              </div>
+              <div className="div-label">
+                <label className="login-label">
+                  <span className="login-span">Password</span>
+                  <input
+                    className="login-input"
+                    type="password"
+                    onChange={onPasswordChange}
+                    required
+                  />
+                </label>
+                <label className="login-label">
+                  <span className="login-span">Confirm Password</span>
+                  <input
+                    type="password"
+                    onChange={onPasswordConfirmChange}
+                    required
+                    className="login-input"
+                  />
+                </label>
+              </div>
+              <div className="div-label">
+                <label className="login-label">
+                  <span className="login-span">Company Name</span>
+                  <input
+                    className="login-input"
+                    type="text"
+                    onChange={onCompanyChange}
+                    required
+                  />
+                </label>
+                <label className="login-label">
+                  <span className="login-span">Address</span>
+                  <input
+                    className="login-input"
+                    type="text"
+                    onChange={onAddressChange}
+                    required
+                  />
                 </label>
               </div>
               {loading && (
@@ -270,7 +311,7 @@ const Login = () => {
 
       <div id="popup1" className="overlay">
         <div className="popup">
-          <h2>Congratulations</h2>
+          <h2 className="login-h2">Congratulations</h2>
           <a className="close" href="">
             &times;
           </a>
