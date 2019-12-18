@@ -36,11 +36,16 @@ const DataNavbar = () => {
             <li>
               <a href="/bookmarks">Bookmakrs</a>
             </li>
-            <li>
-              <a href="/onepager">OnePager</a>
-            </li>
-            <li>
-              <a href="/planprofile">PlanProfile</a>
+            <li className="dropdown">
+              <div>
+                <a className="dropbtn" href="/onepager">
+                  Services
+                </a>
+                <div className="dropdown-content">
+                  <a href="/onepager">OnePager</a>
+                  <a href="/planprofile">PlanProfile</a>
+                </div>
+              </div>
             </li>
             <li className="dropdown">
               <div>

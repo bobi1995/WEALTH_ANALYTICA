@@ -96,12 +96,20 @@ $color2: #3197ee;
   }
 }
 
+.filter-required-selection-div {
+  text-align: center;
+  width: 70%;
+}
+.filter-required-selection-h1 {
+  color: black;
+}
 @media screen and (max-width: 1024px) {
   .filter-top-main {
     display: block;
     width: 100%;
     height: auto;
     margin: 0 auto;
+    margin-top: 5%;
   }
   .filter-innerDiv {
     width: 100%;
