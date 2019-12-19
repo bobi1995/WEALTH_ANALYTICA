@@ -24,9 +24,6 @@ $color2: #3197ee;
   width: 100%;
   margin-bottom: 2%;
 }
-.state-input-fields {
-  display: flex;
-}
 .state-input-input {
   width: 50%;
 }
@@ -36,6 +33,16 @@ $color2: #3197ee;
 }
 .radio-container {
   margin-top: 15%;
+}
+.filter-addState {
+  width: 100%;
+}
+.filter-state-input-field {
+  display: flex;
+  width: 100%;
+}
+.filter-add-state-field {
+  width: 50%;
 }
 //RADIO//
 .radio {
@@ -102,6 +109,14 @@ $color2: #3197ee;
 }
 .filter-required-selection-h1 {
   color: black;
+}
+.filter-submit-btn {
+  display: block;
+  width: 100%;
+  margin-top: 5%;
+}
+.filter-list-holder {
+  width: 50%;
 }
 @media screen and (max-width: 1024px) {
   .filter-top-main {
