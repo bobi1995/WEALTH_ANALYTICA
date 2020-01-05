@@ -48,4 +48,12 @@ const dataListStates = arr => {
   });
 };
 
-export default { commonFunction, statesNames, dataListStates };
+//*************INPUT FIELD FOR CITIES***************** */
+const dataListCities = arr => { 
+  return arr.map((city, index) => {
+      return <option key={index}>{city}</option>;
+    
+  });
+};
+
+export default { commonFunction, statesNames, dataListStates,dataListCities };

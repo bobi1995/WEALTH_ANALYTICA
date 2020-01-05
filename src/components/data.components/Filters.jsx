@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Datanavbar from "./DataNavbar";
 import functions from "./dashboardFunctions/functions";
-import { Bar } from "react-chartjs-2";
+import { Bar  } from "react-chartjs-2";
 import "../../styles/dataPages/filter.scss";
 import SearchFunction from "./filtersFunctions/searchFunction";
 import Loader from "./dashboardFunctions/loader";
 import filterCharts from "./filtersFunctions/filterCharts";
+import filterFunction from './filtersFunctions/functions'
+import dashboardChartFuntions from './dashboardFunctions/charts'
+import Company from "./filtersFunctions/company"
 
 const Filters = () => {
   const [stateInput, setStateInput] = useState([]);
   const [stateAbbriviation, setStateAbbriviation] = useState([]);
   const [result, setResult] = useState([]);
+  const [cities,setCities] = useState([])
+const [inputedCities,setInputedCities] = useState([])
 
   const [flag, setFlag] = useState(0);
   const [searches, setSearches] = useState(0);
@@ -20,21 +25,26 @@ const Filters = () => {
   const [NetAssetEndOfYear, setNetAssetEndOfYear] = useState("");
 
   useEffect(() => {
-    setNetAssetBeginOfYear(result.NetAssetBeginOfYear);
+      setNetAssetBeginOfYear(result.NetAssetBeginOfYear);
     setNetAssetEndOfYear(result.NetAssetEndOfYear);
+    
+
     if (undefined !== NetAssetBeginOfYear) {
       setFlag(0);
     }
   });
 
-  const addState = e => {
-    const allowedStates = functions.commonFunction();
-    const stateField = document.getElementById("stateInput").value;
-
+  const addState = async(e) => {
     e.preventDefault();
 
+    const allowedStates = functions.commonFunction();
+    const stateField = document.getElementById("stateInput").value;
+    const parts = stateField.split(" - ");
+    const newCities = await filterFunction.cityFunction(parts[1])
+
     if (allowedStates.includes(stateField)) {
-      const parts = stateField.split(" - ");
+      setCities([...cities,...newCities])
+      
       setStateAbbriviation([...stateAbbriviation, parts[1]]);
       setStateInput([...stateInput, stateField]);
       document.getElementById("emailHelp").innerHTML =
@@ -47,11 +57,12 @@ const Filters = () => {
     }
   };
 
-  const removeState = e => {
+  const removeState = async(e) => {
     const target = e.target;
     const value = target.parentNode.getAttribute("value");
     const parts = value.split(" - ");
-
+    const reducedCities = await filterFunction.cityReducer(value,stateInput)
+    setCities(reducedCities)
     setStateInput(stateInput.filter(state => state !== value));
     setStateAbbriviation(stateAbbriviation.filter(state => state !== parts[1]));
   };
@@ -68,9 +79,31 @@ const Filters = () => {
     });
   };
 
+  //*****************CITIES */
   const addCity = e => {
     e.preventDefault();
-    console.log("City");
+    const cityField = document.getElementById("cityInput").value;
+    setInputedCities([...inputedCities,cityField])
+    document.getElementById("cityInput").value = "";
+
+
+  };
+  const renderCities = () =>{
+    return inputedCities.map((city, index) => {
+      return (
+        <li value={city} id="individual-city" key={index}>
+          {city}
+          <i onClick={removeCity} className="fa fa-trash fa"></i>
+        </li>
+      );
+    });
+  }
+
+  const removeCity = async(e) => {
+    const target = e.target;
+    const value = target.parentNode.getAttribute("value");
+    setInputedCities(inputedCities.filter(city => city !== value));
+
   };
 
   //***********SUBMIT SEARCH********* */
@@ -81,10 +114,19 @@ const Filters = () => {
     setSearches(1);
     setNetAssetBeginOfYear(undefined);
     const year = document.querySelector("input[name=radio]:checked").value;
-    const data = await SearchFunction(year, stateAbbriviation);
+    const data = await SearchFunction(year, stateAbbriviation, inputedCities);
     setResult(data);
   };
 
+
+
+  const CompaniesResult = (array)=>{
+    if(array!==undefined){
+        return array.map((item,index)=>{
+            return <Company singleCompany = {item} key={index}/>
+        })
+    }
+}
   return (
     <div>
       <Datanavbar />
@@ -152,9 +194,9 @@ const Filters = () => {
                   <input
                     type="text"
                     className="filter-control"
-                    id="stateInput"
-                    placeholder="Enter state"
-                    list="state-dataList"
+                    id="cityInput"
+                    placeholder="Enter city"
+                    list="cities-dataList"
                     autoComplete="off"
                   />
                   <small id="emailHelp" className="form-text text-muted">
@@ -170,8 +212,8 @@ const Filters = () => {
                 </div>
                 <div className="filter-list-holder">
                   <div className="addState-innerDiv filter-addState">
-                    <ul id="notes-004" className="notes-list">
-                      {renderStates()}
+                    <ul id="notes-city" className="notes-list">
+                      {renderCities()}
                     </ul>
                   </div>
                 </div>
@@ -188,6 +230,9 @@ const Filters = () => {
             <datalist id="state-dataList">
               {functions.dataListStates(stateInput)}
             </datalist>
+            <datalist id="cities-dataList">
+              {functions.dataListCities(cities)}
+            </datalist>
           </div>
         </div>
         {flag === 1 ? (
@@ -200,66 +245,40 @@ const Filters = () => {
                   NetAssetBeginOfYear,
                   NetAssetEndOfYear
                 )}
+                options={dashboardChartFuntions.optionReturn( [NetAssetBeginOfYear,
+                  NetAssetEndOfYear])}
                 width={150}
                 height={100}
               />
-
+              <br/>
               <Bar
-                data={{
-                  labels: ["January", "February", "March"],
-                  datasets: [
-                    {
-                      label: "My First dataset",
-                      backgroundColor: "rgba(255,99,132,0.2)",
-                      borderColor: "rgba(255,99,132,1)",
-                      borderWidth: 1,
-                      hoverBackgroundColor: "rgba(255,99,132,0.4)",
-                      hoverBorderColor: "rgba(255,99,132,1)",
-                      data: [65, 59, 80]
-                    }
-                  ]
-                }}
+                data={filterCharts.participantsChart(
+                  result.TotalParticipants,
+                  result.RetiredParticipants,
+                  result.TotalParticipantsBal
+                )}
+                options={dashboardChartFuntions.optionReturn( [result.TotalParticipants,
+                  result.RetiredParticipants,
+                  result.TotalParticipantsBal])}
                 width={150}
                 height={100}
               />
             </div>
             <div className="chart-content filter-chart1">
-              <Bar
-                data={{
-                  labels: ["January", "February", "March"],
-                  datasets: [
-                    {
-                      label: "My First dataset",
-                      backgroundColor: "rgba(255,99,132,0.2)",
-                      borderColor: "rgba(255,99,132,1)",
-                      borderWidth: 1,
-                      hoverBackgroundColor: "rgba(255,99,132,0.4)",
-                      hoverBorderColor: "rgba(255,99,132,1)",
-                      data: [65, 59, 80]
-                    }
-                  ]
-                }}
-                width={150}
-                height={100}
-              />
-              <Bar
-                data={{
-                  labels: ["January", "February", "March"],
-                  datasets: [
-                    {
-                      label: "My First dataset",
-                      backgroundColor: "rgba(255,99,132,0.2)",
-                      borderColor: "rgba(255,99,132,1)",
-                      borderWidth: 1,
-                      hoverBackgroundColor: "rgba(255,99,132,0.4)",
-                      hoverBorderColor: "rgba(255,99,132,1)",
-                      data: [65, 59, 80]
-                    }
-                  ]
-                }}
-                width={150}
-                height={100}
-              />
+              <Bar  data={filterCharts.distribution(result.Distributions,result.CorrectivrDistribution,
+                 result.ServiceProviderExpenses,result.OtherExpenses)} 
+                 options={dashboardChartFuntions.optionReturn( [result.Distributions,result.CorrectivrDistribution,
+                  result.ServiceProviderExpenses,result.OtherExpenses])}
+                 width={150}
+                 height={100}
+               />
+              <br/>
+
+              <Bar  data={filterCharts.contribution(result.ParticipantContribution,result.EmployerContribution)} 
+                options={dashboardChartFuntions.optionReturn( [result.ParticipantContribution,result.EmployerContribution])}
+                 width={150}
+                 height={100}
+               />
             </div>
           </div>
         ) : (
@@ -270,7 +289,27 @@ const Filters = () => {
           </div>
         )}
       </div>
-      <div className="filter-bottom-main"></div>
+      <div className="filter-bottom-main">
+      <div className="table-container">
+            <table  className="table table-hover">
+            <thead className="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Administrator</th>
+                    <th>Number</th>
+                    <th>Participants</th>
+                    <th>Income</th>
+
+                </tr>
+            </thead>
+            <tbody className="table-hover">
+              {CompaniesResult(result.Companies)}
+            </tbody>
+            </table>
+      </div>
+      </div>
     </div>
   );
 };

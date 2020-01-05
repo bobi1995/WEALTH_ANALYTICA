@@ -2,6 +2,15 @@ $color1: #f4f4f4;
 $color2: #3197ee;
 
 /***********************TOP DIV*************************************/
+#notes-city i {
+  padding-right: 10%;
+  padding-top: 1%;
+  float: right;
+}
+
+#notes-city li {
+  width: 100%;
+}
 
 .filter-top-main {
   display: flex;
@@ -48,6 +57,7 @@ $color2: #3197ee;
 .radio {
   margin: 0.5rem;
   input[type="radio"] {
+
     position: absolute;
     opacity: 0;
     + .radio-label {
@@ -112,12 +122,32 @@ $color2: #3197ee;
 }
 .filter-submit-btn {
   display: block;
-  width: 100%;
+  width: 50%;
   margin-top: 5%;
+  background-color: #4CAF50;
+  color:white;
+  border-radius:3%;
+  border:0;
+  height: 40px;
+}
+
+.filter-submit-btn:hover{
+  background-color: lightgreen;
 }
 .filter-list-holder {
   width: 50%;
 }
+
+
+
+/*******************BOTTOM DIV************************/
+.filter-bottom-main{
+  margin:5%;
+}
+
+
+
+
 @media screen and (max-width: 1024px) {
   .filter-top-main {
     display: block;
@@ -158,3 +188,4 @@ $color2: #3197ee;
     width: 100%;
   }
 }
+
