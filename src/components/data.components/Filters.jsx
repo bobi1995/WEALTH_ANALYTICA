@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import Datanavbar from "./DataNavbar";
 import functions from "./dashboardFunctions/functions";
-import { Bar  } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import "../../styles/dataPages/filter.scss";
 import SearchFunction from "./filtersFunctions/searchFunction";
 import Loader from "./dashboardFunctions/loader";
 import filterCharts from "./filtersFunctions/filterCharts";
-import filterFunction from './filtersFunctions/functions'
-import dashboardChartFuntions from './dashboardFunctions/charts'
-import Company from "./filtersFunctions/company"
-
+import filterFunction from "./filtersFunctions/functions";
+import dashboardChartFuntions from "./dashboardFunctions/charts";
+import Company from "./filtersFunctions/company";
+import Pagination from "./filtersFunctions/pagination";
 const Filters = () => {
   const [stateInput, setStateInput] = useState([]);
   const [stateAbbriviation, setStateAbbriviation] = useState([]);
   const [result, setResult] = useState([]);
-  const [cities,setCities] = useState([])
-const [inputedCities,setInputedCities] = useState([])
+  const [cities, setCities] = useState([]);
+  const [inputedCities, setInputedCities] = useState([]);
+  const [companies, setCompanies] = useState([]);
 
   const [flag, setFlag] = useState(0);
   const [searches, setSearches] = useState(0);
@@ -24,27 +25,30 @@ const [inputedCities,setInputedCities] = useState([])
   const [NetAssetBeginOfYear, setNetAssetBeginOfYear] = useState("");
   const [NetAssetEndOfYear, setNetAssetEndOfYear] = useState("");
 
+  /****************PAGINATION********* */
+  const [currentPage, setCurrentPage] = useState(1);
+  const [companiesPerPage, setCompaniesPerPage] = useState(30);
+
   useEffect(() => {
-      setNetAssetBeginOfYear(result.NetAssetBeginOfYear);
+    setNetAssetBeginOfYear(result.NetAssetBeginOfYear);
     setNetAssetEndOfYear(result.NetAssetEndOfYear);
-    
 
     if (undefined !== NetAssetBeginOfYear) {
       setFlag(0);
     }
   });
 
-  const addState = async(e) => {
+  const addState = async e => {
     e.preventDefault();
 
     const allowedStates = functions.commonFunction();
     const stateField = document.getElementById("stateInput").value;
     const parts = stateField.split(" - ");
-    const newCities = await filterFunction.cityFunction(parts[1])
+    const newCities = await filterFunction.cityFunction(parts[1]);
 
     if (allowedStates.includes(stateField)) {
-      setCities([...cities,...newCities])
-      
+      setCities([...cities, ...newCities]);
+
       setStateAbbriviation([...stateAbbriviation, parts[1]]);
       setStateInput([...stateInput, stateField]);
       document.getElementById("emailHelp").innerHTML =
@@ -57,12 +61,12 @@ const [inputedCities,setInputedCities] = useState([])
     }
   };
 
-  const removeState = async(e) => {
+  const removeState = async e => {
     const target = e.target;
     const value = target.parentNode.getAttribute("value");
     const parts = value.split(" - ");
-    const reducedCities = await filterFunction.cityReducer(value,stateInput)
-    setCities(reducedCities)
+    const reducedCities = await filterFunction.cityReducer(value, stateInput);
+    setCities(reducedCities);
     setStateInput(stateInput.filter(state => state !== value));
     setStateAbbriviation(stateAbbriviation.filter(state => state !== parts[1]));
   };
@@ -83,12 +87,10 @@ const [inputedCities,setInputedCities] = useState([])
   const addCity = e => {
     e.preventDefault();
     const cityField = document.getElementById("cityInput").value;
-    setInputedCities([...inputedCities,cityField])
+    setInputedCities([...inputedCities, cityField]);
     document.getElementById("cityInput").value = "";
-
-
   };
-  const renderCities = () =>{
+  const renderCities = () => {
     return inputedCities.map((city, index) => {
       return (
         <li value={city} id="individual-city" key={index}>
@@ -97,13 +99,12 @@ const [inputedCities,setInputedCities] = useState([])
         </li>
       );
     });
-  }
+  };
 
-  const removeCity = async(e) => {
+  const removeCity = async e => {
     const target = e.target;
     const value = target.parentNode.getAttribute("value");
     setInputedCities(inputedCities.filter(city => city !== value));
-
   };
 
   //***********SUBMIT SEARCH********* */
@@ -113,20 +114,31 @@ const [inputedCities,setInputedCities] = useState([])
     setFlag(1);
     setSearches(1);
     setNetAssetBeginOfYear(undefined);
+    setCompanies([]);
     const year = document.querySelector("input[name=radio]:checked").value;
     const data = await SearchFunction(year, stateAbbriviation, inputedCities);
     setResult(data);
+    setCompanies(data.Companies);
   };
 
+  //****PAGGINATION*********** */
+  const indexOfLastCompany = currentPage * companiesPerPage;
+  const indexOfFirstCompany = indexOfLastCompany - companiesPerPage;
+  const currentCompany = companies.slice(
+    indexOfFirstCompany,
+    indexOfLastCompany
+  );
 
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
-  const CompaniesResult = (array)=>{
-    if(array!==undefined){
-        return array.map((item,index)=>{
-            return <Company singleCompany = {item} key={index}/>
-        })
+  const CompaniesResult = array => {
+    if (array !== undefined) {
+      return array.map((item, index) => {
+        return <Company singleCompany={item} key={index} />;
+      });
     }
-}
+  };
+
   return (
     <div>
       <Datanavbar />
@@ -245,40 +257,60 @@ const [inputedCities,setInputedCities] = useState([])
                   NetAssetBeginOfYear,
                   NetAssetEndOfYear
                 )}
-                options={dashboardChartFuntions.optionReturn( [NetAssetBeginOfYear,
-                  NetAssetEndOfYear])}
+                options={dashboardChartFuntions.optionReturn([
+                  NetAssetBeginOfYear,
+                  NetAssetEndOfYear
+                ])}
                 width={150}
                 height={100}
               />
-              <br/>
+              <br />
               <Bar
                 data={filterCharts.participantsChart(
                   result.TotalParticipants,
                   result.RetiredParticipants,
                   result.TotalParticipantsBal
                 )}
-                options={dashboardChartFuntions.optionReturn( [result.TotalParticipants,
+                options={dashboardChartFuntions.optionReturn([
+                  result.TotalParticipants,
                   result.RetiredParticipants,
-                  result.TotalParticipantsBal])}
+                  result.TotalParticipantsBal
+                ])}
                 width={150}
                 height={100}
               />
             </div>
             <div className="chart-content filter-chart1">
-              <Bar  data={filterCharts.distribution(result.Distributions,result.CorrectivrDistribution,
-                 result.ServiceProviderExpenses,result.OtherExpenses)} 
-                 options={dashboardChartFuntions.optionReturn( [result.Distributions,result.CorrectivrDistribution,
-                  result.ServiceProviderExpenses,result.OtherExpenses])}
-                 width={150}
-                 height={100}
-               />
-              <br/>
+              <Bar
+                data={filterCharts.distribution(
+                  result.Distributions,
+                  result.CorrectivrDistribution,
+                  result.ServiceProviderExpenses,
+                  result.OtherExpenses
+                )}
+                options={dashboardChartFuntions.optionReturn([
+                  result.Distributions,
+                  result.CorrectivrDistribution,
+                  result.ServiceProviderExpenses,
+                  result.OtherExpenses
+                ])}
+                width={150}
+                height={100}
+              />
+              <br />
 
-              <Bar  data={filterCharts.contribution(result.ParticipantContribution,result.EmployerContribution)} 
-                options={dashboardChartFuntions.optionReturn( [result.ParticipantContribution,result.EmployerContribution])}
-                 width={150}
-                 height={100}
-               />
+              <Bar
+                data={filterCharts.contribution(
+                  result.ParticipantContribution,
+                  result.EmployerContribution
+                )}
+                options={dashboardChartFuntions.optionReturn([
+                  result.ParticipantContribution,
+                  result.EmployerContribution
+                ])}
+                width={150}
+                height={100}
+              />
             </div>
           </div>
         ) : (
@@ -290,25 +322,29 @@ const [inputedCities,setInputedCities] = useState([])
         )}
       </div>
       <div className="filter-bottom-main">
-      <div className="table-container">
-            <table  className="table table-hover">
+        <div className="table-container">
+          <table className="table table-striped table-bordered table-sm table-hover">
             <thead className="thead-dark">
-                <tr>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>City</th>
-                    <th>Administrator</th>
-                    <th>Number</th>
-                    <th>Participants</th>
-                    <th>Income</th>
-
-                </tr>
+              <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Administrator</th>
+                <th>Number</th>
+                <th>Participants</th>
+                <th>Income</th>
+              </tr>
             </thead>
             <tbody className="table-hover">
-              {CompaniesResult(result.Companies)}
+              {CompaniesResult(currentCompany)}
             </tbody>
-            </table>
-      </div>
+          </table>
+          <Pagination
+            companiesPerPage={companiesPerPage}
+            totalCompanies={companies.length}
+            paginate={paginate}
+          />
+        </div>
       </div>
     </div>
   );

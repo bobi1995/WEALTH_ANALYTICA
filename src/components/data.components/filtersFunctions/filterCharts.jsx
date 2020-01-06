@@ -1,7 +1,7 @@
-import dashboardCharts from '../dashboardFunctions/charts'
+import dashboardCharts from "../dashboardFunctions/charts";
 
 const dataBeginEnd = (begin, end) => {
-  const newArray = dashboardCharts.arrayReducer([begin, end])
+  const newArray = dashboardCharts.arrayReducer([begin, end]);
   return {
     labels: ["Begin of the Year", "End of the Year"],
     datasets: [
@@ -18,11 +18,16 @@ const dataBeginEnd = (begin, end) => {
   };
 };
 
-const participantsChart = (total, retired,bal) => {
-  const newArray = dashboardCharts.arrayReducer([total, retired,bal])
+const participantsChart = (total, retired, bal) => {
+  let newArray = [];
+  if (total > 1000 && retired > 1000 && bal > 1000) {
+    newArray = dashboardCharts.arrayReducer([total, retired, bal]);
+  } else {
+    newArray = [total, retired, bal];
+  }
 
   return {
-    labels: ["Total", "Retired","Bal"],
+    labels: ["Total", "Retired", "Bal"],
     datasets: [
       {
         label: "Participants",
@@ -37,11 +42,16 @@ const participantsChart = (total, retired,bal) => {
   };
 };
 
-const distribution = (dist, corrDist,service,other) => {
-  const newArray = dashboardCharts.arrayReducer([dist, corrDist,service,other])
+const distribution = (dist, corrDist, service, other) => {
+  const newArray = dashboardCharts.arrayReducer([
+    dist,
+    corrDist,
+    service,
+    other
+  ]);
 
   return {
-    labels: ["Dist", "Corrective","ServiceExpenses","Other"],
+    labels: ["Dist", "Corrective", "ServiceExpenses", "Other"],
     datasets: [
       {
         label: "Cash Outflow",
@@ -56,8 +66,8 @@ const distribution = (dist, corrDist,service,other) => {
   };
 };
 
-const contribution = (participant,employee) => {
-  const newArray = dashboardCharts.arrayReducer([participant,employee])
+const contribution = (participant, employee) => {
+  const newArray = dashboardCharts.arrayReducer([participant, employee]);
 
   return {
     labels: ["Participant", "Employee"],
@@ -75,5 +85,4 @@ const contribution = (participant,employee) => {
   };
 };
 
-
-export default { dataBeginEnd,participantsChart,distribution,contribution };
+export default { dataBeginEnd, participantsChart, distribution, contribution };

@@ -8,9 +8,9 @@ const arrayReducer = array => {
   //const lengthOfAv = average.toString().length;
   const parts = average.toString().split(".");
   const lengthOfAv = parts[0].toString().length;
-if(lengthOfAv>12){
-  return (newArr = array.map(el => el / 100000000000));
-}else if (lengthOfAv <=12 && lengthOfAv>9) {
+  if (lengthOfAv > 12) {
+    return (newArr = array.map(el => el / 100000000000));
+  } else if (lengthOfAv <= 12 && lengthOfAv > 9) {
     return (newArr = array.map(el => el / 1000000000));
   } else if (lengthOfAv <= 9 && lengthOfAv > 6) {
     return (newArr = array.map(el => (el = el / 1000000)));
@@ -28,14 +28,16 @@ const arrayCategory = array => {
   //const lengthOfAv = average.toString().length;
   const parts = average.toString().split(".");
   const lengthOfAv = parts[0].toString().length;
-if(lengthOfAv>12){
-  return "Result in Trillion"
-}else if (lengthOfAv<=12 && lengthOfAv > 9) {
+  if (lengthOfAv > 12) {
+    return "Result in Trillion";
+  } else if (lengthOfAv <= 12 && lengthOfAv > 9) {
     return "Results in Billions";
   } else if (lengthOfAv <= 9 && lengthOfAv > 6) {
     return "Results in Millions";
   } else if (lengthOfAv <= 6 && lengthOfAv > 3) {
     return "Results in Thousands";
+  } else if (lengthOfAv <= 3) {
+    return "";
   }
 };
 
