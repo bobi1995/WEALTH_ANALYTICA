@@ -17,6 +17,7 @@ const Filters = () => {
   const [cities, setCities] = useState([]);
   const [inputedCities, setInputedCities] = useState([]);
   const [companies, setCompanies] = useState([]);
+  const [selectedYear, setSelectedYear] = useState();
 
   const [flag, setFlag] = useState(0);
   const [searches, setSearches] = useState(0);
@@ -30,13 +31,25 @@ const Filters = () => {
   const [companiesPerPage, setCompaniesPerPage] = useState(30);
 
   useEffect(() => {
+    console.log("effect");
     setNetAssetBeginOfYear(result.NetAssetBeginOfYear);
     setNetAssetEndOfYear(result.NetAssetEndOfYear);
+    const btn = document.querySelector(".filter-submit-btn");
+    if (stateInput.length < 1 || !selectedYear) {
+      btn.disabled = true;
+      btn.value = "Select State & Year";
+    } else {
+      btn.disabled = false;
+    }
 
     if (undefined !== NetAssetBeginOfYear) {
       setFlag(0);
     }
   });
+
+  const onYearChange = e => {
+    setSelectedYear(e.target.value);
+  };
 
   const addState = async e => {
     e.preventDefault();
@@ -115,10 +128,33 @@ const Filters = () => {
     setSearches(1);
     setNetAssetBeginOfYear(undefined);
     setCompanies([]);
-    const year = document.querySelector("input[name=radio]:checked").value;
-    const data = await SearchFunction(year, stateAbbriviation, inputedCities);
+    setSelectedYear(document.querySelector("input[name=radio]:checked").value);
+    const maxIncome = document.getElementById("maxIncome").value;
+    const minIncome = document.getElementById("minIncome").value;
+
+    const maxParticipants = document.getElementById("maxParticipants").value;
+    const minParticipants = document.getElementById("minParticipants").value;
+
+    const data = await SearchFunction(
+      selectedYear,
+      stateAbbriviation,
+      inputedCities,
+      maxIncome,
+      minIncome,
+      minParticipants,
+      maxParticipants
+    );
     setResult(data);
     setCompanies(data.Companies);
+  };
+
+  //***********SORT BY**************
+  const sortByIncome = () => {
+    let newArr = [];
+    if (companies.length > 0) {
+      newArr = companies.sort((a, b) => (a.NetIncome > b.NetIncome ? -1 : 1));
+    }
+    setCompanies(newArr);
   };
 
   //****PAGGINATION*********** */
@@ -181,20 +217,39 @@ const Filters = () => {
               </div>
               {/* RADIO BUTTONS */}
               <div className="container radio-container">
+                <h2 className="filter-h2">Year</h2>
                 <div className="radio">
-                  <input id="radio-1" name="radio" type="radio" value="2018" />
+                  <input
+                    id="radio-1"
+                    name="radio"
+                    type="radio"
+                    value="2018"
+                    onChange={onYearChange}
+                  />
                   <label htmlFor="radio-1" className="radio-label">
                     2018
                   </label>
                 </div>
                 <div className="radio">
-                  <input id="radio-2" name="radio" type="radio" value="2017" />
+                  <input
+                    id="radio-2"
+                    name="radio"
+                    type="radio"
+                    value="2017"
+                    onChange={onYearChange}
+                  />
                   <label htmlFor="radio-2" className="radio-label">
                     2017
                   </label>
                 </div>
                 <div className="radio">
-                  <input id="radio-3" name="radio" type="radio" value="2016" />
+                  <input
+                    id="radio-3"
+                    name="radio"
+                    type="radio"
+                    value="2016"
+                    onChange={onYearChange}
+                  />
                   <label htmlFor="radio-3" className="radio-label">
                     2016
                   </label>
@@ -212,7 +267,7 @@ const Filters = () => {
                     autoComplete="off"
                   />
                   <small id="emailHelp" className="form-text text-muted">
-                    Enter the states you want to visualise
+                    Enter the city you want to visualise
                   </small>
                   <button
                     type="submit"
@@ -227,6 +282,60 @@ const Filters = () => {
                     <ul id="notes-city" className="notes-list">
                       {renderCities()}
                     </ul>
+                  </div>
+                </div>
+              </div>
+              {/**MAX AND MIN ASSETS */}
+              <div className="filter-min-max-assets">
+                <h2 className="filter-h2">Assets</h2>
+                <div>
+                  <div className="filter-netIncome-div">
+                    <label className="filter-netIncome-label">Max :</label>
+                    <input
+                      type="number"
+                      className="filter-control netIncome-filter"
+                      id="maxIncome"
+                      placeholder="Enter Asset"
+                      autoComplete="off"
+                    />
+                  </div>
+
+                  <div className="filter-netIncome-div">
+                    <label className="filter-netIncome-label">Min :</label>
+                    <input
+                      type="number"
+                      className="filter-control netIncome-filter"
+                      id="minIncome"
+                      placeholder="Enter Asset"
+                      autoComplete="off"
+                    />
+                  </div>
+                </div>
+              </div>
+              {/**MAX AND MIN PARTICIPANTS */}
+              <div className="filter-min-max-assets">
+                <h2 className="filter-h2">Participants</h2>
+                <div>
+                  <div className="filter-netIncome-div">
+                    <label className="filter-netIncome-label">Max:</label>
+                    <input
+                      type="number"
+                      className="filter-control netIncome-filter"
+                      id="maxParticipants"
+                      placeholder="Enter Participants"
+                      autoComplete="off"
+                    />
+                  </div>
+
+                  <div className="filter-netIncome-div">
+                    <label className="filter-netIncome-label">Min:</label>
+                    <input
+                      type="number"
+                      className="filter-control netIncome-filter"
+                      id="minParticipants"
+                      placeholder="Enter Participants"
+                      autoComplete="off"
+                    />
                   </div>
                 </div>
               </div>
@@ -261,8 +370,8 @@ const Filters = () => {
                   NetAssetBeginOfYear,
                   NetAssetEndOfYear
                 ])}
-                width={150}
-                height={100}
+                width={350}
+                height={300}
               />
               <br />
               <Bar
@@ -276,8 +385,8 @@ const Filters = () => {
                   result.RetiredParticipants,
                   result.TotalParticipantsBal
                 ])}
-                width={150}
-                height={100}
+                width={350}
+                height={300}
               />
             </div>
             <div className="chart-content filter-chart1">
@@ -294,8 +403,8 @@ const Filters = () => {
                   result.ServiceProviderExpenses,
                   result.OtherExpenses
                 ])}
-                width={150}
-                height={100}
+                width={350}
+                height={300}
               />
               <br />
 
@@ -308,8 +417,8 @@ const Filters = () => {
                   result.ParticipantContribution,
                   result.EmployerContribution
                 ])}
-                width={150}
-                height={100}
+                width={350}
+                height={300}
               />
             </div>
           </div>
@@ -332,7 +441,7 @@ const Filters = () => {
                 <th>Administrator</th>
                 <th>Number</th>
                 <th>Participants</th>
-                <th>Income</th>
+                <th onClick={sortByIncome}>Income</th>
               </tr>
             </thead>
             <tbody className="table-hover">

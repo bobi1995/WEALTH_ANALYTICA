@@ -41,7 +41,8 @@ $color2: #3197ee;
   margin-top: 5%;
 }
 .radio-container {
-  margin-top: 15%;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 .filter-addState {
   width: 100%;
@@ -135,6 +136,23 @@ $color2: #3197ee;
 }
 .filter-list-holder {
   width: 50%;
+}
+/***********************NET INCOME FILTER*********************/
+.filter-netIncome-div {
+  display: flex;
+}
+.netIncome-filter {
+  width: 30%;
+}
+.filter-netIncome-label {
+  width: 20%;
+}
+.filter-min-max-assets {
+  margin-top: 5%;
+}
+.filter-h2 {
+  width: 50%;
+  text-align: center;
 }
 
 /*******************BOTTOM DIV************************/

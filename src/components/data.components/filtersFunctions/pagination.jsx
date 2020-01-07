@@ -5,7 +5,6 @@ const Pagination = ({ companiesPerPage, totalCompanies, paginate }) => {
   for (let i = 1; i <= Math.ceil(totalCompanies / companiesPerPage); i++) {
     pageNumbers.push(i);
   }
-  console.log(pageNumbers);
   if (pageNumbers.length < 39) {
     return (
       <nav>
