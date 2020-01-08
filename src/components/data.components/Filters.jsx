@@ -31,7 +31,6 @@ const Filters = () => {
   const [companiesPerPage, setCompaniesPerPage] = useState(30);
 
   useEffect(() => {
-    console.log("effect");
     setNetAssetBeginOfYear(result.NetAssetBeginOfYear);
     setNetAssetEndOfYear(result.NetAssetEndOfYear);
     const btn = document.querySelector(".filter-submit-btn");
@@ -150,11 +149,20 @@ const Filters = () => {
 
   //***********SORT BY**************
   const sortByIncome = () => {
-    let newArr = [];
-    if (companies.length > 0) {
-      newArr = companies.sort((a, b) => (a.NetIncome > b.NetIncome ? -1 : 1));
-    }
-    setCompanies(newArr);
+    const arr = [...companies].sort((a, b) =>
+      a.NetIncome > b.NetIncome ? -1 : 1
+    );
+    setCompanies(arr);
+  };
+  const sortByParticipants = () => {
+    const arr = [...companies].sort((a, b) =>
+      a.Participants > b.Participants ? -1 : 1
+    );
+    setCompanies(arr);
+  };
+  const sortByName = () => {
+    const arr = [...companies].sort((a, b) => (a.Name > b.Name ? 1 : -1));
+    setCompanies(arr);
   };
 
   //****PAGGINATION*********** */
@@ -435,13 +443,28 @@ const Filters = () => {
           <table className="table table-striped table-bordered table-sm table-hover">
             <thead className="thead-dark">
               <tr>
-                <th>Name</th>
+                <th
+                  onClick={sortByName}
+                  className="filter-table-header-clickable"
+                >
+                  Name
+                </th>
                 <th>Address</th>
                 <th>City</th>
                 <th>Administrator</th>
                 <th>Number</th>
-                <th>Participants</th>
-                <th onClick={sortByIncome}>Income</th>
+                <th
+                  className="filter-table-header-clickable"
+                  onClick={sortByParticipants}
+                >
+                  Participants
+                </th>
+                <th
+                  className="filter-table-header-clickable"
+                  onClick={sortByIncome}
+                >
+                  Income
+                </th>
               </tr>
             </thead>
             <tbody className="table-hover">

@@ -1,14 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap");
 
-button,
-.login-input {
-  //display: block;
-  border: none;
-  outline: none;
-  background: none;
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-}
-
 $contW: 900px;
 $imgW: 260px;
 $formW: $contW - $imgW;
@@ -18,6 +9,20 @@ $inputW: 260px;
 $btnH: 36px;
 
 $diffRatio: ($contW - $imgW) / $contW;
+
+.cont2 {
+  width: 100%;
+  height: 100%;
+}
+
+button,
+.login-input {
+  //display: block;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
 
 @mixin signUpActive {
   .cont.s--signup & {
@@ -35,12 +40,13 @@ $diffRatio: ($contW - $imgW) / $contW;
   overflow: hidden;
   position: relative;
   width: $contW;
-  height: 550px;
+  height: 100vh;
   margin: 0 auto;
   background: #fff;
 }
 
 .form {
+  margin-top: 15%;
   position: relative;
   width: $formW;
   height: 100%;
@@ -242,12 +248,11 @@ $diffRatio: ($contW - $imgW) / $contW;
 .submit {
   border: none;
   outline: none;
-  margin-top: 40px;
-  margin-bottom: 20px;
   background: #d4af7a;
   text-transform: uppercase;
   display: block;
   margin: 0 auto;
+  margin-top: 5%;
   width: $inputW;
   height: $btnH;
   border-radius: 30px;

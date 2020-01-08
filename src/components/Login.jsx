@@ -308,23 +308,6 @@ const Login = () => {
         </div>
       </div>
       <Footer />
-
-      <div id="popup1" className="overlay">
-        <div className="popup">
-          <h2 className="login-h2">Congratulations</h2>
-          <a className="close" href="">
-            &times;
-          </a>
-          <div className="popup-content">
-            You are now part of the StotinkiBG family!
-          </div>
-          <div className="popup-btn-div">
-            <button className="popup-btn" onClick={loginBtn}>
-              Log in
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

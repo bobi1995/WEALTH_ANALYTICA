@@ -159,6 +159,12 @@ $color2: #3197ee;
 .filter-bottom-main {
   margin: 5%;
 }
+.filter-bottom-sort-div {
+  text-align: center;
+}
+.filter-table-header-clickable:hover {
+  cursor: pointer;
+}
 
 /*********************PAGINATION********************/
 .pagination-large {

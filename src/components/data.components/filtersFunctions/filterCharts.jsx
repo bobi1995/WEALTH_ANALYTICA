@@ -8,11 +8,11 @@ const dataBeginEnd = (begin, end) => {
       {
         label: "Begin End",
         data: newArray,
-        backgroundColor: "rgba(0,0,0,0.2)",
-        borderColor: "rgba(0,0,0,1)",
+        backgroundColor: "rgb(135,206,250)",
+        borderColor: "rgb(0,98,204)",
         borderWidth: 1,
-        hoverBackgroundColor: "rgba(0,0,0,0.4)",
-        hoverBorderColor: "rgba(0,0,0,1)"
+        hoverBackgroundColor: "rgb(30,144,255)",
+        hoverBorderColor: "rgb(0,0,255)"
       }
     ]
   };
@@ -32,11 +32,11 @@ const participantsChart = (total, retired, bal) => {
       {
         label: "Participants",
         data: newArray,
-        backgroundColor: "rgba(0,0,0,0.2)",
-        borderColor: "rgba(0,0,0,1)",
+        backgroundColor: "rgb(144,238,144)",
+        borderColor: "rgb(76,175,80)",
         borderWidth: 1,
-        hoverBackgroundColor: "rgba(0,0,0,0.4)",
-        hoverBorderColor: "rgba(0,0,0,1)"
+        hoverBackgroundColor: "rgb(50,205,50)",
+        hoverBorderColor: "rgb(0,100,0)"
       }
     ]
   };
@@ -56,11 +56,11 @@ const distribution = (dist, corrDist, service, other) => {
       {
         label: "Cash Outflow",
         data: newArray,
-        backgroundColor: "rgba(0,0,0,0.2)",
-        borderColor: "rgba(0,0,0,1)",
+        backgroundColor: "rgb(255,160,122)",
+        borderColor: "rgb(205,92,92)",
         borderWidth: 1,
-        hoverBackgroundColor: "rgba(0,0,0,0.4)",
-        hoverBorderColor: "rgba(0,0,0,1)"
+        hoverBackgroundColor: "rgb(255,99,71)",
+        hoverBorderColor: "rgb(139,0,0)"
       }
     ]
   };
@@ -75,11 +75,11 @@ const contribution = (participant, employee) => {
       {
         label: "Contribution",
         data: newArray,
-        backgroundColor: "rgba(0,0,0,0.2)",
-        borderColor: "rgba(0,0,0,1)",
+        backgroundColor: "rgb(255,255,204)",
+        borderColor: "rgb(204,204,0)",
         borderWidth: 1,
-        hoverBackgroundColor: "rgba(0,0,0,0.4)",
-        hoverBorderColor: "rgba(0,0,0,1)"
+        hoverBackgroundColor: "rgb(255,255,0)",
+        hoverBorderColor: "rgb(102,102,0)"
       }
     ]
   };
