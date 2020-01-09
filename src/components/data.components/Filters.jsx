@@ -34,11 +34,28 @@ const Filters = () => {
     setNetAssetBeginOfYear(result.NetAssetBeginOfYear);
     setNetAssetEndOfYear(result.NetAssetEndOfYear);
     const btn = document.querySelector(".filter-submit-btn");
+    const addbtn1 = document.getElementById("state-btn");
+    const addbtn2 = document.getElementById("city-btn");
+
     if (stateInput.length < 1 || !selectedYear) {
       btn.disabled = true;
       btn.value = "Select State & Year";
     } else {
       btn.disabled = false;
+    }
+    if (flag === 1) {
+      addbtn1.disabled = true;
+      addbtn1.innerHTML = "Loading...";
+      addbtn2.disabled = true;
+      addbtn2.innerHTML = "Loading...";
+      btn.disabled = true;
+      btn.value = "Loading...";
+    } else {
+      btn.disabled = false;
+      addbtn1.disabled = false;
+      addbtn2.disabled = false;
+      addbtn1.innerHTML = "Add";
+      addbtn2.innerHTML = "Add";
     }
 
     if (undefined !== NetAssetBeginOfYear) {
@@ -210,6 +227,7 @@ const Filters = () => {
                   <button
                     type="submit"
                     className="btn btn-primary filter-btn"
+                    id="state-btn"
                     onClick={addState}
                   >
                     Add
@@ -280,6 +298,7 @@ const Filters = () => {
                   <button
                     type="submit"
                     className="btn btn-primary filter-btn"
+                    id="city-btn"
                     onClick={addCity}
                   >
                     Add
@@ -293,57 +312,60 @@ const Filters = () => {
                   </div>
                 </div>
               </div>
-              {/**MAX AND MIN ASSETS */}
-              <div className="filter-min-max-assets">
-                <h2 className="filter-h2">Assets</h2>
-                <div>
-                  <div className="filter-netIncome-div">
-                    <label className="filter-netIncome-label">Max :</label>
-                    <input
-                      type="number"
-                      className="filter-control netIncome-filter"
-                      id="maxIncome"
-                      placeholder="Enter Asset"
-                      autoComplete="off"
-                    />
-                  </div>
+              {/** */}
+              <div className="filter-state-input-field">
+                {/**MAX AND MIN ASSETS */}
+                <div className="filter-min-max-assets">
+                  <h2 className="filter-h2">Assets</h2>
+                  <div>
+                    <div className="filter-netIncome-div">
+                      <label className="filter-netIncome-label">Max:</label>
+                      <input
+                        type="number"
+                        className="filter-control netIncome-filter"
+                        id="maxIncome"
+                        placeholder="Enter Asset"
+                        autoComplete="off"
+                      />
+                    </div>
 
-                  <div className="filter-netIncome-div">
-                    <label className="filter-netIncome-label">Min :</label>
-                    <input
-                      type="number"
-                      className="filter-control netIncome-filter"
-                      id="minIncome"
-                      placeholder="Enter Asset"
-                      autoComplete="off"
-                    />
+                    <div className="filter-netIncome-div">
+                      <label className="filter-netIncome-label">Min :</label>
+                      <input
+                        type="number"
+                        className="filter-control netIncome-filter"
+                        id="minIncome"
+                        placeholder="Enter Asset"
+                        autoComplete="off"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/**MAX AND MIN PARTICIPANTS */}
-              <div className="filter-min-max-assets">
-                <h2 className="filter-h2">Participants</h2>
-                <div>
-                  <div className="filter-netIncome-div">
-                    <label className="filter-netIncome-label">Max:</label>
-                    <input
-                      type="number"
-                      className="filter-control netIncome-filter"
-                      id="maxParticipants"
-                      placeholder="Enter Participants"
-                      autoComplete="off"
-                    />
-                  </div>
+                {/**MAX AND MIN PARTICIPANTS */}
+                <div className="filter-min-max-assets">
+                  <h2 className="filter-h2">Participants</h2>
+                  <div>
+                    <div className="filter-netIncome-div">
+                      <label className="filter-netIncome-label">Max:</label>
+                      <input
+                        type="number"
+                        className="filter-control netIncome-filter"
+                        id="maxParticipants"
+                        placeholder="Enter Participants"
+                        autoComplete="off"
+                      />
+                    </div>
 
-                  <div className="filter-netIncome-div">
-                    <label className="filter-netIncome-label">Min:</label>
-                    <input
-                      type="number"
-                      className="filter-control netIncome-filter"
-                      id="minParticipants"
-                      placeholder="Enter Participants"
-                      autoComplete="off"
-                    />
+                    <div className="filter-netIncome-div">
+                      <label className="filter-netIncome-label">Min:</label>
+                      <input
+                        type="number"
+                        className="filter-control netIncome-filter"
+                        id="minParticipants"
+                        placeholder="Enter Participants"
+                        autoComplete="off"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -415,7 +437,6 @@ const Filters = () => {
                 height={300}
               />
               <br />
-
               <Bar
                 data={filterCharts.contribution(
                   result.ParticipantContribution,
@@ -429,15 +450,21 @@ const Filters = () => {
                 height={300}
               />
             </div>
+            <div className="filter-bookmarks">BOOKMARKS</div>
           </div>
         ) : (
           <div className="filter-required-selection-div">
             <h1 className="filter-required-selection-h1">
               Select state and year
             </h1>
+            <img
+              className="filter-required-logo"
+              src={require("../../styles/images/Wealth_Analytica.png")}
+            />
           </div>
         )}
       </div>
+
       <div className="filter-bottom-main">
         <div className="table-container">
           <table className="table table-striped table-bordered table-sm table-hover">

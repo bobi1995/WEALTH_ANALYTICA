@@ -22,9 +22,16 @@ const NavBar = () => {
   return (
     <div className="navbar-content">
       <nav className="nav" id="navigation">
-        <div className="container">
-          <div className="logo">
-            <a href="/">Your Logo</a>
+        <div className="container navbar-container">
+          <div className="navbar-logo">
+            <a href="/">
+              <img
+                id="logoimg"
+                className="thelogo"
+                src={require("../styles/images/transparent-black.png")}
+                alt="no_image"
+              />
+            </a>
           </div>
           <div id="mainListDiv" className="main_list">
             <ul className="navlinks">

@@ -24,7 +24,9 @@ $color2: #3197ee;
 .filter-top-charts {
   width: 70%;
   display: flex;
+  flex-wrap: wrap;
 }
+
 .filter-chart1 {
   width: 30%;
 }
@@ -40,6 +42,7 @@ $color2: #3197ee;
   width: 100%;
   margin-top: 5%;
 }
+
 .radio-container {
   margin-top: 5%;
   margin-bottom: 5%;
@@ -142,13 +145,14 @@ $color2: #3197ee;
   display: flex;
 }
 .netIncome-filter {
-  width: 30%;
+  width: 50%;
 }
 .filter-netIncome-label {
   width: 20%;
 }
 .filter-min-max-assets {
   margin-top: 5%;
+  width: 50%;
 }
 .filter-h2 {
   width: 50%;
@@ -164,6 +168,14 @@ $color2: #3197ee;
 }
 .filter-table-header-clickable:hover {
   cursor: pointer;
+}
+.filter-required-logo {
+  width: 50%;
+  height: 50%;
+}
+.filter-bookmarks {
+  flex: 1 0 100%;
+  text-align: center;
 }
 
 /*********************PAGINATION********************/
