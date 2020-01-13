@@ -19,6 +19,11 @@ const SmallCompanies = props => {
       <td>{props.singleCompany.Participants}</td>
 
       <td>${convertedIncome}</td>
+      <td>
+        <a href="https://www.w3schools.com" target="_blank">
+          Details
+        </a>
+      </td>
     </tr>
   );
 };

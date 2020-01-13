@@ -25,12 +25,13 @@ const SearchFunction = (
   maxIncome,
   minIncome,
   minParticipants,
-  maxParticipants
+  maxParticipants,
+  companyType,
+  businessCode
 ) => {
   let url;
   let result;
-  console.log(minParticipants);
-  console.log(maxParticipants);
+
   if (cities.length < 1) {
     url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesByState?year=${year}&`;
 
@@ -50,7 +51,12 @@ const SearchFunction = (
     if (minParticipants) {
       url = url.concat(`minPart=${minParticipants}&`);
     }
-
+    if (companyType !== "All") {
+      url = url.concat(`isSmall=${companyType}&`);
+    }
+    if (businessCode) {
+      url = url.concat(`businessCode=${businessCode}`);
+    }
     console.log("STATES URL: " + url);
   } else {
     url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesByCity?year=${year}&`;
@@ -72,7 +78,12 @@ const SearchFunction = (
     if (minParticipants) {
       url = url.concat(`minPart=${minParticipants}&`);
     }
-
+    if (companyType !== "All") {
+      url = url.concat(`isSmall=${companyType}&`);
+    }
+    if (businessCode) {
+      url = url.concat(`businessCode=${businessCode}`);
+    }
     console.log("CITIES URL: " + url);
   }
   result = fetching(url);

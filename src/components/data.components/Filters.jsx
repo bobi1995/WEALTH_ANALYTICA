@@ -151,6 +151,11 @@ const Filters = () => {
     const maxParticipants = document.getElementById("maxParticipants").value;
     const minParticipants = document.getElementById("minParticipants").value;
 
+    const companyType = document.getElementById("companyType").options[
+      document.getElementById("companyType").selectedIndex
+    ].value;
+    const businessCode = document.getElementById("business-code").value;
+
     const data = await SearchFunction(
       selectedYear,
       stateAbbriviation,
@@ -158,7 +163,9 @@ const Filters = () => {
       maxIncome,
       minIncome,
       minParticipants,
-      maxParticipants
+      maxParticipants,
+      companyType,
+      businessCode
     );
     setResult(data);
     setCompanies(data.Companies);
@@ -312,7 +319,7 @@ const Filters = () => {
                   </div>
                 </div>
               </div>
-              {/** */}
+              {/** ASSETS & PARTICIPANTS */}
               <div className="filter-state-input-field">
                 {/**MAX AND MIN ASSETS */}
                 <div className="filter-min-max-assets">
@@ -330,7 +337,7 @@ const Filters = () => {
                     </div>
 
                     <div className="filter-netIncome-div">
-                      <label className="filter-netIncome-label">Min :</label>
+                      <label className="filter-netIncome-label">Min:</label>
                       <input
                         type="number"
                         className="filter-control netIncome-filter"
@@ -367,6 +374,33 @@ const Filters = () => {
                       />
                     </div>
                   </div>
+                </div>
+              </div>
+              {/**PLAN AND BUSINESS CODE */}
+              <div className="filter-state-input-field">
+                {/**PLAN */}
+                <div className="filter-select-company-type">
+                  <label className="filter-company-label">Company type:</label>
+                  <select
+                    className="filter-select-form-control"
+                    id="companyType"
+                  >
+                    <option defaultValue="0">All</option>
+                    <option value="true">Small</option>
+                    <option value="false">Large</option>
+                  </select>
+                </div>
+                {/**BUSINESS CODE */}
+                <div className="filter-select-company-type">
+                  <label className="filter-netIncome-label filter-business-code-label">
+                    Code:
+                  </label>
+                  <input
+                    type="number"
+                    className="filter-control netIncome-filter"
+                    placeholder="Enter Business Code"
+                    id="business-code"
+                  ></input>
                 </div>
               </div>
 
@@ -492,6 +526,7 @@ const Filters = () => {
                 >
                   Income
                 </th>
+                <th>Details</th>
               </tr>
             </thead>
             <tbody className="table-hover">
