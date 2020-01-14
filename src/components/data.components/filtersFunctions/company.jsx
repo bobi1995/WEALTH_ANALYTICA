@@ -1,11 +1,21 @@
 import React from "react";
 import numeral from "numeral";
+import { Link } from "react-router-dom";
+
 const SmallCompanies = props => {
   let convertedIncome = 0;
+  let planID;
+  let isLarge;
   if (props.singleCompany.NetIncome) {
     convertedIncome = numeral(props.singleCompany.NetIncome).format("0,0");
   }
-
+  if (props.singleCompany.SmallCompanyPlanID) {
+    planID = props.singleCompany.SmallCompanyPlanID;
+    isLarge = false;
+  } else {
+    planID = props.singleCompany.LargeCompanyPlanID;
+    isLarge = true;
+  }
   return (
     <tr>
       <td>{props.singleCompany.Name}</td>
@@ -20,9 +30,14 @@ const SmallCompanies = props => {
 
       <td>${convertedIncome}</td>
       <td>
-        <a href="https://www.w3schools.com" target="_blank">
+        <Link
+          to={{
+            pathname: `/onepager/${planID}/${isLarge}`
+          }}
+          target="_blank"
+        >
           Details
-        </a>
+        </Link>
       </td>
     </tr>
   );

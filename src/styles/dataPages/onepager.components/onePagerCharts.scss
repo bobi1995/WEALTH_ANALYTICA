@@ -1,0 +1,22 @@
+.onepager-charts-all {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+.onepager-chart-content {
+  width: 30%;
+  text-align: center;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen and (max-width: 1024px) {
+  .onepager-charts-all {
+    display: block;
+  }
+  .onepager-chart-content {
+    width: 100%;
+  }
+}

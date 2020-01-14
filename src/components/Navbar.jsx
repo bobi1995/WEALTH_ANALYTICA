@@ -3,11 +3,11 @@ import "../styles/pages/navbar.scss";
 
 const NavBar = () => {
   const [logged, setLogged] = useState(
-    sessionStorage.getItem("Token") || undefined
+    localStorage.getItem("Token") || undefined
   );
 
   useEffect(() => {
-    sessionStorage.setItem("logged", logged);
+    localStorage.setItem("logged", logged);
   });
 
   window.addEventListener("scroll", e => {
@@ -48,14 +48,14 @@ const NavBar = () => {
                 {logged ? (
                   <div>
                     <a className="dropbtn" href="/">
-                      Hi,{sessionStorage.getItem("FirstName")}
+                      Hi,{localStorage.getItem("FirstName")}
                     </a>
                     <div className="dropdown-content">
                       <a href="/dashboard">Dashboard</a>
                       <a
                         href="/"
                         onClick={() => {
-                          sessionStorage.clear();
+                          localStorage.clear();
                           setLogged(undefined);
                         }}
                       >

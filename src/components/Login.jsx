@@ -92,15 +92,16 @@ const Login = () => {
       .then(res => {
         if (res.status === 200) {
           setLoading(false);
-          sessionStorage.setItem("logged", true);
-          sessionStorage.setItem("FirstName", res.data.FirstName);
-          sessionStorage.setItem("Token", res.data.Token);
-          sessionStorage.setItem("LastName", res.data.LastName);
-          sessionStorage.setItem("Email", res.data.Email);
-          sessionStorage.setItem("CompanyName", res.data.CompanyName);
-          sessionStorage.setItem("CompanyPhone", res.data.CompanyPhone);
-          sessionStorage.setItem("Address", res.data.Address);
-          sessionStorage.setItem("States", res.data.States);
+          localStorage.setItem("logged", true);
+          localStorage.setItem("Guid", res.data.Guid);
+          localStorage.setItem("FirstName", res.data.FirstName);
+          localStorage.setItem("Token", res.data.Token);
+          localStorage.setItem("LastName", res.data.LastName);
+          localStorage.setItem("Email", res.data.Email);
+          localStorage.setItem("CompanyName", res.data.CompanyName);
+          localStorage.setItem("CompanyPhone", res.data.CompanyPhone);
+          localStorage.setItem("Address", res.data.Address);
+          localStorage.setItem("States", res.data.States);
 
           history.push({
             pathname: "/dashboard",

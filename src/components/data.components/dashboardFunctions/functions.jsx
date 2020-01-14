@@ -3,7 +3,7 @@ import React from "react";
 
 //****************COMMON FUNCTION********* */
 const commonFunction = () => {
-  const statesString = sessionStorage.getItem("States");
+  const statesString = localStorage.getItem("States");
   const states = statesString.split(",");
   const purchasedStates = [];
 
@@ -49,11 +49,10 @@ const dataListStates = arr => {
 };
 
 //*************INPUT FIELD FOR CITIES***************** */
-const dataListCities = arr => { 
+const dataListCities = arr => {
   return arr.map((city, index) => {
-      return <option key={index}>{city}</option>;
-    
+    return <option key={index}>{city}</option>;
   });
 };
 
-export default { commonFunction, statesNames, dataListStates,dataListCities };
+export default { commonFunction, statesNames, dataListStates, dataListCities };

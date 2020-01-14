@@ -47,7 +47,7 @@ const Dashboard = props => {
       axios
         .get(url, {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*"
           }
         })

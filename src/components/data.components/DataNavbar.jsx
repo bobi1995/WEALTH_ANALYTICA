@@ -50,7 +50,7 @@ const DataNavbar = () => {
             <li className="dropdown">
               <div>
                 <a className="dropbtn" href="/profile">
-                  Hi,{sessionStorage.getItem("FirstName")}
+                  Hi,{localStorage.getItem("FirstName")}
                 </a>
                 <div className="dropdown-content">
                   <a href="/profile">Your Profile</a>
@@ -58,7 +58,7 @@ const DataNavbar = () => {
                   <a
                     href=""
                     onClick={() => {
-                      sessionStorage.clear();
+                      localStorage.clear();
                     }}
                   >
                     Sign Out
