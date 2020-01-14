@@ -1,5 +1,6 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
+import DataExtract from "./OnePagerDataExtract";
 
 const OnePagerCharts = props => {
   console.log(props.data);
@@ -7,8 +8,12 @@ const OnePagerCharts = props => {
   let incomeStatementsData = {};
   let partMetrics = {};
   if (props.data) {
+    //YEARS IN ARRAY
+    const years = DataExtract.yearsExtract(props.data);
+
+    /*****************PLAN ASSET DATA******************* */
     planAssetData = {
-      labels: ["2016", "2017", "2018"],
+      labels: years,
       datasets: [
         {
           label: "Total Assets",
@@ -16,11 +21,7 @@ const OnePagerCharts = props => {
           borderWidth: 1,
           hoverBackgroundColor: "rgba(137, 196, 244, 1)",
           hoverBorderColor: "rgba(44, 130, 201, 1)",
-          data: [
-            props.data[0].TotalAssets,
-            props.data[1].TotalAssets,
-            props.data[2].TotalAssets
-          ],
+          data: DataExtract.totalAssetsExtract(props.data),
           stack: 1
         },
         {
@@ -29,18 +30,15 @@ const OnePagerCharts = props => {
           borderWidth: 1,
           hoverBackgroundColor: "rgba(253, 227, 167, 1)",
           hoverBorderColor: "rgba(248, 148, 6, 1)",
-          data: [
-            props.data[0].NetAssets,
-            props.data[1].NetAssets,
-            props.data[2].NetAssets
-          ],
+          data: DataExtract.netAssetsExtract(props.data),
           stack: 2
         }
       ]
     };
 
+    /*****************INCOME STATEMENTS DATA******************* */
     incomeStatementsData = {
-      labels: ["2016", "2017", "2018"],
+      labels: years,
       datasets: [
         {
           label: "Income",
@@ -48,11 +46,7 @@ const OnePagerCharts = props => {
           borderWidth: 1,
           hoverBackgroundColor: "rgba(137, 196, 244, 1)",
           hoverBorderColor: "rgba(44, 130, 201, 1)",
-          data: [
-            props.data[0].TotalIncome,
-            props.data[1].TotalIncome,
-            props.data[2].TotalIncome
-          ],
+          data: DataExtract.totalIncomeExtract(props.data),
           stack: 1
         },
         {
@@ -61,11 +55,7 @@ const OnePagerCharts = props => {
           borderWidth: 1,
           hoverBackgroundColor: "rgba(253, 227, 167, 1)",
           hoverBorderColor: "rgba(248, 148, 6, 1)",
-          data: [
-            props.data[0].TotalExpenses,
-            props.data[1].TotalExpenses,
-            props.data[2].TotalExpenses
-          ],
+          data: DataExtract.totalExpensesExtract(props.data),
           stack: 2
         },
         {
@@ -74,17 +64,13 @@ const OnePagerCharts = props => {
           borderWidth: 1,
           hoverBackgroundColor: "rgba(189, 195, 199, 1)",
           hoverBorderColor: "rgba(108, 122, 137, 1)",
-          data: [
-            props.data[0].NetIncome,
-            props.data[1].NetIncome,
-            props.data[2].NetIncome
-          ],
+          data: DataExtract.netIncomeExtract(props.data),
           stack: 3
         }
       ]
     };
     partMetrics = {
-      labels: ["2016", "2017", "2018"],
+      labels: years,
       datasets: [
         {
           label: "Part.Loans",
@@ -92,11 +78,7 @@ const OnePagerCharts = props => {
           borderWidth: 1,
           hoverBackgroundColor: "rgba(137, 196, 244, 1)",
           hoverBorderColor: "rgba(44, 130, 201, 1)",
-          data: [
-            props.data[0].ParticipantLoans,
-            props.data[1].ParticipantLoans,
-            props.data[2].ParticipantLoans
-          ],
+          data: DataExtract.participantLoansExtract(props.data),
           stack: 1
         },
         {
@@ -105,11 +87,7 @@ const OnePagerCharts = props => {
           borderWidth: 1,
           hoverBackgroundColor: "rgba(253, 227, 167, 1)",
           hoverBorderColor: "rgba(248, 148, 6, 1)",
-          data: [
-            props.data[0].ContributionEmployer,
-            props.data[1].ContributionEmployer,
-            props.data[2].ContributionEmployer
-          ],
+          data: DataExtract.contributionEmployerExtract(props.data),
           stack: 2
         },
         {
@@ -118,11 +96,7 @@ const OnePagerCharts = props => {
           borderWidth: 1,
           hoverBackgroundColor: "rgba(189, 195, 199, 1)",
           hoverBorderColor: "rgba(108, 122, 137, 1)",
-          data: [
-            props.data[0].ContributionParticipant,
-            props.data[1].ContributionParticipant,
-            props.data[2].ContributionParticipant
-          ],
+          data: DataExtract.contributionParticipantExtract(props.data),
           stack: 3
         },
         {
@@ -131,11 +105,7 @@ const OnePagerCharts = props => {
           borderWidth: 1,
           hoverBackgroundColor: "rgba(123, 239, 178, 1)",
           hoverBorderColor: "rgba(0, 177, 106, 1)",
-          data: [
-            props.data[0].TotalDistributions,
-            props.data[1].TotalDistributions,
-            props.data[2].TotalDistributions
-          ],
+          data: DataExtract.totalDistributionsExtract(props.data),
           stack: 4
         }
       ]
