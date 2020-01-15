@@ -1,5 +1,3 @@
-import React from "react";
-
 //***************YEARS********************* */
 const yearsExtract = data => {
   return data.map(element => {

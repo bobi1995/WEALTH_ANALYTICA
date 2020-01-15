@@ -3,11 +3,14 @@ import axios from "axios";
 import Datanavbar from "./DataNavbar";
 import "../../styles/dataPages/onePager.scss";
 import OnePagerCharts from "./OnePagerFunctions/OnePagerCharts";
+import Loader from "./dashboardFunctions/loader";
+import OnePagerTables from "./OnePagerFunctions/OnePagerTables";
 
 const OnePager = props => {
   const [results, setResults] = useState([]);
+
   useEffect(() => {
-    const url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetOnePager?userGuid=${localStorage.getItem(
+    const url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetOnePager?userGuid=${sessionStorage.getItem(
       "Guid"
     )}&planID=${props.match.params.planID}&isLarge=${
       props.match.params.isLarge
@@ -16,7 +19,7 @@ const OnePager = props => {
     axios
       .get(url, {
         headers: {
-          Authorization: "Basic " + localStorage.getItem("Token"),
+          Authorization: "Basic " + sessionStorage.getItem("Token"),
           "Access-Control-Allow-Origin": "*"
         }
       })
@@ -27,15 +30,24 @@ const OnePager = props => {
         console.log(err);
       });
   }, []);
+
   return (
     <div>
       <Datanavbar />
       <section className="clientDash-img">
         <h1 className="onePager-header1">{results.PlanName}</h1>
       </section>
-      <div>
-        <OnePagerCharts data={results.Statistics} />
-      </div>
+      {results.PlanName ? (
+        <div>
+          <OnePagerCharts data={results.Statistics} />
+
+          <OnePagerTables data={results.Statistics} />
+        </div>
+      ) : (
+        <div className="onepager-loader-style">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };

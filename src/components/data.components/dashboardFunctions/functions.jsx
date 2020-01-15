@@ -3,7 +3,7 @@ import React from "react";
 
 //****************COMMON FUNCTION********* */
 const commonFunction = () => {
-  const statesString = localStorage.getItem("States");
+  const statesString = sessionStorage.getItem("States");
   const states = statesString.split(",");
   const purchasedStates = [];
 

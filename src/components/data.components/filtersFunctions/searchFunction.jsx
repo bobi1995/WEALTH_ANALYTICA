@@ -5,7 +5,7 @@ const fetching = async url => {
   const res = await axios
     .get(url, {
       headers: {
-        Authorization: "Basic " + localStorage.getItem("Token"),
+        Authorization: "Basic " + sessionStorage.getItem("Token"),
         "Access-Control-Allow-Origin": "*"
       }
     })

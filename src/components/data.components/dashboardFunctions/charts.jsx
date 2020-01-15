@@ -1,12 +1,8 @@
 const arrayReducer = array => {
   let newArr = [];
   let total = 0;
-  for (let i = 0; i < array.length; i++) {
-    total += array[i];
-  }
-  const average = total / array.length;
-  //const lengthOfAv = average.toString().length;
-  const parts = average.toString().split(".");
+  const max = Math.max(...array);
+  const parts = max.toString().split(".");
   const lengthOfAv = parts[0].toString().length;
   if (lengthOfAv > 12) {
     return (newArr = array.map(el => el / 100000000000));
@@ -21,12 +17,14 @@ const arrayReducer = array => {
 
 const arrayCategory = array => {
   let total = 0;
-  for (let i = 0; i < array.length; i++) {
-    total += array[i];
-  }
-  const average = total / array.length;
+  // for (let i = 0; i < array.length; i++) {
+  //   total += array[i];
+  // }
+  // const average = total / array.length;
   //const lengthOfAv = average.toString().length;
-  const parts = average.toString().split(".");
+  const max = Math.max(...array);
+
+  const parts = max.toString().split(".");
   const lengthOfAv = parts[0].toString().length;
   if (lengthOfAv > 12) {
     return "Result in Trillion";

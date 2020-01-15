@@ -5,7 +5,7 @@ const cityFunction = async state => {
       `http://pensionswebapi.azurewebsites.net/api/Cities/Get?state=${state}`,
       {
         headers: {
-          Authorization: "Basic " + localStorage.getItem("Token"),
+          Authorization: "Basic " + sessionStorage.getItem("Token"),
           "Access-Control-Allow-Origin": "*"
         }
       }
@@ -32,7 +32,7 @@ const cityReducer = async (state, array) => {
   const res = await axios
     .get(url, {
       headers: {
-        Authorization: "Basic " + localStorage.getItem("Token"),
+        Authorization: "Basic " + sessionStorage.getItem("Token"),
         "Access-Control-Allow-Origin": "*"
       }
     })

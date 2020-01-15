@@ -20,25 +20,25 @@ const Profile = () => {
               <tr>
                 <th>Name</th>
                 <td>
-                  {localStorage.getItem("FirstName")}{" "}
-                  {localStorage.getItem("LastName")}
+                  {sessionStorage.getItem("FirstName")}{" "}
+                  {sessionStorage.getItem("LastName")}
                 </td>
               </tr>
               <tr>
                 <th>Email</th>
-                <td>{localStorage.getItem("Email")}</td>
+                <td>{sessionStorage.getItem("Email")}</td>
               </tr>
               <tr>
                 <th>Company</th>
-                <td>{localStorage.getItem("CompanyName")}</td>
+                <td>{sessionStorage.getItem("CompanyName")}</td>
               </tr>
               <tr>
                 <th>Phone</th>
-                <td>{localStorage.getItem("CompanyPhone")}</td>
+                <td>{sessionStorage.getItem("CompanyPhone")}</td>
               </tr>
               <tr>
                 <th>Address</th>
-                <td>{localStorage.getItem("Address")}</td>
+                <td>{sessionStorage.getItem("Address")}</td>
               </tr>
             </tbody>
           </table>
