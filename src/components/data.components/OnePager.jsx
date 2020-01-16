@@ -5,6 +5,8 @@ import "../../styles/dataPages/onePager.scss";
 import OnePagerCharts from "./OnePagerFunctions/OnePagerCharts";
 import Loader from "./dashboardFunctions/loader";
 import OnePagerTables from "./OnePagerFunctions/OnePagerTables";
+import OnePagerBottomTables from "./OnePagerFunctions/OnePagerBottomTables";
+import OnePagerRightPane from "./OnePagerFunctions/OnePagerRightPane";
 
 const OnePager = props => {
   const [results, setResults] = useState([]);
@@ -40,8 +42,11 @@ const OnePager = props => {
       {results.PlanName ? (
         <div>
           <OnePagerCharts data={results.Statistics} />
-
           <OnePagerTables data={results.Statistics} />
+          <div className="onePager-bottom-div">
+            <OnePagerBottomTables data={results.Statistics} />
+            <OnePagerRightPane />
+          </div>
         </div>
       ) : (
         <div className="onepager-loader-style">

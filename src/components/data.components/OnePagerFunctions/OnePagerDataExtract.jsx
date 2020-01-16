@@ -68,6 +68,118 @@ const totalDistributionsExtract = data => {
   });
 };
 
+//***************TOTAL PARTICIPANTS********************* */
+const totalParticipantsExtract = data => {
+  return data.map(element => {
+    return element.Participants;
+  });
+};
+
+//***************AUMHC********************* */
+const AUMHCExtract = data => {
+  return data.map(element => {
+    return element.AUMHC;
+  });
+};
+
+//***************YIELD********************* */
+const yieldExtract = data => {
+  return data.map(element => {
+    return element.Yield;
+  });
+};
+
+//***************CONTRIBUTION YIELD********************* */
+const contributionYieldExtract = data => {
+  return data.map(element => {
+    return element.ContributionYield;
+  });
+};
+
+//***************EXPENSE RATIO********************* */
+const expenseRatioExtract = data => {
+  return data.map(element => {
+    return element.ExpenseRatio;
+  });
+};
+
+//***************EXPENSE RATIO********************* */
+const RORExtract = data => {
+  return data.map(element => {
+    return element.ROR;
+  });
+};
+
+//***************PROVIDER ELIGIBLE NAMES COUNT********************* */
+const providerEligibleNamesCountExtract = data => {
+  return data.map(element => {
+    return element.ProviderEligibleNamesCount;
+  });
+};
+
+//***************PROVIDER OTHER NAMES COUNT********************* */
+const providerOtherNamesCountExtract = data => {
+  return data.map(element => {
+    return element.ProviderOtherNamesCount;
+  });
+};
+
+//***************PROVIDER OTHER DIRECT COMPATM********************* */
+const providerOtherDirectCompATMExtract = data => {
+  return data.map(element => {
+    return element.ProviderOtherDirectCompATM;
+  });
+};
+
+//***************PROVIDER OTHER INDIRECT COMPATM********************* */
+const providerOtherTotIndCompATMExtract = data => {
+  return data.map(element => {
+    return element.ProviderOtherTotIndCompATM;
+  });
+};
+
+//***************CARRIERS COUNT********************* */
+const carriersCountExtract = data => {
+  return data.map(element => {
+    return element.CarriersCount;
+  });
+};
+
+//***************BROKERS COUNT********************* */
+const brokersCountExtract = data => {
+  return data.map(element => {
+    return element.BrokersCount;
+  });
+};
+
+//***************BROKERS COMMISIONS********************* */
+const brokerCommissionsExtract = data => {
+  return data.map(element => {
+    return element.BrokerCommissions;
+  });
+};
+
+//***************BROKERS FEES********************* */
+const brokerFeesExtract = data => {
+  return data.map(element => {
+    return element.BrokerFees;
+  });
+};
+
+//***************FIDUCIARY TRUST NAME********************* */
+const fiduciaryTrustNameExtract = data => {
+  return data.map(element => {
+    return element.FiduciaryTrustName;
+  });
+};
+
+//***************FIDELITY BONDAMT********************* */
+const fidelityBondAmtExtract = data => {
+  return data.map(element => {
+    return element.FidelityBondAmt;
+  });
+};
+
 export default {
   yearsExtract,
   totalAssetsExtract,
@@ -78,5 +190,21 @@ export default {
   participantLoansExtract,
   contributionEmployerExtract,
   contributionParticipantExtract,
-  totalDistributionsExtract
+  totalDistributionsExtract,
+  totalParticipantsExtract,
+  AUMHCExtract,
+  yieldExtract,
+  contributionYieldExtract,
+  expenseRatioExtract,
+  RORExtract,
+  providerEligibleNamesCountExtract,
+  providerOtherNamesCountExtract,
+  providerOtherDirectCompATMExtract,
+  providerOtherTotIndCompATMExtract,
+  carriersCountExtract,
+  brokersCountExtract,
+  brokerCommissionsExtract,
+  brokerFeesExtract,
+  fiduciaryTrustNameExtract,
+  fidelityBondAmtExtract
 };

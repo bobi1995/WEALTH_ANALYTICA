@@ -94,6 +94,14 @@ const OnePagerTables = props => {
           </thead>
           <tbody className="table-hover">
             <tr>
+              <th className="thead-dark">Participants</th>
+              {DataExtract.totalParticipantsExtract(props.data).map(
+                (participant, index) => (
+                  <th key={index}>{participant}</th>
+                )
+              )}
+            </tr>
+            <tr>
               <th className="thead-dark">Part.Loans</th>
               {DataExtract.participantLoansExtract(props.data).map(
                 (partLoans, index) => (
