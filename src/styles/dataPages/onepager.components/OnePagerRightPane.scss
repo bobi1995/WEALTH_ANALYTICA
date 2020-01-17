@@ -4,3 +4,17 @@
 .OnePager-logo {
   width: 100%;
 }
+.onepager-right-pane-h1 {
+  color: black;
+  width: 100%;
+  text-align: center;
+}
+.onepager-right-pane-cityAndCode {
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (max-width: 1024px) {
+  .onepager-right-pane-cityAndCode {
+    display: block;
+  }
+}

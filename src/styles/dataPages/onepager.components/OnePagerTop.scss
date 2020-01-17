@@ -1,0 +1,69 @@
+.onepager-top-div-main {
+  text-align: center;
+}
+.onepagertopbuttons {
+  width: 15rem;
+  margin: 3%;
+}
+.onepageremailbuttons {
+  margin: 1rem;
+}
+.onepager-top-emailform {
+  display: none;
+  margin-top: 3%;
+}
+.onePager-top-logo {
+  width: 10rem;
+}
+.onepager-textarea {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.onepager-emailform-email {
+  display: flex;
+  width: 100%;
+}
+.onepager-top-mainemail {
+  display: flex;
+  width: 100%;
+}
+.onepager-top-fromto {
+  width: 40%;
+}
+.onepager-top-fromto-inner {
+  display: flex;
+}
+.onepager-fromto-label {
+  line-height: 2.5rem;
+  font-size: 20px;
+  padding-right: 10px;
+  width: 15%;
+}
+.onepager-emailform-buttons {
+  margin-top: 1rem;
+}
+.onePager-Link {
+  color: white;
+}
+.onePager-Link:hover {
+  text-decoration: none;
+  color: white;
+}
+@media screen and (max-width: 1024px) {
+  .onepager-emailform-email {
+    text-align: center;
+
+    display: block;
+  }
+  .onepager-top-mainemail {
+    display: block;
+  }
+  .onepager-top-fromto {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .onepager-textarea {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

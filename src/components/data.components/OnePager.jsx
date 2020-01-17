@@ -7,6 +7,7 @@ import Loader from "./dashboardFunctions/loader";
 import OnePagerTables from "./OnePagerFunctions/OnePagerTables";
 import OnePagerBottomTables from "./OnePagerFunctions/OnePagerBottomTables";
 import OnePagerRightPane from "./OnePagerFunctions/OnePagerRightPane";
+import OnePagerTop from "./OnePagerFunctions/OnePagerTop";
 
 const OnePager = props => {
   const [results, setResults] = useState([]);
@@ -41,11 +42,14 @@ const OnePager = props => {
       </section>
       {results.PlanName ? (
         <div>
+          <OnePagerTop
+            data={[results.BusinessCode, props.match.params.isLarge]}
+          />
           <OnePagerCharts data={results.Statistics} />
           <OnePagerTables data={results.Statistics} />
           <div className="onePager-bottom-div">
             <OnePagerBottomTables data={results.Statistics} />
-            <OnePagerRightPane />
+            <OnePagerRightPane data={[results.City, results.BusinessCode]} />
           </div>
         </div>
       ) : (

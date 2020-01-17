@@ -32,7 +32,10 @@ function App() {
         <PrivateRoute path="/heatmap" component={Heatmap} />
         <PrivateRoute path="/bookmarks" component={Bookmarks} />
         <PrivateRoute path="/onepager/:planID/:isLarge" component={OnePager} />
-        <PrivateRoute path="/planprofile" component={PlanProfile} />
+        <PrivateRoute
+          path="/planprofile/:planID/:isLarge"
+          component={PlanProfile}
+        />
       </Switch>
     </Router>
   );

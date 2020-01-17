@@ -3,7 +3,6 @@ import DataExtract from "./OnePagerDataExtract";
 import numeral from "numeral";
 
 const OnePagerTables = props => {
-  console.log(props);
   return (
     <div className="onepager-charts-all">
       {/***************PLAN ASSET TABLE******** */}

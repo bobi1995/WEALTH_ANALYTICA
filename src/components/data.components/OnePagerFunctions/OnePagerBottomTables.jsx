@@ -3,7 +3,6 @@ import DataExtract from "./OnePagerDataExtract";
 import numeral from "numeral";
 
 const OnePagerBottomTables = props => {
-  console.log("here");
   return (
     <div className="onepager-bottomtables-maindiv">
       {/**********************STATISTICS***************************************** */}
