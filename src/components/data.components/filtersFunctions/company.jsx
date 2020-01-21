@@ -3,6 +3,7 @@ import numeral from "numeral";
 import { Link } from "react-router-dom";
 
 const SmallCompanies = props => {
+  console.log(props);
   let convertedIncome = 0;
   let planID;
   let isLarge;
@@ -16,6 +17,11 @@ const SmallCompanies = props => {
     planID = props.singleCompany.LargeCompanyPlanID;
     isLarge = true;
   }
+
+  const addBookmark = e => {
+    e.target.classList.add("bookmarked");
+    console.log(e.target);
+  };
   return (
     <tr>
       <td>{props.singleCompany.Name}</td>
@@ -38,6 +44,13 @@ const SmallCompanies = props => {
         >
           Details
         </Link>
+      </td>
+      <td>
+        {props.singleCompany.isBookarked ? (
+          "Yes"
+        ) : (
+          <span className="fa fa-star" onClick={addBookmark}></span>
+        )}
       </td>
     </tr>
   );

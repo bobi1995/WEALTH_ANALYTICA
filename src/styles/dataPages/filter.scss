@@ -1,3 +1,4 @@
+@import "./filter.components/filterBookmarkBtn.scss";
 $color1: #f4f4f4;
 $color2: #3197ee;
 
@@ -30,7 +31,9 @@ $color2: #3197ee;
 .filter-chart1 {
   width: 30%;
 }
-
+.table-container {
+  text-align: center;
+}
 .filter-control {
   width: 100%;
   margin-bottom: 2%;

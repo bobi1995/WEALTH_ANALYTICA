@@ -43,7 +43,7 @@ const OnePager = props => {
       {results.PlanName ? (
         <div>
           <OnePagerTop
-            data={[results.BusinessCode, props.match.params.isLarge]}
+            data={[props.match.params.planID, props.match.params.isLarge]}
           />
           <OnePagerCharts data={results.Statistics} />
           <OnePagerTables data={results.Statistics} />

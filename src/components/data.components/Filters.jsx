@@ -527,6 +527,7 @@ const Filters = () => {
                   Income
                 </th>
                 <th>Details</th>
+                <th>Mark</th>
               </tr>
             </thead>
             <tbody className="table-hover">

@@ -9,6 +9,7 @@ const OnePagerRightPane = props => {
       </div>
       <img
         className="OnePager-logo"
+        alt="no_img"
         src={require("../../../styles/images/Wealth_Analytica.png")}
       />
     </div>

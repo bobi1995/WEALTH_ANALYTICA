@@ -1,6 +1,5 @@
 const arrayReducer = array => {
   let newArr = [];
-  let total = 0;
   const max = Math.max(...array);
   const parts = max.toString().split(".");
   const lengthOfAv = parts[0].toString().length;
@@ -16,7 +15,6 @@ const arrayReducer = array => {
 };
 
 const arrayCategory = array => {
-  let total = 0;
   // for (let i = 0; i < array.length; i++) {
   //   total += array[i];
   // }

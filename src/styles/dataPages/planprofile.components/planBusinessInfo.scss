@@ -1,0 +1,18 @@
+.plan-businessInfo {
+  text-align: center;
+}
+.plan-h1 {
+  color: black;
+  text-align: center;
+}
+.plan-table-section {
+  display: inline-block;
+  margin-top: 3%;
+  width: 70%;
+  text-align: center;
+}
+@media screen and (max-width: 1024px) {
+  .plan-table-section {
+    width: 100%;
+  }
+}
