@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import numeral from "numeral";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import ReactTooltip from "react-tooltip";
 
 const SmallCompanies = props => {
-  console.log(props.singleCompany.IsBookmarked);
+  const [isBookmarked, setIsBookmarked] = useState(
+    props.singleCompany.IsBookmarked
+  );
+
   let convertedIncome = 0;
   let planID;
   let isLarge;
@@ -18,8 +22,8 @@ const SmallCompanies = props => {
     planID = props.singleCompany.LargeCompanyPlanID;
     isLarge = true;
   }
-
-  const addBookmark = e => {
+  const removeBookmark = e => {
+    console.log(e.target);
     const data = {
       userGuid: sessionStorage.getItem("Guid"),
 
@@ -27,18 +31,52 @@ const SmallCompanies = props => {
 
       largePlanID: props.singleCompany.LargeCompanyPlanID
     };
-    e.target.classList.add("bookmarked");
+
+    axios
+      .post(
+        `http://pensionswebapi.azurewebsites.net/api/Bookmarks/Remove`,
+        data,
+        {
+          headers: {
+            Authorization: "Basic " + sessionStorage.getItem("Token")
+          }
+        }
+      )
+      .then(res => {
+        console.log(res);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+    setIsBookmarked(!isBookmarked);
+  };
+
+  const addBookmark = e => {
+    console.log(e.target);
+
+    const data = {
+      userGuid: sessionStorage.getItem("Guid"),
+
+      smallPlanID: props.singleCompany.SmallCompanyPlanID,
+
+      largePlanID: props.singleCompany.LargeCompanyPlanID
+    };
+
     axios
       .post(`http://pensionswebapi.azurewebsites.net/api/Bookmarks/Add`, data, {
         headers: {
           Authorization: "Basic " + sessionStorage.getItem("Token")
         }
       })
-      .then(res => {})
+      .then(res => {
+        console.log(res);
+      })
       .catch(e => {
         console.log(e);
       });
+    setIsBookmarked(!isBookmarked);
   };
+
   return (
     <tr>
       <td>{props.singleCompany.Name}</td>
@@ -63,11 +101,14 @@ const SmallCompanies = props => {
         </Link>
       </td>
       <td>
-        {props.singleCompany.IsBookmarked ? (
-          <span className="fa fa-star bookmarked"></span>
-        ) : (
-          <span className="fa fa-star" onClick={addBookmark}></span>
-        )}
+        <div>
+          <span
+            className={isBookmarked ? "fa fa-star bookmarked" : "fa fa-star"}
+            onClick={isBookmarked ? removeBookmark : addBookmark}
+            data-tip={isBookmarked ? "Remove Bookmark" : "Add Bookmark"}
+          ></span>
+          <ReactTooltip />
+        </div>
       </td>
     </tr>
   );

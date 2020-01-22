@@ -484,7 +484,6 @@ const Filters = () => {
                 height={300}
               />
             </div>
-            <div className="filter-bookmarks">BOOKMARKS</div>
           </div>
         ) : (
           <div className="filter-required-selection-div">
