@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/pages/navbar.scss";
+import $ from "jquery";
 
 const NavBar = () => {
   const [logged, setLogged] = useState(
@@ -18,6 +19,15 @@ const NavBar = () => {
       nav.classList.remove("affix");
     }
   });
+
+  const navTrigger = () => {
+    console.log("clicked");
+    $(".navTrigger").click(function() {
+      $(this).toggleClass("active");
+      $("#mainListDiv").toggleClass("show_list");
+      $("#mainListDiv").fadeIn();
+    });
+  };
 
   return (
     <div className="navbar-content">
@@ -69,7 +79,7 @@ const NavBar = () => {
               </li>
             </ul>
           </div>
-          <span className="navTrigger">
+          <span onClick={navTrigger} id="navTrigger" className="navTrigger">
             <i></i>
             <i></i>
             <i></i>

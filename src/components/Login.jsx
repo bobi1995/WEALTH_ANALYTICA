@@ -150,7 +150,12 @@ const Login = () => {
   return (
     <div className="cont2">
       <div expand="lg" className="login-container-fluid container-fluid">
-        <h1>logo</h1>
+        <img
+          id="logoimg"
+          className="login-logo"
+          src={require("../styles/images/transparent-black.png")}
+          alt="no_image"
+        />
         <h1>Welcome to Wealth Analytica</h1>
         <h1>
           <a className="login-a" href="/">

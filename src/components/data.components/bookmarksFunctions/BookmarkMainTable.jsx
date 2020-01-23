@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const BookmarkMainTable = props => {
-  console.log(props.data.length);
-  console.log(props.data);
+  const removeBookmark = (small, large) => {
+    const data = {
+      userGuid: sessionStorage.getItem("Guid"),
+
+      smallPlanID: small,
+
+      largePlanID: large
+    };
+
+    axios
+      .post(
+        `http://pensionswebapi.azurewebsites.net/api/Bookmarks/Remove`,
+        data,
+        {
+          headers: {
+            Authorization: "Basic " + sessionStorage.getItem("Token")
+          }
+        }
+      )
+      .then(res => {
+        console.log(res);
+        window.location.reload();
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
 
   return (
     <div className="bookmarks-table-main">
@@ -33,7 +60,59 @@ const BookmarkMainTable = props => {
             {props.data.map((element, index) => (
               <tr key={index}>
                 <td>{element.Number}</td>
-                <td>{element.Number}</td>
+                <td>{element.Name}</td>
+                <td>{element.Address1}</td>
+                <td>{element.Address2}</td>
+                <td>{element.City}</td>
+                <td>{element.State}</td>
+                <td>{element.ZipCode}</td>
+                <td>{element.BusinessCode}</td>
+                <td>{element.AdministratorName}</td>
+                <td>{element.Phone}</td>
+                <td>{element.NetAssets}</td>
+                <td>{element.Participants}</td>
+                <td>{element.NetIncome}</td>
+                <td>
+                  <Link
+                    to={{
+                      pathname: `${
+                        element.SmallCompanyPlanID
+                          ? `/onepager/${element.SmallCompanyPlanID}/false`
+                          : `/onepager/${element.LargeCompanyPlanID}/true`
+                      }`
+                    }}
+                    target="_blank"
+                  >
+                    Details
+                  </Link>
+                </td>
+                <td>
+                  <Link
+                    to={{
+                      pathname: `${
+                        element.SmallCompanyPlanID
+                          ? `/planprofile/${element.SmallCompanyPlanID}/false`
+                          : `/planprofile/${element.LargeCompanyPlanID}/true`
+                      }`
+                    }}
+                    target="_blank"
+                  >
+                    Generate
+                  </Link>
+                </td>
+                <td>
+                  <button
+                    className="bookmark-remove-button"
+                    onClick={() => {
+                      removeBookmark(
+                        element.SmallCompanyPlanID,
+                        element.LargeCompanyPlanID
+                      );
+                    }}
+                  >
+                    Remove
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

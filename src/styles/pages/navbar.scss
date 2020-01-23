@@ -12,11 +12,7 @@
 /* --> https://codepen.io/abdosteif/pen/bRoyMb?editors=1100*/
 
 /* Navbar section */
-.navbar-container {
-  display: flex;
-  height: 65px;
-  justify-content: space-between;
-}
+
 .nav {
   width: 100%;
   height: 65px;
@@ -44,7 +40,6 @@
 
 .nav div.main_list {
   height: 65px;
-  float: right;
 }
 
 .nav div.main_list ul {
@@ -57,10 +52,8 @@
 }
 
 .nav div.main_list ul li {
-  width: auto;
-  height: 65px;
-  padding: 0;
-  padding-right: 3rem;
+  width: 70%;
+  margin: auto;
 }
 
 .nav div.main_list ul li a {
@@ -89,13 +82,13 @@
 
 /* Media qurey section */
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 1350px) and (max-width: 1024px) {
   .container {
     margin: 0;
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1350px) {
   .navTrigger {
     display: block;
   }
@@ -349,6 +342,7 @@
     padding: 2%;
   }
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -372,14 +366,4 @@
 
 .dropdown:hover .dropdown-content {
   display: block;
-}
-.navbar-logo {
-  float: left;
-  padding-right: 3rem;
-  height: 100%;
-  width: auto;
-}
-
-.thelogo {
-  height: 100%;
 }

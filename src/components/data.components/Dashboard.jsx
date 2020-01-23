@@ -43,6 +43,7 @@ const Dashboard = props => {
     } else if (stateAbbriviation.length === 3) {
       url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?year=2016&year=2017&year=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}&state=${stateAbbriviation[2]}`;
     }
+    console.log(url);
     if (stateAbbriviation.length > 0) {
       axios
         .get(url, {

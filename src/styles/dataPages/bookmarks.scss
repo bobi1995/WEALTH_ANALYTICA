@@ -1,4 +1,16 @@
 .bookmarks-table-main {
-  width: 90%;
   margin: 3% auto;
+  width: 95%;
+  text-align: center;
+}
+.bookmark-remove-button {
+  border: 0;
+  padding: 4px 8px;
+  background-color: #c66;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 3px;
+}
+.bookmark-remove-button:hover {
+  background-color: #a44;
 }

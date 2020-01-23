@@ -2,8 +2,6 @@ import React from "react";
 import numeral from "numeral";
 
 const ProfilePlanFinancial = props => {
-  console.log(props);
-
   return (
     <div>
       {/**FINANCIAL PLAN  */}

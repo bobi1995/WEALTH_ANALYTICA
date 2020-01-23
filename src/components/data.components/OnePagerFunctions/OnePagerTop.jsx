@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const OnePagerTop = props => {
-  console.log(props);
   const showSendEmail = () => {
     document.getElementById("emailform").style.display = "block";
     document.getElementById("mainbuttons").style.display = "none";
