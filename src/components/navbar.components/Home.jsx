@@ -4,11 +4,7 @@ const Home = () => {
   return (
     <div className="home-content">
       <Navbar />
-      <section className="home">
-        <h1 className="home-header1">
-          Welcome<br></br> to Wealth Analytica
-        </h1>
-      </section>
+
       <div style={{ height: 1000 }}>
         <h2 className="myH2">Who are we?</h2>
         <p className="myP">
