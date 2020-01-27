@@ -1,31 +1,76 @@
 import React from "react";
-import Navbar from "../Navbar";
+
+import "../../styles/pages/home.css";
+import Portfolio from "./homepageComponent/Portfolio";
+import Navigation from "./homepageComponent/Navigation";
+import About from "./homepageComponent/About";
+import Team from "./homepageComponent/Team";
+import Contact from "./homepageComponent/Contact";
+import Services from "./homepageComponent/Services";
 const Home = () => {
   return (
     <div className="home-content">
-      <Navbar />
+      <Navigation />
+      <header className="masthead">
+        <div className="container">
+          <div className="intro-text" href="#page-top">
+            <div className="intro-lead-in">Welcome To</div>
+            <div className="intro-heading text-uppercase">Wealth Analytica</div>
+            <a
+              className="btn btn-primary btn-xl text-uppercase js-scroll-trigger"
+              href="#services"
+            >
+              Tell Me More
+            </a>
+          </div>
+        </div>
+      </header>
+      <Services />
+      <Portfolio />
+      <About />
+      <Team />
+      <Contact />
 
-      <div style={{ height: 1000 }}>
-        <h2 className="myH2">Who are we?</h2>
-        <p className="myP">
-          We have combined the Wall Street financial engineering and
-          professional expertise of over 25 years with industry leading computer
-          programing engineers to deliver an array of pension plan metrics such
-          as distributions, contributions, administrative expenses and an array
-          of other metrics to further differentiate your business. Wealth
-          Analytica provides insightful analytical information Qualified Plan
-          which allows our clients to quickly and seamlessly enhance their
-          client experience as well as deepen the depth of their client
-          relationship. Wealth Analytica’s proprietary leading-edge technology
-          that democratizes what was once only available to large financial
-          organizations and delivers institutional quality information to the
-          organizations transforming America. The Wealth Analytica metrics
-          levels the playing field. Wealth Analytica allows our clients to
-          quickly engage through social media with insightful client information
-          designed to enhance your organic growth. Wealth Analytica strives to
-          empowering the Wealth of your Business
-        </p>
-      </div>
+      <footer className="footer">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-md-4">
+              <span className="copyright">
+                Copyright &copy; Wealth Analytica 2020
+              </span>
+            </div>
+            <div className="col-md-4">
+              <ul className="list-inline social-buttons">
+                <li className="list-inline-item">
+                  <a href="#">
+                    <i className="fa fa-twitter"></i>
+                  </a>
+                </li>
+                <li className="list-inline-item">
+                  <a href="#">
+                    <i className="fa fa-facebook-f"></i>
+                  </a>
+                </li>
+                <li className="list-inline-item">
+                  <a href="#">
+                    <i className="fa fa-linkedin-in"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="col-md-4">
+              <ul className="list-inline quicklinks">
+                <li className="list-inline-item">
+                  <a href="#">Privacy Policy</a>
+                </li>
+                <li className="list-inline-item">
+                  <a href="#">Terms of Use</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

@@ -1,5 +1,1 @@
-@import "https://fonts.googleapis.com/css?family=Baskervville&display=swap";
-
-.page-header {
-  background-image: url("http://demos.creative-tim.com/paper-kit-2/assets/img/antoine-barres.jpg");
-}
+@import "./homepage/agency.min.css";
