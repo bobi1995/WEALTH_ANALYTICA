@@ -131,6 +131,10 @@ const Login = () => {
 
     if (password !== confirmPassword) {
       alert("Passwords don't match");
+      console.log(password.length);
+      setLoading(false);
+    } else if (password.length < 6) {
+      alert("Password must be at least 7 symbols");
       setLoading(false);
     } else {
       axios
@@ -187,7 +191,9 @@ const Login = () => {
                 />
               </label>
             </div>
-            <p className="forgot-pass">Forgot password?</p>
+            <p className="forgot-pass">
+              <a href="/">Forgot password?</a>
+            </p>
             {loading && (
               <img
                 alt="svg"

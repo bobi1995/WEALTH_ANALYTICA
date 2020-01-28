@@ -102,6 +102,11 @@ export default () => {
                 Contact
               </Link>
             </li>
+            <li className="nav-item">
+              <a className="nav-link js-scroll-trigger" href="/login">
+                Login
+              </a>
+            </li>
           </ul>
         </div>
       </div>

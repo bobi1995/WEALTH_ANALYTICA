@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import commonFunctions from "../commonFunctions/common";
 
 const BookmarkMainTable = props => {
   const removeBookmark = (small, large) => {
@@ -68,7 +69,9 @@ const BookmarkMainTable = props => {
                 <td>{element.ZipCode}</td>
                 <td>{element.BusinessCode}</td>
                 <td>{element.AdministratorName}</td>
-                <td>{element.Phone}</td>
+                <td>
+                  {element.Phone && commonFunctions.phoneFormat(element.Phone)}
+                </td>
                 <td>{element.NetAssets}</td>
                 <td>{element.Participants}</td>
                 <td>{element.NetIncome}</td>

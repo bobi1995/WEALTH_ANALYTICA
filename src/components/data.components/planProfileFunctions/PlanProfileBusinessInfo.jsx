@@ -1,4 +1,5 @@
 import React from "react";
+import commonFunctions from "../commonFunctions/common";
 
 const PlaneProfileBusinessInfo = props => {
   return (
@@ -48,7 +49,10 @@ const PlaneProfileBusinessInfo = props => {
             </tr>
             <tr>
               <th className="thead-dark">Phone Number</th>
-              <td>{props.data.PhoneNumber}</td>
+              <td>
+                {props.data.PhoneNumber &&
+                  commonFunctions.phoneFormat(props.data.PhoneNumber)}
+              </td>
             </tr>
             <tr>
               <th className="thead-dark">Business Code</th>

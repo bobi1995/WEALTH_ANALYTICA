@@ -33,16 +33,10 @@ const Filters = () => {
   useEffect(() => {
     setNetAssetBeginOfYear(result.NetAssetBeginOfYear);
     setNetAssetEndOfYear(result.NetAssetEndOfYear);
-    const btn = document.querySelector(".filter-submit-btn");
+    const btn = document.getElementById("submit-searh-btn");
     const addbtn1 = document.getElementById("state-btn");
     const addbtn2 = document.getElementById("city-btn");
 
-    if (stateInput.length < 1 || !selectedYear) {
-      btn.disabled = true;
-      btn.value = "Select State & Year";
-    } else {
-      btn.disabled = false;
-    }
     if (flag === 1) {
       addbtn1.disabled = true;
       addbtn1.innerHTML = "Loading...";
@@ -56,6 +50,12 @@ const Filters = () => {
       addbtn2.disabled = false;
       addbtn1.innerHTML = "Add";
       addbtn2.innerHTML = "Add";
+    }
+    if (stateInput.length < 1 || !selectedYear || flag === 1) {
+      btn.disabled = true;
+      btn.value = "Select State & Year";
+    } else {
+      btn.disabled = false;
     }
 
     if (undefined !== NetAssetBeginOfYear) {
@@ -74,10 +74,8 @@ const Filters = () => {
     const stateField = document.getElementById("stateInput").value;
     const parts = stateField.split(" - ");
     const newCities = await filterFunction.cityFunction(parts[1]);
-
     if (allowedStates.includes(stateField)) {
       setCities([...cities, ...newCities]);
-
       setStateAbbriviation([...stateAbbriviation, parts[1]]);
       setStateInput([...stateInput, stateField]);
       document.getElementById("emailHelp").innerHTML =
@@ -406,8 +404,10 @@ const Filters = () => {
 
               <input
                 className="filter-submit-btn"
+                id="submit-searh-btn"
                 type="submit"
                 value="Search"
+                disabled={true}
               ></input>
             </form>
 

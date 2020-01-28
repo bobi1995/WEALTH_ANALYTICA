@@ -67,7 +67,11 @@ const Dashboard = props => {
           });
           setFetchedData(res.data);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+          console.log(error);
+          alert("For some reason we could not find the desired results.");
+          window.location.reload();
+        });
     }
   }, [stateInput]);
 

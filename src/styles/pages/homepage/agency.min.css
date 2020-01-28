@@ -71,6 +71,9 @@ img::-moz-selection {
 #mainNav .navbar-brand:hover {
   color: #ff8d1e;
 }
+.nav-link:hover {
+  cursor: pointer;
+}
 #mainNav .navbar-nav .nav-item .nav-link {
   font-size: 20px;
   font-weight: 400;

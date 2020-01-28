@@ -14,6 +14,8 @@ const fetching = async url => {
     })
     .catch(e => {
       console.log(e);
+      alert("For some reason we could not find the desired results.");
+      window.location.reload();
     });
   return res.data;
 };
