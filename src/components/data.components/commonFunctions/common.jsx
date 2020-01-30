@@ -6,4 +6,10 @@ const phoneFormat = phone => {
   return formattedNumber;
 };
 
-export default { phoneFormat };
+const formatString = str => {
+  return str
+    .replace(/(\B)[^ ]*/g, match => match.toLowerCase())
+    .replace(/^[^ ]/g, match => match.toUpperCase());
+};
+
+export default { phoneFormat, formatString };

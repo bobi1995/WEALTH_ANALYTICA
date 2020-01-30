@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import commonFunctions from "../commonFunctions/common";
+import numeral from "numeral";
 
 const BookmarkMainTable = props => {
   const removeBookmark = (small, large) => {
@@ -61,20 +62,33 @@ const BookmarkMainTable = props => {
             {props.data.map((element, index) => (
               <tr key={index}>
                 <td>{element.Number}</td>
-                <td>{element.Name}</td>
-                <td>{element.Address1}</td>
-                <td>{element.Address2}</td>
-                <td>{element.City}</td>
+                <td>
+                  {element.Name && commonFunctions.formatString(element.Name)}
+                </td>
+                <td>
+                  {element.Address1 &&
+                    commonFunctions.formatString(element.Address1)}
+                </td>
+                <td>
+                  {element.Address2 &&
+                    commonFunctions.formatString(element.Address2)}
+                </td>
+                <td>
+                  {element.City && commonFunctions.formatString(element.City)}
+                </td>
                 <td>{element.State}</td>
                 <td>{element.ZipCode}</td>
                 <td>{element.BusinessCode}</td>
-                <td>{element.AdministratorName}</td>
+                <td>
+                  {element.AdministratorName &&
+                    commonFunctions.formatString(element.AdministratorName)}
+                </td>
                 <td>
                   {element.Phone && commonFunctions.phoneFormat(element.Phone)}
                 </td>
-                <td>{element.NetAssets}</td>
-                <td>{element.Participants}</td>
-                <td>{element.NetIncome}</td>
+                <td>${numeral(element.NetAssets).format("0,0")}</td>
+                <td>{numeral(element.Participants).format("0,0")}</td>
+                <td>${numeral(element.NetIncome).format("0,0")}</td>
                 <td>
                   <Link
                     to={{

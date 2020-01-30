@@ -41,17 +41,21 @@ const SearchFunction = (
       url = url.concat(`state=${state}&`);
     });
     if (maxIncome) {
-      url = url.concat(`maxAssets=${maxIncome}&`);
+      const maxInc = parseFloat(maxIncome.replace(/,/g, ""));
+      url = url.concat(`maxAssets=${maxInc}&`);
     }
     if (minIncome) {
-      url = url.concat(`minAssets=${minIncome}&`);
+      const minInc = parseFloat(minIncome.replace(/,/g, ""));
+      url = url.concat(`minAssets=${minInc}&`);
     }
 
     if (maxParticipants) {
-      url = url.concat(`maxPart=${maxParticipants}&`);
+      const maxPart = parseFloat(maxParticipants.replace(/,/g, ""));
+      url = url.concat(`maxPart=${maxPart}&`);
     }
     if (minParticipants) {
-      url = url.concat(`minPart=${minParticipants}&`);
+      const minPart = parseFloat(minParticipants.replace(/,/g, ""));
+      url = url.concat(`minPart=${minPart}&`);
     }
     if (companyType !== "All") {
       url = url.concat(`isSmall=${companyType}&`);
@@ -69,16 +73,20 @@ const SearchFunction = (
       url = url.concat(`city=${city}&`);
     });
     if (maxIncome) {
-      url = url.concat(`maxAssets=${maxIncome}&`);
+      const maxInc = parseFloat(maxIncome.replace(/,/g, ""));
+      url = url.concat(`maxAssets=${maxInc}&`);
     }
     if (minIncome) {
-      url = url.concat(`minAssets=${minIncome}&`);
+      const minInc = parseFloat(minIncome.replace(/,/g, ""));
+      url = url.concat(`minAssets=${minInc}&`);
     }
     if (maxParticipants) {
-      url = url.concat(`maxPart=${maxParticipants}&`);
+      const maxPart = parseFloat(maxParticipants.replace(/,/g, ""));
+      url = url.concat(`maxPart=${maxPart}&`);
     }
     if (minParticipants) {
-      url = url.concat(`minPart=${minParticipants}&`);
+      const minPart = parseFloat(minParticipants.replace(/,/g, ""));
+      url = url.concat(`minPart=${minPart}&`);
     }
     if (companyType !== "All") {
       url = url.concat(`isSmall=${companyType}&`);

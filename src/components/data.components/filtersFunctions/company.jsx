@@ -87,18 +87,30 @@ const SmallCompanies = props => {
 
   return (
     <tr>
-      <td>{props.singleCompany.Name}</td>
-      <td>{props.singleCompany.Address1}</td>
-      <td>{props.singleCompany.City}</td>
+      <td>
+        {props.singleCompany.Name &&
+          commonFunctions.formatString(props.singleCompany.Name)}
+      </td>
+      <td>
+        {props.singleCompany.Address1 &&
+          commonFunctions.formatString(props.singleCompany.Address1)}
+      </td>
+      <td>
+        {props.singleCompany.City &&
+          commonFunctions.formatString(props.singleCompany.City)}
+      </td>
 
-      <td>{props.singleCompany.AdministratorName}</td>
+      <td>
+        {props.singleCompany.AdministratorName &&
+          commonFunctions.formatString(props.singleCompany.AdministratorName)}
+      </td>
 
       <td>
         {props.singleCompany.Phone &&
           commonFunctions.phoneFormat(props.singleCompany.Phone)}
       </td>
 
-      <td>{props.singleCompany.Participants}</td>
+      <td>{numeral(props.singleCompany.Participants).format("0,0")}</td>
 
       <td>${convertedIncome}</td>
       <td>

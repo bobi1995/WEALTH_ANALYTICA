@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-scroll";
 
 import "../../styles/pages/home.css";
 import Portfolio from "./homepageComponent/Portfolio";
@@ -16,12 +17,17 @@ const Home = () => {
           <div className="intro-text" href="#page-top">
             <div className="intro-lead-in">Welcome To</div>
             <div className="intro-heading text-uppercase">Wealth Analytica</div>
-            <a
+
+            <Link
               className="btn btn-primary btn-xl text-uppercase js-scroll-trigger"
-              href="#services"
+              to="services"
+              spy={true}
+              smooth={true}
+              offset={0}
+              duration={500}
             >
               Tell Me More
-            </a>
+            </Link>
           </div>
         </div>
       </header>

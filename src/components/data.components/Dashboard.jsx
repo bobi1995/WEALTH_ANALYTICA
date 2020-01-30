@@ -45,6 +45,7 @@ const Dashboard = props => {
     }
     console.log(url);
     if (stateAbbriviation.length > 0) {
+      document.getElementById("dashboard-submit-btn").disabled = true;
       axios
         .get(url, {
           headers: {
@@ -54,6 +55,7 @@ const Dashboard = props => {
         })
         .then(res => {
           res.data.forEach(el => {
+            document.getElementById("dashboard-submit-btn").disabled = false;
             netIncome.push(el.NetIncome);
             netAssetsEndOfYear.push(el.NetAssetsEndOfYear);
             employeesContributionIncome.push(el.EmployeesContributionIncome);
@@ -159,12 +161,17 @@ const Dashboard = props => {
                 </small>
               </div>
               {stateInput.length < 3 ? (
-                <button type="submit" className="btn btn-primary dashboard-btn">
+                <button
+                  type="submit"
+                  className="btn btn-primary dashboard-btn"
+                  id="dashboard-submit-btn"
+                >
                   Add
                 </button>
               ) : (
                 <button
                   disabled
+                  id="dashboard-submit-btn"
                   type="submit"
                   className="btn btn-primary dashboard-btn"
                 >

@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Link,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller
-} from "react-scroll";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 export default () => {
   window.addEventListener("scroll", e => {
@@ -48,7 +41,7 @@ export default () => {
                 to="services"
                 spy={true}
                 smooth={true}
-                offset={0}
+                offset={5}
                 duration={500}
               >
                 Services
@@ -60,7 +53,7 @@ export default () => {
                 to="portfolio"
                 spy={true}
                 smooth={true}
-                offset={0}
+                offset={5}
                 duration={500}
               >
                 Portfolio
@@ -72,7 +65,7 @@ export default () => {
                 to="about"
                 spy={true}
                 smooth={true}
-                offset={0}
+                offset={5}
                 duration={500}
               >
                 About
@@ -84,7 +77,7 @@ export default () => {
                 to="team"
                 spy={true}
                 smooth={true}
-                offset={0}
+                offset={5}
                 duration={500}
               >
                 Team
@@ -96,7 +89,7 @@ export default () => {
                 to="contact"
                 spy={true}
                 smooth={true}
-                offset={0}
+                offset={5}
                 duration={500}
               >
                 Contact

@@ -16,24 +16,39 @@ const PlaneProfileBusinessInfo = props => {
           <tbody className="table-hover">
             <tr>
               <th className="thead-dark">Sponsor Name</th>
-              <td>{props.data.SponsorName}</td>
+              <td>
+                {props.data.SponsorName &&
+                  commonFunctions.formatString(props.data.SponsorName)}
+              </td>
             </tr>
             <tr>
               <th className="thead-dark">Plan Name</th>
-              <td>{props.data.PlanName}</td>
+              <td>
+                {props.data.PlanName &&
+                  commonFunctions.formatString(props.data.PlanName)}
+              </td>
             </tr>
             <tr>
               <th className="thead-dark">Address 1</th>
-              <td>{props.data.Address1}</td>
+              <td>
+                {props.data.Address1 &&
+                  commonFunctions.formatString(props.data.Address1)}
+              </td>
             </tr>
 
             <tr>
               <th className="thead-dark">Address 2</th>
-              <td>{props.data.Address2}</td>
+              <td>
+                {props.data.Address2 &&
+                  commonFunctions.formatString(props.data.Address2)}
+              </td>
             </tr>
             <tr>
               <th className="thead-dark">City</th>
-              <td>{props.data.City}</td>
+              <td>
+                {props.data.City &&
+                  commonFunctions.formatString(props.data.City)}
+              </td>
             </tr>
             <tr>
               <th className="thead-dark">State</th>
@@ -45,7 +60,10 @@ const PlaneProfileBusinessInfo = props => {
             </tr>
             <tr>
               <th className="thead-dark">Administrator's Name</th>
-              <td>{props.data.AdministratorName}</td>
+              <td>
+                {props.data.AdministratorName &&
+                  commonFunctions.formatString(props.data.AdministratorName)}
+              </td>
             </tr>
             <tr>
               <th className="thead-dark">Phone Number</th>

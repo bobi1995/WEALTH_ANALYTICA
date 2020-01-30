@@ -32,7 +32,6 @@ const OnePager = props => {
       .catch(err => {
         console.log(err);
         alert("For some reason we could not find the desired results.");
-        window.location.reload();
       });
   }, []);
 

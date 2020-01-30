@@ -10,6 +10,8 @@ import filterFunction from "./filtersFunctions/functions";
 import dashboardChartFuntions from "./dashboardFunctions/charts";
 import Company from "./filtersFunctions/company";
 import Pagination from "./filtersFunctions/pagination";
+import numeral from "numeral";
+
 const Filters = () => {
   const [stateInput, setStateInput] = useState([]);
   const [stateAbbriviation, setStateAbbriviation] = useState([]);
@@ -51,7 +53,7 @@ const Filters = () => {
       addbtn1.innerHTML = "Add";
       addbtn2.innerHTML = "Add";
     }
-    if (stateInput.length < 1 || !selectedYear || flag === 1) {
+    if (stateInput.length < 1 || !selectedYear) {
       btn.disabled = true;
       btn.value = "Select State & Year";
     } else {
@@ -69,12 +71,16 @@ const Filters = () => {
 
   const addState = async e => {
     e.preventDefault();
-
+    const addStateBtn = document.getElementById("state-btn");
+    addStateBtn.disabled = true;
+    addStateBtn.innerHTML = "Loading";
     const allowedStates = functions.commonFunction();
     const stateField = document.getElementById("stateInput").value;
     const parts = stateField.split(" - ");
     const newCities = await filterFunction.cityFunction(parts[1]);
     if (allowedStates.includes(stateField)) {
+      addStateBtn.disabled = false;
+      addStateBtn.innerHTML = "Add";
       setCities([...cities, ...newCities]);
       setStateAbbriviation([...stateAbbriviation, parts[1]]);
       setStateInput([...stateInput, stateField]);
@@ -83,6 +89,8 @@ const Filters = () => {
       document.getElementById("stateInput").value = "";
     } else {
       console.log("false");
+      addStateBtn.disabled = false;
+      addStateBtn.innerHTML = "Add";
       document.getElementById("emailHelp").innerHTML =
         "PICK CORRECT STATE VALUE";
     }
@@ -114,8 +122,10 @@ const Filters = () => {
   const addCity = e => {
     e.preventDefault();
     const cityField = document.getElementById("cityInput").value;
-    setInputedCities([...inputedCities, cityField]);
-    document.getElementById("cityInput").value = "";
+    if (cityField) {
+      setInputedCities([...inputedCities, cityField]);
+      document.getElementById("cityInput").value = "";
+    }
   };
   const renderCities = () => {
     return inputedCities.map((city, index) => {
@@ -144,6 +154,7 @@ const Filters = () => {
     setCompanies([]);
     setSelectedYear(document.querySelector("input[name=radio]:checked").value);
     const maxIncome = document.getElementById("maxIncome").value;
+
     const minIncome = document.getElementById("minIncome").value;
 
     const maxParticipants = document.getElementById("maxParticipants").value;
@@ -326,22 +337,34 @@ const Filters = () => {
                     <div className="filter-netIncome-div">
                       <label className="filter-netIncome-label">Max:</label>
                       <input
-                        type="number"
                         className="filter-control netIncome-filter"
                         id="maxIncome"
                         placeholder="Enter Asset"
                         autoComplete="off"
+                        min="0"
+                        max="99999999999"
+                        onChange={e => {
+                          e.target.value = numeral(e.target.value).format(
+                            "0,0"
+                          );
+                        }}
                       />
                     </div>
 
                     <div className="filter-netIncome-div">
                       <label className="filter-netIncome-label">Min:</label>
                       <input
-                        type="number"
                         className="filter-control netIncome-filter"
                         id="minIncome"
                         placeholder="Enter Asset"
                         autoComplete="off"
+                        min="0"
+                        max="99999999999"
+                        onChange={e => {
+                          e.target.value = numeral(e.target.value).format(
+                            "0,0"
+                          );
+                        }}
                       />
                     </div>
                   </div>
@@ -353,22 +376,34 @@ const Filters = () => {
                     <div className="filter-netIncome-div">
                       <label className="filter-netIncome-label">Max:</label>
                       <input
-                        type="number"
                         className="filter-control netIncome-filter"
                         id="maxParticipants"
                         placeholder="Enter Participants"
                         autoComplete="off"
+                        min="0"
+                        max="99999999"
+                        onChange={e => {
+                          e.target.value = numeral(e.target.value).format(
+                            "0,0"
+                          );
+                        }}
                       />
                     </div>
 
                     <div className="filter-netIncome-div">
                       <label className="filter-netIncome-label">Min:</label>
                       <input
-                        type="number"
                         className="filter-control netIncome-filter"
                         id="minParticipants"
                         placeholder="Enter Participants"
                         autoComplete="off"
+                        min="0"
+                        maxLength="99999999"
+                        onChange={e => {
+                          e.target.value = numeral(e.target.value).format(
+                            "0,0"
+                          );
+                        }}
                       />
                     </div>
                   </div>

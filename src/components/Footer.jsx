@@ -32,22 +32,22 @@ const Footer = () => {
                   </li>
                   <li>
                     <div className="thumb-content">
-                      <a href="/about">About us</a>
+                      <a href="/#about">About us</a>
                     </div>
                   </li>
                   <li>
                     <div className="thumb-content">
-                      <a href="#.">Last stories</a>
+                      <a href="/#services">Services</a>
                     </div>
                   </li>
                   <li>
                     <div className="thumb-content">
-                      <a href="#.">News</a>
+                      <a href="/#portfolio">Portfolio</a>
                     </div>
                   </li>
                   <li>
                     <div className="thumb-content">
-                      <a href="/contact">Contact</a>
+                      <a href="/#contact">Contact</a>
                     </div>
                   </li>
                 </ul>
@@ -78,7 +78,7 @@ const Footer = () => {
 
                 <p>
                   <a href="mailto:info@domain.com" title="glorythemes">
-                    info@domain.com
+                    info@wealthanalytica.com
                   </a>
                 </p>
               </div>
@@ -92,7 +92,7 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-12 text-center">
-              <p>Copyright Wealth Analytica ©2019. All rights reserved.</p>
+              <p>Copyright Wealth Analytica ©2020. All rights reserved.</p>
             </div>
           </div>
         </div>
