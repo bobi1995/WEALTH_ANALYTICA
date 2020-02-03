@@ -34,7 +34,7 @@ const DataNavbar = () => {
               <a href="/heatmap">Heatmap</a>
             </li>
             <li>
-              <a href="/bookmarks">Bookmakrs</a>
+              <a href="/bookmarks">Bookmarks</a>
             </li>
             <li className="dropdown">
               <div>

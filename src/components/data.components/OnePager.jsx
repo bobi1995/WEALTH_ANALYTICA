@@ -52,7 +52,7 @@ const OnePager = props => {
           <OnePagerTables data={results.Statistics} />
           <OnePagerRightPane data={[results.City, results.BusinessCode]} />
           <OnePagerBottomTables data={results.Statistics} />
-          <OnePagerMap />
+          <OnePagerMap address={results.Address} city={results.City} />
         </div>
       ) : (
         <div className="onepager-loader-style">

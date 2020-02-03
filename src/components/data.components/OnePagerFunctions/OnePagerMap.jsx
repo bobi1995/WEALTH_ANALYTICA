@@ -5,11 +5,12 @@ import "leaflet/dist/leaflet.css";
 import Geocode from "react-geocode";
 
 const OnePagerMap = props => {
+  console.log(props);
   const [lat, setLat] = useState(47.751076);
   const [long, setLong] = useState(-120.740135);
   Geocode.setApiKey("AIzaSyDKrJKYOJ507vkFJQgLfPO_PZvA9Noox6U");
   Geocode.setLanguage("en");
-  Geocode.fromAddress("41 N Philadelphia Blvd	").then(
+  Geocode.fromAddress(props.city + " ," + props.address).then(
     response => {
       setLat(response.results[0].geometry.location.lat);
       setLong(response.results[0].geometry.location.lng);

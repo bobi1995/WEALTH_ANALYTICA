@@ -29,7 +29,8 @@ const SearchFunction = (
   minParticipants,
   maxParticipants,
   companyType,
-  businessCode
+  businessCode,
+  benefitType
 ) => {
   let url;
   let result;
@@ -63,6 +64,9 @@ const SearchFunction = (
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}`);
     }
+    if (benefitType !== "All") {
+      url = url.concat(`benefitType=${benefitType}`);
+    }
     console.log("STATES URL: " + url);
   } else {
     url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesByCity?year=${year}&`;
@@ -93,6 +97,9 @@ const SearchFunction = (
     }
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}`);
+    }
+    if (benefitType !== "All") {
+      url = url.concat(`benefitType=${benefitType}`);
     }
     console.log("CITIES URL: " + url);
   }
