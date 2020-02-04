@@ -19,12 +19,7 @@ const dataBeginEnd = (begin, end) => {
 };
 
 const participantsChart = (total, retired, bal) => {
-  let newArray = [];
-  if (total > 1000 && retired > 1000 && bal > 1000) {
-    newArray = dashboardCharts.arrayReducer([total, retired, bal]);
-  } else {
-    newArray = [total, retired, bal];
-  }
+  const newArray = dashboardCharts.arrayReducer([total, retired, bal]);
 
   return {
     labels: ["Total", "Retired", "Bal"],

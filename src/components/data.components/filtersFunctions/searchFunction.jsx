@@ -30,7 +30,9 @@ const SearchFunction = (
   maxParticipants,
   companyType,
   businessCode,
-  benefitType
+  benefitType,
+  benefitSymbol,
+  planEntity
 ) => {
   let url;
   let result;
@@ -64,8 +66,13 @@ const SearchFunction = (
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}`);
     }
-    if (benefitType !== "All") {
+    if (benefitType !== "All" && benefitSymbol === "All") {
       url = url.concat(`benefitType=${benefitType}`);
+    } else if (benefitSymbol !== "All") {
+      url = url.concat(`benefitType=${benefitSymbol}`);
+    }
+    if (planEntity !== "All") {
+      url = url.concat(`planEntity=${planEntity}`);
     }
     console.log("STATES URL: " + url);
   } else {
@@ -98,8 +105,13 @@ const SearchFunction = (
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}`);
     }
-    if (benefitType !== "All") {
+    if (benefitType !== "All" && benefitSymbol === "All") {
       url = url.concat(`benefitType=${benefitType}`);
+    } else if (benefitSymbol !== "All") {
+      url = url.concat(`benefitType=${benefitSymbol}`);
+    }
+    if (planEntity !== "All") {
+      url = url.concat(`planEntity=${planEntity}`);
     }
     console.log("CITIES URL: " + url);
   }

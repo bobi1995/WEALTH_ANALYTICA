@@ -13,7 +13,6 @@ const SmallCompanies = props => {
   let convertedIncome = 0;
   let planID;
   let isLarge;
-  let formattedNumber;
   if (props.singleCompany.NetIncome) {
     convertedIncome = numeral(props.singleCompany.NetIncome).format("0,0");
   }
@@ -23,12 +22,6 @@ const SmallCompanies = props => {
   } else {
     planID = props.singleCompany.LargeCompanyPlanID;
     isLarge = true;
-  }
-  if (props.singleCompany.Phone) {
-    const first = "(" + props.singleCompany.Phone.substring(0, 3) + ")";
-    const second = "-" + props.singleCompany.Phone.substring(3, 6) + "-";
-    const third = props.singleCompany.Phone.substring(6);
-    formattedNumber = first + second + third;
   }
   const removeBookmark = e => {
     console.log(e.target);

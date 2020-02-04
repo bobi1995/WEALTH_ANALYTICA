@@ -171,6 +171,14 @@ const Filters = () => {
       document.getElementById("benefitType").selectedIndex
     ].value;
 
+    const benefitSymbol = document.getElementById("benefit-symbol").options[
+      document.getElementById("benefit-symbol").selectedIndex
+    ].value;
+
+    const planEntity = document.getElementById("planEntity").options[
+      document.getElementById("planEntity").selectedIndex
+    ].value;
+
     const data = await SearchFunction(
       selectedYear,
       stateAbbriviation,
@@ -181,7 +189,9 @@ const Filters = () => {
       maxParticipants,
       companyType,
       businessCode,
-      benefitType
+      benefitType,
+      benefitSymbol,
+      planEntity
     );
     setResult(data);
     setCompanies(data.Companies);
@@ -265,33 +275,8 @@ const Filters = () => {
                 </div>
               </div>
               {/* RADIO BUTTONS */}
-              <div className="container radio-container">
-                <h2 className="filter-h2">Year</h2>
-                <div className="radio">
-                  <input
-                    id="radio-1"
-                    name="radio"
-                    type="radio"
-                    value="2018"
-                    onChange={onYearChange}
-                  />
-                  <label htmlFor="radio-1" className="radio-label">
-                    2018
-                  </label>
-                </div>
-                <div className="radio">
-                  <input
-                    id="radio-2"
-                    name="radio"
-                    type="radio"
-                    value="2017"
-                    onChange={onYearChange}
-                  />
-                  <label htmlFor="radio-2" className="radio-label">
-                    2017
-                  </label>
-                </div>
-                <div className="radio">
+              <div className="radio-container">
+                <div className="radio-group">
                   <input
                     id="radio-3"
                     name="radio"
@@ -299,8 +284,28 @@ const Filters = () => {
                     value="2016"
                     onChange={onYearChange}
                   />
-                  <label htmlFor="radio-3" className="radio-label">
+                  <label className="filter-year-label" htmlFor="radio-3">
                     2016
+                  </label>
+                  <input
+                    id="radio-2"
+                    name="radio"
+                    type="radio"
+                    value="2017"
+                    onChange={onYearChange}
+                  />
+                  <label className="filter-year-label" htmlFor="radio-2">
+                    2017
+                  </label>
+                  <input
+                    id="radio-1"
+                    name="radio"
+                    type="radio"
+                    value="2018"
+                    onChange={onYearChange}
+                  />
+                  <label className="filter-year-label" htmlFor="radio-1">
+                    2018
                   </label>
                 </div>
               </div>
