@@ -20,6 +20,35 @@ const RightFilters = () => {
             <option value="false">Large</option>
           </select>
         </div>
+        {/**PLAN ENTITY*/}
+        <div className="filter-select-company-type">
+          <label className="filter-company-label">Plan Entity:</label>
+          <select
+            className="filter-select-form-control"
+            id="planEntity"
+            onChange={RightFilterFunction.planEntitySelected}
+          >
+            <option defaultValue="0">All</option>
+            <option value="1">Single-employer</option>
+            <option value="2">One-participant plan</option>
+            <option value="3">Multi-employer plan</option>
+            <option value="4">Foreign plan</option>
+            <option value="3">Multiemployer</option>
+            <option value="4">DFE</option>
+          </select>
+        </div>
+        {/**DFE OPTIONS*/}
+        <div className="filter-select-company-type" id="dfe-options">
+          <label className="filter-company-label">Entity Letter:</label>
+          <select className="filter-select-form-control" id="dfeoptions">
+            <option defaultValue="0">All</option>
+            <option defaultValue="C">C</option>
+            <option value="E">E</option>
+            <option value="G">G</option>
+            <option value="M">M</option>
+            <option value="P">P</option>
+          </select>
+        </div>
         {/**BUSINESS CODE */}
         <div className="filter-select-company-type">
           <label className="filter-company-label">Business Code:</label>
@@ -61,24 +90,6 @@ const RightFilters = () => {
             disabled
           >
             <option defaultValue="0">All</option>
-          </select>
-        </div>
-
-        {/**PLAN ENTITY*/}
-        <div className="filter-select-company-type">
-          <label className="filter-company-label">Plan Entity:</label>
-          <select
-            className="filter-select-form-control"
-            id="planEntity"
-            onChange={RightFilterFunction.planEntitySelected}
-          >
-            <option defaultValue="0">All</option>
-            <option value="1">Single-employer</option>
-            <option value="2">One-participant plan</option>
-            <option value="3">Multi-employer plan</option>
-            <option value="4">Foreign plan</option>
-            <option value="3">Multiemployer</option>
-            <option value="4">DFE</option>
           </select>
         </div>
       </div>

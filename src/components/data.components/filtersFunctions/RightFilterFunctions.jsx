@@ -49,6 +49,9 @@ const benefitTypeSelected = async () => {
 };
 
 const companySelected = () => {
+  document.getElementById("dfe-options").style.display = "none";
+  document.getElementById("dfeoptions").value = "All";
+
   const planEntities = document.getElementById("planEntity");
   planEntities.options.length = 0;
 
@@ -65,7 +68,6 @@ const companySelected = () => {
   const companyType = document.getElementById("companyType").options[
     document.getElementById("companyType").selectedIndex
   ].value;
-  console.log(companyType);
   if (companyType === "All") {
     datalist.map(element => {
       const option = document.createElement("option");
@@ -82,7 +84,7 @@ const companySelected = () => {
       planEntities.add(option, null);
     });
   } else if (companyType == "false") {
-    const small = datalist.slice(2);
+    const small = datalist.slice(3);
     small.unshift({ text: "All", value: "All" });
     small.map(element => {
       const option = document.createElement("option");
@@ -94,7 +96,44 @@ const companySelected = () => {
 };
 
 const planEntitySelected = () => {
-  console.log("here");
+  document.getElementById("dfe-options").style.display = "none";
+  document.getElementById("dfeoptions").value = "All";
+  const selectedEntity = document.getElementById("planEntity").options[
+    document.getElementById("planEntity").selectedIndex
+  ].text;
+  const entityValue = document.getElementById("planEntity").options[
+    document.getElementById("planEntity").selectedIndex
+  ].value;
+
+  // LARGE COMPANIES
+  if (selectedEntity == "Multiemployer") {
+    document.getElementById("companyType").value = false;
+    companySelected();
+    document.getElementById("planEntity").value = entityValue;
+  } else if (selectedEntity == "DFE") {
+    document.getElementById("companyType").value = false;
+    companySelected();
+    document.getElementById("planEntity").value = entityValue;
+    document.getElementById("dfe-options").style.display = "flex";
+  }
+
+  // SMALL COMPANIES
+  else if (selectedEntity == "One-participant plan") {
+    document.getElementById("companyType").value = true;
+    companySelected();
+    document.getElementById("planEntity").value = entityValue;
+  } else if (selectedEntity == "Foreign plan") {
+    document.getElementById("companyType").value = true;
+    companySelected();
+    document.getElementById("planEntity").value = entityValue;
+  }
+
+  // ALL COMPANIES
+  else if (selectedEntity == "All") {
+    document.getElementById("companyType").value = "All";
+    companySelected();
+    document.getElementById("planEntity").value = entityValue;
+  }
 };
 
 export default { benefitTypeSelected, companySelected, planEntitySelected };

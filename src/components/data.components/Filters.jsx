@@ -179,6 +179,10 @@ const Filters = () => {
       document.getElementById("planEntity").selectedIndex
     ].value;
 
+    const dfeoption = document.getElementById("dfeoptions").options[
+      document.getElementById("dfeoptions").selectedIndex
+    ].value;
+
     const data = await SearchFunction(
       selectedYear,
       stateAbbriviation,
@@ -191,7 +195,8 @@ const Filters = () => {
       businessCode,
       benefitType,
       benefitSymbol,
-      planEntity
+      planEntity,
+      dfeoption
     );
     setResult(data);
     setCompanies(data.Companies);

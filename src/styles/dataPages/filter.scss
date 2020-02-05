@@ -72,7 +72,7 @@ input[type="radio"] {
 }
 
 .filter-year-label {
-  color: lighten(#007bff, 30%);
+  color: lighten(#332f35, 30%);
   display: inline-block;
   cursor: pointer;
   font-weight: bold;
@@ -81,15 +81,15 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked + .filter-year-label {
-  color: lighten(#007bff, 60%);
-  background: #007bff;
+  color: lighten(#332f35, 60%);
+  background: #332f35;
 }
 
 .filter-year-label + input[type="radio"] + .filter-year-label {
-  border-left: solid 3px #007bff;
+  border-left: solid 3px #332f35;
 }
 .radio-group {
-  border: solid 3px #007bff;
+  border: solid 3px #332f35;
   display: inline-block;
   margin: 0;
   border-radius: 10px;
@@ -184,6 +184,9 @@ input[type="radio"]:checked + .filter-year-label {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+#dfe-options {
+  display: none;
+}
 /*********************PAGINATION********************/
 .pagination-large {
   text-align: center;
