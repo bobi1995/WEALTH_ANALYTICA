@@ -9,10 +9,9 @@ import OnePagerBottomTables from "./OnePagerFunctions/OnePagerBottomTables";
 import OnePagerRightPane from "./OnePagerFunctions/OnePagerRightPane";
 import OnePagerTop from "./OnePagerFunctions/OnePagerTop";
 import OnePagerMap from "./OnePagerFunctions/OnePagerMap";
-
+import OnePagerPensionPlan from "./OnePagerFunctions/OnePagerPensionPlan";
 const OnePager = props => {
   const [results, setResults] = useState([]);
-  console.log(props);
 
   useEffect(() => {
     const url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetOnePager?userGuid=${sessionStorage.getItem(
@@ -52,6 +51,9 @@ const OnePager = props => {
           <OnePagerTables data={results.Statistics} />
           <OnePagerRightPane data={[results.City, results.BusinessCode]} />
           <OnePagerBottomTables data={results.Statistics} />
+          <OnePagerPensionPlan
+            types={[results.PensionTypes, results.WelfareTypes]}
+          />
           <OnePagerMap address={results.Address} city={results.City} />
         </div>
       ) : (

@@ -12,4 +12,10 @@ const formatString = str => {
     .replace(/^[^ ]/g, match => match.toUpperCase());
 };
 
-export default { phoneFormat, formatString };
+const splitCapitalLetterString = str => {
+  const temp = str.split(/(?=[A-Z])/);
+
+  console.log(temp);
+};
+
+export default { phoneFormat, formatString, splitCapitalLetterString };

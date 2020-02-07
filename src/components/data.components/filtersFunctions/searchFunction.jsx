@@ -37,7 +37,6 @@ const SearchFunction = (
 ) => {
   let url;
   let result;
-  console.log(dfeoption);
   if (cities.length < 1) {
     url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesByState?year=${year}&`;
 

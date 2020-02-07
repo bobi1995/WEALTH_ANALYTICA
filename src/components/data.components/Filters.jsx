@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Datanavbar from "./DataNavbar";
 import functions from "./dashboardFunctions/functions";
-import { Bar } from "react-chartjs-2";
 import "../../styles/dataPages/filter.scss";
 import SearchFunction from "./filtersFunctions/searchFunction";
 import Loader from "./dashboardFunctions/loader";
-import filterCharts from "./filtersFunctions/filterCharts";
 import filterFunction from "./filtersFunctions/functions";
-import dashboardChartFuntions from "./dashboardFunctions/charts";
 import Company from "./filtersFunctions/company";
 import Pagination from "./filtersFunctions/pagination";
 import RightFilters from "./filtersFunctions/RightFilters";
-import numeral from "numeral";
+import MiddleFilterCHARTS from "./filtersFunctions/MiddleFilterCHARTS";
 
 const Filters = () => {
   const [stateInput, setStateInput] = useState([]);
@@ -36,29 +33,30 @@ const Filters = () => {
   useEffect(() => {
     setNetAssetBeginOfYear(result.NetAssetBeginOfYear);
     setNetAssetEndOfYear(result.NetAssetEndOfYear);
-    const btn = document.getElementById("submit-searh-btn");
+    const submitBtnSearch = document.getElementById("submit-searh-btn");
     const addbtn1 = document.getElementById("state-btn");
     const addbtn2 = document.getElementById("city-btn");
-
     if (flag === 1) {
       addbtn1.disabled = true;
       addbtn1.innerHTML = "Loading...";
       addbtn2.disabled = true;
       addbtn2.innerHTML = "Loading...";
-      btn.disabled = true;
-      btn.value = "Loading...";
     } else {
-      btn.disabled = false;
+      submitBtnSearch.disabled = false;
       addbtn1.disabled = false;
       addbtn2.disabled = false;
       addbtn1.innerHTML = "Add";
       addbtn2.innerHTML = "Add";
     }
     if (stateInput.length < 1 || !selectedYear) {
-      btn.disabled = true;
-      btn.value = "Select State & Year";
+      submitBtnSearch.disabled = true;
+      submitBtnSearch.innerHTML = "Select State & Year";
+    } else if (flag === 1) {
+      submitBtnSearch.disabled = true;
+      submitBtnSearch.innerHTML = "Loading";
     } else {
-      btn.disabled = false;
+      submitBtnSearch.disabled = false;
+      submitBtnSearch.innerHTML = "Search";
     }
 
     if (undefined !== NetAssetBeginOfYear) {
@@ -247,7 +245,7 @@ const Filters = () => {
       <div className="filter-top-main">
         <div className="required-filters">
           <div className="state-input-fields">
-            <form onSubmit={searchBtn}>
+            <form onSubmit={searchBtn} id="submit-form">
               {/* STATE INPUT */}
               <div className="filter-state-input-field">
                 <div className="filter-add-state-field">
@@ -345,95 +343,6 @@ const Filters = () => {
                   </div>
                 </div>
               </div>
-              {/** ASSETS & PARTICIPANTS */}
-              <div className="filter-state-input-field">
-                {/**MAX AND MIN ASSETS */}
-                <div className="filter-min-max-assets">
-                  <h2 className="filter-h2">Assets</h2>
-                  <div>
-                    <div className="filter-netIncome-div">
-                      <label className="filter-netIncome-label">Max:</label>
-                      <input
-                        className="filter-control netIncome-filter"
-                        id="maxIncome"
-                        placeholder="Enter Asset"
-                        autoComplete="off"
-                        min="0"
-                        max="99999999999"
-                        onChange={e => {
-                          e.target.value = numeral(e.target.value).format(
-                            "0,0"
-                          );
-                        }}
-                      />
-                    </div>
-
-                    <div className="filter-netIncome-div">
-                      <label className="filter-netIncome-label">Min:</label>
-                      <input
-                        className="filter-control netIncome-filter"
-                        id="minIncome"
-                        placeholder="Enter Asset"
-                        autoComplete="off"
-                        min="0"
-                        max="99999999999"
-                        onChange={e => {
-                          e.target.value = numeral(e.target.value).format(
-                            "0,0"
-                          );
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-                {/**MAX AND MIN PARTICIPANTS */}
-                <div className="filter-min-max-assets">
-                  <h2 className="filter-h2">Participants</h2>
-                  <div>
-                    <div className="filter-netIncome-div">
-                      <label className="filter-netIncome-label">Max:</label>
-                      <input
-                        className="filter-control netIncome-filter"
-                        id="maxParticipants"
-                        placeholder="Enter Participants"
-                        autoComplete="off"
-                        min="0"
-                        max="99999999"
-                        onChange={e => {
-                          e.target.value = numeral(e.target.value).format(
-                            "0,0"
-                          );
-                        }}
-                      />
-                    </div>
-
-                    <div className="filter-netIncome-div">
-                      <label className="filter-netIncome-label">Min:</label>
-                      <input
-                        className="filter-control netIncome-filter"
-                        id="minParticipants"
-                        placeholder="Enter Participants"
-                        autoComplete="off"
-                        min="0"
-                        maxLength="99999999"
-                        onChange={e => {
-                          e.target.value = numeral(e.target.value).format(
-                            "0,0"
-                          );
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <input
-                className="filter-submit-btn"
-                id="submit-searh-btn"
-                type="submit"
-                value="Search"
-                disabled={true}
-              ></input>
             </form>
 
             {/* DATALISTS */}
@@ -448,68 +357,7 @@ const Filters = () => {
         {flag === 1 ? (
           <Loader />
         ) : searches > 0 ? (
-          <div className="filter-top-charts">
-            <div className="chart-content filter-chart1">
-              <Bar
-                data={filterCharts.dataBeginEnd(
-                  NetAssetBeginOfYear,
-                  NetAssetEndOfYear
-                )}
-                options={dashboardChartFuntions.optionReturn([
-                  NetAssetBeginOfYear,
-                  NetAssetEndOfYear
-                ])}
-                width={350}
-                height={300}
-              />
-              <br />
-              <Bar
-                data={filterCharts.participantsChart(
-                  result.TotalParticipants,
-                  result.RetiredParticipants,
-                  result.TotalParticipantsBal
-                )}
-                options={dashboardChartFuntions.optionReturn([
-                  result.TotalParticipants,
-                  result.RetiredParticipants,
-                  result.TotalParticipantsBal
-                ])}
-                width={350}
-                height={300}
-              />
-            </div>
-            <div className="chart-content filter-chart1">
-              <Bar
-                data={filterCharts.distribution(
-                  result.Distributions,
-                  result.CorrectivrDistribution,
-                  result.ServiceProviderExpenses,
-                  result.OtherExpenses
-                )}
-                options={dashboardChartFuntions.optionReturn([
-                  result.Distributions,
-                  result.CorrectivrDistribution,
-                  result.ServiceProviderExpenses,
-                  result.OtherExpenses
-                ])}
-                width={350}
-                height={300}
-              />
-              <br />
-              <Bar
-                data={filterCharts.contribution(
-                  result.ParticipantContribution,
-                  result.EmployerContribution
-                )}
-                options={dashboardChartFuntions.optionReturn([
-                  result.ParticipantContribution,
-                  result.EmployerContribution
-                ])}
-                width={350}
-                height={300}
-              />
-            </div>
-          </div>
+          <MiddleFilterCHARTS result={result} />
         ) : (
           <div className="filter-required-selection-div">
             <h1 className="filter-required-selection-h1">
@@ -523,7 +371,16 @@ const Filters = () => {
         )}
         <RightFilters />
       </div>
-
+      <div className="filter-main-search-btn">
+        <button
+          className="filter-submit-btn"
+          id="submit-searh-btn"
+          type="submit"
+          onClick={searchBtn}
+        >
+          Search
+        </button>
+      </div>
       <div className="filter-bottom-main">
         <div className="table-container">
           <table className="table table-striped table-bordered table-sm table-hover">

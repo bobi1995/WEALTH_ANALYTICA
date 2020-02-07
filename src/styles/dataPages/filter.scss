@@ -47,8 +47,8 @@ $color2: #3197ee;
 }
 
 .radio-container {
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-top: 15%;
+  margin-bottom: 15%;
 }
 .filter-addState {
   width: 100%;
@@ -103,15 +103,18 @@ input[type="radio"]:checked + .filter-year-label {
 .filter-required-selection-h1 {
   color: black;
 }
+.filter-main-search-btn {
+  margin-top: 4%;
+}
 .filter-submit-btn {
   display: block;
-  width: 50%;
-  margin-top: 5%;
+  width: 20%;
   background-color: #4caf50;
   color: white;
   border-radius: 3%;
   border: 0;
   height: 40px;
+  margin: 0 auto; // auto left/right margins
 }
 
 .filter-submit-btn:hover {
@@ -152,7 +155,7 @@ input[type="radio"]:checked + .filter-year-label {
 }
 .filter-required-logo {
   width: 50%;
-  height: 50%;
+  height: 80%;
 }
 .filter-bookmarks {
   flex: 1 0 100%;

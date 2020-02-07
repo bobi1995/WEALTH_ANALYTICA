@@ -1,12 +1,75 @@
 import React, { useState } from "react";
 import RightFilterFunction from "./RightFilterFunctions";
-
+import numeral from "numeral";
 const RightFilters = () => {
   const [symbols, setSymbols] = useState([]);
   return (
     <div className="required-filters">
       {/**PLAN AND BUSINESS CODE */}
       <div className="filter-planAndBusiness">
+        {/**MAX ASSETS */}
+        <div className="filter-select-company-type">
+          <label className="filter-company-label">Max Assets:</label>
+          <input
+            className="filter-select-form-control"
+            id="maxIncome"
+            placeholder="Enter Asset"
+            autoComplete="off"
+            min="0"
+            max="99999999999"
+            onChange={e => {
+              e.target.value = numeral(e.target.value).format("0,0");
+            }}
+          />
+        </div>
+        {/**MIN ASSETS */}
+        <div className="filter-select-company-type">
+          <label className="filter-company-label">Min Assets:</label>
+          <input
+            className="filter-select-form-control"
+            id="minIncome"
+            placeholder="Enter Asset"
+            autoComplete="off"
+            min="0"
+            max="99999999999"
+            onChange={e => {
+              e.target.value = numeral(e.target.value).format("0,0");
+            }}
+          />
+        </div>
+
+        {/**MAX PARTICIPANNTS */}
+        <div className="filter-select-company-type">
+          <label className="filter-company-label">Max participants:</label>
+          <input
+            className="filter-select-form-control"
+            id="maxParticipants"
+            placeholder="Enter participants"
+            autoComplete="off"
+            min="0"
+            max="99999999999"
+            onChange={e => {
+              e.target.value = numeral(e.target.value).format("0,0");
+            }}
+          />
+        </div>
+
+        {/**MIN PARTICIPANNTS */}
+        <div className="filter-select-company-type">
+          <label className="filter-company-label">Min participants:</label>
+          <input
+            className="filter-select-form-control"
+            id="minParticipants"
+            placeholder="Enter participants"
+            autoComplete="off"
+            min="0"
+            max="99999999999"
+            onChange={e => {
+              e.target.value = numeral(e.target.value).format("0,0");
+            }}
+          />
+        </div>
+
         {/**PLAN */}
         <div className="filter-select-company-type">
           <label className="filter-company-label">Company Type:</label>

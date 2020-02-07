@@ -6,6 +6,7 @@ import PlanProfilePensionBenefitCodes from "./planProfileFunctions/PlanProfilePe
 import ProfilePlanFinancial from "./planProfileFunctions/PlanProfileFinancial";
 import "../../styles/dataPages/planProfile.scss";
 import Loader from "./dashboardFunctions/loader";
+import PlanProfilePension from "./planProfileFunctions/PlanProfilePension";
 
 const PlaneProfile = props => {
   const [results, setResults] = useState([]);
@@ -47,6 +48,9 @@ const PlaneProfile = props => {
           )}
           <ProfilePlanFinancial
             data={[results.Statistics, results.City, results.BusinessCode]}
+          />
+          <PlanProfilePension
+            types={[results.PensionTypes, results.WelfareTypes]}
           />
         </div>
       ) : (
