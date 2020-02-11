@@ -52,7 +52,12 @@ const OnePager = props => {
           <OnePagerRightPane data={[results.City, results.BusinessCode]} />
           <OnePagerBottomTables data={results.Statistics} />
           <OnePagerPensionPlan
-            types={[results.PensionTypes, results.WelfareTypes]}
+            types={[
+              results.PensionTypes,
+              results.WelfareTypes,
+              results.SumPensionTypes,
+              results.SumWelfareTypes
+            ]}
           />
           <OnePagerMap address={results.Address} city={results.City} />
         </div>

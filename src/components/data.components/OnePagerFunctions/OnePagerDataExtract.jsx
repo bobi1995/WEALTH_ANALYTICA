@@ -180,6 +180,26 @@ const fidelityBondAmtExtract = data => {
   });
 };
 
+//***************DIFFERENT PENSION TYPES********************* */
+const uniquePensionTypes = data => {
+  const unique = [...new Set(data.map(plan => plan.Type))];
+  return unique;
+};
+
+//***************DIFFERENT PENSION TYPES YEARS********************* */
+const uniqueYearsPension = data => {
+  const unique = [...new Set(data.map(year => year.Year))];
+  return unique;
+};
+
+//***************PENSION TYPES PARTICIPANTS********************* */
+const participantsPension = data => {
+  return data.map(element => {
+    console.log(element.Participants);
+    return element.Participants;
+  });
+};
+
 export default {
   yearsExtract,
   totalAssetsExtract,
@@ -206,5 +226,8 @@ export default {
   brokerCommissionsExtract,
   brokerFeesExtract,
   fiduciaryTrustNameExtract,
-  fidelityBondAmtExtract
+  fidelityBondAmtExtract,
+  uniquePensionTypes,
+  uniqueYearsPension,
+  participantsPension
 };

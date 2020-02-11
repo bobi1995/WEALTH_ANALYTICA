@@ -15,7 +15,7 @@ const formatString = str => {
 const splitCapitalLetterString = str => {
   const temp = str.split(/(?=[A-Z])/);
 
-  console.log(temp);
+  return temp.join(" ");
 };
 
 export default { phoneFormat, formatString, splitCapitalLetterString };
