@@ -1,5 +1,4 @@
 import React from "react";
-
 import Datanavbar from "./DataNavbar";
 import functions from "./dashboardFunctions/functions";
 

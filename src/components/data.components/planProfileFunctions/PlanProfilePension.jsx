@@ -3,6 +3,7 @@ import numeral from "numeral";
 import commonFunctions from "../commonFunctions/common";
 
 const PlanProfilePension = props => {
+  console.log(props);
   return (
     <div className="plan-businessInfo">
       {/**********************PENSION TYPES***************************************** */}
@@ -28,9 +29,6 @@ const PlanProfilePension = props => {
                   <td>{element.Description}</td>
                   <td>{element.Year}</td>
                   <td>{element.Participants}</td>
-                  {console.log(
-                    commonFunctions.splitCapitalLetterString(element.Type)
-                  )}
                   <td>${numeral(element.TotalAssets).format("0,0")}</td>
                   <td>${numeral(element.NetAssets).format("0,0")}</td>
                   <td>

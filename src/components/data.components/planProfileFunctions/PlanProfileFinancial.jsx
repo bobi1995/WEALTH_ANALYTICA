@@ -2,6 +2,7 @@ import React from "react";
 import numeral from "numeral";
 
 const ProfilePlanFinancial = props => {
+  console.log(props);
   return (
     <div>
       {/**FINANCIAL PLAN  */}
@@ -35,51 +36,91 @@ const ProfilePlanFinancial = props => {
               <tr>
                 <th className="thead-dark">Total Assets</th>
                 {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>
-                      ${numeral(element.TotalAssets).format("0,0")}
-                    </td>
-                  );
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        ${numeral(element.TotalAssets).format("0,0")}
+                      </td>
+                    );
+                  } else {
+                    return (
+                      <td key={index}>
+                        ${numeral(element.TotalAssets).format("0,0")}
+                      </td>
+                    );
+                  }
                 })}
               </tr>
               <tr>
                 <th className="thead-dark">Net Assets</th>
                 {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>
-                      ${numeral(element.NetAssets).format("0,0")}
-                    </td>
-                  );
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        ${numeral(element.NetAssets).format("0,0")}
+                      </td>
+                    );
+                  } else {
+                    return (
+                      <td key={index}>
+                        ${numeral(element.NetAssets).format("0,0")}
+                      </td>
+                    );
+                  }
                 })}
               </tr>
               <tr>
                 <th className="thead-dark">Net Income</th>
                 {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>
-                      ${numeral(element.NetIncome).format("0,0")}
-                    </td>
-                  );
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        ${numeral(element.NetIncome).format("0,0")}
+                      </td>
+                    );
+                  } else {
+                    return (
+                      <td key={index}>
+                        ${numeral(element.NetIncome).format("0,0")}
+                      </td>
+                    );
+                  }
                 })}
               </tr>
               <tr>
                 <th className="thead-dark">Total Expenses</th>
                 {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>
-                      ${numeral(element.TotalExpenses).format("0,0")}
-                    </td>
-                  );
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        ${numeral(element.TotalExpenses).format("0,0")}
+                      </td>
+                    );
+                  } else {
+                    return (
+                      <td key={index}>
+                        ${numeral(element.TotalExpenses).format("0,0")}
+                      </td>
+                    );
+                  }
                 })}
               </tr>
               <tr>
                 <th className="thead-dark">Total Distributions</th>
                 {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>
-                      ${numeral(element.TotalDistributions).format("0,0")}
-                    </td>
-                  );
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        ${numeral(element.TotalDistributions).format("0,0")}
+                      </td>
+                    );
+                  } else {
+                    return (
+                      <td key={index}>
+                        ${numeral(element.TotalDistributions).format("0,0")}
+                      </td>
+                    );
+                  }
                 })}
               </tr>
             </tbody>
@@ -118,37 +159,71 @@ const ProfilePlanFinancial = props => {
               <tr>
                 <th className="thead-dark">Participant Loans</th>
                 {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>
-                      ${numeral(element.ParticipantLoans).format("0,0")}
-                    </td>
-                  );
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        ${numeral(element.ParticipantLoans).format("0,0")}
+                      </td>
+                    );
+                  } else {
+                    return (
+                      <td key={index}>
+                        ${numeral(element.ParticipantLoans).format("0,0")}
+                      </td>
+                    );
+                  }
                 })}
               </tr>
               <tr>
                 <th className="thead-dark">Participants</th>
                 {props.data[0].map((element, index) => {
-                  return <td key={index}>{element.Participants}</td>;
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        {element.Participants}
+                      </td>
+                    );
+                  } else {
+                    return <td key={index}>{element.Participants}</td>;
+                  }
                 })}
               </tr>
               <tr>
                 <th className="thead-dark">Contribution Employer</th>
                 {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>
-                      ${numeral(element.ContributionEmployer).format("0,0")}
-                    </td>
-                  );
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        ${numeral(element.ContributionEmployer).format("0,0")}
+                      </td>
+                    );
+                  } else {
+                    return (
+                      <td key={index}>
+                        ${numeral(element.ContributionEmployer).format("0,0")}
+                      </td>
+                    );
+                  }
                 })}
               </tr>
               <tr>
                 <th className="thead-dark">Contribution Participant</th>
                 {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>
-                      ${numeral(element.ContributionParticipant).format("0,0")}
-                    </td>
-                  );
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        $
+                        {numeral(element.ContributionParticipant).format("0,0")}
+                      </td>
+                    );
+                  } else {
+                    return (
+                      <td key={index}>
+                        $
+                        {numeral(element.ContributionParticipant).format("0,0")}
+                      </td>
+                    );
+                  }
                 })}
               </tr>
             </tbody>
@@ -187,43 +262,87 @@ const ProfilePlanFinancial = props => {
               <tr>
                 <th className="thead-dark">AUM/HC</th>
                 {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>${numeral(element.AUMHC).format("0,0")}</td>
-                  );
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        ${numeral(element.AUMHC).format("0,0")}
+                      </td>
+                    );
+                  } else {
+                    return (
+                      <td key={index}>
+                        ${numeral(element.AUMHC).format("0,0")}
+                      </td>
+                    );
+                  }
                 })}
               </tr>
               <tr>
                 <th className="thead-dark">Yield</th>
                 {props.data[0].map((element, index) => {
-                  return <td key={index}>{element.Yield}</td>;
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        {element.Yield}
+                      </td>
+                    );
+                  } else {
+                    return <td key={index}>{element.Yield}</td>;
+                  }
                 })}
               </tr>
               <tr>
                 <th className="thead-dark">Contribution Yield</th>
                 {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>
-                      {numeral(element.ContributionYield).format("0.00")}%
-                    </td>
-                  );
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        {numeral(element.ContributionYield).format("0.00")}%
+                      </td>
+                    );
+                  } else {
+                    return (
+                      <td key={index}>
+                        {numeral(element.ContributionYield).format("0.00")}%
+                      </td>
+                    );
+                  }
                 })}
               </tr>
               <tr>
                 <th className="thead-dark">Expense Ratio</th>
                 {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>
-                      {numeral(element.ExpenseRatio).format("0.00")}%
-                    </td>
-                  );
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        {numeral(element.ExpenseRatio).format("0.00")}%
+                      </td>
+                    );
+                  } else {
+                    return (
+                      <td key={index}>
+                        {numeral(element.ExpenseRatio).format("0.00")}%
+                      </td>
+                    );
+                  }
                 })}
               </tr>
               <tr>
                 <th className="thead-dark">ROR</th>
                 {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>{numeral(element.ROR).format("0.00")}%</td>
-                  );
+                  if (element.ContributionFailureIndColor) {
+                    return (
+                      <td key={index} className="plan-profile-red">
+                        {numeral(element.ROR).format("0.00")}%
+                      </td>
+                    );
+                  } else {
+                    return (
+                      <td key={index}>
+                        {numeral(element.ROR).format("0.00")}%
+                      </td>
+                    );
+                  }
                 })}
               </tr>
             </tbody>

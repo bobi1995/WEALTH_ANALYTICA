@@ -9,142 +9,96 @@ const OnePagerPensionPlan = props => {
       {/**********************UNIQUE TYPES***************************************** */}
       {props.types[2].length > 0 ? (
         <div className="onepager-bottomtables-table ">
-          <h1 className="onepager-bottomtables-h1">UNIQUE Types</h1>
+          <h1 className="onepager-bottomtables-h1">Types summary</h1>
           <table className="table table-striped table-bordered table-sm table-hover">
-            <thead className="thead-dark" id="onepager-pension-main-table">
+            <thead className="thead-dark">
               <tr>
                 <th>Type</th>
-                <th>Plan Name</th>
                 <th>More</th>
                 <th>Statistics</th>
               </tr>
             </thead>
             <tbody className="table-hover">
-              {DataExtract.uniquePensionTypes(props.types[2]).map(
-                (element, index) => (
+              {props.types[2].map((element, index) => {
+                return (
                   <tr key={index}>
-                    <td className="align-middle">{element}</td>
-                    <td className="align-middle">{element}</td>
-                    <td className="align-middle">More</td>
-                    <td>
+                    <td className="align-middle">
+                      {element.Type &&
+                        commonFuctions.splitCapitalLetterString(element.Type)}
+                    </td>
+                    <td className="align-middle">
+                      <div className="slideThree">
+                        {console.log(element.Type)}
+                        <input
+                          type="checkbox"
+                          value="None"
+                          id={element.Type}
+                          name="check"
+                        />
+                        <label htmlFor={element.Type}></label>
+                      </div>
+                    </td>
+                    <td className="align-middle">
                       <table className="onepager-small-table">
                         <thead>
                           <tr>
                             <th></th>
-                            {DataExtract.uniqueYearsPension(props.types[2]).map(
-                              (element, index) => (
-                                <th key={index}>{element}</th>
-                              )
-                            )}
+                            {DataExtract.uniqueYearsPension(
+                              props.types[2][index]
+                            ).map((element, index) => {
+                              return <th key={index}>{element}</th>;
+                            })}
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <th>Participants</th>
 
-                            {DataExtract.participantsPension(
-                              props.types[2]
-                            ).map((element, index) => {
-                              const rowId = document.getElementsByTagName("tr");
-                              console.log(rowId);
-                              if (index % 2 === 0) {
-                                return <th key={index}>{element}</th>;
-                              }
-                            })}
+                            {element.Participants.map((element, index) => (
+                              <td key={index}>
+                                {numeral(element.Value).format("0,0")}
+                              </td>
+                            ))}
                           </tr>
+
                           <tr>
                             <th>Total Asset</th>
+                            {element.TotalAssets.map((element, index) => (
+                              <td key={index}>
+                                ${numeral(element.Value).format("0,0")}
+                              </td>
+                            ))}
                           </tr>
                           <tr>
                             <th>Net Asset</th>
+                            {element.NetAssets.map((element, index) => (
+                              <td key={index}>
+                                ${numeral(element.Value).format("0,0")}
+                              </td>
+                            ))}
                           </tr>
                         </tbody>
                       </table>
                     </td>
                   </tr>
-                )
-              )}
+                );
+              })}
             </tbody>
           </table>
         </div>
       ) : (
         ""
       )}
-
       {/**********************PENSION TYPES***************************************** */}
-      {props.types[0].length > 0 ? (
-        <div className="onepager-bottomtables-table ">
-          <h1 className="onepager-bottomtables-h1">Pension Types</h1>
-          <table className="table table-striped table-bordered table-sm table-hover">
-            <thead className="thead-dark">
-              <tr>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Year</th>
-                <th>Participants</th>
-                <th>Total Assets</th>
-                <th>Net Assets</th>
-              </tr>
-            </thead>
-            <tbody className="table-hover">
-              {props.types[0].map((element, index) => (
-                <tr key={index}>
-                  <td>
-                    {element.Type &&
-                      commonFuctions.splitCapitalLetterString(element.Type)}
-                  </td>
-                  <td>{element.Description}</td>
-                  <td>{element.Year}</td>
-                  <td>{element.Participants}</td>
-
-                  <td>${numeral(element.TotalAssets).format("0,0")}</td>
-                  <td>${numeral(element.NetAssets).format("0,0")}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ) : (
-        ""
-      )}
-      {/**********************WELFARE TYPES***************************************** */}
-      {props.types[1].length > 0 ? (
-        <div className="onepager-bottomtables-table ">
-          <h1 className="onepager-bottomtables-h1">Welafe Types</h1>
-          <table className="table table-striped table-bordered table-sm table-hover">
-            <thead className="thead-dark">
-              <tr>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Year</th>
-                <th>Participants</th>
-                <th>Total Assets</th>
-                <th>Net Assets</th>
-                <th>Plan Name</th>
-              </tr>
-            </thead>
-            <tbody className="table-hover">
-              {props.types[1].map((element, index) => (
-                <tr key={index}>
-                  <td>
-                    {element.Type &&
-                      commonFuctions.splitCapitalLetterString(element.Type)}
-                  </td>
-                  <td>{element.Description}</td>
-                  <td>{element.Year}</td>
-                  <td>{element.Participants}</td>
-
-                  <td>${numeral(element.TotalAssets).format("0,0")}</td>
-                  <td>${numeral(element.NetAssets).format("0,0")}</td>
-                  <td>{element.PlanName}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ) : (
-        ""
-      )}
+      {props.types[0].length > 0
+        ? DataExtract.uniquePensionTypes(props.types[0]).map(
+            (element, index) => {
+              {
+                console.log(document.getElementById(`${element}`));
+              }
+            }
+          )
+        : ""}
     </div>
   );
 };

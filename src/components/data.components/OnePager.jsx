@@ -55,8 +55,7 @@ const OnePager = props => {
             types={[
               results.PensionTypes,
               results.WelfareTypes,
-              results.SumPensionTypes,
-              results.SumWelfareTypes
+              results.PensionPlanSummary
             ]}
           />
           <OnePagerMap address={results.Address} city={results.City} />
