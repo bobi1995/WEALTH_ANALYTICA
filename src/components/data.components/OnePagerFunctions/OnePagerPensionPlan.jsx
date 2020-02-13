@@ -1,9 +1,24 @@
-import React from "react";
-import commonFuctions from "../commonFunctions/common";
+import React, { useEffect } from "react";
+import commonFunctions from "../commonFunctions/common";
 import numeral from "numeral";
 import DataExtract from "./OnePagerDataExtract";
 
 const OnePagerPensionPlan = props => {
+  useEffect(() => {});
+  const checkClicked = e => {
+    if (e.target.hasAttribute("checked")) {
+      e.target.setAttribute("checked", "false");
+    } else {
+      e.target.setAttribute("checked", "true");
+    }
+    props.types[2].map((element, index) => {
+      if (document.getElementById(element.Type).checked) {
+        document.getElementById(element.Type + index).style.display = "block";
+      } else {
+        document.getElementById(element.Type + index).style.display = "none";
+      }
+    });
+  };
   return (
     <div className="onepager-bottomtables-maindiv">
       {/**********************UNIQUE TYPES***************************************** */}
@@ -24,16 +39,16 @@ const OnePagerPensionPlan = props => {
                   <tr key={index}>
                     <td className="align-middle">
                       {element.Type &&
-                        commonFuctions.splitCapitalLetterString(element.Type)}
+                        commonFunctions.splitCapitalLetterString(element.Type)}
                     </td>
                     <td className="align-middle">
                       <div className="slideThree">
-                        {console.log(element.Type)}
                         <input
                           type="checkbox"
                           value="None"
                           id={element.Type}
                           name="check"
+                          onClick={checkClicked}
                         />
                         <label htmlFor={element.Type}></label>
                       </div>
@@ -90,14 +105,47 @@ const OnePagerPensionPlan = props => {
         ""
       )}
       {/**********************PENSION TYPES***************************************** */}
-      {props.types[0].length > 0
-        ? DataExtract.uniquePensionTypes(props.types[0]).map(
-            (element, index) => {
-              {
-                console.log(document.getElementById(`${element}`));
-              }
-            }
-          )
+      {props.types[2].length > 0
+        ? props.types[2].map((element, index) => {
+            return (
+              <div
+                key={index}
+                id={element.Type + index}
+                className="onepager-bottomtables-table onepager-hidden-tables"
+              >
+                <h1 className="onepager-bottomtables-h1">
+                  {element.Type &&
+                    commonFunctions.splitCapitalLetterString(element.Type)}
+                </h1>
+                <table className="table table-striped table-bordered table-sm table-hover">
+                  <thead className="thead-dark">
+                    <tr>
+                      <th>Description</th>
+                      {DataExtract.uniqueYearsPension(
+                        props.types[2][index]
+                      ).map((el, ind) => {
+                        return <th key={ind}>{el}</th>;
+                      })}
+                    </tr>
+                  </thead>
+                  <tbody className="table-hover">
+                    {props.types[0].map((el, ind) => {
+                      console.log(el);
+
+                      if (el.Type == element.Type) {
+                        return (
+                          <tr key={ind}>
+                            <td>{el.Description}</td>
+                            <td>Y</td>
+                          </tr>
+                        );
+                      }
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            );
+          })
         : ""}
     </div>
   );

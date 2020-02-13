@@ -2,7 +2,6 @@ import React from "react";
 import numeral from "numeral";
 
 const ProfilePlanFinancial = props => {
-  console.log(props);
   return (
     <div>
       {/**FINANCIAL PLAN  */}
@@ -283,11 +282,11 @@ const ProfilePlanFinancial = props => {
                   if (element.ContributionFailureIndColor) {
                     return (
                       <td key={index} className="plan-profile-red">
-                        {element.Yield}
+                        {element.Yield}%
                       </td>
                     );
                   } else {
-                    return <td key={index}>{element.Yield}</td>;
+                    return <td key={index}>{element.Yield}%</td>;
                   }
                 })}
               </tr>

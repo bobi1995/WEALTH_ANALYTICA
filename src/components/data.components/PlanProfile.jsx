@@ -49,9 +49,7 @@ const PlaneProfile = props => {
           <ProfilePlanFinancial
             data={[results.Statistics, results.City, results.BusinessCode]}
           />
-          <PlanProfilePension
-            types={[results.PensionTypes, results.WelfareTypes]}
-          />
+          <PlanProfilePension types={results.PlanSummary} />
         </div>
       ) : (
         <div className="onepager-loader-style">
