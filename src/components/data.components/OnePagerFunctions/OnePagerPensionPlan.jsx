@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Component } from "react";
 import commonFunctions from "../commonFunctions/common";
 import numeral from "numeral";
 import DataExtract from "./OnePagerDataExtract";
 
 const OnePagerPensionPlan = props => {
+  const uniqueYears = DataExtract.uniqueYearsPension();
+
   useEffect(() => {});
   const checkClicked = e => {
     if (e.target.hasAttribute("checked")) {
@@ -58,9 +60,7 @@ const OnePagerPensionPlan = props => {
                         <thead>
                           <tr>
                             <th></th>
-                            {DataExtract.uniqueYearsPension(
-                              props.types[2][index]
-                            ).map((element, index) => {
+                            {uniqueYears.map((element, index) => {
                               return <th key={index}>{element}</th>;
                             })}
                           </tr>
@@ -69,28 +69,39 @@ const OnePagerPensionPlan = props => {
                           <tr>
                             <th>Participants</th>
 
-                            {element.Participants.map((element, index) => (
-                              <td key={index}>
-                                {numeral(element.Value).format("0,0")}
-                              </td>
-                            ))}
+                            {element.Participants.reverse().map((el, ind) => {
+                              return uniqueYears.map((e, i) => {
+                                // console.log(el.Year);
+                                if (el.Year == e) {
+                                  return (
+                                    <td key={ind}>
+                                      ${numeral(el.Value).format("0,0")}
+                                    </td>
+                                  );
+                                }
+                              });
+                            })}
                           </tr>
 
                           <tr>
                             <th>Total Asset</th>
-                            {element.TotalAssets.map((element, index) => (
-                              <td key={index}>
-                                ${numeral(element.Value).format("0,0")}
-                              </td>
-                            ))}
+                            {element.TotalAssets.reverse().map(
+                              (element, index) => (
+                                <td key={index}>
+                                  ${numeral(element.Value).format("0,0")}
+                                </td>
+                              )
+                            )}
                           </tr>
                           <tr>
                             <th>Net Asset</th>
-                            {element.NetAssets.map((element, index) => (
-                              <td key={index}>
-                                ${numeral(element.Value).format("0,0")}
-                              </td>
-                            ))}
+                            {element.NetAssets.reverse().map(
+                              (element, index) => (
+                                <td key={index}>
+                                  ${numeral(element.Value).format("0,0")}
+                                </td>
+                              )
+                            )}
                           </tr>
                         </tbody>
                       </table>
@@ -121,26 +132,27 @@ const OnePagerPensionPlan = props => {
                   <thead className="thead-dark">
                     <tr>
                       <th>Description</th>
-                      {DataExtract.uniqueYearsPension(
-                        props.types[2][index]
-                      ).map((el, ind) => {
+                      {uniqueYears.map((el, ind) => {
                         return <th key={ind}>{el}</th>;
                       })}
                     </tr>
                   </thead>
                   <tbody className="table-hover">
-                    {props.types[0].map((el, ind) => {
-                      console.log(el);
-
-                      if (el.Type == element.Type) {
+                    {element.Characteristics &&
+                      element.Characteristics.map((e, i) => {
                         return (
-                          <tr key={ind}>
-                            <td>{el.Description}</td>
-                            <td>Y</td>
+                          <tr key={i}>
+                            <td>{e.Description}</td>
+                            {uniqueYears.map((year, yearID) => {
+                              if (e.Years.includes(year)) {
+                                return <td key={yearID}>Y</td>;
+                              } else {
+                                return <td key={yearID}>N</td>;
+                              }
+                            })}
                           </tr>
                         );
-                      }
-                    })}
+                      })}
                   </tbody>
                 </table>
               </div>

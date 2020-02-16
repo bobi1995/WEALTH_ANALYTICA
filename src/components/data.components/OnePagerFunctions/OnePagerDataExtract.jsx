@@ -182,9 +182,7 @@ const fidelityBondAmtExtract = data => {
 
 //***************DIFFERENT PENSION TYPES YEARS********************* */
 const uniqueYearsPension = data => {
-  return data.Participants.map(element => {
-    return element.Year;
-  });
+  return [2016, 2017, 2018];
 };
 
 //***************UNIQUE PENSION TYPES ********************* */
