@@ -181,14 +181,15 @@ const fidelityBondAmtExtract = data => {
 };
 
 //***************DIFFERENT PENSION TYPES YEARS********************* */
-const uniqueYearsPension = data => {
+const uniqueYearsPension = () => {
   return [2016, 2017, 2018];
 };
 
 //***************UNIQUE PENSION TYPES ********************* */
-const uniquePensionTypes = data => {
-  const unique = [...new Set(data.map(plan => plan.Type))];
-  return unique;
+const typesSummaryYears = data => {
+  return data.map(element => {
+    return element.Year;
+  });
 };
 
 export default {
@@ -219,5 +220,5 @@ export default {
   fiduciaryTrustNameExtract,
   fidelityBondAmtExtract,
   uniqueYearsPension,
-  uniquePensionTypes
+  typesSummaryYears
 };

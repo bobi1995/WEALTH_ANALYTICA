@@ -24,7 +24,6 @@ const SmallCompanies = props => {
     isLarge = true;
   }
   const removeBookmark = e => {
-    console.log(e.target);
     const data = {
       userGuid: sessionStorage.getItem("Guid"),
 
@@ -43,9 +42,7 @@ const SmallCompanies = props => {
           }
         }
       )
-      .then(res => {
-        console.log(res);
-      })
+      .then(res => {})
       .catch(e => {
         console.log(e);
       });
@@ -53,8 +50,6 @@ const SmallCompanies = props => {
   };
 
   const addBookmark = e => {
-    console.log(e.target);
-
     const data = {
       userGuid: sessionStorage.getItem("Guid"),
 
@@ -69,9 +64,7 @@ const SmallCompanies = props => {
           Authorization: "Basic " + sessionStorage.getItem("Token")
         }
       })
-      .then(res => {
-        console.log(res);
-      })
+      .then(res => {})
       .catch(e => {
         console.log(e);
       });

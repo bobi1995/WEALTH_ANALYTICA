@@ -87,7 +87,6 @@ const Filters = () => {
         "Enter the states you want to visualise";
       document.getElementById("stateInput").value = "";
     } else {
-      console.log("false");
       addStateBtn.disabled = false;
       addStateBtn.innerHTML = "Add";
       document.getElementById("emailHelp").innerHTML =

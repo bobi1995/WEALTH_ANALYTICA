@@ -34,9 +34,7 @@ const OnePagerMap = props => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={position} icon={myIcon}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
+          <Popup>{props.address}</Popup>
         </Marker>
       </Map>
     </div>

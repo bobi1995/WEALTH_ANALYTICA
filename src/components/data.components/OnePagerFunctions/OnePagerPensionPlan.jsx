@@ -1,4 +1,4 @@
-import React, { useEffect, Component } from "react";
+import React from "react";
 import commonFunctions from "../commonFunctions/common";
 import numeral from "numeral";
 import DataExtract from "./OnePagerDataExtract";
@@ -6,7 +6,6 @@ import DataExtract from "./OnePagerDataExtract";
 const OnePagerPensionPlan = props => {
   const uniqueYears = DataExtract.uniqueYearsPension();
 
-  useEffect(() => {});
   const checkClicked = e => {
     if (e.target.hasAttribute("checked")) {
       e.target.setAttribute("checked", "false");
@@ -68,40 +67,66 @@ const OnePagerPensionPlan = props => {
                         <tbody>
                           <tr>
                             <th>Participants</th>
-
-                            {element.Participants.reverse().map((el, ind) => {
-                              return uniqueYears.map((e, i) => {
-                                // console.log(el.Year);
-                                if (el.Year == e) {
-                                  return (
-                                    <td key={ind}>
-                                      ${numeral(el.Value).format("0,0")}
-                                    </td>
-                                  );
-                                }
-                              });
+                            {/** LOOP THROUGH ALL YEARS POSSIBLE (uniqueYears) AND THEN ASSIGN EXTRACTED YEARS FOR ALL PARTICIPANTS (YEAR BY YEAR) TO ARRAY VARIABLE.
+                             * CHECKING IF ARRAY INCLUDES ALL ELEMENTS OF THE uniqueYears ITEM BY ITEM.
+                             */}
+                            {uniqueYears.map((e, i) => {
+                              const array = DataExtract.typesSummaryYears(
+                                element.Participants
+                              );
+                              if (array.includes(e)) {
+                                return element.Participants.reverse().map(
+                                  (el, id) => {
+                                    if (el.Year === e) {
+                                      return <td key={id}>{el.Value}</td>;
+                                    }
+                                  }
+                                );
+                              } else return <td key={i}>-</td>;
                             })}
                           </tr>
 
                           <tr>
                             <th>Total Asset</th>
-                            {element.TotalAssets.reverse().map(
-                              (element, index) => (
-                                <td key={index}>
-                                  ${numeral(element.Value).format("0,0")}
-                                </td>
-                              )
-                            )}
+                            {uniqueYears.map((e, i) => {
+                              const array = DataExtract.typesSummaryYears(
+                                element.TotalAssets
+                              );
+                              if (array.includes(e)) {
+                                return element.TotalAssets.reverse().map(
+                                  (el, id) => {
+                                    if (el.Year === e) {
+                                      return (
+                                        <td key={id}>
+                                          ${numeral(el.Value).format("0,0")}
+                                        </td>
+                                      );
+                                    }
+                                  }
+                                );
+                              } else return <td key={i}>-</td>;
+                            })}
                           </tr>
                           <tr>
                             <th>Net Asset</th>
-                            {element.NetAssets.reverse().map(
-                              (element, index) => (
-                                <td key={index}>
-                                  ${numeral(element.Value).format("0,0")}
-                                </td>
-                              )
-                            )}
+                            {uniqueYears.map((e, i) => {
+                              const array = DataExtract.typesSummaryYears(
+                                element.NetAssets
+                              );
+                              if (array.includes(e)) {
+                                return element.NetAssets.reverse().map(
+                                  (el, id) => {
+                                    if (el.Year === e) {
+                                      return (
+                                        <td key={id}>
+                                          ${numeral(el.Value).format("0,0")}
+                                        </td>
+                                      );
+                                    }
+                                  }
+                                );
+                              } else return <td key={i}>-</td>;
+                            })}
                           </tr>
                         </tbody>
                       </table>

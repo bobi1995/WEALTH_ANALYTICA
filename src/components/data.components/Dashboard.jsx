@@ -101,7 +101,6 @@ const Dashboard = props => {
         "States you want to check will apear on the right.";
       document.getElementById("stateInput").value = "";
     } else {
-      console.log("false");
       document.getElementById("emailHelp").innerHTML =
         "PICK CORRECT STATE VALUE";
     }

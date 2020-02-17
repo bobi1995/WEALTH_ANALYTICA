@@ -110,7 +110,6 @@ const Login = () => {
         }
       })
       .catch(e => {
-        console.log("here");
         alert("Wrong username or password");
         setLoading(false);
       });
@@ -131,7 +130,6 @@ const Login = () => {
 
     if (password !== confirmPassword) {
       alert("Passwords don't match");
-      console.log(password.length);
       setLoading(false);
     } else if (password.length < 6) {
       alert("Password must be at least 7 symbols");
