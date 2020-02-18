@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import RightFilterFunction from "./RightFilterFunctions";
 import numeral from "numeral";
 const RightFilters = () => {
-  const [symbols, setSymbols] = useState([]);
   return (
     <div className="required-filters">
       {/**PLAN AND BUSINESS CODE */}

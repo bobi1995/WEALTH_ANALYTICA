@@ -30,7 +30,7 @@ const benefitTypeSelected = async () => {
           result.data.map((element, index) => {
             const option = document.createElement("option");
             option.value = element.Symbol;
-            option.text = element.Symbol + " - " + element.Description;
+            option.text = element.Description;
             symbols.add(option, null);
           });
         }

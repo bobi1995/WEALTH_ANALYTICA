@@ -2,6 +2,7 @@ import React from "react";
 import numeral from "numeral";
 import commonFunctions from "../commonFunctions/common";
 import DataExtract from "./PlanProfileDataExtract";
+import PlanProfilePensionCharac from "./PlanProfilePensionCharac";
 const PlanProfilePension = props => {
   const uniqueYears = DataExtract.uniqueYearsPension();
 
@@ -141,49 +142,13 @@ const PlanProfilePension = props => {
                       </tr>
                     </tbody>
                   </table>
+                  {/**********************PENSION TYPES***************************************** */}
+                  <PlanProfilePensionCharac
+                    data={element}
+                    key={index}
+                    id={element.Type + index}
+                  />
                 </div>
-
-                {/**********************PENSION TYPES***************************************** */}
-
-                {props.types.length > 0
-                  ? props.types.map((element, index) => {
-                      return (
-                        <div
-                          key={index}
-                          id={element.Type + index}
-                          className="onepager-bottomtables-table onepager-hidden-tables"
-                        >
-                          <table className="table table-striped table-bordered table-sm table-hover">
-                            <thead className="thead-dark">
-                              <tr>
-                                <th>Description</th>
-                                {uniqueYears.map((el, ind) => {
-                                  return <th key={ind}>{el}</th>;
-                                })}
-                              </tr>
-                            </thead>
-                            <tbody className="table-hover">
-                              {element.Characteristics &&
-                                element.Characteristics.map((e, i) => {
-                                  return (
-                                    <tr key={i}>
-                                      <td>{e.Description}</td>
-                                      {uniqueYears.map((year, yearID) => {
-                                        if (e.Years.includes(year)) {
-                                          return <td key={yearID}>Y</td>;
-                                        } else {
-                                          return <td key={yearID}>N</td>;
-                                        }
-                                      })}
-                                    </tr>
-                                  );
-                                })}
-                            </tbody>
-                          </table>
-                        </div>
-                      );
-                    })
-                  : ""}
               </div>
             );
           })
