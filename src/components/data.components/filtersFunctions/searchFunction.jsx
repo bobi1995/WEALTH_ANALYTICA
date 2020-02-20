@@ -64,15 +64,18 @@ const SearchFunction = (
       url = url.concat(`isSmall=${companyType}&`);
     }
     if (businessCode) {
-      url = url.concat(`businessCode=${businessCode}`);
+      url = url.concat(`businessCode=${businessCode}&`);
     }
     if (benefitType !== "All" && benefitSymbol === "All") {
-      url = url.concat(`benefitType=${benefitType}`);
+      url = url.concat(`benefitType=${benefitType}&`);
     } else if (benefitSymbol !== "All") {
-      url = url.concat(`benefitType=${benefitSymbol}`);
+      url = url.concat(`benefitType=${benefitSymbol}&`);
     }
     if (planEntity !== "All") {
-      url = url.concat(`planEntity=${planEntity}`);
+      url = url.concat(`planEntity=${planEntity}&`);
+    }
+    if (dfeoption) {
+      url = url.concat(`planEntity=${dfeoption}&`);
     }
     console.log("STATES URL: " + url);
   } else {
@@ -103,15 +106,18 @@ const SearchFunction = (
       url = url.concat(`isSmall=${companyType}&`);
     }
     if (businessCode) {
-      url = url.concat(`businessCode=${businessCode}`);
+      url = url.concat(`businessCode=${businessCode}&`);
     }
     if (benefitType !== "All" && benefitSymbol === "All") {
-      url = url.concat(`benefitType=${benefitType}`);
+      url = url.concat(`benefitType=${benefitType}&`);
     } else if (benefitSymbol !== "All") {
-      url = url.concat(`benefitType=${benefitSymbol}`);
+      url = url.concat(`benefitType=${benefitSymbol}&`);
     }
     if (planEntity !== "All") {
-      url = url.concat(`planEntity=${planEntity}`);
+      url = url.concat(`planEntity=${planEntity}&`);
+    }
+    if (dfeoption) {
+      url = url.concat(`planEntity=${dfeoption}&`);
     }
     console.log("CITIES URL: " + url);
   }

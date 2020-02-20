@@ -1,0 +1,44 @@
+.portfolio-hidden-text {
+  display: none;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-border-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(#fff),
+      to(#fff),
+      color-stop(0.5, grey),
+      color-stop(0.5, grey)
+    )
+    21 30 30 21;
+}
+.portfolio-WA-img {
+  border-radius: 8px;
+}
+.home-portfolio-h1 {
+  color: black;
+}
+.portfolio-WA-section {
+  margin-top: 3%;
+}
+.portfolio-paragraphs {
+  margin-left: auto;
+  margin-right: auto;
+  width: 65%;
+}
+.port-para-white {
+  color: white;
+}
+.portfolio-separator {
+  border-top: 2px solid #bbb;
+  border-radius: 5px;
+  width: 50%;
+  margin-top: 3%;
+}
+@media screen and (max-width: 1024px) {
+  .portfolio-WA-section {
+    display: block;
+  }
+}

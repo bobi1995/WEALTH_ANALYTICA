@@ -15,8 +15,10 @@ const Home = () => {
       <header className="masthead">
         <div className="container">
           <div className="intro-text" href="#page-top">
-            <div className="intro-lead-in">Welcome To</div>
             <div className="intro-heading text-uppercase">Wealth Analytica</div>
+            <div className="intro-lead-in">
+              Better Connects Advisors, Client Pension Plans and Data
+            </div>
 
             <Link
               className="btn btn-primary btn-xl text-uppercase js-scroll-trigger"
