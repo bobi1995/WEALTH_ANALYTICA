@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, animateScroll as scroll } from "react-scroll";
+import WealthAnalytica from "./PortolioContents/WealthAnalytica";
+import FinancialPlanning from "./PortolioContents/FinancialPlanning";
 
 export default () => {
   return (
@@ -7,7 +9,10 @@ export default () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12 text-center">
-            <h2 className="section-heading text-uppercase">Portfolio</h2>
+            <h1 className="home-portfolio-h1 section-heading text-uppercase">
+              Portfolio
+            </h1>
+
             <h3 className="section-subheading text-muted">
               Check our features.
             </h3>
@@ -24,8 +29,41 @@ export default () => {
               className="portfolio-link"
               data-toggle="modal"
               onClick={() => {
-                console.log("WA");
+                document.getElementById("portfolio2").style.display = "none";
                 document.getElementById("portfolio1").style.display = "block";
+              }}
+            >
+              <div className="portfolio-hover">
+                <div className="portfolio-hover-content">
+                  <i className="fa fa-plus fa-3x"></i>
+                </div>
+              </div>
+              <img
+                className="img-fluid"
+                src={require("../../../styles/pages/homepage/images/portfolio/wealth_analytica.png")}
+                alt=""
+              />
+            </Link>
+            <div className="portfolio-caption">
+              <h4>Wealth Analytica</h4>
+              <p className="text-muted">
+                Enhanced Qualified Plan Analytics Service offering designed to
+                differentiate and diversify your lines of business
+              </p>
+            </div>
+          </div>
+          <div className="col-md-4 col-sm-6 portfolio-item">
+            <Link
+              to="portfolio2"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={500}
+              className="portfolio-link"
+              data-toggle="modal"
+              onClick={() => {
+                document.getElementById("portfolio1").style.display = "none";
+                document.getElementById("portfolio2").style.display = "block";
               }}
             >
               <div className="portfolio-hover">
@@ -40,39 +78,24 @@ export default () => {
               />
             </Link>
             <div className="portfolio-caption">
-              <h4>Wealth Analytica</h4>
-              <p className="text-muted">We provide the data in nice format</p>
+              <h4>Financial Planning</h4>
+              <p className="text-muted">
+                Delivering Wall Street Quality Qualified Plan Analytics to the
+                Financial Planning Professional
+              </p>
             </div>
           </div>
           <div className="col-md-4 col-sm-6 portfolio-item">
-            <a
+            <Link
+              to="portfolio2"
+              spy={true}
+              smooth={true}
+              offset={-100}
+              duration={500}
               className="portfolio-link"
               data-toggle="modal"
-              href="#portfolioModal2"
-            >
-              <div className="portfolio-hover">
-                <div className="portfolio-hover-content">
-                  <i className="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img
-                className="img-fluid"
-                src={require("../../../styles/pages/homepage/images/portfolio/compete.jpg")}
-                alt=""
-              />
-            </a>
-            <div className="portfolio-caption">
-              <h4>Compare</h4>
-              <p className="text-muted">Compare all plans across the USA</p>
-            </div>
-          </div>
-          <div className="col-md-4 col-sm-6 portfolio-item">
-            <a
-              className="portfolio-link"
-              data-toggle="modal"
-              href="#portfolio1"
               onClick={() => {
-                console.log("WA");
+                document.getElementById("portfolio2").style.display = "block";
               }}
             >
               <div className="portfolio-hover">
@@ -85,7 +108,7 @@ export default () => {
                 src={require("../../../styles/pages/homepage/images/portfolio/connection.jpg")}
                 alt=""
               />
-            </a>
+            </Link>
             <div className="portfolio-caption">
               <h4>Connection</h4>
               <p className="text-muted">Quick connection to all companies</p>
@@ -93,60 +116,8 @@ export default () => {
           </div>
         </div>
       </div>
-      {/****** PORTFOLIO HIDDEN - WEALTH ANALYTICA***** */}
-      <div className=" text-center portfolio-hidden-text" id="portfolio1">
-        <h1 className="home-portfolio-h1">Wealth Analytica</h1>
-        <p className="text-muted portfolio-paragraphs">
-          Enhanced Qualified Plan Analytics Service offering designed to
-          differentiate and diversify your lines of business while deepening
-          your client relationship
-        </p>
-        {/*************ONE PAGER***************** */}
-        <div className="portfolio-WA-section text-center">
-          <h2>One Pager</h2>
-          <img
-            className="img-fluid portfolio-WA-img"
-            alt="missing_img"
-            src={require("../../../styles/pages/homepage/images/portfolio/OnePager.png")}
-          />
-          <p className=" portfolio-paragraphs port-para-white">
-            One Pager is powerfull tool that helps you visualise every sponsor
-            data. It provides tables and graphs alongside with location and plan
-            names
-          </p>
-          <hr className="portfolio-separator" />
-        </div>
-
-        {/*************PLAN PROFILE***************** */}
-        <div className="portfolio-WA-section text-center">
-          <h2>Plan Profile</h2>
-          <img
-            className="img-fluid portfolio-WA-img"
-            alt="missing_img"
-            src={require("../../../styles/pages/homepage/images/portfolio/PlanProfile.png")}
-          />
-          <p className="text-muted portfolio-paragraphs">
-            Plan Profile is the extension of One Pager. It gives all information
-            for the sponsor and has section with every single part
-            characteristics. Also indicates if there is any failure for this
-            sponsor
-          </p>
-          <hr className="portfolio-separator" />
-        </div>
-        <Link
-          className="btn btn-primary"
-          to="portfolio"
-          spy={true}
-          smooth={true}
-          offset={25}
-          duration={500}
-          onClick={() => {
-            document.getElementById("portfolio1").style.display = "none";
-          }}
-        >
-          Hide
-        </Link>
-      </div>
+      <WealthAnalytica />
+      <FinancialPlanning />
     </section>
   );
 };

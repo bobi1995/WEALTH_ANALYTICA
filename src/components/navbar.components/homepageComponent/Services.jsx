@@ -6,7 +6,7 @@ export default () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12 text-center">
-            <h2 className="section-heading text-uppercase">Services</h2>
+            <h1 className="home-portfolio-h1 section-heading text-uppercase">Services</h1>
             <h3 className="section-subheading text-muted">
               We offer designed to differentiate and diversify your lines of
               business while deepening your client relationship{" "}

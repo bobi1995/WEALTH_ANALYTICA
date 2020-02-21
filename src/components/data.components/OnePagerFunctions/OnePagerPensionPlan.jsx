@@ -167,12 +167,25 @@ const OnePagerPensionPlan = props => {
                       element.Characteristics.map((e, i) => {
                         return (
                           <tr key={i}>
-                            <td>{e.Description}</td>
+                            <td className="onepager-pesion-description">
+                              {e.Description}
+                              <span className="onepager-tooltip">
+                                {e.Definition}
+                              </span>
+                            </td>
                             {uniqueYears.map((year, yearID) => {
                               if (e.Years.includes(year)) {
-                                return <td key={yearID}>Y</td>;
+                                return (
+                                  <td key={yearID}>
+                                    <i
+                                      className="fa fa-check"
+                                      aria-hidden="true"
+                                      style={{ color: "green" }}
+                                    ></i>
+                                  </td>
+                                );
                               } else {
-                                return <td key={yearID}>N</td>;
+                                return <td key={yearID}>N/A</td>;
                               }
                             })}
                           </tr>
