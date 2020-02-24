@@ -41,7 +41,7 @@ export default () => {
                 to="services"
                 spy={true}
                 smooth={true}
-                offset={5}
+                offset={0}
                 duration={500}
               >
                 Services

@@ -6,10 +6,10 @@ export default () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-12 text-center">
-            <h1 className="home-portfolio-h1 section-heading text-uppercase">Services</h1>
+            <h1 className="home-portfolio-h1 ">Our Difference</h1>
             <h3 className="section-subheading text-muted">
               We offer designed to differentiate and diversify your lines of
-              business while deepening your client relationship{" "}
+              business while deepening your client relationship
             </h3>
           </div>
         </div>
@@ -17,39 +17,33 @@ export default () => {
           <div className="col-md-4">
             <span className="fa-stack fa-4x">
               <i className="fa fa-circle fa-stack-2x text-primary"></i>
+              <i className="fa fa-area-chart fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 className="service-heading">Client Ready Pension Analytics</h4>
+            <p className="text-muted">
+              Wealth Analytica allows the Advisor to evalute the Pension and
+              deliver a differentiated service offering
+            </p>
+          </div>
+          <div className="col-md-4">
+            <span className="fa-stack fa-4x">
+              <i className="fa fa-circle fa-stack-2x text-primary"></i>
               <i className="fa fa-pie-chart fa-stack-1x fa-inverse"></i>
             </span>
-            <h4 className="service-heading">Information</h4>
+            <h4 className="service-heading">Dashboard</h4>
             <p className="text-muted">
-              The Wealth Analytica’s leading edge technology and industry
-              thought leaders consolidates disparate disconnected Qualified Plan
-              information and harmonizes, channeles and combines it into
-              meaningful format that can easily be evaluated by industry leading
-              Advisors
+              Advisors Create and Analyze your custom Target Market
             </p>
           </div>
           <div className="col-md-4">
             <span className="fa-stack fa-4x">
               <i className="fa fa-circle fa-stack-2x text-primary"></i>
-              <i className="fa fa-laptop fa-stack-1x fa-inverse"></i>
+              <i className="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
             </span>
-            <h4 className="service-heading">Analyzed data</h4>
+            <h4 className="service-heading">Leverage Wealth Analytica</h4>
             <p className="text-muted">
-              Wealth Analytica enhances the Advisors Competitive advantage by
-              delivering Client Meeting ready Qualified Plans Analysis, Heatmaps
-              and Relevant Advisor Dashboard as well as performance metrics
-            </p>
-          </div>
-          <div className="col-md-4">
-            <span className="fa-stack fa-4x">
-              <i className="fa fa-circle fa-stack-2x text-primary"></i>
-              <i className="fa fa-unlock fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 className="service-heading">Democratizing</h4>
-            <p className="text-muted">
-              Wealth Analytica new approach democratizes Qualified Plan
-              information that was once exclusively available to Bulge Bracket
-              Financial Institutions
+              Wealth Analytica enables you to focus on value add services and
+              create new ideas
             </p>
           </div>
         </div>
@@ -57,27 +51,12 @@ export default () => {
           <div className="col-md-4">
             <span className="fa-stack fa-4x">
               <i className="fa fa-circle fa-stack-2x text-primary"></i>
-              <i className="fa fa-line-chart fa-stack-1x fa-inverse"></i>
+              <i className="fa fa-balance-scale fa-stack-1x fa-inverse"></i>
             </span>
-            <h4 className="service-heading">Enhance your abilities</h4>
+            <h4 className="service-heading">Service Provider Information</h4>
             <p className="text-muted">
-              Wealth Analytica disruptive technology delivers enhances the
-              Advisors Value Propositions and allows the Advisor to further
-              justify their fees as well as enhance their abilities to defray
-              competitive threats from Robo and Other Competitive forces
-            </p>
-          </div>
-          <div className="col-md-4">
-            <span className="fa-stack fa-4x">
-              <i className="fa fa-circle fa-stack-2x text-primary"></i>
-              <i className="fa fa-search fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 className="service-heading">Search engine</h4>
-            <p className="text-muted">
-              Wealth Analytica search engines which allows clients to analyze
-              industry analytics, Total Addressable Markets (T.A.M), Third Party
-              Provider Information, Investments, Compliance, Pension Benefits,
-              Pension Financials and Welfare benefitss
+              Advisors can better service their client by Analyzing Service
+              Provider Information and address the Client Fiduciary Duty
             </p>
           </div>
           <div className="col-md-4">
@@ -85,12 +64,57 @@ export default () => {
               <i className="fa fa-circle fa-stack-2x text-primary"></i>
               <i className="fa fa-handshake-o fa-stack-1x fa-inverse"></i>
             </span>
-            <h4 className="service-heading">Open minded solutions</h4>
+            <h4 className="service-heading">Enterprise Value</h4>
             <p className="text-muted">
-              Wealth Analytica team is always open minded for your own ideas and
-              can integrate feautures that will make you more competitive. Share
-              your ideas for making product better and we will consider
-              integrating them.
+              Enhance your enterprise value and growth with Wealth Analytica
+              Lead Generation Module
+            </p>
+          </div>
+          <div className="col-md-4">
+            <span className="fa-stack fa-4x">
+              <i className="fa fa-circle fa-stack-2x text-primary"></i>
+              <i className="fa fa-users fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 className="service-heading">Client Focused</h4>
+            <p className="text-muted">
+              Wealth Analytica is exclusively focused on our Advisors and the
+              services they deliver to their clients
+            </p>
+          </div>
+        </div>
+        <div className="row text-center">
+          <div className="col-md-4">
+            <span className="fa-stack fa-4x">
+              <i className="fa fa-circle fa-stack-2x text-primary"></i>
+              <i className="fa fa-graduation-cap fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 className="service-heading">Advisor Centric</h4>
+            <p className="text-muted">
+              Wealth Analytica was conceived and developed by Industry Leading
+              Wealth management experts
+            </p>
+          </div>
+          <div className="col-md-4">
+            <span className="fa-stack fa-4x">
+              <i className="fa fa-circle fa-stack-2x text-primary"></i>
+              <i className="fa fa-globe fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 className="service-heading">Leading Technology</h4>
+            <p className="text-muted">
+              Wealth Analytica leading edge architecture and design provides a
+              unique and secure platform that can be accessed anywhere in the
+              world
+            </p>
+          </div>
+          <div className="col-md-4">
+            <span className="fa-stack fa-4x">
+              <i className="fa fa-circle fa-stack-2x text-primary"></i>
+              <i className="fa fa-calculator fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 className="service-heading">Wealth Analytica Analysis</h4>
+            <p className="text-muted">
+              Wealth Analytica Advisor Centric Analytics highlight essential
+              metrics to be evaluated
             </p>
           </div>
         </div>

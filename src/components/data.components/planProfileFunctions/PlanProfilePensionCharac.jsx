@@ -29,9 +29,18 @@ const PlanProfileCharac = props => {
                   </td>
                   {uniqueYears.map((year, yearID) => {
                     if (e.Years.includes(year)) {
-                      return <td key={yearID}>Y</td>;
+                      return (
+                        <td key={yearID}>
+                          {" "}
+                          <i
+                            className="fa fa-check"
+                            aria-hidden="true"
+                            style={{ color: "green" }}
+                          ></i>
+                        </td>
+                      );
                     } else {
-                      return <td key={yearID}>N</td>;
+                      return <td key={yearID}>N/A</td>;
                     }
                   })}
                 </tr>

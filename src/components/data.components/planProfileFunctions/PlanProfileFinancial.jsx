@@ -287,13 +287,37 @@ const ProfilePlanFinancial = props => {
                   if (element.ContributionFailureIndColor) {
                     return (
                       <td key={index} className="plan-profile-red">
-                        {element.ContributionFailureInd ? "Y" : "N"}
+                        {element.ContributionFailureInd ? (
+                          <i
+                            className="fa fa-exclamation-triangle"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                        ) : (
+                          <i
+                            className="fa fa-check"
+                            aria-hidden="true"
+                            style={{ color: "green" }}
+                          ></i>
+                        )}
                       </td>
                     );
                   } else {
                     return (
                       <td key={index}>
-                        {element.ContributionFailureInd ? "Y" : "N"}
+                        {element.ContributionFailureInd ? (
+                          <i
+                            className="fa fa-exclamation-triangle"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                        ) : (
+                          <i
+                            className="fa fa-check"
+                            aria-hidden="true"
+                            style={{ color: "green" }}
+                          ></i>
+                        )}
                       </td>
                     );
                   }
@@ -324,13 +348,37 @@ const ProfilePlanFinancial = props => {
                   if (element.LeasesInDefaultIndColor) {
                     return (
                       <td key={index} className="plan-profile-red">
-                        {element.LeasesInDefaultInd ? "Y" : "N"}
+                        {element.LeasesInDefaultInd ? (
+                          <i
+                            className="fa fa-times"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                        ) : (
+                          <i
+                            className="fa fa-check"
+                            aria-hidden="true"
+                            style={{ color: "green" }}
+                          ></i>
+                        )}
                       </td>
                     );
                   } else {
                     return (
                       <td key={index}>
-                        {element.LeasesInDefaultInd ? "Y" : "N"}
+                        {element.LeasesInDefaultInd ? (
+                          <i
+                            className="fa fa-times"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                        ) : (
+                          <i
+                            className="fa fa-check"
+                            aria-hidden="true"
+                            style={{ color: "green" }}
+                          ></i>
+                        )}
                       </td>
                     );
                   }
@@ -361,13 +409,37 @@ const ProfilePlanFinancial = props => {
                   if (element.LoansInDefaultIndColor) {
                     return (
                       <td key={index} className="plan-profile-red">
-                        {element.LoansInDefaultInd ? "Y" : "N"}
+                        {element.LoansInDefaultInd ? (
+                          <i
+                            className="fa fa-times"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                        ) : (
+                          <i
+                            className="fa fa-check"
+                            aria-hidden="true"
+                            style={{ color: "green" }}
+                          ></i>
+                        )}
                       </td>
                     );
                   } else {
                     return (
                       <td key={index}>
-                        {element.LoansInDefaultInd ? "Y" : "N"}
+                        {element.LoansInDefaultInd ? (
+                          <i
+                            className="fa fa-times"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                        ) : (
+                          <i
+                            className="fa fa-check"
+                            aria-hidden="true"
+                            style={{ color: "green" }}
+                          ></i>
+                        )}
                       </td>
                     );
                   }
@@ -408,11 +480,39 @@ const ProfilePlanFinancial = props => {
                   if (element.DFVCIndColor) {
                     return (
                       <td key={index} className="plan-profile-red">
-                        {element.DFVCInd ? "Y" : "N"}
+                        {element.DFVCInd ? (
+                          <i
+                            className="fa fa-times"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                        ) : (
+                          <i
+                            className="fa fa-check"
+                            aria-hidden="true"
+                            style={{ color: "green" }}
+                          ></i>
+                        )}
                       </td>
                     );
                   } else {
-                    return <td key={index}>{element.DFVCInd ? "Y" : "N"}</td>;
+                    return (
+                      <td key={index}>
+                        {element.DFVCInd ? (
+                          <i
+                            className="fa fa-times"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                        ) : (
+                          <i
+                            className="fa fa-check"
+                            aria-hidden="true"
+                            style={{ color: "green" }}
+                          ></i>
+                        )}
+                      </td>
+                    );
                   }
                 })}
               </tr>
