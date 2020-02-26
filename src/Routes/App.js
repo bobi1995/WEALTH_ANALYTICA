@@ -1,6 +1,6 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import Home from "../components/navbar.components/Home";
+import Page404 from "../components/Page404";
 import Login from "../components/Login";
 import Dashboard from "../components/data.components/Dashboard";
 import Heatmap from "../components/data.components/Heatmap";
@@ -18,7 +18,6 @@ function App() {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/" exact component={Home} />
         <Route path="/login" component={Login} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/filters" component={Filters} />
@@ -30,6 +29,7 @@ function App() {
           path="/planprofile/:planID/:isLarge"
           component={PlanProfile}
         />
+        <Route component={Page404} />
       </Switch>
     </Router>
   );
