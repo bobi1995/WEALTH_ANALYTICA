@@ -8,31 +8,12 @@ import About from "./homepageComponent/About";
 import Team from "./homepageComponent/Team";
 import Contact from "./homepageComponent/Contact";
 import Services from "./homepageComponent/Services";
+import ImageSection from "./homepageComponent/ImageSection";
 const Home = () => {
   return (
     <div className="home-content">
       <Navigation />
-      <header className="masthead">
-        <div className="container">
-          <div className="intro-text" href="#page-top">
-            <div className="intro-heading text-uppercase">Wealth Analytica</div>
-            <div className="intro-lead-in">
-              Better Connects Advisors, Client Pension Plans and Data
-            </div>
-
-            <Link
-              className="btn btn-primary btn-xl text-uppercase js-scroll-trigger"
-              to="services"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
-            >
-              Tell Me More
-            </Link>
-          </div>
-        </div>
-      </header>
+      <ImageSection />
       <Services />
       <Portfolio />
       <About />
