@@ -9,7 +9,7 @@ function PrivateRoute({ component: Component, ...rest }) {
         return sessionStorage.getItem("Token") ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/login" />
+          <Redirect to="/" />
         );
       }}
     />

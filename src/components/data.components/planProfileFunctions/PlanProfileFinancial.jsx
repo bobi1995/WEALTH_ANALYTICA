@@ -1,5 +1,6 @@
 import React from "react";
 import numeral from "numeral";
+import PlanProfileStatistics from "./PlanProfileStatistics";
 
 const ProfilePlanFinancial = props => {
   return (
@@ -176,81 +177,8 @@ const ProfilePlanFinancial = props => {
 
       {/**PLAN - Statistics */}
       <div className="plan-businessInfo">
-        <div className="plan-table-section">
-          <h1 className="plan-h1">Plan - Statistics</h1>
-          <table className="table table-striped table-bordered table-sm table-hover">
-            <thead className="thead-dark">
-              <tr>
-                <th></th>
-                {props.data[0].map((element, index) => {
-                  if (element.IsCity === true) {
-                    return (
-                      <th key={index}>
-                        {props.data[1]} in {element.Year}
-                      </th>
-                    );
-                  } else if (element.IsBusinessCode === true) {
-                    return (
-                      <th key={index}>
-                        Code {props.data[2]} for {element.Year}
-                      </th>
-                    );
-                  } else {
-                    return <th key={index}>{element.Year}</th>;
-                  }
-                })}
-              </tr>
-            </thead>
-            <tbody className="table-hover">
-              <tr>
-                <th className="thead-dark">AUM/HC</th>
-                {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>${numeral(element.AUMHC).format("0,0")}</td>
-                  );
-                })}
-              </tr>
-              <tr>
-                <th className="thead-dark">Yield</th>
-                {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>
-                      {numeral(element.Yield).format("0.00")}%
-                    </td>
-                  );
-                })}
-              </tr>
-              <tr>
-                <th className="thead-dark">Contribution Yield</th>
-                {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>
-                      {numeral(element.ContributionYield).format("0.00")}%
-                    </td>
-                  );
-                })}
-              </tr>
-              <tr>
-                <th className="thead-dark">Expense Ratio</th>
-                {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>
-                      {numeral(element.ExpenseRatio).format("0.00")}%
-                    </td>
-                  );
-                })}
-              </tr>
-              <tr>
-                <th className="thead-dark">ROR</th>
-                {props.data[0].map((element, index) => {
-                  return (
-                    <td key={index}>{numeral(element.ROR).format("0.00")}%</td>
-                  );
-                })}
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <h1 className="plan-h1">Plan - Statistics</h1>
+        <PlanProfileStatistics info={props} />
       </div>
 
       {/**ALERTS */}

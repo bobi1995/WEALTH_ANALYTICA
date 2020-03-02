@@ -5,7 +5,7 @@
   display: table;
   width: 100%;
   height: 30vh;
-  background-image: url("../images/data.png");
+  background-image: url("../images/data.gif");
   background-position: center;
   background-size: cover;
 }
@@ -20,6 +20,7 @@
 .dashboard-btn {
   width: 100%;
 }
+
 .dashboard-label {
   text-align: center;
 }
@@ -39,7 +40,7 @@
   padding-right: 25%;
 }
 .dashboard-h1 {
-  color: black;
+  color: #388fc2;
 }
 
 /**********DIAGRAMS ********************/
@@ -137,8 +138,12 @@
   align-content: center;
 }
 .individual-chart h1 {
-  color: black;
+  color: #388fc2;
   font-size: 2rem;
+}
+
+.individual-chart h3 {
+  color: #43b148;
 }
 .chart-content {
   width: 50%;

@@ -7,7 +7,7 @@
 /* Main Footer */
 footer .main-footer {
   padding: 20px 0;
-  background: #252525;
+  background: #378fc3;
 }
 footer ul {
   padding-left: 0;
@@ -16,7 +16,7 @@ footer ul {
 
 /* Copy Right Footer */
 .footer-copyright {
-  background: #222;
+  background: #378fc3;
   padding: 5px 0;
 }
 .footer-copyright .logo {
@@ -46,7 +46,7 @@ footer ul {
   padding-left: 0;
 }
 .footer-copyright p {
-  color: #969696;
+  color: white;
   margin: 2px 0 0;
 }
 
@@ -103,6 +103,9 @@ footer.light .footer-copyright {
   -ms-box-shadow: none;
   -o-box-shadow: none;
 }
+.footer-sitelink {
+  color: lightgreen;
+}
 .widget.subscribe p {
   margin-bottom: 18px;
 }
@@ -110,13 +113,14 @@ footer.light .footer-copyright {
   color: #ff8d1e;
 }
 .widget li a:hover {
-  color: #4b92dc;
+  color: white;
 }
 .widget-title {
   margin-bottom: 20px;
 }
+
 .widget-title span {
-  background: #839fad none repeat scroll 0 0;
+  background: white none repeat scroll 0 0;
   display: block;
   height: 1px;
   margin-top: 25px;
@@ -140,7 +144,7 @@ footer.light .footer-copyright {
 }
 .widget .badge {
   float: right;
-  background: #7f7f7f;
+  background: white;
 }
 
 .typo-light h1,

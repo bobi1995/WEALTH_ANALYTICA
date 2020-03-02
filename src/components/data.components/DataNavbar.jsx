@@ -56,7 +56,7 @@ const DataNavbar = () => {
                   <a href="/profile">Your Profile</a>
                   <a href="/">Back to site</a>
                   <a
-                    href=""
+                    href="/"
                     onClick={() => {
                       sessionStorage.clear();
                     }}

@@ -160,7 +160,7 @@ const Login = () => {
         />
         <h1>Welcome to Wealth Analytica</h1>
         <h1>
-          <a className="login-a" href="/">
+          <a className="login-a" href="http://wealthanalytica.com/">
             Back to site
           </a>
         </h1>
@@ -168,7 +168,7 @@ const Login = () => {
       <div className="cont">
         <form onSubmit={onSubmitLogin}>
           <div className="form sign-in">
-            <h2 className="login-h2">Hello again,</h2>
+            <h2 className="login-h2 login-colored">Hello again,</h2>
             <div className="div-label">
               <label className="login-label">
                 <span className="login-span">Email</span>
@@ -227,7 +227,7 @@ const Login = () => {
             </div>
           </div>
           <div className="form sign-up">
-            <h2 className="login-h2">Time to feel like home,</h2>
+            <h2 className="login-h2 login-colored">Time to feel like home,</h2>
             <form onSubmit={onSubmitReg}>
               <div className="div-label">
                 <label className="login-label">

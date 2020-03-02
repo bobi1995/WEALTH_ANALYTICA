@@ -27,7 +27,7 @@ const OnePagerMap = props => {
     popupAnchor: [0, -41]
   });
   return (
-    <div className="onepager-map-main">
+    <div className="onepager-map-main" data-html2canvas-ignore>
       <Map className="onepager-map" center={position} zoom={13}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

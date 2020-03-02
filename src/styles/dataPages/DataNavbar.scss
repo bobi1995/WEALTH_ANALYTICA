@@ -36,7 +36,7 @@
 }
 
 .data-nav div.logo a:hover {
-  color: #ff8d1e;
+  color: orange;
 }
 
 .data-nav div.data-main_list {
@@ -65,7 +65,7 @@
 }
 
 .data-nav div.data-main_list ul li a:hover {
-  color: #ff8d1e;
+  color: orange;
 }
 
 /* Home section */
@@ -112,7 +112,7 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: #111;
+    background-color: #388fc2;
     /*same background color of navbar*/
     background-position: center top;
   }
@@ -325,7 +325,7 @@
 
 .affix {
   padding: 0;
-  background-color: #111;
+  background-color: #378fc3;
 }
 
 .myH2 {
@@ -347,7 +347,7 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: black;
+  background-color: #388fc2;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;

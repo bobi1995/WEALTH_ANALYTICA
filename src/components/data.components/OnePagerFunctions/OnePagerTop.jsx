@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import html2canvas from "html2canvas";
+import html2pdf from "html2pdf.js";
 
 const OnePagerTop = props => {
+  const sendEmail = () => {
+    html2canvas(document.body).then(function(canvas) {
+      document.body.appendChild(canvas);
+    });
+  };
   const showSendEmail = () => {
     document.getElementById("emailform").style.display = "block";
     document.getElementById("mainbuttons").style.display = "none";
@@ -31,7 +38,11 @@ const OnePagerTop = props => {
           </Link>
         </button>
       </div>
-      <div id="emailform" className="onepager-top-emailform">
+      <div
+        id="emailform"
+        className="onepager-top-emailform"
+        data-html2canvas-ignore
+      >
         <div className="onepager-top-mainemail">
           <div className="onepager-emailform-email">
             <img
@@ -64,7 +75,10 @@ const OnePagerTop = props => {
           </div>
         </div>
         <div className="onepager-emailform-buttons">
-          <button className="btn btn-success btn-lg onepageremailbuttons">
+          <button
+            className="btn btn-success btn-lg onepageremailbuttons"
+            onClick={sendEmail}
+          >
             Send
           </button>
           <button

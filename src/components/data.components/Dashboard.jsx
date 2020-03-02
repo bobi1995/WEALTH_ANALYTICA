@@ -162,7 +162,7 @@ const Dashboard = props => {
               {stateInput.length < 3 ? (
                 <button
                   type="submit"
-                  className="btn btn-primary dashboard-btn"
+                  className="dashboard-btn btn btn-primary "
                   id="dashboard-submit-btn"
                 >
                   Add

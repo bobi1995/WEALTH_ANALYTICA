@@ -77,7 +77,11 @@ const Footer = () => {
                 </h5>
 
                 <p>
-                  <a href="mailto:info@domain.com" title="glorythemes">
+                  <a
+                    href="mailto:info@domain.com"
+                    title="glorythemes"
+                    className="footer-sitelink"
+                  >
                     info@wealthanalytica.com
                   </a>
                 </p>
