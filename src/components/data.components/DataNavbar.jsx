@@ -20,7 +20,7 @@ const DataNavbar = () => {
   };
 
   return (
-    <div className="data-navbar-content">
+    <div className="data-navbar-content" data-html2canvas-ignore>
       <nav className="data-nav" id="data-navigation">
         <div id="data-mainListDiv" className="data-main_list">
           <ul className="data-navlinks">

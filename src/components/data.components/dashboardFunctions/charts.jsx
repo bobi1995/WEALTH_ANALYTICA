@@ -11,6 +11,8 @@ const arrayReducer = array => {
     return (newArr = array.map(el => (el = el / 1000000)));
   } else if (lengthOfAv <= 6 && lengthOfAv > 3) {
     return (newArr = array.map(el => (el = el / 1000)));
+  } else {
+    return array;
   }
 };
 

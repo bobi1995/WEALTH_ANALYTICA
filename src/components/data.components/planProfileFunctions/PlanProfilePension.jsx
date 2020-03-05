@@ -104,8 +104,15 @@ const PlanProfilePension = props => {
                                     return element.TotalAssets.reverse().map(
                                       (el, id) => {
                                         if (el.Year === e) {
-                                          return (
+                                          return el.Value >= 0 ? (
                                             <td key={id}>
+                                              ${numeral(el.Value).format("0,0")}
+                                            </td>
+                                          ) : (
+                                            <td
+                                              key={id}
+                                              className="negative-numbers"
+                                            >
                                               ${numeral(el.Value).format("0,0")}
                                             </td>
                                           );
@@ -125,8 +132,15 @@ const PlanProfilePension = props => {
                                     return element.NetAssets.reverse().map(
                                       (el, id) => {
                                         if (el.Year === e) {
-                                          return (
+                                          return el.Value >= 0 ? (
                                             <td key={id}>
+                                              ${numeral(el.Value).format("0,0")}
+                                            </td>
+                                          ) : (
+                                            <td
+                                              key={id}
+                                              className="negative-numbers"
+                                            >
                                               ${numeral(el.Value).format("0,0")}
                                             </td>
                                           );

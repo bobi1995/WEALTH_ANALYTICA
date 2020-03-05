@@ -3,7 +3,7 @@ import axios from "axios";
 import Datanavbar from "./DataNavbar";
 import PlaneProfileBusinessInfo from "./planProfileFunctions/PlanProfileBusinessInfo";
 import PlanProfilePensionBenefitCodes from "./planProfileFunctions/PlanProfilePensionBenefitCodes";
-import ProfilePlanFinancial from "./planProfileFunctions/PlanProfileFinancial";
+import PlanProfileTables from "./planProfileFunctions/PlanProfileTables";
 import "../../styles/dataPages/planProfile.scss";
 import Loader from "./dashboardFunctions/loader";
 import PlanProfilePension from "./planProfileFunctions/PlanProfilePension";
@@ -46,7 +46,7 @@ const PlaneProfile = props => {
               data={results.PensionBenefitCodes}
             />
           )}
-          <ProfilePlanFinancial
+          <PlanProfileTables
             data={[results.Statistics, results.City, results.BusinessCode]}
           />
           <PlanProfilePension types={results.PlanSummary} />

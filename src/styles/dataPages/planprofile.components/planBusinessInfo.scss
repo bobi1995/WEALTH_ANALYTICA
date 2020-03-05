@@ -8,8 +8,12 @@
   text-align: center;
   margin: 0 auto;
   .plan-table-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
+
 .plan-h1 {
   color: #388fc2;
   text-align: center;
