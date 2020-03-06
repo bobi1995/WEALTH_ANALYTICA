@@ -118,6 +118,7 @@ const OnePagerTop = props => {
                   id="fromEmail"
                   placeholder="Your email"
                   autoComplete="off"
+                  defaultValue={sessionStorage.getItem("Email")}
                   required
                 />
               </div>

@@ -9,6 +9,7 @@ import Company from "./filtersFunctions/company";
 import Pagination from "./filtersFunctions/pagination";
 import RightFilters from "./filtersFunctions/RightFilters";
 import MiddleFilterCHARTS from "./filtersFunctions/MiddleFilterCHARTS";
+import SummaryTable from "./filtersFunctions/SummaryTable";
 
 const Filters = () => {
   const [stateInput, setStateInput] = useState([]);
@@ -280,6 +281,16 @@ const Filters = () => {
               <div className="radio-container">
                 <div className="radio-group">
                   <input
+                    id="radio-4"
+                    name="radio"
+                    type="radio"
+                    value="2015"
+                    onChange={onYearChange}
+                  />
+                  <label className="filter-year-label" htmlFor="radio-4">
+                    2015
+                  </label>
+                  <input
                     id="radio-3"
                     name="radio"
                     type="radio"
@@ -380,6 +391,8 @@ const Filters = () => {
           Search
         </button>
       </div>
+      <SummaryTable result={result.FilterProfile} />
+
       <div className="filter-bottom-main">
         <div className="table-container">
           <table className="table table-striped table-bordered table-sm table-hover">

@@ -48,11 +48,11 @@ const dataReturn = (array, name) => {
       {
         label: name,
         data: newArr,
-        backgroundColor: "rgba(0,0,0,0.2)",
-        borderColor: "rgba(0,0,0,1)",
+        backgroundColor: "rgba(56,143,194,0.2)",
+        borderColor: "rgba(56,143,194,1)",
         borderWidth: 1,
-        hoverBackgroundColor: "rgba(0,0,0,0.4)",
-        hoverBorderColor: "rgba(0,0,0,1)"
+        hoverBackgroundColor: "rgba(56,143,194,0.4)",
+        hoverBorderColor: "rgba(56,143,194,1)"
       }
     ]
   };
