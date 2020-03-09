@@ -19,7 +19,7 @@ const OnePager = props => {
       "Guid"
     )}&planID=${props.match.params.planID}&isLarge=${
       props.match.params.isLarge
-    }&minYear=2016&maxYear=2018`;
+    }&minYear=2015&maxYear=2018`;
     console.log(url);
     axios
       .get(url, {

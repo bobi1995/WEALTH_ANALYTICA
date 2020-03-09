@@ -122,7 +122,7 @@ const PlanProfileTables = props => {
                       <td key={index} className="plan-profile-red">
                         {element.LeasesInDefaultInd ? (
                           <i
-                            className="fa fa-times"
+                            className="fa fa-exclamation-triangle"
                             aria-hidden="true"
                             style={{ color: "red" }}
                           ></i>
@@ -140,7 +140,7 @@ const PlanProfileTables = props => {
                       <td key={index}>
                         {element.LeasesInDefaultInd ? (
                           <i
-                            className="fa fa-times"
+                            className="fa fa-exclamation-triangle"
                             aria-hidden="true"
                             style={{ color: "red" }}
                           ></i>
@@ -183,7 +183,7 @@ const PlanProfileTables = props => {
                       <td key={index} className="plan-profile-red">
                         {element.LoansInDefaultInd ? (
                           <i
-                            className="fa fa-times"
+                            className="fa fa-exclamation-triangle"
                             aria-hidden="true"
                             style={{ color: "red" }}
                           ></i>
@@ -201,7 +201,7 @@ const PlanProfileTables = props => {
                       <td key={index}>
                         {element.LoansInDefaultInd ? (
                           <i
-                            className="fa fa-times"
+                            className="fa fa-exclamation-triangle"
                             aria-hidden="true"
                             style={{ color: "red" }}
                           ></i>
@@ -254,7 +254,7 @@ const PlanProfileTables = props => {
                       <td key={index} className="plan-profile-red">
                         {element.DFVCInd ? (
                           <i
-                            className="fa fa-times"
+                            className="fa fa-exclamation-triangle"
                             aria-hidden="true"
                             style={{ color: "red" }}
                           ></i>
@@ -272,7 +272,7 @@ const PlanProfileTables = props => {
                       <td key={index}>
                         {element.DFVCInd ? (
                           <i
-                            className="fa fa-times"
+                            className="fa fa-exclamation-triangle"
                             aria-hidden="true"
                             style={{ color: "red" }}
                           ></i>

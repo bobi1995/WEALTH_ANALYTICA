@@ -7,7 +7,7 @@ import dashboardCharts from "../dashboardFunctions/charts";
 export default props => {
   const database = props.info;
   const data = {
-    labels: ["2016", "2017", "2018"],
+    labels: DataExtract.uniqueYearsPension(database.data[0]),
     datasets: [
       {
         label: "Participants",
