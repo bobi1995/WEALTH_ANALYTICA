@@ -3,6 +3,7 @@ import numeral from "numeral";
 import { Line } from "react-chartjs-2";
 import DataExtract from "./PlanProfileDataExtract";
 import dashboardCharts from "../dashboardFunctions/charts";
+import common from "../commonFunctions/common";
 
 export default props => {
   const database = props.info;
@@ -37,7 +38,7 @@ export default props => {
 
   return (
     <div className="plan-businessInfo plan-graphs">
-      <div className="plan-table-section">
+      <div className="plan-table-section responsive-table-div">
         <table className="table table-striped table-bordered table-sm table-hover">
           <thead className="thead-dark">
             <tr>
@@ -67,7 +68,7 @@ export default props => {
               {database.data[0].map((element, index) => {
                 return (
                   <td key={index}>
-                    ${numeral(element.ParticipantLoans).format("0,0")}
+                    ${common.reducer(element.ParticipantLoans)}
                   </td>
                 );
               })}
@@ -87,7 +88,7 @@ export default props => {
               {database.data[0].map((element, index) => {
                 return (
                   <td key={index}>
-                    ${numeral(element.ContributionEmployer).format("0,0")}
+                    ${common.reducer(element.ContributionEmployer)}
                   </td>
                 );
               })}
@@ -97,7 +98,7 @@ export default props => {
               {database.data[0].map((element, index) => {
                 return (
                   <td key={index}>
-                    ${numeral(element.ContributionParticipant).format("0,0")}
+                    ${common.reducer(element.ContributionParticipant)}
                   </td>
                 );
               })}

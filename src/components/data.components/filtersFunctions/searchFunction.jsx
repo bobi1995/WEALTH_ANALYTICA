@@ -125,5 +125,6 @@ const SearchFunction = (
 
   return result;
 };
+const returnUrl = url => {};
 
 export default SearchFunction;

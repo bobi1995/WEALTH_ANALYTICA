@@ -102,6 +102,7 @@ const Login = () => {
           sessionStorage.setItem("CompanyPhone", res.data.CompanyPhone);
           sessionStorage.setItem("Address", res.data.Address);
           sessionStorage.setItem("States", res.data.States);
+          sessionStorage.setItem("LogoData", res.data.LogoData);
 
           history.push({
             pathname: "/dashboard",

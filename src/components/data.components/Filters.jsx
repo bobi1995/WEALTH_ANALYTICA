@@ -19,9 +19,13 @@ const Filters = () => {
   const [inputedCities, setInputedCities] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [selectedYear, setSelectedYear] = useState();
-
   const [flag, setFlag] = useState(0);
   const [searches, setSearches] = useState(0);
+
+  /********************SORTING*********** */
+  const [sorted, setSorted] = useState(0);
+  const [sortedPart, setSortedPart] = useState(0);
+  const [sortedAlphabetic, setSortedAlphabetic] = useState(0);
 
   /********************REQUESTED DATA*********** */
   const [NetAssetBeginOfYear, setNetAssetBeginOfYear] = useState("");
@@ -30,6 +34,8 @@ const Filters = () => {
   /****************PAGINATION********* */
   const [currentPage, setCurrentPage] = useState(1);
   const [companiesPerPage, setCompaniesPerPage] = useState(30);
+
+  const [parameters, setParameters] = useState();
 
   useEffect(() => {
     setNetAssetBeginOfYear(result.NetAssetBeginOfYear);
@@ -180,7 +186,21 @@ const Filters = () => {
     const dfeoption = document.getElementById("dfeoptions").options[
       document.getElementById("dfeoptions").selectedIndex
     ].value;
-
+    setParameters({
+      selectedYear,
+      stateAbbriviation,
+      inputedCities,
+      maxIncome,
+      minIncome,
+      minParticipants,
+      maxParticipants,
+      companyType,
+      businessCode,
+      benefitType,
+      benefitSymbol,
+      planEntity,
+      dfeoption
+    });
     const data = await SearchFunction(
       selectedYear,
       stateAbbriviation,
@@ -196,25 +216,49 @@ const Filters = () => {
       planEntity,
       dfeoption
     );
+
     setResult(data);
     setCompanies(data.Companies);
   };
 
   //***********SORT BY**************
   const sortByIncome = () => {
-    const arr = [...companies].sort((a, b) =>
-      a.NetIncome > b.NetIncome ? -1 : 1
-    );
+    let arr = [];
+    if (sorted === 0) {
+      setSorted(1);
+      arr = [...companies].sort((a, b) => (a.NetIncome > b.NetIncome ? -1 : 1));
+    } else {
+      setSorted(0);
+      arr = [...companies].sort((a, b) => (a.NetIncome > b.NetIncome ? 1 : -1));
+    }
     setCompanies(arr);
   };
   const sortByParticipants = () => {
-    const arr = [...companies].sort((a, b) =>
-      a.Participants > b.Participants ? -1 : 1
-    );
+    let arr = [];
+    if (sortedPart === 0) {
+      setSortedPart(1);
+      arr = [...companies].sort((a, b) =>
+        a.Participants > b.Participants ? -1 : 1
+      );
+    } else {
+      setSortedPart(0);
+      arr = [...companies].sort((a, b) =>
+        a.Participants > b.Participants ? 1 : -1
+      );
+    }
+
     setCompanies(arr);
   };
   const sortByName = () => {
-    const arr = [...companies].sort((a, b) => (a.Name > b.Name ? 1 : -1));
+    let arr = [];
+    if (sortedAlphabetic === 0) {
+      setSortedAlphabetic(1);
+      arr = [...companies].sort((a, b) => (a.Name > b.Name ? 1 : -1));
+    } else {
+      setSortedAlphabetic(0);
+      arr = [...companies].sort((a, b) => (a.Name > b.Name ? -1 : 1));
+    }
+
     setCompanies(arr);
   };
 
@@ -391,7 +435,7 @@ const Filters = () => {
           Search
         </button>
       </div>
-      <SummaryTable result={result.FilterProfile} />
+      <SummaryTable result={result.FilterProfile} param={parameters} />
 
       <div className="filter-bottom-main">
         <div className="table-container">
@@ -421,7 +465,7 @@ const Filters = () => {
                   Income
                 </th>
                 <th>Details</th>
-                <th>Mark</th>
+                <th>Save</th>
               </tr>
             </thead>
             <tbody className="table-hover">

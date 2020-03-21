@@ -43,7 +43,7 @@ const dataReturn = (array, name) => {
   const newArr = arrayReducer(array);
 
   return {
-    labels: ["2016", "2017", "2018"],
+    labels: ["2015", "2016", "2017", "2018"],
     datasets: [
       {
         label: name,

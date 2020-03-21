@@ -8,6 +8,7 @@ import functions from "./dashboardFunctions/functions";
 import charts from "./dashboardFunctions/charts";
 import { Bar } from "react-chartjs-2";
 import Loader from "./dashboardFunctions/loader";
+import DashSummary from "./dashboardFunctions/DashSummary";
 
 const Dashboard = props => {
   const [stateInput, setStateInput] = useState([]);
@@ -37,11 +38,11 @@ const Dashboard = props => {
     let url;
 
     if (stateAbbriviation.length === 1) {
-      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?year=2016&year=2017&year=2018&state=${stateAbbriviation[0]}`;
+      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}`;
     } else if (stateAbbriviation.length === 2) {
-      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?year=2016&year=2017&year=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}`;
+      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}`;
     } else if (stateAbbriviation.length === 3) {
-      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?year=2016&year=2017&year=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}&state=${stateAbbriviation[2]}`;
+      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}&state=${stateAbbriviation[2]}`;
     }
     console.log(url);
     if (stateAbbriviation.length > 0) {
@@ -54,7 +55,8 @@ const Dashboard = props => {
           }
         })
         .then(res => {
-          res.data.forEach(el => {
+          console.log(res.data);
+          res.data.Statistics.forEach(el => {
             document.getElementById("dashboard-submit-btn").disabled = false;
             netIncome.push(el.NetIncome);
             netAssetsEndOfYear.push(el.NetAssetsEndOfYear);
@@ -189,6 +191,7 @@ const Dashboard = props => {
           </div>
         </div>
       </div>
+      <DashSummary result={fetchedData.FilterProfile} />
       {/***********FIRST ROW OF CHARTS*************/}
       <div className="dashboard-graphs">
         <div className="individual-chart">

@@ -1,11 +1,15 @@
 import React from "react";
-import numeral from "numeral";
 import { Bar } from "react-chartjs-2";
 import DataExtract from "./PlanProfileDataExtract";
 import dashboardCharts from "../dashboardFunctions/charts";
+import common from "../commonFunctions/common";
 
 export default props => {
   const database = props.info;
+  const reducedData = dashboardCharts.arrayReducer(
+    DataExtract.netAssetsPension(database.data[0])
+  );
+  console.log(database.data[0]);
   const aumhcChartData = {
     labels: DataExtract.uniqueYearsPension(database.data[0]),
     datasets: [
@@ -16,16 +20,14 @@ export default props => {
         borderWidth: 1,
         hoverBackgroundColor: "rgba(56,143,194,0.4)",
         hoverBorderColor: "rgba(56,143,194,1)",
-        data: dashboardCharts.arrayReducer(
-          DataExtract.netAssetsPension(database.data[0])
-        )
+        data: reducedData
       }
     ]
   };
   return (
     <div className="plan-businessInfo plan-graphs">
-      <div className="plan-table-section">
-        <table className="table table-striped table-bordered table-sm table-hover">
+      <div className="plan-table-section responsive-table-div">
+        <table className="table table-striped table-bordered table-sm table-hover ">
           <thead className="thead-dark">
             <tr>
               <th></th>
@@ -50,15 +52,13 @@ export default props => {
           </thead>
           <tbody className="table-hover">
             <tr>
-              <th className="thead-dark">Total Assets</th>
+              <th className="thead-dark ">Total Assets</th>
               {database.data[0].map((element, index) => {
                 return element.TotalAssets >= 0 ? (
-                  <td key={index}>
-                    ${numeral(element.TotalAssets).format("0,0")}
-                  </td>
+                  <td key={index}>${common.reducer(element.TotalAssets)}</td>
                 ) : (
                   <td key={index} className="negative-numbers">
-                    ${numeral(element.TotalAssets).format("0,0")}
+                    ${common.reducer(element.TotalAssets)}
                   </td>
                 );
               })}
@@ -67,12 +67,10 @@ export default props => {
               <th className="thead-dark">Net Assets</th>
               {database.data[0].map((element, index) => {
                 return element.NetAssets >= 0 ? (
-                  <td key={index}>
-                    ${numeral(element.NetAssets).format("0,0")}
-                  </td>
+                  <td key={index}>${common.reducer(element.NetAssets)}</td>
                 ) : (
                   <td key={index} className="negative-numbers">
-                    ${numeral(element.NetAssets).format("0,0")}
+                    ${common.reducer(element.NetAssets)}
                   </td>
                 );
               })}
@@ -84,17 +82,15 @@ export default props => {
                   return (
                     <td key={index} className="plan-profile-red">
                       <i className="fa fa-flag" aria-hidden="true"></i>$
-                      {numeral(element.NetIncome).format("0,0")}
+                      {common.reducer(element.NetIncome)}
                     </td>
                   );
                 } else {
                   return element.NetIncome >= 0 ? (
-                    <td key={index}>
-                      ${numeral(element.NetIncome).format("0,0")}
-                    </td>
+                    <td key={index}>${common.reducer(element.NetIncome)}</td>
                   ) : (
                     <td key={index} className="negative-numbers">
-                      ${numeral(element.NetIncome).format("0,0")}
+                      ${common.reducer(element.NetIncome)}
                     </td>
                   );
                 }
@@ -104,12 +100,10 @@ export default props => {
               <th className="thead-dark">Total Expenses</th>
               {database.data[0].map((element, index) => {
                 return element.TotalExpenses >= 0 ? (
-                  <td key={index}>
-                    ${numeral(element.TotalExpenses).format("0,0")}
-                  </td>
+                  <td key={index}>${common.reducer(element.TotalExpenses)}</td>
                 ) : (
                   <td key={index} className="negative-numbers">
-                    ${numeral(element.TotalExpenses).format("0,0")}
+                    ${common.reducer(element.TotalExpenses)}
                   </td>
                 );
               })}
@@ -121,17 +115,17 @@ export default props => {
                   return (
                     <td key={index} className="plan-profile-red">
                       <i className="fa fa-flag" aria-hidden="true"></i>$
-                      {numeral(element.TotalDistributions).format("0,0")}
+                      {common.reducer(element.TotalDistributions)}
                     </td>
                   );
                 } else {
                   return element.TotalDistributions >= 0 ? (
                     <td key={index}>
-                      ${numeral(element.TotalDistributions).format("0,0")}
+                      ${common.reducer(element.TotalDistributions)}
                     </td>
                   ) : (
                     <td key={index} className="negative-numbers">
-                      ${numeral(element.TotalDistributions).format("0,0")}
+                      ${common.reducer(element.TotalDistributions)}
                     </td>
                   );
                 }

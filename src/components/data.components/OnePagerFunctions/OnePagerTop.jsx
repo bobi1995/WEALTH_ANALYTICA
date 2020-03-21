@@ -9,6 +9,7 @@ const OnePagerTop = props => {
   };
   const sendEmail = e => {
     e.preventDefault();
+    document.getElementById("clientLogo").style.display = "block";
     const sendUrl = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/SendEmail`;
     html2canvas(document.body).then(function(canvas) {
       const ImageUrl = canvas.toDataURL();
@@ -29,11 +30,13 @@ const OnePagerTop = props => {
           }
         })
         .then(res => {
+          document.getElementById("clientLogo").style.display = "none";
+
           document.getElementById("emailform").style.display = "none";
           document.getElementById("mainbuttons").style.display = "block";
           document.getElementById("alert-popupid").style.display = "block";
           document.getElementById("message-alert-box").innerHTML =
-            "Send successfully";
+            "Successfully sent";
         })
         .catch(err => {
           console.log(err);
@@ -76,7 +79,7 @@ const OnePagerTop = props => {
             }}
             target="_blank"
           >
-            Generate Plan Profile
+            Client Plan Analytic
           </Link>
         </button>
       </div>
@@ -100,13 +103,13 @@ const OnePagerTop = props => {
             </div>
             <div className="onepager-top-fromto">
               <div className="onepager-top-fromto-inner">
-                <label className="onepager-fromto-label">Subject:</label>
+                <label className="onepager-fromto-label">To:</label>
                 <input
                   className="form-control"
                   type="text"
-                  id="subject"
-                  placeholder="Subject"
-                  autoComplete="off"
+                  id="toEmail"
+                  placeholder="Client emails"
+                  autoComplete="on"
                   required
                 />
               </div>
@@ -123,12 +126,12 @@ const OnePagerTop = props => {
                 />
               </div>
               <div className="onepager-top-fromto-inner">
-                <label className="onepager-fromto-label">To:</label>
+                <label className="onepager-fromto-label">Subject:</label>
                 <input
                   className="form-control"
-                  type="email"
-                  id="toEmail"
-                  placeholder="Customer email"
+                  type="text"
+                  id="subject"
+                  placeholder="Subject"
                   autoComplete="off"
                   required
                 />

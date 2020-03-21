@@ -97,8 +97,15 @@ const SmallCompanies = props => {
       </td>
 
       <td>{numeral(props.singleCompany.Participants).format("0,0")}</td>
-
-      <td>${convertedIncome}</td>
+      {props.singleCompany.NetIncome > 0 ? (
+        <td className="filter-td-income">
+          ${commonFunctions.reducer(props.singleCompany.NetIncome)}
+        </td>
+      ) : (
+        <td className="filter-td-income negative-numbers">
+          ${commonFunctions.reducer(props.singleCompany.NetIncome)}
+        </td>
+      )}
       <td>
         <Link
           to={{

@@ -1,3 +1,4 @@
+import numeral from "numeral";
 const phoneFormat = phone => {
   const first = "(" + phone.substring(0, 3) + ")";
   const second = phone.substring(3, 6) + "-";
@@ -18,4 +19,25 @@ const splitCapitalLetterString = str => {
   return temp.join(" ");
 };
 
-export default { phoneFormat, formatString, splitCapitalLetterString };
+const reducer = number => {
+  if (number) {
+    const parts = number.toString().split(".");
+    let lengthOfAv = 0;
+    if (number < 0) {
+      const negative = parts[0].toString().split("-");
+      lengthOfAv = negative[1].toString().length;
+    } else lengthOfAv = parts[0].toString().length;
+    if (lengthOfAv > 12) {
+      return (parts[0] / 100000000000).toFixed(2) + " T";
+    } else if (lengthOfAv <= 12 && lengthOfAv > 9) {
+      return (parts[0] / 1000000000).toFixed(2) + " B";
+    } else if (lengthOfAv <= 9 && lengthOfAv > 6) {
+      return (parts[0] / 1000000).toFixed(2) + " M";
+    } else if (lengthOfAv <= 6 && lengthOfAv > 3) {
+      return (parts[0] / 1000).toFixed(2) + " K";
+    } else {
+      return parts[0];
+    }
+  } else return numeral(number).format("0,0");
+};
+export default { phoneFormat, formatString, splitCapitalLetterString, reducer };

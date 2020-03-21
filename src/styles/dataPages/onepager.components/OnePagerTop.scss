@@ -49,7 +49,13 @@
   text-decoration: none;
   color: white;
 }
-
+.responsive-table-div {
+  overflow-x: auto;
+  td {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
 //*************EMAIL ALERT*****************************
 
 .portfolio-popup {
@@ -71,11 +77,11 @@
 /* Modal Content */
 .portfolio-popup-content {
   background-color: #fefefe;
-  margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
-  border-radius: 16px 16px 0px 0px !important;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 16px 16px 16px 16px !important;
 }
 
 @media screen and (max-width: 1024px) {
@@ -96,4 +102,10 @@
     margin-right: 0;
     white-space: pre-wrap;
   }
+}
+.one-pager-attachment-logo {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+  display: none;
 }

@@ -10,6 +10,7 @@ import OnePagerRightPane from "./OnePagerFunctions/OnePagerRightPane";
 import OnePagerTop from "./OnePagerFunctions/OnePagerTop";
 import OnePagerMap from "./OnePagerFunctions/OnePagerMap";
 import OnePagerPensionPlan from "./OnePagerFunctions/OnePagerPensionPlan";
+import OnePagerLogo from "./OnePagerFunctions/OnePagerLogo";
 
 const OnePager = props => {
   const [results, setResults] = useState([]);
@@ -48,6 +49,8 @@ const OnePager = props => {
           <OnePagerTop
             data={[props.match.params.planID, props.match.params.isLarge]}
           />
+          <OnePagerLogo />
+
           <OnePagerCharts data={results.Statistics} />
           <OnePagerTables data={results.Statistics} />
           <OnePagerRightPane data={[results.City, results.BusinessCode]} />

@@ -3,6 +3,8 @@ import numeral from "numeral";
 import commonFunctions from "../commonFunctions/common";
 import DataExtract from "./PlanProfileDataExtract";
 import PlanProfilePensionCharac from "./PlanProfilePensionCharac";
+import common from "../commonFunctions/common";
+
 const PlanProfilePension = props => {
   const uniqueYears = DataExtract.uniqueYearsPension();
 
@@ -27,7 +29,7 @@ const PlanProfilePension = props => {
         ? props.types.map((element, index) => {
             return (
               <div key={index}>
-                <div className="plan-table-section">
+                <div className="plan-table-section ">
                   <h1 className="onepager-bottomtables-h1">
                     {element.PlanName &&
                       commonFunctions.formatString(element.PlanName)}
@@ -106,14 +108,14 @@ const PlanProfilePension = props => {
                                         if (el.Year === e) {
                                           return el.Value >= 0 ? (
                                             <td key={id}>
-                                              ${numeral(el.Value).format("0,0")}
+                                              ${common.reducer(el.Value)}
                                             </td>
                                           ) : (
                                             <td
                                               key={id}
                                               className="negative-numbers"
                                             >
-                                              ${numeral(el.Value).format("0,0")}
+                                              ${common.reducer(el.Value)}
                                             </td>
                                           );
                                         }
@@ -134,14 +136,14 @@ const PlanProfilePension = props => {
                                         if (el.Year === e) {
                                           return el.Value >= 0 ? (
                                             <td key={id}>
-                                              ${numeral(el.Value).format("0,0")}
+                                              ${common.reducer(el.Value)}
                                             </td>
                                           ) : (
                                             <td
                                               key={id}
                                               className="negative-numbers"
                                             >
-                                              ${numeral(el.Value).format("0,0")}
+                                              ${common.reducer(el.Value)}
                                             </td>
                                           );
                                         }

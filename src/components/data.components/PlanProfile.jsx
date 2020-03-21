@@ -36,7 +36,7 @@ const PlaneProfile = props => {
     <div>
       <Datanavbar />
       <section className="clientDash-img">
-        <h1 className="clientDash-header1">Plan Profile</h1>
+        <h1 className="clientDash-header1">Client Ready Plan Analytic</h1>
       </section>
       {results.City ? (
         <div>

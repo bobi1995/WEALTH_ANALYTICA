@@ -27,8 +27,8 @@ const PlanProfileTables = props => {
 
       {/**ALERTS */}
       <div className="plan-businessInfo">
-        <div className="plan-table-section">
-          <h1 className="plan-h1">Alerts</h1>
+        <div className="plan-table-section ">
+          <h1 className="plan-h1">Heatmap Alerts</h1>
           <table className="table table-striped table-bordered table-sm table-hover">
             <thead className="thead-dark">
               <tr>

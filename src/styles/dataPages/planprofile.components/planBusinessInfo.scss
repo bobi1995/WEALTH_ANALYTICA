@@ -4,13 +4,16 @@
 }
 .plan-graphs {
   display: flex;
-  width: 70%;
+  width: 90%;
   text-align: center;
   margin: 0 auto;
   .plan-table-section {
     display: flex;
-    justify-content: center;
     align-items: center;
+  }
+  td {
+    white-space: nowrap;
+    overflow: hidden;
   }
 }
 
@@ -20,9 +23,12 @@
 }
 .plan-table-section {
   display: inline-block;
-
-  width: 70%;
+  width: 90%;
   text-align: center;
+  td {
+    white-space: nowrap;
+    overflow: hidden;
+  }
 }
 @media screen and (max-width: 1024px) {
   .plan-table-section {

@@ -1,4 +1,5 @@
 @import "./filter.components/filterBookmarkBtn.scss";
+@import "./filter.components/savedFilters.scss";
 $color1: #f4f4f4;
 $color2: #3197ee;
 
@@ -106,6 +107,9 @@ input[type="radio"]:checked + .filter-year-label {
 .filter-main-search-btn {
   margin-top: 4%;
 }
+.filter-main-saveFilter-btn {
+  margin-top: 2%;
+}
 .filter-submit-btn {
   display: block;
   width: 20%;
@@ -119,6 +123,19 @@ input[type="radio"]:checked + .filter-year-label {
 
 .filter-submit-btn:hover {
   background-color: lightgreen;
+}
+.filter-saveFilter-btn {
+  display: block;
+  width: 20%;
+  background-color: #388fc2;
+  color: white;
+  border-radius: 3%;
+  border: 0;
+  height: 40px;
+  margin: 0 auto; // auto left/right margins
+}
+.filter-saveFilter-btn:hover {
+  background-color: #9dd4f5;
 }
 .filter-list-holder {
   width: 50%;
@@ -145,7 +162,10 @@ input[type="radio"]:checked + .filter-year-label {
 /*******************BOTTOM DIV************************/
 .filter-bottom-main {
   margin: 1%;
-  margin-top: 5%;
+  margin-top: 3%;
+}
+.filter-td-income {
+  white-space: nowrap;
 }
 .filter-bottom-sort-div {
   text-align: center;
@@ -166,6 +186,7 @@ input[type="radio"]:checked + .filter-year-label {
   margin-top: 3%;
   display: flex;
 }
+
 .filter-company-label {
   width: 100%;
   text-align: right;
@@ -175,8 +196,8 @@ input[type="radio"]:checked + .filter-year-label {
   margin-left: 3%;
   display: block;
   width: 100%;
-  padding: 0.375rem 0.75rem;
   font-size: 0.8rem;
+  padding-left: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
   color: #495057;

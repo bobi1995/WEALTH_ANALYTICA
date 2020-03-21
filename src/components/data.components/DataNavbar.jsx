@@ -27,25 +27,19 @@ const DataNavbar = () => {
             <li>
               <a href="/dashboard">Dashboard</a>
             </li>
-            <li>
-              <a href="/filters">Filters</a>
-            </li>
-            <li>
-              <a href="/heatmap">Heatmap</a>
+            <li className="dropdown">
+              <div>
+                <a className="dropbtn" href="/filters">
+                  Lead Generator
+                </a>
+                <div className="dropdown-content">
+                  <a href="/filters">Filters</a>
+                  <a href="/saved-filters">Saved Filters</a>
+                </div>
+              </div>
             </li>
             <li>
               <a href="/bookmarks">Bookmarks</a>
-            </li>
-            <li className="dropdown">
-              <div>
-                <a className="dropbtn" href="/onepager">
-                  Services
-                </a>
-                <div className="dropdown-content">
-                  <a href="/onepager">OnePager</a>
-                  <a href="/planprofile">PlanProfile</a>
-                </div>
-              </div>
             </li>
             <li className="dropdown">
               <div>

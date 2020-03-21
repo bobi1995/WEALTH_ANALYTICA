@@ -3,6 +3,7 @@ import numeral from "numeral";
 import { Bar } from "react-chartjs-2";
 import DataExtract from "./PlanProfileDataExtract";
 import dashboardCharts from "../dashboardFunctions/charts";
+import common from "../commonFunctions/common";
 
 export default props => {
   const database = props.info;
@@ -76,8 +77,8 @@ export default props => {
     ]
   };
   return (
-    <div className="plan-businessInfo plan-graphs">
-      <div className="plan-table-section">
+    <div className="plan-businessInfo onepager-charts-all">
+      <div className="onepager-chart-content responsive-table-div">
         <table className="table table-striped table-bordered table-sm table-hover">
           <thead className="thead-dark">
             <tr>
@@ -106,7 +107,7 @@ export default props => {
               <th className="thead-dark">AUM/HC</th>
               {database.data[0].map((element, index) => {
                 return element.AUMHC >= 0 ? (
-                  <td key={index}>${numeral(element.AUMHC).format("0,0")}</td>
+                  <td key={index}>${common.reducer(element.AUMHC)}</td>
                 ) : (
                   <td key={index} className="negative-numbers">
                     ${numeral(element.AUMHC).format("0,0")}
@@ -169,11 +170,11 @@ export default props => {
           </tbody>
         </table>
       </div>
-      <div className="plan-table-section ">
+      <div className="onepager-chart-content">
         <Bar
           data={aumhcChartData}
-          width={250}
-          height={200}
+          width={150}
+          height={100}
           options={dashboardCharts.optionReturn([
             DataExtract.lastYearAum(database.data[0])[0],
             DataExtract.industryAum(database.data[0])[0],
@@ -181,11 +182,11 @@ export default props => {
           ])}
         />
       </div>
-      <div className="plan-table-section ">
+      <div className="onepager-chart-content">
         <Bar
           data={yeildData}
-          width={250}
-          height={200}
+          width={150}
+          height={100}
           options={{
             scales: {
               yAxes: [

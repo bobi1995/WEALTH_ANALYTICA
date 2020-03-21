@@ -1,11 +1,12 @@
 import React from "react";
 import numeral from "numeral";
-import SaveFilter from "./SaveFilter";
+
 export default props => {
+  console.log(props.result);
   return props.result !== undefined ? (
     <div className="plan-businessInfo">
       <div className="plan-table-section">
-        <h1 className="plan-h1">Filter Summary</h1>
+        <h1 className="plan-h1">Dashboard Summary</h1>
         <table className="table table-striped table-bordered table-sm table-hover">
           <thead className="thead-dark">
             <tr>
@@ -35,7 +36,6 @@ export default props => {
           </tbody>
         </table>
       </div>
-      <SaveFilter urlparams={props.param} />
     </div>
   ) : (
     ""
