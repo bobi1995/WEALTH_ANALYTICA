@@ -25,11 +25,8 @@ function App() {
         <PrivateRoute path="/bookmarks" component={Bookmarks} />
         <PrivateRoute path="/saved-filters" component={SavedFilters} />
 
-        <PrivateRoute path="/onepager/:planID/:isLarge" component={OnePager} />
-        <PrivateRoute
-          path="/planprofile/:planID/:isLarge"
-          component={PlanProfile}
-        />
+        <PrivateRoute path="/onepager/:CompanyID" component={OnePager} />
+        <PrivateRoute path="/planprofile/:CompanyID" component={PlanProfile} />
         <Route component={Page404} />
       </Switch>
     </Router>

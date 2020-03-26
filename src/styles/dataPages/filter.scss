@@ -218,6 +218,12 @@ input[type="radio"]:checked + .filter-year-label {
 .input-page-pagination {
   width: 55px;
 }
+.opened-page {
+  background-color: green;
+  color: green;
+  font-weight: bold;
+  font-size: 15px;
+}
 
 @media screen and (max-width: 1024px) {
   .filter-top-main {

@@ -14,11 +14,14 @@ const Login = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [address, setAddress] = useState("");
-
+  const [fileName, setFileName] = useState("");
+  const [fileBase64, setFileBase64] = useState("");
+  const [isBusiness, setIsBusiness] = useState(false);
   const clicked = () => {
     document.querySelector(".cont").classList.toggle("s--signup");
   };
@@ -47,6 +50,11 @@ const Login = () => {
   const onEmailChange = e => {
     const email = e.target.value;
     setEmail(email);
+  };
+
+  const onPhoneChange = e => {
+    const phone = e.target.value;
+    setPhone(phone);
   };
 
   const onPasswordChange = e => {
@@ -124,9 +132,13 @@ const Login = () => {
       firstname: firstName,
       lastname: lastName,
       email: email,
+      CompanyPhone: phone,
       password: password,
       companyname: companyName,
-      address: address
+      address: address,
+      IsBusinessAccount: isBusiness,
+      LogoFileName: fileName,
+      LogoData: fileBase64
     };
 
     if (password !== confirmPassword) {
@@ -136,6 +148,7 @@ const Login = () => {
       alert("Password must be at least 7 symbols");
       setLoading(false);
     } else {
+      console.log(data);
       axios
         .post(`http://pensionswebapi.azurewebsites.net/api/Users`, data)
         .then(res => {
@@ -149,10 +162,41 @@ const Login = () => {
         });
     }
   };
+  //BUSINESS ACCOUNT
+  const businessChange = e => {
+    setIsBusiness(e.target.checked);
+    console.log(isBusiness);
+  };
+  //FILE UPLOAD AND PICK
+  const uploadFile = () => {
+    const file = document.getElementById("fileID");
+    file.click();
+  };
 
+  const pickFile = async () => {
+    document.getElementById(
+      "upload-control"
+    ).placeholder = document.getElementById("fileID").files[0].name;
+    const file = await toBase64(document.getElementById("fileID").files[0]);
+    const parts = file.split(",");
+    setFileName(document.getElementById("fileID").files[0].name);
+    setFileBase64(parts[1]);
+  };
+
+  //FILE TO BASE64
+  const toBase64 = file =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
   return (
     <div className="cont2">
-      <div expand="lg" className="login-container-fluid container-fluid">
+      <div
+        expand="lg"
+        className="login-container-fluid container-fluid dashboard-diagrams"
+      >
         <img
           id="logoimg"
           className="login-logo"
@@ -260,6 +304,15 @@ const Login = () => {
                     required
                   />
                 </label>
+                <label className="login-label">
+                  <span className="login-span">Phone</span>
+                  <input
+                    className="login-input"
+                    type="text"
+                    onChange={onPhoneChange}
+                    required
+                  />
+                </label>
               </div>
               <div className="div-label">
                 <label className="login-label">
@@ -299,6 +352,56 @@ const Login = () => {
                     onChange={onAddressChange}
                     required
                   />
+                </label>
+              </div>
+              <div className="div-label">
+                <label className="login-label">
+                  <span className="login-span">Business account</span>
+
+                  <div className="isBusinessLogin">
+                    <input
+                      type="checkbox"
+                      checked={isBusiness}
+                      id="isBusiness"
+                      onChange={businessChange}
+                      name="check"
+                    />
+                    <label htmlFor="isBusiness"></label>
+                  </div>
+                </label>
+
+                <label className="login-label">
+                  <span className="login-span">Upload Logo</span>
+                  <div className="form-group">
+                    <input
+                      type="file"
+                      name="img[]"
+                      className="file"
+                      id="fileID"
+                      onChange={pickFile}
+                    />
+                    <div className="input-group col-xs-12">
+                      <span className="input-group-addon">
+                        <i className="glyphicon glyphicon-picture"></i>
+                      </span>
+                      <input
+                        type="text"
+                        className="form-control input-lg"
+                        id="upload-control"
+                        disabled
+                        placeholder="Upload Image"
+                      />
+                      <span className="input-group-btn">
+                        <button
+                          className="browse btn btn-primary input-lg"
+                          type="button"
+                          onClick={uploadFile}
+                        >
+                          <i className="glyphicon glyphicon-search"></i> Browse
+                        </button>
+                      </span>
+                    </div>
+                  </div>
                 </label>
               </div>
               {loading && (

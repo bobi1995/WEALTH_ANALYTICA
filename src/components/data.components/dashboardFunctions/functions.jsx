@@ -4,25 +4,24 @@ import React from "react";
 //****************COMMON FUNCTION********* */
 const commonFunction = () => {
   const statesString = sessionStorage.getItem("States");
-  const states = statesString.split(",");
-  const purchasedStates = [];
-
-  const officialArray = [];
-
-  AllStates.filter(el => {
-    states.forEach(abr => {
-      if (el.includes(abr)) {
-        purchasedStates.push(el);
-      }
+  if (statesString) {
+    const states = statesString.split(",");
+    const purchasedStates = [];
+    const officialArray = [];
+    AllStates.filter(el => {
+      states.forEach(abr => {
+        if (el.includes(abr)) {
+          purchasedStates.push(el);
+        }
+      });
     });
-  });
-
-  purchasedStates.forEach(el => {
-    const n = el.split(" - ");
-    officialArray.push(n[1]);
-    officialArray.push(n[0]);
-  });
-  return purchasedStates;
+    purchasedStates.forEach(el => {
+      const n = el.split(" - ");
+      officialArray.push(n[1]);
+      officialArray.push(n[0]);
+    });
+    return purchasedStates;
+  } else return [];
 };
 
 //**********PAID STATES FOR INFO TABLE*************/

@@ -8,9 +8,7 @@ const Bookmarks = () => {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    const url = `http://pensionswebapi.azurewebsites.net/api/Bookmarks/List?userGuid=${sessionStorage.getItem(
-      "Guid"
-    )}`;
+    const url = `http://pensionswebapi.azurewebsites.net/api/Bookmarks/List`;
 
     console.log(url);
     axios

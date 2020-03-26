@@ -22,13 +22,6 @@ const PlaneProfileBusinessInfo = props => {
               </td>
             </tr>
             <tr>
-              <th className="thead-dark">Plan Name</th>
-              <td>
-                {props.data.PlanName &&
-                  commonFunctions.formatString(props.data.PlanName)}
-              </td>
-            </tr>
-            <tr>
               <th className="thead-dark">Address 1</th>
               <td>
                 {props.data.Address1 &&

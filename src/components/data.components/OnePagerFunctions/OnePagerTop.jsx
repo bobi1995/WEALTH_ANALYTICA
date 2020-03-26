@@ -75,7 +75,7 @@ const OnePagerTop = props => {
           <Link
             className="onePager-Link"
             to={{
-              pathname: `/planprofile/${props.data[0]}/${props.data[1]}`
+              pathname: `/planprofile/${props.data}`
             }}
             target="_blank"
           >

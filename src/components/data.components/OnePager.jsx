@@ -16,11 +16,7 @@ const OnePager = props => {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    const url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetOnePager?userGuid=${sessionStorage.getItem(
-      "Guid"
-    )}&planID=${props.match.params.planID}&isLarge=${
-      props.match.params.isLarge
-    }&minYear=2015&maxYear=2018`;
+    const url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetOnePager?CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=2018`;
     console.log(url);
     axios
       .get(url, {
@@ -46,9 +42,7 @@ const OnePager = props => {
       </section>
       {results.PlanName ? (
         <div>
-          <OnePagerTop
-            data={[props.match.params.planID, props.match.params.isLarge]}
-          />
+          <OnePagerTop data={props.match.params.CompanyID} />
           <OnePagerLogo />
 
           <OnePagerCharts data={results.Statistics} />

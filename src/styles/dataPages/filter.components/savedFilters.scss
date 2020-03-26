@@ -88,13 +88,13 @@
 .filter-name-btn:hover {
   background-color: lightgreen;
 }
+
 .savedFilterBtn {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 20px;
   padding: 5px 10px;
   border: 1px solid #aaa;
-  background-color: #378fc3;
-  background-image: linear-gradient(top, #fff, #f0f0f0);
+  background-color: #378fc3 !important;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
   color: white;

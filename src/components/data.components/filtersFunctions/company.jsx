@@ -11,34 +11,18 @@ const SmallCompanies = props => {
   );
 
   let convertedIncome = 0;
-  let planID;
-  let isLarge;
   if (props.singleCompany.NetIncome) {
     convertedIncome = numeral(props.singleCompany.NetIncome).format("0,0");
   }
-  if (props.singleCompany.SmallCompanyPlanID) {
-    planID = props.singleCompany.SmallCompanyPlanID;
-    isLarge = false;
-  } else {
-    planID = props.singleCompany.LargeCompanyPlanID;
-    isLarge = true;
-  }
   const removeBookmark = e => {
-    const data = {
-      userGuid: sessionStorage.getItem("Guid"),
-
-      smallPlanID: props.singleCompany.SmallCompanyPlanID,
-
-      largePlanID: props.singleCompany.LargeCompanyPlanID
-    };
-
     axios
       .post(
-        `http://pensionswebapi.azurewebsites.net/api/Bookmarks/Remove`,
-        data,
+        `http://pensionswebapi.azurewebsites.net/api/Bookmarks/Remove?CompanyID=${props.singleCompany.CompanyID}`,
+        {},
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token")
+            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            "Access-Control-Allow-Origin": "*"
           }
         }
       )
@@ -50,20 +34,16 @@ const SmallCompanies = props => {
   };
 
   const addBookmark = e => {
-    const data = {
-      userGuid: sessionStorage.getItem("Guid"),
-
-      smallPlanID: props.singleCompany.SmallCompanyPlanID,
-
-      largePlanID: props.singleCompany.LargeCompanyPlanID
-    };
-
     axios
-      .post(`http://pensionswebapi.azurewebsites.net/api/Bookmarks/Add`, data, {
-        headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token")
+      .post(
+        `http://pensionswebapi.azurewebsites.net/api/Bookmarks/add?CompanyID=${props.singleCompany.CompanyID}`,
+        {},
+        {
+          headers: {
+            Authorization: "Basic " + sessionStorage.getItem("Token")
+          }
         }
-      })
+      )
       .then(res => {})
       .catch(e => {
         console.log(e);
@@ -109,7 +89,7 @@ const SmallCompanies = props => {
       <td>
         <Link
           to={{
-            pathname: `/onepager/${planID}/${isLarge}`
+            pathname: `/onepager/${props.singleCompany.CompanyID}`
           }}
           target="_blank"
         >

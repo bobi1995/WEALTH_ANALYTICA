@@ -116,7 +116,7 @@ export default props => {
               })}
             </tr>
             <tr>
-              <th className="thead-dark">Yield</th>
+              <th className="thead-dark">Distribution Yield</th>
               {database.data[0].map((element, index) => {
                 return element.Yield >= 0 ? (
                   <td key={index}>{numeral(element.Yield).format("0.00")}%</td>
@@ -142,7 +142,7 @@ export default props => {
               })}
             </tr>
             <tr>
-              <th className="thead-dark">Expense Ratio</th>
+              <th className="thead-dark">Return on Investment</th>
               {database.data[0].map((element, index) => {
                 return element.ExpenseRatio >= 0 ? (
                   <td key={index}>
@@ -156,7 +156,7 @@ export default props => {
               })}
             </tr>
             <tr>
-              <th className="thead-dark">ROR</th>
+              <th className="thead-dark">Return on Assets</th>
               {database.data[0].map((element, index) => {
                 return element.ROR >= 0 ? (
                   <td key={index}>{numeral(element.ROR).format("0.00")}%</td>

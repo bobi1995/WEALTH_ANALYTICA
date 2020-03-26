@@ -10,8 +10,18 @@ const Pagination = ({ companiesPerPage, totalCompanies, paginate }) => {
       <nav>
         <ul className="pagination">
           {pageNumbers.map(number => (
-            <li key={number} className="page-item">
-              <a onClick={() => paginate(number)} className="page-link">
+            <li key={number} className="page-item" id={number}>
+              <a
+                onClick={() => {
+                  const els = document.querySelectorAll(".page-item");
+                  for (var i = 0; i < els.length; i++) {
+                    els[i].classList.remove("opened-page");
+                  }
+                  document.getElementById(number).classList.add("opened-page");
+                  return paginate(number);
+                }}
+                className="page-link"
+              >
                 {number}
               </a>
             </li>
