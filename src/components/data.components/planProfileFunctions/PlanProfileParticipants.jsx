@@ -37,8 +37,8 @@ export default props => {
   };
 
   return (
-    <div className=" onepager-charts-all">
-      <div className="onepager-chart-content responsive-table-div plan-profile-100">
+    <div className="plan-businessInfo plan-graphs">
+      <div className="plan-table-section responsive-table-div">
         <table className="table table-striped table-bordered table-sm table-hover">
           <thead className="thead-dark">
             <tr>
@@ -106,7 +106,7 @@ export default props => {
           </tbody>
         </table>
       </div>
-      <div className="planprofile-chart-content plan-table-section">
+      <div className="plan-table-section">
         <Line
           data={data}
           options={dashboardCharts.optionReturn(

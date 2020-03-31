@@ -2,7 +2,6 @@ import React from "react";
 import numeral from "numeral";
 
 export default props => {
-  console.log(props.result);
   return props.result !== undefined ? (
     <div className="plan-businessInfo">
       <div className="plan-table-section">

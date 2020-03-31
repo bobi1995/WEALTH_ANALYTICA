@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import { doc } from "prettier";
 export default props => {
-  console.log(props.urlparams);
   const urlCreator = (
     year,
     states,

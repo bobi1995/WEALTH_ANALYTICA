@@ -12,7 +12,6 @@ const PlaneProfile = props => {
   const [results, setResults] = useState([]);
   useEffect(() => {
     const url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetPlanProfile?&CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=2018`;
-    console.log(url);
     axios
       .get(url, {
         headers: {

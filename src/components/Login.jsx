@@ -148,7 +148,6 @@ const Login = () => {
       alert("Password must be at least 7 symbols");
       setLoading(false);
     } else {
-      console.log(data);
       axios
         .post(`http://pensionswebapi.azurewebsites.net/api/Users`, data)
         .then(res => {
@@ -165,7 +164,6 @@ const Login = () => {
   //BUSINESS ACCOUNT
   const businessChange = e => {
     setIsBusiness(e.target.checked);
-    console.log(isBusiness);
   };
   //FILE UPLOAD AND PICK
   const uploadFile = () => {

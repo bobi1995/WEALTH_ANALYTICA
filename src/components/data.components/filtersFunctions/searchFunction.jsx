@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const fetching = async url => {
-  console.log(url);
   const res = await axios
     .get(url, {
       headers: {
@@ -77,7 +76,6 @@ const SearchFunction = (
     if (dfeoption) {
       url = url.concat(`planEntity=${dfeoption}&`);
     }
-    console.log("STATES URL: " + url);
   } else {
     url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesByCity?year=${year}&`;
     states.forEach((state, index) => {
@@ -119,7 +117,6 @@ const SearchFunction = (
     if (dfeoption) {
       url = url.concat(`planEntity=${dfeoption}&`);
     }
-    console.log("CITIES URL: " + url);
   }
   result = fetching(url);
 

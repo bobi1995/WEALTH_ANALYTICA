@@ -44,7 +44,6 @@ const Dashboard = props => {
     } else if (stateAbbriviation.length === 3) {
       url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}&state=${stateAbbriviation[2]}`;
     }
-    console.log(url);
     if (stateAbbriviation.length > 0) {
       document.getElementById("dashboard-submit-btn").disabled = true;
       axios
@@ -55,7 +54,6 @@ const Dashboard = props => {
           }
         })
         .then(res => {
-          console.log(res.data);
           res.data.Statistics.forEach(el => {
             document.getElementById("dashboard-submit-btn").disabled = false;
             netIncome.push(el.NetIncome);

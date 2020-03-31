@@ -9,7 +9,6 @@ export default props => {
   const reducedData = dashboardCharts.arrayReducer(
     DataExtract.netAssetsPension(database.data[0])
   );
-  console.log(database.data[0]);
   const aumhcChartData = {
     labels: DataExtract.uniqueYearsPension(database.data[0]),
     datasets: [

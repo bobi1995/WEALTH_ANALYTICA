@@ -27,7 +27,7 @@ const OnePagerBottomTables = props => {
                 ))}
               </tr>
               <tr>
-                <th className="thead-dark">Yeild</th>
+                <th className="thead-dark">Distribution Yield</th>
                 {DataExtract.yieldExtract(props.data).map((yield1, index) => (
                   <td key={index}>{numeral(yield1).format("0.00")}%</td>
                 ))}
@@ -43,7 +43,7 @@ const OnePagerBottomTables = props => {
                 )}
               </tr>
               <tr>
-                <th className="thead-dark">Expense Ratio</th>
+                <th className="thead-dark">Return on Investment</th>
                 {DataExtract.expenseRatioExtract(props.data).map(
                   (expenseRatio, index) => (
                     <td key={index}>{numeral(expenseRatio).format("0.00")}%</td>
@@ -52,7 +52,7 @@ const OnePagerBottomTables = props => {
               </tr>
 
               <tr>
-                <th className="thead-dark">ROR</th>
+                <th className="thead-dark">Return on Assets</th>
                 {DataExtract.RORExtract(props.data).map((ror, index) => (
                   <td key={index}>{numeral(ror).format("0.00")}%</td>
                 ))}

@@ -6,11 +6,11 @@ import BookmarkMainTable from "./bookmarksFunctions/BookmarkMainTable";
 
 const Bookmarks = () => {
   const [results, setResults] = useState([]);
+  const [tempRes, SetTempRes] = useState([]);
 
   useEffect(() => {
     const url = `http://pensionswebapi.azurewebsites.net/api/Bookmarks/List`;
 
-    console.log(url);
     axios
       .get(url, {
         headers: {
@@ -20,19 +20,70 @@ const Bookmarks = () => {
       })
       .then(res => {
         setResults(res.data);
+        SetTempRes(res.data);
       })
       .catch(err => {
         console.log(err);
       });
   }, []);
+
+  const allReturn = () => {
+    SetTempRes(results);
+  };
+
+  const clientsReturn = () => {
+    const newArr = results.filter(element => {
+      if (element.IsClient === true) {
+        return element;
+      }
+    });
+    SetTempRes(newArr);
+  };
+
+  const nonclientsReturn = () => {
+    const newArr = results.filter(element => {
+      if (element.IsClient === false) {
+        return element;
+      }
+    });
+    SetTempRes(newArr);
+  };
+
   return (
     <div>
       <Datanavbar />
       <section className="clientDash-img">
         <h1 className="clientDash-header1">Bookmarks</h1>
       </section>
+      <div className="switch-field">
+        <input
+          type="radio"
+          id="radio-three"
+          name="switch-two"
+          value="yes"
+          onChange={allReturn}
+          defaultChecked
+        />
+        <label htmlFor="radio-three">All </label>
+        <input
+          type="radio"
+          id="radio-four"
+          name="switch-two"
+          value="maybe"
+          onChange={clientsReturn}
+        />
+        <label htmlFor="radio-four">Clients</label>
+        <input
+          type="radio"
+          id="radio-five"
+          name="switch-two"
+          value="no"
+          onChange={nonclientsReturn}
+        />
+        <label htmlFor="radio-five">Non-Clients</label>
+      </div>
       <div>
-        <BookmarkMainTable data={results} />
+        <BookmarkMainTable data={tempRes} />
       </div>
     </div>
   );

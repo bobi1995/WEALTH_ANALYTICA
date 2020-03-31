@@ -25,11 +25,52 @@ const BookmarkMainTable = props => {
       });
   };
 
+  const addClient = CompanyID => {
+    axios
+      .post(
+        `http://pensionswebapi.azurewebsites.net/api/Bookmarks/AddClient?companyID=${CompanyID}`,
+        {},
+        {
+          headers: {
+            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            "Access-Control-Allow-Origin": "*"
+          }
+        }
+      )
+      .then(res => {
+        window.location.reload();
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
+  const removeClient = CompanyID => {
+    axios
+      .post(
+        `http://pensionswebapi.azurewebsites.net/api/Bookmarks/RemoveClient?companyID=${CompanyID}`,
+        {},
+        {
+          headers: {
+            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            "Access-Control-Allow-Origin": "*"
+          }
+        }
+      )
+      .then(res => {
+        window.location.reload();
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
   return (
     <div className="bookmarks-table-main">
       <table className="table table-striped table-bordered table-sm table-hover">
         <thead className="thead-dark">
           <tr>
+            <th>&#8470;</th>
             <th>Plan Name</th>
             <th>Address 1</th>
             <th>Address 2</th>
@@ -40,7 +81,9 @@ const BookmarkMainTable = props => {
             <th>Phone</th>
             <th>One Pager</th>
             <th>Plan Profile</th>
-            <th>Remove</th>
+            <th>Client</th>
+
+            <th>Bookmark</th>
           </tr>
         </thead>
 
@@ -48,6 +91,7 @@ const BookmarkMainTable = props => {
           <tbody className="table-hover">
             {props.data.map((element, index) => (
               <tr key={index}>
+                <td>{numeral(index + 1).format("0,0")}</td>
                 <td>
                   {element.Name && commonFunctions.formatString(element.Name)}
                 </td>
@@ -97,13 +141,35 @@ const BookmarkMainTable = props => {
                   </Link>
                 </td>
                 <td>
+                  {element.IsClient === false ? (
+                    <button
+                      className="client-btn add-client"
+                      onClick={() => {
+                        addClient(element.CompanyID);
+                      }}
+                    >
+                      Add
+                    </button>
+                  ) : (
+                    <button
+                      className="client-btn remove-client "
+                      onClick={() => {
+                        removeClient(element.CompanyID);
+                      }}
+                    >
+                      Remove
+                    </button>
+                  )}
+                </td>
+
+                <td>
                   <button
                     className="bookmark-remove-button"
                     onClick={() => {
                       removeBookmark(element.CompanyID);
                     }}
                   >
-                    Remove
+                    Delete
                   </button>
                 </td>
               </tr>

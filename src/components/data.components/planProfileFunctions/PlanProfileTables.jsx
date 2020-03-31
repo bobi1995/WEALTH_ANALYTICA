@@ -54,7 +54,13 @@ const PlanProfileTables = props => {
             </thead>
             <tbody className="table-hover">
               <tr>
-                <th className="thead-dark">Contribution Failure Ind</th>
+                <th className="thead-dark onepager-pesion-description">
+                  Contribution Failure Ind
+                  <span className="onepager-tooltip">
+                    The plan failed to transmit participant contributions within
+                    the time period described
+                  </span>
+                </th>
                 {props.data[0].map((element, index) => {
                   if (element.ContributionFailureIndColor) {
                     return (
@@ -96,7 +102,13 @@ const PlanProfileTables = props => {
                 })}
               </tr>
               <tr>
-                <th className="thead-dark">Contribution Failure Amt</th>
+                <th className="thead-dark onepager-pesion-description">
+                  Contribution Failure Amt
+                  <span className="onepager-tooltip">
+                    The amount plan failed to transmit participant contributions
+                    within the time period described
+                  </span>
+                </th>
                 {props.data[0].map((element, index) => {
                   if (element.ContributionFailureIndColor) {
                     return (
@@ -115,7 +127,17 @@ const PlanProfileTables = props => {
                 })}
               </tr>
               <tr>
-                <th className="thead-dark">Leases In Default Ind</th>
+                <th className="thead-dark onepager-pesion-description">
+                  Leases In Default Ind
+                  <span className="onepager-tooltip">
+                    A lease is an agreement conveying the right to use property,
+                    plant, or equipment for astated period. A lease is in
+                    default when the required payment(s) has not been made. An
+                    uncollectible lease is one where the required payments have
+                    not been made and forwhich there is little probability that
+                    payment will be made.
+                  </span>
+                </th>
                 {props.data[0].map((element, index) => {
                   if (element.LeasesInDefaultIndColor) {
                     return (
@@ -157,7 +179,12 @@ const PlanProfileTables = props => {
                 })}
               </tr>
               <tr>
-                <th className="thead-dark">Leases In Default Amt</th>
+                <th className="thead-dark onepager-pesion-description">
+                  Leases In Default Amt
+                  <span className="onepager-tooltip">
+                    Leases In Default Amount
+                  </span>
+                </th>
                 {props.data[0].map((element, index) => {
                   if (element.LeasesInDefaultIndColor) {
                     return (
@@ -176,7 +203,19 @@ const PlanProfileTables = props => {
                 })}
               </tr>
               <tr>
-                <th className="thead-dark">Loans In Default Ind</th>
+                <th className="thead-dark onepager-pesion-description">
+                  Loans In Default Ind
+                  <span className="onepager-tooltip">
+                    A loan by the plan is in default when the borrower isunable
+                    to pay the obligation upon maturity. Obligations that
+                    require periodic repayment can default at any time.
+                    Generally, loans and fixed income obligations are considered
+                    uncollectible when payment has not been made and there is
+                    little probability that payment will be made. A fixed income
+                    obligation has a fixed maturity date at a specified interest
+                    rate.
+                  </span>
+                </th>
                 {props.data[0].map((element, index) => {
                   if (element.LoansInDefaultIndColor) {
                     return (
@@ -218,7 +257,12 @@ const PlanProfileTables = props => {
                 })}
               </tr>
               <tr>
-                <th className="thead-dark">Loans In Default Amt</th>
+                <th className="thead-dark onepager-pesion-description">
+                  Loans In Default Amt{" "}
+                  <span className="onepager-tooltip">
+                    Loans In Default Amount
+                  </span>
+                </th>
                 {props.data[0].map((element, index) => {
                   if (element.LoansInDefaultIndColor) {
                     return (
@@ -237,7 +281,14 @@ const PlanProfileTables = props => {
                 })}
               </tr>
               <tr>
-                <th className="thead-dark">Distribution Correction</th>
+                <th className="thead-dark onepager-pesion-description">
+                  Distribution Correction
+                  <span className="onepager-tooltip">
+                    Corrective distributions of excess deferrals, excess
+                    contributions, or excess aggregate contributions, or the
+                    income
+                  </span>
+                </th>
                 {props.data[0].map((element, index) => {
                   return (
                     <td key={index}>
@@ -247,7 +298,12 @@ const PlanProfileTables = props => {
                 })}
               </tr>
               <tr>
-                <th className="thead-dark">DFVC Ind</th>
+                <th className="thead-dark onepager-pesion-description">
+                  DFVC Ind
+                  <span className="onepager-tooltip">
+                    Delinquent Filer Voluntary Compliance Program
+                  </span>
+                </th>
                 {props.data[0].map((element, index) => {
                   if (element.DFVCIndColor) {
                     return (

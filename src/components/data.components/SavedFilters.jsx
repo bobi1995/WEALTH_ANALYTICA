@@ -67,7 +67,6 @@ const SavedFilters = props => {
         }
       })
       .then(result => {
-        console.log(result.data.Companies);
         setData(result.data.Companies);
         setFlag(0);
       })
