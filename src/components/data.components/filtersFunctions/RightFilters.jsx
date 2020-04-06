@@ -1,6 +1,7 @@
 import React from "react";
 import RightFilterFunction from "./RightFilterFunctions";
 import numeral from "numeral";
+
 const RightFilters = () => {
   return (
     <div className="required-filters">
@@ -69,19 +70,6 @@ const RightFilters = () => {
           />
         </div>
 
-        {/**PLAN */}
-        <div className="filter-select-company-type">
-          <label className="filter-company-label">Company Type:</label>
-          <select
-            className="filter-select-form-control"
-            id="companyType"
-            onChange={RightFilterFunction.companySelected}
-          >
-            <option defaultValue="0">All</option>
-            <option value="true">Small</option>
-            <option value="false">Large</option>
-          </select>
-        </div>
         {/**PLAN ENTITY*/}
         <div className="filter-select-company-type">
           <label className="filter-company-label">Plan Entity:</label>
@@ -115,13 +103,18 @@ const RightFilters = () => {
         <div className="filter-select-company-type">
           <label className="filter-company-label">Business Code:</label>
           <input
-            type="number"
+            type="text"
             className="filter-select-form-control"
             placeholder="Enter Business Code"
             id="business-code"
+            list="code-dataList"
+            autoComplete="off"
           ></input>
         </div>
-
+        {/* DATALISTS CODES*/}
+        <datalist id="code-dataList">
+          {RightFilterFunction.codesList()}
+        </datalist>
         {/**PLAN BENEFIT TYPE*/}
         <div className="filter-select-company-type">
           <label className="filter-company-label">Benefit Type:</label>

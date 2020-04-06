@@ -2,7 +2,7 @@ import React from "react";
 import DataExtract from "./OnePagerDataExtract";
 import numeral from "numeral";
 
-const OnePagerBottomTables = props => {
+const OnePagerBottomTables = (props) => {
   return (
     <div className="onepager-bottomtables-maindiv">
       <div className="onePager-bottom-div">
@@ -14,7 +14,7 @@ const OnePagerBottomTables = props => {
               <tr>
                 <th></th>
 
-                {DataExtract.yearsExtract(props.data).map(element => (
+                {DataExtract.yearsExtract(props.data).map((element) => (
                   <th key={element}>{element}</th>
                 ))}
               </tr>
@@ -22,40 +22,72 @@ const OnePagerBottomTables = props => {
             <tbody className="table-hover">
               <tr>
                 <th className="thead-dark">AUM/HC</th>
-                {DataExtract.AUMHCExtract(props.data).map((auhmc, index) => (
-                  <td key={index}>${numeral(auhmc).format("0,0")}</td>
-                ))}
+                {DataExtract.AUMHCExtract(props.data).map((auhmc, index) => {
+                  return auhmc >= 0 ? (
+                    <td key={index}>${numeral(auhmc).format("0,0")}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${numeral(auhmc).format("0,0")}
+                    </td>
+                  );
+                })}
               </tr>
               <tr>
                 <th className="thead-dark">Distribution Yield</th>
-                {DataExtract.yieldExtract(props.data).map((yield1, index) => (
-                  <td key={index}>{numeral(yield1).format("0.00")}%</td>
-                ))}
+                {DataExtract.yieldExtract(props.data).map((yield1, index) => {
+                  return yield1 >= 0 ? (
+                    <td key={index}>{numeral(yield1).format("0.00")}%</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      {numeral(yield1).format("0.00")}%
+                    </td>
+                  );
+                })}
               </tr>
               <tr>
                 <th className="thead-dark">Contribution Yeild</th>
                 {DataExtract.contributionYieldExtract(props.data).map(
-                  (contributionYield, index) => (
-                    <td key={index}>
-                      {numeral(contributionYield).format("0.00")}%
-                    </td>
-                  )
+                  (contributionYield, index) => {
+                    return contributionYield >= 0 ? (
+                      <td key={index}>
+                        {numeral(contributionYield).format("0.00")}%
+                      </td>
+                    ) : (
+                      <td key={index} className="negative-numbers">
+                        {numeral(contributionYield).format("0.00")}%
+                      </td>
+                    );
+                  }
                 )}
               </tr>
               <tr>
                 <th className="thead-dark">Return on Investment</th>
                 {DataExtract.expenseRatioExtract(props.data).map(
-                  (expenseRatio, index) => (
-                    <td key={index}>{numeral(expenseRatio).format("0.00")}%</td>
-                  )
+                  (expenseRatio, index) => {
+                    return expenseRatio >= 0 ? (
+                      <td key={index}>
+                        {numeral(expenseRatio).format("0.00")}%
+                      </td>
+                    ) : (
+                      <td key={index} className="negative-numbers">
+                        {numeral(expenseRatio).format("0.00")}%
+                      </td>
+                    );
+                  }
                 )}
               </tr>
 
               <tr>
                 <th className="thead-dark">Return on Assets</th>
-                {DataExtract.RORExtract(props.data).map((ror, index) => (
-                  <td key={index}>{numeral(ror).format("0.00")}%</td>
-                ))}
+                {DataExtract.RORExtract(props.data).map((ror, index) => {
+                  return ror >= 0 ? (
+                    <td key={index}>{numeral(ror).format("0.00")}%</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      {numeral(ror).format("0.00")}%
+                    </td>
+                  );
+                })}
               </tr>
             </tbody>
           </table>
@@ -69,7 +101,7 @@ const OnePagerBottomTables = props => {
               <tr>
                 <th></th>
 
-                {DataExtract.yearsExtract(props.data).map(element => (
+                {DataExtract.yearsExtract(props.data).map((element) => (
                   <th key={element}>{element}</th>
                 ))}
               </tr>
@@ -94,17 +126,31 @@ const OnePagerBottomTables = props => {
               <tr>
                 <th className="thead-dark">Other Providers direct fees</th>
                 {DataExtract.providerOtherDirectCompATMExtract(props.data).map(
-                  (directFees, index) => (
-                    <td key={index}>${numeral(directFees).format("0,0")}</td>
-                  )
+                  (directFees, index) => {
+                    return directFees >= 0 ? (
+                      <td key={index}>${numeral(directFees).format("0,0")}</td>
+                    ) : (
+                      <td key={index} className="negative-numbers">
+                        ${numeral(directFees).format("0,0")}
+                      </td>
+                    );
+                  }
                 )}
               </tr>
               <tr>
                 <th className="thead-dark">Other Providers Indirect Fees</th>
                 {DataExtract.providerOtherTotIndCompATMExtract(props.data).map(
-                  (indirectFees, index) => (
-                    <td key={index}>${numeral(indirectFees).format("0,0")}</td>
-                  )
+                  (indirectFees, index) => {
+                    return indirectFees >= 0 ? (
+                      <td key={index}>
+                        ${numeral(indirectFees).format("0,0")}
+                      </td>
+                    ) : (
+                      <td key={index} className="negative-numbers">
+                        ${numeral(indirectFees).format("0,0")}
+                      </td>
+                    );
+                  }
                 )}
               </tr>
             </tbody>
@@ -120,7 +166,7 @@ const OnePagerBottomTables = props => {
               <tr>
                 <th></th>
 
-                {DataExtract.yearsExtract(props.data).map(element => (
+                {DataExtract.yearsExtract(props.data).map((element) => (
                   <th key={element}>{element}</th>
                 ))}
               </tr>
@@ -170,7 +216,7 @@ const OnePagerBottomTables = props => {
               <tr>
                 <th></th>
 
-                {DataExtract.yearsExtract(props.data).map(element => (
+                {DataExtract.yearsExtract(props.data).map((element) => (
                   <th key={element}>{element}</th>
                 ))}
               </tr>

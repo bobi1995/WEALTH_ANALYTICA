@@ -10,22 +10,23 @@ import { Bar } from "react-chartjs-2";
 import Loader from "./dashboardFunctions/loader";
 import DashSummary from "./dashboardFunctions/DashSummary";
 
-const Dashboard = props => {
+const Dashboard = (props) => {
   const [stateInput, setStateInput] = useState([]);
   const [fetchedData, setFetchedData] = useState([]);
   const [stateAbbriviation, setStateAbbriviation] = useState([]);
+  const [year, setYear] = useState(2018);
 
   //********************FETCHED DATA FOR  CHARTS******************** */
   const [netIncome, setNetIncome] = useState([]);
   const [netAssetsEndOfYear, setNetAssetsEndOfYear] = useState([]);
   const [
     employeesContributionIncome,
-    setEmployeesContributionIncome
+    setEmployeesContributionIncome,
   ] = useState([]);
   const [participantsAccountBal, setParticipantsAccountBal] = useState([]);
   const [
     participantsContributionIncome,
-    setParticipantsContributionIncome
+    setParticipantsContributionIncome,
   ] = useState([]);
   const [totalDistributionBenefits, setTotalDistributionBenefits] = useState(
     []
@@ -38,11 +39,12 @@ const Dashboard = props => {
     let url;
 
     if (stateAbbriviation.length === 1) {
-      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}`;
+      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?summaryYear=${year}&minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}`;
     } else if (stateAbbriviation.length === 2) {
-      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}`;
+      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?summaryYear=${year}&minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}`;
     } else if (stateAbbriviation.length === 3) {
-      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}&state=${stateAbbriviation[2]}`;
+      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?summaryYear=${year}&minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}&state=${stateAbbriviation[2]}`;
+      document.getElementById("dashboard-submit-btn").disabled = true;
     }
     if (stateAbbriviation.length > 0) {
       document.getElementById("dashboard-submit-btn").disabled = true;
@@ -50,11 +52,11 @@ const Dashboard = props => {
         .get(url, {
           headers: {
             Authorization: "Basic " + sessionStorage.getItem("Token"),
-            "Access-Control-Allow-Origin": "*"
-          }
+            "Access-Control-Allow-Origin": "*",
+          },
         })
-        .then(res => {
-          res.data.Statistics.forEach(el => {
+        .then((res) => {
+          res.data.Statistics.forEach((el) => {
             document.getElementById("dashboard-submit-btn").disabled = false;
             netIncome.push(el.NetIncome);
             netAssetsEndOfYear.push(el.NetAssetsEndOfYear);
@@ -69,40 +71,46 @@ const Dashboard = props => {
           });
           setFetchedData(res.data);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
           alert("For some reason we could not find the desired results.");
           window.location.reload();
         });
     }
-  }, [stateInput]);
+  }, [stateInput, year]);
 
   //*********ADD STATE IN LIST********** */
 
-  const addState = e => {
-    const allowedStates = functions.commonFunction();
-    const stateField = document.getElementById("stateInput").value;
-
+  const addState = (e) => {
     e.preventDefault();
-
-    if (allowedStates.includes(stateField)) {
-      setNetAssetsEndOfYear([]);
-      setNetIncome([]);
-      setEmployeesContributionIncome([]);
-      setParticipantsContributionIncome([]);
-      setTotalExpenses([]);
-      setTotalIncome([]);
-      setParticipantsAccountBal([]);
-
-      const parts = stateField.split(" - ");
-      setStateAbbriviation([...stateAbbriviation, parts[1]]);
-      setStateInput([...stateInput, stateField]);
+    if (stateInput.length >= 3) {
       document.getElementById("emailHelp").innerHTML =
-        "States you want to check will apear on the right.";
-      document.getElementById("stateInput").value = "";
+        "Maximum 3 States are allowed at once. Remove a state.";
     } else {
-      document.getElementById("emailHelp").innerHTML =
-        "PICK CORRECT STATE VALUE";
+      const allowedStates = functions.commonFunction();
+      const stateField = document.getElementById("stateInput").value;
+
+      e.preventDefault();
+
+      if (allowedStates.includes(stateField)) {
+        setNetAssetsEndOfYear([]);
+        setNetIncome([]);
+        setEmployeesContributionIncome([]);
+        setParticipantsContributionIncome([]);
+        setTotalExpenses([]);
+        setTotalIncome([]);
+        setParticipantsAccountBal([]);
+
+        const parts = stateField.split(" - ");
+        setStateAbbriviation([...stateAbbriviation, parts[1]]);
+        setStateInput([...stateInput, stateField]);
+        document.getElementById("emailHelp").innerHTML =
+          "States you want to check will apear on the right.";
+        document.getElementById("stateInput").value = "";
+      } else {
+        document.getElementById("emailHelp").innerHTML =
+          "PICK CORRECT STATE VALUE";
+      }
     }
   };
 
@@ -118,7 +126,7 @@ const Dashboard = props => {
     });
   };
   //**********REMOVE STATES************ */
-  const removeState = e => {
+  const removeState = (e) => {
     setNetAssetsEndOfYear([]);
     setNetIncome([]);
     setEmployeesContributionIncome([]);
@@ -130,8 +138,10 @@ const Dashboard = props => {
     const target = e.target;
     const value = target.parentNode.getAttribute("value");
     const parts = value.split(" - ");
-    setStateInput(stateInput.filter(state => state !== value));
-    setStateAbbriviation(stateAbbriviation.filter(state => state !== parts[1]));
+    setStateInput(stateInput.filter((state) => state !== value));
+    setStateAbbriviation(
+      stateAbbriviation.filter((state) => state !== parts[1])
+    );
   };
   return (
     <div>
@@ -189,7 +199,12 @@ const Dashboard = props => {
           </div>
         </div>
       </div>
-      <DashSummary result={fetchedData.FilterProfile} />
+      <DashSummary
+        result={fetchedData.FilterProfile}
+        onYearChange={(yearChange) => {
+          setYear(yearChange);
+        }}
+      />
       {/***********FIRST ROW OF CHARTS*************/}
       <div className="dashboard-graphs">
         <div className="individual-chart">

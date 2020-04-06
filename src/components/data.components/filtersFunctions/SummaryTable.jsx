@@ -1,6 +1,7 @@
 import React from "react";
 import numeral from "numeral";
 import SaveFilter from "./SaveFilter";
+import SearchByName from "./SearchByName";
 export default props => {
   return props.result !== undefined ? (
     <div className="plan-businessInfo">
@@ -36,6 +37,11 @@ export default props => {
         </table>
       </div>
       <SaveFilter urlparams={props.param} />
+      <SearchByName
+        companies={props.companies}
+        searchedCompanies={props.setSearched}
+        result={props.resultCompanies}
+      />
     </div>
   ) : (
     ""

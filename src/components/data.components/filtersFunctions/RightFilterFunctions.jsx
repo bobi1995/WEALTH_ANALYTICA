@@ -1,4 +1,6 @@
+import React from "react";
 import axios from "axios";
+import businessCodes from "../../../global/businessCode";
 
 const benefitTypeSelected = async () => {
   const selectedType = document.getElementById("benefitType").options[
@@ -48,92 +50,24 @@ const benefitTypeSelected = async () => {
   }
 };
 
-const companySelected = () => {
-  document.getElementById("dfe-options").style.display = "none";
-  document.getElementById("dfeoptions").value = "All";
-
-  const planEntities = document.getElementById("planEntity");
-  planEntities.options.length = 0;
-
-  const datalist = [
-    { text: "All", value: "All" },
-    { text: "One-participant plan", value: "2" },
-    { text: "Foreign plan", value: "4" },
-    { text: "Single-employer", value: "1" },
-    { text: "Multi-employer plan", value: "3" },
-    { text: "Multiemployer", value: "3" },
-    { text: "DFE", value: "4" }
-  ];
-
-  const companyType = document.getElementById("companyType").options[
-    document.getElementById("companyType").selectedIndex
-  ].value;
-  if (companyType === "All") {
-    datalist.map(element => {
-      const option = document.createElement("option");
-      option.text = element.text;
-      option.value = element.value;
-      planEntities.add(option, null);
-    });
-  } else if (companyType == "true") {
-    const small = datalist.slice(0, 5);
-    small.map(element => {
-      const option = document.createElement("option");
-      option.text = element.text;
-      option.value = element.value;
-      planEntities.add(option, null);
-    });
-  } else if (companyType == "false") {
-    const small = datalist.slice(3);
-    small.unshift({ text: "All", value: "All" });
-    small.map(element => {
-      const option = document.createElement("option");
-      option.text = element.text;
-      option.value = element.value;
-      planEntities.add(option, null);
-    });
-  }
+// BUSINESS CODE
+const codesList = () => {
+  return businessCodes.map((code, index) => {
+    return (
+      <option key={code.BusinessCode} value={code.businessCodesss}>
+        {code.IndustryName}
+      </option>
+    );
+  });
 };
 
-const planEntitySelected = () => {
-  document.getElementById("dfe-options").style.display = "none";
-  document.getElementById("dfeoptions").value = "All";
-  const selectedEntity = document.getElementById("planEntity").options[
-    document.getElementById("planEntity").selectedIndex
-  ].text;
-  const entityValue = document.getElementById("planEntity").options[
-    document.getElementById("planEntity").selectedIndex
-  ].value;
-
-  // LARGE COMPANIES
-  if (selectedEntity == "Multiemployer") {
-    document.getElementById("companyType").value = false;
-    companySelected();
-    document.getElementById("planEntity").value = entityValue;
-  } else if (selectedEntity == "DFE") {
-    document.getElementById("companyType").value = false;
-    companySelected();
-    document.getElementById("planEntity").value = entityValue;
-    document.getElementById("dfe-options").style.display = "flex";
-  }
-
-  // SMALL COMPANIES
-  else if (selectedEntity == "One-participant plan") {
-    document.getElementById("companyType").value = true;
-    companySelected();
-    document.getElementById("planEntity").value = entityValue;
-  } else if (selectedEntity == "Foreign plan") {
-    document.getElementById("companyType").value = true;
-    companySelected();
-    document.getElementById("planEntity").value = entityValue;
-  }
-
-  // ALL COMPANIES
-  else if (selectedEntity == "All") {
-    document.getElementById("companyType").value = "All";
-    companySelected();
-    document.getElementById("planEntity").value = entityValue;
-  }
+//FIND CODE
+const findCode = industry => {
+  let obj = businessCodes.find(o => o.IndustryName === industry);
+  return obj;
 };
-
-export default { benefitTypeSelected, companySelected, planEntitySelected };
+export default {
+  benefitTypeSelected,
+  codesList,
+  findCode
+};

@@ -10,6 +10,7 @@ import Pagination from "./filtersFunctions/pagination";
 import RightFilters from "./filtersFunctions/RightFilters";
 import MiddleFilterCHARTS from "./filtersFunctions/MiddleFilterCHARTS";
 import SummaryTable from "./filtersFunctions/SummaryTable";
+import RightFiltersFunction from "./filtersFunctions/RightFilterFunctions";
 
 const Filters = () => {
   const [stateInput, setStateInput] = useState([]);
@@ -165,12 +166,12 @@ const Filters = () => {
     const maxParticipants = document.getElementById("maxParticipants").value;
     const minParticipants = document.getElementById("minParticipants").value;
 
-    const companyType = document.getElementById("companyType").options[
-      document.getElementById("companyType").selectedIndex
-    ].value;
-
-    const businessCode = document.getElementById("business-code").value;
-
+    const businessCodeIndustry = document.getElementById("business-code").value;
+    let businessCode = "";
+    if (businessCodeIndustry) {
+      businessCode = RightFiltersFunction.findCode(businessCodeIndustry)
+        .BusinessCode;
+    }
     const benefitType = document.getElementById("benefitType").options[
       document.getElementById("benefitType").selectedIndex
     ].value;
@@ -194,7 +195,6 @@ const Filters = () => {
       minIncome,
       minParticipants,
       maxParticipants,
-      companyType,
       businessCode,
       benefitType,
       benefitSymbol,
@@ -209,7 +209,6 @@ const Filters = () => {
       minIncome,
       minParticipants,
       maxParticipants,
-      companyType,
       businessCode,
       benefitType,
       benefitSymbol,
@@ -435,7 +434,15 @@ const Filters = () => {
           Search
         </button>
       </div>
-      <SummaryTable result={result.FilterProfile} param={parameters} />
+      <SummaryTable
+        param={parameters}
+        companies={companies}
+        resultCompanies={result.Companies}
+        result={result.FilterProfile}
+        setSearched={searchedCompanies => {
+          setCompanies(searchedCompanies);
+        }}
+      />
 
       <div className="filter-bottom-main">
         <div className="table-container">
@@ -450,7 +457,7 @@ const Filters = () => {
                 </th>
                 <th>Address</th>
                 <th>City</th>
-                <th>Administrator</th>
+                <th>Contact</th>
                 <th>Number</th>
                 <th
                   className="filter-table-header-clickable"

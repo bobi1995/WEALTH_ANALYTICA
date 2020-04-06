@@ -1,11 +1,54 @@
 import React from "react";
 import numeral from "numeral";
 
-export default props => {
+export default (props) => {
   return props.result !== undefined ? (
     <div className="plan-businessInfo">
+      <div className="switch-field">
+        <input
+          type="radio"
+          id="radio-three"
+          name="switch-two"
+          value="yes"
+          onChange={() => {
+            props.onYearChange(2018);
+          }}
+          defaultChecked
+        />
+        <label htmlFor="radio-three">2018 </label>
+        <input
+          type="radio"
+          id="radio-four"
+          name="switch-two"
+          value="maybe"
+          onChange={() => {
+            props.onYearChange(2017);
+          }}
+        />
+        <label htmlFor="radio-four">2017</label>
+        <input
+          type="radio"
+          id="radio-five"
+          name="switch-two"
+          value="no"
+          onChange={() => {
+            props.onYearChange(2016);
+          }}
+        />
+        <label htmlFor="radio-five">2016</label>
+        <input
+          type="radio"
+          id="radio-six"
+          name="switch-two"
+          value="2015"
+          onChange={() => {
+            props.onYearChange(2015);
+          }}
+        />
+        <label htmlFor="radio-six">2015</label>
+      </div>
       <div className="plan-table-section">
-        <h1 className="plan-h1">Dashboard Summary</h1>
+        <h1 className="plan-h1">Dashboard Summary - {props.result.Year}</h1>
         <table className="table table-striped table-bordered table-sm table-hover">
           <thead className="thead-dark">
             <tr>

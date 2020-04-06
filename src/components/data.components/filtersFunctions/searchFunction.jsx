@@ -27,7 +27,6 @@ const SearchFunction = (
   minIncome,
   minParticipants,
   maxParticipants,
-  companyType,
   businessCode,
   benefitType,
   benefitSymbol,
@@ -58,9 +57,6 @@ const SearchFunction = (
     if (minParticipants) {
       const minPart = parseFloat(minParticipants.replace(/,/g, ""));
       url = url.concat(`minPart=${minPart}&`);
-    }
-    if (companyType !== "All") {
-      url = url.concat(`isSmall=${companyType}&`);
     }
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}&`);
@@ -100,9 +96,6 @@ const SearchFunction = (
       const minPart = parseFloat(minParticipants.replace(/,/g, ""));
       url = url.concat(`minPart=${minPart}&`);
     }
-    if (companyType !== "All") {
-      url = url.concat(`isSmall=${companyType}&`);
-    }
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}&`);
     }
@@ -122,6 +115,5 @@ const SearchFunction = (
 
   return result;
 };
-const returnUrl = url => {};
 
 export default SearchFunction;

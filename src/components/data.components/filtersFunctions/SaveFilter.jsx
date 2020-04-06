@@ -10,7 +10,6 @@ export default props => {
     minIncome,
     minParticipants,
     maxParticipants,
-    companyType,
     businessCode,
     benefitType,
     benefitSymbol,
@@ -40,9 +39,6 @@ export default props => {
       if (minParticipants) {
         const minPart = parseFloat(minParticipants.replace(/,/g, ""));
         url = url.concat(`minPart=${minPart}&`);
-      }
-      if (companyType !== "All") {
-        url = url.concat(`isSmall=${companyType}&`);
       }
       if (businessCode) {
         url = url.concat(`businessCode=${businessCode}&`);
@@ -83,9 +79,6 @@ export default props => {
         const minPart = parseFloat(minParticipants.replace(/,/g, ""));
         url = url.concat(`minPart=${minPart}&`);
       }
-      if (companyType !== "All") {
-        url = url.concat(`isSmall=${companyType}&`);
-      }
       if (businessCode) {
         url = url.concat(`businessCode=${businessCode}&`);
       }
@@ -115,7 +108,6 @@ export default props => {
         props.urlparams.minIncome,
         props.urlparams.minParticipants,
         props.urlparams.maxParticipants,
-        props.urlparams.companyType,
         props.urlparams.businessCode,
         props.urlparams.benefitType,
         props.urlparams.benefitSymbol,

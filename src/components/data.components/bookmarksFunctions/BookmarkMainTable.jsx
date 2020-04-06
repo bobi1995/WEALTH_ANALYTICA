@@ -73,7 +73,6 @@ const BookmarkMainTable = props => {
             <th>&#8470;</th>
             <th>Plan Name</th>
             <th>Address 1</th>
-            <th>Address 2</th>
             <th>City</th>
             <th>State</th>
             <th>Zip</th>
@@ -98,10 +97,6 @@ const BookmarkMainTable = props => {
                 <td>
                   {element.Address1 &&
                     commonFunctions.formatString(element.Address1)}
-                </td>
-                <td>
-                  {element.Address2 &&
-                    commonFunctions.formatString(element.Address2)}
                 </td>
                 <td>
                   {element.City && commonFunctions.formatString(element.City)}

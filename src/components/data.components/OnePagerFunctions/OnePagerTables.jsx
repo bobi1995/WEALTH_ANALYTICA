@@ -2,7 +2,7 @@ import React from "react";
 import DataExtract from "./OnePagerDataExtract";
 import common from "../commonFunctions/common";
 
-const OnePagerTables = props => {
+const OnePagerTables = (props) => {
   return (
     <div className="onepager-charts-all">
       {/***************PLAN ASSET TABLE******** */}
@@ -12,7 +12,7 @@ const OnePagerTables = props => {
             <tr>
               <th></th>
 
-              {DataExtract.yearsExtract(props.data).map(element => (
+              {DataExtract.yearsExtract(props.data).map((element) => (
                 <th key={element}>{element}</th>
               ))}
             </tr>
@@ -21,17 +21,29 @@ const OnePagerTables = props => {
             <tr>
               <th className="thead-dark">Total Assets</th>
               {DataExtract.totalAssetsExtract(props.data).map(
-                (totalAsset, index) => (
-                  <td key={index}>${common.reducer(totalAsset)}</td>
-                )
+                (totalAsset, index) => {
+                  return totalAsset >= 0 ? (
+                    <td key={index}>${common.reducer(totalAsset)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(totalAsset)}
+                    </td>
+                  );
+                }
               )}
             </tr>
             <tr>
               <th className="thead-dark">Net Assets</th>
               {DataExtract.netAssetsExtract(props.data).map(
-                (netAsset, index) => (
-                  <td key={index}>${common.reducer(netAsset)}</td>
-                )
+                (netAsset, index) => {
+                  return netAsset >= 0 ? (
+                    <td key={index}>${common.reducer(netAsset)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(netAsset)}
+                    </td>
+                  );
+                }
               )}
             </tr>
           </tbody>
@@ -45,7 +57,7 @@ const OnePagerTables = props => {
             <tr>
               <th></th>
 
-              {DataExtract.yearsExtract(props.data).map(element => (
+              {DataExtract.yearsExtract(props.data).map((element) => (
                 <th key={element}>{element}</th>
               ))}
             </tr>
@@ -54,25 +66,43 @@ const OnePagerTables = props => {
             <tr>
               <th className="thead-dark">Total Income</th>
               {DataExtract.totalIncomeExtract(props.data).map(
-                (totalIncome, index) => (
-                  <td key={index}>${common.reducer(totalIncome)}</td>
-                )
+                (totalIncome, index) => {
+                  return totalIncome >= 0 ? (
+                    <td key={index}>${common.reducer(totalIncome)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(totalIncome)}
+                    </td>
+                  );
+                }
               )}
             </tr>
             <tr>
               <th className="thead-dark">Total Expense</th>
               {DataExtract.totalExpensesExtract(props.data).map(
-                (totalExpense, index) => (
-                  <td key={index}>${common.reducer(totalExpense)}</td>
-                )
+                (totalExpense, index) => {
+                  return totalExpense >= 0 ? (
+                    <td key={index}>${common.reducer(totalExpense)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(totalExpense)}
+                    </td>
+                  );
+                }
               )}
             </tr>
             <tr>
               <th className="thead-dark">Net Income</th>
               {DataExtract.netIncomeExtract(props.data).map(
-                (netIncome, index) => (
-                  <td key={index}>${common.reducer(netIncome)}</td>
-                )
+                (netIncome, index) => {
+                  return netIncome >= 0 ? (
+                    <td key={index}>${common.reducer(netIncome)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(netIncome)}
+                    </td>
+                  );
+                }
               )}
             </tr>
           </tbody>
@@ -86,7 +116,7 @@ const OnePagerTables = props => {
             <tr>
               <th></th>
 
-              {DataExtract.yearsExtract(props.data).map(element => (
+              {DataExtract.yearsExtract(props.data).map((element) => (
                 <th key={element}>{element}</th>
               ))}
             </tr>
@@ -103,33 +133,57 @@ const OnePagerTables = props => {
             <tr>
               <th className="thead-dark">Part.Loans</th>
               {DataExtract.participantLoansExtract(props.data).map(
-                (partLoans, index) => (
-                  <td key={index}>${common.reducer(partLoans)}</td>
-                )
+                (partLoans, index) => {
+                  return partLoans >= 0 ? (
+                    <td key={index}>${common.reducer(partLoans)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(partLoans)}
+                    </td>
+                  );
+                }
               )}
             </tr>
             <tr>
               <th className="thead-dark">Contrib.Emp.</th>
               {DataExtract.contributionEmployerExtract(props.data).map(
-                (contriEmp, index) => (
-                  <td key={index}>${common.reducer(contriEmp)}</td>
-                )
+                (contriEmp, index) => {
+                  return contriEmp >= 0 ? (
+                    <td key={index}>${common.reducer(contriEmp)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(contriEmp)}
+                    </td>
+                  );
+                }
               )}
             </tr>
             <tr>
               <th className="thead-dark">Contrib.Part.</th>
               {DataExtract.contributionParticipantExtract(props.data).map(
-                (contribPart, index) => (
-                  <td key={index}>${common.reducer(contribPart)}</td>
-                )
+                (contribPart, index) => {
+                  return contribPart >= 0 ? (
+                    <td key={index}>${common.reducer(contribPart)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(contribPart)}
+                    </td>
+                  );
+                }
               )}
             </tr>
             <tr>
               <th className="thead-dark">Distribution</th>
               {DataExtract.totalDistributionsExtract(props.data).map(
-                (distribution, index) => (
-                  <td key={index}>${common.reducer(distribution)}</td>
-                )
+                (distribution, index) => {
+                  return distribution >= 0 ? (
+                    <td key={index}>${common.reducer(distribution)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(distribution)}
+                    </td>
+                  );
+                }
               )}
             </tr>
           </tbody>

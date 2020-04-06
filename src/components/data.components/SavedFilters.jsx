@@ -195,7 +195,7 @@ const SavedFilters = props => {
                     </th>
                     <th>Address</th>
                     <th>City</th>
-                    <th>Administrator</th>
+                    <th>Contact</th>
                     <th>Number</th>
                     <th
                       className="filter-table-header-clickable"
