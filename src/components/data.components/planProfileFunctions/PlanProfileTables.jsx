@@ -1,8 +1,12 @@
 import React from "react";
 import numeral from "numeral";
-import PlanProfileStatistics from "./PlanProfileStatistics";
-import PlanProfileFinancial from "./PlanProfileFinancial";
-import PlanProfileParticipants from "./PlanProfileParticipants";
+import PlanProfileStatistics from "./Tables/PlanProfileStatistics";
+import PlanProfileFinancial from "./Tables/PlanProfileFinancial";
+import PlanProfileParticipants from "./Tables/PlanProfileParticipants";
+import PlanProfileServiceHealth from "./Tables/PlanProfileHealthCare";
+import PlanProfileServiceProviders from "./Tables/PlanProfileServiceProviders";
+
+import common from "../commonFunctions/common";
 
 const PlanProfileTables = props => {
   return (
@@ -23,6 +27,18 @@ const PlanProfileTables = props => {
       <div className="plan-businessInfo">
         <h1 className="plan-h1">Plan - Statistics</h1>
         <PlanProfileStatistics info={props} />
+      </div>
+
+      {/**PLAN - Healtcare Insurance */}
+      <div className="plan-businessInfo">
+        <h1 className="plan-h1">Plan - Healthcare Insurance</h1>
+        <PlanProfileServiceHealth info={props} />
+      </div>
+
+      {/**PLAN - Service Providers */}
+      <div className="plan-businessInfo">
+        <h1 className="plan-h1">Plan - Service Providers</h1>
+        <PlanProfileServiceProviders info={props} />
       </div>
 
       {/**ALERTS */}
@@ -258,7 +274,7 @@ const PlanProfileTables = props => {
               </tr>
               <tr>
                 <th className="thead-dark onepager-pesion-description">
-                  Loans In Default Amt{" "}
+                  Loans In Default Amt
                   <span className="onepager-tooltip">
                     Loans In Default Amount
                   </span>
@@ -342,6 +358,44 @@ const PlanProfileTables = props => {
                       </td>
                     );
                   }
+                })}
+              </tr>
+              <tr>
+                <th className="thead-dark onepager-pesion-description">
+                  Erisa Test Value
+                  <span className="onepager-tooltip">
+                    The Plan estimated fidelity bond coverage amount
+                  </span>
+                </th>
+                {props.data[0].map((element, index) => {
+                  return element.TotalAssets >= 0 ? (
+                    <td key={index}>
+                      ${common.reducer(element.ERISATestValue)}
+                    </td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(element.ERISATestValue)}
+                    </td>
+                  );
+                })}
+              </tr>
+              <tr>
+                <th className="thead-dark onepager-pesion-description">
+                  Erisa Test Over/Under
+                  <span className="onepager-tooltip">
+                    The Fidelity Bond Coverage Gap +/-
+                  </span>
+                </th>
+                {props.data[0].map((element, index) => {
+                  return element.TotalAssets >= 0 ? (
+                    <td key={index}>
+                      ${common.reducer(element.ERISATestOverUnder)}
+                    </td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(element.ERISATestOverUnder)}
+                    </td>
+                  );
                 })}
               </tr>
             </tbody>

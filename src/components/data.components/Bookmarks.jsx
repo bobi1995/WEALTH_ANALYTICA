@@ -80,7 +80,7 @@ const Bookmarks = () => {
           value="no"
           onChange={nonclientsReturn}
         />
-        <label htmlFor="radio-five">Non-Clients</label>
+        <label htmlFor="radio-five">Potential Clients</label>
       </div>
       <div>
         <BookmarkMainTable data={tempRes} />

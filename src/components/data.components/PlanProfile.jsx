@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Datanavbar from "./DataNavbar";
-import PlaneProfileBusinessInfo from "./planProfileFunctions/PlanProfileBusinessInfo";
-import PlanProfilePensionBenefitCodes from "./planProfileFunctions/PlanProfilePensionBenefitCodes";
+import PlaneProfileBusinessInfo from "./planProfileFunctions/Tables/PlanProfileBusinessInfo";
+import PlanProfilePensionBenefitCodes from "./planProfileFunctions/Tables/PlanProfilePensionBenefitCodes";
 import PlanProfileTables from "./planProfileFunctions/PlanProfileTables";
+import PlanProfileExportButton from "./planProfileFunctions/PlanProfileExportButton";
 import "../../styles/dataPages/planProfile.scss";
 import Loader from "./dashboardFunctions/loader";
-import PlanProfilePension from "./planProfileFunctions/PlanProfilePension";
-
+import PlanProfilePension from "./planProfileFunctions/Tables/PlanProfilePension";
 const PlaneProfile = props => {
   const [results, setResults] = useState([]);
   useEffect(() => {
@@ -30,17 +30,22 @@ const PlaneProfile = props => {
   return (
     <div>
       <Datanavbar />
-      <section className="clientDash-img">
+      <section className="clientDash-img" data-html2canvas-ignore>
         <h1 className="clientDash-header1">Client Ready Plan Analytic</h1>
       </section>
       {results.City ? (
-        <div>
-          <PlaneProfileBusinessInfo data={results.BusinessInformation} />
+        <div id="allplanprofile">
+          <PlanProfileExportButton />
+          <PlaneProfileBusinessInfo
+            data={results.BusinessInformation}
+            erisa={results.ERISATestCompanyStock}
+          />
           {results.PensionBenefitCodes && (
             <PlanProfilePensionBenefitCodes
               data={results.PensionBenefitCodes}
             />
           )}
+
           <PlanProfileTables
             data={[results.Statistics, results.City, results.BusinessCode]}
           />

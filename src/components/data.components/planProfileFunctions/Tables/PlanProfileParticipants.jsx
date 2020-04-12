@@ -1,9 +1,9 @@
 import React from "react";
 import numeral from "numeral";
 import { Line } from "react-chartjs-2";
-import DataExtract from "./PlanProfileDataExtract";
-import dashboardCharts from "../dashboardFunctions/charts";
-import common from "../commonFunctions/common";
+import DataExtract from "../PlanProfileDataExtract";
+import dashboardCharts from "../../dashboardFunctions/charts";
+import common from "../../commonFunctions/common";
 
 export default props => {
   const database = props.info;
@@ -74,7 +74,12 @@ export default props => {
               })}
             </tr>
             <tr>
-              <th className="thead-dark">Participants</th>
+              <th className="thead-dark onepager-pesion-description">
+                Participants
+                <span className="onepager-tooltip">
+                  Total End of Year Active Participants
+                </span>
+              </th>
               {database.data[0].map((element, index) => {
                 return (
                   <td key={index}>
@@ -84,7 +89,12 @@ export default props => {
               })}
             </tr>
             <tr>
-              <th className="thead-dark">Contribution Employer</th>
+              <th className="thead-dark onepager-pesion-description">
+                Contribution Employer
+                <span className="onepager-tooltip">
+                  Contributions Made to Plan by the Employer
+                </span>
+              </th>
               {database.data[0].map((element, index) => {
                 return (
                   <td key={index}>
@@ -94,7 +104,12 @@ export default props => {
               })}
             </tr>
             <tr>
-              <th className="thead-dark">Contribution Participant</th>
+              <th className="thead-dark onepager-pesion-description">
+                Contribution Participant
+                <span className="onepager-tooltip">
+                  Contributions Made to Plan by the Participants
+                </span>
+              </th>
               {database.data[0].map((element, index) => {
                 return (
                   <td key={index}>

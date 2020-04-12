@@ -1,10 +1,10 @@
 import React from "react";
-import commonFunctions from "../commonFunctions/common";
+import commonFunctions from "../../commonFunctions/common";
 
 const PlaneProfileBusinessInfo = props => {
   return (
     <div className="plan-businessInfo">
-      <div className="plan-table-section">
+      <div className="plan-table-section-BusinessInfo">
         <h1 className="plan-h1">Business Information</h1>
         <table className="table table-striped table-bordered table-sm table-hover">
           <thead className="thead-dark">
@@ -72,6 +72,39 @@ const PlaneProfileBusinessInfo = props => {
             <tr>
               <th className="thead-dark">Industry</th>
               <td>{props.data.Industry}</td>
+            </tr>
+            <tr>
+              <th className="thead-dark onepager-pesion-description">
+                Company Stock
+                <span className="onepager-tooltip">
+                  Plan invests in the Sponsor's Company Stock Indicator
+                </span>
+              </th>
+              {props.erisa ? (
+                <td key="company_stock">
+                  <i
+                    className="fa fa-check"
+                    aria-hidden="true"
+                    style={{ color: "green" }}
+                  ></i>
+                </td>
+              ) : (
+                <td key="company_stock">
+                  <i
+                    className="fa fa-times"
+                    aria-hidden="true"
+                    style={{ color: "red" }}
+                  ></i>
+                </td>
+              )}
+            </tr>
+            <tr>
+              <th className="thead-dark">Cap</th>
+              {props.erisa ? (
+                <td key="cap">1.0 M</td>
+              ) : (
+                <td key="cap">500.0 K</td>
+              )}
             </tr>
           </tbody>
         </table>

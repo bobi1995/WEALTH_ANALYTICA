@@ -28,13 +28,13 @@ const reducer = number => {
       lengthOfAv = negative[1].toString().length;
     } else lengthOfAv = parts[0].toString().length;
     if (lengthOfAv > 12) {
-      return (parts[0] / 100000000000).toFixed(2) + " T";
+      return (parts[0] / 100000000000).toFixed(1) + " T";
     } else if (lengthOfAv <= 12 && lengthOfAv > 9) {
-      return (parts[0] / 1000000000).toFixed(2) + " B";
+      return (parts[0] / 1000000000).toFixed(1) + " B";
     } else if (lengthOfAv <= 9 && lengthOfAv > 6) {
-      return (parts[0] / 1000000).toFixed(2) + " M";
+      return (parts[0] / 1000000).toFixed(1) + " M";
     } else if (lengthOfAv <= 6 && lengthOfAv > 3) {
-      return (parts[0] / 1000).toFixed(2) + " K";
+      return (parts[0] / 1000).toFixed(1) + " K";
     } else {
       return parts[0];
     }

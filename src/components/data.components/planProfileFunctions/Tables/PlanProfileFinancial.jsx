@@ -1,8 +1,8 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
-import DataExtract from "./PlanProfileDataExtract";
-import dashboardCharts from "../dashboardFunctions/charts";
-import common from "../commonFunctions/common";
+import DataExtract from "../PlanProfileDataExtract";
+import dashboardCharts from "../../dashboardFunctions/charts";
+import common from "../../commonFunctions/common";
 
 export default props => {
   const database = props.info;
@@ -51,7 +51,12 @@ export default props => {
           </thead>
           <tbody className="table-hover">
             <tr>
-              <th className="thead-dark ">Total Assets</th>
+              <th className="thead-dark onepager-pesion-description">
+                Total Assets
+                <span className="onepager-tooltip">
+                  Total assets not including liabilities
+                </span>
+              </th>
               {database.data[0].map((element, index) => {
                 return element.TotalAssets >= 0 ? (
                   <td key={index}>${common.reducer(element.TotalAssets)}</td>
@@ -63,7 +68,12 @@ export default props => {
               })}
             </tr>
             <tr>
-              <th className="thead-dark">Net Assets</th>
+              <th className="thead-dark onepager-pesion-description">
+                Net Assets
+                <span className="onepager-tooltip">
+                  Total Assets less Liabilities
+                </span>
+              </th>
               {database.data[0].map((element, index) => {
                 return element.NetAssets >= 0 ? (
                   <td key={index}>${common.reducer(element.NetAssets)}</td>
@@ -108,7 +118,23 @@ export default props => {
               })}
             </tr>
             <tr>
-              <th className="thead-dark">Total Distributions</th>
+              <th className="thead-dark onepager-pesion-description">
+                Total Distributions
+                <span className="onepager-tooltip">
+                  Distribution includes only payments of benefits during the
+                  plan year, in cash, in kind, by purchase for the distributee
+                  of an annuity contract from an insurance company, or by
+                  distribution of life insurance contracts. Corrective
+                  distributions of excess deferrals, excess contributions, or
+                  excess aggregate contributions, or the income allocable to any
+                  of these amounts; 2. Distributions of automatic contributions
+                  pursuant to Code section 414(w); 3. The distribution of
+                  elective deferrals or the return of employee contributions to
+                  correct excess annual additions under Code section 415, or the
+                  gains attributable to these amounts; and 4. A loan deemed as a
+                  distribution under Code section
+                </span>
+              </th>
               {database.data[0].map((element, index) => {
                 if (element.ContributionFailureIndColor) {
                   return (

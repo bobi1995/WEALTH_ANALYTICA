@@ -1,9 +1,9 @@
 import React from "react";
 import numeral from "numeral";
-import commonFunctions from "../commonFunctions/common";
-import DataExtract from "./PlanProfileDataExtract";
+import commonFunctions from "../../commonFunctions/common";
+import DataExtract from "../PlanProfileDataExtract";
 import PlanProfilePensionCharac from "./PlanProfilePensionCharac";
-import common from "../commonFunctions/common";
+import common from "../../commonFunctions/common";
 
 const PlanProfilePension = props => {
   const uniqueYears = DataExtract.uniqueYearsPension();
@@ -15,10 +15,12 @@ const PlanProfilePension = props => {
       e.target.setAttribute("checked", "true");
     }
     props.types.map((element, index) => {
-      if (document.getElementById(element.Type).checked) {
-        document.getElementById(element.Type + index).style.display = "block";
+      if (document.getElementById(element.PlanName).checked) {
+        document.getElementById(element.PlanName + index).style.display =
+          "block";
       } else {
-        document.getElementById(element.Type + index).style.display = "none";
+        document.getElementById(element.PlanName + index).style.display =
+          "none";
       }
     });
   };
@@ -56,11 +58,11 @@ const PlanProfilePension = props => {
                             <input
                               type="checkbox"
                               value="None"
-                              id={element.Type}
+                              id={element.PlanName}
                               name="check"
                               onClick={checkClicked}
                             />
-                            <label htmlFor={element.Type}></label>
+                            <label htmlFor={element.PlanName}></label>
                           </div>
                         </td>
                         {/*****STATISTICS */}
@@ -162,7 +164,7 @@ const PlanProfilePension = props => {
                   <PlanProfilePensionCharac
                     data={element}
                     key={index}
-                    id={element.Type + index}
+                    id={element.PlanName + index}
                   />
                 </div>
               </div>

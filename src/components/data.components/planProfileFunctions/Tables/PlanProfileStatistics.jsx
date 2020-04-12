@@ -1,9 +1,9 @@
 import React from "react";
 import numeral from "numeral";
 import { Bar } from "react-chartjs-2";
-import DataExtract from "./PlanProfileDataExtract";
-import dashboardCharts from "../dashboardFunctions/charts";
-import common from "../commonFunctions/common";
+import DataExtract from "../PlanProfileDataExtract";
+import dashboardCharts from "../../dashboardFunctions/charts";
+import common from "../../commonFunctions/common";
 
 export default props => {
   const database = props.info;
@@ -104,7 +104,13 @@ export default props => {
           </thead>
           <tbody className="table-hover">
             <tr>
-              <th className="thead-dark">AUM/HC</th>
+              <th className="thead-dark onepager-pesion-description">
+                AUM/HC
+                <span className="onepager-tooltip">
+                  Total assets not including liabilities divided by Plan
+                  Participants
+                </span>
+              </th>
               {database.data[0].map((element, index) => {
                 return element.AUMHC >= 0 ? (
                   <td key={index}>${common.reducer(element.AUMHC)}</td>
@@ -116,7 +122,12 @@ export default props => {
               })}
             </tr>
             <tr>
-              <th className="thead-dark">Distribution Yield</th>
+              <th className="thead-dark onepager-pesion-description">
+                Distribution Yield
+                <span className="onepager-tooltip">
+                  Yield equals Total Distributon divided by Total Assets
+                </span>
+              </th>
               {database.data[0].map((element, index) => {
                 return element.Yield >= 0 ? (
                   <td key={index}>{numeral(element.Yield).format("0.00")}%</td>
@@ -128,7 +139,13 @@ export default props => {
               })}
             </tr>
             <tr>
-              <th className="thead-dark">Contribution Yield</th>
+              <th className="thead-dark onepager-pesion-description">
+                Contribution Yield
+                <span className="onepager-tooltip">
+                  Contribution Yield equals Participant and Employer
+                  Contribution divided by Total Assets
+                </span>
+              </th>
               {database.data[0].map((element, index) => {
                 return element.ContributionYield >= 0 ? (
                   <td key={index}>
@@ -142,7 +159,12 @@ export default props => {
               })}
             </tr>
             <tr>
-              <th className="thead-dark">Return on Investment</th>
+              <th className="thead-dark onepager-pesion-description">
+                Return on Investment
+                <span className="onepager-tooltip">
+                  Net Income plus Distributions divided by Total Assets
+                </span>
+              </th>
               {database.data[0].map((element, index) => {
                 return element.ExpenseRatio >= 0 ? (
                   <td key={index}>
@@ -156,7 +178,13 @@ export default props => {
               })}
             </tr>
             <tr>
-              <th className="thead-dark">Return on Assets</th>
+              <th className="thead-dark onepager-pesion-description">
+                Return on Assets
+                <span className="onepager-tooltip">
+                  End of Year Assets less Beginning of Year Assets divided by
+                  Beginning of Year Assets
+                </span>
+              </th>
               {database.data[0].map((element, index) => {
                 return element.ROR >= 0 ? (
                   <td key={index}>{numeral(element.ROR).format("0.00")}%</td>
