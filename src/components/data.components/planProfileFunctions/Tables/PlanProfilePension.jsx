@@ -15,7 +15,7 @@ const PlanProfilePension = props => {
       e.target.setAttribute("checked", "true");
     }
     props.types.map((element, index) => {
-      if (document.getElementById(element.PlanName).checked) {
+      if (document.getElementById(element.PlanName + element.Type).checked) {
         document.getElementById(element.PlanName + index).style.display =
           "block";
       } else {
@@ -29,6 +29,9 @@ const PlanProfilePension = props => {
       {/**********************PENSION TYPES***************************************** */}
       {props.types.length > 0
         ? props.types.map((element, index) => {
+            {
+              console.log(element);
+            }
             return (
               <div key={index}>
                 <div className="plan-table-section ">
@@ -58,11 +61,13 @@ const PlanProfilePension = props => {
                             <input
                               type="checkbox"
                               value="None"
-                              id={element.PlanName}
+                              id={element.PlanName + element.Type}
                               name="check"
                               onClick={checkClicked}
                             />
-                            <label htmlFor={element.PlanName}></label>
+                            <label
+                              htmlFor={element.PlanName + element.Type}
+                            ></label>
                           </div>
                         </td>
                         {/*****STATISTICS */}
