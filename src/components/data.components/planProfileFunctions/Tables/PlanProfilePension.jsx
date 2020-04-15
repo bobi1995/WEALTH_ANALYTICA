@@ -1,5 +1,4 @@
 import React from "react";
-import numeral from "numeral";
 import commonFunctions from "../../commonFunctions/common";
 import DataExtract from "../PlanProfileDataExtract";
 import PlanProfilePensionCharac from "./PlanProfilePensionCharac";
@@ -25,13 +24,10 @@ const PlanProfilePension = props => {
     });
   };
   return (
-    <div className="plan-businessInfo">
+    <div className="plan-businessInfo" id="planPensions-main">
       {/**********************PENSION TYPES***************************************** */}
       {props.types.length > 0
         ? props.types.map((element, index) => {
-            {
-              console.log(element);
-            }
             return (
               <div key={index}>
                 <div className="plan-table-section ">

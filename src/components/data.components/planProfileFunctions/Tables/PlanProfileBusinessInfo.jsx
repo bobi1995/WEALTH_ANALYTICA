@@ -3,7 +3,7 @@ import commonFunctions from "../../commonFunctions/common";
 
 const PlaneProfileBusinessInfo = props => {
   return (
-    <div className="plan-businessInfo">
+    <div className="plan-businessInfo" id="businessInfo-main">
       <div className="plan-table-section-BusinessInfo">
         <h1 className="plan-h1">Business Information</h1>
         <table className="table table-striped table-bordered table-sm table-hover">

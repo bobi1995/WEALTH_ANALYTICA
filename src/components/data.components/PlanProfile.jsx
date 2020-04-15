@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Datanavbar from "./DataNavbar";
 import PlaneProfileBusinessInfo from "./planProfileFunctions/Tables/PlanProfileBusinessInfo";
-import PlanProfilePensionBenefitCodes from "./planProfileFunctions/Tables/PlanProfilePensionBenefitCodes";
 import PlanProfileTables from "./planProfileFunctions/PlanProfileTables";
 import PlanProfileExportButton from "./planProfileFunctions/PlanProfileExportButton";
 import "../../styles/dataPages/planProfile.scss";
 import Loader from "./dashboardFunctions/loader";
 import PlanProfilePension from "./planProfileFunctions/Tables/PlanProfilePension";
+import PlanProfileExportHeading from "./planProfileFunctions/PlanProfileExportHeading";
 const PlaneProfile = props => {
   const [results, setResults] = useState([]);
   useEffect(() => {
@@ -35,16 +35,13 @@ const PlaneProfile = props => {
       </section>
       {results.City ? (
         <div id="allplanprofile">
-          <PlanProfileExportButton />
+          <PlanProfileExportHeading data={results.BusinessInformation} />
+          <PlanProfileExportButton types={results.PlanSummary} />
+
           <PlaneProfileBusinessInfo
             data={results.BusinessInformation}
             erisa={results.ERISATestCompanyStock}
           />
-          {results.PensionBenefitCodes && (
-            <PlanProfilePensionBenefitCodes
-              data={results.PensionBenefitCodes}
-            />
-          )}
 
           <PlanProfileTables
             data={[results.Statistics, results.City, results.BusinessCode]}
