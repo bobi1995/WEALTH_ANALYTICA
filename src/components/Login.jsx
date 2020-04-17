@@ -27,52 +27,52 @@ const Login = () => {
   };
 
   //*******SETTING LOGIN DETAILS************* */
-  const onLoginEmailChange = e => {
+  const onLoginEmailChange = (e) => {
     const email = e.target.value;
     setLoginEmail(email);
   };
 
-  const onLoginPasswordChange = e => {
+  const onLoginPasswordChange = (e) => {
     const password = e.target.value;
     setLoginPassword(password);
   };
   //*******SETTING REGISTER DETAILS********* */
-  const onFirstNameChange = e => {
+  const onFirstNameChange = (e) => {
     const firstName = e.target.value;
     setFirstName(firstName);
   };
 
-  const onLastNameChange = e => {
+  const onLastNameChange = (e) => {
     const lastName = e.target.value;
     setLastName(lastName);
   };
 
-  const onEmailChange = e => {
+  const onEmailChange = (e) => {
     const email = e.target.value;
     setEmail(email);
   };
 
-  const onPhoneChange = e => {
+  const onPhoneChange = (e) => {
     const phone = e.target.value;
     setPhone(phone);
   };
 
-  const onPasswordChange = e => {
+  const onPasswordChange = (e) => {
     const password = e.target.value;
     setPassword(password);
   };
 
-  const onPasswordConfirmChange = e => {
+  const onPasswordConfirmChange = (e) => {
     const passConfirm = e.target.value;
     setConfirmPassword(passConfirm);
   };
 
-  const onCompanyChange = e => {
+  const onCompanyChange = (e) => {
     const companyName = e.target.value;
     setCompanyName(companyName);
   };
 
-  const onAddressChange = e => {
+  const onAddressChange = (e) => {
     const address = e.target.value;
     setAddress(address);
   };
@@ -89,7 +89,7 @@ const Login = () => {
   };
   /****************SUBMITTING**************** */
 
-  const onSubmitLogin = e => {
+  const onSubmitLogin = (e) => {
     e.preventDefault();
     setLoading(true);
 
@@ -97,7 +97,7 @@ const Login = () => {
       .get(
         `http://pensionswebapi.azurewebsites.net/api/Users?email=${loginEmail}&password=${loginPassword}`
       )
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           setLoading(false);
           sessionStorage.setItem("logged", true);
@@ -111,20 +111,21 @@ const Login = () => {
           sessionStorage.setItem("Address", res.data.Address);
           sessionStorage.setItem("States", res.data.States);
           sessionStorage.setItem("LogoData", res.data.LogoData);
+          sessionStorage.setItem("BasicStates", res.data.BasicStates);
 
           history.push({
             pathname: "/dashboard",
-            state: res.data
+            state: res.data,
           });
         }
       })
-      .catch(e => {
+      .catch((e) => {
         alert("Wrong username or password");
         setLoading(false);
       });
   };
 
-  const onSubmitReg = e => {
+  const onSubmitReg = (e) => {
     e.preventDefault();
     setLoading(true);
 
@@ -138,7 +139,7 @@ const Login = () => {
       address: address,
       IsBusinessAccount: isBusiness,
       LogoFileName: fileName,
-      LogoData: fileBase64
+      LogoData: fileBase64,
     };
 
     if (password !== confirmPassword) {
@@ -150,19 +151,19 @@ const Login = () => {
     } else {
       axios
         .post(`http://pensionswebapi.azurewebsites.net/api/Users`, data)
-        .then(res => {
+        .then((res) => {
           if (res.status === 200) {
             setLoading(false);
             popupfunction();
           }
         })
-        .catch(e => {
+        .catch((e) => {
           console.log(e);
         });
     }
   };
   //BUSINESS ACCOUNT
-  const businessChange = e => {
+  const businessChange = (e) => {
     setIsBusiness(e.target.checked);
   };
   //FILE UPLOAD AND PICK
@@ -182,12 +183,12 @@ const Login = () => {
   };
 
   //FILE TO BASE64
-  const toBase64 = file =>
+  const toBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
+      reader.onerror = (error) => reject(error);
     });
   return (
     <div className="cont2">

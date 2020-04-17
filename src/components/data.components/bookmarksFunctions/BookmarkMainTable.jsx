@@ -3,9 +3,17 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import commonFunctions from "../commonFunctions/common";
 import numeral from "numeral";
+import dashboardFunctions from "../dashboardFunctions/functions";
 
-const BookmarkMainTable = props => {
-  const removeBookmark = CompanyID => {
+const BookmarkMainTable = (props) => {
+  //ALL BASIC STATES
+  const basicStates = [];
+  dashboardFunctions.commonFunctionBasics().forEach((el) => {
+    const n = el.split(" - ");
+    basicStates.push(n[1]);
+  });
+
+  const removeBookmark = (CompanyID) => {
     axios
       .post(
         `http://pensionswebapi.azurewebsites.net/api/Bookmarks/Remove?CompanyID=${CompanyID}`,
@@ -13,19 +21,19 @@ const BookmarkMainTable = props => {
         {
           headers: {
             Authorization: "Basic " + sessionStorage.getItem("Token"),
-            "Access-Control-Allow-Origin": "*"
-          }
+            "Access-Control-Allow-Origin": "*",
+          },
         }
       )
-      .then(res => {
+      .then((res) => {
         window.location.reload();
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
 
-  const addClient = CompanyID => {
+  const addClient = (CompanyID) => {
     axios
       .post(
         `http://pensionswebapi.azurewebsites.net/api/Bookmarks/AddClient?companyID=${CompanyID}`,
@@ -33,19 +41,19 @@ const BookmarkMainTable = props => {
         {
           headers: {
             Authorization: "Basic " + sessionStorage.getItem("Token"),
-            "Access-Control-Allow-Origin": "*"
-          }
+            "Access-Control-Allow-Origin": "*",
+          },
         }
       )
-      .then(res => {
+      .then((res) => {
         window.location.reload();
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
 
-  const removeClient = CompanyID => {
+  const removeClient = (CompanyID) => {
     axios
       .post(
         `http://pensionswebapi.azurewebsites.net/api/Bookmarks/RemoveClient?companyID=${CompanyID}`,
@@ -53,14 +61,14 @@ const BookmarkMainTable = props => {
         {
           headers: {
             Authorization: "Basic " + sessionStorage.getItem("Token"),
-            "Access-Control-Allow-Origin": "*"
-          }
+            "Access-Control-Allow-Origin": "*",
+          },
         }
       )
-      .then(res => {
+      .then((res) => {
         window.location.reload();
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };
@@ -114,27 +122,31 @@ const BookmarkMainTable = props => {
                         element.CompanyID
                           ? `/onepager/${element.CompanyID}`
                           : `/onepager/${element.CompanyID}`
-                      }`
+                      }`,
                     }}
                     target="_blank"
                   >
                     Details
                   </Link>
                 </td>
-                <td>
-                  <Link
-                    to={{
-                      pathname: `${
-                        element.CompanyID
-                          ? `/planprofile/${element.CompanyID}`
-                          : `/planprofile/${element.CompanyID}`
-                      }`
-                    }}
-                    target="_blank"
-                  >
-                    Generate
-                  </Link>
-                </td>
+                {basicStates.includes(element.State) ? (
+                  <td>N/A</td>
+                ) : (
+                  <td>
+                    <Link
+                      to={{
+                        pathname: `${
+                          element.CompanyID
+                            ? `/planprofile/${element.CompanyID}`
+                            : `/planprofile/${element.CompanyID}`
+                        }`,
+                      }}
+                      target="_blank"
+                    >
+                      Generate
+                    </Link>
+                  </td>
+                )}
                 <td>
                   {element.IsClient === false ? (
                     <button

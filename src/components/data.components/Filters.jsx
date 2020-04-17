@@ -23,6 +23,10 @@ const Filters = () => {
   const [flag, setFlag] = useState(0);
   const [searches, setSearches] = useState(0);
 
+  //BASIC STATES
+  const basicStates = functions.commonFunctionBasics();
+  const basicFlag = basicStates.some((el) => stateInput.includes(el));
+
   /********************SORTING*********** */
   const [sorted, setSorted] = useState(0);
   const [sortedPart, setSortedPart] = useState(0);
@@ -72,20 +76,25 @@ const Filters = () => {
     }
   });
 
-  const onYearChange = e => {
+  const onYearChange = (e) => {
     setSelectedYear(e.target.value);
   };
 
-  const addState = async e => {
+  // ADD AND REMOVE  STATES
+  const addState = async (e) => {
     e.preventDefault();
     const addStateBtn = document.getElementById("state-btn");
     addStateBtn.disabled = true;
     addStateBtn.innerHTML = "Loading";
     const allowedStates = functions.commonFunction();
+    const allowedBasicStates = functions.commonFunctionBasics();
     const stateField = document.getElementById("stateInput").value;
     const parts = stateField.split(" - ");
     const newCities = await filterFunction.cityFunction(parts[1]);
-    if (allowedStates.includes(stateField)) {
+    if (
+      allowedStates.includes(stateField) ||
+      allowedBasicStates.includes(stateField)
+    ) {
       addStateBtn.disabled = false;
       addStateBtn.innerHTML = "Add";
       setCities([...cities, ...newCities]);
@@ -102,15 +111,18 @@ const Filters = () => {
     }
   };
 
-  const removeState = async e => {
+  const removeState = async (e) => {
     const target = e.target;
     const value = target.parentNode.getAttribute("value");
     const parts = value.split(" - ");
     const reducedCities = await filterFunction.cityReducer(value, stateInput);
     setCities(reducedCities);
-    setStateInput(stateInput.filter(state => state !== value));
-    setStateAbbriviation(stateAbbriviation.filter(state => state !== parts[1]));
+    setStateInput(stateInput.filter((state) => state !== value));
+    setStateAbbriviation(
+      stateAbbriviation.filter((state) => state !== parts[1])
+    );
   };
+
   //***********RENDER STATES********* */
   const renderStates = () => {
     return stateInput.map((state, index) => {
@@ -125,7 +137,7 @@ const Filters = () => {
   };
 
   //*****************CITIES */
-  const addCity = e => {
+  const addCity = (e) => {
     e.preventDefault();
     const cityField = document.getElementById("cityInput").value;
     if (cityField) {
@@ -144,14 +156,14 @@ const Filters = () => {
     });
   };
 
-  const removeCity = async e => {
+  const removeCity = async (e) => {
     const target = e.target;
     const value = target.parentNode.getAttribute("value");
-    setInputedCities(inputedCities.filter(city => city !== value));
+    setInputedCities(inputedCities.filter((city) => city !== value));
   };
 
   //***********SUBMIT SEARCH********* */
-  const searchBtn = async e => {
+  const searchBtn = async (e) => {
     e.preventDefault();
     setResult([]);
     setFlag(1);
@@ -199,7 +211,7 @@ const Filters = () => {
       benefitType,
       benefitSymbol,
       planEntity,
-      dfeoption
+      dfeoption,
     });
     const data = await SearchFunction(
       selectedYear,
@@ -269,9 +281,9 @@ const Filters = () => {
     indexOfLastCompany
   );
 
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const CompaniesResult = array => {
+  const CompaniesResult = (array) => {
     if (array !== undefined) {
       return array.map((item, index) => {
         return <Company singleCompany={item} key={index} />;
@@ -322,48 +334,65 @@ const Filters = () => {
               </div>
               {/* RADIO BUTTONS */}
               <div className="radio-container">
-                <div className="radio-group">
-                  <input
-                    id="radio-4"
-                    name="radio"
-                    type="radio"
-                    value="2015"
-                    onChange={onYearChange}
-                  />
-                  <label className="filter-year-label" htmlFor="radio-4">
-                    2015
-                  </label>
-                  <input
-                    id="radio-3"
-                    name="radio"
-                    type="radio"
-                    value="2016"
-                    onChange={onYearChange}
-                  />
-                  <label className="filter-year-label" htmlFor="radio-3">
-                    2016
-                  </label>
-                  <input
-                    id="radio-2"
-                    name="radio"
-                    type="radio"
-                    value="2017"
-                    onChange={onYearChange}
-                  />
-                  <label className="filter-year-label" htmlFor="radio-2">
-                    2017
-                  </label>
-                  <input
-                    id="radio-1"
-                    name="radio"
-                    type="radio"
-                    value="2018"
-                    onChange={onYearChange}
-                  />
-                  <label className="filter-year-label" htmlFor="radio-1">
-                    2018
-                  </label>
-                </div>
+                {basicFlag ? (
+                  <div className="radio-group">
+                    <input
+                      id="radio-1"
+                      name="radio"
+                      type="radio"
+                      value="2018"
+                      onChange={onYearChange}
+                      defaultChecked
+                    />
+                    <label className="filter-year-label" htmlFor="radio-1">
+                      2018
+                    </label>
+                  </div>
+                ) : (
+                  <div className="radio-group">
+                    <input
+                      id="radio-4"
+                      name="radio"
+                      type="radio"
+                      value="2015"
+                      onChange={onYearChange}
+                    />
+                    <label className="filter-year-label" htmlFor="radio-4">
+                      2015
+                    </label>
+                    <input
+                      id="radio-3"
+                      name="radio"
+                      type="radio"
+                      value="2016"
+                      onChange={onYearChange}
+                    />
+                    <label className="filter-year-label" htmlFor="radio-3">
+                      2016
+                    </label>
+                    <input
+                      id="radio-2"
+                      name="radio"
+                      type="radio"
+                      value="2017"
+                      onChange={onYearChange}
+                    />
+                    <label className="filter-year-label" htmlFor="radio-2">
+                      2017
+                    </label>
+                    <input
+                      id="radio-1"
+                      name="radio"
+                      type="radio"
+                      value="2018"
+                      onChange={onYearChange}
+                      defaultChecked
+                    />
+                    <label className="filter-year-label" htmlFor="radio-1">
+                      2018
+                    </label>
+                  </div>
+                )}
               </div>
               {/**CITIES */}
               <div className="filter-state-input-field">
@@ -401,6 +430,7 @@ const Filters = () => {
             {/* DATALISTS */}
             <datalist id="state-dataList">
               {functions.dataListStates(stateInput)}
+              {functions.dataListBasicStates()}
             </datalist>
             <datalist id="cities-dataList">
               {functions.dataListCities(cities)}
@@ -422,7 +452,7 @@ const Filters = () => {
             />
           </div>
         )}
-        <RightFilters />
+        <RightFilters flag={basicFlag} />
       </div>
       <div className="filter-main-search-btn">
         <button
@@ -439,7 +469,7 @@ const Filters = () => {
         companies={companies}
         resultCompanies={result.Companies}
         result={result.FilterProfile}
-        setSearched={searchedCompanies => {
+        setSearched={(searchedCompanies) => {
           setCompanies(searchedCompanies);
         }}
       />

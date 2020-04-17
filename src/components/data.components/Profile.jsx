@@ -11,8 +11,8 @@ const Profile = () => {
       </section>
 
       {/* ************** USER INFORMATIONS***********************/}
-      <div className="dashboard-client-info-main">
-        <div className="dashboard-info">
+      <div className="onepager-charts-all">
+        <div className="onepager-chart-content responsive-table-div">
           <h1 className="dashboard-h1">Your info</h1>
           <table className="dashboard-table table">
             <tbody>
@@ -42,14 +42,27 @@ const Profile = () => {
             </tbody>
           </table>
         </div>
-        <div className="dashboard-info-states">
+        <div className="onepager-chart-content responsive-table-div">
           <table className="table table-hover">
             <thead className="thead-dark">
               <tr>
-                <th>Paid States and abbreviations</th>
+                <th>Paid Advanced States and abbreviations</th>
               </tr>
             </thead>
             <tbody className="table-hover">{functions.statesNames()}</tbody>
+          </table>
+        </div>
+
+        <div className="onepager-chart-content responsive-table-div">
+          <table className="table table-hover">
+            <thead className="thead-dark">
+              <tr>
+                <th>Paid Basic States and abbreviations</th>
+              </tr>
+            </thead>
+            <tbody className="table-hover">
+              {functions.basicStatesNames()}
+            </tbody>
           </table>
         </div>
       </div>

@@ -47,9 +47,10 @@ const state = [
   "Virginia - VA",
   "Vermont - VT",
   "Washington - WA",
+  "Washington D.C. - DC",
   "Wisconsin - WI",
   "West Virginia - WV",
-  "Wyoming - WY"
+  "Wyoming - WY",
 ];
 
 export default state;

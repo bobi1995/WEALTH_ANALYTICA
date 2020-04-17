@@ -12,7 +12,7 @@ import OnePagerMap from "./OnePagerFunctions/OnePagerMap";
 import OnePagerPensionPlan from "./OnePagerFunctions/OnePagerPensionPlan";
 import OnePagerLogo from "./OnePagerFunctions/OnePagerLogo";
 
-const OnePager = props => {
+const OnePager = (props) => {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
@@ -21,13 +21,13 @@ const OnePager = props => {
       .get(url, {
         headers: {
           Authorization: "Basic " + sessionStorage.getItem("Token"),
-          "Access-Control-Allow-Origin": "*"
-        }
+          "Access-Control-Allow-Origin": "*",
+        },
       })
-      .then(res => {
+      .then((res) => {
         setResults(res.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         alert("For some reason we could not find the desired results.");
       });
@@ -41,7 +41,10 @@ const OnePager = props => {
       </section>
       {results.PlanName ? (
         <div>
-          <OnePagerTop data={props.match.params.CompanyID} />
+          <OnePagerTop
+            data={props.match.params.CompanyID}
+            state={results.State}
+          />
           <OnePagerLogo />
 
           <OnePagerCharts data={results.Statistics} />
@@ -52,7 +55,7 @@ const OnePager = props => {
             types={[
               results.PensionTypes,
               results.WelfareTypes,
-              results.PensionPlanSummary
+              results.PensionPlanSummary,
             ]}
           />
           <OnePagerMap address={results.Address} city={results.City} />

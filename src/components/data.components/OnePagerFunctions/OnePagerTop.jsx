@@ -2,12 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 import html2canvas from "html2canvas";
 import axios from "axios";
+import dashboardFunctions from "../dashboardFunctions/functions";
 
-const OnePagerTop = props => {
+const OnePagerTop = (props) => {
+  let flagBasic = 0;
+  console.log(props);
+  dashboardFunctions.commonFunctionBasics().forEach((el) => {
+    const n = el.split(" - ");
+    if (props.state == n[1]) {
+      flagBasic = 1;
+    }
+  });
+
+  console.log(flagBasic);
   window.onclick = function(event) {
     document.getElementById("alert-popupid").style.display = "none";
   };
-  const sendEmail = e => {
+  const sendEmail = (e) => {
     e.preventDefault();
     document.getElementById("clientLogo").style.display = "block";
     const sendUrl = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/SendEmail`;
@@ -19,17 +30,17 @@ const OnePagerTop = props => {
         to: `${document.getElementById("toEmail").value}`,
         subject: `${document.getElementById("subject").value}`,
         message: `${document.getElementById("emailText").value}`,
-        imageData: `${partsImage[1]}`
+        imageData: `${partsImage[1]}`,
       };
       axios
         .post(sendUrl, mailData, {
           headers: {
             Authorization: "Basic " + sessionStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json"
-          }
+            "Content-Type": "application/json",
+          },
         })
-        .then(res => {
+        .then((res) => {
           document.getElementById("clientLogo").style.display = "none";
 
           document.getElementById("emailform").style.display = "none";
@@ -38,7 +49,7 @@ const OnePagerTop = props => {
           document.getElementById("message-alert-box").innerHTML =
             "Successfully sent";
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
 
           document.getElementById("alert-popupid").style.display = "block";
@@ -50,7 +61,7 @@ const OnePagerTop = props => {
     document.getElementById("emailform").style.display = "block";
     document.getElementById("mainbuttons").style.display = "none";
   };
-  const cancelEmailSend = e => {
+  const cancelEmailSend = (e) => {
     e.preventDefault();
     document.getElementById("emailform").style.display = "none";
     document.getElementById("mainbuttons").style.display = "block";
@@ -71,17 +82,29 @@ const OnePagerTop = props => {
         >
           Send Email
         </button>
-        <button className="btn btn-warning btn-lg onepagertopbuttons">
-          <Link
-            className="onePager-Link"
-            to={{
-              pathname: `/planprofile/${props.data}`
-            }}
-            target="_blank"
+        {flagBasic == 0 ? (
+          <button className="btn btn-warning btn-lg onepagertopbuttons">
+            <Link
+              className="onePager-Link"
+              to={{
+                pathname: `/planprofile/${props.data}`,
+              }}
+              target="_blank"
+            >
+              Client Plan Analytic
+            </Link>
+          </button>
+        ) : (
+          <button
+            className="btn btn-warning btn-lg onepagertopbuttons onepager-pesion-description"
+            disabled
           >
+            <span className="onepager-tooltip">
+              Plan available in Advanced Version
+            </span>
             Client Plan Analytic
-          </Link>
-        </button>
+          </button>
+        )}
       </div>
       <div
         id="emailform"

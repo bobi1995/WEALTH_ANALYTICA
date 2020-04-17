@@ -2,7 +2,7 @@ import React from "react";
 import RightFilterFunction from "./RightFilterFunctions";
 import numeral from "numeral";
 
-const RightFilters = () => {
+const RightFilters = (props) => {
   return (
     <div className="required-filters">
       {/**PLAN AND BUSINESS CODE */}
@@ -17,7 +17,7 @@ const RightFilters = () => {
             autoComplete="off"
             min="0"
             max="99999999999"
-            onChange={e => {
+            onChange={(e) => {
               e.target.value = numeral(e.target.value).format("0,0");
             }}
           />
@@ -32,7 +32,7 @@ const RightFilters = () => {
             autoComplete="off"
             min="0"
             max="99999999999"
-            onChange={e => {
+            onChange={(e) => {
               e.target.value = numeral(e.target.value).format("0,0");
             }}
           />
@@ -48,7 +48,7 @@ const RightFilters = () => {
             autoComplete="off"
             min="0"
             max="99999999999"
-            onChange={e => {
+            onChange={(e) => {
               e.target.value = numeral(e.target.value).format("0,0");
             }}
           />
@@ -64,7 +64,7 @@ const RightFilters = () => {
             autoComplete="off"
             min="0"
             max="99999999999"
-            onChange={e => {
+            onChange={(e) => {
               e.target.value = numeral(e.target.value).format("0,0");
             }}
           />
@@ -100,17 +100,40 @@ const RightFilters = () => {
           </select>
         </div>
         {/**BUSINESS CODE */}
-        <div className="filter-select-company-type">
-          <label className="filter-company-label">Business Code:</label>
-          <input
-            type="text"
-            className="filter-select-form-control"
-            placeholder="Enter Business Code"
-            id="business-code"
-            list="code-dataList"
-            autoComplete="off"
-          ></input>
-        </div>
+        {props.flag ? (
+          <div className="filter-select-company-type ">
+            <label
+              className="filter-company-label onepager-pesion-description"
+              style={{ color: "grey" }}
+            >
+              Business Code:
+              <span className="onepager-tooltip">
+                Available in Advanced Version
+              </span>
+            </label>
+            <input
+              type="text"
+              className="filter-select-form-control"
+              placeholder="Enter Business Code"
+              id="business-code"
+              list="code-dataList"
+              autoComplete="off"
+              disabled
+            ></input>
+          </div>
+        ) : (
+          <div className="filter-select-company-type">
+            <label className="filter-company-label">Business Code:</label>
+            <input
+              type="text"
+              className="filter-select-form-control"
+              placeholder="Enter Business Code"
+              id="business-code"
+              list="code-dataList"
+              autoComplete="off"
+            ></input>
+          </div>
+        )}
         {/* DATALISTS CODES*/}
         <datalist id="code-dataList">
           {RightFilterFunction.codesList()}
