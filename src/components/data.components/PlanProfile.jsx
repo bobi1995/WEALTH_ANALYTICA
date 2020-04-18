@@ -8,22 +8,27 @@ import "../../styles/dataPages/planProfile.scss";
 import Loader from "./dashboardFunctions/loader";
 import PlanProfilePension from "./planProfileFunctions/Tables/PlanProfilePension";
 import PlanProfileExportHeading from "./planProfileFunctions/PlanProfileExportHeading";
-const PlaneProfile = props => {
+const PlaneProfile = (props) => {
   const [results, setResults] = useState([]);
+  const [limit, setLimit] = useState(false);
   useEffect(() => {
     const url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetPlanProfile?&CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=2018`;
     axios
       .get(url, {
         headers: {
           Authorization: "Basic " + sessionStorage.getItem("Token"),
-          "Access-Control-Allow-Origin": "*"
-        }
+          "Access-Control-Allow-Origin": "*",
+        },
       })
-      .then(res => {
+      .then((res) => {
         setResults(res.data);
       })
-      .catch(err => {
-        console.log(err);
+      .catch((err) => {
+        if (err.response.status == 400) {
+          setLimit(true);
+        } else {
+          alert("For some reason we could not find the desired results.");
+        }
       });
   }, []);
 
@@ -33,7 +38,14 @@ const PlaneProfile = props => {
       <section className="clientDash-img" data-html2canvas-ignore>
         <h1 className="clientDash-header1">Client Ready Plan Analytic</h1>
       </section>
-      {results.City ? (
+      {limit === true ? (
+        <div>
+          <h1 className="onepager-bottomtables-h1">
+            You are using Basic Plan for this state and you are not allowed to
+            use Plan Profile.
+          </h1>
+        </div>
+      ) : results.City ? (
         <div id="allplanprofile">
           <PlanProfileExportHeading data={results.BusinessInformation} />
           <PlanProfileExportButton types={results.PlanSummary} />

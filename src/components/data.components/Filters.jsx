@@ -19,7 +19,7 @@ const Filters = () => {
   const [cities, setCities] = useState([]);
   const [inputedCities, setInputedCities] = useState([]);
   const [companies, setCompanies] = useState([]);
-  const [selectedYear, setSelectedYear] = useState();
+  const [selectedYear, setSelectedYear] = useState(2018);
   const [flag, setFlag] = useState(0);
   const [searches, setSearches] = useState(0);
 
@@ -73,6 +73,11 @@ const Filters = () => {
 
     if (undefined !== NetAssetBeginOfYear) {
       setFlag(0);
+    }
+    if (basicFlag === true) {
+      setSelectedYear(2018);
+      document.getElementById("business-code").value = "";
+      document.getElementById("radio-1").checked = true;
     }
   });
 
@@ -342,7 +347,6 @@ const Filters = () => {
                       type="radio"
                       value="2018"
                       onChange={onYearChange}
-                      defaultChecked
                     />
                     <label className="filter-year-label" htmlFor="radio-1">
                       2018
@@ -381,14 +385,14 @@ const Filters = () => {
                       2017
                     </label>
                     <input
-                      id="radio-1"
+                      id="radio-1-full"
                       name="radio"
                       type="radio"
                       value="2018"
                       onChange={onYearChange}
                       defaultChecked
                     />
-                    <label className="filter-year-label" htmlFor="radio-1">
+                    <label className="filter-year-label" htmlFor="radio-1-full">
                       2018
                     </label>
                   </div>

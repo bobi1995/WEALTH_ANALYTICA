@@ -5,7 +5,7 @@ import axios from "axios";
 import ReactTooltip from "react-tooltip";
 import commonFunctions from "../commonFunctions/common";
 
-const SmallCompanies = props => {
+const SmallCompanies = (props) => {
   const [isBookmarked, setIsBookmarked] = useState(
     props.singleCompany.IsBookmarked
   );
@@ -14,7 +14,7 @@ const SmallCompanies = props => {
   if (props.singleCompany.NetIncome) {
     convertedIncome = numeral(props.singleCompany.NetIncome).format("0,0");
   }
-  const removeBookmark = e => {
+  const removeBookmark = (e) => {
     axios
       .post(
         `http://pensionswebapi.azurewebsites.net/api/Bookmarks/Remove?CompanyID=${props.singleCompany.CompanyID}`,
@@ -22,33 +22,37 @@ const SmallCompanies = props => {
         {
           headers: {
             Authorization: "Basic " + sessionStorage.getItem("Token"),
-            "Access-Control-Allow-Origin": "*"
-          }
+            "Access-Control-Allow-Origin": "*",
+          },
         }
       )
-      .then(res => {})
-      .catch(e => {
-        console.log(e);
-      });
-    setIsBookmarked(!isBookmarked);
+      .then((res) => {
+        setIsBookmarked(!isBookmarked);
+      })
+      .catch((err) => {});
   };
 
-  const addBookmark = e => {
+  const addBookmark = (e) => {
     axios
       .post(
         `http://pensionswebapi.azurewebsites.net/api/Bookmarks/add?CompanyID=${props.singleCompany.CompanyID}`,
         {},
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token")
-          }
+            Authorization: "Basic " + sessionStorage.getItem("Token"),
+          },
         }
       )
-      .then(res => {})
-      .catch(e => {
-        console.log(e);
+      .then((res) => {
+        setIsBookmarked(!isBookmarked);
+      })
+      .catch((err) => {
+        if (err.response.status == 400) {
+          alert(
+            "You have reached your maximum of 30 bookmarks for this state. To add more you should upgrade to Advanced version."
+          );
+        }
       });
-    setIsBookmarked(!isBookmarked);
   };
 
   return (
@@ -89,7 +93,7 @@ const SmallCompanies = props => {
       <td>
         <Link
           to={{
-            pathname: `/onepager/${props.singleCompany.CompanyID}`
+            pathname: `/onepager/${props.singleCompany.CompanyID}`,
           }}
           target="_blank"
         >

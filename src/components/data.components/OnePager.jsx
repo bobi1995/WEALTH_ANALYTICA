@@ -14,6 +14,7 @@ import OnePagerLogo from "./OnePagerFunctions/OnePagerLogo";
 
 const OnePager = (props) => {
   const [results, setResults] = useState([]);
+  const [limit, setLimit] = useState(false);
 
   useEffect(() => {
     const url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetOnePager?CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=2018`;
@@ -28,8 +29,11 @@ const OnePager = (props) => {
         setResults(res.data);
       })
       .catch((err) => {
-        console.log(err);
-        alert("For some reason we could not find the desired results.");
+        if (err.response.status == 400) {
+          setLimit(true);
+        } else {
+          alert("For some reason we could not find the desired results.");
+        }
       });
   }, []);
 
@@ -39,7 +43,13 @@ const OnePager = (props) => {
       <section className="clientDash-img">
         <h1 className="onePager-header1">{results.PlanName}</h1>
       </section>
-      {results.PlanName ? (
+      {limit === true ? (
+        <div>
+          <h1 className="onepager-bottomtables-h1">
+            Limit of 30 One Pager usage per month has been reached.
+          </h1>
+        </div>
+      ) : results.PlanName ? (
         <div>
           <OnePagerTop
             data={props.match.params.CompanyID}

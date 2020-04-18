@@ -114,7 +114,12 @@ const Login = () => {
           sessionStorage.setItem("BasicStates", res.data.BasicStates);
 
           history.push({
-            pathname: "/dashboard",
+            pathname:
+              res.data.States.length > 0
+                ? "/dashboard"
+                : res.data.BasicStates.length > 0
+                ? "/filters"
+                : "/profile",
             state: res.data,
           });
         }

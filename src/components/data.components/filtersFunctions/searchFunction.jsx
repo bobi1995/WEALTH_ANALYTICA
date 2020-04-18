@@ -1,17 +1,18 @@
 import axios from "axios";
 
-const fetching = async url => {
+const fetching = async (url) => {
+  console.log(url);
   const res = await axios
     .get(url, {
       headers: {
         Authorization: "Basic " + sessionStorage.getItem("Token"),
-        "Access-Control-Allow-Origin": "*"
-      }
+        "Access-Control-Allow-Origin": "*",
+      },
     })
-    .then(result => {
+    .then((result) => {
       return result;
     })
-    .catch(e => {
+    .catch((e) => {
       console.log(e);
       alert("For some reason we could not find the desired results.");
       window.location.reload();
