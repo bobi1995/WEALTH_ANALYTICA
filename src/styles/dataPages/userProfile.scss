@@ -1,0 +1,41 @@
+.purchase-main-div {
+  margin-bottom: 5%;
+}
+.purchase-controls {
+  width: 100%;
+  margin-left: 3%;
+  margin-right: 3%;
+  padding-left: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.purchase-div {
+  display: flex;
+  width: 70%;
+  margin: 0 auto;
+}
+.purchase-controls-div {
+  width: 100%;
+  margin: 1%;
+  display: flex;
+  align-items: center;
+}
+.purchase-add-btn {
+  width: 15%;
+  margin-top: 3%;
+}
+.purchase-list-holder {
+  width: 50%;
+  margin: 3% auto;
+}
+.purchase-totalAmount {
+  color: #388fc2;
+  text-align: center;
+  font-size: 35px;
+}
