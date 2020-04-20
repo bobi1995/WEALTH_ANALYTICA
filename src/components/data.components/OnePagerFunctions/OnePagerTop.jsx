@@ -6,7 +6,6 @@ import dashboardFunctions from "../dashboardFunctions/functions";
 
 const OnePagerTop = (props) => {
   let flagBasic = 0;
-  console.log(props);
   dashboardFunctions.commonFunctionBasics().forEach((el) => {
     const n = el.split(" - ");
     if (props.state == n[1]) {
@@ -14,7 +13,6 @@ const OnePagerTop = (props) => {
     }
   });
 
-  console.log(flagBasic);
   window.onclick = function(event) {
     document.getElementById("alert-popupid").style.display = "none";
   };

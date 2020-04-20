@@ -1,7 +1,7 @@
 import React from "react";
 import commonFunctions from "../commonFunctions/common";
 
-const OnePagerRightPane = props => {
+const OnePagerRightPane = (props) => {
   return (
     <div className="onePager-rightpane-maindiv">
       <div className="onepager-right-pane-cityAndCode">

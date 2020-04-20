@@ -3,10 +3,10 @@ import commonFunctions from "../commonFunctions/common";
 import numeral from "numeral";
 import DataExtract from "./OnePagerDataExtract";
 
-const OnePagerPensionPlan = props => {
+const OnePagerPensionPlan = (props) => {
   const uniqueYears = DataExtract.uniqueYearsPension();
 
-  const checkClicked = e => {
+  const checkClicked = (e) => {
     if (e.target.hasAttribute("checked")) {
       e.target.setAttribute("checked", "false");
     } else {
@@ -30,7 +30,7 @@ const OnePagerPensionPlan = props => {
             <thead className="thead-dark">
               <tr>
                 <th>Type</th>
-                <th>More</th>
+                <th data-html2canvas-ignore>More</th>
                 <th>Statistics</th>
               </tr>
             </thead>
@@ -42,7 +42,7 @@ const OnePagerPensionPlan = props => {
                       {element.Type &&
                         commonFunctions.splitCapitalLetterString(element.Type)}
                     </td>
-                    <td className="align-middle">
+                    <td className="align-middle" data-html2canvas-ignore>
                       <div className="slideThree">
                         <input
                           type="checkbox"
@@ -96,8 +96,15 @@ const OnePagerPensionPlan = props => {
                                 return element.TotalAssets.reverse().map(
                                   (el, id) => {
                                     if (el.Year === e) {
-                                      return (
+                                      return el.Value >= 0 ? (
                                         <td key={id}>
+                                          ${numeral(el.Value).format("0,0")}
+                                        </td>
+                                      ) : (
+                                        <td
+                                          key={id}
+                                          className="negative-numbers"
+                                        >
                                           ${numeral(el.Value).format("0,0")}
                                         </td>
                                       );
@@ -117,8 +124,15 @@ const OnePagerPensionPlan = props => {
                                 return element.NetAssets.reverse().map(
                                   (el, id) => {
                                     if (el.Year === e) {
-                                      return (
+                                      return el.Value >= 0 ? (
                                         <td key={id}>
+                                          ${numeral(el.Value).format("0,0")}
+                                        </td>
+                                      ) : (
+                                        <td
+                                          key={id}
+                                          className="negative-numbers"
+                                        >
                                           ${numeral(el.Value).format("0,0")}
                                         </td>
                                       );

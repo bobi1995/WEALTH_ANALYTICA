@@ -11,13 +11,16 @@ import OnePagerTop from "./OnePagerFunctions/OnePagerTop";
 import OnePagerMap from "./OnePagerFunctions/OnePagerMap";
 import OnePagerPensionPlan from "./OnePagerFunctions/OnePagerPensionPlan";
 import OnePagerLogo from "./OnePagerFunctions/OnePagerLogo";
+import OnePagerAccountants from "./OnePagerFunctions/OnePagerAccountants";
 
 const OnePager = (props) => {
   const [results, setResults] = useState([]);
   const [limit, setLimit] = useState(false);
-
+  let url = "";
   useEffect(() => {
-    const url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetOnePager?CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=2018`;
+    if (props.match) {
+      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetOnePager?CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=2018`;
+    }
     axios
       .get(url, {
         headers: {
@@ -59,8 +62,22 @@ const OnePager = (props) => {
 
           <OnePagerCharts data={results.Statistics} />
           <OnePagerTables data={results.Statistics} />
-          <OnePagerRightPane data={[results.City, results.BusinessCode]} />
+          {sessionStorage.getItem("BasicStates").includes(results.State) ? (
+            ""
+          ) : (
+            <OnePagerRightPane data={[results.City, results.BusinessCode]} />
+          )}
           <OnePagerBottomTables data={results.Statistics} />
+          {results.AccountantFirmNames.length > 0 ||
+          results.FiduciaryTrustNames.length > 0 ? (
+            <OnePagerAccountants
+              accountants={results.AccountantFirmNames}
+              trusts={results.FiduciaryTrustNames}
+            />
+          ) : (
+            ""
+          )}
+
           <OnePagerPensionPlan
             types={[
               results.PensionTypes,

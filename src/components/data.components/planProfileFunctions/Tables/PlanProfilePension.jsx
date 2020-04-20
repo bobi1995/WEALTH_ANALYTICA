@@ -4,10 +4,10 @@ import DataExtract from "../PlanProfileDataExtract";
 import PlanProfilePensionCharac from "./PlanProfilePensionCharac";
 import common from "../../commonFunctions/common";
 
-const PlanProfilePension = props => {
+const PlanProfilePension = (props) => {
   const uniqueYears = DataExtract.uniqueYearsPension();
 
-  const checkClicked = e => {
+  const checkClicked = (e) => {
     if (e.target.hasAttribute("checked")) {
       e.target.setAttribute("checked", "false");
     } else {
@@ -39,7 +39,7 @@ const PlanProfilePension = props => {
                     <thead className="thead-dark">
                       <tr>
                         <th>Type</th>
-                        <th>More</th>
+                        <th data-html2canvas-ignore>More</th>
                         <th>Statistics</th>
                       </tr>
                     </thead>
@@ -52,7 +52,7 @@ const PlanProfilePension = props => {
                             )}
                         </td>
                         {/*****CHARACTERISTICS */}
-                        <td className="align-middle">
+                        <td className="align-middle" data-html2canvas-ignore>
                           <div className="slideThree">
                             <input
                               type="checkbox"

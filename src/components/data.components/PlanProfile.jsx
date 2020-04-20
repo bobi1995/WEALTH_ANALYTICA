@@ -8,11 +8,15 @@ import "../../styles/dataPages/planProfile.scss";
 import Loader from "./dashboardFunctions/loader";
 import PlanProfilePension from "./planProfileFunctions/Tables/PlanProfilePension";
 import PlanProfileExportHeading from "./planProfileFunctions/PlanProfileExportHeading";
+import OnePagerAccountants from "./OnePagerFunctions/OnePagerAccountants";
 const PlaneProfile = (props) => {
   const [results, setResults] = useState([]);
   const [limit, setLimit] = useState(false);
+  let url = "";
   useEffect(() => {
-    const url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetPlanProfile?&CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=2018`;
+    if (props.match) {
+      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetPlanProfile?&CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=2018`;
+    }
     axios
       .get(url, {
         headers: {
@@ -58,6 +62,15 @@ const PlaneProfile = (props) => {
           <PlanProfileTables
             data={[results.Statistics, results.City, results.BusinessCode]}
           />
+          {results.AccountantFirmNames.length > 0 ||
+          results.FiduciaryTrustNames.length > 0 ? (
+            <OnePagerAccountants
+              accountants={results.AccountantFirmNames}
+              trusts={results.FiduciaryTrustNames}
+            />
+          ) : (
+            ""
+          )}
           <PlanProfilePension types={results.PlanSummary} />
         </div>
       ) : (

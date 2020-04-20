@@ -48,27 +48,29 @@ const Filters = () => {
     const submitBtnSearch = document.getElementById("submit-searh-btn");
     const addbtn1 = document.getElementById("state-btn");
     const addbtn2 = document.getElementById("city-btn");
-    if (flag === 1) {
-      addbtn1.disabled = true;
-      addbtn1.innerHTML = "Loading...";
-      addbtn2.disabled = true;
-      addbtn2.innerHTML = "Loading...";
-    } else {
-      submitBtnSearch.disabled = false;
-      addbtn1.disabled = false;
-      addbtn2.disabled = false;
-      addbtn1.innerHTML = "Add";
-      addbtn2.innerHTML = "Add";
-    }
-    if (stateInput.length < 1 || !selectedYear) {
-      submitBtnSearch.disabled = true;
-      submitBtnSearch.innerHTML = "Select State & Year";
-    } else if (flag === 1) {
-      submitBtnSearch.disabled = true;
-      submitBtnSearch.innerHTML = "Loading";
-    } else {
-      submitBtnSearch.disabled = false;
-      submitBtnSearch.innerHTML = "Search";
+    if (submitBtnSearch != null && addbtn1 && addbtn2) {
+      if (flag === 1) {
+        addbtn1.disabled = true;
+        addbtn1.innerHTML = "Loading...";
+        addbtn2.disabled = true;
+        addbtn2.innerHTML = "Loading...";
+      } else {
+        submitBtnSearch.disabled = false;
+        addbtn1.disabled = false;
+        addbtn2.disabled = false;
+        addbtn1.innerHTML = "Add";
+        addbtn2.innerHTML = "Add";
+      }
+      if (stateInput.length < 1 || !selectedYear) {
+        submitBtnSearch.disabled = true;
+        submitBtnSearch.innerHTML = "Select State & Year";
+      } else if (flag === 1) {
+        submitBtnSearch.disabled = true;
+        submitBtnSearch.innerHTML = "Loading";
+      } else {
+        submitBtnSearch.disabled = false;
+        submitBtnSearch.innerHTML = "Search";
+      }
     }
 
     if (undefined !== NetAssetBeginOfYear) {
