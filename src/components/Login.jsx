@@ -112,6 +112,7 @@ const Login = () => {
           sessionStorage.setItem("States", res.data.States);
           sessionStorage.setItem("LogoData", res.data.LogoData);
           sessionStorage.setItem("BasicStates", res.data.BasicStates);
+          sessionStorage.setItem("isBusiness", res.data.IsBusinessAccount);
 
           history.push({
             pathname:

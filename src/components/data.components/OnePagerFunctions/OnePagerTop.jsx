@@ -114,7 +114,10 @@ const OnePagerTop = (props) => {
             <div className="onepager-emailform-email">
               <img
                 className="onePager-top-logo"
-                src={require("../../../styles/images/Wealth_Analytica.png")}
+                src={`data:image/png;base64,${sessionStorage.getItem(
+                  "LogoData"
+                )}`}
+                alt="Upload your logo to see it"
               />
               <textarea
                 className="form-control onepager-textarea"

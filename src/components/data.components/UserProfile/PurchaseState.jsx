@@ -10,36 +10,91 @@ const PurchaseState = () => {
     const stateName = document.getElementById("purchaseState-name").value;
     const type = document.getElementById("purchase-type").value;
     const value = type === "Basic" ? 199 : 899;
-    if (stateName) {
+    const quantity = document.getElementById("purchaseNumber")
+      ? document.getElementById("purchaseNumber").value
+      : 1;
+
+    const duplicate = purchaseStates.some(
+      (el) => el.name == stateName && el.type == type
+    );
+
+    if (duplicate) {
+      console.log("exist");
+      document.getElementById("purchase-smallText").innerHTML =
+        "State already purchased with same type";
+    } else {
+      document.getElementById("purchase-smallText").innerHTML =
+        "Add the state to basket";
       setPurchaseStates([
         ...purchaseStates,
-        { name: stateName, type: type, value: value },
+        { name: stateName, type: type, value: value, quantity: quantity },
       ]);
-      setTotalAmount(totalAmount + value);
+      setTotalAmount(totalAmount + value * quantity);
       document.getElementById("purchaseState-name").value = "";
+      if (document.getElementById("purchaseNumber")) {
+        document.getElementById("purchaseNumber").value = "1";
+      }
     }
   };
 
   const removePurchasedState = async (e) => {
+    document.getElementById("purchase-smallText").innerHTML =
+      "Add the state to basket";
     const target = e.target;
     const removedState = target.parentNode.getAttribute("value");
-    const toBeRemoved = purchaseStates.filter(
-      (state) => state.name === removedState
-    );
+    const removedType = target.parentNode.getAttribute("type");
+    const removedQuantity = target.parentNode.getAttribute("quantity");
+    const toBeRemoved = purchaseStates.filter((state) => {
+      if (state.name == removedState && state.type == removedType) {
+        return state;
+      }
+    });
     setPurchaseStates(
-      purchaseStates.filter((state) => state.name !== removedState)
+      purchaseStates.filter((state) => {
+        if (state.name != removedState || state.type != removedType) {
+          return state;
+        }
+      })
     );
-    setTotalAmount(totalAmount - toBeRemoved[0].value);
+
+    setTotalAmount(totalAmount - toBeRemoved[0].value * removedQuantity);
   };
 
-  const renderPurchased = () => {
+  // const renderPurchased = () => {
+  //   return purchaseStates.map((pur, index) => {
+  //     return (
+  //       <li
+  //         value={pur.name}
+  //         id="individual-city"
+  //         key={index}
+  //         type={pur.type}
+  //         quantity={pur.quantity}
+  //       >
+  //         {pur.name} - {pur.type} Plan - $
+  //         {`${numeral(pur.value).format("0,0")}`} - Quantity:{pur.quantity}
+  //         <i className="fa fa-trash fa" onClick={removePurchasedState}></i>
+  //       </li>
+  //     );
+  //   });
+  // };
+  const renderPurchasedTable = () => {
     return purchaseStates.map((pur, index) => {
       return (
-        <li value={pur.name} id="individual-city" key={index}>
-          {pur.name} - {pur.type} Plan - $
-          {`${numeral(pur.value).format("0,0")}`}
-          <i className="fa fa-trash fa" onClick={removePurchasedState}></i>
-        </li>
+        <tr key={index}>
+          <td>{pur.name}</td>
+          <td>{pur.type}</td>
+          <td>${numeral(pur.value).format("0,0")}</td>
+          <td>{pur.quantity}</td>
+          <td>${numeral(pur.quantity * pur.value).format("0,0")}</td>
+          <td
+            value={pur.name}
+            id="individual-city"
+            type={pur.type}
+            quantity={pur.quantity}
+          >
+            <i className="fa fa-trash fa" onClick={removePurchasedState}></i>
+          </td>
+        </tr>
       );
     });
   };
@@ -47,7 +102,7 @@ const PurchaseState = () => {
   return (
     <div className="plan-businessInfo purchase-main-div">
       <h1 className="onepager-bottomtables-h1">Purchase States</h1>
-      <form>
+      <form onSubmit={addPurchase}>
         <div className="purchase-div">
           <div className="purchase-controls-div ">
             <label>State:</label>
@@ -58,6 +113,7 @@ const PurchaseState = () => {
               id="purchaseState-name"
               list="purchase-dataList"
               autoComplete="off"
+              required
             ></input>
             <datalist id="purchase-dataList">
               {allStates.map((state, index) => {
@@ -78,38 +134,68 @@ const PurchaseState = () => {
               <option value="Advanced">Advanced</option>
             </select>
           </div>
-          <div className="purchase-controls-div">
-            <label>Quantity:</label>
-            <input
-              type="number"
-              className="purchase-controls"
-              placeholder="How many?"
-              id="purchaseNumber"
-              autoComplete="off"
-              min="1"
-              defaultValue="1"
-            ></input>
-          </div>
+          {sessionStorage.getItem("isBusiness") === "true" ? (
+            <div className="purchase-controls-div">
+              <label>Quantity:</label>
+              <input
+                type="number"
+                className="purchase-controls"
+                placeholder="How many?"
+                id="purchaseNumber"
+                autoComplete="off"
+                min="1"
+                defaultValue="1"
+                required
+              ></input>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <button
           type="submit"
           className="btn btn-primary purchase-add-btn"
           id="state-btn"
-          onClick={addPurchase}
         >
           Add
         </button>
+        <small className="form-text text-muted" id="purchase-smallText">
+          Add the state to basket
+        </small>
       </form>
-      <div className="purchase-list-holder">
+      {/******* LIST FOR ADDING */}
+      {/* <div className="purchase-list-holder">
         <div className="addState-innerDiv filter-addState">
           <ul id="notes-city" className="notes-list">
             {renderPurchased()}
           </ul>
         </div>
-      </div>
-      <h1 className="purchase-totalAmount">
-        Total: ${numeral(totalAmount).format(0, 0)}
-      </h1>
+      </div> */}
+      {/******* TABLE FOR ADDING */}
+      {purchaseStates.length > 0 ? (
+        <div>
+          <div className="purchase-adding-table">
+            <table className="table table-striped table-bordered table-sm table-hover">
+              <thead className="thead-dark">
+                <tr>
+                  <th>State</th>
+                  <th>Type</th>
+                  <th>Single Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                  <th>Remove</th>
+                </tr>
+              </thead>
+              <tbody className="table-hover">{renderPurchasedTable()}</tbody>
+            </table>
+          </div>
+          <h1 className="purchase-totalAmount">
+            Total: ${numeral(totalAmount).format(0, 0)}
+          </h1>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
