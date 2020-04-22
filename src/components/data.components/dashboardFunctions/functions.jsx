@@ -3,9 +3,9 @@ import React from "react";
 
 //****************COMMON FUNCTIONS********* */
 const commonFunction = () => {
-  const statesString = sessionStorage.getItem("States");
-  if (statesString) {
-    const states = statesString.split(",");
+  const statesString = JSON.parse(sessionStorage.getItem("States"));
+  if (statesString.length > 0) {
+    const states = statesString.map((el) => el.State);
     const purchasedStates = [];
     const officialArray = [];
     AllStates.filter((el) => {
@@ -25,9 +25,9 @@ const commonFunction = () => {
 };
 
 const commonFunctionBasics = () => {
-  const statesString = sessionStorage.getItem("BasicStates");
-  if (statesString) {
-    const states = statesString.split(",");
+  const statesString = JSON.parse(sessionStorage.getItem("BasicStates"));
+  if (statesString.length > 0) {
+    const states = statesString.map((el) => el.State);
     const purchasedStates = [];
     const officialArray = [];
     AllStates.filter((el) => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const AllUsers = () => {
+import SingleUser from "./SingleUser";
+const AllUsers = (props) => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const url = `http://pensionswebapi.azurewebsites.net/api/Users/GetCompanyUsers`;
@@ -14,12 +15,13 @@ const AllUsers = () => {
       })
       .then((res) => {
         setUsers(res.data);
-        console.log(res.data);
+        props.subUsersPass(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
   return (
     <div className="onepager-chart-content responsive-table-div">
       <h1 className="purchase-totalAmount">Users</h1>
@@ -30,6 +32,7 @@ const AllUsers = () => {
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
+            <th>Check States</th>
           </tr>
         </thead>
         <tbody className="table-hover">
@@ -38,6 +41,9 @@ const AllUsers = () => {
               <td>{user.FirstName}</td>
               <td>{user.LastName}</td>
               <td>{user.Email}</td>
+              <td>
+                <SingleUser user={user} />
+              </td>
             </tr>
           ))}
         </tbody>

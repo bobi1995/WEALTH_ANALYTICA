@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { doc } from "prettier";
-export default props => {
+export default (props) => {
   const urlCreator = (
     year,
     states,
@@ -96,7 +95,7 @@ export default props => {
       return url;
     }
   };
-  const saveFilterFunction = e => {
+  const saveFilterFunction = (e) => {
     e.preventDefault();
     const data = {
       FilterName: document.getElementById("filterName").value,
@@ -113,7 +112,7 @@ export default props => {
         props.urlparams.benefitSymbol,
         props.urlparams.planEntity,
         props.urlparams.dfeoption
-      )
+      ),
     };
 
     axios
@@ -122,14 +121,14 @@ export default props => {
         data,
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token")
-          }
+            Authorization: "Basic " + sessionStorage.getItem("Token"),
+          },
         }
       )
-      .then(res => {
+      .then((res) => {
         document.getElementById("filterSave-close").click();
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   };

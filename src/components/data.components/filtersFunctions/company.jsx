@@ -49,7 +49,7 @@ const SmallCompanies = (props) => {
       .catch((err) => {
         if (err.response.status == 400) {
           alert(
-            "You have reached your maximum of 30 bookmarks for this state. To add more you should upgrade to Advanced version."
+            "You have reached your maximum of 30 bookmarks for the Basic States. To add more you should upgrade to Advanced version."
           );
         }
       });

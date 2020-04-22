@@ -109,11 +109,13 @@ const Login = () => {
           sessionStorage.setItem("CompanyName", res.data.CompanyName);
           sessionStorage.setItem("CompanyPhone", res.data.CompanyPhone);
           sessionStorage.setItem("Address", res.data.Address);
-          sessionStorage.setItem("States", res.data.States);
+          sessionStorage.setItem("States", JSON.stringify(res.data.States));
           sessionStorage.setItem("LogoData", res.data.LogoData);
-          sessionStorage.setItem("BasicStates", res.data.BasicStates);
+          sessionStorage.setItem(
+            "BasicStates",
+            JSON.stringify(res.data.BasicStates)
+          );
           sessionStorage.setItem("isBusiness", res.data.IsBusinessAccount);
-
           history.push({
             pathname:
               res.data.States.length > 0
