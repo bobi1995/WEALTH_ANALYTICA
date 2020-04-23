@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Popup from "reactjs-popup";
 import axios from "axios";
 const SingleUser = (props) => {
   const removeState = (state, type) => {
-    console.log(props.user.Guid);
-    console.log(state);
-    console.log(type);
+    let temp = JSON.parse(sessionStorage.getItem("States"));
     axios
       .post(
         `http://pensionswebapi.azurewebsites.net/api/Users/RemoveSubscription?userGuid=${props.user.Guid}&state=${state}&type=${type}`,
@@ -18,7 +16,10 @@ const SingleUser = (props) => {
         }
       )
       .then((res) => {
-        console.log(res);
+        if (props.user.IsBusinessAccount === true) {
+          temp = temp.filter((el) => el.State !== state && el.Type && type);
+          sessionStorage.setItem("States", JSON.stringify(temp));
+        }
         window.location.reload();
       })
       .catch((e) => {
@@ -46,8 +47,7 @@ const SingleUser = (props) => {
             States for {props.user.FirstName} {props.user.LastName}
           </h1>
           <div className="plan-businessInfo" id="businessManagement-div">
-            {props.user.BasicStates.length > 0 ||
-            props.user.States.length > 0 ? (
+            {props.user.States.length > 0 ? (
               <div className="onepager-charts-all">
                 {/*******PERSONAL INFORMATION FOR USER */}
                 <table className="table table-hover">
@@ -59,46 +59,24 @@ const SingleUser = (props) => {
                     </tr>
                   </thead>
                   <tbody className="table-hover">
-                    {props.user.BasicStates.length > 0
-                      ? props.user.BasicStates.map((state, index) => {
-                          return (
-                            <tr key={index}>
-                              <td>{state.State}</td>
-                              <td>Basic</td>
-                              <td>
-                                <button
-                                  className="bookmark-remove-button"
-                                  onClick={() => {
-                                    removeState(state.State, 1);
-                                  }}
-                                >
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                          );
-                        })
-                      : null}
-                    {props.user.States.length > 0
-                      ? props.user.States.map((state, index) => {
-                          return (
-                            <tr key={index}>
-                              <td>{state.State}</td>
-                              <td>Advanced</td>
-                              <td>
-                                <button
-                                  className="bookmark-remove-button"
-                                  onClick={() => {
-                                    removeState(state.State, 2);
-                                  }}
-                                >
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                          );
-                        })
-                      : null}
+                    {props.user.States.map((state, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{state.State}</td>
+                          <td>{state.Type === 1 ? "Basic" : "Advanced"}</td>
+                          <td>
+                            <button
+                              className="bookmark-remove-button"
+                              onClick={() => {
+                                removeState(state.State, state.Type);
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

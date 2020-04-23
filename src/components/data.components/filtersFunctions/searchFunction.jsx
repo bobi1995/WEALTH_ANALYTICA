@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const fetching = async (url) => {
-  console.log(url);
   const res = await axios
     .get(url, {
       headers: {

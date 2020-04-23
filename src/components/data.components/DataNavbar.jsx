@@ -3,7 +3,7 @@ import "../../styles/dataPages/DataNavbar.scss";
 import $ from "jquery";
 
 const DataNavbar = () => {
-  window.addEventListener("scroll", e => {
+  window.addEventListener("scroll", (e) => {
     const nav = document.getElementById("data-navigation");
     if (window.pageYOffset > 50) {
       nav.classList.add("affix");
@@ -48,7 +48,7 @@ const DataNavbar = () => {
                 </a>
                 <div className="dropdown-content">
                   <a href="/profile">Your Profile</a>
-                  <a href="/">Back to site</a>
+                  <a href="wealthanalytica.com">Back to site</a>
                   <a
                     href="/"
                     onClick={() => {

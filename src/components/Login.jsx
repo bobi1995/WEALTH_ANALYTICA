@@ -92,7 +92,6 @@ const Login = () => {
   const onSubmitLogin = (e) => {
     e.preventDefault();
     setLoading(true);
-
     axios
       .get(
         `http://pensionswebapi.azurewebsites.net/api/Users?email=${loginEmail}&password=${loginPassword}`
@@ -111,23 +110,15 @@ const Login = () => {
           sessionStorage.setItem("Address", res.data.Address);
           sessionStorage.setItem("States", JSON.stringify(res.data.States));
           sessionStorage.setItem("LogoData", res.data.LogoData);
-          sessionStorage.setItem(
-            "BasicStates",
-            JSON.stringify(res.data.BasicStates)
-          );
           sessionStorage.setItem("isBusiness", res.data.IsBusinessAccount);
           history.push({
-            pathname:
-              res.data.States.length > 0
-                ? "/dashboard"
-                : res.data.BasicStates.length > 0
-                ? "/filters"
-                : "/profile",
+            pathname: res.data.States.length > 0 ? "/dashboard" : "/profile",
             state: res.data,
           });
         }
       })
       .catch((e) => {
+        console.log(e);
         alert("Wrong username or password");
         setLoading(false);
       });

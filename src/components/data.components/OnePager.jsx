@@ -12,10 +12,12 @@ import OnePagerMap from "./OnePagerFunctions/OnePagerMap";
 import OnePagerPensionPlan from "./OnePagerFunctions/OnePagerPensionPlan";
 import OnePagerLogo from "./OnePagerFunctions/OnePagerLogo";
 import OnePagerAccountants from "./OnePagerFunctions/OnePagerAccountants";
+import dashboardFunctions from "./dashboardFunctions/functions";
 
 const OnePager = (props) => {
   const [results, setResults] = useState([]);
   const [limit, setLimit] = useState(false);
+
   let url = "";
   useEffect(() => {
     if (props.match) {
@@ -62,7 +64,9 @@ const OnePager = (props) => {
 
           <OnePagerCharts data={results.Statistics} />
           <OnePagerTables data={results.Statistics} />
-          {sessionStorage.getItem("BasicStates").includes(results.State) ? (
+          {dashboardFunctions
+            .commonFunctionShortAbbrBasic()
+            .includes(results.State) ? (
             ""
           ) : (
             <OnePagerRightPane data={[results.City, results.BusinessCode]} />

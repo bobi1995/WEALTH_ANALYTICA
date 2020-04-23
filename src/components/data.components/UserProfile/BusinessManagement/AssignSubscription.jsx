@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
 import axios from "axios";
+import dashboardFunctions from "../../dashboardFunctions/functions";
+
 const AssignSubscription = (props) => {
   const [pickedUserToAssign, setPickedUserToAssign] = useState("");
   const [business, setBusiness] = useState("");
@@ -12,45 +14,78 @@ const AssignSubscription = (props) => {
     const businessCheck = e.target.options[e.target.selectedIndex].getAttribute(
       "business"
     );
-    console.log(businessCheck);
     setBusiness(businessCheck);
     setPickedUserToAssign(option);
   };
 
   const assignToUser = (e) => {
     e.preventDefault();
-    axios
-      .post(
-        `http://pensionswebapi.azurewebsites.net/api/Users/AddSubscription?userGuid=${pickedUserToAssign}&state=${props.state}&type=${props.type}`,
-        {},
-        {
-          headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
-            "Access-Control-Allow-Origin": "*",
-          },
+    const temp = JSON.parse(sessionStorage.getItem("States"));
+    console.log(
+      temp.filter((e) => e.State === props.state && e.Type === props.type)
+        .length
+    );
+
+    switch (business) {
+      case "true":
+        if (
+          temp.filter((e) => e.State === props.state && e.Type === props.type)
+            .length === 0
+        ) {
+          axios
+            .post(
+              `http://pensionswebapi.azurewebsites.net/api/Users/AddSubscription?userGuid=${pickedUserToAssign}&state=${props.state}&type=${props.type}`,
+              {},
+              {
+                headers: {
+                  Authorization: "Basic " + sessionStorage.getItem("Token"),
+                  "Access-Control-Allow-Origin": "*",
+                },
+              }
+            )
+            .then((res) => {
+              temp.push(res.data);
+              sessionStorage.setItem("States", JSON.stringify(temp));
+
+              window.location.reload();
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        } else {
+          alert("State is already assigned to this User.");
         }
-      )
-      .then((res) => {
-        if (business === "true") {
-        }
-        console.log(res);
-        window.location.reload();
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+        break;
+      case "false":
+        axios
+          .post(
+            `http://pensionswebapi.azurewebsites.net/api/Users/AddSubscription?userGuid=${pickedUserToAssign}&state=${props.state}&type=${props.type}`,
+            {},
+            {
+              headers: {
+                Authorization: "Basic " + sessionStorage.getItem("Token"),
+                "Access-Control-Allow-Origin": "*",
+              },
+            }
+          )
+          .then((res) => {
+            temp.push(res.data);
+            sessionStorage.setItem("States", JSON.stringify(temp));
+
+            window.location.reload();
+          })
+          .catch((e) => {
+            alert("State is already assigned to this User.");
+          });
+        break;
+      default:
+        alert("Error");
+    }
   };
 
   return (
     <Popup
-      trigger={
-        <button
-          className="client-btn add-client"
-          style={{ background: "orange" }}
-        >
-          Show
-        </button>
-      }
+      trigger={<button className="client-btn add-client">Assign</button>}
       modal
     >
       {(close) => (

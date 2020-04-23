@@ -15,7 +15,6 @@ const AddUser = () => {
       password: document.getElementById("addUser-password").value,
       Guid: sessionStorage.getItem("Guid"),
     };
-    console.log(data);
     if (
       data.password !== document.getElementById("addUser-confirmPassword").value
     ) {

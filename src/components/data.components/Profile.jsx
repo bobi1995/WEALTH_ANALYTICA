@@ -23,7 +23,7 @@ const Profile = () => {
               <tr>
                 <th>Name</th>
                 <td>
-                  {sessionStorage.getItem("FirstName")}{" "}
+                  {sessionStorage.getItem("FirstName")}
                   {sessionStorage.getItem("LastName")}
                 </td>
               </tr>

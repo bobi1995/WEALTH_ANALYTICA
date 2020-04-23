@@ -3,11 +3,11 @@ import React from "react";
 
 //****************COMMON FUNCTIONS********* */
 const commonFunction = () => {
-  const statesString = JSON.parse(sessionStorage.getItem("States"));
+  const allStates = JSON.parse(sessionStorage.getItem("States"));
+  const statesString = allStates.filter((el) => el.Type === 2);
   if (statesString.length > 0) {
     const states = statesString.map((el) => el.State);
     const purchasedStates = [];
-    const officialArray = [];
     AllStates.filter((el) => {
       states.forEach((abr) => {
         if (el.includes(abr)) {
@@ -15,21 +15,17 @@ const commonFunction = () => {
         }
       });
     });
-    purchasedStates.forEach((el) => {
-      const n = el.split(" - ");
-      officialArray.push(n[1]);
-      officialArray.push(n[0]);
-    });
+
     return purchasedStates;
   } else return [];
 };
 
 const commonFunctionBasics = () => {
-  const statesString = JSON.parse(sessionStorage.getItem("BasicStates"));
+  const allStates = JSON.parse(sessionStorage.getItem("States"));
+  const statesString = allStates.filter((el) => el.Type === 1);
   if (statesString.length > 0) {
     const states = statesString.map((el) => el.State);
     const purchasedStates = [];
-    const officialArray = [];
     AllStates.filter((el) => {
       states.forEach((abr) => {
         if (el.includes(abr)) {
@@ -37,11 +33,25 @@ const commonFunctionBasics = () => {
         }
       });
     });
-    purchasedStates.forEach((el) => {
-      const n = el.split(" - ");
-      officialArray.push(n[1]);
-      officialArray.push(n[0]);
+
+    return purchasedStates;
+  } else return [];
+};
+
+const commonFunctionShortAbbrBasic = () => {
+  const allStates = JSON.parse(sessionStorage.getItem("States"));
+  const statesString = allStates.filter((el) => el.Type === 1);
+  if (statesString.length > 0) {
+    const states = statesString.map((el) => el.State);
+    const purchasedStates = [];
+    AllStates.filter((el) => {
+      states.forEach((abr) => {
+        if (el.includes(abr)) {
+          purchasedStates.push(abr);
+        }
+      });
     });
+
     return purchasedStates;
   } else return [];
 };
@@ -49,6 +59,7 @@ const commonFunctionBasics = () => {
 
 const statesNames = () => {
   const array = commonFunction();
+  console.log(array);
   return array.map((state, index) => {
     return (
       <tr key={index}>
@@ -103,4 +114,5 @@ export default {
   dataListBasicStates,
   commonFunctionBasics,
   basicStatesNames,
+  commonFunctionShortAbbrBasic,
 };
