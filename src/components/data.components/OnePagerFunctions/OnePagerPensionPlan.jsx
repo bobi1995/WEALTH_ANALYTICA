@@ -2,6 +2,7 @@ import React from "react";
 import commonFunctions from "../commonFunctions/common";
 import numeral from "numeral";
 import DataExtract from "./OnePagerDataExtract";
+import common from "../commonFunctions/common";
 
 const OnePagerPensionPlan = (props) => {
   const uniqueYears = DataExtract.uniqueYearsPension();
@@ -78,7 +79,11 @@ const OnePagerPensionPlan = (props) => {
                                 return element.Participants.reverse().map(
                                   (el, id) => {
                                     if (el.Year === e) {
-                                      return <td key={id}>{el.Value}</td>;
+                                      return (
+                                        <td key={id}>
+                                          {numeral(el.Value).format("0,0")}
+                                        </td>
+                                      );
                                     }
                                   }
                                 );
@@ -98,14 +103,14 @@ const OnePagerPensionPlan = (props) => {
                                     if (el.Year === e) {
                                       return el.Value >= 0 ? (
                                         <td key={id}>
-                                          ${numeral(el.Value).format("0,0")}
+                                          ${common.reducer(el.Value)}
                                         </td>
                                       ) : (
                                         <td
                                           key={id}
                                           className="negative-numbers"
                                         >
-                                          ${numeral(el.Value).format("0,0")}
+                                          ${common.reducer(el.Value)}
                                         </td>
                                       );
                                     }
@@ -126,14 +131,14 @@ const OnePagerPensionPlan = (props) => {
                                     if (el.Year === e) {
                                       return el.Value >= 0 ? (
                                         <td key={id}>
-                                          ${numeral(el.Value).format("0,0")}
+                                          ${common.reducer(el.Value)}
                                         </td>
                                       ) : (
                                         <td
                                           key={id}
                                           className="negative-numbers"
                                         >
-                                          ${numeral(el.Value).format("0,0")}
+                                          ${common.reducer(el.Value)}
                                         </td>
                                       );
                                     }

@@ -1,5 +1,5 @@
 import numeral from "numeral";
-const phoneFormat = phone => {
+const phoneFormat = (phone) => {
   const first = "(" + phone.substring(0, 3) + ")";
   const second = phone.substring(3, 6) + "-";
   const third = phone.substring(6);
@@ -7,19 +7,19 @@ const phoneFormat = phone => {
   return formattedNumber;
 };
 
-const formatString = str => {
+const formatString = (str) => {
   return str
-    .replace(/(\B)[^ ]*/g, match => match.toLowerCase())
-    .replace(/^[^ ]/g, match => match.toUpperCase());
+    .replace(/(\B)[^ ]*/g, (match) => match.toLowerCase())
+    .replace(/^[^ ]/g, (match) => match.toUpperCase());
 };
 
-const splitCapitalLetterString = str => {
+const splitCapitalLetterString = (str) => {
   const temp = str.split(/(?=[A-Z])/);
 
   return temp.join(" ");
 };
 
-const reducer = number => {
+const reducer = (number) => {
   if (number) {
     const parts = number.toString().split(".");
     let lengthOfAv = 0;
@@ -40,4 +40,20 @@ const reducer = number => {
     }
   } else return numeral(number).format("0,0");
 };
-export default { phoneFormat, formatString, splitCapitalLetterString, reducer };
+const stateNameReducer = (arr) => {
+  const newArr = [];
+  if (arr.length > 0) {
+    arr.map((el, index) => {
+      const n = el.split(" - ");
+      newArr.push(n[1]);
+    });
+  }
+  return newArr;
+};
+export default {
+  phoneFormat,
+  formatString,
+  splitCapitalLetterString,
+  reducer,
+  stateNameReducer,
+};

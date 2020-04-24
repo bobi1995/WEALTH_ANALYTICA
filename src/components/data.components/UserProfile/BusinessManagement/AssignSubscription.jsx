@@ -21,17 +21,10 @@ const AssignSubscription = (props) => {
   const assignToUser = (e) => {
     e.preventDefault();
     const temp = JSON.parse(sessionStorage.getItem("States"));
-    console.log(
-      temp.filter((e) => e.State === props.state && e.Type === props.type)
-        .length
-    );
 
     switch (business) {
       case "true":
-        if (
-          temp.filter((e) => e.State === props.state && e.Type === props.type)
-            .length === 0
-        ) {
+        if (temp.filter((e) => e.State === props.state).length === 0) {
           axios
             .post(
               `http://pensionswebapi.azurewebsites.net/api/Users/AddSubscription?userGuid=${pickedUserToAssign}&state=${props.state}&type=${props.type}`,

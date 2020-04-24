@@ -3,6 +3,7 @@ import commonFunctions from "../../commonFunctions/common";
 import DataExtract from "../PlanProfileDataExtract";
 import PlanProfilePensionCharac from "./PlanProfilePensionCharac";
 import common from "../../commonFunctions/common";
+import numeral from "numeral";
 
 const PlanProfilePension = (props) => {
   const uniqueYears = DataExtract.uniqueYearsPension();
@@ -91,7 +92,11 @@ const PlanProfilePension = (props) => {
                                     return element.Participants.reverse().map(
                                       (el, id) => {
                                         if (el.Year === e) {
-                                          return <td key={id}>{el.Value}</td>;
+                                          return (
+                                            <td key={id}>
+                                              {numeral(el.Value).format("0,0")}
+                                            </td>
+                                          );
                                         }
                                       }
                                     );

@@ -1,6 +1,7 @@
 import React from "react";
 import DataExtract from "./OnePagerDataExtract";
 import numeral from "numeral";
+import common from "../commonFunctions/common";
 
 const OnePagerBottomTables = (props) => {
   return (
@@ -24,10 +25,10 @@ const OnePagerBottomTables = (props) => {
                 <th className="thead-dark">AUM/HC</th>
                 {DataExtract.AUMHCExtract(props.data).map((auhmc, index) => {
                   return auhmc >= 0 ? (
-                    <td key={index}>${numeral(auhmc).format("0,0")}</td>
+                    <td key={index}>${common.reducer(auhmc)}</td>
                   ) : (
                     <td key={index} className="negative-numbers">
-                      ${numeral(auhmc).format("0,0")}
+                      ${common.reducer(auhmc)}
                     </td>
                   );
                 })}
@@ -111,7 +112,7 @@ const OnePagerBottomTables = (props) => {
                 <th className="thead-dark">Eligible Providers Count</th>
                 {DataExtract.providerEligibleNamesCountExtract(props.data).map(
                   (epc, index) => (
-                    <td key={index}>{epc}</td>
+                    <td key={index}>{numeral(epc).format("0,0")}</td>
                   )
                 )}
               </tr>
@@ -119,7 +120,7 @@ const OnePagerBottomTables = (props) => {
                 <th className="thead-dark">Other Providers Count</th>
                 {DataExtract.providerOtherNamesCountExtract(props.data).map(
                   (opc, index) => (
-                    <td key={index}>{opc}</td>
+                    <td key={index}>{numeral(opc).format("0,0")}</td>
                   )
                 )}
               </tr>
@@ -128,10 +129,10 @@ const OnePagerBottomTables = (props) => {
                 {DataExtract.providerOtherDirectCompATMExtract(props.data).map(
                   (directFees, index) => {
                     return directFees >= 0 ? (
-                      <td key={index}>${numeral(directFees).format("0,0")}</td>
+                      <td key={index}>${common.reducer(directFees)}</td>
                     ) : (
                       <td key={index} className="negative-numbers">
-                        ${numeral(directFees).format("0,0")}
+                        ${common.reducer(directFees)}
                       </td>
                     );
                   }
@@ -142,12 +143,10 @@ const OnePagerBottomTables = (props) => {
                 {DataExtract.providerOtherTotIndCompATMExtract(props.data).map(
                   (indirectFees, index) => {
                     return indirectFees >= 0 ? (
-                      <td key={index}>
-                        ${numeral(indirectFees).format("0,0")}
-                      </td>
+                      <td key={index}>${common.reducer(indirectFees)}</td>
                     ) : (
                       <td key={index} className="negative-numbers">
-                        ${numeral(indirectFees).format("0,0")}
+                        ${common.reducer(indirectFees)}
                       </td>
                     );
                   }
@@ -176,7 +175,7 @@ const OnePagerBottomTables = (props) => {
                 <th className="thead-dark">Carriers Count</th>
                 {DataExtract.carriersCountExtract(props.data).map(
                   (carriersCount, index) => (
-                    <td key={index}>{carriersCount}</td>
+                    <td key={index}>{numeral(carriersCount).format("0,0")}</td>
                   )
                 )}
               </tr>
@@ -184,7 +183,7 @@ const OnePagerBottomTables = (props) => {
                 <th className="thead-dark">Brokers Count</th>
                 {DataExtract.brokersCountExtract(props.data).map(
                   (brokersCount, index) => (
-                    <td key={index}>{brokersCount}</td>
+                    <td key={index}>{numeral(brokersCount).format("0,0")}</td>
                   )
                 )}
               </tr>
@@ -192,7 +191,7 @@ const OnePagerBottomTables = (props) => {
                 <th className="thead-dark">Broker Commissions</th>
                 {DataExtract.brokerCommissionsExtract(props.data).map(
                   (brokerCom, index) => (
-                    <td key={index}>${numeral(brokerCom).format("0,0")}</td>
+                    <td key={index}>${common.reducer(brokerCom)}</td>
                   )
                 )}
               </tr>
@@ -200,7 +199,7 @@ const OnePagerBottomTables = (props) => {
                 <th className="thead-dark">Broker Fees</th>
                 {DataExtract.brokerFeesExtract(props.data).map(
                   (fees, index) => (
-                    <td key={index}>${numeral(fees).format("0,0")}</td>
+                    <td key={index}>${common.reducer(fees)}</td>
                   )
                 )}
               </tr>
@@ -234,7 +233,7 @@ const OnePagerBottomTables = (props) => {
                 <th className="thead-dark">Fidelity Bond Amt</th>
                 {DataExtract.fidelityBondAmtExtract(props.data).map(
                   (bond, index) => (
-                    <td key={index}>${numeral(bond).format("0,0")}</td>
+                    <td key={index}>${common.reducer(bond)}</td>
                   )
                 )}
               </tr>

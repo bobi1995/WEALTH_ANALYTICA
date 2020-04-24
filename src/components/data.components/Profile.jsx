@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Datanavbar from "./DataNavbar";
 import functions from "./dashboardFunctions/functions";
-import PayPal from "./UserProfile/PayPal";
 import PurchaseState from "./UserProfile/PurchaseState";
 import BusinessManagement from "./UserProfile/BusinessManagement";
 import "../../styles/dataPages/userProfile.scss";
@@ -81,7 +80,6 @@ const Profile = () => {
         ""
       )}
       <PurchaseState />
-      <PayPal />
     </div>
   );
 };

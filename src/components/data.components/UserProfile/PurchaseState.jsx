@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import allStates from "../../../global/variables";
 import numeral from "numeral";
+import PayPal from "./PayPal";
+
 const PurchaseState = () => {
   const [purchaseStates, setPurchaseStates] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
@@ -15,24 +17,63 @@ const PurchaseState = () => {
       : 1;
 
     const duplicate = purchaseStates.some(
-      (el) => el.name == stateName && el.type == type
+      (el) => el.State == stateName && el.Type == type
     );
 
     if (duplicate) {
-      console.log("exist");
       document.getElementById("purchase-smallText").innerHTML =
         "State already purchased with same type";
     } else {
-      document.getElementById("purchase-smallText").innerHTML =
-        "Add the state to basket";
-      setPurchaseStates([
-        ...purchaseStates,
-        { name: stateName, type: type, value: value, quantity: quantity },
-      ]);
-      setTotalAmount(totalAmount + value * quantity);
-      document.getElementById("purchaseState-name").value = "";
-      if (document.getElementById("purchaseNumber")) {
-        document.getElementById("purchaseNumber").value = "1";
+      switch (sessionStorage.getItem("isBusiness")) {
+        case "true":
+          {
+            document.getElementById("purchase-smallText").innerHTML =
+              "Add the state to basket";
+
+            setPurchaseStates([
+              ...purchaseStates,
+              {
+                State: stateName,
+                Type: type,
+                value: value,
+                Accounts: quantity,
+              },
+            ]);
+            setTotalAmount(totalAmount + value * quantity);
+            document.getElementById("purchaseState-name").value = "";
+            if (document.getElementById("purchaseNumber")) {
+              document.getElementById("purchaseNumber").value = "1";
+            }
+          }
+          break;
+        case "false": {
+          const temp = JSON.parse(sessionStorage.getItem("States"));
+          const parts = stateName.split(" - ");
+
+          if (temp.filter((e) => e.State === parts[1]).length === 0) {
+            document.getElementById("purchase-smallText").innerHTML =
+              "Add the state to basket";
+
+            setPurchaseStates([
+              ...purchaseStates,
+              {
+                State: stateName,
+                Type: type,
+                value: value,
+                Accounts: quantity,
+              },
+            ]);
+            setTotalAmount(totalAmount + value * quantity);
+            document.getElementById("purchaseState-name").value = "";
+            if (document.getElementById("purchaseNumber")) {
+              document.getElementById("purchaseNumber").value = "1";
+            }
+          } else {
+            alert(
+              "State Already Exist. If you want to go from Basic to Advanced please consider Upgrade."
+            );
+          }
+        }
       }
     }
   };
@@ -45,13 +86,13 @@ const PurchaseState = () => {
     const removedType = target.parentNode.getAttribute("type");
     const removedQuantity = target.parentNode.getAttribute("quantity");
     const toBeRemoved = purchaseStates.filter((state) => {
-      if (state.name == removedState && state.type == removedType) {
+      if (state.State == removedState && state.Type == removedType) {
         return state;
       }
     });
     setPurchaseStates(
       purchaseStates.filter((state) => {
-        if (state.name != removedState || state.type != removedType) {
+        if (state.State != removedState || state.Type != removedType) {
           return state;
         }
       })
@@ -81,16 +122,16 @@ const PurchaseState = () => {
     return purchaseStates.map((pur, index) => {
       return (
         <tr key={index}>
-          <td>{pur.name}</td>
-          <td>{pur.type}</td>
+          <td>{pur.State}</td>
+          <td>{pur.Type}</td>
           <td>${numeral(pur.value).format("0,0")}</td>
-          <td>{pur.quantity}</td>
-          <td>${numeral(pur.quantity * pur.value).format("0,0")}</td>
+          <td>{pur.Accounts}</td>
+          <td>${numeral(pur.Accounts * pur.value).format("0,0")}</td>
           <td
-            value={pur.name}
+            value={pur.State}
             id="individual-city"
-            type={pur.type}
-            quantity={pur.quantity}
+            type={pur.Type}
+            quantity={pur.Accounts}
           >
             <i className="fa fa-trash fa" onClick={removePurchasedState}></i>
           </td>
@@ -192,6 +233,7 @@ const PurchaseState = () => {
           <h1 className="purchase-totalAmount">
             Total: ${numeral(totalAmount).format(0, 0)}
           </h1>
+          <PayPal amount={totalAmount} states={purchaseStates} />
         </div>
       ) : (
         ""

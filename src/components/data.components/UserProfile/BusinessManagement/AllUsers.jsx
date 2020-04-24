@@ -29,8 +29,7 @@ const AllUsers = (props) => {
       <table className="table table-hover">
         <thead className="thead-dark">
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Name</th>
             <th>Email</th>
             <th>Check States</th>
           </tr>
@@ -38,8 +37,9 @@ const AllUsers = (props) => {
         <tbody className="table-hover">
           {users.map((user, index) => (
             <tr key={index}>
-              <td>{user.FirstName}</td>
-              <td>{user.LastName}</td>
+              <td>
+                {user.FirstName} {user.LastName}
+              </td>
               <td>{user.Email}</td>
               <td>
                 <SingleUser user={user} />

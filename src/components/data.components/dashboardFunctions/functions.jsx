@@ -59,7 +59,6 @@ const commonFunctionShortAbbrBasic = () => {
 
 const statesNames = () => {
   const array = commonFunction();
-  console.log(array);
   return array.map((state, index) => {
     return (
       <tr key={index}>
