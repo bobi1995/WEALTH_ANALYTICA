@@ -11,6 +11,7 @@ import RightFilters from "./filtersFunctions/RightFilters";
 import MiddleFilterCHARTS from "./filtersFunctions/MiddleFilterCHARTS";
 import SummaryTable from "./filtersFunctions/SummaryTable";
 import RightFiltersFunction from "./filtersFunctions/RightFilterFunctions";
+import Magellan from "./Magellan";
 
 const Filters = () => {
   const [stateInput, setStateInput] = useState([]);
@@ -304,6 +305,7 @@ const Filters = () => {
       <section className="clientDash-img">
         <h1 className="clientDash-header1">Filters</h1>
       </section>
+      <Magellan activeStep={1} active={"filters"} />
       <div className="filter-top-main">
         <div className="required-filters">
           <div className="state-input-fields">

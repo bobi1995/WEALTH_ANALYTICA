@@ -9,6 +9,7 @@ import charts from "./dashboardFunctions/charts";
 import { Bar } from "react-chartjs-2";
 import Loader from "./dashboardFunctions/loader";
 import DashSummary from "./dashboardFunctions/DashSummary";
+import Magellan from "./Magellan";
 
 const Dashboard = (props) => {
   const [stateInput, setStateInput] = useState([]);
@@ -149,6 +150,7 @@ const Dashboard = (props) => {
       <section className="clientDash-img">
         <h1 className="clientDash-header1">Dashboard</h1>
       </section>
+      <Magellan activeStep={0} />
 
       {/* ************** CHARTS AND DIAGRAMS***********************/}
       <div className="dashboard-diagrams">

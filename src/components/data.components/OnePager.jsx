@@ -13,6 +13,7 @@ import OnePagerPensionPlan from "./OnePagerFunctions/OnePagerPensionPlan";
 import OnePagerLogo from "./OnePagerFunctions/OnePagerLogo";
 import OnePagerAccountants from "./OnePagerFunctions/OnePagerAccountants";
 import dashboardFunctions from "./dashboardFunctions/functions";
+import Magellan from "./Magellan";
 
 const OnePager = (props) => {
   const [results, setResults] = useState([]);
@@ -48,10 +49,15 @@ const OnePager = (props) => {
       <section className="clientDash-img">
         <h1 className="onePager-header1">{results.PlanName}</h1>
       </section>
+      <Magellan activeStep={3} />
       {limit === true ? (
         <div>
-          <h1 className="onepager-bottomtables-h1">
-            Limit of 30 One Pager usage per month has been reached.
+          <h1
+            className="onepager-bottomtables-h1"
+            style={{ width: "70%", margin: "auto" }}
+          >
+            Limit of 30 One Pager usage per month has been reached or you are do
+            not have subscription for this state anymore.
           </h1>
         </div>
       ) : results.PlanName ? (

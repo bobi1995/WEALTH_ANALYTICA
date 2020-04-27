@@ -3,6 +3,7 @@ import axios from "axios";
 import Datanavbar from "./DataNavbar";
 import "../../styles/dataPages/bookmarks.scss";
 import BookmarkMainTable from "./bookmarksFunctions/BookmarkMainTable";
+import Magellan from "./Magellan";
 
 const Bookmarks = () => {
   const [results, setResults] = useState([]);
@@ -15,14 +16,14 @@ const Bookmarks = () => {
       .get(url, {
         headers: {
           Authorization: "Basic " + sessionStorage.getItem("Token"),
-          "Access-Control-Allow-Origin": "*"
-        }
+          "Access-Control-Allow-Origin": "*",
+        },
       })
-      .then(res => {
+      .then((res) => {
         setResults(res.data);
         SetTempRes(res.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
@@ -32,7 +33,7 @@ const Bookmarks = () => {
   };
 
   const clientsReturn = () => {
-    const newArr = results.filter(element => {
+    const newArr = results.filter((element) => {
       if (element.IsClient === true) {
         return element;
       }
@@ -41,7 +42,7 @@ const Bookmarks = () => {
   };
 
   const nonclientsReturn = () => {
-    const newArr = results.filter(element => {
+    const newArr = results.filter((element) => {
       if (element.IsClient === false) {
         return element;
       }
@@ -55,6 +56,8 @@ const Bookmarks = () => {
       <section className="clientDash-img">
         <h1 className="clientDash-header1">Bookmarks</h1>
       </section>
+      <Magellan activeStep={2} />
+
       <div className="switch-field">
         <input
           type="radio"

@@ -1,7 +1,7 @@
 import React from "react";
 import DataExtract from "../PlanProfileDataExtract";
 
-const PlanProfileCharac = props => {
+const PlanProfileCharac = (props) => {
   const uniqueYears = DataExtract.uniqueYearsPension();
   return (
     <div

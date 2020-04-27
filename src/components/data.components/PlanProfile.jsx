@@ -9,6 +9,8 @@ import Loader from "./dashboardFunctions/loader";
 import PlanProfilePension from "./planProfileFunctions/Tables/PlanProfilePension";
 import PlanProfileExportHeading from "./planProfileFunctions/PlanProfileExportHeading";
 import OnePagerAccountants from "./OnePagerFunctions/OnePagerAccountants";
+import Magellan from "./Magellan";
+
 const PlaneProfile = (props) => {
   const [results, setResults] = useState([]);
   const [limit, setLimit] = useState(false);
@@ -42,11 +44,16 @@ const PlaneProfile = (props) => {
       <section className="clientDash-img" data-html2canvas-ignore>
         <h1 className="clientDash-header1">Client Ready Plan Analytic</h1>
       </section>
+      <Magellan activeStep={4} />
+
       {limit === true ? (
         <div>
-          <h1 className="onepager-bottomtables-h1">
-            You are using Basic Plan for this state and you are not allowed to
-            use Plan Profile.
+          <h1
+            className="onepager-bottomtables-h1"
+            style={{ width: "70%", margin: "auto" }}
+          >
+            You do not have Advanced subscription for this state and you are not
+            allowed to use Plan Profile.
           </h1>
         </div>
       ) : results.City ? (
