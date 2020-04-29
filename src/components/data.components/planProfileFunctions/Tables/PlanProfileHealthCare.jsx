@@ -3,7 +3,7 @@ import numeral from "numeral";
 import DataExtract from "../PlanProfileDataExtract";
 import common from "../../commonFunctions/common";
 
-export default props => {
+export default (props) => {
   const database = props.info;
 
   return (
@@ -15,17 +15,9 @@ export default props => {
               <th></th>
               {database.data[0].map((element, index) => {
                 if (element.IsCity === true) {
-                  return (
-                    <th key={index}>
-                      {database.data[1]} in {element.Year}
-                    </th>
-                  );
+                  return <th key={index}>City in {element.Year}</th>;
                 } else if (element.IsBusinessCode === true) {
-                  return (
-                    <th key={index}>
-                      {database.data[2]} in {element.Year}
-                    </th>
-                  );
+                  return <th key={index}>Industry for {element.Year}</th>;
                 } else {
                   return <th key={index}>{element.Year}</th>;
                 }

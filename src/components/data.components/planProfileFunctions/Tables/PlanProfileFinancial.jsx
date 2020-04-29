@@ -4,7 +4,7 @@ import DataExtract from "../PlanProfileDataExtract";
 import dashboardCharts from "../../dashboardFunctions/charts";
 import common from "../../commonFunctions/common";
 
-export default props => {
+export default (props) => {
   const database = props.info;
   const reducedData = dashboardCharts.arrayReducer(
     DataExtract.netAssetsPension(database.data[0])
@@ -19,9 +19,9 @@ export default props => {
         borderWidth: 1,
         hoverBackgroundColor: "rgba(56,143,194,0.4)",
         hoverBorderColor: "rgba(56,143,194,1)",
-        data: reducedData
-      }
-    ]
+        data: reducedData,
+      },
+    ],
   };
   return (
     <div className="plan-businessInfo plan-graphs">
@@ -32,17 +32,9 @@ export default props => {
               <th></th>
               {database.data[0].map((element, index) => {
                 if (element.IsCity === true) {
-                  return (
-                    <th key={index}>
-                      {database.data[1]} in {element.Year}
-                    </th>
-                  );
+                  return <th key={index}>City in {element.Year}</th>;
                 } else if (element.IsBusinessCode === true) {
-                  return (
-                    <th key={index}>
-                      {database.data[2]} for {element.Year}
-                    </th>
-                  );
+                  return <th key={index}>Industry for {element.Year}</th>;
                 } else {
                   return <th key={index}>{element.Year}</th>;
                 }

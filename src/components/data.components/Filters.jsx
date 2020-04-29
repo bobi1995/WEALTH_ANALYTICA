@@ -49,6 +49,7 @@ const Filters = () => {
     const submitBtnSearch = document.getElementById("submit-searh-btn");
     const addbtn1 = document.getElementById("state-btn");
     const addbtn2 = document.getElementById("city-btn");
+
     if (submitBtnSearch != null && addbtn1 && addbtn2) {
       if (flag === 1) {
         addbtn1.disabled = true;
@@ -82,6 +83,14 @@ const Filters = () => {
       document.getElementById("business-code").value = "";
       document.getElementById("radio-1").checked = true;
     }
+    if (stateInput.length > 0) {
+      addbtn1.disabled = true;
+      document.getElementById("stateHelp").innerHTML =
+        "To add another State remove the selected one";
+    } else {
+      document.getElementById("stateHelp").innerHTML =
+        "Enter the states you want to visualise";
+    }
   });
 
   const onYearChange = (e) => {
@@ -108,13 +117,13 @@ const Filters = () => {
       setCities([...cities, ...newCities]);
       setStateAbbriviation([...stateAbbriviation, parts[1]]);
       setStateInput([...stateInput, stateField]);
-      document.getElementById("emailHelp").innerHTML =
+      document.getElementById("stateHelp").innerHTML =
         "Enter the states you want to visualise";
       document.getElementById("stateInput").value = "";
     } else {
       addStateBtn.disabled = false;
       addStateBtn.innerHTML = "Add";
-      document.getElementById("emailHelp").innerHTML =
+      document.getElementById("stateHelp").innerHTML =
         "PICK CORRECT STATE VALUE";
     }
   };
@@ -129,6 +138,7 @@ const Filters = () => {
     setStateAbbriviation(
       stateAbbriviation.filter((state) => state !== parts[1])
     );
+    setInputedCities([]);
   };
 
   //***********RENDER STATES********* */
@@ -321,7 +331,7 @@ const Filters = () => {
                     list="state-dataList"
                     autoComplete="off"
                   />
-                  <small id="emailHelp" className="form-text text-muted">
+                  <small id="stateHelp" className="form-text text-muted">
                     Enter the states you want to visualise
                   </small>
                   <button
@@ -413,7 +423,7 @@ const Filters = () => {
                     list="cities-dataList"
                     autoComplete="off"
                   />
-                  <small id="emailHelp" className="form-text text-muted">
+                  <small id="cityHelp" className="form-text text-muted">
                     Enter the city you want to visualise
                   </small>
                   <button

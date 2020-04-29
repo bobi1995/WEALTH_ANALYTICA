@@ -5,7 +5,7 @@ import Loader from "./dashboardFunctions/loader";
 import Company from "./filtersFunctions/company";
 import Pagination from "./filtersFunctions/pagination";
 
-const SavedFilters = props => {
+const SavedFilters = (props) => {
   const [results, setResults] = useState([]);
   const [data, setData] = useState([]);
   const [flag, setFlag] = useState(0);
@@ -25,7 +25,7 @@ const SavedFilters = props => {
   const [sortedPart, setSortedPart] = useState(0);
   const [sortedAlphabetic, setSortedAlphabetic] = useState(0);
 
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     const url = `http://pensionswebapi.azurewebsites.net/api/Users/GetUserFilters`;
@@ -35,10 +35,10 @@ const SavedFilters = props => {
       .get(url, {
         headers: {
           Authorization: "Basic " + sessionStorage.getItem("Token"),
-          "Access-Control-Allow-Origin": "*"
-        }
+          "Access-Control-Allow-Origin": "*",
+        },
       })
-      .then(res => {
+      .then((res) => {
         if (res.data) {
           setResults(res.data);
           res.data.map((element, index) => {
@@ -50,27 +50,27 @@ const SavedFilters = props => {
           });
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }, []);
   const selectFilter = () => {
+    setFlag(1);
     const selectedFilter = document.getElementById("filter-option").options[
       document.getElementById("filter-option").selectedIndex
     ].url;
-    setFlag(1);
     axios
       .get(selectedFilter, {
         headers: {
           Authorization: "Basic " + sessionStorage.getItem("Token"),
-          "Access-Control-Allow-Origin": "*"
-        }
+          "Access-Control-Allow-Origin": "*",
+        },
       })
-      .then(result => {
+      .then((result) => {
         setData(result.data.Companies);
         setFlag(0);
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
         alert("For some reason we could not find the desired results.");
         window.location.reload();
@@ -87,21 +87,21 @@ const SavedFilters = props => {
         {
           headers: {
             Authorization: "Basic " + sessionStorage.getItem("Token"),
-            "Access-Control-Allow-Origin": "*"
-          }
+            "Access-Control-Allow-Origin": "*",
+          },
         }
       )
-      .then(result => {
+      .then((result) => {
         window.location.reload();
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
-        alert("For some reason we could not find the desired results.");
+        alert("First select Filter to be deleted.");
         window.location.reload();
       });
   };
 
-  const CompaniesResult = array => {
+  const CompaniesResult = (array) => {
     if (array !== undefined) {
       return array.map((item, index) => {
         return <Company singleCompany={item} key={index} />;
@@ -168,64 +168,62 @@ const SavedFilters = props => {
         </div>
       </div>
 
-      {data.length > 0 ? (
-        flag === 1 ? (
-          <div className="plan-businessInfo">
-            <Loader />
+      {flag === 1 ? (
+        <div className="plan-businessInfo">
+          <Loader />
+        </div>
+      ) : data.length > 0 ? (
+        <div className="plan-businessInfo">
+          <div className="filter-main-saveFilter-btn">
+            <p>
+              <button className="savedFilterBtn" onClick={deleteFilter}>
+                Delete Filter
+              </button>
+            </p>
           </div>
-        ) : (
-          <div className="plan-businessInfo">
-            <div className="filter-main-saveFilter-btn">
-              <p>
-                <button className="savedFilterBtn" onClick={deleteFilter}>
-                  Delete Filter
-                </button>
-              </p>
-            </div>
-            <div className="table-container">
-              <h1 className="plan-h1">Filter Results</h1>
-              <table className="table table-striped table-bordered table-sm table-hover">
-                <thead className="thead-dark">
-                  <tr>
-                    <th
-                      className="filter-table-header-clickable"
-                      onClick={sortByName}
-                    >
-                      Name
-                    </th>
-                    <th>Address</th>
-                    <th>City</th>
-                    <th>Contact</th>
-                    <th>Number</th>
-                    <th
-                      className="filter-table-header-clickable"
-                      onClick={sortByParticipants}
-                    >
-                      Participants
-                    </th>
-                    <th
-                      className="filter-table-header-clickable"
-                      onClick={sortByIncome}
-                    >
-                      Income
-                    </th>
-                    <th>Details</th>
-                    <th>Save</th>
-                  </tr>
-                </thead>
-                <tbody className="table-hover">
-                  {CompaniesResult(currentCompany)}
-                </tbody>
-              </table>
+          <div className="table-container">
+            <h1 className="plan-h1">Filter Results</h1>
+            <table className="table table-striped table-bordered table-sm table-hover">
+              <thead className="thead-dark">
+                <tr>
+                  <th
+                    className="filter-table-header-clickable"
+                    onClick={sortByName}
+                  >
+                    Name
+                  </th>
+                  <th>Address</th>
+                  <th>City</th>
+                  <th>Contact</th>
+                  <th>Number</th>
+                  <th
+                    className="filter-table-header-clickable"
+                    onClick={sortByParticipants}
+                  >
+                    Participants
+                  </th>
+                  <th
+                    className="filter-table-header-clickable"
+                    onClick={sortByIncome}
+                  >
+                    Income
+                  </th>
+                  <th>Details</th>
+                  <th>Save</th>
+                </tr>
+              </thead>
+              <tbody className="table-hover">
+                {CompaniesResult(currentCompany)}
+              </tbody>
+            </table>
 
-              <Pagination
-                companiesPerPage={companiesPerPage}
-                totalCompanies={data.length}
-                paginate={paginate}
-              />
-            </div>
+            <Pagination
+              companiesPerPage={companiesPerPage}
+              totalCompanies={data.length}
+              paginate={paginate}
+            />
           </div>
-        )
+        </div>
       ) : (
         ""
       )}

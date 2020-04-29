@@ -24,13 +24,15 @@ const OnePager = (props) => {
     if (props.match) {
       url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetOnePager?CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=2018`;
     }
-    axios
-      .get(url, {
-        headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
-          "Access-Control-Allow-Origin": "*",
-        },
-      })
+    axios({
+      method: "get",
+      url: url,
+      timeout: 60 * 4 * 1000, // Let's say you want to wait at least 4 mins
+      headers: {
+        Authorization: "Basic " + sessionStorage.getItem("Token"),
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
       .then((res) => {
         setResults(res.data);
       })

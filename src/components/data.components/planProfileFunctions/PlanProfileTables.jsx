@@ -8,7 +8,7 @@ import PlanProfileServiceProviders from "./Tables/PlanProfileServiceProviders";
 
 import common from "../commonFunctions/common";
 
-const PlanProfileTables = props => {
+const PlanProfileTables = (props) => {
   return (
     <div>
       {/**PLAN - Financial */}
@@ -51,17 +51,9 @@ const PlanProfileTables = props => {
                 <th></th>
                 {props.data[0].map((element, index) => {
                   if (element.IsCity === true) {
-                    return (
-                      <th key={index}>
-                        {props.data[1]} in {element.Year}
-                      </th>
-                    );
+                    return <th key={index}>City in {element.Year}</th>;
                   } else if (element.IsBusinessCode === true) {
-                    return (
-                      <th key={index}>
-                        Code {props.data[2]} for {element.Year}
-                      </th>
-                    );
+                    return <th key={index}>Industry for {element.Year}</th>;
                   } else {
                     return <th key={index}>{element.Year}</th>;
                   }

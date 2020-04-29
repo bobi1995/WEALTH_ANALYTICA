@@ -1,13 +1,15 @@
 import axios from "axios";
 
 const fetching = async (url) => {
-  const res = await axios
-    .get(url, {
-      headers: {
-        Authorization: "Basic " + sessionStorage.getItem("Token"),
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
+  const res = await axios({
+    method: "get",
+    url: url,
+    timeout: 60 * 4 * 1000, // Let's say you want to wait at least 4 mins
+    headers: {
+      Authorization: "Basic " + sessionStorage.getItem("Token"),
+      "Access-Control-Allow-Origin": "*",
+    },
+  })
     .then((result) => {
       return result;
     })

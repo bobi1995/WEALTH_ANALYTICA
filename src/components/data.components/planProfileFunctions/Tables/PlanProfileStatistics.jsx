@@ -5,7 +5,7 @@ import DataExtract from "../PlanProfileDataExtract";
 import dashboardCharts from "../../dashboardFunctions/charts";
 import common from "../../commonFunctions/common";
 
-export default props => {
+export default (props) => {
   const database = props.info;
   const yeildData = {
     labels: ["Yield", "Contr.Yield", "Expense Ratio", "ROR"],
@@ -21,9 +21,9 @@ export default props => {
           DataExtract.lastYearYield(database.data[0])[0],
           DataExtract.lastYearContributionYield(database.data[0])[0],
           DataExtract.lastYearExpenseRatio(database.data[0])[0],
-          DataExtract.lastYearROR(database.data[0])[0]
+          DataExtract.lastYearROR(database.data[0])[0],
         ]),
-        stack: 1
+        stack: 1,
       },
       {
         label: "Industry",
@@ -36,9 +36,9 @@ export default props => {
           DataExtract.industryYield(database.data[0])[0],
           DataExtract.industryContributionYield(database.data[0])[0],
           DataExtract.industryExpenseRatio(database.data[0])[0],
-          DataExtract.industryROR(database.data[0])[0]
+          DataExtract.industryROR(database.data[0])[0],
         ]),
-        stack: 2
+        stack: 2,
       },
       {
         label: "City",
@@ -51,11 +51,11 @@ export default props => {
           DataExtract.cityYield(database.data[0])[0],
           DataExtract.cityContributionYield(database.data[0])[0],
           DataExtract.cityExpenseRatio(database.data[0])[0],
-          DataExtract.cityROR(database.data[0])[0]
+          DataExtract.cityROR(database.data[0])[0],
         ]),
-        stack: 3
-      }
-    ]
+        stack: 3,
+      },
+    ],
   };
 
   const aumhcChartData = {
@@ -71,10 +71,10 @@ export default props => {
         data: dashboardCharts.arrayReducer([
           DataExtract.lastYearAum(database.data[0])[0],
           DataExtract.industryAum(database.data[0])[0],
-          DataExtract.cityAum(database.data[0])[0]
-        ])
-      }
-    ]
+          DataExtract.cityAum(database.data[0])[0],
+        ]),
+      },
+    ],
   };
   return (
     <div>
@@ -87,7 +87,7 @@ export default props => {
             options={dashboardCharts.optionReturn([
               DataExtract.lastYearAum(database.data[0])[0],
               DataExtract.industryAum(database.data[0])[0],
-              DataExtract.cityAum(database.data[0])[0]
+              DataExtract.cityAum(database.data[0])[0],
             ])}
           />
         </div>
@@ -103,14 +103,14 @@ export default props => {
                     scaleLabel: {
                       display: true,
                       labelString: "Results in %",
-                      fontSize: 15
+                      fontSize: 15,
                     },
                     ticks: {
-                      beginAtZero: true
-                    }
-                  }
-                ]
-              }
+                      beginAtZero: true,
+                    },
+                  },
+                ],
+              },
             }}
           />
         </div>
@@ -123,17 +123,9 @@ export default props => {
                 <th></th>
                 {database.data[0].map((element, index) => {
                   if (element.IsCity === true) {
-                    return (
-                      <th key={index}>
-                        {database.data[1]} in {element.Year}
-                      </th>
-                    );
+                    return <th key={index}>City in {element.Year}</th>;
                   } else if (element.IsBusinessCode === true) {
-                    return (
-                      <th key={index}>
-                        {database.data[2]} in {element.Year}
-                      </th>
-                    );
+                    return <th key={index}>Industry for {element.Year}</th>;
                   } else {
                     return <th key={index}>{element.Year}</th>;
                   }

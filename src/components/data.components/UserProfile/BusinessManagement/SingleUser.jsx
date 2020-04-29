@@ -17,7 +17,8 @@ const SingleUser = (props) => {
       )
       .then((res) => {
         if (props.user.IsBusinessAccount === true) {
-          temp = temp.filter((el) => el.State !== state && el.Type && type);
+          temp = temp.filter((el) => el.State !== state || el.Type !== type);
+          console.log(temp);
           sessionStorage.setItem("States", JSON.stringify(temp));
         }
         window.location.reload();

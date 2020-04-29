@@ -156,7 +156,7 @@ export default function CustomizedSteppers(props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-html2canvas-ignore>
       <Stepper
         alternativeLabel
         activeStep={props.activeStep}

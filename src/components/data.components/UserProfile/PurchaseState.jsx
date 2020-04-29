@@ -10,71 +10,75 @@ const PurchaseState = () => {
   const addPurchase = (e) => {
     e.preventDefault();
     const stateName = document.getElementById("purchaseState-name").value;
-    const type = document.getElementById("purchase-type").value;
-    const value = type === "Basic" ? 199 : 899;
-    const quantity = document.getElementById("purchaseNumber")
-      ? document.getElementById("purchaseNumber").value
-      : 1;
+    if (allStates.filter((el) => el === stateName).length > 0) {
+      const type = document.getElementById("purchase-type").value;
+      const value = type === "Basic" ? 199 : 899;
+      const quantity = document.getElementById("purchaseNumber")
+        ? document.getElementById("purchaseNumber").value
+        : 1;
 
-    const duplicate = purchaseStates.some(
-      (el) => el.State == stateName && el.Type == type
-    );
+      const duplicate = purchaseStates.some(
+        (el) => el.State == stateName && el.Type == type
+      );
 
-    if (duplicate) {
-      document.getElementById("purchase-smallText").innerHTML =
-        "State already purchased with same type";
-    } else {
-      switch (sessionStorage.getItem("isBusiness")) {
-        case "true":
-          {
-            document.getElementById("purchase-smallText").innerHTML =
-              "Add the state to basket";
+      if (duplicate) {
+        document.getElementById("purchase-smallText").innerHTML =
+          "State already purchased with same type";
+      } else {
+        switch (sessionStorage.getItem("isBusiness")) {
+          case "true":
+            {
+              document.getElementById("purchase-smallText").innerHTML =
+                "Add the state to basket";
 
-            setPurchaseStates([
-              ...purchaseStates,
-              {
-                State: stateName,
-                Type: type,
-                value: value,
-                Accounts: quantity,
-              },
-            ]);
-            setTotalAmount(totalAmount + value * quantity);
-            document.getElementById("purchaseState-name").value = "";
-            if (document.getElementById("purchaseNumber")) {
-              document.getElementById("purchaseNumber").value = "1";
+              setPurchaseStates([
+                ...purchaseStates,
+                {
+                  State: stateName,
+                  Type: type,
+                  value: value,
+                  Accounts: quantity,
+                },
+              ]);
+              setTotalAmount(totalAmount + value * quantity);
+              document.getElementById("purchaseState-name").value = "";
+              if (document.getElementById("purchaseNumber")) {
+                document.getElementById("purchaseNumber").value = "1";
+              }
             }
-          }
-          break;
-        case "false": {
-          const temp = JSON.parse(sessionStorage.getItem("States"));
-          const parts = stateName.split(" - ");
+            break;
+          case "false": {
+            const temp = JSON.parse(sessionStorage.getItem("States"));
+            const parts = stateName.split(" - ");
 
-          if (temp.filter((e) => e.State === parts[1]).length === 0) {
-            document.getElementById("purchase-smallText").innerHTML =
-              "Add the state to basket";
+            if (temp.filter((e) => e.State === parts[1]).length === 0) {
+              document.getElementById("purchase-smallText").innerHTML =
+                "Add the state to basket";
 
-            setPurchaseStates([
-              ...purchaseStates,
-              {
-                State: stateName,
-                Type: type,
-                value: value,
-                Accounts: quantity,
-              },
-            ]);
-            setTotalAmount(totalAmount + value * quantity);
-            document.getElementById("purchaseState-name").value = "";
-            if (document.getElementById("purchaseNumber")) {
-              document.getElementById("purchaseNumber").value = "1";
+              setPurchaseStates([
+                ...purchaseStates,
+                {
+                  State: stateName,
+                  Type: type,
+                  value: value,
+                  Accounts: quantity,
+                },
+              ]);
+              setTotalAmount(totalAmount + value * quantity);
+              document.getElementById("purchaseState-name").value = "";
+              if (document.getElementById("purchaseNumber")) {
+                document.getElementById("purchaseNumber").value = "1";
+              }
+            } else {
+              alert(
+                "State Already Exist. If you want to go from Basic to Advanced please consider Upgrade."
+              );
             }
-          } else {
-            alert(
-              "State Already Exist. If you want to go from Basic to Advanced please consider Upgrade."
-            );
           }
         }
       }
+    } else {
+      alert("Pick valid state");
     }
   };
 
@@ -101,23 +105,6 @@ const PurchaseState = () => {
     setTotalAmount(totalAmount - toBeRemoved[0].value * removedQuantity);
   };
 
-  // const renderPurchased = () => {
-  //   return purchaseStates.map((pur, index) => {
-  //     return (
-  //       <li
-  //         value={pur.name}
-  //         id="individual-city"
-  //         key={index}
-  //         type={pur.type}
-  //         quantity={pur.quantity}
-  //       >
-  //         {pur.name} - {pur.type} Plan - $
-  //         {`${numeral(pur.value).format("0,0")}`} - Quantity:{pur.quantity}
-  //         <i className="fa fa-trash fa" onClick={removePurchasedState}></i>
-  //       </li>
-  //     );
-  //   });
-  // };
   const renderPurchasedTable = () => {
     return purchaseStates.map((pur, index) => {
       return (

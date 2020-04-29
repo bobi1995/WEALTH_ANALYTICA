@@ -112,7 +112,14 @@ const Login = () => {
           sessionStorage.setItem("LogoData", res.data.LogoData);
           sessionStorage.setItem("isBusiness", res.data.IsBusinessAccount);
           history.push({
-            pathname: res.data.States.length > 0 ? "/dashboard" : "/profile",
+            pathname:
+              res.data.States.length > 0
+                ? res.data.States.filter((el) => {
+                    return el.Type === 2;
+                  }).length > 0
+                  ? "/dashboard"
+                  : "/filters"
+                : "/profile",
             state: res.data,
           });
         }

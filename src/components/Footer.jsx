@@ -27,27 +27,31 @@ const Footer = () => {
                 <ul className="thumbnail-widget">
                   <li>
                     <div className="thumb-content">
-                      <a href="/">Home</a>
+                      <a href="https://wealthanalytica.com/">Home</a>
                     </div>
                   </li>
                   <li>
                     <div className="thumb-content">
-                      <a href="/#about">About us</a>
+                      <a href="https://wealthanalytica.com/about/">About us</a>
                     </div>
                   </li>
                   <li>
                     <div className="thumb-content">
-                      <a href="/#services">Services</a>
+                      <a href="https://wealthanalytica.com/services/">
+                        Services
+                      </a>
                     </div>
                   </li>
                   <li>
                     <div className="thumb-content">
-                      <a href="/#portfolio">Portfolio</a>
+                      <a href="https://wealthanalytica.com/differences/">
+                        Why Us?
+                      </a>
                     </div>
                   </li>
                   <li>
                     <div className="thumb-content">
-                      <a href="/#contact">Contact</a>
+                      <a href="https://wealthanalytica.com/contact/">Contact</a>
                     </div>
                   </li>
                 </ul>

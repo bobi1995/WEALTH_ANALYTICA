@@ -48,7 +48,7 @@ const DataNavbar = () => {
                 </a>
                 <div className="dropdown-content">
                   <a href="/profile">Your Profile</a>
-                  <a href="wealthanalytica.com">Back to site</a>
+                  <a href="https://wealthanalytica.com/">Back to site</a>
                   <a
                     href="/"
                     onClick={() => {
