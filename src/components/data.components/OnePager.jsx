@@ -58,7 +58,7 @@ const OnePager = (props) => {
             className="onepager-bottomtables-h1"
             style={{ width: "70%", margin: "auto" }}
           >
-            Limit of 30 One Pager usage per month has been reached or you are do
+            Limit of 30 One Pager usages per month has been reached or you do
             not have subscription for this state anymore.
           </h1>
         </div>
