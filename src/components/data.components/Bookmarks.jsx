@@ -4,13 +4,14 @@ import Datanavbar from "./DataNavbar";
 import "../../styles/dataPages/bookmarks.scss";
 import BookmarkMainTable from "./bookmarksFunctions/BookmarkMainTable";
 import Magellan from "./Magellan";
+import apiAddress from "../../global/endpointAddress";
 
 const Bookmarks = () => {
   const [results, setResults] = useState([]);
   const [tempRes, SetTempRes] = useState([]);
 
   useEffect(() => {
-    const url = `http://pensionswebapi.azurewebsites.net/api/Bookmarks/List`;
+    const url = `${apiAddress}/api/Bookmarks/List`;
 
     axios
       .get(url, {

@@ -4,6 +4,7 @@ import axios from "axios";
 import "../styles/pages/login.scss";
 import history from "../history/history";
 import mySvg from "../styles/images/redo.svg";
+import apiAddress from "../global/endpointAddress";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -83,10 +84,6 @@ const Login = () => {
     document.getElementById("popmeup").click();
   };
 
-  const loginBtn = () => {
-    document.getElementById("popup1").style.visibility = "hidden";
-    clicked();
-  };
   /****************SUBMITTING**************** */
 
   const onSubmitLogin = (e) => {
@@ -94,7 +91,7 @@ const Login = () => {
     setLoading(true);
     axios
       .get(
-        `http://pensionswebapi.azurewebsites.net/api/Users?email=${loginEmail}&password=${loginPassword}`
+        `${apiAddress}/api/Users?email=${loginEmail}&password=${loginPassword}`
       )
       .then((res) => {
         if (res.status === 200) {
@@ -155,12 +152,16 @@ const Login = () => {
       alert("Password must be at least 7 symbols");
       setLoading(false);
     } else {
+      console.log(data);
       axios
-        .post(`http://pensionswebapi.azurewebsites.net/api/Users`, data)
+        .post(`${apiAddress}/api/Users`, data)
         .then((res) => {
           if (res.status === 200) {
             setLoading(false);
-            popupfunction();
+            alert(
+              "You have sucessfully registered! You can login with your credentials."
+            );
+            window.location.reload();
           }
         })
         .catch((e) => {

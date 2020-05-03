@@ -4,6 +4,7 @@ import axios from "axios";
 import commonFunctions from "../commonFunctions/common";
 import numeral from "numeral";
 import dashboardFunctions from "../dashboardFunctions/functions";
+import apiAddress from "../../../global/endpointAddress";
 
 const BookmarkMainTable = (props) => {
   //ALL BASIC STATES
@@ -16,7 +17,7 @@ const BookmarkMainTable = (props) => {
   const removeBookmark = (CompanyID) => {
     axios
       .post(
-        `http://pensionswebapi.azurewebsites.net/api/Bookmarks/Remove?CompanyID=${CompanyID}`,
+        `${apiAddress}/api/Bookmarks/Remove?CompanyID=${CompanyID}`,
         {},
         {
           headers: {
@@ -36,7 +37,7 @@ const BookmarkMainTable = (props) => {
   const addClient = (CompanyID) => {
     axios
       .post(
-        `http://pensionswebapi.azurewebsites.net/api/Bookmarks/AddClient?companyID=${CompanyID}`,
+        `${apiAddress}/api/Bookmarks/AddClient?companyID=${CompanyID}`,
         {},
         {
           headers: {
@@ -56,7 +57,7 @@ const BookmarkMainTable = (props) => {
   const removeClient = (CompanyID) => {
     axios
       .post(
-        `http://pensionswebapi.azurewebsites.net/api/Bookmarks/RemoveClient?companyID=${CompanyID}`,
+        `${apiAddress}/api/Bookmarks/RemoveClient?companyID=${CompanyID}`,
         {},
         {
           headers: {

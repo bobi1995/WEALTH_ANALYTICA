@@ -10,6 +10,7 @@ import { Bar } from "react-chartjs-2";
 import Loader from "./dashboardFunctions/loader";
 import DashSummary from "./dashboardFunctions/DashSummary";
 import Magellan from "./Magellan";
+import apiAddress from "../../global/endpointAddress";
 
 const Dashboard = (props) => {
   const [stateInput, setStateInput] = useState([]);
@@ -40,11 +41,11 @@ const Dashboard = (props) => {
     let url;
 
     if (stateAbbriviation.length === 1) {
-      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?summaryYear=${year}&minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}`;
+      url = `${apiAddress}/api/SmallCompanies/GetCompaniesTotals?summaryYear=${year}&minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}`;
     } else if (stateAbbriviation.length === 2) {
-      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?summaryYear=${year}&minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}`;
+      url = `${apiAddress}/api/SmallCompanies/GetCompaniesTotals?summaryYear=${year}&minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}`;
     } else if (stateAbbriviation.length === 3) {
-      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesTotals?summaryYear=${year}&minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}&state=${stateAbbriviation[2]}`;
+      url = `${apiAddress}/api/SmallCompanies/GetCompaniesTotals?summaryYear=${year}&minYear=2015&maxYear=2018&state=${stateAbbriviation[0]}&state=${stateAbbriviation[1]}&state=${stateAbbriviation[2]}`;
       document.getElementById("dashboard-submit-btn").disabled = true;
     }
     if (stateAbbriviation.length > 0) {

@@ -14,6 +14,7 @@ import OnePagerLogo from "./OnePagerFunctions/OnePagerLogo";
 import OnePagerAccountants from "./OnePagerFunctions/OnePagerAccountants";
 import dashboardFunctions from "./dashboardFunctions/functions";
 import Magellan from "./Magellan";
+import apiAddress from "../../global/endpointAddress";
 
 const OnePager = (props) => {
   const [results, setResults] = useState([]);
@@ -22,7 +23,7 @@ const OnePager = (props) => {
   let url = "";
   useEffect(() => {
     if (props.match) {
-      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetOnePager?CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=2018`;
+      url = `${apiAddress}/api/SmallCompanies/GetOnePager?CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=2018`;
     }
     axios({
       method: "get",

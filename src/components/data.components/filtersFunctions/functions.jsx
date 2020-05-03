@@ -1,19 +1,18 @@
 import axios from "axios";
-const cityFunction = async state => {
+import apiAddress from "../../../global/endpointAddress";
+
+const cityFunction = async (state) => {
   const res = await axios
-    .get(
-      `http://pensionswebapi.azurewebsites.net/api/Cities/Get?state=${state}`,
-      {
-        headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
-          "Access-Control-Allow-Origin": "*"
-        }
-      }
-    )
-    .then(result => {
+    .get(`${apiAddress}/api/Cities/Get?state=${state}`, {
+      headers: {
+        Authorization: "Basic " + sessionStorage.getItem("Token"),
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+    .then((result) => {
       return result;
     })
-    .catch(e => {
+    .catch((e) => {
       console.log(e);
     });
   if (res) {
@@ -24,7 +23,7 @@ const cityFunction = async state => {
 const cityReducer = async (state, array) => {
   const index = array.indexOf(state);
   array.splice(index, 1);
-  let url = `http://pensionswebapi.azurewebsites.net/api/Cities/Get?`;
+  let url = `${apiAddress}/api/Cities/Get?`;
   array.forEach((element, index) => {
     const parts = element.split(" - ");
     url = url.concat(`state=${parts[1]}&`);
@@ -33,13 +32,13 @@ const cityReducer = async (state, array) => {
     .get(url, {
       headers: {
         Authorization: "Basic " + sessionStorage.getItem("Token"),
-        "Access-Control-Allow-Origin": "*"
-      }
+        "Access-Control-Allow-Origin": "*",
+      },
     })
-    .then(result => {
+    .then((result) => {
       return result;
     })
-    .catch(e => {
+    .catch((e) => {
       console.log(e);
     });
   if (res) {

@@ -57,7 +57,18 @@
 
   .addUser-span {
     font-size: 12px;
-    color: #cfcfcf;
+    color: #388fc2;
     text-transform: uppercase;
   }
+}
+.usermanagement {
+  -webkit-border-image: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(#fff),
+      to(#afd4ec),
+      color-stop(0.2, #afd4ec)
+    )
+    0 0 0 0 repeat repeat;
 }

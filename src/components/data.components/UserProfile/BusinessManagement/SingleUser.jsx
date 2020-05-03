@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
 import axios from "axios";
+import apiAddress from "../../../../global/endpointAddress";
+import Moment from "react-moment";
+import "moment-timezone";
 const SingleUser = (props) => {
-  const removeState = (state, type) => {
+  const removeState = (state, type, paymendID) => {
     let temp = JSON.parse(sessionStorage.getItem("States"));
     axios
       .post(
-        `http://pensionswebapi.azurewebsites.net/api/Users/RemoveSubscription?userGuid=${props.user.Guid}&state=${state}&type=${type}`,
+        `${apiAddress}/api/Users/RemoveSubscription?userGuid=${props.user.Guid}&state=${state}&type=${type}&paymentID=${paymendID}`,
         {},
         {
           headers: {
@@ -56,20 +59,32 @@ const SingleUser = (props) => {
                     <tr>
                       <th>State</th>
                       <th>Type</th>
+                      <th>End Date</th>
                       <th>Remove</th>
                     </tr>
                   </thead>
                   <tbody className="table-hover">
                     {props.user.States.map((state, index) => {
+                      console.log(state);
+
                       return (
                         <tr key={index}>
                           <td>{state.State}</td>
                           <td>{state.Type === 1 ? "Basic" : "Advanced"}</td>
                           <td>
+                            <Moment format="DD/MMM/YYYY">
+                              {state.EndDate}
+                            </Moment>
+                          </td>
+                          <td>
                             <button
                               className="bookmark-remove-button"
                               onClick={() => {
-                                removeState(state.State, state.Type);
+                                removeState(
+                                  state.State,
+                                  state.Type,
+                                  state.PaymentID
+                                );
                               }}
                             >
                               Delete

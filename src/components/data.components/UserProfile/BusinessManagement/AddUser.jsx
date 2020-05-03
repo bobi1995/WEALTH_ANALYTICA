@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import apiAddress from "../../../../global/endpointAddress";
+
 const AddUser = () => {
   const [loading, setLoading] = useState(false);
 
@@ -27,10 +29,7 @@ const AddUser = () => {
       alert("Password must be at least 7 symbols");
     } else {
       axios
-        .post(
-          `http://pensionswebapi.azurewebsites.net/api/Users/CreateCompanyUser`,
-          data
-        )
+        .post(`${apiAddress}/api/Users/CreateCompanyUser`, data)
         .then((res) => {
           window.location.reload();
         })
@@ -40,7 +39,7 @@ const AddUser = () => {
     }
   };
   return (
-    <div className="onepager-chart-content responsive-table-div">
+    <div className="freestates-div-content responsive-table-div">
       <h1 className="purchase-totalAmount">Add New User</h1>
       <form onSubmit={submitNewUser}>
         <div className="div-label">

@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import apiAddress from "../../../global/endpointAddress";
+
 export default (props) => {
   const urlCreator = (
     year,
@@ -17,7 +19,7 @@ export default (props) => {
   ) => {
     let url;
     if (cities.length < 1) {
-      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesByState?year=${year}&`;
+      url = `${apiAddress}/api/SmallCompanies/GetCompaniesByState?year=${year}&`;
 
       states.forEach((state, index) => {
         url = url.concat(`state=${state}&`);
@@ -55,7 +57,7 @@ export default (props) => {
       }
       return url;
     } else {
-      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesByCity?year=${year}&`;
+      url = `${apiAddress}/api/SmallCompanies/GetCompaniesByCity?year=${year}&`;
       states.forEach((state, index) => {
         url = url.concat(`state=${state}&`);
       });
@@ -116,15 +118,11 @@ export default (props) => {
     };
 
     axios
-      .post(
-        `http://pensionswebapi.azurewebsites.net/api/Users/AddUserFilter`,
-        data,
-        {
-          headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
-          },
-        }
-      )
+      .post(`${apiAddress}/api/Users/AddUserFilter`, data, {
+        headers: {
+          Authorization: "Basic " + sessionStorage.getItem("Token"),
+        },
+      })
       .then((res) => {
         document.getElementById("filterSave-close").click();
       })

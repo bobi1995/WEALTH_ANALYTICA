@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Popup from "reactjs-popup";
 import axios from "axios";
-import dashboardFunctions from "../../dashboardFunctions/functions";
+import apiAddress from "../../../../global/endpointAddress";
 
 const AssignSubscription = (props) => {
   const [pickedUserToAssign, setPickedUserToAssign] = useState("");
@@ -27,7 +27,7 @@ const AssignSubscription = (props) => {
         if (temp.filter((e) => e.State === props.state).length === 0) {
           axios
             .post(
-              `http://pensionswebapi.azurewebsites.net/api/Users/AddSubscription?userGuid=${pickedUserToAssign}&state=${props.state}&type=${props.type}`,
+              `${apiAddress}/api/Users/AddSubscription?userGuid=${pickedUserToAssign}&state=${props.state}&type=${props.type}&paymentID=${props.paymentID}`,
               {},
               {
                 headers: {
@@ -52,7 +52,7 @@ const AssignSubscription = (props) => {
       case "false":
         axios
           .post(
-            `http://pensionswebapi.azurewebsites.net/api/Users/AddSubscription?userGuid=${pickedUserToAssign}&state=${props.state}&type=${props.type}`,
+            `${apiAddress}/api/Users/AddSubscription?userGuid=${pickedUserToAssign}&state=${props.state}&type=${props.type}&paymentID=${props.paymentID}`,
             {},
             {
               headers: {
@@ -87,6 +87,7 @@ const AssignSubscription = (props) => {
             &times;
           </a>
           <h1 className="purchase-totalAmount">
+            {console.log(props)}
             Assign State {props.state} to User
           </h1>
           <form onSubmit={assignToUser}>

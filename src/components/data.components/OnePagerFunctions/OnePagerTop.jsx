@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import html2canvas from "html2canvas";
 import axios from "axios";
 import dashboardFunctions from "../dashboardFunctions/functions";
+import apiAddress from "../../../global/endpointAddress";
 
 const OnePagerTop = (props) => {
   let flagBasic = 0;
@@ -19,7 +20,7 @@ const OnePagerTop = (props) => {
   const sendEmail = (e) => {
     e.preventDefault();
     document.getElementById("clientLogo").style.display = "block";
-    const sendUrl = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/SendEmail`;
+    const sendUrl = `${apiAddress}/api/SmallCompanies/SendEmail`;
     html2canvas(document.body).then(function(canvas) {
       const ImageUrl = canvas.toDataURL();
       const partsImage = ImageUrl.split(",");

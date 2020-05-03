@@ -10,6 +10,7 @@ import PlanProfilePension from "./planProfileFunctions/Tables/PlanProfilePension
 import PlanProfileExportHeading from "./planProfileFunctions/PlanProfileExportHeading";
 import OnePagerAccountants from "./OnePagerFunctions/OnePagerAccountants";
 import Magellan from "./Magellan";
+import apiAddress from "../../global/endpointAddress";
 
 const PlaneProfile = (props) => {
   const [results, setResults] = useState([]);
@@ -17,7 +18,7 @@ const PlaneProfile = (props) => {
   let url = "";
   useEffect(() => {
     if (props.match) {
-      url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetPlanProfile?&CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=2018`;
+      url = `${apiAddress}/api/SmallCompanies/GetPlanProfile?&CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=2018`;
     }
     axios({
       method: "get",

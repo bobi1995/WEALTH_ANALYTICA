@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
+import apiAddress from "../../../global/endpointAddress";
+
 const PayPaylBtn = (props) => {
   const paypal_ids = {
     sandbox:
@@ -19,16 +21,12 @@ const PayPaylBtn = (props) => {
       return el;
     });
     axios
-      .post(
-        `http://pensionswebapi.azurewebsites.net/api/Users/ConfirmPayment`,
-        requestBody,
-        {
-          headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      )
+      .post(`${apiAddress}/api/Users/ConfirmPayment`, requestBody, {
+        headers: {
+          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
       .then((res) => {
         console.log(res);
         if (sessionStorage.getItem("isBusiness") === "true") {

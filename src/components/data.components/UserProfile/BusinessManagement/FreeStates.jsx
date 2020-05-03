@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AssignSubscription from "./AssignSubscription";
+import apiAddress from "../../../../global/endpointAddress";
+import functions from "../../dashboardFunctions/functions";
+import Moment from "react-moment";
+import "moment-timezone";
 
 const FreeStates = (props) => {
   const [freeStates, setFreeStates] = useState([]);
   useEffect(() => {
-    const url = `http://pensionswebapi.azurewebsites.net/api/Users/GetRemainingAccounts`;
+    const url = `${apiAddress}/api/Users/GetRemainingAccounts`;
 
     axios
       .get(url, {
@@ -23,8 +27,8 @@ const FreeStates = (props) => {
   }, []);
 
   return (
-    <div className="onepager-chart-content responsive-table-div">
-      <h1 className="purchase-totalAmount">Free states</h1>
+    <div className="freestates-div-content responsive-table-div">
+      <h1 className="purchase-totalAmount">Unassigned states</h1>
 
       <table className="table table-hover">
         <thead className="thead-dark">
@@ -32,24 +36,34 @@ const FreeStates = (props) => {
             <th>State</th>
             <th>Type</th>
             <th>Quantity</th>
+            <th>Expire Date</th>
             <th>Assign to User</th>
           </tr>
         </thead>
         <tbody className="table-hover">
-          {freeStates.map((state, index) => (
-            <tr key={index}>
-              <td>{state.State}</td>
-              <td>{state.Type === 1 ? "Basic" : "Advanced"}</td>
-              <td>{state.Accounts}</td>
-              <td>
-                <AssignSubscription
-                  state={state.State}
-                  type={state.Type}
-                  subUsers={props.subUsers}
-                />
-              </td>
-            </tr>
-          ))}
+          {freeStates.map((state, index) =>
+            state.Details.map((el, ind) => (
+              <tr key={ind}>
+                <td>{functions.fullNameByAbbr(state.State)}</td>
+
+                <td>{el.Type === 1 ? "Basic" : "Advanced"}</td>
+                <td>{el.Count}</td>
+                <td>
+                  <Moment format="Do of MMMM YYYY">{el.ExpireDate}</Moment>
+                </td>
+
+                <td>
+                  <AssignSubscription
+                    state={state.State}
+                    type={el.Type}
+                    expire={el.ExpireDate}
+                    paymentID={el.PaymentID}
+                    subUsers={props.subUsers}
+                  />
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

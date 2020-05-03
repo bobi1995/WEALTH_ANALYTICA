@@ -1,4 +1,5 @@
 import axios from "axios";
+import apiAddress from "../../../global/endpointAddress";
 
 const fetching = async (url) => {
   const res = await axios({
@@ -38,7 +39,7 @@ const SearchFunction = (
   let url;
   let result;
   if (cities.length < 1) {
-    url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesByState?year=${year}&`;
+    url = `${apiAddress}/api/SmallCompanies/GetCompaniesByState?year=${year}&`;
 
     states.forEach((state, index) => {
       url = url.concat(`state=${state}&`);
@@ -75,7 +76,7 @@ const SearchFunction = (
       url = url.concat(`planEntity=${dfeoption}&`);
     }
   } else {
-    url = `http://pensionswebapi.azurewebsites.net/api/SmallCompanies/GetCompaniesByCity?year=${year}&`;
+    url = `${apiAddress}/api/SmallCompanies/GetCompaniesByCity?year=${year}&`;
     states.forEach((state, index) => {
       url = url.concat(`state=${state}&`);
     });

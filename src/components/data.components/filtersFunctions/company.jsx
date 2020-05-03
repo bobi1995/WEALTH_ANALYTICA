@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import ReactTooltip from "react-tooltip";
 import commonFunctions from "../commonFunctions/common";
+import apiAddress from "../../../global/endpointAddress";
 
 const SmallCompanies = (props) => {
   const [isBookmarked, setIsBookmarked] = useState(
@@ -17,7 +18,7 @@ const SmallCompanies = (props) => {
   const removeBookmark = (e) => {
     axios
       .post(
-        `http://pensionswebapi.azurewebsites.net/api/Bookmarks/Remove?CompanyID=${props.singleCompany.CompanyID}`,
+        `${apiAddress}/api/Bookmarks/Remove?CompanyID=${props.singleCompany.CompanyID}`,
         {},
         {
           headers: {
@@ -35,7 +36,7 @@ const SmallCompanies = (props) => {
   const addBookmark = (e) => {
     axios
       .post(
-        `http://pensionswebapi.azurewebsites.net/api/Bookmarks/add?CompanyID=${props.singleCompany.CompanyID}`,
+        `${apiAddress}/api/Bookmarks/add?CompanyID=${props.singleCompany.CompanyID}`,
         {},
         {
           headers: {

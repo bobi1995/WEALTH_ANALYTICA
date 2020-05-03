@@ -4,6 +4,7 @@ import Datanavbar from "./DataNavbar";
 import Loader from "./dashboardFunctions/loader";
 import Company from "./filtersFunctions/company";
 import Pagination from "./filtersFunctions/pagination";
+import apiAddress from "../../global/endpointAddress";
 
 const SavedFilters = (props) => {
   const [results, setResults] = useState([]);
@@ -28,7 +29,7 @@ const SavedFilters = (props) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
-    const url = `http://pensionswebapi.azurewebsites.net/api/Users/GetUserFilters`;
+    const url = `${apiAddress}/api/Users/GetUserFilters`;
     const filterOptions = document.getElementById("filter-option");
 
     axios
@@ -82,15 +83,12 @@ const SavedFilters = (props) => {
       document.getElementById("filter-option").selectedIndex
     ].id;
     axios
-      .delete(
-        `http://pensionswebapi.azurewebsites.net/api/Users/DeleteUserFilter?id=${deletionId}`,
-        {
-          headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      )
+      .delete(`${apiAddress}/api/Users/DeleteUserFilter?id=${deletionId}`, {
+        headers: {
+          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
       .then((result) => {
         window.location.reload();
       })

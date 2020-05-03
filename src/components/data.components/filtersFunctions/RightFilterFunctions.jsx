@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import businessCodes from "../../../global/businessCode";
+import apiAddress from "../../../global/endpointAddress";
 
 const benefitTypeSelected = async () => {
   const selectedType = document.getElementById("benefitType").options[
@@ -14,16 +15,13 @@ const benefitTypeSelected = async () => {
     symbolsLabel.style.textDecoration = "none";
 
     await axios
-      .get(
-        `http://pensionswebapi.azurewebsites.net/api/BenefitTypes/Get?type=${selectedType}`,
-        {
-          headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
-            "Access-Control-Allow-Origin": "*"
-          }
-        }
-      )
-      .then(result => {
+      .get(`${apiAddress}/api/BenefitTypes/Get?type=${selectedType}`, {
+        headers: {
+          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
+      .then((result) => {
         if (result.data) {
           const defaultOption = document.createElement("option");
           defaultOption.value = "All";
@@ -37,7 +35,7 @@ const benefitTypeSelected = async () => {
           });
         }
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
       });
   } else {
@@ -62,12 +60,12 @@ const codesList = () => {
 };
 
 //FIND CODE
-const findCode = industry => {
-  let obj = businessCodes.find(o => o.IndustryName === industry);
+const findCode = (industry) => {
+  let obj = businessCodes.find((o) => o.IndustryName === industry);
   return obj;
 };
 export default {
   benefitTypeSelected,
   codesList,
-  findCode
+  findCode,
 };
