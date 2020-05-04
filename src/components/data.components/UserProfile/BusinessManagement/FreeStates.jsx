@@ -53,13 +53,17 @@ const FreeStates = (props) => {
                 </td>
 
                 <td>
-                  <AssignSubscription
-                    state={state.State}
-                    type={el.Type}
-                    expire={el.ExpireDate}
-                    paymentID={el.PaymentID}
-                    subUsers={props.subUsers}
-                  />
+                  {el.Count > 0 ? (
+                    <AssignSubscription
+                      state={state.State}
+                      type={el.Type}
+                      expire={el.ExpireDate}
+                      paymentID={el.PaymentID}
+                      subUsers={props.subUsers}
+                    />
+                  ) : (
+                    "No Available"
+                  )}
                 </td>
               </tr>
             ))

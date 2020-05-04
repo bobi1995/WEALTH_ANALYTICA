@@ -31,7 +31,7 @@ const PayPaylBtn = (props) => {
         console.log(res);
         if (sessionStorage.getItem("isBusiness") === "true") {
           alert(
-            "Congratulations! Your purchase is successfull, states will be added to your account."
+            "Congratulations! Your purchase is successful, states will be added to your account."
           );
           window.location.reload();
         } else {
@@ -40,7 +40,7 @@ const PayPaylBtn = (props) => {
             temp.push(el);
           });
           alert(
-            "Congratulations! Your purchase is successfull, states will be added to your account."
+            "Congratulations! Your purchase is successful, states will be added to your account."
           );
 
           sessionStorage.setItem("States", JSON.stringify(temp));

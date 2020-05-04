@@ -10,6 +10,7 @@ import PlanProfilePension from "./planProfileFunctions/Tables/PlanProfilePension
 import PlanProfileExportHeading from "./planProfileFunctions/PlanProfileExportHeading";
 import OnePagerAccountants from "./OnePagerFunctions/OnePagerAccountants";
 import Magellan from "./Magellan";
+import Contact from "./OnePagerFunctions/OnePagerContact";
 import apiAddress from "../../global/endpointAddress";
 
 const PlaneProfile = (props) => {
@@ -68,7 +69,11 @@ const PlaneProfile = (props) => {
             data={results.BusinessInformation}
             erisa={results.ERISATestCompanyStock}
           />
-
+          {Object.values(results.Contact).some((x) => x !== null) ? (
+            <Contact contact={results.Contact} />
+          ) : (
+            ""
+          )}
           <PlanProfileTables
             data={[results.Statistics, results.City, results.BusinessCode]}
           />

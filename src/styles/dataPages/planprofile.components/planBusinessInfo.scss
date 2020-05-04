@@ -52,6 +52,15 @@
     overflow: hidden;
   }
 }
+.plan-table-section-Contact {
+  display: inline-block;
+  width: 30%;
+  text-align: center;
+  td {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
 @media screen and (max-width: 1024px) {
   .plan-table-section {
     width: 100%;

@@ -28,13 +28,20 @@ const AddUser = () => {
 
       alert("Password must be at least 7 symbols");
     } else {
+      console.log(data);
       axios
-        .post(`${apiAddress}/api/Users/CreateCompanyUser`, data)
+        .post(`${apiAddress}/api/Users/CreateCompanyUser`, data, {
+          headers: {
+            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            "Access-Control-Allow-Origin": "*",
+          },
+        })
         .then((res) => {
           window.location.reload();
         })
         .catch((e) => {
           console.log(e);
+          alert("Еmail is already registered.");
         });
     }
   };

@@ -73,18 +73,13 @@ const RightFilters = (props) => {
         {/**PLAN ENTITY*/}
         <div className="filter-select-company-type">
           <label className="filter-company-label">Plan Entity:</label>
-          <select
-            className="filter-select-form-control"
-            id="planEntity"
-            onChange={RightFilterFunction.planEntitySelected}
-          >
+          <select className="filter-select-form-control" id="planEntity">
             <option defaultValue="0">All</option>
             <option value="1">Single-employer</option>
-            <option value="2">One-participant plan</option>
-            <option value="3">Multi-employer plan</option>
+            <option value="2">Multi-employer Plan</option>
+            <option value="3">One-Participant Plan</option>
             <option value="4">Foreign plan</option>
-            <option value="3">Multiemployer</option>
-            <option value="4">DFE</option>
+            <option value="5">Multiemployer</option>
           </select>
         </div>
         {/**DFE OPTIONS*/}

@@ -14,6 +14,7 @@ import OnePagerLogo from "./OnePagerFunctions/OnePagerLogo";
 import OnePagerAccountants from "./OnePagerFunctions/OnePagerAccountants";
 import dashboardFunctions from "./dashboardFunctions/functions";
 import Magellan from "./Magellan";
+import OnePagerContact from "./OnePagerFunctions/OnePagerContact";
 import apiAddress from "../../global/endpointAddress";
 
 const OnePager = (props) => {
@@ -98,6 +99,11 @@ const OnePager = (props) => {
               results.PensionPlanSummary,
             ]}
           />
+          {Object.values(results.Contact).some((x) => x !== null) ? (
+            <OnePagerContact contact={results.Contact} />
+          ) : (
+            ""
+          )}
           <OnePagerMap address={results.Address} city={results.City} />
         </div>
       ) : (

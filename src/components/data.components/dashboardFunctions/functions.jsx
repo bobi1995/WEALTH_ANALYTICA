@@ -34,7 +34,6 @@ const commonFunctionBasics = () => {
       const parts = el.split(" - ");
       states.forEach((abr) => {
         if (parts[1] == abr) {
-          console.log(el);
           purchasedStates.push(el);
         }
       });

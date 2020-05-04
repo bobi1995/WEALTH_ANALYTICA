@@ -40,7 +40,6 @@ const AllUsers = (props) => {
         <tbody className="table-hover">
           {users.map((user, index) => (
             <tr key={index}>
-              {console.log(user)}
               <td>
                 {user.FirstName} {user.LastName}
               </td>

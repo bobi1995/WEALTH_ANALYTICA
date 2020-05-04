@@ -62,13 +62,11 @@
   }
 }
 .usermanagement {
-  -webkit-border-image: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      from(#fff),
-      to(#afd4ec),
-      color-stop(0.2, #afd4ec)
-    )
-    0 0 0 0 repeat repeat;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  background: linear-gradient(#fff, #afd4ec) top,
+    linear-gradient(#afd4ec, #fff) bottom, #afd4ec;
+  background-size: 100% 50px;
+  background-origin: border-box;
+  background-repeat: no-repeat;
 }
