@@ -1,6 +1,5 @@
 import React from "react";
 import html2canvas from "html2canvas";
-import Loader from "../dashboardFunctions/loader";
 import * as jsPDF from "jspdf";
 
 export default (props) => {
@@ -23,7 +22,7 @@ export default (props) => {
       doc.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
       heightLeft -= pageHeight;
 
-      while (heightLeft >= 0) {
+      while (heightLeft > 0) {
         position = heightLeft - imgHeight;
         doc.addPage();
         doc.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);

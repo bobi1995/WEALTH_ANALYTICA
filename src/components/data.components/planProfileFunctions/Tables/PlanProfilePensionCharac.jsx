@@ -30,7 +30,6 @@ const PlanProfileCharac = (props) => {
                     if (e.Years.includes(year)) {
                       return (
                         <td key={yearID}>
-                          {" "}
                           <i
                             className="fa fa-check"
                             aria-hidden="true"

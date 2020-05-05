@@ -488,3 +488,8 @@ h1 {
     transform: rotate(360deg);
   }
 }
+@media screen and (max-height: 570px) {
+  .cont {
+    height: 200vh;
+  }
+}

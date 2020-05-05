@@ -31,7 +31,7 @@ const PlanProfilePension = (props) => {
         ? props.types.map((element, index) => {
             return (
               <div key={index}>
-                <div className="plan-table-section ">
+                <div className="plan-table-section-Pension">
                   <h1 className="onepager-bottomtables-h1">
                     {element.PlanName &&
                       commonFunctions.formatString(element.PlanName)}
