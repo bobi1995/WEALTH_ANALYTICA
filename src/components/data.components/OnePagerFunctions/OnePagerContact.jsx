@@ -1,9 +1,8 @@
 import React from "react";
 import avatar from "../../../styles/images/avatar.png";
 export default (props) => {
-  console.log(props);
   return (
-    <div className="plan-businessInfo" data-html2canvas-ignore>
+    <div className="plan-businessInfo">
       <div className="plan-table-section-Contact">
         {/* <h1 className="plan-h1">Contact Information</h1>
         <table className="table table-striped table-bordered table-sm table-hover">
@@ -56,10 +55,13 @@ export default (props) => {
             )}
           </tbody>
         </table> */}
-        <img src={avatar} className="filter-required-logo" />
-        <h3 className="plan-h1" style={{ fontFamily: "Abril Fatface" }}>
-          {props.contact.Name}
-        </h3>
+        <img
+          src={avatar}
+          className="onePager-contact-logo"
+          style={{ width: `${props.headWidth}%` }}
+          data-html2canvas-ignore
+        />
+        <h3 className="onepager-h1">{props.contact.Name}</h3>
         <small className="form-text text-muted">{props.contact.Title}</small>
         <small className="form-text text-muted">
           <a href={"mailto:" + props.contact.Email}>{props.contact.Email}</a>

@@ -29,7 +29,7 @@ const PurchaseState = () => {
           case "true":
             {
               document.getElementById("purchase-smallText").innerHTML =
-                "Add the state to basket";
+                "Add the state to cart";
 
               setPurchaseStates([
                 ...purchaseStates,
@@ -53,7 +53,7 @@ const PurchaseState = () => {
 
             if (temp.filter((e) => e.State === parts[1]).length === 0) {
               document.getElementById("purchase-smallText").innerHTML =
-                "Add the state to basket";
+                "Add the state to cart";
 
               setPurchaseStates([
                 ...purchaseStates,
@@ -84,7 +84,7 @@ const PurchaseState = () => {
 
   const removePurchasedState = async (e) => {
     document.getElementById("purchase-smallText").innerHTML =
-      "Add the state to basket";
+      "Add the state to cart";
     const target = e.target;
     const removedState = target.parentNode.getAttribute("value");
     const removedType = target.parentNode.getAttribute("type");
@@ -188,7 +188,7 @@ const PurchaseState = () => {
           Add
         </button>
         <small className="form-text text-muted" id="purchase-smallText">
-          Add the state to basket
+          Add the state to cart
         </small>
       </form>
       {/******* LIST FOR ADDING */}

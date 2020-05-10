@@ -70,7 +70,7 @@ const PlaneProfile = (props) => {
             erisa={results.ERISATestCompanyStock}
           />
           {Object.values(results.Contact).some((x) => x !== null) ? (
-            <Contact contact={results.Contact} />
+            <Contact contact={results.Contact} headWidth="15" />
           ) : (
             ""
           )}

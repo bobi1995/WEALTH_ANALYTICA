@@ -28,7 +28,7 @@ const FreeStates = (props) => {
 
   return (
     <div className="freestates-div-content responsive-table-div">
-      <h1 className="purchase-totalAmount">Unassigned states</h1>
+      <h1 className="purchase-totalAmount">Unassigned States</h1>
 
       <table className="table table-hover">
         <thead className="thead-dark">
@@ -49,7 +49,7 @@ const FreeStates = (props) => {
                 <td>{el.Type === 1 ? "Basic" : "Advanced"}</td>
                 <td>{el.Count}</td>
                 <td>
-                  <Moment format="Do of MMMM YYYY">{el.ExpireDate}</Moment>
+                  <Moment format="MMM/DD/YYYY">{el.ExpireDate}</Moment>
                 </td>
 
                 <td>

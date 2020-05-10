@@ -7,25 +7,15 @@ export default (props) => {
       <div className="switch-field">
         <input
           type="radio"
-          id="radio-three"
+          id="radio-six"
           name="switch-two"
-          value="yes"
+          value="2015"
           onChange={() => {
-            props.onYearChange(2018);
-          }}
-          defaultChecked
-        />
-        <label htmlFor="radio-three">2018 </label>
-        <input
-          type="radio"
-          id="radio-four"
-          name="switch-two"
-          value="maybe"
-          onChange={() => {
-            props.onYearChange(2017);
+            props.onYearChange(2015);
           }}
         />
-        <label htmlFor="radio-four">2017</label>
+        <label htmlFor="radio-six">2015</label>
+
         <input
           type="radio"
           id="radio-five"
@@ -38,14 +28,25 @@ export default (props) => {
         <label htmlFor="radio-five">2016</label>
         <input
           type="radio"
-          id="radio-six"
+          id="radio-four"
           name="switch-two"
-          value="2015"
+          value="maybe"
           onChange={() => {
-            props.onYearChange(2015);
+            props.onYearChange(2017);
           }}
         />
-        <label htmlFor="radio-six">2015</label>
+        <label htmlFor="radio-four">2017</label>
+        <input
+          type="radio"
+          id="radio-three"
+          name="switch-two"
+          value="yes"
+          onChange={() => {
+            props.onYearChange(2018);
+          }}
+          defaultChecked
+        />
+        <label htmlFor="radio-three">2018 </label>
       </div>
       <div className="plan-table-section">
         <h1 className="plan-h1">Dashboard Summary - {props.result.Year}</h1>

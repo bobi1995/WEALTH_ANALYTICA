@@ -179,7 +179,7 @@ export default function CustomizedSteppers(props) {
             <span className="onepager-tooltip">
               Our Advisor Centric Dashboard is available for Advanced plans. It
               allows the Advisor to customize their Target Market and deliver
-              transparency.
+              transparency
             </span>
             Dashboard
           </StepLabel>
@@ -199,9 +199,9 @@ export default function CustomizedSteppers(props) {
             className="onepager-pesion-description"
           >
             <span className="onepager-tooltip">
-              With over 15 sorting and filtering options the Advisor filters
+              With over 15 sorting and filtering options the Advisor Filters
               allows you to further refine the target market displayed on the
-              Advisor Dashboard.
+              Advisor Dashboard
             </span>
             Filters
           </StepLabel>
@@ -222,9 +222,8 @@ export default function CustomizedSteppers(props) {
           >
             <span className="onepager-tooltip">
               The Advisor Bookmark repository allows you to create and retain a
-              high quality prospect list.The Advisor Bookmark repository also
-              allows you to seamlessly create a white label lead generating
-              sample analysis.
+              high-quality prospect list. The Bookmark also lets you seamlessly
+              create a white label lead generator sample analysis
             </span>
             Bookmark
           </StepLabel>
@@ -244,10 +243,11 @@ export default function CustomizedSteppers(props) {
             className="onepager-pesion-description"
           >
             <span className="onepager-tooltip">
-              The Wealth Analytica proprietary white label communication hand
-              crafted feature was designed to cultivate interest and capture as
-              well as deliver your value proposition. The feature allows the
-              Advisor to craft a custom message and insightful Plan Analytics.
+              The Wealth Analytica proprietary white label communication
+              hand-crafted feature was designed to cultivate interest and
+              capture as well as deliver your value proposition. The feature
+              allows the Advisor to craft a customized message and insightful
+              Plan Analytics
             </span>
             OnePager
           </StepLabel>
@@ -269,9 +269,7 @@ export default function CustomizedSteppers(props) {
             <span className="onepager-tooltip">
               The Wealth Analytica white label Client Ready Plan Profile
               contains vital financial information, Analytics, Plan
-              Characteristics, Industry and Location comparison and Heatmap.The
-              Advisor Centric and Client Ready Plan Analytics is designed to
-              quickly provide detailed Plan information to your clients.
+              Characteristics, Industry and Location comparison and Heatmap
             </span>
             PlanProfile
           </StepLabel>

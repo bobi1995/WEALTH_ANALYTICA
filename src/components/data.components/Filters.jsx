@@ -65,7 +65,7 @@ const Filters = () => {
       }
       if (stateInput.length < 1 || !selectedYear) {
         submitBtnSearch.disabled = true;
-        submitBtnSearch.innerHTML = "Select State & Year";
+        submitBtnSearch.innerHTML = "Select State";
       } else if (flag === 1) {
         submitBtnSearch.disabled = true;
         submitBtnSearch.innerHTML = "Loading";
@@ -89,7 +89,7 @@ const Filters = () => {
         "To add another State remove the selected one";
     } else {
       document.getElementById("stateHelp").innerHTML =
-        "Enter the states you want to visualise";
+        "Enter the states you want to visualize";
     }
   });
 
@@ -118,7 +118,7 @@ const Filters = () => {
       setStateAbbriviation([...stateAbbriviation, parts[1]]);
       setStateInput([...stateInput, stateField]);
       document.getElementById("stateHelp").innerHTML =
-        "Enter the states you want to visualise";
+        "Enter the states you want to visualize";
       document.getElementById("stateInput").value = "";
     } else {
       addStateBtn.disabled = false;
@@ -332,7 +332,7 @@ const Filters = () => {
                     autoComplete="off"
                   />
                   <small id="stateHelp" className="form-text text-muted">
-                    Enter the states you want to visualise
+                    Enter the states you want to visualize
                   </small>
                   <button
                     type="submit"
@@ -424,7 +424,7 @@ const Filters = () => {
                     autoComplete="off"
                   />
                   <small id="cityHelp" className="form-text text-muted">
-                    Enter the city you want to visualise
+                    Enter the city you want to visualize
                   </small>
                   <button
                     type="submit"
@@ -461,9 +461,6 @@ const Filters = () => {
           <MiddleFilterCHARTS result={result} />
         ) : (
           <div className="filter-required-selection-div">
-            <h1 className="filter-required-selection-h1">
-              Select state and year
-            </h1>
             <img
               className="filter-required-logo"
               src={require("../../styles/images/Wealth_Analytica.png")}

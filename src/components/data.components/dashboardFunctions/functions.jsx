@@ -14,7 +14,6 @@ const commonFunction = () => {
       const parts = el.split(" - ");
       states.forEach((abr) => {
         if (parts[1] == abr) {
-          console.log(el);
           purchasedStates.push(el);
         }
       });
@@ -80,7 +79,7 @@ const paidStatesAdvanced = () => {
         <tr key={index}>
           <td>{fullNameByAbbr(el.State)}</td>
           <td>
-            <Moment format="Do of MMMM YYYY">{el.EndDate}</Moment>
+            <Moment format="MMM/DD/YYYY">{el.EndDate}</Moment>
           </td>
         </tr>
       );
@@ -97,7 +96,7 @@ const paidStatesBasic = () => {
         <tr key={index}>
           <td>{fullNameByAbbr(el.State)}</td>
           <td>
-            <Moment format="Do of MMMM YYYY">{el.EndDate}</Moment>
+            <Moment format="MMM/DD/YYYY">{el.EndDate}</Moment>
           </td>
         </tr>
       );

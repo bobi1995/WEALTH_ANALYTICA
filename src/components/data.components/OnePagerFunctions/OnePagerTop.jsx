@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import html2canvas from "html2canvas";
 import axios from "axios";
 import dashboardFunctions from "../dashboardFunctions/functions";
+import OnePagerContact from "../OnePagerFunctions/OnePagerContact";
 import apiAddress from "../../../global/endpointAddress";
 
 const OnePagerTop = (props) => {
@@ -113,13 +114,17 @@ const OnePagerTop = (props) => {
         <form onSubmit={sendEmail}>
           <div className="onepager-top-mainemail">
             <div className="onepager-emailform-email">
-              <img
-                className="onePager-top-logo"
-                src={`data:image/png;base64,${sessionStorage.getItem(
-                  "LogoData"
-                )}`}
-                alt="Upload your logo to see it"
-              />
+              {Object.values(props.contact).some((x) => x !== null) ? (
+                <OnePagerContact contact={props.contact} headWidth="50" />
+              ) : (
+                <img
+                  className="onePager-top-logo"
+                  src={`data:image/png;base64,${sessionStorage.getItem(
+                    "LogoData"
+                  )}`}
+                  alt="Upload your logo to see it"
+                />
+              )}
               <textarea
                 className="form-control onepager-textarea"
                 id="emailText"
@@ -166,7 +171,6 @@ const OnePagerTop = (props) => {
           <div className="onepager-emailform-buttons">
             <input
               className="btn btn-success btn-lg onepageremailbuttons"
-              //onClick={sendEmail}
               type="submit"
               value="Send"
             ></input>

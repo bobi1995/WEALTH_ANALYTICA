@@ -202,145 +202,160 @@ const Dashboard = (props) => {
           </div>
         </div>
       </div>
-      <DashSummary
-        result={fetchedData.FilterProfile}
-        onYearChange={(yearChange) => {
-          setYear(yearChange);
-        }}
-      />
-      {/***********FIRST ROW OF CHARTS*************/}
-      <div className="dashboard-graphs">
-        <div className="individual-chart">
-          <h1>Net Assets EOY</h1>
-          {stateInput.length > 0 ? (
-            netAssetsEndOfYear.length > 0 ? (
-              <div className="chart-content">
-                <Bar
-                  data={charts.dataReturn(netAssetsEndOfYear, "Net Assets EOY")}
-                  options={charts.optionReturn(netAssetsEndOfYear)}
-                  width={100}
-                  height={50}
-                />
-              </div>
-            ) : (
-              <Loader />
-            )
-          ) : (
-            <h3>Select State</h3>
-          )}
-        </div>
 
-        <div className="individual-chart">
-          <h1>Net Income</h1>
-          {stateInput.length > 0 ? (
-            netIncome.length > 0 ? (
-              <div className="chart-content">
-                <Bar
-                  data={charts.dataReturn(netIncome, "Net Income")}
-                  options={charts.optionReturn(netIncome)}
-                  width={150}
-                  height={100}
-                />
-              </div>
-            ) : (
-              <Loader />
-            )
-          ) : (
-            <h3>Select State</h3>
-          )}
-        </div>
-      </div>
-      {/***********SECOND ROW OF CHARTS*************/}
-      <div className="dashboard-graphs">
-        <div className="individual-chart">
-          <h1>Income Contributed By Employee</h1>
-          {stateInput.length > 0 ? (
-            employeesContributionIncome.length > 0 ? (
-              <div className="chart-content">
-                <Bar
-                  data={charts.dataReturn(
-                    employeesContributionIncome,
-                    "Income Contributed By Employee"
-                  )}
-                  options={charts.optionReturn(employeesContributionIncome)}
-                  width={150}
-                  height={100}
-                />
-              </div>
-            ) : (
-              <Loader />
-            )
-          ) : (
-            <h3>Select State</h3>
-          )}
-        </div>
+      {stateInput.length > 0 ? (
+        <div>
+          <DashSummary
+            result={fetchedData.FilterProfile}
+            onYearChange={(yearChange) => {
+              setYear(yearChange);
+            }}
+          />
+          {/***********FIRST ROW OF CHARTS*************/}
+          <div className="dashboard-graphs">
+            <div className="individual-chart">
+              <h1>Net Assets EOY</h1>
+              {stateInput.length > 0 ? (
+                netAssetsEndOfYear.length > 0 ? (
+                  <div className="chart-content">
+                    <Bar
+                      data={charts.dataReturn(
+                        netAssetsEndOfYear,
+                        "Net Assets EOY"
+                      )}
+                      options={charts.optionReturn(netAssetsEndOfYear)}
+                      width={100}
+                      height={50}
+                    />
+                  </div>
+                ) : (
+                  <Loader />
+                )
+              ) : (
+                ""
+              )}
+            </div>
 
-        <div className="individual-chart">
-          <h1>Participant Account Balance</h1>
-          {stateInput.length > 0 ? (
-            participantsAccountBal.length > 0 ? (
-              <div className="chart-content">
-                <Bar
-                  data={charts.dataReturn(
-                    participantsAccountBal,
-                    "Participant Account Balance"
-                  )}
-                  options={charts.optionReturn(participantsAccountBal)}
-                  width={150}
-                  height={100}
-                />
-              </div>
-            ) : (
-              <Loader />
-            )
-          ) : (
-            <h3>Select State</h3>
-          )}
-        </div>
-      </div>
+            <div className="individual-chart">
+              <h1>Net Income</h1>
+              {stateInput.length > 0 ? (
+                netIncome.length > 0 ? (
+                  <div className="chart-content">
+                    <Bar
+                      data={charts.dataReturn(netIncome, "Net Income")}
+                      options={charts.optionReturn(netIncome)}
+                      width={150}
+                      height={100}
+                    />
+                  </div>
+                ) : (
+                  <Loader />
+                )
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+          {/***********SECOND ROW OF CHARTS*************/}
+          <div className="dashboard-graphs">
+            <div className="individual-chart">
+              <h1>Income Contributed By Employee</h1>
+              {stateInput.length > 0 ? (
+                employeesContributionIncome.length > 0 ? (
+                  <div className="chart-content">
+                    <Bar
+                      data={charts.dataReturn(
+                        employeesContributionIncome,
+                        "Income Contributed By Employee"
+                      )}
+                      options={charts.optionReturn(employeesContributionIncome)}
+                      width={150}
+                      height={100}
+                    />
+                  </div>
+                ) : (
+                  <Loader />
+                )
+              ) : (
+                ""
+              )}
+            </div>
 
-      {/***********THIRD ROW OF CHARTS*************/}
-      <div className="dashboard-graphs">
-        <div className="individual-chart">
-          <h1>Total Expenses</h1>
-          {stateInput.length > 0 ? (
-            totalExpenses.length > 0 ? (
-              <div className="chart-content">
-                <Bar
-                  data={charts.dataReturn(totalExpenses, "Total Expenses")}
-                  options={charts.optionReturn(totalExpenses)}
-                  width={150}
-                  height={100}
-                />
-              </div>
-            ) : (
-              <Loader />
-            )
-          ) : (
-            <h3>Select State</h3>
-          )}
-        </div>
+            <div className="individual-chart">
+              <h1>Participant Account Balance</h1>
+              {stateInput.length > 0 ? (
+                participantsAccountBal.length > 0 ? (
+                  <div className="chart-content">
+                    <Bar
+                      data={charts.dataReturn(
+                        participantsAccountBal,
+                        "Participant Account Balance"
+                      )}
+                      options={charts.optionReturn(participantsAccountBal)}
+                      width={150}
+                      height={100}
+                    />
+                  </div>
+                ) : (
+                  <Loader />
+                )
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
 
-        <div className="individual-chart">
-          <h1>Total Income</h1>
-          {stateInput.length > 0 ? (
-            totalIncome.length > 0 ? (
-              <div className="chart-content">
-                <Bar
-                  data={charts.dataReturn(totalIncome, "Total Income")}
-                  options={charts.optionReturn(totalIncome)}
-                  width={150}
-                  height={100}
-                />
-              </div>
-            ) : (
-              <Loader />
-            )
-          ) : (
-            <h3>Select State</h3>
-          )}
+          {/***********THIRD ROW OF CHARTS*************/}
+          <div className="dashboard-graphs">
+            <div className="individual-chart">
+              <h1>Total Expenses</h1>
+              {stateInput.length > 0 ? (
+                totalExpenses.length > 0 ? (
+                  <div className="chart-content">
+                    <Bar
+                      data={charts.dataReturn(totalExpenses, "Total Expenses")}
+                      options={charts.optionReturn(totalExpenses)}
+                      width={150}
+                      height={100}
+                    />
+                  </div>
+                ) : (
+                  <Loader />
+                )
+              ) : (
+                ""
+              )}
+            </div>
+
+            <div className="individual-chart">
+              <h1>Total Income</h1>
+              {stateInput.length > 0 ? (
+                totalIncome.length > 0 ? (
+                  <div className="chart-content">
+                    <Bar
+                      data={charts.dataReturn(totalIncome, "Total Income")}
+                      options={charts.optionReturn(totalIncome)}
+                      width={150}
+                      height={100}
+                    />
+                  </div>
+                ) : (
+                  <Loader />
+                )
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <h1
+          className="onepager-bottomtables-h1"
+          style={{ width: "70%", margin: "auto", marginBottom: "3%" }}
+        >
+          Select State to visualize
+        </h1>
+      )}
       <Footer />
     </div>
   );

@@ -37,6 +37,7 @@ const OnePager = (props) => {
     })
       .then((res) => {
         setResults(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         if (err.response.status == 400) {
@@ -69,6 +70,7 @@ const OnePager = (props) => {
           <OnePagerTop
             data={props.match.params.CompanyID}
             state={results.State}
+            contact={results.Contact}
           />
           <OnePagerLogo />
 
@@ -99,11 +101,7 @@ const OnePager = (props) => {
               results.PensionPlanSummary,
             ]}
           />
-          {Object.values(results.Contact).some((x) => x !== null) ? (
-            <OnePagerContact contact={results.Contact} />
-          ) : (
-            ""
-          )}
+
           <OnePagerMap address={results.Address} city={results.City} />
         </div>
       ) : (
