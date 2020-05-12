@@ -4,6 +4,7 @@ import * as jsPDF from "jspdf";
 
 export default (props) => {
   const onExportClick = (e) => {
+    console.log(document.getElementById("businessInfo-main"));
     e.preventDefault();
     document.getElementById("export_button_pp").innerHTML = "Exporting...";
     //HEADING APPEAR

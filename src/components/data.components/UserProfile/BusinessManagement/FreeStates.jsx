@@ -46,7 +46,7 @@ const FreeStates = (props) => {
               <tr key={ind}>
                 <td>{functions.fullNameByAbbr(state.State)}</td>
 
-                <td>{el.Type === 1 ? "Basic" : "Advanced"}</td>
+                <td>{el.Type === 1 ? "Basic" : "Premium"}</td>
                 <td>{el.Count}</td>
                 <td>
                   <Moment format="MMM/DD/YYYY">{el.ExpireDate}</Moment>

@@ -24,7 +24,7 @@ export default (props) => {
     ],
   };
   return (
-    <div className="plan-businessInfo plan-graphs">
+    <div className="plan-businessInfo plan-graphs" id="plan-financial">
       <div className="plan-table-section responsive-table-div">
         <table className="table table-striped table-bordered table-sm table-hover ">
           <thead className="thead-dark">

@@ -1,7 +1,7 @@
 import React from "react";
 import commonFunctions from "../../commonFunctions/common";
 
-const PlaneProfileBusinessInfo = props => {
+const PlaneProfileBusinessInfo = (props) => {
   return (
     <div className="plan-businessInfo" id="businessInfo-main">
       <div className="plan-table-section-BusinessInfo">
@@ -81,25 +81,13 @@ const PlaneProfileBusinessInfo = props => {
                 </span>
               </th>
               {props.erisa ? (
-                <td key="company_stock">
-                  <i
-                    className="fa fa-check"
-                    aria-hidden="true"
-                    style={{ color: "green" }}
-                  ></i>
-                </td>
+                <td key="company_stock">Includes Company Stock</td>
               ) : (
-                <td key="company_stock">
-                  <i
-                    className="fa fa-times"
-                    aria-hidden="true"
-                    style={{ color: "red" }}
-                  ></i>
-                </td>
+                <td key="company_stock">No Company Stock</td>
               )}
             </tr>
             <tr>
-              <th className="thead-dark">Cap</th>
+              <th className="thead-dark">Insurance Cap</th>
               {props.erisa ? (
                 <td key="cap">1.0 M</td>
               ) : (

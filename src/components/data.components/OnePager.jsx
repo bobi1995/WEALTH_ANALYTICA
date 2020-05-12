@@ -37,7 +37,6 @@ const OnePager = (props) => {
     })
       .then((res) => {
         setResults(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         if (err.response.status == 400) {
@@ -71,6 +70,8 @@ const OnePager = (props) => {
             data={props.match.params.CompanyID}
             state={results.State}
             contact={results.Contact}
+            administrator={results.AdministratorName}
+            phone={results.Phone}
           />
           <OnePagerLogo />
 

@@ -5,6 +5,7 @@ import axios from "axios";
 import dashboardFunctions from "../dashboardFunctions/functions";
 import OnePagerContact from "../OnePagerFunctions/OnePagerContact";
 import apiAddress from "../../../global/endpointAddress";
+import commonFunctions from "../commonFunctions/common";
 
 const OnePagerTop = (props) => {
   let flagBasic = 0;
@@ -16,7 +17,9 @@ const OnePagerTop = (props) => {
   });
 
   window.onclick = function(event) {
-    document.getElementById("alert-popupid").style.display = "none";
+    if (document.getElementById("alert-popupid")) {
+      document.getElementById("alert-popupid").style.display = "none";
+    }
   };
   const sendEmail = (e) => {
     e.preventDefault();
@@ -100,9 +103,9 @@ const OnePagerTop = (props) => {
             disabled
           >
             <span className="onepager-tooltip">
-              Plan available in Advanced Version
+              Plan available in Premium Version
             </span>
-            Client Plan Analytic
+            Client Plan Analytics
           </button>
         )}
       </div>
@@ -115,7 +118,11 @@ const OnePagerTop = (props) => {
           <div className="onepager-top-mainemail">
             <div className="onepager-emailform-email">
               {Object.values(props.contact).some((x) => x !== null) ? (
-                <OnePagerContact contact={props.contact} headWidth="50" />
+                <OnePagerContact
+                  contact={props.contact}
+                  headWidth="50"
+                  heading="Executive Contact"
+                />
               ) : (
                 <img
                   className="onePager-top-logo"
@@ -166,6 +173,22 @@ const OnePagerTop = (props) => {
                   required
                 />
               </div>
+
+              {props.phone ? (
+                <OnePagerContact
+                  contact={{
+                    Name: "Administrator",
+                    Title:
+                      props.administrator +
+                      " , " +
+                      commonFunctions.phoneFormat(props.phone.toString()),
+                    admin: true,
+                  }}
+                  headWidth="50"
+                />
+              ) : (
+                ""
+              )}
             </div>
           </div>
           <div className="onepager-emailform-buttons">

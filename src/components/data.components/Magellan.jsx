@@ -177,7 +177,7 @@ export default function CustomizedSteppers(props) {
             className="onepager-pesion-description"
           >
             <span className="onepager-tooltip">
-              Our Advisor Centric Dashboard is available for Advanced plans. It
+              Our Advisor Centric Dashboard is available for Premium plans. It
               allows the Advisor to customize their Target Market and deliver
               transparency
             </span>

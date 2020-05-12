@@ -36,7 +36,7 @@ const PersonalDataStates = () => {
         </table>
       </div>
       <div className="onepager-chart-content responsive-table-div">
-        <h1 className="dashboard-h1">Advanced</h1>
+        <h1 className="dashboard-h1">Premium</h1>
         <table className="table table-hover">
           <thead className="thead-dark">
             <tr>

@@ -103,7 +103,7 @@ const RightFilters = (props) => {
             >
               Business Code:
               <span className="onepager-tooltip">
-                Available in Advanced Version
+                Available in Premium Version
               </span>
             </label>
             <input

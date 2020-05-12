@@ -56,7 +56,7 @@ const PlaneProfile = (props) => {
             className="onepager-bottomtables-h1"
             style={{ width: "70%", margin: "auto" }}
           >
-            You do not have Advanced subscription for this state and you are not
+            You do not have Premium subscription for this state and you are not
             allowed to use Plan Profile.
           </h1>
         </div>

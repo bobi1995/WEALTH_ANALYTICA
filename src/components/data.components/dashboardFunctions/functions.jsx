@@ -6,6 +6,7 @@ import "moment-timezone";
 //****************COMMON FUNCTIONS********* */
 const commonFunction = () => {
   const allStates = JSON.parse(sessionStorage.getItem("States"));
+
   const statesString = allStates.filter((el) => el.Type === 2);
   if (statesString.length > 0) {
     const states = statesString.map((el) => el.State);

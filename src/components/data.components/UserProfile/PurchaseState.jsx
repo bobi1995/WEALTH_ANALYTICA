@@ -71,7 +71,7 @@ const PurchaseState = () => {
               }
             } else {
               alert(
-                "State Already Exist. If you want to go from Basic to Advanced please consider Upgrade."
+                "State Already Exist. If you want to go from Basic to Premium please consider Upgrade."
               );
             }
           }
@@ -159,7 +159,7 @@ const PurchaseState = () => {
               autoComplete="off"
             >
               <option value="Basic">Basic</option>
-              <option value="Advanced">Advanced</option>
+              <option value="Premium">Premium</option>
             </select>
           </div>
           {sessionStorage.getItem("isBusiness") === "true" ? (

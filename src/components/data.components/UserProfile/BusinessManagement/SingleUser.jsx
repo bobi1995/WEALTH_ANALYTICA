@@ -70,7 +70,7 @@ const SingleUser = (props) => {
                       return (
                         <tr key={index}>
                           <td>{state.State}</td>
-                          <td>{state.Type === 1 ? "Basic" : "Advanced"}</td>
+                          <td>{state.Type === 1 ? "Basic" : "Premium"}</td>
                           <td>
                             <Moment format="MMM/DD/YYYY">
                               {state.EndDate}
