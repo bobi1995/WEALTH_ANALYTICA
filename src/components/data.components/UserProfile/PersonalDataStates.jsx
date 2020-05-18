@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import functions from "../dashboardFunctions/functions";
-
+import ChangePassword from "./PersonalDataStates/ChangePassword";
 const PersonalDataStates = () => {
+  const changePassword = () => {};
   return (
     <div className="onepager-charts-all">
       <div className="onepager-chart-content responsive-table-div">
@@ -34,6 +35,18 @@ const PersonalDataStates = () => {
             </tr>
           </tbody>
         </table>
+        <div className="forgot-pass">
+          <a
+            className="submit"
+            style={{
+              backgroundColor: "green",
+              paddingTop: 5,
+            }}
+            href="#popupChangePasswod"
+          >
+            Change Password
+          </a>
+        </div>
       </div>
       <div className="onepager-chart-content responsive-table-div">
         <h1 className="dashboard-h1">Premium</h1>
@@ -62,6 +75,7 @@ const PersonalDataStates = () => {
           <tbody className="table-hover">{functions.paidStatesBasic()}</tbody>
         </table>
       </div>
+      <ChangePassword />
     </div>
   );
 };

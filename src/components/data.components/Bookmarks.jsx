@@ -76,7 +76,7 @@ const Bookmarks = () => {
           value="maybe"
           onChange={clientsReturn}
         />
-        <label htmlFor="radio-four">Clients</label>
+        <label htmlFor="radio-four">Connect</label>
         <input
           type="radio"
           id="radio-five"

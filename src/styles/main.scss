@@ -18,3 +18,7 @@
 .negative-numbers {
   color: red;
 }
+table.table tr td,
+table.table tr th {
+  page-break-inside: avoid !important;
+}

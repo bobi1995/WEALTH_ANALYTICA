@@ -5,7 +5,7 @@ const OnePagerRightPane = (props) => {
   return (
     <div className="onePager-rightpane-maindiv">
       <div className="onepager-right-pane-cityAndCode">
-        <h1 className="onepager-bottomtables-h1">
+        <h1 className="onepager-h2" style={{ fontSize: 30 }}>
           Industry ({props.data[1]}) and Location (
           {props.data[0] && commonFunctions.formatString(props.data[0])})
           Comparison are available at our 1st session

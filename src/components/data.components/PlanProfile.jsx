@@ -62,31 +62,35 @@ const PlaneProfile = (props) => {
         </div>
       ) : results.City ? (
         <div id="allplanprofile">
-          <PlanProfileExportHeading data={results.BusinessInformation} />
-          <PlanProfileExportButton types={results.PlanSummary} />
+          <div id="firstpdf-page">
+            <PlanProfileExportButton types={results.PlanSummary} />
+            <PlanProfileExportHeading data={results.BusinessInformation} />
 
-          <PlaneProfileBusinessInfo
-            data={results.BusinessInformation}
-            erisa={results.ERISATestCompanyStock}
-          />
-          {Object.values(results.Contact).some((x) => x !== null) ? (
-            <Contact contact={results.Contact} headWidth="15" />
-          ) : (
-            ""
-          )}
+            <PlaneProfileBusinessInfo
+              data={results.BusinessInformation}
+              erisa={results.ERISATestCompanyStock}
+            />
+            {Object.values(results.Contact).some((x) => x !== null) ? (
+              <Contact contact={results.Contact} headWidth="15" />
+            ) : (
+              ""
+            )}
+          </div>
           <PlanProfileTables
             data={[results.Statistics, results.City, results.BusinessCode]}
           />
-          {results.AccountantFirmNames.length > 0 ||
-          results.FiduciaryTrustNames.length > 0 ? (
-            <OnePagerAccountants
-              accountants={results.AccountantFirmNames}
-              trusts={results.FiduciaryTrustNames}
-            />
-          ) : (
-            ""
-          )}
-          <PlanProfilePension types={results.PlanSummary} />
+          <div data-html2canvas-ignore>
+            {results.AccountantFirmNames.length > 0 ||
+            results.FiduciaryTrustNames.length > 0 ? (
+              <OnePagerAccountants
+                accountants={results.AccountantFirmNames}
+                trusts={results.FiduciaryTrustNames}
+              />
+            ) : (
+              ""
+            )}
+            <PlanProfilePension types={results.PlanSummary} />
+          </div>
         </div>
       ) : (
         <div className="onepager-loader-style">

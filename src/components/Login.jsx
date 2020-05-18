@@ -5,6 +5,7 @@ import "../styles/pages/login.scss";
 import history from "../history/history";
 import mySvg from "../styles/images/redo.svg";
 import apiAddress from "../global/endpointAddress";
+import ForgotPassword from "./data.components/Login/ForgotPass";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -241,7 +242,7 @@ const Login = () => {
               </label>
             </div>
             <p className="forgot-pass">
-              <a href="/">Forgot password?</a>
+              <a href="#popupPasswordForgot">Fogot password?</a>
             </p>
             {loading && (
               <img
@@ -428,6 +429,7 @@ const Login = () => {
         </div>
       </div>
       <Footer />
+      <ForgotPassword />
     </div>
   );
 };
