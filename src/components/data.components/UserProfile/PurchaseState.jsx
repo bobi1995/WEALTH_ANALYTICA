@@ -12,7 +12,7 @@ const PurchaseState = () => {
     const stateName = document.getElementById("purchaseState-name").value;
     if (allStates.filter((el) => el === stateName).length > 0) {
       const type = document.getElementById("purchase-type").value;
-      const value = type === "Basic" ? 199 : 899;
+      const value = type === "Basic" ? 1 : 2;
       const quantity = document.getElementById("purchaseNumber")
         ? document.getElementById("purchaseNumber").value
         : 1;

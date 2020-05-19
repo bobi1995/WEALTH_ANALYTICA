@@ -8,22 +8,26 @@ export default () => {
 
   const changePassword = (e) => {
     e.preventDefault();
-    const data = {
-      oldpassword: oldPassword,
-      newPassword: newPassword,
-    };
-    axios
-      .post(`${apiAddress}/api/Users/ChangePassword`, data, {
-        headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
-        },
-      })
-      .then((res) => {
-        document.getElementById("changePassword-close").click();
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    if (newPassword.length < 7) {
+      alert("New password must be at least 7 symbols");
+    } else {
+      const data = {
+        oldpassword: oldPassword,
+        newPassword: newPassword,
+      };
+      axios
+        .post(`${apiAddress}/api/Users/ChangePassword`, data, {
+          headers: {
+            Authorization: "Basic " + sessionStorage.getItem("Token"),
+          },
+        })
+        .then((res) => {
+          document.getElementById("changePassword-close").click();
+        })
+        .catch((e) => {
+          alert("Something went wrong. Please enter valid current password");
+        });
+    }
   };
 
   const onChangeOldPassword = (e) => {
@@ -48,7 +52,7 @@ export default () => {
         <form onSubmit={changePassword}>
           <div className="onepager-top-fromto-inner">
             <label className="filter-name-label" style={{ width: "50%" }}>
-              Old Password:
+              Current Password:
             </label>
             <input
               className="form-control"

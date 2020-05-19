@@ -9,6 +9,7 @@ import PlanProfile from "../components/data.components/PlanProfile";
 import Filters from "../components/data.components/Filters";
 import Profile from "../components/data.components/Profile";
 import SavedFilters from "../components/data.components/SavedFilters";
+import Demo from "../components/Demo";
 import "../styles/main.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import history from "../history/history";
@@ -19,6 +20,7 @@ function App() {
     <Router history={history}>
       <Switch>
         <Route path="/" component={Login} exact />
+        <Route path="/demo" component={Demo} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/filters" component={Filters} />
         <PrivateRoute path="/profile" component={Profile} />
