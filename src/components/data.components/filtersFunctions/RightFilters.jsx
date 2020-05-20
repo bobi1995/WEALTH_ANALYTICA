@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import RightFilterFunction from "./RightFilterFunctions";
 import numeral from "numeral";
 
@@ -18,7 +18,9 @@ const RightFilters = (props) => {
             min="0"
             max="99999999999"
             onChange={(e) => {
-              e.target.value = numeral(e.target.value).format("0,0");
+              if (e.target.value.length > 0) {
+                e.target.value = numeral(e.target.value).format("0,0");
+              }
             }}
           />
         </div>
@@ -33,7 +35,9 @@ const RightFilters = (props) => {
             min="0"
             max="99999999999"
             onChange={(e) => {
-              e.target.value = numeral(e.target.value).format("0,0");
+              if (e.target.value) {
+                e.target.value = numeral(e.target.value).format("0,0");
+              }
             }}
           />
         </div>
@@ -49,7 +53,9 @@ const RightFilters = (props) => {
             min="0"
             max="99999999999"
             onChange={(e) => {
-              e.target.value = numeral(e.target.value).format("0,0");
+              if (e.target.value) {
+                e.target.value = numeral(e.target.value).format("0,0");
+              }
             }}
           />
         </div>
@@ -65,7 +71,9 @@ const RightFilters = (props) => {
             min="0"
             max="99999999999"
             onChange={(e) => {
-              e.target.value = numeral(e.target.value).format("0,0");
+              if (e.target.value) {
+                e.target.value = numeral(e.target.value).format("0,0");
+              }
             }}
           />
         </div>
