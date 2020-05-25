@@ -1,7 +1,8 @@
 import React from "react";
 import avatar from "../../../styles/images/avatar.png";
+import commonFunctions from "../commonFunctions/common";
+
 export default (props) => {
-  console.log(props.contact.admin);
   return (
     <div className="plan-businessInfo">
       <div className="plan-table-section-Contact">
@@ -17,7 +18,13 @@ export default (props) => {
             data-html2canvas-ignore
           />
         )}
-        <h3 className="onepager-h1">{props.contact.Name}</h3>
+        {props.contact.Name ? (
+          <h3 className="onepager-h1">
+            {commonFunctions.formatString(props.contact.Name)}
+          </h3>
+        ) : (
+          ""
+        )}
         <small className="form-text text-muted">{props.contact.Title}</small>
         <small className="form-text text-muted">
           <a href={"mailto:" + props.contact.Email}>{props.contact.Email}</a>
@@ -27,6 +34,13 @@ export default (props) => {
             {props.contact.Website}
           </a>
         </small>
+        {props.contact.Phone ? (
+          <small className="form-text text-muted">
+            {commonFunctions.phoneFormat(props.contact.Phone)}
+          </small>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

@@ -60,6 +60,9 @@ const Bookmarks = () => {
       <Magellan activeStep={2} />
 
       <div className="switch-field">
+        <h1 className="onepager-h2" style={{ fontSize: "30px" }}>
+          Wealth Analytica Connect
+        </h1>
         <input
           type="radio"
           id="radio-three"

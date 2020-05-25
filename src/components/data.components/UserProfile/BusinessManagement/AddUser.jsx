@@ -28,7 +28,6 @@ const AddUser = () => {
 
       alert("Password must be at least 7 symbols");
     } else {
-      console.log(data);
       axios
         .post(`${apiAddress}/api/Users/CreateCompanyUser`, data, {
           headers: {

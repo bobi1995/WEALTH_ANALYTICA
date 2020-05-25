@@ -12,7 +12,7 @@ const PlanProfileTables = (props) => {
   return (
     <div>
       {/**PLAN - Financial */}
-      <div className="plan-businessInfo" id="planFinancial-main">
+      <div className="plan-businessInfo-2" id="planFinancial-main">
         <h1 className="plan-h1">Plan - Financial</h1>
         <PlanProfileFinancial info={props} />
       </div>
@@ -376,7 +376,7 @@ const PlanProfileTables = (props) => {
                   </span>
                 </th>
                 {props.data[0].map((element, index) => {
-                  return element.TotalAssets >= 0 ? (
+                  return element.ERISATestValue >= 0 ? (
                     <td key={index}>
                       ${common.reducer(element.ERISATestValue)}
                     </td>
@@ -395,7 +395,7 @@ const PlanProfileTables = (props) => {
                   </span>
                 </th>
                 {props.data[0].map((element, index) => {
-                  return element.TotalAssets >= 0 ? (
+                  return element.ERISATestOverUnder >= 0 ? (
                     <td key={index}>
                       ${common.reducer(element.ERISATestOverUnder)}
                     </td>

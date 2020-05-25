@@ -153,7 +153,6 @@ const Login = () => {
       alert("Password must be at least 7 symbols");
       setLoading(false);
     } else {
-      console.log(data);
       axios
         .post(`${apiAddress}/api/Users`, data)
         .then((res) => {

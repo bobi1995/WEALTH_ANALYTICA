@@ -21,7 +21,6 @@ const SingleUser = (props) => {
       .then((res) => {
         if (props.user.IsBusinessAccount === true) {
           temp = temp.filter((el) => el.State !== state || el.Type !== type);
-          console.log(temp);
           sessionStorage.setItem("States", JSON.stringify(temp));
         }
         window.location.reload();
@@ -65,8 +64,6 @@ const SingleUser = (props) => {
                   </thead>
                   <tbody className="table-hover">
                     {props.user.States.map((state, index) => {
-                      console.log(state);
-
                       return (
                         <tr key={index}>
                           <td>{state.State}</td>

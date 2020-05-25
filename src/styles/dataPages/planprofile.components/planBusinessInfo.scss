@@ -2,16 +2,25 @@
   text-align: center;
   margin-top: 3%;
 }
+
+.plan-businessInfo-2 {
+  background-color: #f3f4f8;
+  text-align: center;
+  margin-top: 3%;
+  margin-left: 3%;
+  margin-right: 3%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
 .invisible-table {
   display: none;
 }
 .plan-graphs {
-  display: flex;
-  width: 90%;
+  width: 100%;
   text-align: center;
   margin: 0 auto;
+  align-items: center;
   .plan-table-section {
-    display: flex;
     align-items: center;
   }
 
@@ -51,12 +60,8 @@
 }
 .plan-table-section-BusinessInfo {
   display: inline-block;
-  width: 50%;
+  width: 100%;
   text-align: center;
-  td {
-    white-space: nowrap;
-    overflow: hidden;
-  }
 }
 .plan-table-section-Contact {
   display: inline-block;
@@ -67,6 +72,33 @@
     overflow: hidden;
   }
 }
+.chart-plan-section {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+}
+.business-main-tables {
+  display: flex;
+  justify-content: space-around;
+}
+.planProfile-header-h1 {
+  color: #388fc2;
+  text-align: left;
+  font-family: "Abril Fatface";
+  font-size: 20;
+  padding-left: 3%;
+}
+.inside-business-div {
+  background-color: white;
+  margin-left: 3%;
+}
+.businessplan-smallDiv {
+  text-align: center;
+  align-self: center;
+  margin-top: 3%;
+  width: 100%;
+}
 @media screen and (max-width: 1024px) {
   .plan-table-section {
     width: 100%;
@@ -74,5 +106,8 @@
   .plan-graphs {
     display: block;
     width: 100%;
+  }
+  .business-main-tables {
+    display: inline-block;
   }
 }

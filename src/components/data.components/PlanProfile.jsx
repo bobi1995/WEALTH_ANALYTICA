@@ -16,6 +16,7 @@ import apiAddress from "../../global/endpointAddress";
 const PlaneProfile = (props) => {
   const [results, setResults] = useState([]);
   const [limit, setLimit] = useState(false);
+
   let url = "";
   useEffect(() => {
     if (props.match) {
@@ -61,20 +62,16 @@ const PlaneProfile = (props) => {
           </h1>
         </div>
       ) : results.City ? (
-        <div id="allplanprofile">
-          <div id="firstpdf-page">
-            <PlanProfileExportButton types={results.PlanSummary} />
-            <PlanProfileExportHeading data={results.BusinessInformation} />
-
+        <div id="allplanprofile" className="usermanagement">
+          <PlanProfileExportButton types={results.PlanSummary} />
+          <PlanProfileExportHeading data={results.BusinessInformation} />
+          <div>
             <PlaneProfileBusinessInfo
               data={results.BusinessInformation}
               erisa={results.ERISATestCompanyStock}
+              contact={results.Contact}
+              types={results.PlanSummary}
             />
-            {Object.values(results.Contact).some((x) => x !== null) ? (
-              <Contact contact={results.Contact} headWidth="15" />
-            ) : (
-              ""
-            )}
           </div>
           <PlanProfileTables
             data={[results.Statistics, results.City, results.BusinessCode]}

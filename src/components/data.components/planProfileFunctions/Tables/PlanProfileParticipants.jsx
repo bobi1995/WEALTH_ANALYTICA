@@ -8,7 +8,7 @@ import common from "../../commonFunctions/common";
 export default (props) => {
   const database = props.info;
   const data = {
-    labels: DataExtract.uniqueYearsPension(database.data[0]),
+    labels: DataExtract.realYearsPension(database.data[0]),
     datasets: [
       {
         label: "Participants",
@@ -38,6 +38,16 @@ export default (props) => {
 
   return (
     <div className="plan-businessInfo plan-graphs">
+      <div className="plan-table-section">
+        <Line
+          data={data}
+          width={50}
+          height={20}
+          options={dashboardCharts.optionReturn(
+            DataExtract.participantsPension(database.data[0])
+          )}
+        />
+      </div>
       <div className="plan-table-section responsive-table-div">
         <table className="table table-striped table-bordered table-sm table-hover">
           <thead className="thead-dark">
@@ -112,14 +122,6 @@ export default (props) => {
             </tr>
           </tbody>
         </table>
-      </div>
-      <div className="plan-table-section">
-        <Line
-          data={data}
-          options={dashboardCharts.optionReturn(
-            DataExtract.participantsPension(database.data[0])
-          )}
-        />
       </div>
     </div>
   );

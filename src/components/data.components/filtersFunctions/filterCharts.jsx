@@ -6,15 +6,15 @@ const dataBeginEnd = (begin, end) => {
     labels: ["Begin of the Year", "End of the Year"],
     datasets: [
       {
-        label: "Begin End",
+        label: "Net Assets",
         data: newArray,
         backgroundColor: "rgb(135,206,250)",
         borderColor: "rgb(0,98,204)",
         borderWidth: 1,
         hoverBackgroundColor: "rgb(30,144,255)",
-        hoverBorderColor: "rgb(0,0,255)"
-      }
-    ]
+        hoverBorderColor: "rgb(0,0,255)",
+      },
+    ],
   };
 };
 
@@ -31,9 +31,9 @@ const participantsChart = (total, retired, bal) => {
         borderColor: "rgb(76,175,80)",
         borderWidth: 1,
         hoverBackgroundColor: "rgb(50,205,50)",
-        hoverBorderColor: "rgb(0,100,0)"
-      }
-    ]
+        hoverBorderColor: "rgb(0,100,0)",
+      },
+    ],
   };
 };
 
@@ -42,7 +42,7 @@ const distribution = (dist, corrDist, service, other) => {
     dist,
     corrDist,
     service,
-    other
+    other,
   ]);
 
   return {
@@ -55,9 +55,9 @@ const distribution = (dist, corrDist, service, other) => {
         borderColor: "rgb(205,92,92)",
         borderWidth: 1,
         hoverBackgroundColor: "rgb(255,99,71)",
-        hoverBorderColor: "rgb(139,0,0)"
-      }
-    ]
+        hoverBorderColor: "rgb(139,0,0)",
+      },
+    ],
   };
 };
 
@@ -74,9 +74,9 @@ const contribution = (participant, employee) => {
         borderColor: "rgb(204,204,0)",
         borderWidth: 1,
         hoverBackgroundColor: "rgb(255,255,0)",
-        hoverBorderColor: "rgb(102,102,0)"
-      }
-    ]
+        hoverBorderColor: "rgb(102,102,0)",
+      },
+    ],
   };
 };
 
