@@ -2,13 +2,76 @@ import React from "react";
 import numeral from "numeral";
 import DataExtract from "../PlanProfileDataExtract";
 import common from "../../commonFunctions/common";
+import { Doughnut } from "react-chartjs-2";
+import dashboardCharts from "../../dashboardFunctions/charts";
 
 export default (props) => {
   const database = props.info;
+  const brokerCommissions = {
+    labels: ["Plan", "Industry", "City"],
+    datasets: [
+      {
+        data: dashboardCharts.arrayReducer([
+          DataExtract.lastYearBrokerCommissions(database.data[0])[0],
+          DataExtract.industryBrokerCommissions(database.data[0])[0],
+          DataExtract.cityBrokerCommissions(database.data[0])[0],
+        ]),
+        backgroundColor: ["#4babe3", "#ffb142", "#FF6384"],
+        hoverBackgroundColor: ["#388FC2", "#ff9600", "#fc1e4e"],
+      },
+    ],
+  };
 
+  const brokerFees = {
+    labels: ["Plan", "Industry", "City"],
+    datasets: [
+      {
+        data: dashboardCharts.arrayReducer([
+          DataExtract.lastYearBrokerFees(database.data[0])[0],
+          DataExtract.industryBrokerFees(database.data[0])[0],
+          DataExtract.cityBrokerFees(database.data[0])[0],
+        ]),
+        backgroundColor: ["#4babe3", "#ffb142", "#FF6384"],
+        hoverBackgroundColor: ["#388FC2", "#ff9600", "#fc1e4e"],
+      },
+    ],
+  };
   return (
-    <div className="plan-businessInfo">
-      <div className="plan-table-section ">
+    <div className="plan-businessInfo  plan-graphs">
+      <div className="chart-plan-section">
+        <div className="plan-profile-chartsDiv">
+          <Doughnut data={brokerCommissions} />
+          <p>
+            Broker Commissions
+            <small className="form-text text-muted">
+              (
+              {dashboardCharts.arrayCategory([
+                DataExtract.lastYearBrokerCommissions(database.data[0])[0],
+                DataExtract.industryBrokerCommissions(database.data[0])[0],
+                DataExtract.cityBrokerCommissions(database.data[0])[0],
+              ])}
+              )
+            </small>
+          </p>
+        </div>
+        <div className="plan-profile-chartsDiv">
+          <Doughnut data={brokerFees} />
+          <p>
+            Broker Fees
+            <small className="form-text text-muted">
+              (
+              {dashboardCharts.arrayCategory([
+                DataExtract.lastYearBrokerFees(database.data[0])[0],
+                DataExtract.industryBrokerFees(database.data[0])[0],
+                DataExtract.cityBrokerFees(database.data[0])[0],
+              ])}
+              )
+            </small>
+          </p>
+        </div>
+      </div>
+
+      <div className="plan-table-section" style={{ marginTop: "3%" }}>
         <table className="table table-striped table-bordered table-sm table-hover">
           <thead className="thead-dark">
             <tr>

@@ -1,12 +1,29 @@
 import React from "react";
 import numeral from "numeral";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import DataExtract from "../PlanProfileDataExtract";
 import dashboardCharts from "../../dashboardFunctions/charts";
 import common from "../../commonFunctions/common";
 
 export default (props) => {
   const database = props.info;
+
+  const contributionData = {
+    labels: DataExtract.realYearsPension(database.data[0]),
+    datasets: [
+      {
+        label: "Contribution Employer",
+        backgroundColor: "rgba(56,143,194,0.2)",
+        borderColor: "rgba(56,143,194,1)",
+        borderWidth: 1,
+        hoverBackgroundColor: "rgba(56,143,194,0.4)",
+        hoverBorderColor: "rgba(56,143,194,1)",
+        data: dashboardCharts.arrayReducer(
+          DataExtract.contributionEmployer(database.data[0])
+        ),
+      },
+    ],
+  };
   const data = {
     labels: DataExtract.realYearsPension(database.data[0]),
     datasets: [
@@ -38,17 +55,30 @@ export default (props) => {
 
   return (
     <div className="plan-businessInfo plan-graphs">
-      <div className="plan-table-section">
-        <Line
-          data={data}
-          width={50}
-          height={20}
-          options={dashboardCharts.optionReturn(
-            DataExtract.participantsPension(database.data[0])
-          )}
-        />
+      <div className="chart-plan-section">
+        <div className="plan-profile-chartsDiv">
+          <Line
+            data={data}
+            width={50}
+            height={20}
+            options={dashboardCharts.optionReturn(
+              DataExtract.participantsPension(database.data[0])
+            )}
+          />
+        </div>
+        <div className="plan-profile-chartsDiv">
+          <Bar
+            data={contributionData}
+            options={dashboardCharts.optionReturn(
+              DataExtract.contributionEmployer(database.data[0])
+            )}
+          />
+        </div>
       </div>
-      <div className="plan-table-section responsive-table-div">
+      <div
+        className="plan-table-section responsive-table-div"
+        style={{ marginTop: "3%" }}
+      >
         <table className="table table-striped table-bordered table-sm table-hover">
           <thead className="thead-dark">
             <tr>

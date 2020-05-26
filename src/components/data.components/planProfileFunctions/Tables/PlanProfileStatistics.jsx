@@ -8,7 +8,7 @@ import common from "../../commonFunctions/common";
 export default (props) => {
   const database = props.info;
   const yeildData = {
-    labels: ["Yield", "Contr.Yield", "Expense Ratio", "ROR"],
+    labels: ["Yield", "Contr.Yield", "Return on Inv.", "Return on Assets"],
     datasets: [
       {
         label: "Plan Asset",
@@ -79,7 +79,7 @@ export default (props) => {
   return (
     <div>
       <div className="plan-businessInfo onepager-charts-all">
-        <div className="onepager-chart-content">
+        <div className="plan-profile-chartsDiv">
           <Bar
             data={aumhcChartData}
             width={150}
@@ -91,7 +91,7 @@ export default (props) => {
             ])}
           />
         </div>
-        <div className="onepager-chart-content">
+        <div className="plan-profile-chartsDiv">
           <Bar
             data={yeildData}
             width={150}
@@ -115,7 +115,7 @@ export default (props) => {
           />
         </div>
       </div>
-      <div className="plan-businessInfo ">
+      <div className="plan-businessInfo " style={{ marginTop: "3%" }}>
         <div className="plan-table-section ">
           <table className="table table-striped table-bordered table-sm table-hover">
             <thead className="thead-dark">

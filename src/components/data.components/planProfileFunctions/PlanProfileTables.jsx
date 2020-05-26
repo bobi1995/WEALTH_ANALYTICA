@@ -5,7 +5,6 @@ import PlanProfileFinancial from "./Tables/PlanProfileFinancial";
 import PlanProfileParticipants from "./Tables/PlanProfileParticipants";
 import PlanProfileServiceHealth from "./Tables/PlanProfileHealthCare";
 import PlanProfileServiceProviders from "./Tables/PlanProfileServiceProviders";
-
 import common from "../commonFunctions/common";
 
 const PlanProfileTables = (props) => {
@@ -18,14 +17,14 @@ const PlanProfileTables = (props) => {
       </div>
 
       {/**PLAN - PARTICIPANTS */}
-      <div className="plan-businessInfo" id="planParticipants-main">
+      <div className="plan-businessInfo-2" id="planParticipants-main">
         <h1 className="plan-h1">Plan - Participants</h1>
         <PlanProfileParticipants info={props} />
       </div>
 
       {/**PLAN - Statistics */}
       <div
-        className="plan-businessInfo"
+        className="plan-businessInfo-2"
         id="planStatistics-main"
         data-html2canvas-ignore
       >
@@ -35,7 +34,7 @@ const PlanProfileTables = (props) => {
 
       {/**PLAN - Healtcare Insurance */}
       <div
-        className="plan-businessInfo"
+        className="plan-businessInfo-2"
         id="PlanHealth-main"
         data-html2canvas-ignore
       >
@@ -43,9 +42,9 @@ const PlanProfileTables = (props) => {
         <PlanProfileServiceHealth info={props} />
       </div>
 
-      {/**PLAN - Service Providers */}
+      {/* *PLAN - Service Providers */}
       <div
-        className="plan-businessInfo"
+        className="plan-businessInfo-2"
         id="planService-main"
         data-html2canvas-ignore
       >
@@ -55,7 +54,7 @@ const PlanProfileTables = (props) => {
 
       {/**ALERTS */}
       <div
-        className="plan-businessInfo"
+        className="plan-businessInfo-2"
         id="planAlerts-main"
         data-html2canvas-ignore
       >

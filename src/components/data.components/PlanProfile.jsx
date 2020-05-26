@@ -79,10 +79,12 @@ const PlaneProfile = (props) => {
           <div data-html2canvas-ignore>
             {results.AccountantFirmNames.length > 0 ||
             results.FiduciaryTrustNames.length > 0 ? (
-              <OnePagerAccountants
-                accountants={results.AccountantFirmNames}
-                trusts={results.FiduciaryTrustNames}
-              />
+              <div className="plan-businessInfo-2">
+                <OnePagerAccountants
+                  accountants={results.AccountantFirmNames}
+                  trusts={results.FiduciaryTrustNames}
+                />
+              </div>
             ) : (
               ""
             )}

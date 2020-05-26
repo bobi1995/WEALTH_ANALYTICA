@@ -1,13 +1,67 @@
 import React from "react";
 import numeral from "numeral";
 import common from "../../commonFunctions/common";
+import { Bar } from "react-chartjs-2";
+import DataExtract from "../PlanProfileDataExtract";
+import dashboardCharts from "../../dashboardFunctions/charts";
 
 export default (props) => {
   const database = props.info;
-
+  const reducedDirectFees = dashboardCharts.arrayReducer(
+    DataExtract.ProvidersDirectFees(database.data[0])
+  );
+  const reducedIndirectFees = dashboardCharts.arrayReducer(
+    DataExtract.ProvidersIndirectFees(database.data[0])
+  );
+  const directFees = {
+    labels: DataExtract.realYearsPension(database.data[0]),
+    datasets: [
+      {
+        label: "Providers Direct Fees",
+        backgroundColor: "rgba(0, 150, 0,0.2)",
+        borderColor: "rgba(0, 150, 0,1)",
+        borderWidth: 1,
+        hoverBackgroundColor: "rgba(0, 150, 0,0.4)",
+        hoverBorderColor: "rgba(0, 150, 0,1)",
+        data: reducedDirectFees,
+      },
+    ],
+  };
+  const indirectFees = {
+    labels: DataExtract.realYearsPension(database.data[0]),
+    datasets: [
+      {
+        label: "Providers Indirect Fees",
+        backgroundColor: "rgba(255,99,132,0.2)",
+        borderColor: "rgba(255,99,132,1)",
+        borderWidth: 1,
+        hoverBackgroundColor: "rgba(255,99,132,0.4)",
+        hoverBorderColor: "rgba(255,99,132,1)",
+        data: reducedIndirectFees,
+      },
+    ],
+  };
   return (
-    <div className="plan-businessInfo">
-      <div className="plan-table-section ">
+    <div className="plan-businessInfo plan-graphs">
+      <div className="chart-plan-section">
+        <div className="plan-profile-chartsDiv">
+          <Bar
+            data={directFees}
+            options={dashboardCharts.optionReturn(
+              DataExtract.ProvidersDirectFees(database.data[0])
+            )}
+          />
+        </div>
+        <div className="plan-profile-chartsDiv">
+          <Bar
+            data={indirectFees}
+            options={dashboardCharts.optionReturn(
+              DataExtract.ProvidersIndirectFees(database.data[0])
+            )}
+          />
+        </div>
+      </div>
+      <div className="plan-table-section" style={{ marginTop: "3%" }}>
         <table className="table table-striped table-bordered table-sm table-hover">
           <thead className="thead-dark">
             <tr>

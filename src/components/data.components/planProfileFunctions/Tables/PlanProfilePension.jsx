@@ -25,12 +25,19 @@ const PlanProfilePension = (props) => {
     });
   };
   return (
-    <div className="plan-businessInfo" id="planPensions-main">
+    <div className="plan-businessInfo-2" id="planPensions-main">
       {/**********************PENSION TYPES***************************************** */}
       {props.types.length > 0
         ? props.types.map((element, index) => {
             return (
-              <div key={index}>
+              <div
+                key={index}
+                style={{
+                  width: "90%",
+                  margin: "3%",
+                }}
+                className="plan-profile-chartsDiv"
+              >
                 <div className="plan-table-section-Pension">
                   <h1 className="onepager-bottomtables-h1">
                     {element.PlanName &&

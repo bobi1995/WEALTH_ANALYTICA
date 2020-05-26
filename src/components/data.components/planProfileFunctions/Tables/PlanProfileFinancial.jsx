@@ -6,6 +6,7 @@ import common from "../../commonFunctions/common";
 
 export default (props) => {
   const database = props.info;
+  console.log(database);
   const reducedData = dashboardCharts.arrayReducer(
     DataExtract.netAssetsPension(database.data[0])
   );
@@ -57,7 +58,7 @@ export default (props) => {
   return (
     <div className="plan-businessInfo plan-graphs">
       <div className="chart-plan-section">
-        <div style={{ width: "45%", margin: "0,auto" }}>
+        <div className="plan-profile-chartsDiv">
           <Bar
             data={aumhcChartData}
             options={dashboardCharts.optionReturn(
@@ -65,7 +66,7 @@ export default (props) => {
             )}
           />
         </div>
-        <div style={{ width: "45%", margin: "0,auto" }}>
+        <div className="plan-profile-chartsDiv">
           <Line
             data={data}
             width={50}
@@ -76,7 +77,10 @@ export default (props) => {
           />
         </div>
       </div>
-      <div className="plan-table-section responsive-table-div">
+      <div
+        className="plan-table-section responsive-table-div"
+        style={{ marginTop: "3%" }}
+      >
         <table className="table table-striped table-bordered table-sm table-hover ">
           <thead className="thead-dark">
             <tr>

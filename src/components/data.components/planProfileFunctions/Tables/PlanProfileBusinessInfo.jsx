@@ -42,9 +42,9 @@ const PlaneProfileBusinessInfo = (props) => {
         {props.data.SponsorName &&
           commonFunctions.formatString(props.data.SponsorName)}
       </h1>
-      <div className="business-main-tables">
-        <div className="plan-table-section-BusinessInfo">
-          <div className="inside-business-div">
+      <div className="chart-plan-section">
+        <div style={{ width: "45%", margin: " 0, auto " }}>
+          <div className="inside-business-div ">
             <h3 className="planProfile-header-h1">Location</h3>
             <table className="dashboard-table table">
               <tbody>
@@ -110,18 +110,28 @@ const PlaneProfileBusinessInfo = (props) => {
             </table>
           </div>
         </div>
-        <div className="plan-table-section-BusinessInfo">
+        <div style={{ width: "45%", margin: " 0, auto " }}>
           <div style={{ display: "flex" }}>
-            <Contact
-              contact={{
-                Name: props.data.AdministratorName,
-                Title: "Administrator",
-                Phone: props.data.PhoneNumber,
-              }}
-              headWidth="35"
-            />
+            <div
+              className="plan-profile-chartsDiv"
+              style={{ marginRight: "1.5%" }}
+            >
+              <Contact
+                contact={{
+                  Name: props.data.AdministratorName,
+                  Title: "Administrator",
+                  Phone: props.data.PhoneNumber,
+                }}
+                headWidth="35"
+              />
+            </div>
             {Object.values(props.contact).some((x) => x !== null) ? (
-              <Contact contact={props.contact} headWidth="35" />
+              <div
+                className="plan-profile-chartsDiv"
+                style={{ marginLeft: "1.5%" }}
+              >
+                <Contact contact={props.contact} headWidth="35" />
+              </div>
             ) : (
               ""
             )}

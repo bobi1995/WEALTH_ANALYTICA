@@ -48,6 +48,110 @@ const netIncome = (data) => {
     return el !== undefined;
   });
 };
+
+const ProvidersDirectFees = (data) => {
+  const arr = data.map((element) => {
+    if (element.IsCity === false && element.IsBusinessCode === false) {
+      return element.ProviderOtherDirectCompATM;
+    }
+  });
+  return arr.filter((el) => {
+    return el !== undefined;
+  });
+};
+
+const ProvidersIndirectFees = (data) => {
+  const arr = data.map((element) => {
+    if (element.IsCity === false && element.IsBusinessCode === false) {
+      return element.ProviderOtherTotIndCompATM;
+    }
+  });
+  return arr.filter((el) => {
+    return el !== undefined;
+  });
+};
+
+const contributionEmployer = (data) => {
+  const arr = data.map((element) => {
+    if (element.IsCity === false && element.IsBusinessCode === false) {
+      return element.ContributionEmployer;
+    }
+  });
+  return arr.filter((el) => {
+    return el !== undefined;
+  });
+};
+
+const lastYearBrokerFees = (data) => {
+  const arr = data.map((element) => {
+    if (
+      element.Year === 2018 &&
+      element.IsCity === false &&
+      element.IsBusinessCode === false
+    ) {
+      return element.BrokerFees;
+    }
+  });
+  return arr.filter((el) => {
+    return el !== undefined;
+  });
+};
+const industryBrokerFees = (data) => {
+  const arr = data.map((element) => {
+    if (element.IsCity === false && element.IsBusinessCode === true) {
+      return element.BrokerFees;
+    }
+  });
+  return arr.filter((el) => {
+    return el !== undefined;
+  });
+};
+const cityBrokerFees = (data) => {
+  const arr = data.map((element) => {
+    if (element.IsCity === true && element.IsBusinessCode === false) {
+      return element.BrokerFees;
+    }
+  });
+  return arr.filter((el) => {
+    return el !== undefined;
+  });
+};
+
+const lastYearBrokerCommissions = (data) => {
+  const arr = data.map((element) => {
+    if (
+      element.Year === 2018 &&
+      element.IsCity === false &&
+      element.IsBusinessCode === false
+    ) {
+      return element.BrokerCommissions;
+    }
+  });
+  return arr.filter((el) => {
+    return el !== undefined;
+  });
+};
+const industryBrokerCommissions = (data) => {
+  const arr = data.map((element) => {
+    if (element.IsCity === false && element.IsBusinessCode === true) {
+      return element.BrokerCommissions;
+    }
+  });
+  return arr.filter((el) => {
+    return el !== undefined;
+  });
+};
+const cityBrokerCommissions = (data) => {
+  const arr = data.map((element) => {
+    if (element.IsCity === true && element.IsBusinessCode === false) {
+      return element.BrokerCommissions;
+    }
+  });
+  return arr.filter((el) => {
+    return el !== undefined;
+  });
+};
+
 //***************UNIQUE PENSION TYPES ********************* */
 const typesSummaryYears = (data) => {
   return data.map((element) => {
@@ -271,4 +375,13 @@ export default {
   cityROR,
   realYearsPension,
   netIncome,
+  contributionEmployer,
+  lastYearBrokerFees,
+  industryBrokerFees,
+  cityBrokerFees,
+  ProvidersDirectFees,
+  ProvidersIndirectFees,
+  lastYearBrokerCommissions,
+  industryBrokerCommissions,
+  cityBrokerCommissions,
 };
