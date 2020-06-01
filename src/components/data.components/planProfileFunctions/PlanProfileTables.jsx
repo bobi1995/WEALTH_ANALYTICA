@@ -85,40 +85,24 @@ const PlanProfileTables = (props) => {
                   </span>
                 </th>
                 {props.data[0].map((element, index) => {
-                  if (element.ContributionFailureIndColor) {
+                  if (element.ContributionFailureInd) {
                     return (
-                      <td key={index} className="plan-profile-red">
-                        {element.ContributionFailureInd ? (
-                          <i
-                            className="fa fa-exclamation-triangle"
-                            aria-hidden="true"
-                            style={{ color: "red" }}
-                          ></i>
-                        ) : (
-                          <i
-                            className="fa fa-check"
-                            aria-hidden="true"
-                            style={{ color: "green" }}
-                          ></i>
-                        )}
+                      <td key={index}>
+                        <i
+                          className="fa fa-exclamation-triangle"
+                          aria-hidden="true"
+                          style={{ color: "red" }}
+                        ></i>
                       </td>
                     );
                   } else {
                     return (
-                      <td key={index}>
-                        {element.ContributionFailureInd ? (
-                          <i
-                            className="fa fa-exclamation-triangle"
-                            aria-hidden="true"
-                            style={{ color: "red" }}
-                          ></i>
-                        ) : (
-                          <i
-                            className="fa fa-check"
-                            aria-hidden="true"
-                            style={{ color: "green" }}
-                          ></i>
-                        )}
+                      <td key={index} className="plan-profile-red">
+                        <i
+                          className="fa fa-check"
+                          aria-hidden="true"
+                          style={{ color: "green" }}
+                        ></i>
                       </td>
                     );
                   }
@@ -133,19 +117,56 @@ const PlanProfileTables = (props) => {
                   </span>
                 </th>
                 {props.data[0].map((element, index) => {
-                  if (element.ContributionFailureIndColor) {
-                    return (
-                      <td key={index} className="plan-profile-red">
-                        <i className="fa fa-flag" aria-hidden="true"></i>$
-                        {numeral(element.ContributionFailureAtm).format("0,0")}
-                      </td>
-                    );
+                  if (element.ContributionFailureAtm >= 0) {
+                    if (element.ContributionFailureInd) {
+                      return (
+                        <td key={index}>
+                          <i
+                            className="fa fa-flag"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                          $
+                          {numeral(element.ContributionFailureAtm).format(
+                            "0,0"
+                          )}
+                        </td>
+                      );
+                    } else {
+                      return (
+                        <td key={index}>
+                          $
+                          {numeral(element.ContributionFailureAtm).format(
+                            "0,0"
+                          )}
+                        </td>
+                      );
+                    }
                   } else {
-                    return (
-                      <td key={index}>
-                        ${numeral(element.ContributionFailureAtm).format("0,0")}
-                      </td>
-                    );
+                    if (element.ContributionFailureInd) {
+                      return (
+                        <td key={index} className="plan-profile-red">
+                          <i
+                            className="fa fa-flag"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                          $
+                          {numeral(element.ContributionFailureAtm).format(
+                            "0,0"
+                          )}
+                        </td>
+                      );
+                    } else {
+                      return (
+                        <td key={index} className="plan-profile-red">
+                          $
+                          {numeral(element.ContributionFailureAtm).format(
+                            "0,0"
+                          )}
+                        </td>
+                      );
+                    }
                   }
                 })}
               </tr>
@@ -162,40 +183,24 @@ const PlanProfileTables = (props) => {
                   </span>
                 </th>
                 {props.data[0].map((element, index) => {
-                  if (element.LeasesInDefaultIndColor) {
+                  if (element.LeasesInDefaultInd) {
                     return (
                       <td key={index} className="plan-profile-red">
-                        {element.LeasesInDefaultInd ? (
-                          <i
-                            className="fa fa-exclamation-triangle"
-                            aria-hidden="true"
-                            style={{ color: "red" }}
-                          ></i>
-                        ) : (
-                          <i
-                            className="fa fa-check"
-                            aria-hidden="true"
-                            style={{ color: "green" }}
-                          ></i>
-                        )}
+                        <i
+                          className="fa fa-exclamation-triangle"
+                          aria-hidden="true"
+                          style={{ color: "red" }}
+                        ></i>
                       </td>
                     );
                   } else {
                     return (
                       <td key={index}>
-                        {element.LeasesInDefaultInd ? (
-                          <i
-                            className="fa fa-exclamation-triangle"
-                            aria-hidden="true"
-                            style={{ color: "red" }}
-                          ></i>
-                        ) : (
-                          <i
-                            className="fa fa-check"
-                            aria-hidden="true"
-                            style={{ color: "green" }}
-                          ></i>
-                        )}
+                        <i
+                          className="fa fa-check"
+                          aria-hidden="true"
+                          style={{ color: "green" }}
+                        ></i>
                       </td>
                     );
                   }
@@ -209,19 +214,44 @@ const PlanProfileTables = (props) => {
                   </span>
                 </th>
                 {props.data[0].map((element, index) => {
-                  if (element.LeasesInDefaultIndColor) {
-                    return (
-                      <td key={index} className="plan-profile-red">
-                        <i className="fa fa-flag" aria-hidden="true"></i>$
-                        {numeral(element.LeasesInDefaultAtm).format("0,0")}
-                      </td>
-                    );
+                  if (element.LeasesInDefaultAtm >= 0) {
+                    if (element.LeasesInDefaultInd) {
+                      return (
+                        <td key={index}>
+                          <i
+                            className="fa fa-flag"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                          ${numeral(element.LeasesInDefaultAtm).format("0,0")}
+                        </td>
+                      );
+                    } else {
+                      return (
+                        <td key={index}>
+                          ${numeral(element.LeasesInDefaultAtm).format("0,0")}
+                        </td>
+                      );
+                    }
                   } else {
-                    return (
-                      <td key={index}>
-                        ${numeral(element.LeasesInDefaultAtm).format("0,0")}
-                      </td>
-                    );
+                    if (element.LeasesInDefaultInd) {
+                      return (
+                        <td key={index} className="plan-profile-red">
+                          <i
+                            className="fa fa-flag"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                          ${numeral(element.LeasesInDefaultAtm).format("0,0")}
+                        </td>
+                      );
+                    } else {
+                      return (
+                        <td key={index} className="plan-profile-red">
+                          ${numeral(element.LeasesInDefaultAtm).format("0,0")}
+                        </td>
+                      );
+                    }
                   }
                 })}
               </tr>
@@ -240,7 +270,7 @@ const PlanProfileTables = (props) => {
                   </span>
                 </th>
                 {props.data[0].map((element, index) => {
-                  if (element.LoansInDefaultIndColor) {
+                  if (element.LoansInDefaultInd) {
                     return (
                       <td key={index} className="plan-profile-red">
                         {element.LoansInDefaultInd ? (
@@ -287,19 +317,59 @@ const PlanProfileTables = (props) => {
                   </span>
                 </th>
                 {props.data[0].map((element, index) => {
-                  if (element.LoansInDefaultIndColor) {
-                    return (
-                      <td key={index} className="plan-profile-red">
-                        <i className="fa fa-flag" aria-hidden="true"></i>$ $
-                        {numeral(element.LoansInDefaultAtm).format("0,0")}
-                      </td>
-                    );
+                  // if (element.LoansInDefaultInd) {
+                  //   return (
+                  //     <td key={index} className="plan-profile-red">
+                  //       <i className="fa fa-flag" aria-hidden="true"></i>$ $
+                  //       {numeral(element.LoansInDefaultAtm).format("0,0")}
+                  //     </td>
+                  //   );
+                  // } else {
+                  //   return (
+                  //     <td key={index}>
+                  //       ${numeral(element.LoansInDefaultAtm).format("0,0")}
+                  //     </td>
+                  //   );
+                  // }
+
+                  if (element.LoansInDefaultAtm >= 0) {
+                    if (element.LoansInDefaultInd) {
+                      return (
+                        <td key={index}>
+                          <i
+                            className="fa fa-flag"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                          ${numeral(element.LoansInDefaultAtm).format("0,0")}
+                        </td>
+                      );
+                    } else {
+                      return (
+                        <td key={index}>
+                          ${numeral(element.LoansInDefaultAtm).format("0,0")}
+                        </td>
+                      );
+                    }
                   } else {
-                    return (
-                      <td key={index}>
-                        ${numeral(element.LoansInDefaultAtm).format("0,0")}
-                      </td>
-                    );
+                    if (element.LoansInDefaultInd) {
+                      return (
+                        <td key={index} className="plan-profile-red">
+                          <i
+                            className="fa fa-flag"
+                            aria-hidden="true"
+                            style={{ color: "red" }}
+                          ></i>
+                          ${numeral(element.LoansInDefaultAtm).format("0,0")}
+                        </td>
+                      );
+                    } else {
+                      return (
+                        <td key={index} className="plan-profile-red">
+                          ${numeral(element.LoansInDefaultAtm).format("0,0")}
+                        </td>
+                      );
+                    }
                   }
                 })}
               </tr>
@@ -328,40 +398,24 @@ const PlanProfileTables = (props) => {
                   </span>
                 </th>
                 {props.data[0].map((element, index) => {
-                  if (element.DFVCIndColor) {
+                  if (element.DFVCInd) {
                     return (
                       <td key={index} className="plan-profile-red">
-                        {element.DFVCInd ? (
-                          <i
-                            className="fa fa-exclamation-triangle"
-                            aria-hidden="true"
-                            style={{ color: "red" }}
-                          ></i>
-                        ) : (
-                          <i
-                            className="fa fa-check"
-                            aria-hidden="true"
-                            style={{ color: "green" }}
-                          ></i>
-                        )}
+                        <i
+                          className="fa fa-exclamation-triangle"
+                          aria-hidden="true"
+                          style={{ color: "red" }}
+                        ></i>
                       </td>
                     );
                   } else {
                     return (
                       <td key={index}>
-                        {element.DFVCInd ? (
-                          <i
-                            className="fa fa-exclamation-triangle"
-                            aria-hidden="true"
-                            style={{ color: "red" }}
-                          ></i>
-                        ) : (
-                          <i
-                            className="fa fa-check"
-                            aria-hidden="true"
-                            style={{ color: "green" }}
-                          ></i>
-                        )}
+                        <i
+                          className="fa fa-check"
+                          aria-hidden="true"
+                          style={{ color: "green" }}
+                        ></i>
                       </td>
                     );
                   }

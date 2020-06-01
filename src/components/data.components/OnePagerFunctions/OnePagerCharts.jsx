@@ -3,7 +3,7 @@ import { Bar } from "react-chartjs-2";
 import DataExtract from "./OnePagerDataExtract";
 import reducers from "../dashboardFunctions/charts";
 
-const OnePagerCharts = props => {
+const OnePagerCharts = (props) => {
   let planAssetData = {};
   let incomeStatementsData = {};
   let partMetrics = {};
@@ -20,7 +20,7 @@ const OnePagerCharts = props => {
   let biggestContribPart;
   let biggestDistrib;
 
-  const divideBy = array => {
+  const divideBy = (array) => {
     const max = Math.max(...array);
     const parts = max.toString().split(".");
     const lengthOfAv = parts[0].toString().length;
@@ -45,10 +45,10 @@ const OnePagerCharts = props => {
 
     const allArrayAsset = totalAssets.concat(netAssets);
 
-    const totalAssetsReduced = totalAssets.map(element => {
+    const totalAssetsReduced = totalAssets.map((element) => {
       return element / divideBy(allArrayAsset);
     });
-    const netAssetsReduced = netAssets.map(element => {
+    const netAssetsReduced = netAssets.map((element) => {
       return element / divideBy(allArrayAsset);
     });
 
@@ -65,7 +65,7 @@ const OnePagerCharts = props => {
           hoverBackgroundColor: "rgba(137, 196, 244, 1)",
           hoverBorderColor: "rgba(44, 130, 201, 1)",
           data: totalAssetsReduced,
-          stack: 1
+          stack: 1,
         },
         {
           label: "Net Assets",
@@ -74,9 +74,9 @@ const OnePagerCharts = props => {
           hoverBackgroundColor: "rgba(253, 227, 167, 1)",
           hoverBorderColor: "rgba(248, 148, 6, 1)",
           data: netAssetsReduced,
-          stack: 2
-        }
-      ]
+          stack: 2,
+        },
+      ],
     };
 
     /*****************INCOME STATEMENTS DATA******************* */
@@ -86,13 +86,13 @@ const OnePagerCharts = props => {
 
     const allArrayStatement = income.concat(expense, netIncome);
 
-    const incomeReduced = income.map(element => {
+    const incomeReduced = income.map((element) => {
       return element / divideBy(allArrayStatement);
     });
-    const expenseReduced = expense.map(element => {
+    const expenseReduced = expense.map((element) => {
       return element / divideBy(allArrayStatement);
     });
-    const netIncomeReduced = netIncome.map(element => {
+    const netIncomeReduced = netIncome.map((element) => {
       return element / divideBy(allArrayStatement);
     });
 
@@ -109,7 +109,7 @@ const OnePagerCharts = props => {
           hoverBackgroundColor: "rgba(137, 196, 244, 1)",
           hoverBorderColor: "rgba(44, 130, 201, 1)",
           data: incomeReduced,
-          stack: 1
+          stack: 1,
         },
         {
           label: "Expense",
@@ -118,7 +118,7 @@ const OnePagerCharts = props => {
           hoverBackgroundColor: "rgba(253, 227, 167, 1)",
           hoverBorderColor: "rgba(248, 148, 6, 1)",
           data: expenseReduced,
-          stack: 2
+          stack: 2,
         },
         {
           label: "Net Income",
@@ -127,9 +127,9 @@ const OnePagerCharts = props => {
           hoverBackgroundColor: "rgba(189, 195, 199, 1)",
           hoverBorderColor: "rgba(108, 122, 137, 1)",
           data: netIncomeReduced,
-          stack: 3
-        }
-      ]
+          stack: 3,
+        },
+      ],
     };
 
     /*******************PARTICIPANT METRICS*********** */
@@ -140,16 +140,16 @@ const OnePagerCharts = props => {
 
     const allArray = partLoan.concat(contribEmp, contribPart, distribution);
 
-    const partLoanReduced = partLoan.map(element => {
+    const partLoanReduced = partLoan.map((element) => {
       return element / divideBy(allArray);
     });
-    const contribEmpReduced = contribEmp.map(element => {
+    const contribEmpReduced = contribEmp.map((element) => {
       return element / divideBy(allArray);
     });
-    const contribPartReduced = contribPart.map(element => {
+    const contribPartReduced = contribPart.map((element) => {
       return element / divideBy(allArray);
     });
-    const distributionReduced = distribution.map(element => {
+    const distributionReduced = distribution.map((element) => {
       return element / divideBy(allArray);
     });
 
@@ -168,7 +168,7 @@ const OnePagerCharts = props => {
           hoverBackgroundColor: "rgba(137, 196, 244, 1)",
           hoverBorderColor: "rgba(44, 130, 201, 1)",
           data: partLoanReduced,
-          stack: 1
+          stack: 1,
         },
         {
           label: "Contrib.Emp.",
@@ -177,7 +177,7 @@ const OnePagerCharts = props => {
           hoverBackgroundColor: "rgba(253, 227, 167, 1)",
           hoverBorderColor: "rgba(248, 148, 6, 1)",
           data: contribEmpReduced,
-          stack: 2
+          stack: 2,
         },
         {
           label: "Contrib.Part.",
@@ -186,7 +186,7 @@ const OnePagerCharts = props => {
           hoverBackgroundColor: "rgba(189, 195, 199, 1)",
           hoverBorderColor: "rgba(108, 122, 137, 1)",
           data: contribPartReduced,
-          stack: 3
+          stack: 3,
         },
         {
           label: "Distributions",
@@ -195,14 +195,14 @@ const OnePagerCharts = props => {
           hoverBackgroundColor: "rgba(123, 239, 178, 1)",
           hoverBorderColor: "rgba(0, 177, 106, 1)",
           data: distributionReduced,
-          stack: 4
-        }
-      ]
+          stack: 4,
+        },
+      ],
     };
   }
   return (
     <div className="onepager-charts-all">
-      <div className="onepager-chart-content">
+      <div className="plan-profile-chartsDiv">
         <h2 className="onepager-h2">Plan Asset</h2>
 
         <Bar
@@ -212,7 +212,7 @@ const OnePagerCharts = props => {
           height={200}
         />
       </div>
-      <div className="onepager-chart-content">
+      <div className="plan-profile-chartsDiv">
         <h2 className="onepager-h2">Income Statements</h2>
         <Bar
           data={incomeStatementsData}
@@ -221,11 +221,11 @@ const OnePagerCharts = props => {
           options={reducers.optionReturn([
             biggestIncome,
             biggestExpense,
-            biggestNetIncome
+            biggestNetIncome,
           ])}
         />
       </div>
-      <div className="onepager-chart-content">
+      <div className="plan-profile-chartsDiv">
         <h2 className="onepager-h2">Participant Metrics</h2>
         <Bar
           data={partMetrics}
@@ -235,7 +235,7 @@ const OnePagerCharts = props => {
             biggestPartLoan,
             biggestContribEmp,
             biggestContribPart,
-            biggestDistrib
+            biggestDistrib,
           ])}
         />
       </div>

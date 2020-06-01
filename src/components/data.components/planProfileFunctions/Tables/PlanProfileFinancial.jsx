@@ -134,8 +134,17 @@ export default (props) => {
             <tr>
               <th className="thead-dark">Net Income</th>
               {database.data[0].map((element, index) => {
-                if (element.ContributionFailureIndColor) {
-                  return (
+                if (element.ContributionFailureInd) {
+                  return element.NetIncome >= 0 ? (
+                    <td key={index}>
+                      <i
+                        className="fa fa-flag"
+                        aria-hidden="true"
+                        style={{ color: "red" }}
+                      ></i>
+                      ${common.reducer(element.NetIncome)}
+                    </td>
+                  ) : (
                     <td key={index} className="plan-profile-red">
                       <i className="fa fa-flag" aria-hidden="true"></i>$
                       {common.reducer(element.NetIncome)}
@@ -183,8 +192,17 @@ export default (props) => {
                 </span>
               </th>
               {database.data[0].map((element, index) => {
-                if (element.ContributionFailureIndColor) {
-                  return (
+                if (element.ContributionFailureInd) {
+                  return element.TotalDistributions >= 0 ? (
+                    <td key={index}>
+                      <i
+                        className="fa fa-flag"
+                        aria-hidden="true"
+                        style={{ color: "red" }}
+                      ></i>
+                      ${common.reducer(element.TotalDistributions)}
+                    </td>
+                  ) : (
                     <td key={index} className="plan-profile-red">
                       <i className="fa fa-flag" aria-hidden="true"></i>$
                       {common.reducer(element.TotalDistributions)}

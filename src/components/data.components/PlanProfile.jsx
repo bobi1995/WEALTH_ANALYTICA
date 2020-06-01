@@ -35,10 +35,12 @@ const PlaneProfile = (props) => {
         setResults(res.data);
       })
       .catch((err) => {
-        if (err.response.status == 400) {
-          setLimit(true);
-        } else {
-          alert("For some reason we could not find the desired results.");
+        if (err.response) {
+          if (err.response.status == 400) {
+            setLimit(true);
+          } else {
+            alert("For some reason we could not find the desired results.");
+          }
         }
       });
   }, []);

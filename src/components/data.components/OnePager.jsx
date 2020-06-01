@@ -16,6 +16,7 @@ import dashboardFunctions from "./dashboardFunctions/functions";
 import Magellan from "./Magellan";
 import OnePagerContact from "./OnePagerFunctions/OnePagerContact";
 import apiAddress from "../../global/endpointAddress";
+import OnePagerTopStatistics from "./OnePagerFunctions/OnePagerTopStatistics";
 
 const OnePager = (props) => {
   const [results, setResults] = useState([]);
@@ -39,11 +40,13 @@ const OnePager = (props) => {
         setResults(res.data);
       })
       .catch((err) => {
-        if (err.response.status == 400) {
-          setLimit(true);
-        } else {
-          alert("For some reason we could not find the desired results.");
-        }
+        if (err.response) {
+          if (err.response.status == 400) {
+            setLimit(true);
+          } else {
+            alert("For some reason we could not find the desired results.");
+          }
+        } else alert("For some reason we could not find the desired results.");
       });
   }, []);
 
@@ -65,7 +68,7 @@ const OnePager = (props) => {
           </h1>
         </div>
       ) : results.PlanName ? (
-        <div>
+        <div className="usermanagement">
           <OnePagerTop
             data={props.match.params.CompanyID}
             state={results.State}
@@ -75,8 +78,12 @@ const OnePager = (props) => {
           />
           <OnePagerLogo />
 
-          <OnePagerCharts data={results.Statistics} />
-          <OnePagerTables data={results.Statistics} />
+          <div className="plan-businessInfo-2">
+            <OnePagerTopStatistics data={results.Statistics} />
+            {/* 
+            <OnePagerCharts data={results.Statistics} />
+            <OnePagerTables data={results.Statistics} /> */}
+          </div>
           {dashboardFunctions
             .commonFunctionShortAbbrBasic()
             .includes(results.State) ? (
