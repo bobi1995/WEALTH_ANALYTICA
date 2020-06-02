@@ -65,7 +65,10 @@ const PlaneProfile = (props) => {
         </div>
       ) : results.City ? (
         <div id="allplanprofile" className="usermanagement">
-          <PlanProfileExportButton types={results.PlanSummary} />
+          <PlanProfileExportButton
+            types={results.PlanSummary}
+            companyID={props.match.params.CompanyID}
+          />
           <PlanProfileExportHeading data={results.BusinessInformation} />
           <div>
             <PlaneProfileBusinessInfo

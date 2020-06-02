@@ -11,53 +11,37 @@ const PlanProfileTables = (props) => {
   return (
     <div>
       {/**PLAN - Financial */}
-      <div className="plan-businessInfo-2" id="planFinancial-main">
+      <div className="plan-businessInfo-2">
         <h1 className="plan-h1">Plan - Financial</h1>
         <PlanProfileFinancial info={props} />
       </div>
 
       {/**PLAN - PARTICIPANTS */}
-      <div className="plan-businessInfo-2" id="planParticipants-main">
+      <div className="plan-businessInfo-2">
         <h1 className="plan-h1">Plan - Participants</h1>
         <PlanProfileParticipants info={props} />
       </div>
 
       {/**PLAN - Statistics */}
-      <div
-        className="plan-businessInfo-2"
-        id="planStatistics-main"
-        data-html2canvas-ignore
-      >
+      <div className="plan-businessInfo-2" data-html2canvas-ignore>
         <h1 className="plan-h1">Plan - Statistics</h1>
         <PlanProfileStatistics info={props} />
       </div>
 
       {/**PLAN - Healtcare Insurance */}
-      <div
-        className="plan-businessInfo-2"
-        id="PlanHealth-main"
-        data-html2canvas-ignore
-      >
+      <div className="plan-businessInfo-2" data-html2canvas-ignore>
         <h1 className="plan-h1">Plan - Healthcare Insurance</h1>
         <PlanProfileServiceHealth info={props} />
       </div>
 
       {/* *PLAN - Service Providers */}
-      <div
-        className="plan-businessInfo-2"
-        id="planService-main"
-        data-html2canvas-ignore
-      >
+      <div className="plan-businessInfo-2" data-html2canvas-ignore>
         <h1 className="plan-h1">Plan - Service Providers</h1>
         <PlanProfileServiceProviders info={props} />
       </div>
 
       {/**ALERTS */}
-      <div
-        className="plan-businessInfo-2"
-        id="planAlerts-main"
-        data-html2canvas-ignore
-      >
+      <div className="plan-businessInfo-2" data-html2canvas-ignore>
         <div className="plan-table-section ">
           <h1 className="plan-h1">Heatmap Alerts</h1>
           <table className="table table-striped table-bordered table-sm table-hover">

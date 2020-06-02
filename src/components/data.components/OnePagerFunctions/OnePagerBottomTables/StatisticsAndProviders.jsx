@@ -34,7 +34,7 @@ export default (props) => {
           label: "Eligible Providers",
           backgroundColor: "rgba(255,99,132, 1)",
           borderWidth: 1,
-          hoverBackgroundColor: "rgba(255,99,132, 1)",
+          hoverBackgroundColor: "rgba(255,155,177, 1)",
           hoverBorderColor: "rgba(255,99,132,1)",
           data: reducers.arrayReducer(
             DataExtract.providerOtherDirectCompATMExtract(props.data)

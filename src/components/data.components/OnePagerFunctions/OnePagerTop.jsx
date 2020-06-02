@@ -23,42 +23,42 @@ const OnePagerTop = (props) => {
   };
   const sendEmail = (e) => {
     e.preventDefault();
-    document.getElementById("clientLogo").style.display = "block";
     const sendUrl = `${apiAddress}/api/SmallCompanies/SendEmail`;
-    html2canvas(document.body).then(function(canvas) {
-      const ImageUrl = canvas.toDataURL();
-      const partsImage = ImageUrl.split(",");
-      const mailData = {
-        from: `${document.getElementById("fromEmail").value}`,
-        to: `${document.getElementById("toEmail").value}`,
-        subject: `${document.getElementById("subject").value}`,
-        message: `${document.getElementById("emailText").value}`,
-        imageData: `${partsImage[1]}`,
-      };
-      axios
-        .post(sendUrl, mailData, {
-          headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-        })
-        .then((res) => {
-          document.getElementById("clientLogo").style.display = "none";
+    document.getElementById("alert-popupid").style.display = "block";
 
-          document.getElementById("emailform").style.display = "none";
-          document.getElementById("mainbuttons").style.display = "block";
-          document.getElementById("alert-popupid").style.display = "block";
-          document.getElementById("message-alert-box").innerHTML =
-            "Successfully sent";
-        })
-        .catch((err) => {
-          console.log(err);
+    document.getElementById("message-alert-box").innerHTML =
+      "Sending...Please wait";
+    const mailData = {
+      from: `${document.getElementById("fromEmail").value}`,
+      to: `${document.getElementById("toEmail").value}`,
+      subject: `${document.getElementById("subject").value}`,
+      message: `${document.getElementById("emailText").value}`,
+      CompanyId: `${props.data}`,
+    };
+    console.log(mailData);
+    axios
+      .post(sendUrl, mailData, {
+        headers: {
+          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        document.getElementById("emailform").style.display = "none";
+        document.getElementById("mainbuttons").style.display = "block";
 
-          document.getElementById("alert-popupid").style.display = "block";
-          document.getElementById("message-alert-box").innerHTML = "Not sent";
-        });
-    });
+        document.getElementById("alert-popupid").style.display = "block";
+        document.getElementById("message-alert-box").innerHTML =
+          "Successfully sent";
+      })
+      .catch((err) => {
+        console.log(err);
+        document.getElementById("alert-popupid").style.display = "block";
+
+        document.getElementById("message-alert-box").innerHTML =
+          "Some error occured. Message not sent.";
+      });
   };
   const showSendEmail = () => {
     document.getElementById("emailform").style.display = "block";
@@ -118,14 +118,20 @@ const OnePagerTop = (props) => {
           <div className="onepager-top-mainemail">
             <div className="onepager-emailform-email">
               {Object.values(props.contact).some((x) => x !== null) ? (
-                <OnePagerContact
-                  contact={props.contact}
-                  headWidth="50"
-                  heading="Executive Contact"
-                />
+                <div
+                  className="plan-profile-chartsDiv"
+                  style={{ marginLeft: "3%" }}
+                >
+                  <OnePagerContact
+                    contact={props.contact}
+                    headWidth="50"
+                    heading="Executive Contact"
+                  />
+                </div>
               ) : (
                 <img
-                  className="onePager-top-logo"
+                  className="plan-profile-chartsDiv"
+                  style={{ margin: "3%", padding: "1%" }}
                   src={`data:image/png;base64,${sessionStorage.getItem(
                     "LogoData"
                   )}`}
@@ -138,7 +144,7 @@ const OnePagerTop = (props) => {
                 required
               ></textarea>
             </div>
-            <div className="onepager-top-fromto">
+            <div className="onepager-top-fromto" style={{ marginRight: "3%" }}>
               <div className="onepager-top-fromto-inner">
                 <label className="onepager-fromto-label">To:</label>
                 <input
@@ -175,17 +181,22 @@ const OnePagerTop = (props) => {
               </div>
 
               {props.phone ? (
-                <OnePagerContact
-                  contact={{
-                    Name: "Administrator",
-                    Title:
-                      props.administrator +
-                      " , " +
-                      commonFunctions.phoneFormat(props.phone.toString()),
-                    admin: true,
-                  }}
-                  headWidth="50"
-                />
+                <div
+                  className="plan-profile-chartsDiv"
+                  style={{ margin: "3%", width: "90%" }}
+                >
+                  <OnePagerContact
+                    contact={{
+                      Name: "Administrator",
+                      Title:
+                        props.administrator +
+                        " , " +
+                        commonFunctions.phoneFormat(props.phone.toString()),
+                      admin: true,
+                    }}
+                    headWidth="50"
+                  />
+                </div>
               ) : (
                 ""
               )}

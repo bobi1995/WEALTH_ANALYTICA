@@ -6,7 +6,6 @@ import common from "../../commonFunctions/common";
 
 export default (props) => {
   const database = props.info;
-  console.log(database);
   const reducedData = dashboardCharts.arrayReducer(
     DataExtract.netAssetsPension(database.data[0])
   );

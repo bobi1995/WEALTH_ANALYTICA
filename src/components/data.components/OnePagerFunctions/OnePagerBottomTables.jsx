@@ -1,14 +1,10 @@
 import React from "react";
 import DataExtract from "./OnePagerDataExtract";
-import numeral from "numeral";
-import common from "../commonFunctions/common";
-import { Bar, Line } from "react-chartjs-2";
 import reducers from "../dashboardFunctions/charts";
 import StatisticsAndProviders from "./OnePagerBottomTables/StatisticsAndProviders";
 import HealthAndFidelity from "./OnePagerBottomTables/HealthAndFidelity";
 
 const OnePagerBottomTables = (props) => {
-  console.log(props);
   let auhmc = {};
   let eligibleProviders = {};
 
