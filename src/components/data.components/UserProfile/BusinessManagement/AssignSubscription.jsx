@@ -16,6 +16,7 @@ const AssignSubscription = (props) => {
     );
     setBusiness(businessCheck);
     setPickedUserToAssign(option);
+    console.log(businessCheck, option);
   };
 
   const assignToUser = (e) => {
@@ -62,9 +63,6 @@ const AssignSubscription = (props) => {
             }
           )
           .then((res) => {
-            temp.push(res.data);
-            sessionStorage.setItem("States", JSON.stringify(temp));
-
             window.location.reload();
           })
           .catch((e) => {

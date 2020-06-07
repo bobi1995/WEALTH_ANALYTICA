@@ -28,18 +28,6 @@ const PlanProfileTables = (props) => {
         <PlanProfileStatistics info={props} />
       </div>
 
-      {/**PLAN - Healtcare Insurance */}
-      <div className="plan-businessInfo-2" data-html2canvas-ignore>
-        <h1 className="plan-h1">Plan - Healthcare Insurance</h1>
-        <PlanProfileServiceHealth info={props} />
-      </div>
-
-      {/* *PLAN - Service Providers */}
-      <div className="plan-businessInfo-2" data-html2canvas-ignore>
-        <h1 className="plan-h1">Plan - Service Providers</h1>
-        <PlanProfileServiceProviders info={props} />
-      </div>
-
       {/**ALERTS */}
       <div className="plan-businessInfo-2" data-html2canvas-ignore>
         <div className="plan-table-section ">
@@ -446,6 +434,18 @@ const PlanProfileTables = (props) => {
             </tbody>
           </table>
         </div>
+      </div>
+
+      {/**PLAN - Healtcare Insurance */}
+      <div className="plan-businessInfo-2" data-html2canvas-ignore>
+        <h1 className="plan-h1">Plan - Healthcare Insurance</h1>
+        <PlanProfileServiceHealth info={props} />
+      </div>
+
+      {/* *PLAN - Service Providers */}
+      <div className="plan-businessInfo-2" data-html2canvas-ignore>
+        <h1 className="plan-h1">Plan - Service Providers</h1>
+        <PlanProfileServiceProviders info={props} />
       </div>
     </div>
   );

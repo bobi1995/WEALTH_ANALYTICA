@@ -100,7 +100,7 @@ export default (props) => {
                 })}
               </tr>
               <tr>
-                <th className="thead-dark">Contribution Yeild</th>
+                <th className="thead-dark">Contribution Yield</th>
                 {DataExtract.contributionYieldExtract(props.data).map(
                   (contributionYield, index) => {
                     return contributionYield >= 0 ? (

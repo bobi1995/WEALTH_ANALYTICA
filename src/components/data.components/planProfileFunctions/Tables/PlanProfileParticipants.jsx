@@ -114,9 +114,7 @@ export default (props) => {
               </th>
               {database.data[0].map((element, index) => {
                 return (
-                  <td key={index}>
-                    {numeral(element.Participants).format("0,0")}
-                  </td>
+                  <td key={index}>{common.reducer(element.Participants)}</td>
                 );
               })}
             </tr>
