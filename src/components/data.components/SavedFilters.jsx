@@ -28,7 +28,7 @@ const SavedFilters = (props) => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  useEffect(() => {
+  const GetFilterNames = () => {
     const url = `${apiAddress}/api/Users/GetUserFilters`;
     const filterOptions = document.getElementById("filter-option");
 
@@ -54,8 +54,13 @@ const SavedFilters = (props) => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    GetFilterNames();
   }, []);
-  const selectFilter = () => {
+
+  const selectFilter = (clicked) => {
     setFlag(1);
     const selectedFilter = document.getElementById("filter-option").options[
       document.getElementById("filter-option").selectedIndex
@@ -68,8 +73,44 @@ const SavedFilters = (props) => {
         },
       })
       .then((result) => {
-        setData(result.data.Companies);
-        setFlag(0);
+        if (sorted === 0 && clicked === "income") {
+          console.log("here TOP");
+
+          setSorted(1);
+          const arr = [...result.data.Companies].sort((a, b) =>
+            a.NetIncome > b.NetIncome ? -1 : 1
+          );
+
+          setData(arr);
+          setFlag(0);
+        } else if (sorted === 1 && clicked === "income") {
+          console.log("here BOTTOM");
+
+          setSorted(0);
+          const arr = [...result.data.Companies].sort((a, b) =>
+            a.NetIncome > b.NetIncome ? 1 : -1
+          );
+
+          setData(arr);
+          setFlag(0);
+        } else if (sortedPart === 0 && clicked === "participants") {
+          setSortedPart(1);
+          const arr = [...result.data.Companies].sort((a, b) =>
+            a.Participants > b.Participants ? -1 : 1
+          );
+          setData(arr);
+          setFlag(0);
+        } else if (sortedPart === 1 && clicked === "participants") {
+          setSortedPart(0);
+          const arr = [...result.data.Companies].sort((a, b) =>
+            a.Participants > b.Participants ? 1 : -1
+          );
+          setData(arr);
+          setFlag(0);
+        } else {
+          setData(result.data.Companies);
+          setFlag(0);
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -108,31 +149,11 @@ const SavedFilters = (props) => {
   };
   //***********SORT BY**************
   const sortByIncome = () => {
-    let arr = [];
-    if (sorted === 0) {
-      setSorted(1);
-      arr = [...data].sort((a, b) => (a.NetIncome > b.NetIncome ? -1 : 1));
-    } else {
-      setSorted(0);
-      arr = [...data].sort((a, b) => (a.NetIncome > b.NetIncome ? 1 : -1));
-    }
-    setData(arr);
+    selectFilter("income");
   };
 
   const sortByParticipants = () => {
-    let arr = [];
-    if (sortedPart === 0) {
-      setSortedPart(1);
-      arr = [...data].sort((a, b) =>
-        a.Participants > b.Participants ? -1 : 1
-      );
-    } else {
-      setSortedPart(0);
-      arr = [...data].sort((a, b) =>
-        a.Participants > b.Participants ? 1 : -1
-      );
-    }
-    setData(arr);
+    selectFilter("participants");
   };
 
   const sortByName = () => {
