@@ -180,17 +180,17 @@ const SavedFilters = (props) => {
   };
 
   const sortByParticipants = () => {
-    sortType = "participants";
+    setSortType("participants");
     setSorted(0);
     setSortedAlphabetic(0);
-    selectFilter(sortType);
+    selectFilter("participants");
   };
 
   const sortByName = () => {
-    sortType = "alphabetic";
+    setSortType("alphabetic");
     setSorted(0);
     setSortedPart(0);
-    selectFilter(sortType);
+    selectFilter("alphabetic");
   };
   return (
     <div>

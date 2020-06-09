@@ -7,6 +7,7 @@ import Bookmarks from "../components/data.components/Bookmarks";
 import OnePager from "../components/data.components/OnePager";
 import PlanProfile from "../components/data.components/PlanProfile";
 import Filters from "../components/data.components/Filters";
+import Filter2 from "../components/data.components/Filters2";
 import Profile from "../components/data.components/Profile";
 import SavedFilters from "../components/data.components/SavedFilters";
 import Demo from "../components/Demo";
@@ -23,6 +24,8 @@ function App() {
         <Route path="/demo" component={Demo} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/filters" component={Filters} />
+        <PrivateRoute path="/filter" component={Filter2} />
+
         <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute path="/bookmarks" component={Bookmarks} />
         <PrivateRoute path="/saved-filters" component={SavedFilters} />

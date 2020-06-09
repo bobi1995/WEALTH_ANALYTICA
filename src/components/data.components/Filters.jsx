@@ -23,7 +23,6 @@ const Filters = () => {
   const [selectedYear, setSelectedYear] = useState(2018);
   const [flag, setFlag] = useState(0);
   const [searches, setSearches] = useState(0);
-
   //BASIC STATES
   const basicStates = functions.commonFunctionBasics();
   const basicFlag = basicStates.some((el) => stateInput.includes(el));
@@ -294,17 +293,29 @@ const Filters = () => {
   //****PAGGINATION*********** */
   const indexOfLastCompany = currentPage * companiesPerPage;
   const indexOfFirstCompany = indexOfLastCompany - companiesPerPage;
-  const currentCompany = companies.slice(
-    indexOfFirstCompany,
-    indexOfLastCompany
-  );
+  let currentCompany = companies.slice(indexOfFirstCompany, indexOfLastCompany);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const CompaniesResult = (array) => {
     if (array !== undefined) {
       return array.map((item, index) => {
-        return <Company singleCompany={item} key={index} />;
+        return (
+          <Company
+            singleCompany={item}
+            key={index}
+            results={result.Companies}
+            onDataChange={(newData) => {
+              console.log("here");
+              setCompanies(newData);
+              currentCompany = newData.slice(
+                indexOfFirstCompany,
+                indexOfLastCompany
+              );
+              CompaniesResult(currentCompany);
+            }}
+          />
+        );
       });
     }
   };

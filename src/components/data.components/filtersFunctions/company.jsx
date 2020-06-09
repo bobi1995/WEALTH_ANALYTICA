@@ -10,7 +10,6 @@ const SmallCompanies = (props) => {
   const [isBookmarked, setIsBookmarked] = useState(
     props.singleCompany.IsBookmarked
   );
-
   let convertedIncome = 0;
   if (props.singleCompany.NetIncome) {
     convertedIncome = numeral(props.singleCompany.NetIncome).format("0,0");
@@ -46,7 +45,14 @@ const SmallCompanies = (props) => {
       )
       .then((res) => {
         setIsBookmarked(!isBookmarked);
-        props.book(props.sortedType);
+        //props.book(props.sortedType);
+        const arr = props.results.map((el) => {
+          if (el.CompanyID === props.singleCompany.CompanyID) {
+            el.IsBookmarked = !isBookmarked;
+          }
+          return el;
+        });
+        props.onDataChange(arr);
       })
       .catch((err) => {
         if (err.response.status == 400) {
