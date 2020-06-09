@@ -46,6 +46,7 @@ const SmallCompanies = (props) => {
       )
       .then((res) => {
         setIsBookmarked(!isBookmarked);
+        props.book(props.sortedType);
       })
       .catch((err) => {
         if (err.response.status == 400) {

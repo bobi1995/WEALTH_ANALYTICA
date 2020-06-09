@@ -10,8 +10,7 @@ const SavedFilters = (props) => {
   const [results, setResults] = useState([]);
   const [data, setData] = useState([]);
   const [flag, setFlag] = useState(0);
-  const symbols = document.getElementById("benefit-symbol");
-
+  const [sortType, setSortType] = useState("");
   /****************PAGINATION********* */
   const [currentPage, setCurrentPage] = useState(1);
   const [companiesPerPage, setCompaniesPerPage] = useState(30);
@@ -42,6 +41,7 @@ const SavedFilters = (props) => {
       .then((res) => {
         if (res.data) {
           setResults(res.data);
+
           res.data.map((element, index) => {
             const option = document.createElement("option");
             option.id = element.ID;
@@ -60,7 +60,7 @@ const SavedFilters = (props) => {
     GetFilterNames();
   }, []);
 
-  const selectFilter = (clicked) => {
+  const selectFilter = (clicked, ordered = false) => {
     setFlag(1);
     const selectedFilter = document.getElementById("filter-option").options[
       document.getElementById("filter-option").selectedIndex
@@ -74,9 +74,10 @@ const SavedFilters = (props) => {
       })
       .then((result) => {
         if (sorted === 0 && clicked === "income") {
-          console.log("here TOP");
-
-          setSorted(1);
+          if (!ordered) {
+            console.log("here weeeeee");
+            setSorted(1);
+          }
           const arr = [...result.data.Companies].sort((a, b) =>
             a.NetIncome > b.NetIncome ? -1 : 1
           );
@@ -84,9 +85,9 @@ const SavedFilters = (props) => {
           setData(arr);
           setFlag(0);
         } else if (sorted === 1 && clicked === "income") {
-          console.log("here BOTTOM");
-
-          setSorted(0);
+          if (!ordered) {
+            setSorted(0);
+          }
           const arr = [...result.data.Companies].sort((a, b) =>
             a.NetIncome > b.NetIncome ? 1 : -1
           );
@@ -104,6 +105,20 @@ const SavedFilters = (props) => {
           setSortedPart(0);
           const arr = [...result.data.Companies].sort((a, b) =>
             a.Participants > b.Participants ? 1 : -1
+          );
+          setData(arr);
+          setFlag(0);
+        } else if (sortedAlphabetic === 0 && clicked === "alphabetic") {
+          setSortedAlphabetic(1);
+          const arr = [...result.data.Companies].sort((a, b) =>
+            a.Name > b.Name ? -1 : 1
+          );
+          setData(arr);
+          setFlag(0);
+        } else if (sortedAlphabetic === 1 && clicked === "alphabetic") {
+          setSortedAlphabetic(0);
+          const arr = [...result.data.Companies].sort((a, b) =>
+            a.Name > b.Name ? 1 : -1
           );
           setData(arr);
           setFlag(0);
@@ -143,30 +158,39 @@ const SavedFilters = (props) => {
   const CompaniesResult = (array) => {
     if (array !== undefined) {
       return array.map((item, index) => {
-        return <Company singleCompany={item} key={index} />;
+        return (
+          <Company
+            results={data}
+            singleCompany={item}
+            key={index}
+            book={(type) => selectFilter(type, true)}
+            sortedType={sortType}
+          />
+        );
       });
     }
   };
+
   //***********SORT BY**************
   const sortByIncome = () => {
+    setSortType("income");
+    setSortedPart(0);
+    setSortedAlphabetic(0);
     selectFilter("income");
   };
 
   const sortByParticipants = () => {
-    selectFilter("participants");
+    sortType = "participants";
+    setSorted(0);
+    setSortedAlphabetic(0);
+    selectFilter(sortType);
   };
 
   const sortByName = () => {
-    let arr = [];
-    if (sortedAlphabetic === 0) {
-      setSortedAlphabetic(1);
-      arr = [...data].sort((a, b) => (a.Name > b.Name ? 1 : -1));
-    } else {
-      setSortedAlphabetic(0);
-      arr = [...data].sort((a, b) => (a.Name > b.Name ? -1 : 1));
-    }
-
-    setData(arr);
+    sortType = "alphabetic";
+    setSorted(0);
+    setSortedPart(0);
+    selectFilter(sortType);
   };
   return (
     <div>
