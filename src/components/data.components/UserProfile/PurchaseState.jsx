@@ -10,7 +10,8 @@ const PurchaseState = () => {
   const addPurchase = (e) => {
     e.preventDefault();
     const stateName = document.getElementById("purchaseState-name").value;
-    if (allStates.filter((el) => el === stateName).length > 0) {
+    const parts = stateName.split(" - ");
+    if (allStates.filter((el) => el.name == parts[0]).length > 0) {
       const type = document.getElementById("purchase-type").value;
       const value = type === "Basic" ? 1 : 2;
       const quantity = document.getElementById("purchaseNumber")
@@ -145,7 +146,11 @@ const PurchaseState = () => {
             ></input>
             <datalist id="purchase-dataList">
               {allStates.map((state, index) => {
-                return <option key={state}>{state}</option>;
+                return (
+                  <option key={state.name}>
+                    {state.name} - {state.abbriviation}
+                  </option>
+                );
               })}
             </datalist>
           </div>

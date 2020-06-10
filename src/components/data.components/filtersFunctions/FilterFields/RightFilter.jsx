@@ -1,181 +1,77 @@
-import React, { useState } from "react";
-import RightFilterFunction from "../RightFilterFunctions";
-import numeral from "numeral";
+import React, { useState, useEffect } from "react";
+
+import Checkbox from "@material-ui/core/Checkbox";
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@material-ui/icons/CheckBox";
+import DashBoardFunctions from "../../dashboardFunctions/functions";
+import FilterExtract from "../../commonFunctions/commonExtracts";
+
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const RightFilters = (props) => {
+  const [open, setOpen] = React.useState(false);
+  const [options, setOptions] = React.useState([]);
+  const loading = open && options.length === 0;
+
+  useEffect(() => {
+    let active = true;
+
+    if (!loading) {
+      return undefined;
+    }
+
+    (async () => {
+      const response = await fetch(
+        "https://country.register.gov.uk/records.json?page-size=5000"
+      );
+      const countries = await response.json();
+
+      if (active) {
+        setOptions(Object.keys(countries).map((key) => countries[key].item[0]));
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, [loading]);
+
   return (
-    <div className="required-filters">
-      {/**PLAN AND BUSINESS CODE */}
-      <div className="filter-planAndBusiness">
-        {/**MAX ASSETS */}
-        <div className="filter-select-company-type">
-          <label className="filter-company-label">Max Assets:</label>
-          <input
-            className="filter-select-form-control"
-            id="maxIncome"
-            placeholder="Enter Asset"
-            autoComplete="off"
-            min="0"
-            max="99999999999"
-            onChange={(e) => {
-              if (e.target.value.length > 0) {
-                e.target.value = numeral(e.target.value).format("0,0");
-              }
-            }}
-          />
-        </div>
-        {/**MIN ASSETS */}
-        <div className="filter-select-company-type">
-          <label className="filter-company-label">Min Assets:</label>
-          <input
-            className="filter-select-form-control"
-            id="minIncome"
-            placeholder="Enter Asset"
-            autoComplete="off"
-            min="0"
-            max="99999999999"
-            onChange={(e) => {
-              if (e.target.value) {
-                e.target.value = numeral(e.target.value).format("0,0");
-              }
-            }}
-          />
-        </div>
-
-        {/**MAX PARTICIPANNTS */}
-        <div className="filter-select-company-type">
-          <label className="filter-company-label">Max participants:</label>
-          <input
-            className="filter-select-form-control"
-            id="maxParticipants"
-            placeholder="Enter participants"
-            autoComplete="off"
-            min="0"
-            max="99999999999"
-            onChange={(e) => {
-              if (e.target.value) {
-                e.target.value = numeral(e.target.value).format("0,0");
-              }
-            }}
-          />
-        </div>
-
-        {/**MIN PARTICIPANNTS */}
-        <div className="filter-select-company-type">
-          <label className="filter-company-label">Min participants:</label>
-          <input
-            className="filter-select-form-control"
-            id="minParticipants"
-            placeholder="Enter participants"
-            autoComplete="off"
-            min="0"
-            max="99999999999"
-            onChange={(e) => {
-              if (e.target.value) {
-                e.target.value = numeral(e.target.value).format("0,0");
-              }
-            }}
-          />
-        </div>
-
-        {/**PLAN ENTITY*/}
-        <div className="filter-select-company-type">
-          <label className="filter-company-label">Plan Entity:</label>
-          <select className="filter-select-form-control" id="planEntity">
-            <option defaultValue="0">All</option>
-            <option value="1">Single-employer</option>
-            <option value="2">Multi-employer Plan</option>
-            <option value="3">One-Participant Plan</option>
-            <option value="4">Foreign plan</option>
-            <option value="5">Multiemployer</option>
-          </select>
-        </div>
-        {/**DFE OPTIONS*/}
-        <div className="filter-select-company-type" id="dfe-options">
-          <label className="filter-company-label">Entity Letter:</label>
-          <select className="filter-select-form-control" id="dfeoptions">
-            <option defaultValue="0">All</option>
-            <option defaultValue="C">C</option>
-            <option value="E">E</option>
-            <option value="G">G</option>
-            <option value="M">M</option>
-            <option value="P">P</option>
-          </select>
-        </div>
-        {/**BUSINESS CODE */}
-        {props.flag ? (
-          <div className="filter-select-company-type ">
-            <label
-              className="filter-company-label onepager-pesion-description"
-              style={{ color: "grey" }}
-            >
-              Business Code:
-              <span className="onepager-tooltip">
-                Available in Premium Version
-              </span>
-            </label>
-            <input
-              type="text"
-              className="filter-select-form-control"
-              placeholder="Enter Business Code"
-              id="business-code"
-              list="code-dataList"
-              autoComplete="off"
-              disabled
-            ></input>
-          </div>
-        ) : (
-          <div className="filter-select-company-type">
-            <label className="filter-company-label">Business Code:</label>
-            <input
-              type="text"
-              className="filter-select-form-control"
-              placeholder="Enter Business Code"
-              id="business-code"
-              list="code-dataList"
-              autoComplete="off"
-            ></input>
-          </div>
+    <div style={{ marginBottom: "5%", marginLeft: "1%" }}>
+      <Autocomplete
+        id="checkboxes-tags-demo"
+        options={states}
+        disableCloseOnSelect
+        getOptionLabel={(option) => option.name}
+        renderOption={(option, { selected }) => (
+          <React.Fragment>
+            <Checkbox
+              icon={icon}
+              checkedIcon={checkedIcon}
+              style={{ marginRight: 8 }}
+              checked={selected}
+            />
+            {option.name}
+          </React.Fragment>
         )}
-        {/* DATALISTS CODES*/}
-        <datalist id="code-dataList">
-          {RightFilterFunction.codesList()}
-        </datalist>
-        {/**PLAN BENEFIT TYPE*/}
-        <div className="filter-select-company-type">
-          <label className="filter-company-label">Benefit Type:</label>
-          <select
-            className="filter-select-form-control"
-            id="benefitType"
-            onChange={RightFilterFunction.benefitTypeSelected}
-          >
-            <option defaultValue="0">All</option>
-            <option value="1">Define Benefit Pension</option>
-            <option value="2">Defined Contribution Pension</option>
-            <option value="4">Welfare</option>
-          </select>
-        </div>
-
-        {/**SYMBOLS*/}
-        <div className="filter-select-company-type">
-          <label
-            id="filters-symbol-label"
-            className="filter-company-label"
-            style={{ textDecoration: "line-through" }}
-          >
-            Symbol:
-          </label>
-          <select
-            className="filter-select-form-control"
-            id="benefit-symbol"
-            disabled
-          >
-            <option defaultValue="0">All</option>
-          </select>
-        </div>
-      </div>
+        style={{ width: 500 }}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="outlined"
+            label="States"
+            placeholder="Favorites"
+            onChange={console.log("here")}
+          />
+        )}
+      />
     </div>
   );
 };
+
+const states = FilterExtract.extractPaidFullName();
 
 export default RightFilters;

@@ -3,6 +3,7 @@ import axios from "axios";
 import AssignSubscription from "./AssignSubscription";
 import apiAddress from "../../../../global/endpointAddress";
 import functions from "../../dashboardFunctions/functions";
+import commonExtracts from "../../commonFunctions/commonExtracts";
 import Moment from "react-moment";
 import "moment-timezone";
 
@@ -44,7 +45,7 @@ const FreeStates = (props) => {
           {freeStates.map((state, index) =>
             state.Details.map((el, ind) => (
               <tr key={ind}>
-                <td>{functions.fullNameByAbbr(state.State)}</td>
+                <td>{commonExtracts.fullNameByAbbr(state.State)}</td>
 
                 <td>{el.Type === 1 ? "Basic" : "Premium"}</td>
                 <td>{el.Count}</td>

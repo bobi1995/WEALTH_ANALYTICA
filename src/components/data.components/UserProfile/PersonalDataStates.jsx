@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import functions from "../dashboardFunctions/functions";
+import commonExtract from "../commonFunctions/commonExtracts";
+import Moment from "react-moment";
+import "moment-timezone";
 import ChangePassword from "./PersonalDataStates/ChangePassword";
+
 const PersonalDataStates = () => {
-  const changePassword = () => {};
   return (
     <div className="onepager-charts-all">
       <div className="onepager-chart-content responsive-table-div">
@@ -58,7 +61,18 @@ const PersonalDataStates = () => {
             </tr>
           </thead>
           <tbody className="table-hover">
-            {functions.paidStatesAdvanced()}
+            {commonExtract.extractPaidFullName().map((el) => {
+              if (el.type === 2) {
+                return (
+                  <tr key={el.abbriviation}>
+                    <td>{el.name}</td>
+                    <td>
+                      <Moment format="MMM/DD/YYYY">{el.expires}</Moment>
+                    </td>
+                  </tr>
+                );
+              }
+            })}
           </tbody>
         </table>
       </div>
@@ -72,7 +86,20 @@ const PersonalDataStates = () => {
               <th>End Date</th>
             </tr>
           </thead>
-          <tbody className="table-hover">{functions.paidStatesBasic()}</tbody>
+          <tbody className="table-hover">
+            {commonExtract.extractPaidFullName().map((el) => {
+              if (el.type === 1) {
+                return (
+                  <tr key={el.abbriviation}>
+                    <td>{el.name}</td>
+                    <td>
+                      <Moment format="MMM/DD/YYYY">{el.expires}</Moment>
+                    </td>
+                  </tr>
+                );
+              }
+            })}
+          </tbody>
         </table>
       </div>
       <ChangePassword />

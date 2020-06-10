@@ -4,13 +4,13 @@ import Footer from "../Footer";
 import "../../styles/dataPages/clientDashboard.scss";
 import axios from "axios";
 import "../../styles/fonts/font-awesome-4.7.0/css/font-awesome.min.css";
-import functions from "./dashboardFunctions/functions";
 import charts from "./dashboardFunctions/charts";
 import { Bar } from "react-chartjs-2";
 import Loader from "./dashboardFunctions/loader";
 import DashSummary from "./dashboardFunctions/DashSummary";
 import Magellan from "./Magellan";
 import apiAddress from "../../global/endpointAddress";
+import commonExtract from "./commonFunctions/commonExtracts";
 
 const Dashboard = (props) => {
   const [stateInput, setStateInput] = useState([]);
@@ -85,34 +85,32 @@ const Dashboard = (props) => {
 
   const addState = (e) => {
     e.preventDefault();
-    if (stateInput.length >= 3) {
-      document.getElementById("emailHelp").innerHTML =
-        "Maximum 3 States are allowed at once. Remove a state.";
+    if (stateInput.length === 1) {
+      document.getElementById("emailHelp").style.border = "1px solid red";
     } else {
-      const allowedStates = functions.commonFunction();
       const stateField = document.getElementById("stateInput").value;
 
       e.preventDefault();
 
-      if (allowedStates.includes(stateField)) {
-        setNetAssetsEndOfYear([]);
-        setNetIncome([]);
-        setEmployeesContributionIncome([]);
-        setParticipantsContributionIncome([]);
-        setTotalExpenses([]);
-        setTotalIncome([]);
-        setParticipantsAccountBal([]);
+      setNetAssetsEndOfYear([]);
+      setNetIncome([]);
+      setEmployeesContributionIncome([]);
+      setParticipantsContributionIncome([]);
+      setTotalExpenses([]);
+      setTotalIncome([]);
+      setParticipantsAccountBal([]);
 
-        const parts = stateField.split(" - ");
-        setStateAbbriviation([...stateAbbriviation, parts[1]]);
-        setStateInput([...stateInput, stateField]);
-        document.getElementById("emailHelp").innerHTML =
-          "States you want to check will apear on the right.";
-        document.getElementById("stateInput").value = "";
-      } else {
-        document.getElementById("emailHelp").innerHTML =
-          "PICK CORRECT STATE VALUE";
-      }
+      const parts = stateField.split(" - ");
+      setStateAbbriviation([...stateAbbriviation, parts[1]]);
+      setStateInput([...stateInput, stateField]);
+      document.getElementById("dashboard-submit-btn").disabled = true;
+      document.getElementById("emailHelp").innerHTML =
+        "To add another State remove the selected one";
+      document.getElementById("stateInput").value = "";
+      // } else {
+      //   document.getElementById("emailHelp").innerHTML =
+      //     "PICK CORRECT STATE VALUE";
+      // }
     }
   };
 
@@ -129,7 +127,13 @@ const Dashboard = (props) => {
   };
   //**********REMOVE STATES************ */
   const removeState = (e) => {
+    document.getElementById("dashboard-submit-btn").disabled = false;
+    document.getElementById("emailHelp").innerHTML =
+      "States you want to check will apear on the right.";
+    document.getElementById("emailHelp").style.border = "none";
+
     setNetAssetsEndOfYear([]);
+
     setNetIncome([]);
     setEmployeesContributionIncome([]);
     setParticipantsContributionIncome([]);
@@ -191,7 +195,7 @@ const Dashboard = (props) => {
                 </button>
               )}
               <datalist id="state-dataList">
-                {functions.dataListStates(stateInput)}
+                {commonExtract.paidFullNameDASHBOARD()}
               </datalist>
             </form>
           </div>

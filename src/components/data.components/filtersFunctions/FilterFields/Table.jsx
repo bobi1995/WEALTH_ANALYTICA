@@ -22,9 +22,6 @@ const FilterIcon = ({ type, ...restProps }) => {
 };
 
 const styles = (theme) => ({
-  root: {
-    margin: theme.spacing(1),
-  },
   numericInput: {
     fontSize: "14px",
     textAlign: "right",
@@ -84,12 +81,25 @@ export default () => {
     { gender: "Female", name: "Mari", city: "Paris", car: "Nissan" },
     { gender: "Female", name: "Sandra", city: "Las Vegas", car: "Audi A4" },
   ]);
-
+  const [filteringColumnExtensions] = useState([
+    {
+      columnName: "saleDate",
+      predicate: (value, filter, row) => {
+        if (!filter.value.length) return true;
+        if (filter && filter.operation === "month") {
+          const month = parseInt(value.split("-")[1], 10);
+          return month === parseInt(filter.value, 10);
+        }
+        return IntegratedFiltering.defaultPredicate(value, filter, row);
+      },
+    },
+  ]);
   return (
-    <Paper>
+    <Paper style={{ marginLeft: "1%", marginRight: "1%" }}>
       <Grid rows={rows} columns={columns}>
-        {console.log(rows)}
         <FilteringState defaultFilters={[]} />
+        <IntegratedFiltering columnExtensions={filteringColumnExtensions} />
+
         <Table />
         <TableHeaderRow />
         <TableFilterRow

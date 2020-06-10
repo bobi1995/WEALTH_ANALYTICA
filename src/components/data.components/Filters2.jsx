@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Datanavbar from "./DataNavbar";
 import Magellan from "./Magellan";
 import Table from "./filtersFunctions/FilterFields/Table";
+import RightFilter from "./filtersFunctions/FilterFields/RightFilter";
 const Filter2 = () => {
   return (
     <div>
@@ -11,6 +12,7 @@ const Filter2 = () => {
       </section>
       <Magellan activeStep={1} active={"filters"} />
       <div>
+        <RightFilter />
         <Table />
       </div>
     </div>

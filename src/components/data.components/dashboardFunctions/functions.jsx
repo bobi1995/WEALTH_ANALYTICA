@@ -12,9 +12,8 @@ const commonFunction = () => {
     const states = statesString.map((el) => el.State);
     const purchasedStates = [];
     AllStates.filter((el) => {
-      const parts = el.split(" - ");
       states.forEach((abr) => {
-        if (parts[1] == abr) {
+        if (el.abbriviation == abr) {
           purchasedStates.push(el);
         }
       });
@@ -31,9 +30,8 @@ const commonFunctionBasics = () => {
     const states = statesString.map((el) => el.State);
     const purchasedStates = [];
     AllStates.filter((el) => {
-      const parts = el.split(" - ");
       states.forEach((abr) => {
-        if (parts[1] == abr) {
+        if (el.abbriviation == abr) {
           purchasedStates.push(el);
         }
       });
@@ -50,9 +48,8 @@ const commonFunctionShortAbbrBasic = () => {
     const states = statesString.map((el) => el.State);
     const purchasedStates = [];
     AllStates.filter((el) => {
-      const parts = el.split(" - ");
       states.forEach((abr) => {
-        if (parts[1] == abr) {
+        if (el.abbriviation == abr) {
           purchasedStates.push(abr);
         }
       });
@@ -63,10 +60,9 @@ const commonFunctionShortAbbrBasic = () => {
 };
 
 const fullNameByAbbr = (abbr) => {
-  return AllStates.filter((el) => {
-    const parts = el.split(" - ");
-    if (parts[1] == abbr) {
-      return el;
+  AllStates.filter((el) => {
+    if (abbr && el.abbriviation == abbr.State) {
+      return el.name;
     }
   });
 };
@@ -78,7 +74,7 @@ const paidStatesAdvanced = () => {
     if (el.Type === 2) {
       return (
         <tr key={index}>
-          <td>{fullNameByAbbr(el.State)}</td>
+          <td>{fullNameByAbbr(el.name)}</td>
           <td>
             <Moment format="MMM/DD/YYYY">{el.EndDate}</Moment>
           </td>
@@ -91,11 +87,12 @@ const paidStatesAdvanced = () => {
 
 const paidStatesBasic = () => {
   const allStates = JSON.parse(sessionStorage.getItem("States"));
+
   return allStates.map((el, index) => {
     if (el.Type === 1) {
       return (
         <tr key={index}>
-          <td>{fullNameByAbbr(el.State)}</td>
+          <td>{fullNameByAbbr(el.name)}</td>
           <td>
             <Moment format="MMM/DD/YYYY">{el.EndDate}</Moment>
           </td>
