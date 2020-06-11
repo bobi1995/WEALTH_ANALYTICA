@@ -7,6 +7,7 @@ import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import DashBoardFunctions from "../../dashboardFunctions/functions";
 import FilterExtract from "../../commonFunctions/commonExtracts";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -64,7 +65,6 @@ const RightFilters = (props) => {
             variant="outlined"
             label="States"
             placeholder="Favorites"
-            onChange={console.log("here")}
           />
         )}
       />
