@@ -1,113 +1,149 @@
 import React, { useState } from "react";
-import * as PropTypes from "prop-types";
+import MaterialTable from "material-table";
+import SearchIcon from "@material-ui/icons/Search";
+import RotateLeftIcon from "@material-ui/icons/RotateLeft";
+import commonFunctions from "../../commonFunctions/common";
 import {
-  FilteringState,
-  IntegratedFiltering,
-  DataTypeProvider,
-} from "@devexpress/dx-react-grid";
-import {
-  Grid,
-  Table,
-  TableHeaderRow,
-  TableFilterRow,
-} from "@devexpress/dx-react-grid-material-ui";
-import Paper from "@material-ui/core/Paper";
-import Input from "@material-ui/core/Input";
-import { withStyles } from "@material-ui/core/styles";
-import DateRange from "@material-ui/icons/DateRange";
+  ArrowUpward,
+  FirstPage,
+  LastPage,
+  ChevronLeft,
+  ChevronRight,
+} from "@material-ui/icons";
+import { Link } from "react-router-dom";
 
-const FilterIcon = ({ type, ...restProps }) => {
-  if (type === "month") return <DateRange {...restProps} />;
-  return <TableFilterRow.Icon type={type} {...restProps} />;
-};
+export default (props) => {
+  const [selectedRow, setSelectedRow] = useState(null);
 
-const styles = (theme) => ({
-  numericInput: {
-    fontSize: "14px",
-    textAlign: "right",
-    width: "100%",
-  },
-});
-
-const CurrencyEditorBase = ({ value, onValueChange, classes }) => {
-  const handleChange = (event) => {
-    const { value: targetValue } = event.target;
-    if (targetValue.trim() === "") {
-      onValueChange();
-      return;
-    }
-    onValueChange(parseInt(targetValue, 10));
-  };
   return (
-    <Input
-      type="number"
-      classes={{
-        input: classes.numericInput,
-        root: classes.root,
+    <MaterialTable
+      title="Basic Filtering Preview"
+      icons={{
+        Filter: React.forwardRef((props, ref) => <SearchIcon ref={ref} />),
+        Search: React.forwardRef((props, ref) => <SearchIcon ref={ref} />),
+        ResetSearch: React.forwardRef((props, ref) => (
+          <RotateLeftIcon ref={ref} />
+        )),
+        SortArrow: ArrowUpward,
+        FirstPage: FirstPage,
+        LastPage: LastPage,
+        NextPage: ChevronRight,
+        PreviousPage: ChevronLeft,
       }}
-      fullWidth
-      value={value === undefined ? "" : value}
-      inputProps={{
-        min: 0,
-        placeholder: "Filter...",
+      columns={[
+        {
+          field: "Name",
+          title: "Name",
+          filterPlaceholder: "Search plan",
+          cellStyle: {
+            whiteSpace: "nowrap",
+          },
+        },
+        {
+          field: "Address1",
+          title: "Address",
+          cellStyle: {
+            whiteSpace: "nowrap",
+          },
+          filterPlaceholder: "Search address",
+        },
+        { field: "City", title: "City", sorting: false, filtering: false },
+        {
+          field: "AdministratorName",
+          title: "Administrator",
+          filterPlaceholder: "Search admin",
+        },
+        {
+          field: "Phone",
+          title: "Phone",
+          sorting: false,
+          render: (rowData) => commonFunctions.phoneFormat(rowData.Phone),
+          cellStyle: {
+            whiteSpace: "nowrap",
+          },
+          filterPlaceholder: "Search phone",
+        },
+        {
+          field: "Participants",
+          title: "Participants",
+          type: "numeric",
+          filterPlaceholder: "Minimum",
+          customFilterAndSearch: (term, rowData) => term < rowData.Participants,
+
+          cellStyle: {
+            textAlign: "center",
+          },
+        },
+        {
+          field: "NetIncome",
+          title: "Net Income",
+          emptyValue: "N/A",
+          filterPlaceholder: "Minimum",
+          customFilterAndSearch: (term, rowData) => term < rowData.NetIncome,
+
+          render: (rowData) => `$${commonFunctions.reducer(rowData.NetIncome)}`,
+          cellStyle: (rowData) => {
+            if (rowData) {
+              return {
+                color: rowData < 0 ? "red" : "black",
+                textAlign: "center",
+              };
+            } else {
+              return {
+                textAlign: "center",
+              };
+            }
+          },
+        },
+        {
+          field: "details",
+          title: "Details",
+          sorting: false,
+          filtering: false,
+          render: (rowData) => (
+            <Link
+              to={{
+                pathname: `/onepager/${rowData.CompanyID}`,
+              }}
+              target="_blank"
+            >
+              Details
+            </Link>
+          ),
+          cellStyle: {
+            fontStyle: "bold",
+            textAlign: "center",
+          },
+        },
+        {
+          field: "bookmark",
+          title: "Bookmark",
+          sorting: false,
+          filtering: false,
+        },
+      ]}
+      data={props.data}
+      onRowClick={(evt, selectedRow) =>
+        setSelectedRow(selectedRow.tableData.id)
+      }
+      options={{
+        filtering: true,
+        sorting: true,
+
+        headerStyle: {
+          backgroundColor: "#378FC3",
+          color: "#FFF",
+          fontSize: "20px",
+          textAlign: "center",
+        },
+
+        rowStyle: (rowData) => {
+          return {
+            backgroundColor:
+              selectedRow === rowData.tableData.id ? "#EEE" : "#FFF",
+          };
+        },
       }}
-      onChange={handleChange}
     />
-  );
-};
-
-CurrencyEditorBase.propTypes = {
-  value: PropTypes.number,
-  onValueChange: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired,
-};
-
-CurrencyEditorBase.defaultProps = {
-  value: undefined,
-};
-
-const CurrencyEditor = withStyles(styles)(CurrencyEditorBase);
-
-export default () => {
-  const [columns] = useState([
-    { name: "name", title: "Name" },
-    { name: "gender", title: "Gender" },
-    { name: "city", title: "City" },
-    { name: "car", title: "Car" },
-  ]);
-  const [rows] = useState([
-    { gender: "Female", name: "Sandra", city: "Las Vegas", car: "Audi A4" },
-    { gender: "Male", name: "Paul", city: "Sofia", car: "Mercedes" },
-    { gender: "Female", name: "Mari", city: "Paris", car: "Nissan" },
-    { gender: "Female", name: "Sandra", city: "Las Vegas", car: "Audi A4" },
-  ]);
-  const [filteringColumnExtensions] = useState([
-    {
-      columnName: "saleDate",
-      predicate: (value, filter, row) => {
-        if (!filter.value.length) return true;
-        if (filter && filter.operation === "month") {
-          const month = parseInt(value.split("-")[1], 10);
-          return month === parseInt(filter.value, 10);
-        }
-        return IntegratedFiltering.defaultPredicate(value, filter, row);
-      },
-    },
-  ]);
-  return (
-    <Paper style={{ marginLeft: "1%", marginRight: "1%" }}>
-      <Grid rows={rows} columns={columns}>
-        <FilteringState defaultFilters={[]} />
-        <IntegratedFiltering columnExtensions={filteringColumnExtensions} />
-
-        <Table />
-        <TableHeaderRow />
-        <TableFilterRow
-          showFilterSelector
-          iconComponent={FilterIcon}
-          messages={{ month: "Month equals" }}
-        />
-      </Grid>
-    </Paper>
   );
 };

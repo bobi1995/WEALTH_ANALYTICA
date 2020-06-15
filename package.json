@@ -5,6 +5,9 @@
   "private": true,
   "dependencies": {
     "@devexpress/dx-core": "^2.6.3",
+    "@devexpress/dx-react-chart": "^2.6.3",
+    "@devexpress/dx-react-chart-bootstrap4": "^2.6.3",
+    "@devexpress/dx-react-chart-material-ui": "^2.6.3",
     "@devexpress/dx-react-core": "^2.6.3",
     "@devexpress/dx-react-grid": "^2.6.3",
     "@devexpress/dx-react-grid-material-ui": "^2.6.3",
@@ -21,6 +24,7 @@
     "js-file-download": "^0.4.12",
     "jspdf": "^1.5.3",
     "leaflet": "^1.6.0",
+    "material-table": "^1.61.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.28",
     "node-sass": "^4.14.1",

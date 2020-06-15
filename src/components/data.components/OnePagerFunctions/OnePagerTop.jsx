@@ -1,17 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import html2canvas from "html2canvas";
 import axios from "axios";
 import dashboardFunctions from "../dashboardFunctions/functions";
 import OnePagerContact from "../OnePagerFunctions/OnePagerContact";
 import apiAddress from "../../../global/endpointAddress";
 import commonFunctions from "../commonFunctions/common";
-
+import commonExtract from "../commonFunctions/commonExtracts";
 const OnePagerTop = (props) => {
   let flagBasic = 0;
-  dashboardFunctions.commonFunctionBasics().forEach((el) => {
-    const n = el.split(" - ");
-    if (props.state == n[1]) {
+  commonExtract.extractStates().forEach((el) => {
+    if (props.state == el.State) {
       flagBasic = 1;
     }
   });

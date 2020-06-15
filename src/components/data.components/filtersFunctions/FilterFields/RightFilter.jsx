@@ -23,7 +23,7 @@ const RightFilters = (props) => {
         startIcon={<SearchIcon />}
         onClick={async () => {
           const a = await searchFunction("2018", selectedState, selectedCity);
-          console.log(a);
+          props.getResults(a);
         }}
       >
         Search

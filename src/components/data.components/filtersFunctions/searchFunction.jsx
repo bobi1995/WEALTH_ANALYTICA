@@ -12,8 +12,8 @@ const fetching = async (url) => {
     },
   })
     .then((result) => {
-      console.log(result.data);
       console.log(url);
+
       return result;
     })
     .catch((e) => {
