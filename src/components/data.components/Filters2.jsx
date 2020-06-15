@@ -13,6 +13,7 @@ const Filter2 = () => {
       <Magellan activeStep={1} active={"filters"} />
       <div>
         <RightFilter />
+
         <Table />
       </div>
     </div>

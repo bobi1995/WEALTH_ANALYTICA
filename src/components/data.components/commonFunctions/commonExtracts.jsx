@@ -4,7 +4,9 @@ import React from "react";
 //******************EXTRACTS DIRECTLY ALL STATES FROM SESSION STORAGE */
 const extractStates = () => {
   const purchsedStates = JSON.parse(sessionStorage.getItem("States"));
-  return purchsedStates;
+  if (purchsedStates) {
+    return purchsedStates;
+  } else return [];
 };
 
 //******************EXTRACTS FULL NAME STATES AND CREATES OBJECTS */

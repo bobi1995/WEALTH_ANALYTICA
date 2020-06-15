@@ -7,6 +7,7 @@ import commonFunctions from "../commonFunctions/common";
 import apiAddress from "../../../global/endpointAddress";
 
 const SmallCompanies = (props) => {
+  console.log(props.singleCompany.IsBookmarked);
   const [isBookmarked, setIsBookmarked] = useState(
     props.singleCompany.IsBookmarked
   );
@@ -55,7 +56,7 @@ const SmallCompanies = (props) => {
         props.onDataChange(arr);
       })
       .catch((err) => {
-        if (err.response.status == 400) {
+        if (err.response && err.response.status == 400) {
           alert(
             "You have reached your maximum of 30 bookmarks for the Basic States. To add more you should upgrade to Premium version."
           );

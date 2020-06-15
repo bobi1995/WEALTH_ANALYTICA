@@ -3,16 +3,12 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import commonFunctions from "../commonFunctions/common";
 import numeral from "numeral";
-import dashboardFunctions from "../dashboardFunctions/functions";
+import commonFunctionsExtract from "../commonFunctions/commonExtracts";
 import apiAddress from "../../../global/endpointAddress";
 
 const BookmarkMainTable = (props) => {
   //ALL BASIC STATES
-  const basicStates = [];
-  dashboardFunctions.commonFunctionBasics().forEach((el) => {
-    const n = el.split(" - ");
-    basicStates.push(n[1]);
-  });
+  const basicStates = commonFunctionsExtract.extractStates();
 
   const removeBookmark = (CompanyID) => {
     axios

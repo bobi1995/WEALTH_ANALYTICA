@@ -12,6 +12,8 @@ const fetching = async (url) => {
     },
   })
     .then((result) => {
+      console.log(result.data);
+      console.log(url);
       return result;
     })
     .catch((e) => {
@@ -25,25 +27,25 @@ const fetching = async (url) => {
 const SearchFunction = (
   year,
   states,
-  cities,
-  maxIncome,
-  minIncome,
-  minParticipants,
-  maxParticipants,
-  businessCode,
-  benefitType,
-  benefitSymbol,
-  planEntity,
-  dfeoption
+  cities = "",
+  maxIncome = "",
+  minIncome = "",
+  minParticipants = "",
+  maxParticipants = "",
+  businessCode = "",
+  benefitType = "",
+  benefitSymbol = "",
+  planEntity = "",
+  dfeoption = ""
 ) => {
   let url;
   let result;
   if (cities.length < 1) {
     url = `${apiAddress}/api/SmallCompanies/GetCompaniesByState?year=${year}&`;
 
-    states.forEach((state, index) => {
-      url = url.concat(`state=${state}&`);
-    });
+    if (states) {
+      url = url.concat(`state=${states}&`);
+    }
     if (maxIncome) {
       const maxInc = parseFloat(maxIncome.replace(/,/g, ""));
       url = url.concat(`maxAssets=${maxInc}&`);
@@ -77,9 +79,9 @@ const SearchFunction = (
     }
   } else {
     url = `${apiAddress}/api/SmallCompanies/GetCompaniesByCity?year=${year}&`;
-    states.forEach((state, index) => {
-      url = url.concat(`state=${state}&`);
-    });
+    if (states) {
+      url = url.concat(`state=${states}&`);
+    }
     cities.forEach((city, index) => {
       url = url.concat(`city=${city}&`);
     });
