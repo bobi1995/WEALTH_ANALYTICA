@@ -44,6 +44,7 @@ export default function ControlledOpenSelect(props) {
   }, [props.benefitType]);
   const handleChange = (event) => {
     setSymbol(event.target.value);
+    props.setSymbol(event.target.value);
   };
 
   const handleClose = () => {
@@ -70,11 +71,14 @@ export default function ControlledOpenSelect(props) {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {symbolsData.map((el) => (
-            <MenuItem value={el.Symbol} key={el.Symbol}>
-              {el.Description}
-            </MenuItem>
-          ))}
+          {symbolsData.map((el) => {
+            const parts = el.Description.split(" - ");
+            return (
+              <MenuItem value={el.Symbol} key={el.Symbol}>
+                {parts[1]}
+              </MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
     </div>

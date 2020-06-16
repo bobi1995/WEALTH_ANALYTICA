@@ -4,9 +4,11 @@ import Magellan from "./Magellan";
 import Table from "./filtersFunctions/FilterFields/Table";
 import RightFilter from "./filtersFunctions/FilterFields/RightFilter";
 import LeftSide from "./filtersFunctions/FilterFields/LeftSide";
+import image from "../../styles/images/Wealth_Analytica.png";
+import CardMedia from "@material-ui/core/CardMedia";
 
 const Filter2 = () => {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState();
   return (
     <div>
       <Datanavbar />
@@ -25,23 +27,32 @@ const Filter2 = () => {
           </div>
 
           <div style={{ width: "100%" }}>
-            <LeftSide
-              NetAssetBegin={results.NetAssetBeginOfYear}
-              NetAssetEnd={results.NetAssetEndOfYear}
-              Distribution={results.Distributions}
-              CorrectivrDistribution={results.CorrectivrDistribution}
-              ServiceProviderExpenses={results.ServiceProviderExpenses}
-              OtherExpenses={results.OtherExpenses}
-              TotalParticipants={results.TotalParticipants}
-              RetiredParticipants={results.RetiredParticipants}
-              TotalParticipantsBal={results.TotalParticipantsBal}
-              ParticipantContribution={results.ParticipantContribution}
-              EmployerContribution={results.EmployerContribution}
-            />
+            {results ? (
+              <LeftSide
+                NetAssetBegin={results.NetAssetBeginOfYear}
+                NetAssetEnd={results.NetAssetEndOfYear}
+                Distribution={results.Distributions}
+                CorrectivrDistribution={results.CorrectivrDistribution}
+                ServiceProviderExpenses={results.ServiceProviderExpenses}
+                OtherExpenses={results.OtherExpenses}
+                TotalParticipants={results.TotalParticipants}
+                RetiredParticipants={results.RetiredParticipants}
+                TotalParticipantsBal={results.TotalParticipantsBal}
+                ParticipantContribution={results.ParticipantContribution}
+                EmployerContribution={results.EmployerContribution}
+              />
+            ) : (
+              <CardMedia
+                style={{ width: "70%" }}
+                component="img"
+                image={require("../../styles/images/Wealth_Analytica.png")}
+                title="Paella dish"
+              />
+            )}
           </div>
         </div>
 
-        <Table data={results.Companies} />
+        <Table data={results ? results.Companies : []} />
       </div>
     </div>
   );

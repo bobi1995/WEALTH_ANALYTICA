@@ -15,6 +15,7 @@ const RightFilters = (props) => {
   const [businessCode, setBusinessCode] = useState("");
   const [planEntity, setPlanEntity] = useState("");
   const [benefitType, setBenefitType] = useState("");
+  const [symbol, setSymbol] = React.useState("");
   return (
     <div style={{ marginBottom: "5%" }}>
       <StatesField setState={(state) => setSelectedState(state)} />
@@ -28,8 +29,13 @@ const RightFilters = (props) => {
           setBusinessCode(code);
         }}
       />
-      <PlanEntity setEntity={(entity) => setPlanEntity(entity)} />
-      <BenefitType setBenefit={(type) => setBenefitType(type)} />
+      <div style={{ display: "flex" }}>
+        <PlanEntity setEntity={(entity) => setPlanEntity(entity)} />
+        <BenefitType
+          setBenefit={(type) => setBenefitType(type)}
+          setSymbol={(symbol) => setSymbol(symbol)}
+        />
+      </div>
       <Button
         disabled={selectedState == "" ? true : false}
         variant="contained"
@@ -42,7 +48,8 @@ const RightFilters = (props) => {
             selectedCity,
             businessCode,
             planEntity,
-            benefitType
+            benefitType,
+            symbol
           );
           props.getResults(a);
         }}

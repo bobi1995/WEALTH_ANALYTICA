@@ -31,11 +31,11 @@ const SearchFunction = (
   businessCode = "",
   planEntity = "",
   benefitType = "",
+  benefitSymbol = "",
   maxIncome = "",
   minIncome = "",
   minParticipants = "",
   maxParticipants = "",
-  benefitSymbol = "",
   dfeoption = ""
 ) => {
   let url;
@@ -66,11 +66,8 @@ const SearchFunction = (
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}&`);
     }
-    if (benefitType && !benefitSymbol) {
-      console.log("here");
+    if (benefitType) {
       url = url.concat(`benefitType=${benefitType}&`);
-    } else if (benefitSymbol !== "") {
-      url = url.concat(`benefitType=${benefitSymbol}&`);
     }
     if (planEntity) {
       url = url.concat(`planEntity=${planEntity}&`);
@@ -105,10 +102,8 @@ const SearchFunction = (
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}&`);
     }
-    if (benefitType && !benefitSymbol) {
+    if (benefitType) {
       url = url.concat(`benefitType=${benefitType}&`);
-    } else if (benefitSymbol) {
-      url = url.concat(`benefitType=${benefitSymbol}&`);
     }
     if (planEntity) {
       url = url.concat(`planEntity=${planEntity}&`);

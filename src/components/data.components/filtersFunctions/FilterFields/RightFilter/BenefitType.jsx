@@ -21,6 +21,7 @@ export default function ControlledOpenSelect(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [benefitType, setBenefitType] = React.useState("");
+
   const handleChange = (event) => {
     setBenefitType(event.target.value);
     props.setBenefit(event.target.value);
@@ -35,7 +36,7 @@ export default function ControlledOpenSelect(props) {
   };
 
   return (
-    <div>
+    <div style={{ display: "flex" }}>
       <FormControl className={classes.formControl}>
         <InputLabel id="benefit-type-controlbox-label">Benefit Type</InputLabel>
         <Select
@@ -55,7 +56,11 @@ export default function ControlledOpenSelect(props) {
           <MenuItem value={3}>Welfare</MenuItem>
         </Select>
       </FormControl>
-      {benefitType ? <Symbol benefitType={benefitType} /> : ""}
+      {benefitType ? (
+        <Symbol benefitType={benefitType} setSymbol={props.setSymbol} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

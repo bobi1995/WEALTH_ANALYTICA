@@ -35,18 +35,29 @@ export default (props) => {
           field: "Name",
           title: "Name",
           filterPlaceholder: "Search plan",
+          render: (rowData) => (
+            <Link
+              to={{
+                pathname: `/onepager/${rowData.CompanyID}`,
+              }}
+              target="_blank"
+            >
+              {rowData.Name}
+            </Link>
+          ),
           cellStyle: {
+            fontStyle: "bold",
             whiteSpace: "nowrap",
           },
         },
-        {
-          field: "Address1",
-          title: "Address",
-          cellStyle: {
-            whiteSpace: "nowrap",
-          },
-          filterPlaceholder: "Search address",
-        },
+        // {
+        //   field: "Address1",
+        //   title: "Address",
+        //   cellStyle: {
+        //     whiteSpace: "nowrap",
+        //   },
+        //   filterPlaceholder: "Search address",
+        // },
         { field: "City", title: "City", sorting: false, filtering: false },
         {
           field: "AdministratorName",
@@ -95,26 +106,7 @@ export default (props) => {
             }
           },
         },
-        {
-          field: "details",
-          title: "Details",
-          sorting: false,
-          filtering: false,
-          render: (rowData) => (
-            <Link
-              to={{
-                pathname: `/onepager/${rowData.CompanyID}`,
-              }}
-              target="_blank"
-            >
-              Details
-            </Link>
-          ),
-          cellStyle: {
-            fontStyle: "bold",
-            textAlign: "center",
-          },
-        },
+
         {
           field: "bookmark",
           title: "Bookmark",
@@ -133,7 +125,7 @@ export default (props) => {
         headerStyle: {
           backgroundColor: "#378FC3",
           color: "#FFF",
-          fontSize: "20px",
+          fontSize: "17px",
           textAlign: "center",
         },
 
