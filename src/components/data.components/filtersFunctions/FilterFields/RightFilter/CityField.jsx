@@ -18,6 +18,7 @@ const CityField = (props) => {
 
   useEffect(() => {
     let active = true;
+
     if (!loading) {
       return undefined;
     }

@@ -3,23 +3,23 @@ import { Doughnut } from "react-chartjs-2";
 
 import dataReducer from "../../../dashboardFunctions/charts";
 
-const NetAssets = (props) => {
-  const NetAssetsReduced = dataReducer.arrayReducer([
-    props.NetAssetBegin,
-    props.NetAssetEnd,
+const Contribution = (props) => {
+  const ContributionReduced = dataReducer.arrayReducer([
+    props.ParticipantContribution,
+    props.EmployerContribution,
   ]);
-  const categoryNetAssets = dataReducer.arrayCategory([
-    props.NetAssetBegin,
-    props.NetAssetEnd,
+  const categoryContribution = dataReducer.arrayCategory([
+    props.ParticipantContribution,
+    props.EmployerContribution,
   ]);
 
   const data = {
-    labels: ["Begin of the Year", "End of the Year"],
+    labels: ["Participants", "Employers"],
     datasets: [
       {
-        data: NetAssetsReduced,
-        backgroundColor: ["#FF6384", "#36A2EB"],
-        hoverBackgroundColor: ["#FF6384", "#36A2EB"],
+        data: ContributionReduced,
+        backgroundColor: ["#71B37C", "#F29079"],
+        hoverBackgroundColor: ["#71B37C", "#F29079"],
       },
     ],
   };
@@ -30,14 +30,14 @@ const NetAssets = (props) => {
         className="form-text text-muted"
         style={{ textAlign: "center", fontSize: "17px" }}
       >
-        Net Assets
+        Contribution
       </small>
       <Doughnut data={data} />
       <small className="form-text text-muted" style={{ textAlign: "center" }}>
-        {categoryNetAssets}
+        {categoryContribution}
       </small>
     </div>
   );
 };
 
-export default NetAssets;
+export default Contribution;

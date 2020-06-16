@@ -17,11 +17,6 @@ const arrayReducer = (array) => {
 };
 
 const arrayCategory = (array) => {
-  // for (let i = 0; i < array.length; i++) {
-  //   total += array[i];
-  // }
-  // const average = total / array.length;
-  //const lengthOfAv = average.toString().length;
   const max = Math.max(...array);
 
   const parts = max.toString().split(".");

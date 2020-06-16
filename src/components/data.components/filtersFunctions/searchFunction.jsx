@@ -28,14 +28,14 @@ const SearchFunction = (
   year,
   states,
   cities = "",
+  businessCode = "",
+  planEntity = "",
+  benefitType = "",
   maxIncome = "",
   minIncome = "",
   minParticipants = "",
   maxParticipants = "",
-  businessCode = "",
-  benefitType = "",
   benefitSymbol = "",
-  planEntity = "",
   dfeoption = ""
 ) => {
   let url;
@@ -66,12 +66,13 @@ const SearchFunction = (
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}&`);
     }
-    if (benefitType !== "All" && benefitSymbol === "All") {
+    if (benefitType && !benefitSymbol) {
+      console.log("here");
       url = url.concat(`benefitType=${benefitType}&`);
-    } else if (benefitSymbol !== "All") {
+    } else if (benefitSymbol !== "") {
       url = url.concat(`benefitType=${benefitSymbol}&`);
     }
-    if (planEntity !== "All") {
+    if (planEntity) {
       url = url.concat(`planEntity=${planEntity}&`);
     }
     if (dfeoption) {
@@ -104,12 +105,12 @@ const SearchFunction = (
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}&`);
     }
-    if (benefitType !== "All" && benefitSymbol === "All") {
+    if (benefitType && !benefitSymbol) {
       url = url.concat(`benefitType=${benefitType}&`);
-    } else if (benefitSymbol !== "All") {
+    } else if (benefitSymbol) {
       url = url.concat(`benefitType=${benefitSymbol}&`);
     }
-    if (planEntity !== "All") {
+    if (planEntity) {
       url = url.concat(`planEntity=${planEntity}&`);
     }
     if (dfeoption) {

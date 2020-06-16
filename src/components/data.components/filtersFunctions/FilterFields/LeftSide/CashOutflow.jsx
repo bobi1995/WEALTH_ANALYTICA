@@ -1,15 +1,5 @@
 import React, { useState } from "react";
-import Paper from "@material-ui/core/Paper";
-import {
-  Chart,
-  BarSeries,
-  ArgumentAxis,
-  ValueAxis,
-  Title,
-  Tooltip,
-} from "@devexpress/dx-react-chart-material-ui";
-
-import { EventTracker } from "@devexpress/dx-react-chart";
+import { Bar } from "react-chartjs-2";
 import dataReducer from "../../../dashboardFunctions/charts";
 const CashOutflow = (props) => {
   const CashOutflowReduced = dataReducer.arrayReducer([
@@ -20,38 +10,39 @@ const CashOutflow = (props) => {
     props.OtherExpenses,
   ]);
 
-  const categoryCashOutflow = dataReducer.arrayCategory([
-    props.CorrectivrDistribution,
-    props.Distribution,
-    props.OtherExpenses,
-    props.ServiceProviderExpenses,
-  ]);
-
-  const [targetItem, setTargetItem] = useState();
-  const data = [
-    { year: "Distribution", assets: CashOutflowReduced[0] },
-    { year: "Correctiver", assets: CashOutflowReduced[1] },
-    { year: "Service Expenses", assets: CashOutflowReduced[2] },
-    { year: "Other", assets: CashOutflowReduced[3] },
-  ];
-
-  const changeTargetItem = (targetItem) => setTargetItem(targetItem);
+  const data = {
+    labels: ["Distribution", "Correctiver", "Service Expenses", "Other"],
+    datasets: [
+      {
+        label: "Cash Outflow",
+        backgroundColor: "rgba(54,162,235,0.2)",
+        borderColor: "rgba(54,162,235,1)",
+        borderWidth: 1,
+        hoverBackgroundColor: "rgba(54,162,235,0.4)",
+        hoverBorderColor: "rgba(54,162,235,1)",
+        data: CashOutflowReduced,
+      },
+    ],
+  };
   return (
     <div style={{ width: "100%" }}>
-      <Paper>
-        <Chart data={data}>
-          <ValueAxis />
-          <ArgumentAxis />
-
-          <BarSeries valueField="assets" argumentField="year" />
-          <Title text={`Cash Outflow (${categoryCashOutflow})`} />
-          <EventTracker />
-          <Tooltip
-            targetItem={targetItem}
-            onTargetItemChange={changeTargetItem}
-          />
-        </Chart>
-      </Paper>
+      <small
+        className="form-text text-muted"
+        style={{ textAlign: "center", fontSize: "17px" }}
+      >
+        Cash Outflow
+      </small>
+      <Bar
+        data={data}
+        width={100}
+        height={50}
+        options={dataReducer.optionReturn([
+          props.Distribution,
+          props.CorrectivrDistribution,
+          props.ServiceProviderExpenses,
+          props.OtherExpenses,
+        ])}
+      />
     </div>
   );
 };
