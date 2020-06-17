@@ -3,6 +3,8 @@ import MaterialTable from "material-table";
 import SearchIcon from "@material-ui/icons/Search";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import commonFunctions from "../../commonFunctions/common";
+import Tooltip from "@material-ui/core/Tooltip";
+
 import {
   ArrowUpward,
   FirstPage,
@@ -58,7 +60,17 @@ export default (props) => {
         //   },
         //   filterPlaceholder: "Search address",
         // },
-        { field: "City", title: "City", sorting: false, filtering: false },
+        {
+          field: "City",
+          title: "City",
+          sorting: false,
+          filtering: false,
+          render: (rowData) => (
+            <Tooltip title={rowData.Address1}>
+              <p>{rowData.City}</p>
+            </Tooltip>
+          ),
+        },
         {
           field: "AdministratorName",
           title: "Administrator",

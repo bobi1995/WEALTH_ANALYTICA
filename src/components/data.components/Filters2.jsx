@@ -6,9 +6,11 @@ import RightFilter from "./filtersFunctions/FilterFields/RightFilter";
 import LeftSide from "./filtersFunctions/FilterFields/LeftSide";
 import image from "../../styles/images/Wealth_Analytica.png";
 import CardMedia from "@material-ui/core/CardMedia";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Filter2 = () => {
   const [results, setResults] = useState();
+  const [loader, setLoader] = useState(false);
   return (
     <div>
       <Datanavbar />
@@ -17,17 +19,38 @@ const Filter2 = () => {
       </section>
       <Magellan activeStep={1} active={"filters"} />
       <div>
-        <div style={{ display: "flex", width: "100%", marginBottom: "5%" }}>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            marginBottom: "5%",
+            justifyContent: "space-around",
+            marginTop: "3%",
+          }}
+        >
           <div style={{ width: "100%" }}>
             <RightFilter
+              setLoader={(loader) => {
+                setLoader(loader);
+              }}
               getResults={(res) => {
                 setResults(res);
               }}
             />
           </div>
 
-          <div style={{ width: "100%" }}>
-            {results ? (
+          <div style={{ width: "100%", textAlign: "center" }}>
+            {loader ? (
+              <div>
+                <CircularProgress
+                  size={150}
+                  style={{ textAlign: "center", marginTop: "15%" }}
+                />
+                <p style={{ textAlign: "center", marginTop: "3%" }}>
+                  Loading....Please wait
+                </p>
+              </div>
+            ) : results ? (
               <LeftSide
                 NetAssetBegin={results.NetAssetBeginOfYear}
                 NetAssetEnd={results.NetAssetEndOfYear}
@@ -43,7 +66,7 @@ const Filter2 = () => {
               />
             ) : (
               <CardMedia
-                style={{ width: "70%" }}
+                style={{ width: "70%", margin: "0 auto" }}
                 component="img"
                 image={require("../../styles/images/Wealth_Analytica.png")}
                 title="Paella dish"

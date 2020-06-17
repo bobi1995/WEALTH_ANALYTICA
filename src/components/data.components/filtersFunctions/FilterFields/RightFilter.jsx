@@ -17,7 +17,7 @@ const RightFilters = (props) => {
   const [benefitType, setBenefitType] = useState("");
   const [symbol, setSymbol] = React.useState("");
   return (
-    <div style={{ marginBottom: "5%" }}>
+    <div style={{ margin: "0 auto", width: "50%" }}>
       <StatesField setState={(state) => setSelectedState(state)} />
       <CityField
         state={selectedState}
@@ -42,6 +42,7 @@ const RightFilters = (props) => {
         color="primary"
         startIcon={<SearchIcon />}
         onClick={async () => {
+          props.setLoader(true);
           const a = await searchFunction(
             selectedYear,
             selectedState,
@@ -52,6 +53,7 @@ const RightFilters = (props) => {
             symbol
           );
           props.getResults(a);
+          props.setLoader(false);
         }}
       >
         Search
