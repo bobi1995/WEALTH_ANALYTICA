@@ -31,11 +31,10 @@ const SearchFunction = (
   businessCode = "",
   planEntity = "",
   benefitType = "",
-  benefitSymbol = "",
-  maxIncome = "",
-  minIncome = "",
   minParticipants = "",
   maxParticipants = "",
+  minIncome = "",
+  maxIncome = "",
   dfeoption = ""
 ) => {
   let url;
@@ -56,12 +55,10 @@ const SearchFunction = (
     }
 
     if (maxParticipants) {
-      const maxPart = parseFloat(maxParticipants.replace(/,/g, ""));
-      url = url.concat(`maxPart=${maxPart}&`);
+      url = url.concat(`maxPart=${maxParticipants}&`);
     }
     if (minParticipants) {
-      const minPart = parseFloat(minParticipants.replace(/,/g, ""));
-      url = url.concat(`minPart=${minPart}&`);
+      url = url.concat(`minPart=${minParticipants}&`);
     }
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}&`);
@@ -92,12 +89,10 @@ const SearchFunction = (
       url = url.concat(`minAssets=${minInc}&`);
     }
     if (maxParticipants) {
-      const maxPart = parseFloat(maxParticipants.replace(/,/g, ""));
-      url = url.concat(`maxPart=${maxPart}&`);
+      url = url.concat(`maxPart=${maxParticipants}&`);
     }
     if (minParticipants) {
-      const minPart = parseFloat(minParticipants.replace(/,/g, ""));
-      url = url.concat(`minPart=${minPart}&`);
+      url = url.concat(`minPart=${minParticipants}&`);
     }
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}&`);

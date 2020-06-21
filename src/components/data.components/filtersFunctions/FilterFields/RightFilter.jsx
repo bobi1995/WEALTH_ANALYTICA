@@ -8,16 +8,41 @@ import searchFunction from "../searchFunction";
 import BusinessCode from "./RightFilter/BusinessCodes";
 import PlanEntity from "./RightFilter/PlanEntity";
 import BenefitType from "./RightFilter/BenefitType";
+import Participants from "./RightFilter/Participants";
+import Income from "./RightFilter/Income";
+import { makeStyles } from "@material-ui/core/styles";
+import SaveIcon from "@material-ui/icons/Save";
+
+const useStyles = makeStyles(() => ({
+  buttonStyle: {
+    margin: "5% 25%",
+    width: "50%",
+    backgroundColor: "#68BA54",
+    color: "white",
+  },
+  saveButton: {
+    margin: "0 25%",
+    width: "50%",
+    backgroundColor: "#008000",
+    color: "white",
+  },
+}));
+
 const RightFilters = (props) => {
+  const classes = useStyles();
   const [selectedState, setSelectedState] = useState("");
   const [selectedCity, setSelectedCity] = useState([]);
   const [selectedYear, setSelectedYear] = useState(2018);
   const [businessCode, setBusinessCode] = useState("");
   const [planEntity, setPlanEntity] = useState("");
   const [benefitType, setBenefitType] = useState("");
-  const [symbol, setSymbol] = React.useState("");
+  const [symbol, setSymbol] = useState("");
+  const [minPart, setMinPart] = useState("");
+  const [maxPart, setMaxPart] = useState("");
+  const [minIncome, setMinIncome] = useState("");
+  const [maxIncome, setMaxIncome] = useState("");
   return (
-    <div style={{ margin: "0 auto", width: "50%" }}>
+    <div>
       <StatesField setState={(state) => setSelectedState(state)} />
       <CityField
         state={selectedState}
@@ -29,17 +54,33 @@ const RightFilters = (props) => {
           setBusinessCode(code);
         }}
       />
-      <div style={{ display: "flex" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          marginBottom: "5%",
+        }}
+      >
         <PlanEntity setEntity={(entity) => setPlanEntity(entity)} />
         <BenefitType
           setBenefit={(type) => setBenefitType(type)}
           setSymbol={(symbol) => setSymbol(symbol)}
         />
       </div>
+      <Participants
+        setMinPart={(minPart) => setMinPart(minPart)}
+        setMaxPart={(maxPart) => setMaxPart(maxPart)}
+      />
+      <Income
+        setMinIncome={(minIncome) => setMinIncome(minIncome)}
+        setMaxIncome={(maxIncome) => setMaxIncome(maxIncome)}
+      />
+
       <Button
-        disabled={selectedState == "" ? true : false}
+        disabled={props.loader ? true : selectedState == "" ? true : false}
         variant="contained"
-        color="primary"
+        id="right-filter-btn"
+        className={classes.buttonStyle}
         startIcon={<SearchIcon />}
         onClick={async () => {
           props.setLoader(true);
@@ -50,7 +91,10 @@ const RightFilters = (props) => {
             businessCode,
             planEntity,
             benefitType,
-            symbol
+            minPart.minimumFormat,
+            maxPart,
+            minIncome,
+            maxIncome
           );
           props.getResults(a);
           props.setLoader(false);
@@ -58,6 +102,19 @@ const RightFilters = (props) => {
       >
         Search
       </Button>
+
+      {props.results ? (
+        <Button
+          variant="contained"
+          id="right-filter-btn"
+          className={classes.saveButton}
+          startIcon={<SaveIcon />}
+        >
+          Save Filter
+        </Button>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

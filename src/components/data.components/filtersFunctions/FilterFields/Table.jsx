@@ -4,7 +4,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import commonFunctions from "../../commonFunctions/common";
 import Tooltip from "@material-ui/core/Tooltip";
-
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import StarIcon from "@material-ui/icons/Star";
+import { addBookmark, removeBookmark } from "./Table/Bookmark";
 import {
   ArrowUpward,
   FirstPage,
@@ -91,8 +93,7 @@ export default (props) => {
           title: "Participants",
           type: "numeric",
           filterPlaceholder: "Minimum",
-          customFilterAndSearch: (term, rowData) => term < rowData.Participants,
-
+          filtering: false,
           cellStyle: {
             textAlign: "center",
           },
@@ -100,10 +101,8 @@ export default (props) => {
         {
           field: "NetIncome",
           title: "Net Income",
-          emptyValue: "N/A",
           filterPlaceholder: "Minimum",
-          customFilterAndSearch: (term, rowData) => term < rowData.NetIncome,
-
+          filtering: false,
           render: (rowData) => `$${commonFunctions.reducer(rowData.NetIncome)}`,
           cellStyle: (rowData) => {
             if (rowData) {
@@ -124,6 +123,24 @@ export default (props) => {
           title: "Bookmark",
           sorting: false,
           filtering: false,
+          render: (rowData) =>
+            rowData.IsBookmarked ? (
+              <StarIcon
+                style={{ color: "yellow" }}
+                onClick={() =>
+                  removeBookmark(rowData.CompanyID, props.data, props.setData)
+                }
+              />
+            ) : (
+              <StarBorderIcon
+                onClick={() =>
+                  addBookmark(rowData.CompanyID, props.data, props.setData)
+                }
+              />
+            ),
+          cellStyle: {
+            textAlign: "center",
+          },
         },
       ]}
       data={props.data}
@@ -139,6 +156,7 @@ export default (props) => {
           color: "#FFF",
           fontSize: "17px",
           textAlign: "center",
+          fontWeight: "bold",
         },
 
         rowStyle: (rowData) => {

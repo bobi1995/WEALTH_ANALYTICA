@@ -4,13 +4,18 @@ import Magellan from "./Magellan";
 import Table from "./filtersFunctions/FilterFields/Table";
 import RightFilter from "./filtersFunctions/FilterFields/RightFilter";
 import LeftSide from "./filtersFunctions/FilterFields/LeftSide";
-import image from "../../styles/images/Wealth_Analytica.png";
 import CardMedia from "@material-ui/core/CardMedia";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import SummaryTable from "./filtersFunctions/FilterFields/SummaryTable";
 const Filter2 = () => {
   const [results, setResults] = useState();
   const [loader, setLoader] = useState(false);
+  const setData = (newArr) => {
+    setResults((prev) => {
+      let newResults = { ...prev, Companies: newArr.slice(0) };
+      return newResults;
+    });
+  };
   return (
     <div>
       <Datanavbar />
@@ -28,14 +33,16 @@ const Filter2 = () => {
             marginTop: "3%",
           }}
         >
-          <div style={{ width: "100%" }}>
+          <div style={{ width: "40%" }}>
             <RightFilter
               setLoader={(loader) => {
                 setLoader(loader);
               }}
+              loader={loader}
               getResults={(res) => {
                 setResults(res);
               }}
+              results={results}
             />
           </div>
 
@@ -69,13 +76,17 @@ const Filter2 = () => {
                 style={{ width: "70%", margin: "0 auto" }}
                 component="img"
                 image={require("../../styles/images/Wealth_Analytica.png")}
-                title="Paella dish"
+                title="Wealth Analytica"
               />
             )}
           </div>
         </div>
-
-        <Table data={results ? results.Companies : []} />
+        {results ? (
+          <SummaryTable data={results ? results.FilterProfile : []} />
+        ) : (
+          ""
+        )}
+        <Table data={results ? results.Companies : []} setData={setData} />
       </div>
     </div>
   );

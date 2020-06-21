@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ControlledOpenSelect(props) {
+export default function PlanEntity(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [entity, setEntity] = React.useState("");

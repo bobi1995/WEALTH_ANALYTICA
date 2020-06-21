@@ -36,7 +36,7 @@ export default function ControlledOpenSelect(props) {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", justifyContent: "space-between" }}>
       <FormControl className={classes.formControl}>
         <InputLabel id="benefit-type-controlbox-label">Benefit Type</InputLabel>
         <Select
@@ -56,11 +56,11 @@ export default function ControlledOpenSelect(props) {
           <MenuItem value={3}>Welfare</MenuItem>
         </Select>
       </FormControl>
-      {benefitType ? (
+      {/* {benefitType ? (
         <Symbol benefitType={benefitType} setSymbol={props.setSymbol} />
       ) : (
         ""
-      )}
+      )} */}
     </div>
   );
 }

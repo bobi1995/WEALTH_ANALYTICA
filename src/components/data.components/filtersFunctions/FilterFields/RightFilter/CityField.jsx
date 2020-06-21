@@ -54,7 +54,7 @@ const CityField = (props) => {
   };
 
   return (
-    <div style={{ marginBottom: "3%", marginLeft: "1%" }}>
+    <div style={{ marginBottom: "5%", marginLeft: "1%" }}>
       <Autocomplete
         disabled={props.state == "" ? true : false}
         multiple
@@ -82,7 +82,7 @@ const CityField = (props) => {
             {option}
           </React.Fragment>
         )}
-        style={{ width: 500 }}
+        style={{ width: "100%" }}
         renderInput={(params) => (
           <TextField
             {...params}
