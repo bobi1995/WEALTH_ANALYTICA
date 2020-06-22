@@ -39,16 +39,7 @@ const PersonalDataStates = () => {
           </tbody>
         </table>
         <div className="forgot-pass">
-          <a
-            className="submit"
-            style={{
-              backgroundColor: "green",
-              paddingTop: 5,
-            }}
-            href="#popupChangePasswod"
-          >
-            Change Password
-          </a>
+          <ChangePassword />
         </div>
       </div>
       <div className="onepager-chart-content responsive-table-div">
@@ -102,7 +93,6 @@ const PersonalDataStates = () => {
           </tbody>
         </table>
       </div>
-      <ChangePassword />
     </div>
   );
 };

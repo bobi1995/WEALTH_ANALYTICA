@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
-import apiAddress from "../../../../global/endpointAddress";
+import apiAddress from "../../../../../global/endpointAddress";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme, makeStyles } from "@material-ui/core/styles";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -10,7 +10,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import SaveIcon from "@material-ui/icons/Save";
 
 const useStyles = makeStyles(() => ({
   saveButton: {
@@ -36,39 +36,12 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default () => {
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [open, setOpen] = useState(false);
+export default (props) => {
+  const classes = useStyles();
+  console.log(props);
+  const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const classes = useStyles();
-
-  const changePassword = (e) => {
-    e.preventDefault();
-    if (newPassword.length < 7) {
-      alert("New password must be at least 7 symbols");
-    } else {
-      const data = {
-        oldpassword: oldPassword,
-        newPassword: newPassword,
-      };
-      axios
-        .post(`${apiAddress}/api/Users/ChangePassword`, data, {
-          headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
-          },
-        })
-        .then((res) => {
-          sessionStorage.clear();
-
-          window.location.reload();
-        })
-        .catch((e) => {
-          alert("Something went wrong. Please enter valid current password");
-        });
-    }
-  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -78,11 +51,25 @@ export default () => {
     setOpen(false);
   };
 
-  const onChangeOldPassword = (e) => {
-    setOldPassword(e.target.value);
-  };
-  const onChangeNewPassword = (e) => {
-    setNewPassword(e.target.value);
+  const saveFilterFunction = (e) => {
+    e.preventDefault();
+    const data = {
+      FilterName: document.getElementById("save-filter-name").value,
+      FilterParameters: props.url,
+    };
+
+    axios
+      .post(`${apiAddress}/api/Users/AddUserFilter`, data, {
+        headers: {
+          Authorization: "Basic " + sessionStorage.getItem("Token"),
+        },
+      })
+      .then((res) => {
+        handleClose();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
@@ -91,10 +78,10 @@ export default () => {
         variant="contained"
         id="right-filter-btn"
         className={classes.saveButton}
-        startIcon={<LockOpenIcon />}
+        startIcon={<SaveIcon />}
         onClick={handleClickOpen}
       >
-        Change Password
+        Save Filter
       </Button>
       <Dialog
         fullScreen={fullScreen}
@@ -103,29 +90,19 @@ export default () => {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title">
-          {"Change you password"}
+          {"Want to save your Search?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Enter your old password and then your desired new one. Please keep
-            in mind password must be at least 7 symbols.
+            Give name to your Search and save current results from the Filter.
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
-            id="old-password-change"
-            label="Old password:"
+            id="save-filter-name"
+            label="Name:"
             type="text"
             fullWidth
-            onChange={onChangeOldPassword}
-          />
-          <TextField
-            margin="dense"
-            id="new-password-change"
-            label="New password:"
-            type="text"
-            fullWidth
-            onChange={onChangeNewPassword}
           />
         </DialogContent>
         <DialogActions>
@@ -136,7 +113,7 @@ export default () => {
           >
             Cancel
           </Button>
-          <Button onClick={changePassword} className={classes.saveButton2}>
+          <Button onClick={saveFilterFunction} className={classes.saveButton2}>
             Save
           </Button>
         </DialogActions>

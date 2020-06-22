@@ -72,7 +72,8 @@ const OnePager = (props) => {
           <OnePagerTop
             data={props.match.params.CompanyID}
             state={results.State}
-            contact={results.Contact}
+            contact={results.Contacts}
+            site={results.Website}
             administrator={results.AdministratorName}
             phone={results.Phone}
           />

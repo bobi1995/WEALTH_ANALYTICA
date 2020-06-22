@@ -14,7 +14,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default (props) => {
   const [selectedRow, setSelectedRow] = useState(null);
@@ -40,38 +40,57 @@ export default (props) => {
           title: "Name",
           filterPlaceholder: "Search plan",
           render: (rowData) => (
-            <Link
-              to={{
-                pathname: `/onepager/${rowData.CompanyID}`,
-              }}
-              target="_blank"
-            >
-              {rowData.Name}
-            </Link>
+            <Tooltip title={rowData.Name}>
+              <Link
+                to={{
+                  pathname: `/onepager/${rowData.CompanyID}`,
+                }}
+                target="_blank"
+              >
+                {rowData.Name}
+              </Link>
+            </Tooltip>
           ),
           cellStyle: {
             fontStyle: "bold",
             whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            maxWidth: 400,
           },
         },
-        // {
-        //   field: "Address1",
-        //   title: "Address",
-        //   cellStyle: {
-        //     whiteSpace: "nowrap",
-        //   },
-        //   filterPlaceholder: "Search address",
-        // },
+        {
+          field: "Address1",
+          title: "Address",
+          render: (rowData) => (
+            <Tooltip title={rowData.Address1}>
+              <NavLink
+                to={{
+                  pathname: `https://www.google.com/maps/search/?api=1&query=${rowData.City},+${rowData.Address1}`,
+                }}
+                target="_blank"
+                activeStyle={{
+                  fontWeight: "bold",
+                  color: "green",
+                }}
+              >
+                {rowData.Address1}
+              </NavLink>
+            </Tooltip>
+          ),
+          cellStyle: {
+            whiteSpace: "nowrap",
+            maxWidth: 300,
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+          },
+          filterPlaceholder: "Search address",
+        },
         {
           field: "City",
           title: "City",
           sorting: false,
           filtering: false,
-          render: (rowData) => (
-            <Tooltip title={rowData.Address1}>
-              <p>{rowData.City}</p>
-            </Tooltip>
-          ),
         },
         {
           field: "AdministratorName",
@@ -102,6 +121,7 @@ export default (props) => {
           field: "NetIncome",
           title: "Net Income",
           filterPlaceholder: "Minimum",
+          customSort: (a = 0, b = 0) => a.NetIncome - b.NetIncome,
           filtering: false,
           render: (rowData) => `$${commonFunctions.reducer(rowData.NetIncome)}`,
           cellStyle: (rowData) => {
@@ -126,7 +146,7 @@ export default (props) => {
           render: (rowData) =>
             rowData.IsBookmarked ? (
               <StarIcon
-                style={{ color: "yellow" }}
+                style={{ color: "#e6e600" }}
                 onClick={() =>
                   removeBookmark(rowData.CompanyID, props.data, props.setData)
                 }

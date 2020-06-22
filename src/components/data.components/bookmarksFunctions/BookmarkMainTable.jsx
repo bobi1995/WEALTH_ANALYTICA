@@ -76,8 +76,8 @@ const BookmarkMainTable = (props) => {
         <thead className="thead-dark">
           <tr>
             <th>&#8470;</th>
-            <th>Plan Name</th>
-            <th>Address 1</th>
+            <th>Sponsor</th>
+            <th>Address</th>
             <th>City</th>
             <th>State</th>
             <th>Zip</th>

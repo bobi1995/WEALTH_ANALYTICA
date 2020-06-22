@@ -12,8 +12,6 @@ const fetching = async (url) => {
     },
   })
     .then((result) => {
-      console.log(url);
-
       return result;
     })
     .catch((e) => {
@@ -109,7 +107,7 @@ const SearchFunction = (
   }
   result = fetching(url);
 
-  return result;
+  return { result, url };
 };
 
 export default SearchFunction;

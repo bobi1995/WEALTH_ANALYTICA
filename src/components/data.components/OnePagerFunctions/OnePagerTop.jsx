@@ -7,6 +7,7 @@ import apiAddress from "../../../global/endpointAddress";
 import commonFunctions from "../commonFunctions/common";
 import commonExtract from "../commonFunctions/commonExtracts";
 const OnePagerTop = (props) => {
+  console.log(props);
   let flagBasic = 0;
   commonExtract.extractStates().forEach((el) => {
     if (props.state == el.State) {
@@ -112,30 +113,31 @@ const OnePagerTop = (props) => {
         className="onepager-top-emailform"
         data-html2canvas-ignore
       >
+        {props.contact.length > 0 ? (
+          <div
+            className="plan-profile-chartsDiv"
+            style={{ marginLeft: "3%", display: "flex", margin: "3% auto" }}
+          >
+            {props.contact.map((el) => (
+              <OnePagerContact
+                contact={el}
+                headWidth="50"
+                heading="Executive Contact"
+                key={el.Name}
+              />
+            ))}
+          </div>
+        ) : (
+          <img
+            className="plan-profile-chartsDiv"
+            style={{ margin: "3%", padding: "1%" }}
+            src={`data:image/png;base64,${sessionStorage.getItem("LogoData")}`}
+            alt="Upload your logo to see it"
+          />
+        )}
         <form onSubmit={sendEmail}>
           <div className="onepager-top-mainemail">
             <div className="onepager-emailform-email">
-              {Object.values(props.contact).some((x) => x !== null) ? (
-                <div
-                  className="plan-profile-chartsDiv"
-                  style={{ marginLeft: "3%" }}
-                >
-                  <OnePagerContact
-                    contact={props.contact}
-                    headWidth="50"
-                    heading="Executive Contact"
-                  />
-                </div>
-              ) : (
-                <img
-                  className="plan-profile-chartsDiv"
-                  style={{ margin: "3%", padding: "1%" }}
-                  src={`data:image/png;base64,${sessionStorage.getItem(
-                    "LogoData"
-                  )}`}
-                  alt="Upload your logo to see it"
-                />
-              )}
               <textarea
                 className="form-control onepager-textarea"
                 id="emailText"

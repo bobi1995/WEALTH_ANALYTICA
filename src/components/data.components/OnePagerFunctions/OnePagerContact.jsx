@@ -3,6 +3,7 @@ import avatar from "../../../styles/images/avatar.png";
 import commonFunctions from "../commonFunctions/common";
 
 export default (props) => {
+  console.log(props);
   return (
     <div className="plan-businessInfo">
       <div className="plan-table-section-Contact">

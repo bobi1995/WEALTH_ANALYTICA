@@ -11,7 +11,7 @@ import BenefitType from "./RightFilter/BenefitType";
 import Participants from "./RightFilter/Participants";
 import Income from "./RightFilter/Income";
 import { makeStyles } from "@material-ui/core/styles";
-import SaveIcon from "@material-ui/icons/Save";
+import SaveFilterDialog from "./RightFilter/SaveFilterDialog";
 
 const useStyles = makeStyles(() => ({
   buttonStyle: {
@@ -41,6 +41,7 @@ const RightFilters = (props) => {
   const [maxPart, setMaxPart] = useState("");
   const [minIncome, setMinIncome] = useState("");
   const [maxIncome, setMaxIncome] = useState("");
+  const [url, setUrl] = useState("");
   return (
     <div>
       <StatesField setState={(state) => setSelectedState(state)} />
@@ -95,26 +96,28 @@ const RightFilters = (props) => {
             maxPart,
             minIncome,
             maxIncome
-          );
+          ).result;
+          const url = await searchFunction(
+            selectedYear,
+            selectedState,
+            selectedCity,
+            businessCode,
+            planEntity,
+            benefitType,
+            minPart.minimumFormat,
+            maxPart,
+            minIncome,
+            maxIncome
+          ).url;
           props.getResults(a);
+          setUrl(url);
           props.setLoader(false);
         }}
       >
         Search
       </Button>
 
-      {props.results ? (
-        <Button
-          variant="contained"
-          id="right-filter-btn"
-          className={classes.saveButton}
-          startIcon={<SaveIcon />}
-        >
-          Save Filter
-        </Button>
-      ) : (
-        ""
-      )}
+      {props.results ? <SaveFilterDialog url={url} /> : ""}
     </div>
   );
 };
