@@ -4,7 +4,6 @@ import apiAddress from "../../../global/endpointAddress";
 import fileDownload from "js-file-download";
 
 export default (props) => {
-  console.log(props);
   const onExportClick = async (e) => {
     e.preventDefault();
     const exportUrl = `${apiAddress}/api/SmallCompanies/GetPlanProfilePdf?companyId=${props.companyID}`;

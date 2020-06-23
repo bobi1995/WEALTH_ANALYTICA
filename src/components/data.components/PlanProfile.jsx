@@ -16,7 +16,7 @@ import apiAddress from "../../global/endpointAddress";
 const PlaneProfile = (props) => {
   const [results, setResults] = useState([]);
   const [limit, setLimit] = useState(false);
-
+  console.log(results);
   let url = "";
   useEffect(() => {
     if (props.match) {
@@ -74,8 +74,9 @@ const PlaneProfile = (props) => {
             <PlaneProfileBusinessInfo
               data={results.BusinessInformation}
               erisa={results.ERISATestCompanyStock}
-              contact={results.Contact}
+              contact={results.Contacts}
               types={results.PlanSummary}
+              site={results.Website}
             />
           </div>
           <PlanProfileTables

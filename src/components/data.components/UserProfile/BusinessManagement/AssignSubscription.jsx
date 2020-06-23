@@ -2,8 +2,35 @@ import React, { useState } from "react";
 import Popup from "reactjs-popup";
 import axios from "axios";
 import apiAddress from "../../../../global/endpointAddress";
+import Button from "@material-ui/core/Button";
+import SaveIcon from "@material-ui/icons/Save";
+import { makeStyles } from "@material-ui/styles";
+const useStyles = makeStyles(() => ({
+  saveButton: {
+    margin: "3% 25%",
+    width: "25%",
+    backgroundColor: "#008000",
+    color: "white",
+  },
+  saveButton2: {
+    backgroundColor: "#008000",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#90ee90",
+    },
+  },
+  cancelButton: {
+    backgroundColor: "#CC0000",
+    color: "white",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#ff726f",
+    },
+  },
+}));
 
 const AssignSubscription = (props) => {
+  const classes = useStyles();
   const [pickedUserToAssign, setPickedUserToAssign] = useState("");
   const [business, setBusiness] = useState("");
   const optionPicked = (e) => {
@@ -120,13 +147,15 @@ const AssignSubscription = (props) => {
               </select>
             </div>
             <div className="filter-main-search-btn">
-              <button
-                className="filter-name-btn"
-                id="submit-save-btn"
+              <Button
+                variant="contained"
+                id="right-filter-btn"
                 type="submit"
+                className={classes.saveButton}
+                startIcon={<SaveIcon />}
               >
-                Save
-              </button>
+                Assign
+              </Button>
             </div>
           </form>
         </div>

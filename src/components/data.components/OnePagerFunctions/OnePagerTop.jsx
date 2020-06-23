@@ -7,10 +7,9 @@ import apiAddress from "../../../global/endpointAddress";
 import commonFunctions from "../commonFunctions/common";
 import commonExtract from "../commonFunctions/commonExtracts";
 const OnePagerTop = (props) => {
-  console.log(props);
   let flagBasic = 0;
   commonExtract.extractStates().forEach((el) => {
-    if (props.state == el.State) {
+    if (props.state == el.State && el.Type == 1) {
       flagBasic = 1;
     }
   });
@@ -135,6 +134,30 @@ const OnePagerTop = (props) => {
             alt="Upload your logo to see it"
           />
         )}
+        {props.site ? (
+          <div
+            className="plan-profile-chartsDiv"
+            style={{
+              display: "flex",
+              margin: "3% auto",
+              textAlign: "center",
+              width: "30%",
+            }}
+          >
+            <small
+              className="form-text text-muted"
+              style={{ textAlign: "center", margin: "0 auto" }}
+            >
+              Visit sponsor's website at:&nbsp;
+              <a href={"http://" + props.site} target="_blank">
+                {props.site}
+              </a>
+            </small>
+          </div>
+        ) : (
+          ""
+        )}
+
         <form onSubmit={sendEmail}>
           <div className="onepager-top-mainemail">
             <div className="onepager-emailform-email">

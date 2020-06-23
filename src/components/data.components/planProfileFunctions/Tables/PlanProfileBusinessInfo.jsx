@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import commonFunctions from "../../commonFunctions/common";
 import Contact from "../../OnePagerFunctions/OnePagerContact";
 import { Pie } from "react-chartjs-2";
+import OnePagerMap from "../../OnePagerFunctions/OnePagerMap";
 
 const PlaneProfileBusinessInfo = (props) => {
+  console.log(props);
   const [contribution, setContribution] = useState(0);
   const [benefit, setBenefit] = useState(0);
   const [welfare, setWelfare] = useState(0);
@@ -109,12 +111,15 @@ const PlaneProfileBusinessInfo = (props) => {
               </tbody>
             </table>
           </div>
+          <div className="inside-business-div">
+            <OnePagerMap address={props.data.Address1} city={props.data.City} />
+          </div>
         </div>
         <div style={{ width: "45%", margin: " 0, auto " }}>
-          <div style={{ display: "flex" }}>
+          <div>
             <div
               className="plan-profile-chartsDiv"
-              style={{ marginRight: "1.5%" }}
+              style={{ margin: "0 auto" }}
             >
               <Contact
                 contact={{
@@ -125,12 +130,59 @@ const PlaneProfileBusinessInfo = (props) => {
                 headWidth="35"
               />
             </div>
-            {Object.values(props.contact).some((x) => x !== null) ? (
+            {props.site ? (
+              <div
+                className="plan-profile-chartsDiv"
+                style={{
+                  display: "flex",
+                  margin: "3% auto",
+                  textAlign: "center",
+                  width: "30%",
+                }}
+              >
+                <small
+                  className="form-text text-muted"
+                  style={{ textAlign: "center", margin: "0 auto" }}
+                >
+                  Visit sponsor's website at:&nbsp;
+                  <a href={"http://" + props.site} target="_blank">
+                    {props.site}
+                  </a>
+                </small>
+              </div>
+            ) : (
+              ""
+            )}
+            {/* {Object.values(props.contact).some((x) => x !== null) ? (
               <div
                 className="plan-profile-chartsDiv"
                 style={{ marginLeft: "1.5%" }}
               >
                 <Contact contact={props.contact} headWidth="35" />
+              </div>
+            ) : (
+              ""
+            )} */}
+
+            {props.contact.length > 0 ? (
+              <div
+                // className="plan-profile-chartsDiv"
+                style={{
+                  marginTop: "3%",
+                  backgroundColor: "white",
+                  borderRadius: "25px",
+                  border: "1px solid lightgray",
+                  display: "flex",
+                }}
+              >
+                {props.contact.map((el) => (
+                  <Contact
+                    contact={el}
+                    headWidth="50"
+                    heading="Executive Contact"
+                    key={el.Name}
+                  />
+                ))}
               </div>
             ) : (
               ""

@@ -3,7 +3,6 @@ import avatar from "../../../styles/images/avatar.png";
 import commonFunctions from "../commonFunctions/common";
 
 export default (props) => {
-  console.log(props);
   return (
     <div className="plan-businessInfo">
       <div className="plan-table-section-Contact">
@@ -30,11 +29,7 @@ export default (props) => {
         <small className="form-text text-muted">
           <a href={"mailto:" + props.contact.Email}>{props.contact.Email}</a>
         </small>
-        <small className="form-text text-muted">
-          <a href={"http://" + props.contact.Website} target="_blank">
-            {props.contact.Website}
-          </a>
-        </small>
+
         {props.contact.Phone ? (
           <small className="form-text text-muted">
             {commonFunctions.phoneFormat(props.contact.Phone)}
