@@ -42,7 +42,7 @@ const fullNameByAbbr = (abbr) => {
 //******************ONLY FOR DASHBOARD */
 const paidFullNameDASHBOARD = () => {
   const purchasedStates = extractPaidFullName();
-  return purchasedStates.map((state) => {
+  return purchasedStates.filter((state) => {
     if (state.type === 2) {
       return (
         <option key={state.abbriviation}>

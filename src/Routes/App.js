@@ -3,6 +3,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import Page404 from "../components/Page404";
 import Login from "../components/Login";
 import Dashboard from "../components/data.components/Dashboard";
+import Dashboard2 from "../components/data.components/Dashboard2";
 import Bookmarks from "../components/data.components/Bookmarks";
 import OnePager from "../components/data.components/OnePager";
 import PlanProfile from "../components/data.components/PlanProfile";
@@ -21,7 +22,8 @@ function App() {
       <Switch>
         <Route path="/" component={Login} exact />
         <Route path="/demo" component={Demo} />
-        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/dashboard" component={Dashboard2} />
+
         <PrivateRoute path="/filters" component={Filter2} />
 
         <PrivateRoute path="/profile" component={Profile} />
