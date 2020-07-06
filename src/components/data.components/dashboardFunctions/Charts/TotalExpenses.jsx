@@ -1,7 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
 import dataReducer from "../charts";
+import { makeStyles } from "@material-ui/styles";
+
+const styles = makeStyles(() => ({
+  chartStyle: {
+    width: "40%",
+    backgroundColor: "#f3f4f8",
+    borderRadius: "25px",
+    border: "1px solid lightgray",
+    padding: "0%",
+  },
+}));
 const TotalExpenses = (props) => {
+  const classes = styles();
+
   const totalExpenses = props.statistics.map((el) => ({
     Year: el.Year,
     TotalExpenses: el.TotalExpenses,
@@ -22,7 +35,7 @@ const TotalExpenses = (props) => {
   const totalCategory = dataReducer.arrayCategory(totalExpensesONLY);
 
   return (
-    <div style={{ width: "30%" }}>
+    <div className={classes.chartStyle}>
       <small
         className="form-text text-muted"
         style={{ textAlign: "center", fontSize: "17px" }}

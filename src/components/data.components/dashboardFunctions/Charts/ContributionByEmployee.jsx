@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import dataReducer from "../charts";
+import { makeStyles } from "@material-ui/styles";
 
+const styles = makeStyles(() => ({
+  chartStyle: {
+    width: "40%",
+    backgroundColor: "#f3f4f8",
+    borderRadius: "25px",
+    border: "1px solid lightgray",
+    padding: "0%",
+  },
+}));
 const ContributionByEmployee = (props) => {
+  const classes = styles();
+
   const contribution = props.statistics.map((el) => ({
     Year: el.Year,
     Contribution: el.EmployeesContributionIncome,
@@ -39,7 +51,7 @@ const ContributionByEmployee = (props) => {
   const categoryContribution = dataReducer.arrayCategory(contributionONLY);
 
   return (
-    <div style={{ width: "30%" }}>
+    <div className={classes.chartStyle}>
       <Line data={data} options={dataReducer.optionReturn(contributionONLY)} />
     </div>
   );

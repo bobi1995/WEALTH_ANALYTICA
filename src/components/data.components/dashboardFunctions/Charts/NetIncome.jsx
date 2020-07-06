@@ -1,7 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import dataReducer from "../charts";
+import { makeStyles } from "@material-ui/styles";
+
+const styles = makeStyles(() => ({
+  chartStyle: {
+    width: "40%",
+    backgroundColor: "#f3f4f8",
+    borderRadius: "25px",
+    border: "1px solid lightgray",
+    padding: "0%",
+  },
+}));
 const NetIncome = (props) => {
+  const classes = styles();
+
   const netIncome = props.statistics.map((el) => ({
     Year: el.Year,
     NetIncome: el.NetIncome,
@@ -25,7 +38,7 @@ const NetIncome = (props) => {
   };
 
   return (
-    <div style={{ width: "30%" }}>
+    <div className={classes.chartStyle}>
       <Bar data={data} options={dataReducer.optionReturn(netIncomeOnly)} />
     </div>
   );

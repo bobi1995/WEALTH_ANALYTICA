@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Polar } from "react-chartjs-2";
 import dataReducer from "../charts";
+import { makeStyles } from "@material-ui/styles";
 
+const styles = makeStyles(() => ({
+  chartStyle: {
+    width: "40%",
+    backgroundColor: "#f3f4f8",
+    borderRadius: "25px",
+    border: "1px solid lightgray",
+    padding: "0%",
+  },
+}));
 const ParticipantBalance = (props) => {
+  const classes = styles();
+
   const balance = props.statistics.map((el) => ({
     Year: el.Year,
     Balance: el.ParticipantsAccountBal,
@@ -23,8 +35,17 @@ const ParticipantBalance = (props) => {
   const categoryContribution = dataReducer.arrayCategory(balanceONLY);
 
   return (
-    <div style={{ width: "30%" }}>
-      <Polar data={data} options={dataReducer.optionReturn(balanceONLY)} />
+    <div className={classes.chartStyle}>
+      <small
+        className="form-text text-muted"
+        style={{ textAlign: "center", fontSize: "17px" }}
+      >
+        Participant Balance
+      </small>
+      <Polar data={data} />
+      <small className="form-text text-muted" style={{ textAlign: "center" }}>
+        {categoryContribution}
+      </small>
     </div>
   );
 };

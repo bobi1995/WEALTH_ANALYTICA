@@ -17,6 +17,7 @@ const styles = makeStyles(() => ({
     margin: "5% auto",
   },
 }));
+const states = FilterExtract.paidFullNameDASHBOARD();
 
 const StatesField = (props) => {
   const classes = styles();
@@ -65,7 +66,5 @@ const StatesField = (props) => {
     </div>
   );
 };
-
-const states = FilterExtract.paidFullNameDASHBOARD();
 
 export default StatesField;
