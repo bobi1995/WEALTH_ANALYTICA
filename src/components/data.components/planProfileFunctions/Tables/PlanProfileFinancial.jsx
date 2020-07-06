@@ -3,8 +3,7 @@ import { Bar, Line } from "react-chartjs-2";
 import DataExtract from "../PlanProfileDataExtract";
 import dashboardCharts from "../../dashboardFunctions/charts";
 import common from "../../commonFunctions/common";
-import TotalAssets from "../DrillDown/Level1/Type1/Financial-BalanceSheet";
-import IncomeStatement from "../DrillDown/Level1/Type1/Financial-IncomeStatement";
+import FinancialDetails from "../DrillDown/Level1/Type1/FinancialDetails";
 import Button from "@material-ui/core/Button";
 
 export default (props) => {
@@ -228,8 +227,7 @@ export default (props) => {
         </table>
       </div>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <TotalAssets companyID={props.companyID} />
-        <IncomeStatement companyID={props.companyID} />
+        <FinancialDetails companyID={props.companyID} />
       </div>
     </div>
   );

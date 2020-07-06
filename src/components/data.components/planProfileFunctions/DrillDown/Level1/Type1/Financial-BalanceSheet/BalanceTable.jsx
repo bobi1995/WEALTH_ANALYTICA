@@ -10,7 +10,7 @@ export default (props) => {
   console.log(props.data);
   return props.data ? (
     <MaterialTable
-      style={{ width: "100%" }}
+      style={{ width: "100%", margin: "3%" }}
       title="Balance Sheet"
       icons={{
         Filter: React.forwardRef((props, ref) => <SearchIcon ref={ref} />),
@@ -19,19 +19,16 @@ export default (props) => {
           <RotateLeftIcon ref={ref} />
         )),
         SortArrow: ArrowUpward,
-        ViewColumn: ChevronRight,
+        DetailPanel: ChevronRight,
       }}
       columns={[
         {
           field: "name",
-          title: "Field",
-          filtering: false,
+          title: "Category",
         },
         {
           field: "value",
           title: "Value",
-          sorting: false,
-          filtering: false,
 
           cellStyle: {
             textAlign: "center",
@@ -42,7 +39,7 @@ export default (props) => {
         {
           id: 1,
           name: "Total Assets",
-          value: `-`,
+          value: `$${common.reducer(props.data.TotalAssets)}`,
         },
         {
           id: 2,
@@ -194,14 +191,43 @@ export default (props) => {
           value: `$${common.reducer(props.data.MortgateParticipant)}`,
           parentId: 1,
         },
+        {
+          id: 100,
+          name: "Liabilities",
+          value: `$${common.reducer(props.data.TotalLiabilities)}`,
+        },
+        {
+          id: 102,
+          name: "Benefit Payable",
+          value: `$${common.reducer(props.data.BenefitPayable)}`,
+          parentId: 100,
+        },
+        {
+          id: 103,
+          name: "Operating Payable",
+          value: `$${common.reducer(props.data.OperatingPayable)}`,
+          parentId: 100,
+        },
+        {
+          id: 104,
+          name: "Acquisition Debt",
+          value: `$${common.reducer(props.data.AcquisitionDebt)}`,
+          parentId: 100,
+        },
+        {
+          id: 105,
+          name: "Liabilities Other",
+          value: `$${common.reducer(props.data.LiabilitiesOther)}`,
+          parentId: 100,
+        },
+        {
+          id: 200,
+          name: "Net Assets",
+          value: `$${common.reducer(props.data.NetAssets)}`,
+        },
       ]}
-      onRowClick={(evt, selectedRow) =>
-        setSelectedRow(selectedRow.tableData.id)
-      }
       parentChildData={(row, rows) => rows.find((a) => a.id === row.parentId)}
       options={{
-        filtering: true,
-        sorting: true,
         paging: false,
         headerStyle: {
           backgroundColor: "#378FC3",

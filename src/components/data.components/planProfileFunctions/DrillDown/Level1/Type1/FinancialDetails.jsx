@@ -8,9 +8,11 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Table from "./Financial-IncomeStatement/Table";
-
-const useStyles = makeStyles(() => ({
+import TotalAssetsTable from "./Financial-BalanceSheet/BalanceTable";
+import IncomeStatement from "./Financial-IncomeStatement/IncomeTable";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+const useStyles = makeStyles((theme) => ({
   buttonStyle: {
     backgroundColor: "#378FC3",
     color: "white",
@@ -20,9 +22,19 @@ const useStyles = makeStyles(() => ({
     whiteSpace: "nowrap",
   },
   tableStyle: {
-    width: "100%",
-    padding: "15%",
     height: "75vh",
+    display: "flex",
+    justifyContent: "space-around",
+  },
+  titleStyle: {
+    textAlign: "center",
+  },
+  closeButton: {
+    position: "absolute",
+    color: "grey",
+
+    right: theme.spacing(1),
+    top: theme.spacing(1),
   },
 }));
 
@@ -31,11 +43,16 @@ export default (props) => {
   const [open, setOpen] = useState(false);
   const [results, setResults] = useState("");
 
-  const [fullWidth, setFullWidth] = useState(true);
-  const [maxWidth, setMaxWidth] = useState("sm");
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [fullWidth, setFullWidth] = React.useState(true);
+  const [maxWidth, setMaxWidth] = React.useState("lg");
 
+  const handleMaxWidthChange = (event) => {
+    setMaxWidth(event.target.value);
+  };
+
+  const handleFullWidthChange = (event) => {
+    setFullWidth(event.target.checked);
+  };
   const handleClickOpen = () => {
     setOpen(true);
     axios
@@ -62,13 +79,6 @@ export default (props) => {
     setOpen(false);
   };
 
-  const handleMaxWidthChange = (event) => {
-    setMaxWidth(event.target.value);
-  };
-
-  const handleFullWidthChange = (event) => {
-    setFullWidth(event.target.checked);
-  };
   return (
     <div>
       <Button
@@ -76,18 +86,28 @@ export default (props) => {
         className={classes.buttonStyle}
         onClick={handleClickOpen}
       >
-        View Income Statement
+        View Details
       </Button>
       <Dialog
-        fullScreen={fullScreen}
         open={open}
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
         fullWidth={fullWidth}
         maxWidth={maxWidth}
       >
+        <DialogTitle className={classes.titleStyle}>
+          Financial Details
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={handleClose}
+        >
+          <CloseIcon />
+        </IconButton>
         <DialogContent className={classes.tableStyle}>
-          <Table data={results} />
+          <TotalAssetsTable data={results} />
+          <IncomeStatement data={results} />
         </DialogContent>
       </Dialog>
     </div>
