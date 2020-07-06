@@ -17,13 +17,13 @@ const styles = makeStyles(() => ({
     margin: "5% auto",
   },
 }));
-const states = FilterExtract.paidFullNameDASHBOARD();
 
 const StatesField = (props) => {
   const classes = styles();
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
   const loading = open && options.length === 0;
+  const [states, setStates] = useState([]);
 
   const onStateChange = (e, v) => {
     if (v) {
@@ -32,6 +32,9 @@ const StatesField = (props) => {
       props.setState([]);
     }
   };
+  useEffect(() => {
+    setStates(FilterExtract.paidFullNameDASHBOARD());
+  }, []);
 
   return (
     <div className={classes.mainStyle}>

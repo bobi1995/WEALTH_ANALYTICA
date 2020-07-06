@@ -13,7 +13,7 @@ const PlanProfileTables = (props) => {
       {/**PLAN - Financial */}
       <div className="plan-businessInfo-2">
         <h1 className="plan-h1">Plan - Financial</h1>
-        <PlanProfileFinancial info={props} />
+        <PlanProfileFinancial info={props} companyID={props.companyID} />
       </div>
 
       {/**PLAN - PARTICIPANTS */}

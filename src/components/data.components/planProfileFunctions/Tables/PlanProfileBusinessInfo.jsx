@@ -5,7 +5,6 @@ import { Pie } from "react-chartjs-2";
 import OnePagerMap from "../../OnePagerFunctions/OnePagerMap";
 
 const PlaneProfileBusinessInfo = (props) => {
-  console.log(props);
   const [contribution, setContribution] = useState(0);
   const [benefit, setBenefit] = useState(0);
   const [welfare, setWelfare] = useState(0);
@@ -112,7 +111,7 @@ const PlaneProfileBusinessInfo = (props) => {
             </table>
           </div>
           <div className="inside-business-div">
-            <OnePagerMap address={props.data.Address1} city={props.data.City} />
+            {/* <OnePagerMap address={props.data.Address1} city={props.data.City} /> */}
           </div>
         </div>
         <div style={{ width: "45%", margin: " 0, auto " }}>

@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Bar, Line } from "react-chartjs-2";
 import DataExtract from "../PlanProfileDataExtract";
 import dashboardCharts from "../../dashboardFunctions/charts";
 import common from "../../commonFunctions/common";
+import TotalAssets from "../DrillDown/Level1/Type1/Financial-BalanceSheet";
+import IncomeStatement from "../DrillDown/Level1/Type1/Financial-IncomeStatement";
+import Button from "@material-ui/core/Button";
 
 export default (props) => {
+  const [openAssets, setOpenAssets] = useState(false);
   const database = props.info;
   const reducedData = dashboardCharts.arrayReducer(
     DataExtract.netAssetsPension(database.data[0])
@@ -222,6 +226,10 @@ export default (props) => {
             </tr>
           </tbody>
         </table>
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <TotalAssets companyID={props.companyID} />
+        <IncomeStatement companyID={props.companyID} />
       </div>
     </div>
   );
