@@ -73,7 +73,7 @@ export default (props) => {
         {
           id: 101,
           name: "Interest",
-          value: ``,
+          value: `$${common.reducer(props.data.IntTotalInterest)}`,
           parentId: 100,
         },
         {
@@ -115,15 +115,9 @@ export default (props) => {
           parentId: 101,
         },
         {
-          id: 108,
-          name: "Total Interest",
-          value: `$${common.reducer(props.data.IntTotalInterest)}`,
-          parentId: 101,
-        },
-        {
           id: 109,
           name: "Dividends",
-          value: ``,
+          value: `$${common.reducer(props.data.DivTotalDividends)}`,
           parentId: 100,
         },
         {
@@ -145,12 +139,6 @@ export default (props) => {
           parentId: 109,
         },
         {
-          id: 113,
-          name: "Total Dividends",
-          value: `$${common.reducer(props.data.DivTotalDividends)}`,
-          parentId: 109,
-        },
-        {
           id: 114,
           name: "Rent",
           value: `$${common.reducer(props.data.TotalRent)}`,
@@ -159,7 +147,7 @@ export default (props) => {
         {
           id: 115,
           name: "Net Gain Loss on Sale",
-          value: ``,
+          value: `$${common.reducer(props.data.TotalGainOnSale)}`,
           parentId: 100,
         },
         {
@@ -175,15 +163,9 @@ export default (props) => {
           parentId: 115,
         },
         {
-          id: 118,
-          name: "Total Gain on Sale",
-          value: `$${common.reducer(props.data.TotalGainOnSale)}`,
-          parentId: 115,
-        },
-        {
           id: 119,
           name: "Unrealized",
-          value: ``,
+          value: `$${common.reducer(props.data.TotalUnrealized)}`,
           parentId: 100,
         },
         {
@@ -196,12 +178,6 @@ export default (props) => {
           id: 121,
           name: "Unrealized Gains RE",
           value: `$${common.reducer(props.data.UnrealizedGainsRE)}`,
-          parentId: 119,
-        },
-        {
-          id: 122,
-          name: "Total Unrealized",
-          value: `$${common.reducer(props.data.TotalUnrealized)}`,
           parentId: 119,
         },
         {
@@ -239,6 +215,100 @@ export default (props) => {
           name: "Gain Loss on Reg Investment",
           value: `$${common.reducer(props.data.GainLossonRegInvestment)}`,
           parentId: 123,
+        },
+        {
+          id: 129,
+          name: "Other Income",
+          value: `$${common.reducer(props.data.OtherIncome)}`,
+        },
+        {
+          id: 130,
+          name: "Total Income",
+          value: `$${common.reducer(props.data.TotalIncome)}`,
+        },
+        {
+          id: 131,
+          name: "Benefit",
+          value: `$${common.reducer(props.data.TotalDistribution)}`,
+        },
+        {
+          id: 132,
+          name: "Distribution",
+          value: `$${common.reducer(props.data.Distribution)}`,
+          parentId: 131,
+        },
+        {
+          id: 133,
+          name: "Benefits Amount 1",
+          value: `$${common.reducer(props.data.BenefitsAmount1)}`,
+          parentId: 131,
+        },
+        {
+          id: 134,
+          name: "Benefits Amount 2",
+          value: `$${common.reducer(props.data.BenefitsAmount2)}`,
+          parentId: 131,
+        },
+        {
+          id: 135,
+          name: "Total Distribution Correction",
+          value: `$${common.reducer(props.data.TotalDistributionCorrection)}`,
+        },
+        {
+          id: 136,
+          name: "Total Participating Loans",
+          value: `$${common.reducer(props.data.TotalParticipatingLoans)}`,
+        },
+        {
+          id: 137,
+          name: "Total Interest",
+          value: `$${common.reducer(props.data.TotalInterest)}`,
+        },
+        {
+          id: 138,
+          name: "Administrative Fees",
+          value: `$${common.reducer(props.data.TotalAdminExp)}`,
+        },
+        {
+          id: 139,
+          name: "Professional Fees",
+          value: `$${common.reducer(props.data.ProfessionalFees)}`,
+          parentId: 138,
+        },
+        {
+          id: 140,
+          name: "Admin Fees",
+          value: `$${common.reducer(props.data.AdminFees)}`,
+          parentId: 138,
+        },
+        {
+          id: 141,
+          name: "Investment Management Fees",
+          value: `$${common.reducer(
+            props.data.AdminInvestmentManagementFeesFees
+          )}`,
+          parentId: 138,
+        },
+        {
+          id: 142,
+          name: "Other Fees",
+          value: `$${common.reducer(props.data.OtherFees)}`,
+          parentId: 138,
+        },
+        {
+          id: 143,
+          name: "Total Expenses",
+          value: `$${common.reducer(props.data.TotalExpenses)}`,
+        },
+        {
+          id: 144,
+          name: "Net Income",
+          value: `$${common.reducer(props.data.NetIncome)}`,
+        },
+        {
+          id: 145,
+          name: "Plan Transfers",
+          value: `$${common.reducer(props.data.PlanTransfers)}`,
         },
       ]}
       parentChildData={(row, rows) => rows.find((a) => a.id === row.parentId)}
