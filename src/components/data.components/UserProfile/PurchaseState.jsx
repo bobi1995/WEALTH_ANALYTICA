@@ -39,6 +39,7 @@ const PurchaseState = () => {
                   Type: type,
                   value: value,
                   Accounts: quantity,
+                  TotalPrice: quantity * value,
                 },
               ]);
               setTotalAmount(totalAmount + value * quantity);

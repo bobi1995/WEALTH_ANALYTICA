@@ -17,9 +17,9 @@ const PayPaylBtn = (props) => {
       el.State = n[1];
 
       el.Type === "Basic" ? (el.Type = 1) : (el.Type = 2);
-
       return el;
     });
+    console.log(requestBody);
     axios
       .post(`${apiAddress}/api/Users/ConfirmPayment`, requestBody, {
         headers: {
