@@ -74,10 +74,10 @@ const PremiumSubs = (props) => {
           </Grid>
         </Grid>
         <div className={classes.difference}>
-          <props.statIcon className={classes.differenceIcon} />
+          <props.staticon className={classes.differenceIcon} />
 
           <Typography className={classes.caption} variant="caption">
-            {props.smallText}
+            {props.smalltext}
           </Typography>
         </div>
       </CardContent>

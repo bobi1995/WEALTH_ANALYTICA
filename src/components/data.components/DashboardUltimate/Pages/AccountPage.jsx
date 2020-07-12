@@ -11,12 +11,17 @@ import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import GridChart from "./AccountPage/GridChart";
 import GridChartTotal from "./AccountPage/GridChartTotal";
+import Profile from "./AccountPage/Profile";
+import PersonalStates from "./AccountPage/PersonalStates";
+import ProfileDetails from "./AccountPage/ProfileDetails";
 
 import BatteryFullIcon from "@material-ui/icons/BatteryFull";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import Battery50Icon from "@material-ui/icons/Battery50";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
+import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
+import CreditCardIcon from "@material-ui/icons/CreditCard";
 const useStyles = makeStyles((theme) => ({
   paper: {
     margin: "3%",
@@ -65,51 +70,67 @@ const AccountPage = (props) => {
       <Magellan activeStep={0} />
       <div style={{ display: "flex", backgroundColor: "#F4F6F8" }}>
         <Main opened="account" />
+
         <Grid className={classes.gridStyle}>
           {flag === 0 ? (
-            <div className={classes.statsStyle}>
-              <Paper>
-                <GridChart
-                  data={results.ActiveSubs}
-                  name="Total Subscriptions"
-                  icon={CheckCircleOutlineIcon}
-                  statIcon={TrendingUpIcon}
-                />
-              </Paper>
-              <Paper>
-                <GridChart
-                  data={results.ActivePremiumSubs}
-                  name="Premium Subscriptions"
-                  icon={BatteryFullIcon}
-                  smallStat={
-                    (results.ActivePremiumSubs / results.ActiveSubs) * 100
-                  }
-                  statIcon={TrendingUpIcon}
-                  smallText="of All Active Subscriptions"
-                />
-              </Paper>
-              <Paper>
-                <GridChart
-                  data={results.ActiveBasicSubs}
-                  name="Basic Subscriptions"
-                  icon={Battery50Icon}
-                  smallStat={
-                    (results.ActiveBasicSubs / results.ActiveSubs) * 100
-                  }
-                  statIcon={TrendingUpIcon}
-                  smallText="of All Active Subscriptions"
-                />
-              </Paper>
-              <Paper>
-                <GridChartTotal
-                  data={results.ActiveSubsPrice}
-                  name="Actives Price"
-                  icon={AttachMoneyIcon}
-                  statIcon={AttachMoneyIcon}
-                  smallText="Amount paid for all Active Subscriptions"
-                />
-              </Paper>
-            </div>
+            results ? (
+              <div>
+                <div className={classes.statsStyle}>
+                  <Paper>
+                    <GridChart
+                      data={results.ActiveSubs}
+                      name="Total Subscriptions"
+                      icon={CheckCircleOutlineIcon}
+                      smalltext="Active and Expired"
+                      staticon={AddToPhotosIcon}
+                    />
+                  </Paper>
+                  <Paper>
+                    <GridChart
+                      data={results.ActivePremiumSubs}
+                      name="Premium Subscriptions"
+                      icon={BatteryFullIcon}
+                      smallstat={
+                        (results.ActivePremiumSubs / results.ActiveSubs) * 100
+                      }
+                      staticon={TrendingUpIcon}
+                      smalltext="of All Active Subscriptions"
+                    />
+                  </Paper>
+                  <Paper>
+                    <GridChart
+                      data={results.ActiveBasicSubs}
+                      name="Basic Subscriptions"
+                      icon={Battery50Icon}
+                      smallstat={
+                        (results.ActiveBasicSubs / results.ActiveSubs) * 100
+                      }
+                      staticon={TrendingUpIcon}
+                      smalltext="of All Active Subscriptions"
+                    />
+                  </Paper>
+                  <Paper>
+                    <GridChartTotal
+                      data={results.ActiveSubsPrice}
+                      name="Actives Price"
+                      icon={AttachMoneyIcon}
+                      staticon={CreditCardIcon}
+                      smalltext="Amount paid for all Active Subscriptions"
+                    />
+                  </Paper>
+                </div>
+                <div className={classes.statsStyle}>
+                  <Paper>
+                    <Profile />
+                  </Paper>
+                  <Paper>
+                    <ProfileDetails />
+                  </Paper>
+                </div>
+              </div>
+            ) : (
+              ""
+            )
           ) : (
             <div style={{ width: "100%", textAlign: "center" }}>
               <CircularProgress

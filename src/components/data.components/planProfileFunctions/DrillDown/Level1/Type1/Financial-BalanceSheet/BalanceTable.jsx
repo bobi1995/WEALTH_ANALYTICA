@@ -40,6 +40,7 @@ export default (props) => {
           id: 1,
           name: "Total Assets",
           value: `$${common.reducer(props.data.TotalAssets)}`,
+          parentOnly: "Parent 1",
         },
         {
           id: 2,
@@ -195,6 +196,7 @@ export default (props) => {
           id: 100,
           name: "Liabilities",
           value: `$${common.reducer(props.data.TotalLiabilities)}`,
+          parentOnly: "Parent 2",
         },
         {
           id: 102,
@@ -224,6 +226,7 @@ export default (props) => {
           id: 200,
           name: "Net Assets",
           value: `$${common.reducer(props.data.NetAssets)}`,
+          parentOnly: "Parent 3",
         },
       ]}
       parentChildData={(row, rows) => rows.find((a) => a.id === row.parentId)}
@@ -237,12 +240,9 @@ export default (props) => {
           fontWeight: "bold",
         },
 
-        rowStyle: (rowData) => {
-          return {
-            backgroundColor:
-              selectedRow === rowData.tableData.id ? "#EEE" : "#FFF",
-          };
-        },
+        rowStyle: (rowData) => ({
+          backgroundColor: !!rowData.parentOnly ? "white" : "#e0f3ff",
+        }),
       }}
     />
   ) : (

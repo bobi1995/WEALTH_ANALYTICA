@@ -40,6 +40,7 @@ export default (props) => {
           id: 1,
           name: "Contribution",
           value: `$${common.reducer(props.data.ContrTotalContribution)}`,
+          parentOnly: "Parent 1",
         },
         {
           id: 2,
@@ -69,6 +70,7 @@ export default (props) => {
           id: 100,
           name: "Earning On Investment",
           value: ``,
+          parentOnly: "Parent 2",
         },
         {
           id: 101,
@@ -220,16 +222,19 @@ export default (props) => {
           id: 129,
           name: "Other Income",
           value: `$${common.reducer(props.data.OtherIncome)}`,
+          parentOnly: "Parent 3",
         },
         {
           id: 130,
           name: "Total Income",
           value: `$${common.reducer(props.data.TotalIncome)}`,
+          parentOnly: "Parent 4",
         },
         {
           id: 131,
           name: "Benefit",
           value: `$${common.reducer(props.data.TotalDistribution)}`,
+          parentOnly: "Parent 5",
         },
         {
           id: 132,
@@ -253,21 +258,25 @@ export default (props) => {
           id: 135,
           name: "Total Distribution Correction",
           value: `$${common.reducer(props.data.TotalDistributionCorrection)}`,
+          parentOnly: "Parent 6",
         },
         {
           id: 136,
           name: "Total Participating Loans",
           value: `$${common.reducer(props.data.TotalParticipatingLoans)}`,
+          parentOnly: "Parent 6",
         },
         {
           id: 137,
           name: "Total Interest",
           value: `$${common.reducer(props.data.TotalInterest)}`,
+          parentOnly: "Parent 7",
         },
         {
           id: 138,
           name: "Administrative Fees",
           value: `$${common.reducer(props.data.TotalAdminExp)}`,
+          parentOnly: "Parent 8",
         },
         {
           id: 139,
@@ -299,16 +308,19 @@ export default (props) => {
           id: 143,
           name: "Total Expenses",
           value: `$${common.reducer(props.data.TotalExpenses)}`,
+          parentOnly: "Parent 9",
         },
         {
           id: 144,
           name: "Net Income",
           value: `$${common.reducer(props.data.NetIncome)}`,
+          parentOnly: "Parent 10",
         },
         {
           id: 145,
           name: "Plan Transfers",
           value: `$${common.reducer(props.data.PlanTransfers)}`,
+          parentOnly: "Parent 11",
         },
       ]}
       parentChildData={(row, rows) => rows.find((a) => a.id === row.parentId)}
@@ -322,12 +334,9 @@ export default (props) => {
           fontWeight: "bold",
         },
 
-        rowStyle: (rowData) => {
-          return {
-            backgroundColor:
-              selectedRow === rowData.tableData.id ? "#EEE" : "#FFF",
-          };
-        },
+        rowStyle: (rowData) => ({
+          backgroundColor: !!rowData.parentOnly ? "white" : "#e0f3ff",
+        }),
       }}
     />
   ) : (

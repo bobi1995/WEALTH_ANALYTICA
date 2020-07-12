@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import apiAddress from "../../../../../../global/endpointAddress";
+import apiAddress from "../../../../global/endpointAddress";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -8,10 +8,12 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import TotalAssetsTable from "./Financial-BalanceSheet/BalanceTable";
-import IncomeStatement from "./Financial-IncomeStatement/IncomeTable";
+import TotalAssetsTable from "./Level1/Type1/Financial-BalanceSheet/BalanceTable";
+import IncomeStatement from "./Level1/Type1/Financial-IncomeStatement/IncomeTable";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 const useStyles = makeStyles((theme) => ({
   buttonStyle: {
     backgroundColor: "#378FC3",
@@ -105,10 +107,23 @@ export default (props) => {
         >
           <CloseIcon />
         </IconButton>
-        <DialogContent className={classes.tableStyle}>
-          <TotalAssetsTable data={results} />
-          <IncomeStatement data={results} />
-        </DialogContent>
+
+        {results ? (
+          <DialogContent className={classes.tableStyle}>
+            <TotalAssetsTable data={results} />
+            <IncomeStatement data={results} />
+          </DialogContent>
+        ) : (
+          <div style={{ width: "100%", textAlign: "center" }}>
+            <CircularProgress
+              size={150}
+              style={{ textAlign: "center", marginTop: "15%" }}
+            />
+            <p style={{ textAlign: "center", marginTop: "3%" }}>
+              Loading....Please wait
+            </p>
+          </div>
+        )}
       </Dialog>
     </div>
   );

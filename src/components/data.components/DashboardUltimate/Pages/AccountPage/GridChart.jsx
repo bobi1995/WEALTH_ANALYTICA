@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
 
 const PremiumSubs = (props) => {
   const { className, ...rest } = props;
-
   const classes = useStyles();
 
   return (
@@ -67,12 +66,16 @@ const PremiumSubs = (props) => {
           </Grid>
         </Grid>
         <div className={classes.difference}>
-          <props.statIcon className={classes.differenceIcon} />
-          <Typography className={classes.differenceValue} variant="body2">
-            {numeral(props.smallStat).format("0,0")}%
-          </Typography>
+          <props.staticon className={classes.differenceIcon} />
+          {props.smallstat ? (
+            <Typography className={classes.differenceValue} variant="body2">
+              {numeral(props.smallstat).format("0,0")}%
+            </Typography>
+          ) : (
+            ""
+          )}
           <Typography className={classes.caption} variant="caption">
-            {props.smallText}
+            {props.smalltext}
           </Typography>
         </div>
       </CardContent>

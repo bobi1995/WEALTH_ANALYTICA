@@ -3,7 +3,7 @@ import { Bar, Line } from "react-chartjs-2";
 import DataExtract from "../PlanProfileDataExtract";
 import dashboardCharts from "../../dashboardFunctions/charts";
 import common from "../../commonFunctions/common";
-import FinancialDetails from "../DrillDown/Level1/Type1/FinancialDetails";
+import FinancialDetails from "../DrillDown/FinancialDetails";
 import Button from "@material-ui/core/Button";
 
 export default (props) => {
