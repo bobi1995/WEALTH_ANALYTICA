@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     width: 100,
     flexShrink: 0,
     flexGrow: 0,
+    border: "1px solid #378FC3",
   },
   progress: {
     marginTop: theme.spacing(2),
@@ -45,9 +46,8 @@ const AccountProfile = (props) => {
     city: sessionStorage.getItem("Address"),
     country: "USA",
     company: sessionStorage.getItem("CompanyName"),
-    avatar: "/images/avatars/avatar_11.png",
+    avatar: `data:image/png;base64,${sessionStorage.getItem("LogoData")}`,
   };
-
   return (
     <Card className={classes.root}>
       <CardContent>

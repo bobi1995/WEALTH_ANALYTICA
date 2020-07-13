@@ -47,24 +47,28 @@ export default (props) => {
           name: "Contribution Employer",
           value: `$${common.reducer(props.data.ContrContributionEmployer)}`,
           parentId: 1,
+          secondParent: "Parent 1 1",
         },
         {
           id: 3,
           name: "Contribution Participant",
           value: `$${common.reducer(props.data.ContrContributionParticipant)}`,
           parentId: 1,
+          secondParent: "Parent 1 2",
         },
         {
           id: 4,
           name: "Contribution Other Rec",
           value: `$${common.reducer(props.data.ContrContributionOtherRec)}`,
           parentId: 1,
+          secondParent: "Parent 1 3",
         },
         {
           id: 5,
           name: "Contribution Non Cash",
           value: `$${common.reducer(props.data.ContrContributionNonCash)}`,
           parentId: 1,
+          secondParent: "Parent 1 4",
         },
         {
           id: 100,
@@ -77,6 +81,7 @@ export default (props) => {
           name: "Interest",
           value: `$${common.reducer(props.data.IntTotalInterest)}`,
           parentId: 100,
+          secondParent: "Parent 100 1",
         },
         {
           id: 102,
@@ -121,6 +126,7 @@ export default (props) => {
           name: "Dividends",
           value: `$${common.reducer(props.data.DivTotalDividends)}`,
           parentId: 100,
+          secondParent: "Parent 100 2",
         },
         {
           id: 110,
@@ -145,12 +151,14 @@ export default (props) => {
           name: "Rent",
           value: `$${common.reducer(props.data.TotalRent)}`,
           parentId: 100,
+          secondParent: "Parent 100 3",
         },
         {
           id: 115,
           name: "Net Gain Loss on Sale",
           value: `$${common.reducer(props.data.TotalGainOnSale)}`,
           parentId: 100,
+          secondParent: "Parent 100 4",
         },
         {
           id: 116,
@@ -169,6 +177,7 @@ export default (props) => {
           name: "Unrealized",
           value: `$${common.reducer(props.data.TotalUnrealized)}`,
           parentId: 100,
+          secondParent: "Parent 100 5",
         },
         {
           id: 120,
@@ -187,6 +196,7 @@ export default (props) => {
           name: "Net Investment G/L",
           value: ``,
           parentId: 100,
+          secondParent: "Parent 100 6",
         },
         {
           id: 124,
@@ -241,18 +251,21 @@ export default (props) => {
           name: "Distribution",
           value: `$${common.reducer(props.data.Distribution)}`,
           parentId: 131,
+          secondParent: "Parent 131 1",
         },
         {
           id: 133,
           name: "Benefits Amount 1",
           value: `$${common.reducer(props.data.BenefitsAmount1)}`,
           parentId: 131,
+          secondParent: "Parent 131 2",
         },
         {
           id: 134,
           name: "Benefits Amount 2",
           value: `$${common.reducer(props.data.BenefitsAmount2)}`,
           parentId: 131,
+          secondParent: "Parent 131 3",
         },
         {
           id: 135,
@@ -283,12 +296,14 @@ export default (props) => {
           name: "Professional Fees",
           value: `$${common.reducer(props.data.ProfessionalFees)}`,
           parentId: 138,
+          secondParent: "Parent 138 1",
         },
         {
           id: 140,
           name: "Admin Fees",
           value: `$${common.reducer(props.data.AdminFees)}`,
           parentId: 138,
+          secondParent: "Parent 138 2",
         },
         {
           id: 141,
@@ -297,12 +312,7 @@ export default (props) => {
             props.data.AdminInvestmentManagementFeesFees
           )}`,
           parentId: 138,
-        },
-        {
-          id: 142,
-          name: "Other Fees",
-          value: `$${common.reducer(props.data.OtherFees)}`,
-          parentId: 138,
+          secondParent: "Parent 138 3",
         },
         {
           id: 143,
@@ -335,7 +345,11 @@ export default (props) => {
         },
 
         rowStyle: (rowData) => ({
-          backgroundColor: !!rowData.parentOnly ? "white" : "#e0f3ff",
+          backgroundColor: !!rowData.parentOnly
+            ? "white"
+            : rowData.secondParent
+            ? "#e0f3ff"
+            : "#AFD4EC",
         }),
       }}
     />

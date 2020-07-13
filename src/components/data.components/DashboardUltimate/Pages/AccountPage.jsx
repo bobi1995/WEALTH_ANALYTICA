@@ -52,7 +52,6 @@ const AccountPage = (props) => {
       .then((result) => {
         setResults(result.data);
         setFlag(0);
-        console.log(result.data);
       })
       .catch((e) => {
         console.log(e);

@@ -10,6 +10,10 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import TotalAssetsTable from "./Level1/Type1/Financial-BalanceSheet/BalanceTable";
 import IncomeStatement from "./Level1/Type1/Financial-IncomeStatement/IncomeTable";
+import BalanceType2 from "./Level1/Type2/BalanceType2";
+import IncomeType2 from "./Level1/Type2/IncomeType2";
+import BalanceType3 from "./Level1/Type3/BalanceType3";
+import IncomeType3 from "./Level1/Type3/IncomeType3";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -81,6 +85,34 @@ export default (props) => {
     setOpen(false);
   };
 
+  const renderCases = (companyType) => {
+    switch (companyType) {
+      case 1:
+        return (
+          <DialogContent className={classes.tableStyle}>
+            <TotalAssetsTable data={results} />
+            <IncomeStatement data={results} />
+          </DialogContent>
+        );
+      case 2:
+        return (
+          <DialogContent className={classes.tableStyle}>
+            <BalanceType2 data={results} />
+            <IncomeType2 data={results} />
+          </DialogContent>
+        );
+      case 3:
+        return (
+          <DialogContent className={classes.tableStyle}>
+            <BalanceType3 data={results} />
+            <IncomeType3 data={results} />
+          </DialogContent>
+        );
+      default:
+        return;
+    }
+  };
+
   return (
     <div>
       <Button
@@ -109,10 +141,7 @@ export default (props) => {
         </IconButton>
 
         {results ? (
-          <DialogContent className={classes.tableStyle}>
-            <TotalAssetsTable data={results} />
-            <IncomeStatement data={results} />
-          </DialogContent>
+          renderCases(results.CompanyType)
         ) : (
           <div style={{ width: "100%", textAlign: "center" }}>
             <CircularProgress
