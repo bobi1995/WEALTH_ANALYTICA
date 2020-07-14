@@ -10,6 +10,7 @@ import EqualizerIcon from "@material-ui/icons/Equalizer";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import history from "../../../../history/history";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 
 export default function NestedList(props) {
   const handleAccountClick = () => {
@@ -20,6 +21,12 @@ export default function NestedList(props) {
   const handleStatisticsClick = () => {
     history.push({
       pathname: `/statistics`,
+    });
+  };
+
+  const handlePurchaseClick = () => {
+    history.push({
+      pathname: `/purchase`,
     });
   };
   return (
@@ -60,6 +67,19 @@ export default function NestedList(props) {
           <ContactMailIcon />
         </ListItemIcon>
         <ListItemText primary="Connections" />
+      </ListItem>
+      <ListItem
+        button
+        style={
+          props.opened === "purchase" ? { backgroundColor: "#95C1DC" } : {}
+        }
+        button
+        onClick={handlePurchaseClick}
+      >
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Purchase" />
       </ListItem>
     </List>
   );

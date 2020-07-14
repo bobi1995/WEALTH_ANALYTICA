@@ -69,7 +69,7 @@ const Dashboard = (props) => {
     <div>
       <Datanavbar />
       <section className="clientDash-img">
-        <h1 className="clientDash-header1">Dashboard</h1>
+        <h1 className="clientDash-header1">Advisor Dashboard</h1>
       </section>
       <Magellan activeStep={0} />
       <StateInput setState={(state) => setState(state)} />

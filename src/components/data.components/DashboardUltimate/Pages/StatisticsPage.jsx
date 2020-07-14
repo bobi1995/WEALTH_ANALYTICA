@@ -77,7 +77,7 @@ const StatisticsPage = (props) => {
     <div>
       <Datanavbar />
       <section className="clientDash-img">
-        <h1 className="clientDash-header1">Dashboard</h1>
+        <h1 className="clientDash-header1">Advisor Dashboard</h1>
       </section>
       <Magellan activeStep={0} />
       <div style={{ display: "flex", backgroundColor: "#F4F6F8" }}>
