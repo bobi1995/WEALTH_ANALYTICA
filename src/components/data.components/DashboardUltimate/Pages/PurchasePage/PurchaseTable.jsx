@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MaterialTable from "material-table";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { makeStyles } from "@material-ui/core/styles";
-
+import numeral from "numeral";
 const useStyles = makeStyles((theme) => ({
   iconStyle: {
     "&:hover": {
@@ -12,11 +12,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default (props) => {
+  console.log(props.data);
   const classes = useStyles();
   const [selectedRow, setSelectedRow] = useState(null);
   const handleDelete = (state, type) => {
-    console.log(state, type);
-
     props.setData(
       props.data.filter(
         (el) => !(el.state.name == state.name && el.type == type)
@@ -54,6 +53,14 @@ export default (props) => {
         {
           field: "quantity",
           title: "Quantity",
+          cellStyle: {
+            textAlign: "center",
+          },
+        },
+        {
+          field: "totalPrice",
+          title: "Price",
+          render: (rowData) => `$${numeral(rowData.totalPrice).format(0, 0)}`,
           cellStyle: {
             textAlign: "center",
           },

@@ -21,7 +21,7 @@ const PurchasePage = (props) => {
       label="Number"
       type="number"
       inputProps={{
-        min: "0",
+        min: "1",
       }}
       value={props.quantity}
       onChange={handleChange}

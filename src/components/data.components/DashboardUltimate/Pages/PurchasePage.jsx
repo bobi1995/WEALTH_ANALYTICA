@@ -61,9 +61,8 @@ const PurchasePage = (props) => {
   const [selectedType, setSelectedType] = useState("");
   const [selectedQuantity, setSelectedQuantity] = useState("");
   const [data, setData] = useState("");
-  console.log(data);
   useEffect(() => {
-    setSelectedQuantity("1");
+    setSelectedQuantity("");
     setSelectedState("");
     setSelectedType("");
   }, [data]);
@@ -75,6 +74,8 @@ const PurchasePage = (props) => {
         state: selectedState,
         type: selectedType,
         quantity: selectedQuantity,
+        totalPrice:
+          selectedType === 1 ? selectedQuantity * 899 : selectedQuantity * 1899,
       },
     ]);
   };
