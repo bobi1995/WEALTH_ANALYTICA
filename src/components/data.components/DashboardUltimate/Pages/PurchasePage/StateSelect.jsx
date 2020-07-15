@@ -20,9 +20,9 @@ const PurchasePage = (props) => {
       options={states}
       getOptionLabel={(option) => (option ? option.name : "")}
       onChange={handlePick}
-      value={props.state}
+      defaultValue={props.state ? props.state : ""}
       renderInput={(params) => (
-        <TextField {...params} label="Combo box" variant="outlined" />
+        <TextField {...params} label="State" variant="outlined" />
       )}
     />
   );

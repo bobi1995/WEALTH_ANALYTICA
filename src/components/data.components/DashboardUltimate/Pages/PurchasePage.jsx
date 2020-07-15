@@ -61,7 +61,7 @@ const PurchasePage = (props) => {
   const [selectedType, setSelectedType] = useState("");
   const [selectedQuantity, setSelectedQuantity] = useState("");
   const [data, setData] = useState("");
-
+  console.log(data);
   useEffect(() => {
     setSelectedQuantity("1");
     setSelectedState("");
@@ -125,7 +125,7 @@ const PurchasePage = (props) => {
               Add
             </Button>
           </Paper>
-          {data ? (
+          {data.length > 0 ? (
             <Paper className={classes.paperStyleInput}>
               <PurchaseTable data={data} setData={(data) => setData(data)} />
             </Paper>
