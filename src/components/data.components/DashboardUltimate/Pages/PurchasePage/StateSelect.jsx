@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     width: "25%",
   },
 }));
-const PurchasePage = (props) => {
+const StateSelect = (props) => {
   const classes = useStyles();
   const handlePick = (e, v) => {
     props.setState(v);
@@ -28,4 +28,4 @@ const PurchasePage = (props) => {
   );
 };
 
-export default PurchasePage;
+export default StateSelect;

@@ -9,16 +9,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 const PurchasePage = (props) => {
   const classes = useStyles();
+  const isBusiness = sessionStorage.getItem("isBusiness");
 
   const handleChange = (e) => {
     props.setQuantity(e.target.value);
   };
-
   return (
     <TextField
+      disabled={isBusiness == "true" ? false : true}
       className={classes.inputStyle}
       id="standard-number"
-      label="Number"
+      label="Quantity"
       type="number"
       inputProps={{
         min: "1",

@@ -17,6 +17,7 @@ import StateSelect from "./PurchasePage/StateSelect";
 import TypeSelect from "./PurchasePage/TypeSelect";
 import QuantitySelect from "./PurchasePage/QuantitySelect";
 import PurchaseTable from "./PurchasePage/PurchaseTable";
+import PayPal from "./PurchasePage/PayPal";
 
 const useStyles = makeStyles((theme) => ({
   gridStyle: {
@@ -60,9 +61,16 @@ const PurchasePage = (props) => {
   const [selectedState, setSelectedState] = useState([""]);
   const [selectedType, setSelectedType] = useState("");
   const [selectedQuantity, setSelectedQuantity] = useState("");
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
+  const isBusiness = sessionStorage.getItem("isBusiness");
+
   useEffect(() => {
-    setSelectedQuantity("");
+    if (isBusiness == "false") {
+      setSelectedQuantity(1);
+    } else {
+      setSelectedQuantity("");
+    }
+
     setSelectedState("");
     setSelectedType("");
   }, [data]);
@@ -129,6 +137,13 @@ const PurchasePage = (props) => {
           {data.length > 0 ? (
             <Paper className={classes.paperStyleInput}>
               <PurchaseTable data={data} setData={(data) => setData(data)} />
+            </Paper>
+          ) : (
+            ""
+          )}
+          {data.length > 0 ? (
+            <Paper className={classes.paperStyleInput}>
+              <PayPal data={data} />
             </Paper>
           ) : (
             ""

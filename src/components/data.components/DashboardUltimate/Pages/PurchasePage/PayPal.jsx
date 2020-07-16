@@ -1,9 +1,24 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
+import DeleteIcon from "@material-ui/icons/Delete";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import numeral from "numeral";
 import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
-import apiAddress from "../../../global/endpointAddress";
+import apiAddress from "../../../../../global/endpointAddress";
+const useStyles = makeStyles((theme) => ({
+  headerStyle: {
+    color: "#378FC3",
+    fontFamily: "Baskervville",
+  },
+}));
+export default (props) => {
+  const total = props.data
+    .map((el) => el.totalPrice)
+    .reduce((a, b) => a + b, 0);
 
-const PayPaylBtn = (props) => {
+  const classes = useStyles();
+
   const paypal_ids = {
     sandbox:
       "ASFagTGTUJ79HlIsU_agQiClLj1nA0oFpLFAzDAQUICReFXr-SLieQstyfa5MaGy69vUjOvfvYZ7HC_C",
@@ -12,12 +27,14 @@ const PayPaylBtn = (props) => {
   };
 
   const onSuccess = (details, data) => {
-    const requestBody = props.states.map((el, index) => {
-      const n = el.State.split(" - ");
-      el.State = n[1];
-
-      el.Type === "Basic" ? (el.Type = 1) : (el.Type = 2);
-      return el;
+    const requestBody = props.data.map((el) => {
+      return {
+        State: el.state.abbriviation,
+        Type: el.type,
+        value: el.type === 1 ? 999 : 1899,
+        Accounts: el.quantity,
+        TotalPrice: el.totalPrice,
+      };
     });
     console.log(requestBody);
     axios
@@ -33,17 +50,19 @@ const PayPaylBtn = (props) => {
           alert(
             "Congratulations! Your purchase is successful, states will be added to your account."
           );
+          window.location.reload();
         } else {
           const temp = JSON.parse(sessionStorage.getItem("States"));
-          props.states.map((el) => {
+          requestBody.map((el) => {
             temp.push(el);
           });
+          console.log(temp);
           alert(
             "Congratulations! Your purchase is successful, states will be added to your account."
           );
 
           sessionStorage.setItem("States", JSON.stringify(temp));
-          window.location.reload();
+          //window.location.reload();
         }
       })
       .catch((e) => {
@@ -51,10 +70,19 @@ const PayPaylBtn = (props) => {
       });
   };
   return (
-    <div className="plan-businessInfo">
+    <div>
+      <Typography
+        variant="h3"
+        component="h3"
+        className={classes.headerStyle}
+        gutterBottom
+      >
+        ${numeral(total).format(0, 0)}
+      </Typography>
+
       <PayPalButton
         PayPalButton
-        amount={props.amount}
+        amount={total}
         currency={"USD"}
         onSuccess={(details, data) => onSuccess(details, data)}
         options={{
@@ -64,4 +92,3 @@ const PayPaylBtn = (props) => {
     </div>
   );
 };
-export default PayPaylBtn;

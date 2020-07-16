@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default (props) => {
-  console.log(props.data);
   const classes = useStyles();
   const [selectedRow, setSelectedRow] = useState(null);
   const handleDelete = (state, type) => {
