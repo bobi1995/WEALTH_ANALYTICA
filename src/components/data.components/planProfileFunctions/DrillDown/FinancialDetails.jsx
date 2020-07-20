@@ -20,6 +20,9 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import InvestmentDetails from "./Level2/InvestmentDetails";
 
 const useStyles = makeStyles((theme) => ({
+  mainDiv: {
+    marginTop: "60px",
+  },
   buttonStyle: {
     backgroundColor: "#378FC3",
     color: "white",
@@ -128,6 +131,7 @@ export default (props) => {
         aria-labelledby="responsive-dialog-title"
         fullWidth={fullWidth}
         maxWidth={maxWidth}
+        className={classes.mainDiv}
       >
         <DialogTitle className={classes.titleStyle}>
           Financial Details

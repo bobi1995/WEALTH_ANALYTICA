@@ -30,59 +30,68 @@ export default (props) => {
             >
               {el.Name}
             </Typography>
-            <small className="form-text text-muted">
-              ${numeral(el.TotalAmount).format("0,0")}
+            <small className="form-text text-muted" style={{ fontSize: "1em" }}>
+              Total Amount: ${numeral(el.TotalAmount).format("0,0")}
             </small>
-            {el.Funds.length > 0
-              ? el.Funds.map((fund) => (
-                  <MaterialTable
-                    style={{ margin: "3%" }}
-                    title={el.Name}
-                    icons={{
-                      Filter: React.forwardRef((props, ref) => (
-                        <SearchIcon ref={ref} />
-                      )),
-                      Search: React.forwardRef((props, ref) => (
-                        <SearchIcon ref={ref} />
-                      )),
-                      ResetSearch: React.forwardRef((props, ref) => (
-                        <RotateLeftIcon ref={ref} />
-                      )),
-                      SortArrow: ArrowUpward,
-                      DetailPanel: ChevronRight,
-                    }}
-                    columns={[
-                      {
-                        field: "Amount",
-                        title: "Amount",
-                      },
-                      {
-                        field: "FundName",
-                        title: "Fund Name",
-                      },
-                      {
-                        field: "PlanName",
-                        title: "Plan Name",
-                      },
-                      {
-                        field: "SponsorName",
-                        title: "Sponsor Name",
-                      },
-                    ]}
-                    data={fund}
-                    options={{
-                      paging: false,
-                      headerStyle: {
-                        backgroundColor: "#378FC3",
-                        color: "#FFF",
-                        fontSize: "17px",
-                        textAlign: "center",
-                        fontWeight: "bold",
-                      },
-                    }}
-                  />
-                ))
-              : ""}
+            {el.Funds.length > 0 ? (
+              <MaterialTable
+                style={{ margin: "3%" }}
+                title={el.Name}
+                icons={{
+                  Filter: React.forwardRef((props, ref) => (
+                    <SearchIcon ref={ref} />
+                  )),
+                  Search: React.forwardRef((props, ref) => (
+                    <SearchIcon ref={ref} />
+                  )),
+                  ResetSearch: React.forwardRef((props, ref) => (
+                    <RotateLeftIcon ref={ref} />
+                  )),
+                  SortArrow: ArrowUpward,
+                  DetailPanel: ChevronRight,
+                }}
+                columns={[
+                  {
+                    field: "SponsorName",
+                    title: "Sponsor Name",
+                  },
+
+                  {
+                    field: "PlanName",
+                    title: "Plan Name",
+                  },
+
+                  {
+                    field: "FundName",
+                    title: "Fund Name",
+                  },
+                  {
+                    field: "Amount",
+                    title: "Amount",
+                    render: (rowData) =>
+                      rowData.Amount
+                        ? `$${numeral(rowData.Amount).format("0,0")}`
+                        : "N/A",
+                    cellStyle: {
+                      textAlign: "center",
+                    },
+                  },
+                ]}
+                data={el.Funds}
+                options={{
+                  paging: false,
+                  headerStyle: {
+                    backgroundColor: "#378FC3",
+                    color: "#FFF",
+                    fontSize: "17px",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  },
+                }}
+              />
+            ) : (
+              ""
+            )}
           </div>
         );
       })
