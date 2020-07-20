@@ -17,6 +17,7 @@ import IncomeType3 from "./Level1/Type3/IncomeType3";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import InvestmentDetails from "./Level2/InvestmentDetails";
 
 const useStyles = makeStyles((theme) => ({
   buttonStyle: {
@@ -72,7 +73,6 @@ export default (props) => {
         }
       )
       .then((res) => {
-        console.log(res.data);
         setResults(res.data);
       })
       .catch((error) => {
@@ -152,6 +152,15 @@ export default (props) => {
               Loading....Please wait
             </p>
           </div>
+        )}
+        {results ? (
+          results.CompanyType === 1 ? (
+            <InvestmentDetails companyID={props.companyID} />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
         )}
       </Dialog>
     </div>

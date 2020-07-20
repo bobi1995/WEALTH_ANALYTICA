@@ -7,9 +7,7 @@ import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import numeral from "numeral";
 const useStyles = makeStyles((theme) => ({
-  root: {
-    height: "100%",
-  },
+  root: {},
   content: {
     alignItems: "center",
     display: "flex",

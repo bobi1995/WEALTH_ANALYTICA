@@ -7,7 +7,6 @@ import { ArrowUpward, ChevronRight } from "@material-ui/icons";
 
 export default (props) => {
   const [selectedRow, setSelectedRow] = useState(null);
-  console.log(props.data);
   return props.data ? (
     <MaterialTable
       style={{ width: "100%", margin: "3%" }}
@@ -29,7 +28,6 @@ export default (props) => {
         {
           field: "value",
           title: "Value",
-
           cellStyle: {
             textAlign: "center",
           },
