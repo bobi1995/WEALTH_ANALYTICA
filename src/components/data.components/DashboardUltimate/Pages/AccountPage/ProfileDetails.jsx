@@ -98,13 +98,13 @@ const AccountDetails = (props) => {
                   margin="dense"
                   name="Address"
                   onChange={handleChange}
-                  required
                   value={values.address}
                   variant="outlined"
                 />
               </Grid>
               <Grid>
                 <TextField
+                  disabled
                   label="Email Address"
                   margin="dense"
                   name="email"

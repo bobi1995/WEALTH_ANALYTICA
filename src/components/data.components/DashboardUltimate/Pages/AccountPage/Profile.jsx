@@ -47,6 +47,14 @@ const AccountProfile = (props) => {
     country: "USA",
     company: sessionStorage.getItem("CompanyName"),
     avatar: `data:image/png;base64,${sessionStorage.getItem("LogoData")}`,
+    email: sessionStorage.getItem("Email"),
+    phone: sessionStorage.getItem("CompanyPhone"),
+  };
+
+  const completeness = () => {
+    let count = 0;
+    const arr = Object.values(user);
+    return (arr.filter((el) => el !== null).length / 8) * 100;
   };
   return (
     <Card className={classes.root}>
@@ -75,8 +83,10 @@ const AccountProfile = (props) => {
           <Avatar className={classes.avatar} src={user.avatar} />
         </div>
         <div className={classes.progress}>
-          <Typography variant="body1">Profile Completeness: 70%</Typography>
-          <LinearProgress value={70} variant="determinate" />
+          <Typography variant="body1">
+            Profile Completeness: {completeness()}%
+          </Typography>
+          <LinearProgress value={completeness()} variant="determinate" />
         </div>
       </CardContent>
       <Divider />

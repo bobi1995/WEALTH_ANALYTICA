@@ -109,6 +109,7 @@ const Dashboard = (props) => {
                 icon={AttachMoneyIcon}
                 smalltext="Net Assets for 2018"
                 staticon={AccountBalanceIcon}
+                colornegative="true"
               />
             </Paper>
             <Paper>

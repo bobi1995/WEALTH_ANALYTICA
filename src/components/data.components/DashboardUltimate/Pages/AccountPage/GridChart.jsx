@@ -55,7 +55,12 @@ const PremiumSubs = (props) => {
             >
               {props.name}
             </Typography>
-            <Typography variant="h3">{props.data}</Typography>
+            <Typography
+              variant="h3"
+              style={props.colornegative ? { color: "red" } : {}}
+            >
+              {props.data}
+            </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>

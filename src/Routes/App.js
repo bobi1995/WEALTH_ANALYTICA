@@ -13,6 +13,7 @@ import SavedFilters from "../components/data.components/SavedFilters";
 import AccountPage from "../components/data.components/DashboardUltimate/Pages/AccountPage";
 import StatisticsPage from "../components/data.components/DashboardUltimate/Pages/StatisticsPage";
 import PurchasePage from "../components/data.components/DashboardUltimate/Pages/PurchasePage";
+import UserManagement from "../components/data.components/DashboardUltimate/Pages/UserManagement";
 
 import Demo from "../components/Demo";
 import "../styles/main.scss";
@@ -30,6 +31,7 @@ function App() {
         <PrivateRoute path="/account" component={AccountPage} />
         <PrivateRoute path="/statistics" component={StatisticsPage} />
         <PrivateRoute path="/purchase" component={PurchasePage} />
+        <PrivateRoute path="/management" component={UserManagement} />
 
         <PrivateRoute path="/filters" component={Filter2} />
 

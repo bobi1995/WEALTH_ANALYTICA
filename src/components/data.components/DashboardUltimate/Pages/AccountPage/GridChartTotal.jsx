@@ -64,7 +64,7 @@ const PremiumSubs = (props) => {
               {props.name}
             </Typography>
             <Typography variant="h3" style={{ color: "white" }}>
-              {numeral(props.data).format(0, 0)}
+              ${numeral(props.data).format(0, 0)}
             </Typography>
           </Grid>
           <Grid item>

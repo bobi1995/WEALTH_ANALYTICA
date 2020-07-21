@@ -14,11 +14,12 @@ const StateSelect = (props) => {
   const handlePick = (e, v) => {
     props.setState(v);
   };
+
   return (
     <Autocomplete
       className={classes.inputStyle}
       options={states}
-      getOptionLabel={(option) => (option ? option.name : "")}
+      getOptionLabel={(option) => (option.name ? option.name : "")}
       onChange={handlePick}
       value={props.state}
       renderInput={(params) => (

@@ -47,21 +47,18 @@ export default (props) => {
           name: "Contribution Employer",
           value: `$${common.reducer(props.data.ContrContributionEmployer)}`,
           parentId: 1,
-          secondParent: "Parent 1 1",
         },
         {
           id: 3,
           name: "Contribution Participant",
           value: `$${common.reducer(props.data.ContrContributionParticipant)}`,
           parentId: 1,
-          secondParent: "Parent 1 2",
         },
         {
           id: 4,
           name: "Contribution Other Rec",
           value: `$${common.reducer(props.data.ContrContributionOtherRec)}`,
           parentId: 1,
-          secondParent: "Parent 1 3",
         },
         {
           id: 130,
@@ -124,8 +121,8 @@ export default (props) => {
           backgroundColor: !!rowData.parentOnly
             ? "white"
             : rowData.secondParent
-            ? "#e0f3ff"
-            : "#AFD4EC",
+            ? "#AFD4EC"
+            : "#e0f3ff",
         }),
       }}
     />
