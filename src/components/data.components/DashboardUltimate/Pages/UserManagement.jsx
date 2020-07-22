@@ -6,9 +6,6 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import FreeStates from "./UserManagement/FreeStates";
-import axios from "axios";
-import apiAddress from "../../../../global/endpointAddress";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import Users from "./UserManagement/Users";
 
 const useStyles = makeStyles((theme) => ({

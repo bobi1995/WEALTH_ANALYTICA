@@ -10,6 +10,9 @@ import apiAddress from "../../../../../global/endpointAddress";
 import axios from "axios";
 import Moment from "react-moment";
 import Button from "@material-ui/core/Button";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import AssignState from "./FreeStates/AssignState";
+
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     textAlign: "center",
@@ -70,93 +73,94 @@ const FreeStates = () => {
       </Typography>
 
       <div className={classes.statesStyle}>
-        {results
-          ? results.map((el) => (
-              <div key={el.State} className={classes.singleState}>
-                <Typography
-                  variant="h4"
-                  component="h4"
-                  className={classes.headerStyle}
-                  gutterBottom
-                >
-                  {common.fullNameByAbbr(el.State)} - {el.State}
-                </Typography>
-                <MaterialTable
-                  style={{ margin: "3%" }}
-                  title="Free States"
-                  icons={{
-                    Filter: React.forwardRef((props, ref) => (
-                      <SearchIcon ref={ref} />
-                    )),
-                    Search: React.forwardRef((props, ref) => (
-                      <SearchIcon ref={ref} />
-                    )),
-                    ResetSearch: React.forwardRef((props, ref) => (
-                      <RotateLeftIcon ref={ref} />
-                    )),
-                    SortArrow: ArrowUpward,
-                    DetailPanel: ChevronRight,
-                  }}
-                  columns={[
-                    {
-                      field: "Type",
-                      title: "Type",
-                      render: (rowData) =>
-                        rowData.Type === 1 ? "Basic" : "Premium",
-                      cellStyle: {
-                        textAlign: "center",
-                      },
-                    },
-                    {
-                      field: "Count",
-                      title: "Quantity",
-                      cellStyle: {
-                        textAlign: "center",
-                      },
-                    },
-                    {
-                      field: "ExpireDate",
-                      title: "Expires",
-                      render: (rowData) => (
-                        <Moment format="MMM/DD/YYYY">
-                          {rowData.ExpireDate}
-                        </Moment>
-                      ),
-                      cellStyle: {
-                        textAlign: "center",
-                      },
-                    },
-                    {
-                      field: "Assign",
-                      title: "Assign",
-                      render: (rowData) => (
-                        <Button
-                          variant="contained"
-                          id="right-filter-btn"
-                          className={classes.saveButton}
-                          //startIcon={<SaveIcon />}
-                          //onClick={handleClickOpen}
-                        >
-                          Assign
-                        </Button>
-                      ),
-                    },
-                  ]}
-                  data={el.Details}
-                  options={{
-                    paging: false,
-                    headerStyle: {
-                      backgroundColor: "#378FC3",
-                      color: "#FFF",
-                      fontSize: "17px",
+        {results ? (
+          results.map((el) => (
+            <div key={el.State} className={classes.singleState}>
+              <Typography
+                variant="h4"
+                component="h4"
+                className={classes.headerStyle}
+                gutterBottom
+              >
+                {common.fullNameByAbbr(el.State)} - {el.State}
+              </Typography>
+              <MaterialTable
+                style={{ margin: "3%" }}
+                title="Free States"
+                icons={{
+                  Filter: React.forwardRef((props, ref) => (
+                    <SearchIcon ref={ref} />
+                  )),
+                  Search: React.forwardRef((props, ref) => (
+                    <SearchIcon ref={ref} />
+                  )),
+                  ResetSearch: React.forwardRef((props, ref) => (
+                    <RotateLeftIcon ref={ref} />
+                  )),
+                  SortArrow: ArrowUpward,
+                  DetailPanel: ChevronRight,
+                }}
+                columns={[
+                  {
+                    field: "Type",
+                    title: "Type",
+                    render: (rowData) =>
+                      rowData.Type === 1 ? "Basic" : "Premium",
+                    cellStyle: {
                       textAlign: "center",
-                      fontWeight: "bold",
                     },
-                  }}
-                />
-              </div>
-            ))
-          : ""}
+                  },
+                  {
+                    field: "Count",
+                    title: "Quantity",
+                    cellStyle: {
+                      textAlign: "center",
+                    },
+                  },
+                  {
+                    field: "ExpireDate",
+                    title: "Expires",
+                    render: (rowData) => (
+                      <Moment format="MMM/DD/YYYY">{rowData.ExpireDate}</Moment>
+                    ),
+                    cellStyle: {
+                      textAlign: "center",
+                    },
+                  },
+                  {
+                    field: "Assign",
+                    title: "Assign",
+                    sorting: false,
+
+                    render: (rowData) => <AssignState data={rowData} />,
+                  },
+                ]}
+                data={el.Details}
+                options={{
+                  paging: false,
+                  search: false,
+                  headerStyle: {
+                    backgroundColor: "#378FC3",
+                    color: "#FFF",
+                    fontSize: "17px",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  },
+                }}
+              />
+            </div>
+          ))
+        ) : (
+          <div style={{ width: "100%", textAlign: "center" }}>
+            <CircularProgress
+              size={150}
+              style={{ textAlign: "center", marginTop: "15%" }}
+            />
+            <p style={{ textAlign: "center", marginTop: "3%" }}>
+              Loading....Please wait
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

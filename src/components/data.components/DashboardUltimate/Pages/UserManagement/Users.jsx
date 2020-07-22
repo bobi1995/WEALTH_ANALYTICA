@@ -5,15 +5,15 @@ import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import { ArrowUpward, ChevronRight } from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import common from "../../../commonFunctions/commonExtracts";
 import apiAddress from "../../../../../global/endpointAddress";
 import axios from "axios";
-import Moment from "react-moment";
-import Button from "@material-ui/core/Button";
+import UserStates from "./Users/UserStates";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     textAlign: "center",
+    paddingBottom: "1%",
   },
   headerStyle: {
     color: "#378FC3",
@@ -41,7 +41,6 @@ const FreeStates = () => {
   const classes = useStyles();
 
   const [results, setResults] = useState("");
-  console.log(results);
   useEffect(() => {
     const url = `${apiAddress}/api/Users/GetCompanyUsers`;
 
@@ -60,7 +59,6 @@ const FreeStates = () => {
       });
   }, []);
 
-  console.log(results);
   return (
     <div className={classes.mainDiv}>
       <Typography
@@ -110,17 +108,8 @@ const FreeStates = () => {
             {
               field: "View",
               title: "View",
-              render: (rowData) => (
-                <Button
-                  variant="contained"
-                  id="right-filter-btn"
-                  className={classes.viewButton}
-                  //startIcon={<SaveIcon />}
-                  //onClick={handleClickOpen}
-                >
-                  View
-                </Button>
-              ),
+              sorting: false,
+              render: (rowData) => <UserStates data={rowData} />,
             },
           ]}
           data={results}
@@ -136,7 +125,15 @@ const FreeStates = () => {
           }}
         />
       ) : (
-        ""
+        <div style={{ width: "100%", textAlign: "center" }}>
+          <CircularProgress
+            size={150}
+            style={{ textAlign: "center", marginTop: "15%" }}
+          />
+          <p style={{ textAlign: "center", marginTop: "3%" }}>
+            Loading....Please wait
+          </p>
+        </div>
       )}
     </div>
   );
