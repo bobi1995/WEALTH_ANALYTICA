@@ -132,7 +132,9 @@ const FreeStates = () => {
                     title: "Assign",
                     sorting: false,
 
-                    render: (rowData) => <AssignState data={rowData} />,
+                    render: (rowData) => (
+                      <AssignState data={rowData} state={el.State} />
+                    ),
                   },
                 ]}
                 data={el.Details}

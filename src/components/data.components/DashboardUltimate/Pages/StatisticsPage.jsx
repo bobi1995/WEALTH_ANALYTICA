@@ -72,7 +72,6 @@ const StatisticsPage = (props) => {
         });
     }
   }, [state, year]);
-  console.log(data);
   return (
     <div>
       <Datanavbar />
