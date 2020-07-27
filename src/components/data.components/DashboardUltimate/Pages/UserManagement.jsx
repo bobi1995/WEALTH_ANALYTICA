@@ -7,6 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import FreeStates from "./UserManagement/FreeStates";
 import Users from "./UserManagement/Users";
+import AddUser from "./UserManagement/AddUser";
 
 const useStyles = makeStyles((theme) => ({
   paperStyleInput: {
@@ -32,6 +33,9 @@ const UserManagement = (props) => {
         <Grid className={classes.gridStyle}>
           <Paper className={classes.paperStyleInput}>
             <Users />
+          </Paper>
+          <Paper className={classes.paperStyleInput}>
+            <AddUser />
           </Paper>
           <Paper className={classes.paperStyleInput}>
             <FreeStates />
