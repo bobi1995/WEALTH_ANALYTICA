@@ -43,7 +43,6 @@ const AssignSubscription = (props) => {
     );
     setBusiness(businessCheck);
     setPickedUserToAssign(option);
-    console.log(businessCheck, option);
   };
 
   const assignToUser = (e) => {
@@ -112,7 +111,6 @@ const AssignSubscription = (props) => {
             &times;
           </a>
           <h1 className="purchase-totalAmount">
-            {console.log(props)}
             Assign State {props.state} to User
           </h1>
           <form onSubmit={assignToUser}>

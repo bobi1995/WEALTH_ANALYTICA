@@ -439,13 +439,13 @@ const PlanProfileTables = (props) => {
       {/**PLAN - Healtcare Insurance */}
       <div className="plan-businessInfo-2" data-html2canvas-ignore>
         <h1 className="plan-h1">Plan - Healthcare Insurance</h1>
-        <PlanProfileServiceHealth info={props} />
+        <PlanProfileServiceHealth info={props} companyID={props.companyID} />
       </div>
 
       {/* *PLAN - Service Providers */}
       <div className="plan-businessInfo-2" data-html2canvas-ignore>
         <h1 className="plan-h1">Plan - Service Providers</h1>
-        <PlanProfileServiceProviders info={props} />
+        <PlanProfileServiceProviders info={props} companyID={props.companyID} />
       </div>
     </div>
   );

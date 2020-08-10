@@ -4,6 +4,9 @@ import DataExtract from "../PlanProfileDataExtract";
 import common from "../../commonFunctions/common";
 import { Doughnut } from "react-chartjs-2";
 import dashboardCharts from "../../dashboardFunctions/charts";
+import Carriers from "../DrillDown/HealthCare/Carriers";
+import Brokers from "../DrillDown/HealthCare/Brokers";
+import BrokerFailures from "../DrillDown/HealthCare/BrokerFailures";
 
 export default (props) => {
   const database = props.info;
@@ -136,6 +139,11 @@ export default (props) => {
             </tr>
           </tbody>
         </table>
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <Carriers companyID={props.companyID} />
+        <Brokers companyID={props.companyID} />
+        <BrokerFailures companyID={props.companyID} />
       </div>
     </div>
   );

@@ -12,7 +12,6 @@ const addBookmark = (companyID, data, setData) => {
       }
     )
     .then((res) => {
-      console.log("add");
       const arr = data.map((el) => {
         if (el.CompanyID === companyID) {
           el.IsBookmarked = true;
@@ -43,7 +42,6 @@ const removeBookmark = (companyID, data, setData) => {
       }
     )
     .then((res) => {
-      console.log("removed");
       const arr = data.map((el) => {
         if (el.CompanyID === companyID) {
           el.IsBookmarked = false;

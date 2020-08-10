@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import MaterialTable from "material-table";
 import SearchIcon from "@material-ui/icons/Search";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
-import common from "../../../../commonFunctions/common";
+import common from "../../../../../commonFunctions/common";
 import { ArrowUpward, ChevronRight } from "@material-ui/icons";
 
 export default (props) => {
   const [selectedRow, setSelectedRow] = useState(null);
-  console.log(props.data);
   return props.data ? (
     <MaterialTable
       style={{ width: "100%", margin: "3%" }}

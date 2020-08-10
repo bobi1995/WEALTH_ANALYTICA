@@ -36,7 +36,6 @@ export default (props) => {
         TotalPrice: el.totalPrice,
       };
     });
-    console.log(requestBody);
     axios
       .post(`${apiAddress}/api/Users/ConfirmPayment`, requestBody, {
         headers: {
@@ -45,7 +44,6 @@ export default (props) => {
         },
       })
       .then((res) => {
-        console.log(res);
         if (sessionStorage.getItem("isBusiness") === "true") {
           alert(
             "Congratulations! Your purchase is successful, states will be added to your account."
@@ -56,7 +54,6 @@ export default (props) => {
           requestBody.map((el) => {
             temp.push(el);
           });
-          console.log(temp);
           alert(
             "Congratulations! Your purchase is successful, states will be added to your account."
           );

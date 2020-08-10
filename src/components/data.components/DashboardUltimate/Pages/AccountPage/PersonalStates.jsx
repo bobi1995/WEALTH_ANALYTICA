@@ -3,7 +3,6 @@ import MaterialTable from "material-table";
 import common from "../../../commonFunctions/commonExtracts";
 
 export default (props) => {
-  console.log(common.extractPaidFullName());
   return (
     <MaterialTable
       title="Active Subscriptions"

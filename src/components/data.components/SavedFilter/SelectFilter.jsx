@@ -39,7 +39,6 @@ const SelectFilter = (props) => {
         })
         .then((res) => {
           setFilters(res.data);
-          console.log(res.data);
         })
         .catch((err) => {
           console.log(err);

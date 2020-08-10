@@ -1,23 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import apiAddress from "../../../../global/endpointAddress";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme, makeStyles } from "@material-ui/core/styles";
+import apiAddress from "../../../../../global/endpointAddress";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import TotalAssetsTable from "./Level1/Type1/Financial-BalanceSheet/BalanceTable";
-import IncomeStatement from "./Level1/Type1/Financial-IncomeStatement/IncomeTable";
-import BalanceType2 from "./Level1/Type2/BalanceType2";
-import IncomeType2 from "./Level1/Type2/IncomeType2";
-import BalanceType3 from "./Level1/Type3/BalanceType3";
-import IncomeType3 from "./Level1/Type3/IncomeType3";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import InvestmentDetails from "./Level2/InvestmentDetails";
+import IndirectProviders from "./Tables/IndirectProviders";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
@@ -46,28 +38,25 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(1),
     top: theme.spacing(1),
   },
+  headerStyle: {
+    color: "#378FC3",
+    fontFamily: "Baskervville",
+    textAlign: "center",
+  },
 }));
 
 export default (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [results, setResults] = useState("");
-
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState("lg");
 
-  const handleMaxWidthChange = (event) => {
-    setMaxWidth(event.target.value);
-  };
-
-  const handleFullWidthChange = (event) => {
-    setFullWidth(event.target.checked);
-  };
   const handleClickOpen = () => {
     setOpen(true);
     axios
       .get(
-        `${apiAddress}/api/SmallCompanies/GetFinancialDetails?companyID=${props.companyID}&year=2018`,
+        `${apiAddress}/api/SmallCompanies/GetServiceProvidersDetails?companyID=${props.companyID}&year=2018`,
         {
           headers: {
             Authorization: "Basic " + sessionStorage.getItem("Token"),
@@ -88,34 +77,6 @@ export default (props) => {
     setOpen(false);
   };
 
-  const renderCases = (companyType) => {
-    switch (companyType) {
-      case 1:
-        return (
-          <DialogContent className={classes.tableStyle}>
-            <TotalAssetsTable data={results} />
-            <IncomeStatement data={results} />
-          </DialogContent>
-        );
-      case 2:
-        return (
-          <DialogContent className={classes.tableStyle}>
-            <BalanceType2 data={results} />
-            <IncomeType2 data={results} />
-          </DialogContent>
-        );
-      case 3:
-        return (
-          <DialogContent className={classes.tableStyle}>
-            <BalanceType3 data={results} />
-            <IncomeType3 data={results} />
-          </DialogContent>
-        );
-      default:
-        return;
-    }
-  };
-
   return (
     <div>
       <Button
@@ -123,7 +84,7 @@ export default (props) => {
         className={classes.buttonStyle}
         onClick={handleClickOpen}
       >
-        View Details
+        Indirect Providers
       </Button>
       <Dialog
         open={open}
@@ -134,7 +95,7 @@ export default (props) => {
         className={classes.mainDiv}
       >
         <DialogTitle className={classes.titleStyle}>
-          Financial Details
+          Service Providers Details
         </DialogTitle>
         <IconButton
           aria-label="close"
@@ -145,7 +106,20 @@ export default (props) => {
         </IconButton>
 
         {results ? (
-          renderCases(results.CompanyType)
+          <div>
+            {results.IndirectProviders.length > 0 ? (
+              <IndirectProviders data={results.IndirectProviders} />
+            ) : (
+              <Typography
+                variant="h3"
+                component="h3"
+                className={classes.headerStyle}
+                gutterBottom
+              >
+                No Indirect Providers to be displayed
+              </Typography>
+            )}
+          </div>
         ) : (
           <div style={{ width: "100%", textAlign: "center" }}>
             <CircularProgress
@@ -156,15 +130,6 @@ export default (props) => {
               Loading....Please wait
             </p>
           </div>
-        )}
-        {results ? (
-          results.CompanyType === 1 ? (
-            <InvestmentDetails companyID={props.companyID} />
-          ) : (
-            ""
-          )
-        ) : (
-          ""
         )}
       </Dialog>
     </div>

@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import MaterialTable from "material-table";
 import SearchIcon from "@material-ui/icons/Search";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
-import common from "../../../../commonFunctions/common";
+import common from "../../../../../commonFunctions/common";
 import { ArrowUpward, ChevronRight } from "@material-ui/icons";
 
 export default (props) => {
   const [selectedRow, setSelectedRow] = useState(null);
-  console.log(props.data);
   return props.data ? (
     <MaterialTable
       style={{ width: "100%", margin: "3%" }}
@@ -47,18 +46,28 @@ export default (props) => {
           name: "Contribution Employer",
           value: `$${common.reducer(props.data.ContrContributionEmployer)}`,
           parentId: 1,
+          secondParent: "Parent 1 1",
         },
         {
           id: 3,
           name: "Contribution Participant",
           value: `$${common.reducer(props.data.ContrContributionParticipant)}`,
           parentId: 1,
+          secondParent: "Parent 1 2",
         },
         {
           id: 4,
           name: "Contribution Other Rec",
           value: `$${common.reducer(props.data.ContrContributionOtherRec)}`,
           parentId: 1,
+          secondParent: "Parent 1 3",
+        },
+        {
+          id: 5,
+          name: "Contribution Non Cash",
+          value: `$${common.reducer(props.data.ContrContributionNonCash)}`,
+          parentId: 1,
+          secondParent: "Parent 1 4",
         },
         {
           id: 130,
@@ -66,6 +75,7 @@ export default (props) => {
           value: `$${common.reducer(props.data.TotalIncome)}`,
           parentOnly: "Parent 4",
         },
+
         {
           id: 143,
           name: "Total Expenses",
@@ -80,16 +90,23 @@ export default (props) => {
         },
 
         {
-          id: 142,
-          name: "Other Fees",
-          value: `$${common.reducer(props.data.OtherFees)}`,
+          id: 135,
+          name: "Total Distribution Correction",
+          value: `$${common.reducer(props.data.TotalDistributionCorrection)}`,
           parentId: 143,
         },
 
         {
-          id: 135,
-          name: "Total Distribution Correction",
-          value: `$${common.reducer(props.data.TotalDistributionCorrection)}`,
+          id: 136,
+          name: "Total Participating Loans",
+          value: `$${common.reducer(props.data.TotalParticipatingLoans)}`,
+          parentId: 143,
+        },
+
+        {
+          id: 142,
+          name: "Other Fees",
+          value: `$${common.reducer(props.data.OtherFees)}`,
           parentId: 143,
         },
         {
@@ -121,8 +138,8 @@ export default (props) => {
           backgroundColor: !!rowData.parentOnly
             ? "white"
             : rowData.secondParent
-            ? "#AFD4EC"
-            : "#e0f3ff",
+            ? "#e0f3ff"
+            : "#AFD4EC",
         }),
       }}
     />

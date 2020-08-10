@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MaterialTable from "material-table";
 import SearchIcon from "@material-ui/icons/Search";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
-import common from "../../../../../commonFunctions/common";
+import common from "../../../../../../commonFunctions/common";
 import { ArrowUpward, ChevronRight } from "@material-ui/icons";
 
 export default (props) => {

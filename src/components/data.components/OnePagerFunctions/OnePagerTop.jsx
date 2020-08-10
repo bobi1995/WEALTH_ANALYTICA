@@ -33,7 +33,6 @@ const OnePagerTop = (props) => {
       message: `${document.getElementById("emailText").value}`,
       CompanyId: `${props.data}`,
     };
-    console.log(mailData);
     axios
       .post(sendUrl, mailData, {
         headers: {

@@ -12,7 +12,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
-import apiAddress from "../../../../../global/endpointAddress";
+import apiAddress from "../../../../../../global/endpointAddress";
 import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Table from "../Level2/InvestmentDetails/Table";
@@ -38,7 +38,6 @@ export default function FullScreenDialog(props) {
   const [results, setResults] = useState("");
   const handleClickOpen = () => {
     setOpen(true);
-    console.log("here");
     axios
       .get(
         `${apiAddress}/api/SmallCompanies/GetInvestmentDetails?companyID=${props.companyID}&year=2018`,
@@ -50,7 +49,6 @@ export default function FullScreenDialog(props) {
         }
       )
       .then((res) => {
-        console.log(res.data);
         setResults(res.data);
       })
       .catch((error) => {

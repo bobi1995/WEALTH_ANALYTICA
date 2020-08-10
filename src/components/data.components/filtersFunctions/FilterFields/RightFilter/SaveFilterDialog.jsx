@@ -38,7 +38,6 @@ const useStyles = makeStyles(() => ({
 
 export default (props) => {
   const classes = useStyles();
-  console.log(props);
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
