@@ -89,7 +89,10 @@ const AccountPage = (props) => {
                       name="Premium Subscriptions"
                       icon={BatteryFullIcon}
                       smallstat={
-                        (results.ActivePremiumSubs / results.ActiveSubs) * 100
+                        results.ActivePremiumSubs
+                          ? (results.ActivePremiumSubs / results.ActiveSubs) *
+                            100
+                          : 0
                       }
                       staticon={TrendingUpIcon}
                       smalltext="of All Active Subscriptions"
@@ -101,7 +104,9 @@ const AccountPage = (props) => {
                       name="Basic Subscriptions"
                       icon={Battery50Icon}
                       smallstat={
-                        (results.ActiveBasicSubs / results.ActiveSubs) * 100
+                        results.ActiveBasicSubs
+                          ? (results.ActiveBasicSubs / results.ActiveSubs) * 100
+                          : 0
                       }
                       staticon={TrendingUpIcon}
                       smalltext="of All Active Subscriptions"

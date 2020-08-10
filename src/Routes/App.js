@@ -2,7 +2,6 @@ import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import Page404 from "../components/Page404";
 import Login from "../components/Login";
-import Dashboard2 from "../components/data.components/Dashboard2";
 import DashboardUltimate from "../components/data.components/DashboardUltimate";
 import Bookmarks from "../components/data.components/Bookmarks";
 import OnePager from "../components/data.components/OnePager";

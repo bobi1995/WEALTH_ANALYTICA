@@ -10,8 +10,8 @@ import PlanProfilePension from "./planProfileFunctions/Tables/PlanProfilePension
 import PlanProfileExportHeading from "./planProfileFunctions/PlanProfileExportHeading";
 import OnePagerAccountants from "./OnePagerFunctions/OnePagerAccountants";
 import Magellan from "./Magellan";
-import Contact from "./OnePagerFunctions/OnePagerContact";
 import apiAddress from "../../global/endpointAddress";
+import Main from "./PlanProfileUltimate/Main";
 
 const PlaneProfile = (props) => {
   const [results, setResults] = useState([]);
@@ -68,33 +68,38 @@ const PlaneProfile = (props) => {
             types={results.PlanSummary}
             companyID={props.match.params.CompanyID}
           />
-          <PlanProfileExportHeading data={results.BusinessInformation} />
-          <div>
-            <PlaneProfileBusinessInfo
-              data={results.BusinessInformation}
-              erisa={results.ERISATestCompanyStock}
-              contact={results.Contacts}
-              types={results.PlanSummary}
-              site={results.Website}
-            />
-          </div>
-          <PlanProfileTables
-            data={[results.Statistics, results.City, results.BusinessCode]}
-            companyID={props.match.params.CompanyID}
-          />
-          <div data-html2canvas-ignore>
-            {results.AccountantFirmNames.length > 0 ||
-            results.FiduciaryTrustNames.length > 0 ? (
-              <div className="plan-businessInfo-2">
-                <OnePagerAccountants
-                  accountants={results.AccountantFirmNames}
-                  trusts={results.FiduciaryTrustNames}
+          <div style={{ display: "flex", backgroundColor: "#F4F6F8" }}>
+            <Main />
+            <div style={{ margin: "0 auto" }}>
+              <PlanProfileExportHeading data={results.BusinessInformation} />
+              <div>
+                <PlaneProfileBusinessInfo
+                  data={results.BusinessInformation}
+                  erisa={results.ERISATestCompanyStock}
+                  contact={results.Contacts}
+                  types={results.PlanSummary}
+                  site={results.Website}
                 />
               </div>
-            ) : (
-              ""
-            )}
-            <PlanProfilePension types={results.PlanSummary} />
+              <PlanProfileTables
+                data={[results.Statistics, results.City, results.BusinessCode]}
+                companyID={props.match.params.CompanyID}
+              />
+              <div data-html2canvas-ignore>
+                {results.AccountantFirmNames.length > 0 ||
+                results.FiduciaryTrustNames.length > 0 ? (
+                  <div className="plan-businessInfo-2">
+                    <OnePagerAccountants
+                      accountants={results.AccountantFirmNames}
+                      trusts={results.FiduciaryTrustNames}
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
+                <PlanProfilePension types={results.PlanSummary} />
+              </div>
+            </div>
           </div>
         </div>
       ) : (

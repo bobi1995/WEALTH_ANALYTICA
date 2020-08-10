@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import moment from "moment";
@@ -13,6 +13,8 @@ import {
   Button,
   LinearProgress,
 } from "@material-ui/core";
+import axios from "axios";
+import apiAddress from "../../../../../global/endpointAddress";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -37,9 +39,9 @@ const useStyles = makeStyles((theme) => ({
 
 const AccountProfile = (props) => {
   const { className, ...rest } = props;
-
+  const canUpdate = sessionStorage.getItem("CanUpdateLogo");
+  const [fileUrl, setFileUrl] = useState("");
   const classes = useStyles();
-
   const user = {
     firstName: sessionStorage.getItem("FirstName"),
     lastName: sessionStorage.getItem("LastName"),
@@ -55,6 +57,50 @@ const AccountProfile = (props) => {
     let count = 0;
     const arr = Object.values(user);
     return (arr.filter((el) => el !== null).length / 8) * 100;
+  };
+
+  //CHOOSING PICTURE
+  const choosePicture = async (e) => {
+    const file = await toBase64(e.target.files[0]);
+    const parts = file.split(",");
+    setFileUrl(parts[1]);
+  };
+
+  //FILE TO BASE64
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  //UPLOADING PICTURE
+  const uploadPicture = () => {
+    axios
+      .put(
+        `${apiAddress}/api/Users/UpdateUserLogo`,
+        {
+          logofilename: "logo.jpg",
+
+          logodata: fileUrl,
+        },
+        {
+          headers: {
+            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      )
+      .then((res) => {
+        alert("The logo is updated");
+        sessionStorage.setItem("LogoData", fileUrl);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("We couldn't upload the logo.");
+      });
   };
   return (
     <Card className={classes.root}>
@@ -91,10 +137,22 @@ const AccountProfile = (props) => {
       </CardContent>
       <Divider />
       <CardActions>
-        <Button className={classes.uploadButton} color="primary" variant="text">
-          Upload picture
+        <input
+          type="file"
+          disabled={canUpdate == "true" ? false : true}
+          onChange={choosePicture}
+        />
+        <Button
+          variant="contained"
+          onClick={uploadPicture}
+          style={
+            fileUrl
+              ? { backgroundColor: "#008000", color: "white" }
+              : { backgroundColor: "#CC6666", color: "white" }
+          }
+        >
+          {fileUrl ? "Upload Logo" : "Remove Logo"}
         </Button>
-        <Button variant="text">Remove picture</Button>
       </CardActions>
     </Card>
   );

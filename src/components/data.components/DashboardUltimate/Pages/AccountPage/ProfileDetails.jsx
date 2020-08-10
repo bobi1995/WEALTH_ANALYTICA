@@ -12,6 +12,8 @@ import {
   Button,
   TextField,
 } from "@material-ui/core";
+import axios from "axios";
+import apiAddress from "../../../../../global/endpointAddress";
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -30,15 +32,16 @@ const AccountDetails = (props) => {
   const classes = useStyles();
 
   const [values, setValues] = useState({
-    firstName: sessionStorage.getItem("FirstName"),
-    lastName: sessionStorage.getItem("LastName"),
+    firstname: sessionStorage.getItem("FirstName"),
+    lastname: sessionStorage.getItem("LastName"),
     address: sessionStorage.getItem("Address"),
     email: sessionStorage.getItem("Email"),
-    phone: sessionStorage.getItem("CompanyPhone"),
-    company: sessionStorage.getItem("CompanyName"),
+    companyphone: sessionStorage.getItem("CompanyPhone"),
+    companyname: sessionStorage.getItem("CompanyName"),
   });
 
   const handleChange = (event) => {
+    console.log(event.target.name);
     setValues({
       ...values,
       [event.target.name]: event.target.value,
@@ -60,6 +63,29 @@ const AccountDetails = (props) => {
     },
   ];
 
+  const updateUser = () => {
+    axios
+      .put(`${apiAddress}/api/Users/UpdateUser`, values, {
+        headers: {
+          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
+      .then((res) => {
+        alert("Details are updated");
+        sessionStorage.setItem("FirstName", values.firstname);
+        sessionStorage.setItem("LastName", values.lastname);
+        sessionStorage.setItem("CompanyName", values.companyname);
+        sessionStorage.setItem("CompanyPhone", values.companyphone);
+        sessionStorage.setItem("Address", values.address);
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("We couldn't update the results.");
+      });
+  };
+
   return (
     <Card className={clsx(classes.root, className)}>
       <form autoComplete="off" noValidate>
@@ -72,10 +98,10 @@ const AccountDetails = (props) => {
                 <TextField
                   label="First name"
                   margin="dense"
-                  name="firstName"
+                  name="firstname"
                   onChange={handleChange}
                   required
-                  value={values.firstName}
+                  value={values.firstname}
                   variant="outlined"
                 />
               </Grid>
@@ -83,10 +109,10 @@ const AccountDetails = (props) => {
                 <TextField
                   label="Last name"
                   margin="dense"
-                  name="lastName"
+                  name="lastname"
                   onChange={handleChange}
                   required
-                  value={values.lastName}
+                  value={values.lastname}
                   variant="outlined"
                 />
               </Grid>
@@ -96,7 +122,7 @@ const AccountDetails = (props) => {
                 <TextField
                   label="Address"
                   margin="dense"
-                  name="Address"
+                  name="address"
                   onChange={handleChange}
                   value={values.address}
                   variant="outlined"
@@ -120,9 +146,9 @@ const AccountDetails = (props) => {
                 <TextField
                   label="Phone Number"
                   margin="dense"
-                  name="phone"
+                  name="companyphone"
                   onChange={handleChange}
-                  value={values.phone}
+                  value={values.companyphone}
                   variant="outlined"
                 />
               </Grid>
@@ -130,10 +156,10 @@ const AccountDetails = (props) => {
                 <TextField
                   label="Company"
                   margin="dense"
-                  name="company"
+                  name="companyname"
                   onChange={handleChange}
                   required
-                  value={values.company}
+                  value={values.companyname}
                   variant="outlined"
                 />
               </Grid>
@@ -146,6 +172,7 @@ const AccountDetails = (props) => {
             color="primary"
             variant="contained"
             className={classes.buttonStyle}
+            onClick={updateUser}
           >
             Save details
           </Button>

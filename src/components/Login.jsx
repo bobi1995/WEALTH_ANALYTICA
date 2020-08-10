@@ -109,6 +109,7 @@ const Login = () => {
           sessionStorage.setItem("States", JSON.stringify(res.data.States));
           sessionStorage.setItem("LogoData", res.data.LogoData);
           sessionStorage.setItem("isBusiness", res.data.IsBusinessAccount);
+          sessionStorage.setItem("CanUpdateLogo", res.data.CanUpdateLogo);
           history.push({
             pathname:
               res.data.States.length > 0
