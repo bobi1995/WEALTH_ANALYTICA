@@ -7,15 +7,25 @@ import PlanProfileExportButton from "./planProfileFunctions/PlanProfileExportBut
 import "../../styles/dataPages/planProfile.scss";
 import Loader from "./dashboardFunctions/loader";
 import PlanProfilePension from "./planProfileFunctions/Tables/PlanProfilePension";
-import PlanProfileExportHeading from "./planProfileFunctions/PlanProfileExportHeading";
-import OnePagerAccountants from "./OnePagerFunctions/OnePagerAccountants";
 import Magellan from "./Magellan";
 import apiAddress from "../../global/endpointAddress";
-import Main from "./PlanProfileUltimate/Main";
+import Main from "./planProfileFunctions/Main";
 
 const PlaneProfile = (props) => {
   const [results, setResults] = useState([]);
   const [limit, setLimit] = useState(false);
+  const [showing, setShowing] = useState([
+    "all",
+    "business-include",
+    "financial-include",
+    "participants-include",
+    "statistics-include",
+    "heatmap-include",
+    "health-include",
+    "service-include",
+    "accountant-include",
+    "pension-include",
+  ]);
   let url = "";
   useEffect(() => {
     if (props.match) {
@@ -69,36 +79,33 @@ const PlaneProfile = (props) => {
             companyID={props.match.params.CompanyID}
           />
           <div style={{ display: "flex", backgroundColor: "#F4F6F8" }}>
-            <Main />
-            <div style={{ margin: "0 auto" }}>
-              <PlanProfileExportHeading data={results.BusinessInformation} />
-              <div>
-                <PlaneProfileBusinessInfo
-                  data={results.BusinessInformation}
-                  erisa={results.ERISATestCompanyStock}
-                  contact={results.Contacts}
-                  types={results.PlanSummary}
-                  site={results.Website}
-                />
-              </div>
+            <Main showing={(show) => setShowing(show)} />
+            <div style={{ margin: "0 auto", width: "100%" }}>
+              {showing.includes("business-include") ? (
+                <div>
+                  <PlaneProfileBusinessInfo
+                    id="business-include"
+                    data={results.BusinessInformation}
+                    erisa={results.ERISATestCompanyStock}
+                    contact={results.Contacts}
+                    types={results.PlanSummary}
+                    site={results.Website}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
               <PlanProfileTables
                 data={[results.Statistics, results.City, results.BusinessCode]}
                 companyID={props.match.params.CompanyID}
+                accountantFirms={results.AccountantFirms}
+                showing={showing}
               />
-              <div data-html2canvas-ignore>
-                {results.AccountantFirmNames.length > 0 ||
-                results.FiduciaryTrustNames.length > 0 ? (
-                  <div className="plan-businessInfo-2">
-                    <OnePagerAccountants
-                      accountants={results.AccountantFirmNames}
-                      trusts={results.FiduciaryTrustNames}
-                    />
-                  </div>
-                ) : (
-                  ""
-                )}
+              {showing.includes("pension-include") ? (
                 <PlanProfilePension types={results.PlanSummary} />
-              </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>
