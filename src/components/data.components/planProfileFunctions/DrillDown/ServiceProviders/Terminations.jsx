@@ -56,7 +56,7 @@ export default (props) => {
     setOpen(true);
     axios
       .get(
-        `${apiAddress}/api/SmallCompanies/GetServiceProvidersDetails?companyID=${props.companyID}&year=2018`,
+        `${apiAddress}/api/SmallCompanies/GetServiceProviderTerminations?companyID=${props.companyID}&year=2018`,
         {
           headers: {
             Authorization: "Basic " + sessionStorage.getItem("Token"),
@@ -107,8 +107,8 @@ export default (props) => {
 
         {results ? (
           <div>
-            {results.Terminations.length > 0 ? (
-              <Terminations data={results.Terminations} />
+            {results.length > 0 ? (
+              <Terminations data={results} />
             ) : (
               <Typography
                 variant="h3"

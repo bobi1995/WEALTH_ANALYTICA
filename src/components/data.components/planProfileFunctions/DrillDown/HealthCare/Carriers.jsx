@@ -50,13 +50,12 @@ export default (props) => {
   const [open, setOpen] = useState(false);
   const [results, setResults] = useState("");
   const [fullWidth, setFullWidth] = React.useState(true);
-  const [maxWidth, setMaxWidth] = React.useState("lg");
-
+  const [maxWidth, setMaxWidth] = React.useState("xl");
   const handleClickOpen = () => {
     setOpen(true);
     axios
       .get(
-        `${apiAddress}/api/SmallCompanies/GetHealthcareDetails?companyID=${props.companyID}&year=2018`,
+        `${apiAddress}/api/SmallCompanies/GetHealthcareCarriers?companyID=${props.companyID}&year=2018`,
         {
           headers: {
             Authorization: "Basic " + sessionStorage.getItem("Token"),
@@ -70,7 +69,6 @@ export default (props) => {
       .catch((error) => {
         console.log(error);
         alert("For some reason we could not find the desired results.");
-        window.location.reload();
       });
   };
 
@@ -108,8 +106,8 @@ export default (props) => {
 
         {results ? (
           <div>
-            {results.Carriers.length > 0 ? (
-              <Carriers data={results.Carriers} />
+            {results.length > 0 ? (
+              <Carriers data={results} />
             ) : (
               <Typography
                 variant="h3"

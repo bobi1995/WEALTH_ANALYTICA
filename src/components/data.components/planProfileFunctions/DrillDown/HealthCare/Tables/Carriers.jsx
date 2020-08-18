@@ -50,6 +50,9 @@ export default (props) => {
           {
             field: "Name",
             title: "Name",
+            cellStyle: {
+              whiteSpace: "nowrap",
+            },
           },
 
           {
@@ -108,6 +111,24 @@ export default (props) => {
             title: "Welfare Expense",
             render: (rowData) =>
               `$${numeral(rowData.WelfareExpense).format("0,0")}`,
+            cellStyle: {
+              textAlign: "center",
+            },
+          },
+          {
+            field: "GeneralAccountAsset",
+            title: "General Account Asset",
+            render: (rowData) =>
+              `$${numeral(rowData.GeneralAccountAsset).format("0,0")}`,
+            cellStyle: {
+              textAlign: "center",
+            },
+          },
+          {
+            field: "SeparateAccountAsset",
+            title: "Separate Account Asset",
+            render: (rowData) =>
+              `$${numeral(rowData.SeparateAccountAsset).format("0,0")}`,
             cellStyle: {
               textAlign: "center",
             },
