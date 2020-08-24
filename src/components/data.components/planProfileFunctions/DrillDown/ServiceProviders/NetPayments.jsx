@@ -50,13 +50,13 @@ export default (props) => {
   const [open, setOpen] = useState(false);
   const [results, setResults] = useState("");
   const [fullWidth, setFullWidth] = React.useState(true);
-  const [maxWidth, setMaxWidth] = React.useState("lg");
+  const [maxWidth, setMaxWidth] = React.useState("xl");
 
   const handleClickOpen = () => {
     setOpen(true);
     axios
       .get(
-        `${apiAddress}/api/SmallCompanies/GetServiceProvidersDetails?companyID=${props.companyID}&year=2018`,
+        `${apiAddress}/api/SmallCompanies/GetServiceProviderPayments?companyID=${props.companyID}&year=2018`,
         {
           headers: {
             Authorization: "Basic " + sessionStorage.getItem("Token"),
@@ -107,8 +107,8 @@ export default (props) => {
 
         {results ? (
           <div>
-            {results.NetPayments.length > 0 ? (
-              <NetPayments data={results.NetPayments} />
+            {results.length > 0 ? (
+              <NetPayments data={results} />
             ) : (
               <Typography
                 variant="h3"

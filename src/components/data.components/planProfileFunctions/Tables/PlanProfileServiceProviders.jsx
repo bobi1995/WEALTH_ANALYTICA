@@ -4,8 +4,6 @@ import common from "../../commonFunctions/common";
 import { Bar } from "react-chartjs-2";
 import DataExtract from "../PlanProfileDataExtract";
 import dashboardCharts from "../../dashboardFunctions/charts";
-import DirectProviders from "../DrillDown/ServiceProviders/DirectProvider";
-import IndirectProviders from "../DrillDown/ServiceProviders/IndirectProviders";
 import NetPayments from "../DrillDown/ServiceProviders/NetPayments";
 import Failures from "../DrillDown/ServiceProviders/Failures";
 import Terminations from "../DrillDown/ServiceProviders/Terminations";
@@ -135,8 +133,6 @@ export default (props) => {
         </table>
       </div>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <DirectProviders companyID={props.companyID} />
-        <IndirectProviders companyID={props.companyID} />
         <NetPayments companyID={props.companyID} />
         <Failures companyID={props.companyID} />
         <Terminations companyID={props.companyID} />
