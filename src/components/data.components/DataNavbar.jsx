@@ -47,7 +47,7 @@ const DataNavbar = () => {
                   Hi,{sessionStorage.getItem("FirstName")}
                 </a>
                 <div className="dropdown-content">
-                  <a href="/profile">Your Profile</a>
+                  <a href="/account">Your Profile</a>
                   <a href="https://wealthanalytica.com/">Back to site</a>
                   <a
                     href="/"

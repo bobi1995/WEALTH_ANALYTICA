@@ -7,7 +7,6 @@ import Bookmarks from "../components/data.components/Bookmarks";
 import OnePager from "../components/data.components/OnePager";
 import PlanProfile from "../components/data.components/PlanProfile";
 import Filter2 from "../components/data.components/Filters2";
-import Profile from "../components/data.components/Profile";
 import SavedFilters from "../components/data.components/SavedFilters";
 import AccountPage from "../components/data.components/DashboardUltimate/Pages/AccountPage";
 import StatisticsPage from "../components/data.components/DashboardUltimate/Pages/StatisticsPage";
@@ -34,7 +33,6 @@ function App() {
 
         <PrivateRoute path="/filters" component={Filter2} />
 
-        <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute path="/bookmarks" component={Bookmarks} />
         <PrivateRoute path="/saved-filters" component={SavedFilters} />
 

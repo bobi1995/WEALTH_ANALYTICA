@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import NetPayments from "./Tables/NetPayments";
+import NetPaymentsTableView from "./Tables/NetPaymentsTableView";
 import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
@@ -38,6 +39,17 @@ const useStyles = makeStyles((theme) => ({
     right: theme.spacing(1),
     top: theme.spacing(1),
   },
+  viewButton: {
+    position: "absolute",
+    marginLeft: "3%",
+    marginTop: "1%",
+    backgroundColor: "#28A745",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#CCEACC",
+      border: "1px solid #28A745",
+    },
+  },
   headerStyle: {
     color: "#378FC3",
     fontFamily: "Baskervville",
@@ -49,6 +61,7 @@ export default (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [results, setResults] = useState("");
+  const [tableView, SetTableView] = useState(false);
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState("xl");
 
@@ -94,9 +107,22 @@ export default (props) => {
         maxWidth={maxWidth}
         className={classes.mainDiv}
       >
-        <DialogTitle className={classes.titleStyle}>
+        <Button
+          className={classes.viewButton}
+          onClick={() => {
+            SetTableView(!tableView);
+          }}
+        >
+          {tableView ? "Normal View" : "Table View"}
+        </Button>
+        <Typography
+          variant="h3"
+          component="h3"
+          className={classes.headerStyle}
+          gutterBottom
+        >
           Service Providers Details
-        </DialogTitle>
+        </Typography>
         <IconButton
           aria-label="close"
           className={classes.closeButton}
@@ -108,7 +134,13 @@ export default (props) => {
         {results ? (
           <div>
             {results.length > 0 ? (
-              <NetPayments data={results} />
+              <div>
+                {tableView ? (
+                  <NetPaymentsTableView data={results} />
+                ) : (
+                  <NetPayments data={results} />
+                )}
+              </div>
             ) : (
               <Typography
                 variant="h3"

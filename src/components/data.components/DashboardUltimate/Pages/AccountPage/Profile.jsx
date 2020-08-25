@@ -145,6 +145,7 @@ const AccountProfile = (props) => {
         <Button
           variant="contained"
           onClick={uploadPicture}
+          disabled={canUpdate == "true" ? false : true}
           style={
             fileUrl
               ? { backgroundColor: "#008000", color: "white" }

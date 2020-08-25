@@ -118,7 +118,7 @@ const Login = () => {
                   }).length > 0
                   ? "/dashboard"
                   : "/filters"
-                : "/profile",
+                : "/account",
             state: res.data,
           });
         }

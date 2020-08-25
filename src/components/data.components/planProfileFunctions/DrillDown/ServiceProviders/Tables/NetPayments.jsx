@@ -34,8 +34,8 @@ export default (props) => {
           <div className={classes.tablesStyleDiv}>
             <div>
               <Typography
-                variant="h3"
-                component="h3"
+                variant="h4"
+                component="h4"
                 className={classes.headerStyle}
                 gutterBottom
               >
@@ -120,8 +120,8 @@ export default (props) => {
             </div>
             <div>
               <Typography
-                variant="h3"
-                component="h3"
+                variant="h4"
+                component="h4"
                 className={classes.headerStyle}
                 gutterBottom
               >
