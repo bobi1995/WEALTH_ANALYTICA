@@ -6,6 +6,7 @@ import { ArrowUpward, ChevronRight } from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import numeral from "numeral";
+import commonFunctions from "../../../../../commonFunctions/common";
 
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
@@ -54,16 +55,22 @@ export default (props) => {
                   {
                     field: "SponsorName",
                     title: "Sponsor Name",
+                    render: (rowData) =>
+                      commonFunctions.formatString(rowData.SponsorName),
                   },
 
                   {
                     field: "PlanName",
                     title: "Plan Name",
+                    render: (rowData) =>
+                      commonFunctions.formatString(rowData.PlanName),
                   },
 
                   {
                     field: "FundName",
                     title: "Fund Name",
+                    render: (rowData) =>
+                      commonFunctions.formatString(rowData.FundName),
                   },
                   {
                     field: "Amount",

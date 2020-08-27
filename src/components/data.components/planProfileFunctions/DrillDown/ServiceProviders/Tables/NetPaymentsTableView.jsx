@@ -6,6 +6,7 @@ import { ArrowUpward, ChevronRight, Close } from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import numeral from "numeral";
+import commonFunction from "../../../../commonFunctions/common";
 
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
@@ -46,8 +47,10 @@ export default ({ data }) => {
             <>
               {result.DirectPayments.map((el, ind) => (
                 <tr key={index + ind}>
-                  <td>{el.Name}</td>
-                  <td>{el.ProviderOtherServices}</td>
+                  <td>{commonFunction.formatString(el.Name)}</td>
+                  <td>
+                    {commonFunction.formatString(el.ProviderOtherServices)}
+                  </td>
                   <td style={el.Payment < 0 ? { color: "red" } : {}}>
                     ${numeral(el.Payment).format("0,0")}
                   </td>
@@ -58,8 +61,8 @@ export default ({ data }) => {
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td>{el.Name}</td>
-                  <td>{el.Description}</td>
+                  <td>{commonFunction.formatString(el.Name)}</td>
+                  <td>{commonFunction.formatString(el.Description)}</td>
                   <td style={el.Payment < 0 ? { color: "red" } : {}}>
                     ${numeral(el.Payment).format("0,0")}
                   </td>

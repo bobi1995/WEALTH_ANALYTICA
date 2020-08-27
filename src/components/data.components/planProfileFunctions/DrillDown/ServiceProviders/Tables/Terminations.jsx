@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import MaterialTable from "material-table";
 import SearchIcon from "@material-ui/icons/Search";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import { ArrowUpward, ChevronRight, Close } from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import commonFunction from "../../../../commonFunctions/common";
 
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
@@ -27,9 +28,6 @@ export default (props) => {
       >
         Terminations
       </Typography>
-      {/* <small className="form-text text-muted" style={{ fontSize: "1em" }}>
-              Total Amount: ${numeral(el.TotalAmount).format("0,0")}
-            </small> */}
 
       <MaterialTable
         style={{ margin: "3%" }}
@@ -47,15 +45,19 @@ export default (props) => {
           {
             field: "Name",
             title: "Name",
+            render: (rowData) => commonFunction.formatString(rowData.Name),
           },
 
           {
             field: "Services",
             title: "Services",
+            render: (rowData) => commonFunction.formatString(rowData.Services),
           },
           {
             field: "Description",
             title: "Description",
+            render: (rowData) =>
+              commonFunction.formatString(rowData.Description),
           },
         ]}
         data={props.data}

@@ -94,9 +94,14 @@ export default (props) => {
         maxWidth={maxWidth}
         className={classes.mainDiv}
       >
-        <DialogTitle className={classes.titleStyle}>
+        <Typography
+          variant="h3"
+          component="h3"
+          className={classes.headerStyle}
+          gutterBottom
+        >
           Service Providers Details
-        </DialogTitle>
+        </Typography>
         <IconButton
           aria-label="close"
           className={classes.closeButton}

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-
+import commonFunctions from "../../commonFunctions/common";
 export default (props) => {
   const database = props.info;
+
   return (
     <div className="plan-businessInfo-2">
       <div
@@ -14,26 +15,42 @@ export default (props) => {
               <th>Name</th>
               <th>Website</th>
               <th>Opinion</th>
-              <th>Opinion Description</th>
               <th>Audit Scope</th>
             </tr>
           </thead>
           <tbody className="table-hover">
-            {database.map((el) => (
-              <tr key={el.Name}>
-                <td>{el.Name}</td>
-                <td>
-                  <a href={el.Website} target="_blank">
-                    {el.Website}
-                  </a>
-                </td>
-                <td style={{ whiteSpace: "normal" }}>{el.Opinion}</td>
-                <td style={{ whiteSpace: "normal" }}>
-                  {el.OpinionDescription}
-                </td>
-                <td style={{ whiteSpace: "normal" }}>{el.AuditScope}</td>
-              </tr>
-            ))}
+            {database.map((el) => {
+              const partsWeb = el.Website.split(":");
+              return (
+                <tr key={el.Name}>
+                  <td>{commonFunctions.formatString(el.Name)}</td>
+                  <td>
+                    {partsWeb.length > 1 ? (
+                      <a href={el.Website} target="_blank">
+                        {el.Website}
+                      </a>
+                    ) : (
+                      <a href={"http://" + el.Website} target="_blank">
+                        {el.Website}
+                      </a>
+                    )}
+                  </td>
+                  <td
+                    style={{ whiteSpace: "normal" }}
+                    className="onepager-pesion-description"
+                  >
+                    {el.Opinion}
+                    <span
+                      className="onepager-tooltip"
+                      style={{ whiteSpace: "normal" }}
+                    >
+                      {el.OpinionDescription}
+                    </span>
+                  </td>
+                  <td style={{ whiteSpace: "normal" }}>{el.AuditScope}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

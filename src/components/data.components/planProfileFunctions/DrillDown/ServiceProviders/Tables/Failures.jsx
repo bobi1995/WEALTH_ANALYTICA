@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import MaterialTable from "material-table";
 import SearchIcon from "@material-ui/icons/Search";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import { ArrowUpward, ChevronRight, Close } from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import numeral from "numeral";
-import CloseIcon from "@material-ui/icons/Close";
-import CheckIcon from "@material-ui/icons/Check";
+import commonFunction from "../../../../commonFunctions/common";
 
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
@@ -50,12 +48,16 @@ export default (props) => {
           {
             field: "Name",
             title: "Name",
+            render: (rowData) => commonFunction.formatString(rowData.Name),
           },
 
           {
             field: "Services",
             title: "Services",
-            render: (rowData) => (rowData.Services ? rowData.Services : "N/A"),
+            render: (rowData) =>
+              commonFunction.formatString(
+                rowData.Services ? rowData.Services : "N/A"
+              ),
             cellStyle: {
               textAlign: "center",
             },
@@ -63,6 +65,8 @@ export default (props) => {
           {
             field: "Description",
             title: "Description",
+            render: (rowData) =>
+              commonFunction.formatString(rowData.Description),
           },
         ]}
         data={props.data}

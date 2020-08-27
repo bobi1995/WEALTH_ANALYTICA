@@ -6,6 +6,7 @@ import { ArrowUpward, ChevronRight, Close } from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import numeral from "numeral";
+import commonFunction from "../../../../commonFunctions/common";
 
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
@@ -62,6 +63,8 @@ export default (props) => {
                   {
                     field: "Name",
                     title: "Name",
+                    render: (rowData) =>
+                      commonFunction.formatString(rowData.Name),
                     cellStyle: {
                       whiteSpace: "nowrap",
                     },
@@ -69,6 +72,10 @@ export default (props) => {
                   {
                     field: "ProviderOtherServices",
                     title: "Services",
+                    render: (rowData) =>
+                      commonFunction.formatString(
+                        rowData.ProviderOtherServices
+                      ),
                   },
                   {
                     field: "Payment",
@@ -147,6 +154,9 @@ export default (props) => {
                   {
                     field: "Name",
                     title: "Name",
+                    render: (rowData) =>
+                      commonFunction.formatString(rowData.Name),
+
                     cellStyle: {
                       whiteSpace: "nowrap",
                     },
@@ -154,6 +164,8 @@ export default (props) => {
                   {
                     field: "Description",
                     title: "Description",
+                    render: (rowData) =>
+                      commonFunction.formatString(rowData.Description),
                   },
 
                   {

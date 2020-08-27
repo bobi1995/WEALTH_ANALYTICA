@@ -5,6 +5,7 @@ import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import { ArrowUpward, ChevronRight, Close } from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import commonFunction from "../../../../commonFunctions/common";
 
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
@@ -47,10 +48,13 @@ export default (props) => {
           {
             field: "Name",
             title: "Name",
+            render: (rowData) => commonFunction.formatString(rowData.Name),
           },
           {
             field: "Description",
             title: "Description",
+            render: (rowData) =>
+              commonFunction.formatString(rowData.Description),
           },
         ]}
         data={props.data}
