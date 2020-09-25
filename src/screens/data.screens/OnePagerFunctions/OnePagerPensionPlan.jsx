@@ -91,7 +91,6 @@ const OnePagerPensionPlan = (props) => {
                                   return element.Participants.reverse().map(
                                     (el, id) => {
                                       if (el.Year === e) {
-                                        console.log(el.Value);
                                         return (
                                           <td key={id}>
                                             {numeral(el.Value).format("0,0")}

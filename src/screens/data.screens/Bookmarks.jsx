@@ -34,20 +34,12 @@ const Bookmarks = () => {
   };
 
   const clientsReturn = () => {
-    const newArr = results.forEach((element) => {
-      if (element.IsClient === true) {
-        return element;
-      }
-    });
+    const newArr = results.filter((element) => element.IsClient === true);
     SetTempRes(newArr);
   };
 
   const nonclientsReturn = () => {
-    const newArr = results.forEach((element) => {
-      if (element.IsClient === false) {
-        return element;
-      }
-    });
+    const newArr = results.filter((element) => element.IsClient === false);
     SetTempRes(newArr);
   };
 

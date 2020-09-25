@@ -1,16 +1,29 @@
 import React from "react";
 import { makeStyles, Box } from "@material-ui/core";
+import Contacts from "./Mail/Contacts";
+import EmailSection from "./Mail/EmailSection";
 
-const OnePagerMail = () => {
+const OnePagerMail = (props) => {
   const classes = useStyles();
-
-  return <Box className={classes.container}>Hi!</Box>;
+  console.log(props);
+  return (
+    <Box className={classes.container}>
+      <Contacts
+        contacts={props.contact}
+        administrator={{
+          admin: props.administrator,
+          site: props.site,
+          phone: props.phone,
+        }}
+      />
+      <EmailSection companyID={props.data} />
+    </Box>
+  );
 };
 
 const useStyles = makeStyles({
   container: {
     width: "94%",
-    backgroundColor: "red",
     margin: "3% auto",
   },
 });
