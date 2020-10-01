@@ -12,6 +12,7 @@ import AccountPage from "../screens/data.screens/DashboardUltimate/Pages/Account
 import StatisticsPage from "../screens/data.screens/DashboardUltimate/Pages/StatisticsPage";
 import PurchasePage from "../screens/data.screens/DashboardUltimate/Pages/PurchasePage";
 import UserManagement from "../screens/data.screens/DashboardUltimate/Pages/UserManagement";
+import Heatmap from "../screens/data.screens/Heatmap";
 
 import Demo from "../screens/Demo";
 import "../styles/main.scss";
@@ -30,14 +31,12 @@ function App() {
         <PrivateRoute path="/statistics" component={StatisticsPage} />
         <PrivateRoute path="/purchase" component={PurchasePage} />
         <PrivateRoute path="/management" component={UserManagement} />
-
         <PrivateRoute path="/filters" component={Filter2} />
-
         <PrivateRoute path="/bookmarks" component={Bookmarks} />
         <PrivateRoute path="/saved-filters" component={SavedFilters} />
-
         <PrivateRoute path="/onepager/:CompanyID" component={OnePager} />
         <PrivateRoute path="/planprofile/:CompanyID" component={PlanProfile} />
+        <PrivateRoute path="/heatmap/:CompanyID" component={Heatmap} />
         <Route component={Page404} />
       </Switch>
     </Router>

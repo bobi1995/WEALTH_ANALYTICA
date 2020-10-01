@@ -45,7 +45,7 @@ const PlanProfileTables = (props) => {
       {props.showing.includes("heatmap-include") ? (
         <div className="plan-businessInfo-2" data-html2canvas-ignore>
           <div className="plan-table-section ">
-            <h1 className="plan-h1">Heatmap Alerts</h1>
+            <h1 className="plan-h1">Alerts</h1>
             <table className="table table-striped table-bordered table-sm table-hover">
               <thead className="thead-dark">
                 <tr>

@@ -152,7 +152,7 @@ const Main = (props) => {
             </ListItemSecondaryAction>
           </ListItem>
           <ListItem>
-            <ListItemText id="switch-list-label-heatmap" primary="Heatmap" />
+            <ListItemText id="switch-list-label-heatmap" primary="Alerts" />
             <ListItemSecondaryAction>
               <Switch
                 edge="end"

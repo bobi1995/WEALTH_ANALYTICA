@@ -100,7 +100,11 @@ const EmailSection = (props) => {
         >
           Send
         </Button>
-        <Button className={classes.redButton} startIcon={<HighlightOff />}>
+        <Button
+          onClick={() => props.setDisplay(false)}
+          className={classes.redButton}
+          startIcon={<HighlightOff />}
+        >
           Close
         </Button>
       </Box>
@@ -138,7 +142,6 @@ const useStyles = makeStyles({
   heading: {
     color: " #388fc2",
     fontFamily: "Slabo,serif",
-    //font-family: "Slabo", serif;
   },
   buttonContainer: {
     textAlign: "center",
