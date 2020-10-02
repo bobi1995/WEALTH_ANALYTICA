@@ -5,3 +5,11 @@ export const UtilizationExtract = (data = []) => {
     utilization: el.Utilization,
   }));
 };
+
+export const ComplianceExtract = (data = []) => {
+  return data.map((el) => ({
+    year: el.Year,
+    business: el.IsBusinessCodeInState,
+    compliance: el.Compliance,
+  }));
+};

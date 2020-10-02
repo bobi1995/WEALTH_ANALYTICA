@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Box, Typography, makeStyles } from "@material-ui/core";
-import UtilizationTable from "./Utilization/Table";
-import Graphs from "./Utilization/Graphs";
-
+import ComplianceTable from "./Compliance/Table";
 const useStyles = makeStyles({
   heading: {
     color: " #388fc2",
@@ -22,20 +20,18 @@ const useStyles = makeStyles({
   },
 });
 
-const Utilization = (props) => {
+const Compliance = (props) => {
   const classes = useStyles();
-  const [graphs, setGraphs] = useState("");
 
-  const data = props.data.filter((el) => el.utilization !== null);
+  const data = props.data.filter((el) => el.compliance !== null);
   return data.length > 0 ? (
     <Box>
       <Box className={classes.headingContainer}>
         <Typography component="h4" variant="h4" className={classes.heading}>
-          Utilization
+          Compliance
         </Typography>
         <Box className={classes.tablesContainer}>
-          <UtilizationTable data={data} setGraphs={setGraphs} />
-          <Graphs graphData={graphs} data={data} />
+          <ComplianceTable data={data} />
         </Box>
       </Box>
     </Box>
@@ -44,4 +40,4 @@ const Utilization = (props) => {
   );
 };
 
-export default Utilization;
+export default Compliance;

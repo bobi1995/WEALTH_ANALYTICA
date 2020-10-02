@@ -16,7 +16,11 @@ import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import ExtensionIcon from "@material-ui/icons/Extension";
 import TouchAppIcon from "@material-ui/icons/TouchApp";
 import Utilization from "./Heatmap/Utilization";
-import { UtilizationExtract } from "./Heatmap/HeatmapDataExtract";
+import {
+  UtilizationExtract,
+  ComplianceExtract,
+} from "./Heatmap/HeatmapDataExtract";
+import Compliance from "./Heatmap/Compliance";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -84,7 +88,11 @@ const Heatmap = (props) => {
               data={results ? UtilizationExtract(results.CompanyData) : ""}
             />
           </TabPanel>
-          <TabPanel value="2">Item Two</TabPanel>
+          <TabPanel value="2">
+            <Compliance
+              data={results ? ComplianceExtract(results.CompanyData) : ""}
+            />
+          </TabPanel>
           <TabPanel value="3">Item Three</TabPanel>
           <TabPanel value="4">Item Four</TabPanel>
           <TabPanel value="5">Item Five</TabPanel>

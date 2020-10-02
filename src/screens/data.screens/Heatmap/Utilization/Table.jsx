@@ -1032,7 +1032,16 @@ const UtilizationTable = ({ setGraphs, data }) => {
           </TableRow>
           {/**AnnualEmployeeContrib */}
           <TableRow>
-            <TableCell>Annual Employee Contrib.</TableCell>
+            <TableCell>
+              <Button
+                startIcon={<EqualizerIcon />}
+                color="default"
+                className={classes.previewBtn}
+                onClick={() => setGraphs("AnnualEmployeeContrib")}
+              >
+                Annual Employee Contrib.
+              </Button>
+            </TableCell>
             {data.map((row, ind) => (
               <TableCell
                 className={
@@ -1055,7 +1064,16 @@ const UtilizationTable = ({ setGraphs, data }) => {
           </TableRow>
           {/**AnnualTotal */}
           <TableRow>
-            <TableCell>Annual Total</TableCell>
+            <TableCell>
+              <Button
+                startIcon={<EqualizerIcon />}
+                color="default"
+                className={classes.previewBtn}
+                onClick={() => setGraphs("AnnualTotal")}
+              >
+                Annual Total
+              </Button>
+            </TableCell>
             {data.map((row, ind) => (
               <TableCell
                 className={
@@ -1076,7 +1094,18 @@ const UtilizationTable = ({ setGraphs, data }) => {
           </TableRow>
           {/**EstimatedEmployeeContributionPerYear */}
           <TableRow>
-            <TableCell>Emp. Contrib. Per Year</TableCell>
+            <TableCell>
+              <Button
+                startIcon={<EqualizerIcon />}
+                color="default"
+                className={classes.previewBtn}
+                onClick={() =>
+                  setGraphs("EstimatedEmployeeContributionPerYear")
+                }
+              >
+                Emp. Contrib. Per Year
+              </Button>
+            </TableCell>
             {data.map((row, ind) => (
               <TableCell
                 className={
@@ -1104,7 +1133,16 @@ const UtilizationTable = ({ setGraphs, data }) => {
           </TableRow>
           {/**EstimatedEmployeeContribRatePerYear */}
           <TableRow>
-            <TableCell>Employee Contrib. Rate</TableCell>
+            <TableCell>
+              <Button
+                startIcon={<EqualizerIcon />}
+                color="default"
+                className={classes.previewBtn}
+                onClick={() => setGraphs("EstimatedEmployeeContribRatePerYear")}
+              >
+                Employee Contrib. Rate
+              </Button>
+            </TableCell>
             {data.map((row, ind) => (
               <TableCell
                 className={
@@ -1129,7 +1167,16 @@ const UtilizationTable = ({ setGraphs, data }) => {
           </TableRow>
           {/**EstAnnualIncome */}
           <TableRow>
-            <TableCell>Annual Income</TableCell>
+            <TableCell>
+              <Button
+                startIcon={<EqualizerIcon />}
+                color="default"
+                className={classes.previewBtn}
+                onClick={() => setGraphs("EstAnnualIncome")}
+              >
+                Annual Income
+              </Button>
+            </TableCell>
             {data.map((row, ind) => (
               <TableCell
                 className={
@@ -1150,7 +1197,16 @@ const UtilizationTable = ({ setGraphs, data }) => {
           </TableRow>
           {/**ReplacementIncomeRate */}
           <TableRow>
-            <TableCell>Replacement Income Rate</TableCell>
+            <TableCell>
+              <Button
+                startIcon={<EqualizerIcon />}
+                color="default"
+                className={classes.previewBtn}
+                onClick={() => setGraphs("ReplacementIncomeRate")}
+              >
+                Replacement Income Rate
+              </Button>
+            </TableCell>
             {data.map((row, ind) => (
               <TableCell
                 className={
@@ -1174,7 +1230,16 @@ const UtilizationTable = ({ setGraphs, data }) => {
           </TableRow>
           {/**RetirementIncome */}
           <TableRow>
-            <TableCell>Retirement Income</TableCell>
+            <TableCell>
+              <Button
+                startIcon={<EqualizerIcon />}
+                color="default"
+                className={classes.previewBtn}
+                onClick={() => setGraphs("RetirementIncome")}
+              >
+                Retirement Income
+              </Button>
+            </TableCell>
             {data.map((row, ind) => (
               <TableCell
                 className={
@@ -1197,7 +1262,16 @@ const UtilizationTable = ({ setGraphs, data }) => {
           </TableRow>
           {/**ExpectedRateOfReturn */}
           <TableRow>
-            <TableCell>Expected Rate Of Return</TableCell>
+            <TableCell>
+              <Button
+                startIcon={<EqualizerIcon />}
+                color="default"
+                className={classes.previewBtn}
+                onClick={() => setGraphs("ExpectedRateOfReturn")}
+              >
+                Expected Rate Of Return
+              </Button>
+            </TableCell>
             {data.map((row, ind) => (
               <TableCell
                 className={
@@ -1220,7 +1294,18 @@ const UtilizationTable = ({ setGraphs, data }) => {
           </TableRow>
           {/**WAEstimatedAverageParticipantBalance */}
           <TableRow>
-            <TableCell>WA Average Participant Balance</TableCell>
+            <TableCell>
+              <Button
+                startIcon={<EqualizerIcon />}
+                color="default"
+                className={classes.previewBtn}
+                onClick={() =>
+                  setGraphs("WAEstimatedAverageParticipantBalance")
+                }
+              >
+                WA Average Participant Balance
+              </Button>
+            </TableCell>
             {data.map((row, ind) => (
               <TableCell
                 className={
@@ -1248,7 +1333,18 @@ const UtilizationTable = ({ setGraphs, data }) => {
           </TableRow>
           {/**WAEstimatedYearsToRetirementReadiness */}
           <TableRow>
-            <TableCell>WA Years To Retirement</TableCell>
+            <TableCell>
+              <Button
+                startIcon={<EqualizerIcon />}
+                color="default"
+                className={classes.previewBtn}
+                onClick={() =>
+                  setGraphs("WAEstimatedYearsToRetirementReadiness")
+                }
+              >
+                WA Years To Retirement
+              </Button>
+            </TableCell>
             {data.map((row, ind) => (
               <TableCell
                 className={
@@ -1275,7 +1371,16 @@ const UtilizationTable = ({ setGraphs, data }) => {
           </TableRow>
           {/**OverallPlanDesignRating */}
           <TableRow>
-            <TableCell>Overall Plan Design Rating</TableCell>
+            <TableCell>
+              <Button
+                startIcon={<EqualizerIcon />}
+                color="default"
+                className={classes.previewBtn}
+                onClick={() => setGraphs("OverallPlanDesignRating")}
+              >
+                Overall Plan Design Rating
+              </Button>
+            </TableCell>
             {data.map((row, ind) => (
               <TableCell
                 className={
@@ -1298,7 +1403,16 @@ const UtilizationTable = ({ setGraphs, data }) => {
           </TableRow>
           {/**Touches */}
           <TableRow>
-            <TableCell>Touches</TableCell>
+            <TableCell>
+              <Button
+                startIcon={<EqualizerIcon />}
+                color="default"
+                className={classes.previewBtn}
+                onClick={() => setGraphs("Touches")}
+              >
+                Touches
+              </Button>
+            </TableCell>
             {data.map((row, ind) => (
               <TableCell
                 className={
