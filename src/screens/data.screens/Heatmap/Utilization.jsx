@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, makeStyles } from "@material-ui/core";
 import UtilizationTable from "./Utilization/Table";
 import Graphs from "./Utilization/Graphs";
@@ -11,15 +11,14 @@ const useStyles = makeStyles({
   headingContainer: {
     textAlign: "center",
   },
-  table: {
-    minWidth: 650,
-  },
   tablesContainer: {
     display: "flex",
     justifyContent: "space-around",
+    marginTop: "3%",
   },
   table: {
     width: "40%",
+    minWidth: 650,
   },
 });
 
@@ -27,17 +26,10 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
-
 const Utilization = (props) => {
   const classes = useStyles();
-  console.log(props.data.filter((el) => el.utilization !== null));
+  const [graphs, setGraphs] = useState("");
+
   const data = props.data.filter((el) => el.utilization !== null);
   return data.length > 0 ? (
     <Box>
@@ -46,8 +38,8 @@ const Utilization = (props) => {
           Utilization
         </Typography>
         <Box className={classes.tablesContainer}>
-          <UtilizationTable data={data} />
-          <Graphs />
+          <UtilizationTable data={data} setGraphs={setGraphs} />
+          <Graphs graphData={graphs} data={data} />
         </Box>
       </Box>
     </Box>
