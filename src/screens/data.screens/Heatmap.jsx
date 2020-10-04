@@ -16,6 +16,8 @@ import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import ExtensionIcon from "@material-ui/icons/Extension";
 import TouchAppIcon from "@material-ui/icons/TouchApp";
 import Utilization from "./Heatmap/Utilization";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 import {
   UtilizationExtract,
   ComplianceExtract,
@@ -30,10 +32,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Heatmap = (props) => {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState();
   const classes = useStyles();
   const [value, setValue] = React.useState("1");
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -83,19 +84,29 @@ const Heatmap = (props) => {
               <Tab label="Touches" value="5" icon={<TouchAppIcon />} />
             </TabList>
           </AppBar>
-          <TabPanel value="1">
-            <Utilization
-              data={results ? UtilizationExtract(results.CompanyData) : ""}
-            />
-          </TabPanel>
-          <TabPanel value="2">
-            <Compliance
-              data={results ? ComplianceExtract(results.CompanyData) : ""}
-            />
-          </TabPanel>
-          <TabPanel value="3">Item Three</TabPanel>
-          <TabPanel value="4">Item Four</TabPanel>
-          <TabPanel value="5">Item Five</TabPanel>
+          {results ? (
+            <Box>
+              <TabPanel value="1">
+                <Utilization data={UtilizationExtract(results.CompanyData)} />
+              </TabPanel>
+              <TabPanel value="2">
+                <Compliance data={ComplianceExtract(results.CompanyData)} />
+              </TabPanel>
+              <TabPanel value="3">Item Three</TabPanel>
+              <TabPanel value="4">Item Four</TabPanel>
+              <TabPanel value="5">Item Five</TabPanel>
+            </Box>
+          ) : (
+            <div style={{ width: "100%", textAlign: "center" }}>
+              <CircularProgress
+                size={150}
+                style={{ textAlign: "center", marginTop: "15%" }}
+              />
+              <p style={{ textAlign: "center", marginTop: "3%" }}>
+                Loading....Please wait
+              </p>
+            </div>
+          )}
         </TabContext>
       </Box>
     </div>

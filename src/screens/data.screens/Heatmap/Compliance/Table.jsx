@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles, Button } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -78,7 +78,6 @@ const ComplianceTable = ({ data }) => {
                 </TableCell>
                 {data.map((el, j) => {
                   let cell_content = el.compliance[current_compliance_key];
-                  console.log(el);
                   return (
                     <TableCell key={j}>
                       {el.business ? (
@@ -88,7 +87,9 @@ const ComplianceTable = ({ data }) => {
                           `${cell_content}% in Industry are OK`
                         )
                       ) : cell_content === 0 ? (
-                        <CheckIcon style={{ color: "green" }} />
+                        (counter++,
+                        console.log(counter),
+                        (<CheckIcon style={{ color: "green" }} />))
                       ) : (
                         <ClearIcon style={{ color: "red" }} />
                       )}
