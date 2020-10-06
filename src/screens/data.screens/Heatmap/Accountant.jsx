@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, makeStyles } from "@material-ui/core";
-import ComplianceTable from "./Compliance/Table";
 import NoDataComponent from "./Components/NoDataComponent";
+import AccountantTable from "./Accountants/Table";
 
 const useStyles = makeStyles({
   heading: {
@@ -22,18 +22,19 @@ const useStyles = makeStyles({
   },
 });
 
-const Compliance = (props) => {
+const Accountant = (props) => {
   const classes = useStyles();
-
-  const data = props.data.filter((el) => el.compliance !== null);
+  console.log(props.data);
+  const data = props.data.filter((el) => el.accountant !== null);
+  console.log(data);
   return data.length > 0 ? (
     <Box>
       <Box className={classes.headingContainer}>
         <Typography component="h4" variant="h4" className={classes.heading}>
-          Compliance
+          Accountant
         </Typography>
         <Box className={classes.tablesContainer}>
-          <ComplianceTable data={data} />
+          <AccountantTable data={data} />
         </Box>
       </Box>
     </Box>
@@ -42,4 +43,4 @@ const Compliance = (props) => {
   );
 };
 
-export default Compliance;
+export default Accountant;

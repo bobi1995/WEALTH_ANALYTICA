@@ -13,3 +13,11 @@ export const ComplianceExtract = (data = []) => {
     compliance: el.Compliance,
   }));
 };
+
+export const AccountantExtract = (data = []) => {
+  return data.map((el) => ({
+    year: el.Year,
+    business: el.IsBusinessCodeInState,
+    accountant: el.Accountant,
+  }));
+};

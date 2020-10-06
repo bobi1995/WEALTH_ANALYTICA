@@ -15,7 +15,6 @@ import EqualizerIcon from "@material-ui/icons/Equalizer";
 const useStyles = makeStyles({
   table: {
     width: "40%",
-    minWidth: 650,
     backgroundColor: "#E3F2FD",
     maxHeight: 440,
     border: "1px solid #378FC3",

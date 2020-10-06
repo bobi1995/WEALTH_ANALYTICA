@@ -17,10 +17,12 @@ import ExtensionIcon from "@material-ui/icons/Extension";
 import TouchAppIcon from "@material-ui/icons/TouchApp";
 import Utilization from "./Heatmap/Utilization";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Accountant from "./Heatmap/Accountant";
 
 import {
   UtilizationExtract,
   ComplianceExtract,
+  AccountantExtract,
 } from "./Heatmap/HeatmapDataExtract";
 import Compliance from "./Heatmap/Compliance";
 
@@ -92,7 +94,9 @@ const Heatmap = (props) => {
               <TabPanel value="2">
                 <Compliance data={ComplianceExtract(results.CompanyData)} />
               </TabPanel>
-              <TabPanel value="3">Item Three</TabPanel>
+              <TabPanel value="3">
+                <Accountant data={AccountantExtract(results.CompanyData)} />
+              </TabPanel>
               <TabPanel value="4">Item Four</TabPanel>
               <TabPanel value="5">Item Five</TabPanel>
             </Box>

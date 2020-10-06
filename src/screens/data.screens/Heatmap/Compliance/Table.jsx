@@ -20,7 +20,6 @@ const useStyles = makeStyles({
   },
   table: {
     width: "40%",
-    minWidth: 650,
     backgroundColor: "#E3F2FD",
     maxHeight: 440,
     border: "1px solid #378FC3",
@@ -34,7 +33,6 @@ const useStyles = makeStyles({
   },
   statsSection: {
     width: "40%",
-    minWidth: 650,
     maxHeight: 440,
   },
   title: {
@@ -60,7 +58,6 @@ const ComplianceTable = ({ data }) => {
   const classes = useStyles();
   let rowCount = Object.keys(data[0].compliance).length;
   let counter = 0;
-  console.log(rowCount);
   //COUNT FAILURES (0 - OK, 1 - FAIL)
   data.map((el) =>
     el.business
@@ -81,7 +78,6 @@ const ComplianceTable = ({ data }) => {
     ],
   };
 
-  console.log(counter);
   return (
     <Box className={classes.container}>
       <TableContainer component={Paper} className={classes.table}>
