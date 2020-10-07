@@ -88,7 +88,6 @@ const ComplianceTable = ({ data }) => {
               <TableCell>Eligible Assets</TableCell>
               {data.map((row, ind) => (
                 <TableCell key={ind}>
-                  {console.log(row)}
                   {row.business ? (
                     `${row.accountant.EligibleAssets} Plans are with Ineligible Asset`
                   ) : row.accountant.EligibleAssets === 0 ? (
@@ -105,7 +104,6 @@ const ComplianceTable = ({ data }) => {
               <TableCell>Accountant Total Participants</TableCell>
               {data.map((row, ind) => (
                 <TableCell key={ind}>
-                  {console.log(row)}
                   {row.business ? (
                     `${row.accountant.AccountantTotalParticipants}% have less than 100 participants`
                   ) : row.accountant.AccountantTotalParticipants === 0 ? (
@@ -122,7 +120,6 @@ const ComplianceTable = ({ data }) => {
               <TableCell>Accountant Audit Scope</TableCell>
               {data.map((row, ind) => (
                 <TableCell key={ind}>
-                  {console.log(row)}
                   {row.business ? (
                     `${row.accountant.AccountantAuditScope}% the scope remained intact`
                   ) : row.accountant.AccountantAuditScope === 0 ? (
@@ -139,7 +136,6 @@ const ComplianceTable = ({ data }) => {
               <TableCell>Accountant Opinion</TableCell>
               {data.map((row, ind) => (
                 <TableCell key={ind}>
-                  {console.log(row)}
                   {row.business ? (
                     `${row.accountant.AccountantOpinion}%  has a positive opinion`
                   ) : row.accountant.AccountantOpinion === 0 ? (
@@ -156,7 +152,6 @@ const ComplianceTable = ({ data }) => {
               <TableCell>Accountant Waiver</TableCell>
               {data.map((row, ind) => (
                 <TableCell key={ind}>
-                  {console.log(row)}
                   {row.business ? (
                     `${row.accountant.AccountantWaiver}% applied for the waiver`
                   ) : row.accountant.AccountantWaiver === 0 ? (

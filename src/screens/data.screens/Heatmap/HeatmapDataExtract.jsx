@@ -21,3 +21,19 @@ export const AccountantExtract = (data = []) => {
     accountant: el.Accountant,
   }));
 };
+
+export const BenefitTypesExtract = (data = []) => {
+  return data.map((el) =>
+    el.IsBusinessCodeInState
+      ? {
+          year: el.Year,
+          business: el.IsBusinessCodeInState,
+          benefit: el.BenefitTypesIndustryPecentages,
+        }
+      : {
+          year: el.Year,
+          business: el.IsBusinessCodeInState,
+          benefit: el.BenefitTypes,
+        }
+  );
+};

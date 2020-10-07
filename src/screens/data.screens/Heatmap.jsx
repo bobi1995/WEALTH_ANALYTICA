@@ -18,13 +18,14 @@ import TouchAppIcon from "@material-ui/icons/TouchApp";
 import Utilization from "./Heatmap/Utilization";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Accountant from "./Heatmap/Accountant";
-
+import Compliance from "./Heatmap/Compliance";
+import BenefitTypes from "./Heatmap/BenefitTypes";
 import {
   UtilizationExtract,
   ComplianceExtract,
   AccountantExtract,
+  BenefitTypesExtract,
 } from "./Heatmap/HeatmapDataExtract";
-import Compliance from "./Heatmap/Compliance";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -97,7 +98,9 @@ const Heatmap = (props) => {
               <TabPanel value="3">
                 <Accountant data={AccountantExtract(results.CompanyData)} />
               </TabPanel>
-              <TabPanel value="4">Item Four</TabPanel>
+              <TabPanel value="4">
+                <BenefitTypes data={BenefitTypesExtract(results.CompanyData)} />
+              </TabPanel>
               <TabPanel value="5">Item Five</TabPanel>
             </Box>
           ) : (

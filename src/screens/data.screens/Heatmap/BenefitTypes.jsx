@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, makeStyles } from "@material-ui/core";
 import NoDataComponent from "./Components/NoDataComponent";
-import AccountantTable from "./Accountants/Table";
+import BenefitTable from "./BenefitTypes/Table";
 
 const useStyles = makeStyles({
   heading: {
@@ -22,17 +22,17 @@ const useStyles = makeStyles({
   },
 });
 
-const Accountant = (props) => {
+const BenefitTypes = (props) => {
   const classes = useStyles();
-  const data = props.data.filter((el) => el.accountant !== null);
+  const data = props.data.filter((el) => el.benefit !== null);
   return data.length > 0 ? (
     <Box>
       <Box className={classes.headingContainer}>
         <Typography component="h4" variant="h4" className={classes.heading}>
-          Accountant
+          Benefit Types
         </Typography>
         <Box className={classes.tablesContainer}>
-          <AccountantTable data={data} />
+          <BenefitTable data={data} />
         </Box>
       </Box>
     </Box>
@@ -41,4 +41,4 @@ const Accountant = (props) => {
   );
 };
 
-export default Accountant;
+export default BenefitTypes;
