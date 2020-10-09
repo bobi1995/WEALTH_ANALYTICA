@@ -7,7 +7,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import numeral from "numeral";
 import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
 import { Doughnut } from "react-chartjs-2";
@@ -40,29 +39,14 @@ const useStyles = makeStyles({
   },
 });
 
-const dollars = [
-  "AssetNotValuesAmt",
-  "BenefitPaymentFailureAmt",
-  "ContributionFailureAmt",
-  "ContributionNonCashAmt",
-  "InvConcentration20Amt",
-  "LeasesInDefaultAmt",
-  "LoansInDefaultAmt",
-  "LossDiscoverAmt",
-  "PartyIntNotReportingAmt",
-  "PensionFunding412Amt",
-  "ReserveTermAmt",
-];
 
-const ComplianceTable = ({ data }) => {
+const TouchesTable = ({ data }) => {
   const classes = useStyles();
-  let rowCount = Object.keys(data[0].compliance).length;
+  let rowCount = Object.keys(data[0].touches).length;
   let counter = 0;
+
   //COUNT FAILURES (0 - OK, 1 - FAIL)
-  data.map((el) =>
-    el.business
-      ? ""
-      : Object.values(el.compliance).filter((item) =>
+  data.map((el) => Object.values(el.touches).filter((item) =>
           item === 1 ? counter++ : ""
         )
   );
@@ -77,6 +61,7 @@ const ComplianceTable = ({ data }) => {
       },
     ],
   };
+  
 
   return (
     <Box className={classes.container}>
@@ -85,43 +70,31 @@ const ComplianceTable = ({ data }) => {
           <TableHead>
             <TableRow>
               <TableCell className={classes.tableHeader}>Field</TableCell>
-              {data.map((el, ind) =>
-                el.business ? (
-                  <TableCell key={ind} className={classes.tableHeader}>
-                    Industry for {el.year}
-                  </TableCell>
-                ) : (
-                  <TableCell key={ind} className={classes.tableHeader}>
+              {data.map((el, ind) => <TableCell key={ind} className={classes.tableHeader}>
                     {el.year}
                   </TableCell>
-                )
+                
               )}
             </TableRow>
           </TableHead>
           <TableBody>
-            {[...Array(rowCount)].map((_, i) => {
-              let current_compliance_key = Object.keys(data[0].compliance)[i];
+          {[...Array(rowCount)].map((_, i) => {
+              let current_touches_key = Object.keys(data[0].touches)[i];
 
               return (
                 <TableRow key={i}>
                   <TableCell>
-                    {current_compliance_key
-                      .match(/[A-Z][a-z]+|[0-9]+/g)
+                    {current_touches_key
+                      .match(/[A-Z]+(?![a-z])|[A-Z][a-z]*|\d+[a-z]+/g)
                       .join(" ")}
                   </TableCell>
                   {data.map((el, j) => {
-                    let cell_content = el.compliance[current_compliance_key];
+                    let cell_content = el.touches[current_touches_key];
+                    console.log(cell_content)
+
                     return (
                       <TableCell key={j}>
-                        {el.business ? (
-                          dollars.includes(current_compliance_key) ? (
-                            `$${numeral(cell_content).format(
-                              "0,0"
-                            )} is average for the Industry`
-                          ) : (
-                            `${cell_content}% Industry is in Compliance`
-                          )
-                        ) : cell_content === 0 ? (
+                        {cell_content === 0 ? (
                           <CheckIcon style={{ color: "green" }} />
                         ) : (
                           <ClearIcon style={{ color: "red" }} />
@@ -132,12 +105,11 @@ const ComplianceTable = ({ data }) => {
                 </TableRow>
               );
             })}
-          </TableBody>
+            </TableBody>
         </Table>
       </TableContainer>
-
-      {/* --------------------STATISTIC SECTION------------------------------- */}
-      <Box className={classes.statsSection}>
+ {/* --------------------STATISTIC SECTION------------------------------- */}
+ <Box className={classes.statsSection}>
         <Paper className={classes.paper}>
           <Typography className={classes.title} variant="h6" component="div">
             Summary
@@ -176,4 +148,4 @@ const ComplianceTable = ({ data }) => {
   );
 };
 
-export default ComplianceTable;
+export default TouchesTable;

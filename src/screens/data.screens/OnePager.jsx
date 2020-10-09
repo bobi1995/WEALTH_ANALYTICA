@@ -114,7 +114,7 @@ const OnePager = (props) => {
             ]}
           />
 
-          {/* <OnePagerMap address={results.Address} city={results.City} /> */}
+          <OnePagerMap address={results.Address} city={results.City} />
         </div>
       ) : (
         <div className="onepager-loader-style">

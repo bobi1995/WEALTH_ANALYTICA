@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { makeStyles, Box, Typography } from "@material-ui/core";
+import React  from "react";
+import { makeStyles, Box } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -40,7 +40,6 @@ const useStyles = makeStyles({
 
 const ComplianceTable = ({ data }) => {
   const classes = useStyles();
-  let rowCount = Object.keys(data[0].accountant).length;
   let counter = 0;
   //COUNT FAILURES (0 - OK, 1 - FAIL)
   data.map((el) =>
@@ -51,16 +50,6 @@ const ComplianceTable = ({ data }) => {
         )
   );
 
-  const chartData = {
-    labels: ["Checks", "Failures"],
-    datasets: [
-      {
-        data: [rowCount - counter, counter],
-        backgroundColor: ["green", "red"],
-        hoverBackgroundColor: ["#3CB371", "#ff7f7f"],
-      },
-    ],
-  };
 
   return (
     <Box className={classes.container}>
@@ -167,7 +156,7 @@ const ComplianceTable = ({ data }) => {
       </TableContainer>
 
       {/* --------------------STATISTIC SECTION------------------------------- */}
-      <Box className={classes.statsSection}>Statistics!</Box>
+      <Box className={classes.statsSection}>Description fo the fields!</Box>
     </Box>
   );
 };

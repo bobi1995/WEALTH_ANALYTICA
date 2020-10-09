@@ -20,11 +20,13 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Accountant from "./Heatmap/Accountant";
 import Compliance from "./Heatmap/Compliance";
 import BenefitTypes from "./Heatmap/BenefitTypes";
+import Touches from './Heatmap/Touches'
 import {
   UtilizationExtract,
   ComplianceExtract,
   AccountantExtract,
   BenefitTypesExtract,
+  TouchesExtract
 } from "./Heatmap/HeatmapDataExtract";
 
 const useStyles = makeStyles((theme) => ({
@@ -101,7 +103,7 @@ const Heatmap = (props) => {
               <TabPanel value="4">
                 <BenefitTypes data={BenefitTypesExtract(results.CompanyData)} />
               </TabPanel>
-              <TabPanel value="5">Item Five</TabPanel>
+              <TabPanel value="5"><Touches data={TouchesExtract(results.CompanyData)}/></TabPanel>
             </Box>
           ) : (
             <div style={{ width: "100%", textAlign: "center" }}>
