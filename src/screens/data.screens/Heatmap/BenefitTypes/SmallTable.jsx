@@ -9,7 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
-import numeral from 'numeral'
+import numeral from "numeral";
 const useStyles = makeStyles({
   table: {
     width: "100%",
@@ -31,17 +31,19 @@ const useStyles = makeStyles({
 
 const SmallTable = ({ descriptionData, usedData, industryData }) => {
   const classes = useStyles();
-  
-  const industryAll = descriptionData.benefitCodes.map(
-    (el) =>
-      industryData.benefit.filter((item) =>
-        item.BenefitType === el.code ? el : undefined
-      )[0]
-  ).filter(el=>el!==undefined);
-  const industryBenefit = industryAll.map(el=>el ?el.BenefitType:'')
+
+  const industryAll = descriptionData.benefitCodes
+    .map(
+      (el) =>
+        industryData.benefit.filter((item) =>
+          item.BenefitType === el.code ? el : undefined
+        )[0]
+    )
+    .filter((el) => el !== undefined);
+  const industryBenefit = industryAll.map((el) => (el ? el.BenefitType : ""));
 
   return (
-    <Paper style={{width:'45%'}}>
+    <Paper style={{ width: "45%" }}>
       <Typography
         variant="h6"
         id="tableTitle"
@@ -65,7 +67,7 @@ const SmallTable = ({ descriptionData, usedData, industryData }) => {
                 </TableCell>
               ))}
               <TableCell className={classes.tableHeader}>
-              Industry in {industryData.year}
+                Industry in {industryData.year}
               </TableCell>
             </TableRow>
           </TableHead>
@@ -88,7 +90,17 @@ const SmallTable = ({ descriptionData, usedData, industryData }) => {
                       </TableCell>
                     )
                   )}
-                  {industryBenefit.includes(code.code) ? <TableCell>{industryAll.map(el=>el.BenefitType===code.code ? `${numeral(el.Percentage).format('0,0.00')}%` : '')}</TableCell>:<TableCell>0%</TableCell>}
+                  {industryBenefit.includes(code.code) ? (
+                    <TableCell>
+                      {industryAll.map((el) =>
+                        el.BenefitType === code.code
+                          ? `${numeral(el.Percentage).format("0,0.00")}%`
+                          : ""
+                      )}
+                    </TableCell>
+                  ) : (
+                    <TableCell>0%</TableCell>
+                  )}
                 </TableRow>
               );
             })}

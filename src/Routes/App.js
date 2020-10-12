@@ -13,7 +13,7 @@ import StatisticsPage from "../screens/data.screens/DashboardUltimate/Pages/Stat
 import PurchasePage from "../screens/data.screens/DashboardUltimate/Pages/PurchasePage";
 import UserManagement from "../screens/data.screens/DashboardUltimate/Pages/UserManagement";
 import Heatmap from "../screens/data.screens/Heatmap";
-
+import Diagnostic from '../screens/data.screens/Diagnostic'
 import Demo from "../screens/Demo";
 import "../styles/main.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -37,6 +37,7 @@ function App() {
         <PrivateRoute path="/onepager/:CompanyID" component={OnePager} />
         <PrivateRoute path="/planprofile/:CompanyID" component={PlanProfile} />
         <PrivateRoute path="/heatmap/:CompanyID" component={Heatmap} />
+        <PrivateRoute path="/diagnostic/:CompanyID" component={Diagnostic} />
         <Route component={Page404} />
       </Switch>
     </Router>
