@@ -1,39 +1,18 @@
 import React, { useState, useEffect } from "react";
 import apiAddress from "../../global/endpointAddress";
 import { lastYear } from "../../global/Years";
-import { makeStyles, Box, Typography, Divider } from "@material-ui/core";
+import { makeStyles, Box, Typography } from "@material-ui/core";
 import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Datanavbar from "./DataNavbar";
-import Tables from "./Diagnostic/Tables";
-
+import Section from "./Diagnostic/Sections";
+import EmailSection from "./Diagnostic/EmailSection";
 const useStyles = makeStyles((theme) => ({
   heading: {
     color: " #388fc2",
     fontFamily: "Slabo,serif",
     textAlign: "center",
     fontSize: 35,
-  },
-  subheading: {
-    color: " #388fc2",
-    fontFamily: "Slabo,serif",
-    textAlign: "center",
-    fontStyle: "italic",
-    fontSize: 27,
-  },
-  table: {
-    width: "100%",
-    backgroundColor: "#E3F2FD",
-    maxHeight: 440,
-    border: "1px solid #378FC3",
-  },
-  tableHeader: { color: "#378FC3", fontWeight: "bold", fontSize: 16 },
-  paperStyle: {
-    width: "94%",
-  },
-  tableBox: {
-    justifyContent: "center",
-    display: "flex",
   },
 }));
 
@@ -94,117 +73,64 @@ const Diagnostic = (props) => {
           <Box>
             <Typography className={classes.heading}>Company Name</Typography>
           </Box>
+          <EmailSection data={results} />
           <Box>
-            {/**PLAN ASSETS */}
-            <Tables
+            {/******** PLAN ASSETS */}
+            <Section
               info={[
                 {
+                  name: "Performance",
                   data: [
-                    {
-                      Field: "Return Of Investment",
-                      Code: "D1",
-                      Observation: results.D1,
-                    },
-                    {
-                      Field: "Return Of Assets",
-                      Code: "D2",
-                      Observation: results.D2,
-                    },
+                    { field: "Return Of Investment", value: results.D1 },
+                    { field: "Return Of Assets", value: results.D2 },
                   ],
-                  tableHeader: "Performance",
-                  subHeading: "Investments",
                 },
               ]}
               mainHeading="Plan Assets"
             />
 
-            {/**PLAN DESIGN */}
-            <Tables
+            {/******** PLAN DESIGN */}
+            <Section
               info={[
                 {
+                  name: "Fiduciary Exposure",
                   data: [
                     {
-                      Field: "QDIA with Fiduciary Exposure",
-                      Description:
-                        "Some description here will be very useful and make it look way more beautiful and readable",
-                      Observation: results.D63,
+                      field: "QDIA with Fiduciary Exposure",
+                      value: results.D63,
                     },
-                    {
-                      Field: "D64 - QDIA Feature",
-                      Description:
-                        "Some description here will be very useful and make it look way more beautiful and readable",
-                      Observation: results.D64,
-                    },
-                    {
-                      Field: "Controlled Group",
-                      Description:
-                        "Some description here will be very useful and make it look way more beautiful and readable",
-                      Observation: results.D65,
-                    },
-                    {
-                      Field: "Life Insurance",
-                      Description:
-                        "Some description here will be very useful and make it look way more beautiful and readable",
-                      Observation: results.D66,
-                    },
-                    {
-                      Field: "ESOP",
-                      Description:
-                        "Some description here will be very useful and make it look way more beautiful and readable",
-                      Observation: results.D67,
-                    },
+                    { field: "QDIA Feature", value: results.D64 },
                   ],
-                  subHeading: "Enterprise Exposure",
-                  tableHeader: "Fiduciary Exposure & Talent Rentention",
+                },
+                {
+                  name: "Talent Rentention",
+                  data: [
+                    { field: "Controlled Group", value: results.D65 },
+                    { field: "Life Insurance", value: results.D66 },
+                    { field: "ESOP", value: results.D67 },
+                  ],
                 },
 
                 {
+                  name: "Retirement Readiness",
                   data: [
+                    { field: "403B", value: results.D68 },
                     {
-                      Field: "403B",
-                      Description:
-                        "Some description here will be very useful and make it look way more beautiful and readable",
-                      Observation: results.D68,
+                      field: "Plan Usage (Auto-enrollment)",
+                      value: results.D69,
                     },
                     {
-                      Field: "Plan Usage (Auto-enrollment)",
-                      Description:
-                        "Some description here will be very useful and make it look way more beautiful and readable",
-                      Observation: results.D69,
+                      field: "Retirement Readiness with QDIA",
+                      value: results.D70,
                     },
-                    {
-                      Field: "Retirement Readiness with QDIA",
-                      Description:
-                        "Some description here will be very useful and make it look way more beautiful and readable",
-                      Observation: results.D70,
-                    },
-                    {
-                      Field: "Employer Match Program",
-                      Description:
-                        "Some description here will be very useful and make it look way more beautiful and readable",
-                      Observation: results.D71,
-                    },
-                    {
-                      Field: "Directed Brokerage",
-                      Description:
-                        "Some description here will be very useful and make it look way more beautiful and readable",
-                      Observation: results.D72,
-                    },
-                    {
-                      Field: "Equity Interest",
-                      Description:
-                        "Some description here will be very useful and make it look way more beautiful and readable",
-                      Observation: results.D73,
-                    },
-                    {
-                      Field: "Equity Interest Compliance",
-                      Description:
-                        "Some description here will be very useful and make it look way more beautiful and readable",
-                      Observation: results.D74,
-                    },
+
+                    { field: "Employer Match Program", value: results.D71 },
+
+                    { field: "Directed Brokerage", value: results.D72 },
+
+                    { field: "Equity Interest", value: results.D73 },
+                    { field: "Equity Interest Compliance", value: results.D74 },
                   ],
-                  subHeading: "Retirement Enhancement",
-                  tableHeader: "Retirement Readiness",
                 },
               ]}
               mainHeading="Plan Design"
