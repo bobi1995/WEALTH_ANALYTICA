@@ -3,6 +3,7 @@ import { makeStyles, Box, Typography, Paper } from "@material-ui/core";
 import Contacts from "./EmailSection/Contacts";
 import Score from "./EmailSection/Score";
 import Email from "./EmailSection/Email";
+import PdfList from "./EmailSection/PdfList";
 const useStyles = makeStyles((theme) => ({
   container: { width: "94%", margin: "0 auto" },
   topBox: {
@@ -14,9 +15,6 @@ const useStyles = makeStyles((theme) => ({
   },
   scoreBox: {
     width: "30%",
-  },
-  emailBox: {
-    backgroundColor: "green",
   },
 }));
 
@@ -62,13 +60,13 @@ const EmailSection = ({ data }) => {
     <Box className={classes.container}>
       <Box className={classes.topBox}>
         <Box className={classes.contactBox}>
-          <Contacts contacts={contacts} />
+          <Contacts contacts={data.Contacts} />
         </Box>
         <Box className={classes.scoreBox}>
           <Score scoreData={scoreData} year={data.Year} />
         </Box>
       </Box>
-      <Box className={classes.emailBox}>
+      <Box>
         <Email />
       </Box>
     </Box>

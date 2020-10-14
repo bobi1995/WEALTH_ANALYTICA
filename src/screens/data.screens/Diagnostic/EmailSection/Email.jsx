@@ -10,7 +10,7 @@ import { Send, HighlightOff } from "@material-ui/icons/";
 import apiAddress from "../../../../global/endpointAddress";
 import axios from "axios";
 import { Link as ScrollLink, Element } from "react-scroll";
-
+import PdfList from "./PdfList";
 const EmailSection = (props) => {
   const classes = useStyles();
   const [receiver, setReceiver] = useState("");
@@ -53,67 +53,70 @@ const EmailSection = (props) => {
         </Box>
       )}
       {display ? (
-        <Box>
-          <Box className={classes.topContainer}>
-            <Box className={classes.receiverContainer} id="email-diagnostic">
-              <TextField
-                className={classes.receivers}
-                label="To"
-                type="email"
-                autoComplete="current-password"
-                variant="outlined"
-                onChange={handleReceiverChange}
-              />
-              <TextField
-                className={classes.receivers}
-                style={{ marginTop: "2%" }}
-                label="From"
-                type="email"
-                autoComplete="current-password"
-                variant="outlined"
-                defaultValue={sender}
-                disabled
-              />
-            </Box>
-            <Box className={classes.emailContainer}>
-              <Typography
-                className={classes.heading}
-                variant="h5"
-                component="h5"
-                gutterBottom
-              >
-                Write your email to Client Quick &amp; Easy
-              </Typography>
+        <Box className={classes.emailBox}>
+          <Box style={{ width: "100%" }}>
+            <Box className={classes.topContainer}>
+              <Box className={classes.receiverContainer}>
+                <TextField
+                  className={classes.receivers}
+                  label="To"
+                  type="email"
+                  autoComplete="current-password"
+                  variant="outlined"
+                  onChange={handleReceiverChange}
+                />
+                <TextField
+                  className={classes.receivers}
+                  style={{ marginTop: "2%" }}
+                  label="From"
+                  type="email"
+                  autoComplete="current-password"
+                  variant="outlined"
+                  defaultValue={sender}
+                  disabled
+                />
+              </Box>
+              <Box className={classes.emailContainer}>
+                <Typography
+                  className={classes.heading}
+                  variant="h5"
+                  component="h5"
+                  gutterBottom
+                >
+                  Write your email to Client Quick &amp; Easy
+                </Typography>
 
-              <TextareaAutosize
-                onChange={handleEmailContentChange}
-                className={classes.emailField}
-                placeholder="Start with something nice like 'Dear Customer, ...'"
-                rowsMin={3}
-              />
+                <TextareaAutosize
+                  onChange={handleEmailContentChange}
+                  className={classes.emailField}
+                  placeholder="Start with something nice like 'Dear Customer, ...'"
+                  rowsMin={3}
+                />
+              </Box>
+            </Box>
+            <Box className={classes.buttonContainer}>
+              <Button
+                className={classes.greenButton}
+                onClick={sendEmail}
+                startIcon={<Send />}
+              >
+                Send
+              </Button>
+              <Button
+                onClick={() => {
+                  setDisplay(false);
+                }}
+                className={classes.redButton}
+                startIcon={<HighlightOff />}
+              >
+                Close
+              </Button>
             </Box>
           </Box>
-          <Box className={classes.buttonContainer}>
-            <Button
-              className={classes.greenButton}
-              onClick={sendEmail}
-              startIcon={<Send />}
-            >
-              Send
-            </Button>
-            <Button
-              onClick={() => {
-                setDisplay(false);
-              }}
-              className={classes.redButton}
-              startIcon={<HighlightOff />}
-            >
-              Close
-            </Button>
-          </Box>
+          <PdfList />
         </Box>
       ) : (
-        ""
+        <Element id="email-diagnostic" />
       )}
     </Box>
   );
@@ -169,16 +172,22 @@ const useStyles = makeStyles({
     "&:hover": { backgroundColor: "#A8DD8A" },
   },
   contactBtn: {
+    textTransform: "uppercase",
     backgroundColor: "#008000",
     "&:hover": {
       backgroundColor: "#A8DD8A",
     },
-    fontSize: 18,
+    fontSize: 22,
     borderRadius: 5,
     textAlign: "center",
     paddingLeft: "0.5%",
     paddingRight: "0.5%",
     paddingTop: "0.25%",
+    fontFamily: "Slabo,serif",
+  },
+
+  emailBox: {
+    display: "flex",
   },
 });
 
