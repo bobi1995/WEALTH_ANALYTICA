@@ -38,6 +38,22 @@ const useStyles = makeStyles({
     marginLeft: "1%",
     width: "10%",
   },
+
+  diagnosticBtn: {
+    backgroundColor: "#8B4513",
+    "&:hover": {
+      backgroundColor: "#DEB887",
+    },
+    color: "white",
+    fontSize: 18,
+    borderRadius: 5,
+    textAlign: "center",
+    paddingLeft: "0.5%",
+    paddingRight: "0.5%",
+    paddingTop: "0.3%",
+    marginLeft: "1%",
+    width: "10%",
+  },
 });
 
 export default (props) => {
@@ -86,6 +102,18 @@ export default (props) => {
             style={{ textDecoration: "none", color: "white" }}
           >
             HEATMAP
+          </Link>
+        </Box>
+      </Tooltip>
+
+      <Tooltip title="Go to Diagnostic" className={classes.diagnosticBtn}>
+        <Box>
+          <Link
+            href={`/diagnostic/${props.companyID}`}
+            target="_blank"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            DIAGNOSTIC
           </Link>
         </Box>
       </Tooltip>

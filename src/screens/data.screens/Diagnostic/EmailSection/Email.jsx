@@ -11,12 +11,17 @@ import apiAddress from "../../../../global/endpointAddress";
 import axios from "axios";
 import { Link as ScrollLink, Element } from "react-scroll";
 import PdfList from "./PdfList";
+import EmailSent from "../../../../components/emailSent";
+
 const EmailSection = (props) => {
   const classes = useStyles();
   const [receiver, setReceiver] = useState("");
   const [emailContent, setEmailContent] = useState("");
   const sender = sessionStorage.getItem("Email");
   const [display, setDisplay] = useState(false);
+  const [pdfs, setPdfs] = useState([]);
+  const [result, setResult] = useState("");
+
   const handleReceiverChange = (e) => {
     setReceiver(e.target.value);
   };
@@ -26,10 +31,39 @@ const EmailSection = (props) => {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    axios
+      .post(
+        `${apiAddress}/api/SmallCompanies/SendDiagnosticsEmail`,
+        {
+          from: sender,
+          to: receiver,
+          subject: `Wealth Analytica Diagnostic`,
+          message: emailContent,
+          PdfNumbers: pdfs,
+        },
+        {
+          headers: {
+            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        setResult(res.status);
+      })
+      .catch((err) => {
+        setResult(err.response.data.Message);
+      });
   };
 
   return (
-    <Box className={classes.container}>
+    <Box
+      className={classes.container}
+      style={{ backgroundColor: display ? "#F3F4F8" : "white" }}
+    >
+      {result ? <EmailSent result={result} setClose={setResult} /> : ""}
+
       {display ? (
         ""
       ) : (
@@ -113,7 +147,7 @@ const EmailSection = (props) => {
               </Button>
             </Box>
           </Box>
-          <PdfList />
+          <PdfList setPdfs={setPdfs} />
         </Box>
       ) : (
         <Element id="email-diagnostic" />
@@ -125,7 +159,7 @@ const EmailSection = (props) => {
 const useStyles = makeStyles({
   container: {
     width: "100%",
-    backgroundColor: "#F3F4F8",
+
     padding: "1%",
     marginTop: "1%",
   },

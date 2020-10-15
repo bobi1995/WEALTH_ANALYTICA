@@ -15,11 +15,20 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Slabo,serif",
     textAlign: "center",
     fontSize: 35,
+    marginBottom: "3%",
+    marginTop: "3%",
   },
   indicatorsBox: {
     display: "flex",
     marginTop: "5%",
     marginBottom: "5%",
+  },
+  errorStyle: {
+    color: "#388fc2",
+    textAlign: "center",
+    fontSize: 40,
+    fontFamily: "Slabo,serif",
+    marginTop: "5%",
   },
 }));
 
@@ -27,12 +36,11 @@ const Diagnostic = (props) => {
   const classes = useStyles();
   const [results, setResults] = useState([]);
   const [loadingFlag, setLoadingFlag] = useState(false);
-
+  const [err, setErr] = useState("");
   let url = "";
   if (props.match) {
     url = `${apiAddress}/api/SmallCompanies/GetCompanyDiagnostics?CompanyID=${props.match.params.CompanyID}&year=${lastYear}`;
   }
-
   useEffect(
     (props) => {
       setLoadingFlag(true);
@@ -50,10 +58,9 @@ const Diagnostic = (props) => {
           setLoadingFlag(false);
         })
         .catch((err) => {
-          console.log(err);
           setLoadingFlag(false);
 
-          alert("For some reason we could not find the desired results.");
+          setErr(err.response.data);
         });
     },
     [url]
@@ -74,7 +81,7 @@ const Diagnostic = (props) => {
             Loading....Please wait
           </p>
         </div>
-      ) : (
+      ) : !err ? (
         <Box>
           <Box>
             <Typography className={classes.heading}>
@@ -83,7 +90,7 @@ const Diagnostic = (props) => {
           </Box>
           <EmailSection data={results} />
           <Box>
-            {/******** PLAN ASSETS */}
+            {/******** PLAN DESIGN */}
             <Section
               info={[
                 {
@@ -93,15 +100,8 @@ const Diagnostic = (props) => {
                     { field: "Return Of Assets", value: results.D2 },
                   ],
                 },
-              ]}
-              mainHeading="Plan Assets"
-            />
-
-            {/******** PLAN DESIGN */}
-            <Section
-              info={[
                 {
-                  name: "Fiduciary Exposure",
+                  name: "Fid. Exposure",
                   data: [
                     {
                       field: "QDIA with Fiduciary Exposure",
@@ -140,15 +140,8 @@ const Diagnostic = (props) => {
                     { field: "Equity Interest Compliance", value: results.D74 },
                   ],
                 },
-              ]}
-              mainHeading="Plan Design"
-            />
-
-            {/******** PLAN UTILIZATION */}
-            <Section
-              info={[
                 {
-                  name: "Active Participants",
+                  name: "Active Particip.",
                   data: [
                     {
                       field: "Average Active Participants",
@@ -297,7 +290,7 @@ const Diagnostic = (props) => {
                   ],
                 },
               ]}
-              mainHeading="Plan Utilization"
+              mainHeading="Observations"
             />
           </Box>
           <Box className={classes.indicatorsBox}>
@@ -345,6 +338,10 @@ const Diagnostic = (props) => {
                   field: "Five Percent Ind",
                   value: results.D39,
                 },
+              ]}
+            />
+            <Indicators
+              info={[
                 {
                   field: "Inv. Concentration 20 Ind",
                   value: results.D40,
@@ -367,10 +364,6 @@ const Diagnostic = (props) => {
                   value: results.D36,
                   type: "amount",
                 },
-              ]}
-            />
-            <Indicators
-              info={[
                 {
                   field: "Contribution Non Cash Amt",
                   value: results.D38,
@@ -394,6 +387,10 @@ const Diagnostic = (props) => {
                   field: "Loans In Default Ind",
                   value: results.D44,
                 },
+              ]}
+            />
+            <Indicators
+              info={[
                 {
                   field: "Loss Discover Amt",
                   value: results.D47,
@@ -438,6 +435,12 @@ const Diagnostic = (props) => {
             />
           </Box>
         </Box>
+      ) : err === "Company heatmap data not found!" ? (
+        <Box className={classes.errorStyle}>
+          No data available for this Sponsor
+        </Box>
+      ) : (
+        <Box className={classes.errorStyle}>{err}</Box>
       )}
     </Box>
   );

@@ -20,13 +20,13 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Accountant from "./Heatmap/Accountant";
 import Compliance from "./Heatmap/Compliance";
 import BenefitTypes from "./Heatmap/BenefitTypes";
-import Touches from './Heatmap/Touches'
+import Touches from "./Heatmap/Touches";
 import {
   UtilizationExtract,
   ComplianceExtract,
   AccountantExtract,
   BenefitTypesExtract,
-  TouchesExtract
+  TouchesExtract,
 } from "./Heatmap/HeatmapDataExtract";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,12 +34,20 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     //backgroundColor: "orange",
   },
+  errorStyle: {
+    color: "#388fc2",
+    textAlign: "center",
+    fontSize: 40,
+    fontFamily: "Slabo,serif",
+    marginTop: "5%",
+  },
 }));
 
 const Heatmap = (props) => {
   const [results, setResults] = useState();
   const classes = useStyles();
   const [value, setValue] = React.useState("1");
+  const [err, setErr] = useState("");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -62,9 +70,7 @@ const Heatmap = (props) => {
         setResults(res.data);
       })
       .catch((err) => {
-        console.log(err);
-
-        alert("For some reason we could not find the desired results.");
+        setErr(err.response.data);
       });
   }, [url]);
 
@@ -103,8 +109,12 @@ const Heatmap = (props) => {
               <TabPanel value="4">
                 <BenefitTypes data={BenefitTypesExtract(results.CompanyData)} />
               </TabPanel>
-              <TabPanel value="5"><Touches data={TouchesExtract(results.CompanyData)}/></TabPanel>
+              <TabPanel value="5">
+                <Touches data={TouchesExtract(results.CompanyData)} />
+              </TabPanel>
             </Box>
+          ) : err ? (
+            <Box className={classes.errorStyle}>{err}</Box>
           ) : (
             <div style={{ width: "100%", textAlign: "center" }}>
               <CircularProgress

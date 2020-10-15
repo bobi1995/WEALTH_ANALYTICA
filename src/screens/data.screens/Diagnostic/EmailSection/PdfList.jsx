@@ -50,7 +50,7 @@ const pdfs = [
 const PdfList = (props) => {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([]);
-  console.log(checked);
+
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -62,6 +62,7 @@ const PdfList = (props) => {
     }
 
     setChecked(newChecked);
+    props.setPdfs(newChecked);
   };
 
   return (

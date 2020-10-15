@@ -1,9 +1,9 @@
 import React from "react";
-import { makeStyles, Box, Typography, Paper } from "@material-ui/core";
+import { makeStyles, Box } from "@material-ui/core";
 import Contacts from "./EmailSection/Contacts";
 import Score from "./EmailSection/Score";
 import Email from "./EmailSection/Email";
-import PdfList from "./EmailSection/PdfList";
+
 const useStyles = makeStyles((theme) => ({
   container: { width: "94%", margin: "0 auto" },
   topBox: {
@@ -17,24 +17,6 @@ const useStyles = makeStyles((theme) => ({
     width: "30%",
   },
 }));
-
-const contacts = [
-  {
-    Name: "Borislav Stefanov",
-    Title: "Software Engineer",
-    Email: "borislav.stefanov@abv.bg",
-  },
-  {
-    Name: "Ray Colombo",
-    Title: "Chief Executive Officer",
-    Email: null,
-  },
-  {
-    Name: "John Doe",
-    Title: "Administrative Assistant",
-    Email: "john.doe@test.bg",
-  },
-];
 
 const EmailSection = ({ data }) => {
   const classes = useStyles();

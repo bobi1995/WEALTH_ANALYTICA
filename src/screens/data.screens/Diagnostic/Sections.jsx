@@ -13,23 +13,23 @@ const useStyles = makeStyles((theme) => ({
     color: " #388fc2",
     fontFamily: "Slabo,serif",
     fontStyle: "italic",
-    fontSize: 27,
+    fontSize: 40,
+    marginBottom: "2%",
   },
   wrapper: {
     border: "2px solid #388FCE",
     position: "relative",
     padding: "15px",
     borderLeft: "40px solid #388FCE",
-    minHeight: "300px",
     width: "70%",
-    marginBottom: "3%",
+    marginBottom: "1%",
     margin: "0 auto",
   },
   rotatedTypo: {
     transform: "rotate(270deg)",
     transformOrigin: "0 0 ",
     position: "absolute",
-    fontSize: "1rem",
+    fontSize: 14,
     textTransform: "uppercase",
     letterSpacing: "3px",
     bottom: 0,
@@ -37,25 +37,26 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "-30px",
     color: "white",
     fontWeight: "bold",
-    top: "80%",
+    top: "96%",
   },
-  fieldLabel: { width: "15%" },
+  fieldLabel: { width: "15%", fontSize: 12, paddingTop: "1%" },
   valueBox: {
     display: "flex",
     width: "100%",
     justifyContent: "space-between",
-    marginBottom: "3%",
+    marginBottom: "1%",
   },
   paperStyle: {
     width: "94%",
   },
+  alertStyle: { width: "100%", fontSize: 12 },
 }));
 
 const Tables = ({ info, mainHeading }) => {
   const classes = useStyles();
   return info.length > 0 ? (
     <Box className={classes.tableBox}>
-      <Paper className={classes.paperStyle}>
+      <Paper className={classes.paperStyle} elevation={21}>
         <Box>
           <Typography className={classes.subheading}>{mainHeading}</Typography>
           {info.map((el, ind) => (
@@ -70,7 +71,7 @@ const Tables = ({ info, mainHeading }) => {
                     severity="info"
                     elevation={6}
                     variant="filled"
-                    style={{ width: "100%" }}
+                    className={classes.alertStyle}
                   >
                     {item.value}
                   </Alert>
