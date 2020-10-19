@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import history from "../../history/history";
 import PropTypes from "prop-types";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
@@ -13,6 +13,7 @@ import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 import StepConnector from "@material-ui/core/StepConnector";
 import StarHalfIcon from "@material-ui/icons/StarHalf";
+import AlertBox from "../../components/alertBox";
 
 const useQontoStepIconStyles = makeStyles({
   root: {
@@ -154,6 +155,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomizedSteppers(props) {
   const classes = useStyles();
+  const [alertMessage, setAlertMessage] = useState("");
 
   return (
     <div className={classes.root} data-html2canvas-ignore>
@@ -232,8 +234,8 @@ export default function CustomizedSteppers(props) {
         <Step
           disabled={false}
           onClick={() =>
-            alert(
-              "To open the One Pager you would need first to select the desired result. It could happen from already Bookmarked result or directly from Filter table with results."
+            setAlertMessage(
+              "To open the One Pager you would need first to select the desired Plan/Company. It could happen from already Bookmarked result or directly from Filter table with results."
             )
           }
         >
@@ -256,8 +258,8 @@ export default function CustomizedSteppers(props) {
         <Step
           disabled={false}
           onClick={() =>
-            alert(
-              "To open the Plan Profile you would need first to select the desired result. It could happen from already Bookmarked result or directly from Filter table with results. Also you can open the Plan Profile from already loaded One Pager."
+            setAlertMessage(
+              "To open the Plan Profile you would need first to select the desired Plan/Company. It could happen from already Bookmarked result or directly from Filter table with results. Also you can open the Plan Profile from already loaded One Pager."
             )
           }
         >
@@ -275,6 +277,11 @@ export default function CustomizedSteppers(props) {
           </StepLabel>
         </Step>
       </Stepper>
+      {alertMessage ? (
+        <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

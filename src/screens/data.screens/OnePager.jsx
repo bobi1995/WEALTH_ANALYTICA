@@ -15,10 +15,12 @@ import Magellan from "./Magellan";
 import apiAddress from "../../global/endpointAddress";
 import OnePagerTopStatistics from "./OnePagerFunctions/OnePagerTopStatistics";
 import { minYear, lastYear } from "../../global/Years";
+import AlerBox from "../../components/alertBox";
 
 const OnePager = (props) => {
   const [results, setResults] = useState([]);
   const [limit, setLimit] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   let url = "";
   if (props.match) {
     url = `${apiAddress}/api/SmallCompanies/GetOnePager?CompanyID=${props.match.params.CompanyID}&minYear=${minYear}&maxYear=${lastYear}`;
@@ -44,10 +46,14 @@ const OnePager = (props) => {
             if (err.response.status === 400) {
               setLimit(true);
             } else {
-              alert("For some reason we could not find the desired results.");
+              setAlertMessage(
+                "For some reason we could not find the desired results."
+              );
             }
           } else
-            alert("For some reason we could not find the desired results.");
+            setAlertMessage(
+              "For some reason we could not find the desired results."
+            );
         });
     },
     [url]
@@ -121,6 +127,7 @@ const OnePager = (props) => {
           <Loader />
         </div>
       )}
+      {alertMessage ? <AlerBox /> : ""}
     </div>
   );
 };

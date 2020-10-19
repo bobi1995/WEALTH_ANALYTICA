@@ -1,7 +1,8 @@
 import React from "react";
 import { makeStyles, Box, Typography, Paper } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-
+import { observations } from "../../../global/diagnosticObservations";
+import numeral from "numeral";
 const useStyles = makeStyles((theme) => ({
   tableBox: {
     justifyContent: "center",
@@ -54,12 +55,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Tables = ({ info, mainHeading }) => {
   const classes = useStyles();
-  return info.length > 0 ? (
+  return (
     <Box className={classes.tableBox}>
       <Paper className={classes.paperStyle} elevation={21}>
         <Box>
           <Typography className={classes.subheading}>{mainHeading}</Typography>
-          {info.map((el, ind) => (
+          {observations.map((el, ind) => (
             <Box key={ind} className={classes.wrapper}>
               <Typography className={classes.rotatedTypo}>{el.name}</Typography>
               {el.data.map((item) => (
@@ -67,14 +68,30 @@ const Tables = ({ info, mainHeading }) => {
                   <Typography className={classes.fieldLabel}>
                     {item.field}
                   </Typography>
-                  <Alert
-                    severity="info"
-                    elevation={6}
-                    variant="filled"
-                    className={classes.alertStyle}
-                  >
-                    {item.value}
-                  </Alert>
+                  {info.map((el) =>
+                    el.Name === item.code ? (
+                      <Alert
+                        key={el.Name}
+                        severity="info"
+                        elevation={6}
+                        variant="filled"
+                        className={classes.alertStyle}
+                        style={
+                          el.Ind === 1
+                            ? { backgroundColor: "#FC3468" }
+                            : el.Ind === 0
+                            ? { backgroundColor: "#6ACD75" }
+                            : {}
+                        }
+                      >
+                        {el.Ind === null
+                          ? `$${numeral(el.Text).format("0,0")}`
+                          : el.Text}
+                      </Alert>
+                    ) : (
+                      ""
+                    )
+                  )}
                 </Box>
               ))}
             </Box>
@@ -82,8 +99,6 @@ const Tables = ({ info, mainHeading }) => {
         </Box>
       </Paper>
     </Box>
-  ) : (
-    ""
   );
 };
 

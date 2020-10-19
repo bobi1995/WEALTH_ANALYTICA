@@ -12,6 +12,7 @@ import axios from "axios";
 import { Link as ScrollLink, Element } from "react-scroll";
 import PdfList from "./PdfList";
 import EmailSent from "../../../../components/emailSent";
+import Loader2 from "../../../../components/loader2";
 
 const EmailSection = (props) => {
   const classes = useStyles();
@@ -21,6 +22,7 @@ const EmailSection = (props) => {
   const [display, setDisplay] = useState(false);
   const [pdfs, setPdfs] = useState([]);
   const [result, setResult] = useState("");
+  const [displayFlag, setDisplayFlag] = useState(false);
 
   const handleReceiverChange = (e) => {
     setReceiver(e.target.value);
@@ -31,6 +33,7 @@ const EmailSection = (props) => {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setDisplayFlag(true);
     axios
       .post(
         `${apiAddress}/api/SmallCompanies/SendDiagnosticsEmail`,
@@ -50,9 +53,15 @@ const EmailSection = (props) => {
         }
       )
       .then((res) => {
+        setDisplayFlag(false);
         setResult(res.status);
+        setDisplay(false);
+        setEmailContent("");
+        setReceiver("");
+        setPdfs("");
       })
       .catch((err) => {
+        setDisplayFlag(false);
         setResult(err.response.data.Message);
       });
   };
@@ -62,6 +71,7 @@ const EmailSection = (props) => {
       className={classes.container}
       style={{ backgroundColor: display ? "#F3F4F8" : "white" }}
     >
+      {displayFlag ? <Loader2 text="Sending...Please wait" /> : ""}
       {result ? <EmailSent result={result} setClose={setResult} /> : ""}
 
       {display ? (

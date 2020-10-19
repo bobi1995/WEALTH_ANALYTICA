@@ -34,6 +34,10 @@ const EmailSection = ({ data }) => {
       value: data.EnhancedTaxDeferralAndEmployeeRetirement,
     },
     {
+      name: "Overall Rating",
+      value: data.OverallRating,
+    },
+    {
       name: "Touches",
       value: data.Touches,
     },
