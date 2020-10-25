@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   paperStyle: {
     width: "94%",
   },
-  alertStyle: { width: "100%", fontSize: 12 },
+  alertStyle: { width: "100%", fontSize: 15 },
 }));
 
 const Tables = ({ info, mainHeading }) => {
