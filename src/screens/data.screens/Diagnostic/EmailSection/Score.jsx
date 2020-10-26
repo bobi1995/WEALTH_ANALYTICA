@@ -1,8 +1,12 @@
 import React from "react";
 import MaterialTable from "material-table";
+<<<<<<< HEAD
 import { primaryBlue } from "../../../../global/Colors";
 import numeral from "numeral";
 
+=======
+import numeral from "numeral";
+>>>>>>> e2cc8e321769fb7d2f99092f9b5cbdf52648d32d
 const Contacts = ({ scoreData, year }) => {
   return (
     <MaterialTable
