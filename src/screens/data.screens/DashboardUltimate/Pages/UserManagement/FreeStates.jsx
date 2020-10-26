@@ -11,13 +11,13 @@ import axios from "axios";
 import Moment from "react-moment";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import AssignState from "./FreeStates/AssignState";
-
+import { primaryBlue } from "../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     textAlign: "center",
   },
   headerStyle: {
-    color: "#378FC3",
+    color: primaryBlue,
     fontFamily: "Baskervville",
   },
   statesStyle: {
@@ -141,7 +141,7 @@ const FreeStates = () => {
                   paging: false,
                   search: false,
                   headerStyle: {
-                    backgroundColor: "#378FC3",
+                    backgroundColor: primaryBlue,
                     color: "#FFF",
                     fontSize: "17px",
                     textAlign: "center",

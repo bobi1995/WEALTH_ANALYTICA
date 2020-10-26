@@ -10,14 +10,15 @@ import { useTheme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core";
 import apiAddress from "../../../global/endpointAddress";
 import axios from "axios";
+import { softRed } from "../../../global/Colors";
 
 const useStyles = makeStyles({
   deleteBtn: {
     color: "#CC6666",
-    border: "1px solid #CC6666",
+    border: `1px solid ${softRed}`,
     "&:hover": {
       color: "white",
-      backgroundColor: "#CC6666",
+      backgroundColor: softRed,
     },
   },
 });

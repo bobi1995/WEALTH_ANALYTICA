@@ -3,6 +3,7 @@ import { makeStyles, Box, Link, Typography } from "@material-ui/core";
 import MaterialTable from "material-table";
 import EmailIcon from "@material-ui/icons/Email";
 import Administrator from "./Administrator";
+import { backgroundGrey, primaryBlue } from "../../../../global/Colors";
 
 const Contacts = (props) => {
   const classes = useStyles();
@@ -39,12 +40,12 @@ const Contacts = (props) => {
             ]}
             options={{
               headerStyle: {
-                backgroundColor: "#378FC3",
+                backgroundColor: primaryBlue,
                 color: "#FFF",
                 fontSize: 18,
               },
               actionsCellStyle: {
-                color: "#378FC3",
+                color: primaryBlue,
               },
               paging: false,
               search: false,
@@ -80,7 +81,7 @@ const Contacts = (props) => {
 };
 
 const useStyles = makeStyles({
-  container: { backgroundColor: "#F3F4F8" },
+  container: { backgroundColor: backgroundGrey },
   contactContainer: {
     width: "100%",
     display: "flex",

@@ -13,7 +13,7 @@ import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import { ArrowUpward, ChevronRight } from "@material-ui/icons";
 import commonExtracts from "../../../../commonFunctions/commonExtracts";
 import RemoveState from "./RemoveState";
-
+import { primaryBlue } from "../../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
   closeButton: {
     position: "absolute",
@@ -154,7 +154,7 @@ export default function UserStates(props) {
               paging: false,
               search: false,
               headerStyle: {
-                backgroundColor: "#378FC3",
+                backgroundColor: primaryBlue,
                 color: "#FFF",
                 fontSize: "17px",
                 textAlign: "center",

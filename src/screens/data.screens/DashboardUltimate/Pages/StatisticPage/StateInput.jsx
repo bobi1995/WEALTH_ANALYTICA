@@ -10,7 +10,7 @@ import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import FilterExtract from "../../..//commonFunctions/commonExtracts";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { primaryBlue } from "../../../../../global/Colors";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
   },
   avatar: {
-    backgroundColor: "#378FC3",
+    backgroundColor: primaryBlue,
     height: 56,
     width: 56,
   },
@@ -40,10 +40,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   differenceIcon: {
-    color: "#378FC3",
+    color: primaryBlue,
   },
   differenceValue: {
-    color: "#378FC3",
+    color: primaryBlue,
     marginRight: theme.spacing(1),
   },
 }));

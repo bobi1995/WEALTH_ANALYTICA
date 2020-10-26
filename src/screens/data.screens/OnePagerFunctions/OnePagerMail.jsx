@@ -4,7 +4,7 @@ import Contacts from "./Mail/Contacts";
 import EmailSection from "./Mail/EmailSection";
 import commonExtract from "../commonFunctions/commonExtracts";
 import { Link as ScrollLink, Element } from "react-scroll";
-
+import { orangeColor } from "../../../global/Colors";
 const OnePagerMail = (props) => {
   const classes = useStyles();
   const [display, setDisplay] = useState(false);
@@ -95,7 +95,7 @@ const useStyles = makeStyles({
   planBtn: {
     backgroundColor: "#c46c00",
     "&:hover": {
-      backgroundColor: "#ff9e27",
+      backgroundColor: orangeColor,
     },
     color: "white",
     fontSize: 18,

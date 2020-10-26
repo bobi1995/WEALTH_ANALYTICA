@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Diagnostic = (props) => {
   const classes = useStyles();
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState();
   const [loadingFlag, setLoadingFlag] = useState(true);
   const [err, setErr] = useState("");
   let url = "";
@@ -73,7 +73,7 @@ const Diagnostic = (props) => {
             Loading....Please wait
           </p>
         </div>
-      ) : !err ? (
+      ) : !err && results ? (
         <Box>
           <Box>
             <Typography className={classes.heading}>

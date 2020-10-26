@@ -4,7 +4,7 @@ import numeral from "numeral";
 import DataExtract from "./OnePagerDataExtract";
 import common from "../commonFunctions/common";
 import { allYears } from "../../../global/Years";
-
+import { backgroundGrey } from "../../../global/Colors";
 const OnePagerPensionPlan = (props) => {
   const uniqueYears = allYears;
 
@@ -30,7 +30,7 @@ const OnePagerPensionPlan = (props) => {
       {props.types[2].length > 0 ? (
         <div
           className="onepager-bottomtables-table "
-          style={{ backgroundColor: "#f3f4f8" }}
+          style={{ backgroundColor: backgroundGrey }}
         >
           <div
             className="plan-profile-chartsDiv"
@@ -180,7 +180,7 @@ const OnePagerPensionPlan = (props) => {
                 key={index}
                 id={element.Type + index}
                 className="onepager-bottomtables-table onepager-hidden-tables"
-                style={{ backgroundColor: "#f3f4f8" }}
+                style={{ backgroundColor: backgroundGrey }}
               >
                 <div
                   className="plan-profile-chartsDiv"

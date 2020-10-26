@@ -4,7 +4,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import common from "../../../../../commonFunctions/common";
 import { ArrowUpward, ChevronRight } from "@material-ui/icons";
-
+import { primaryBlue } from "../../../../../../../global/Colors";
 export default (props) => {
   return props.data ? (
     <MaterialTable
@@ -89,7 +89,7 @@ export default (props) => {
       options={{
         paging: false,
         headerStyle: {
-          backgroundColor: "#378FC3",
+          backgroundColor: primaryBlue,
           color: "#FFF",
           fontSize: "17px",
           textAlign: "center",

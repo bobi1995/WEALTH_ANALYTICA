@@ -7,14 +7,14 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import numeral from "numeral";
 import commonFunction from "../../../../commonFunctions/common";
-
+import { backgroundGrey, primaryBlue } from "../../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     textAlign: "center",
     width: "100%",
   },
   headerStyle: {
-    color: "#378FC3",
+    color: primaryBlue,
     fontFamily: "Baskervville",
   },
   tablesStyleDiv: {
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
   },
   sectionStyle: {
-    backgroundColor: "#F3F4F8",
+    backgroundColor: backgroundGrey,
     margin: "3% 1%",
   },
 }));
@@ -95,7 +95,7 @@ export default (props) => {
                 options={{
                   paging: false,
                   headerStyle: {
-                    backgroundColor: "#378FC3",
+                    backgroundColor: primaryBlue,
                     color: "#FFF",
                     fontSize: "17px",
                     textAlign: "center",
@@ -188,7 +188,7 @@ export default (props) => {
                 options={{
                   paging: false,
                   headerStyle: {
-                    backgroundColor: "#378FC3",
+                    backgroundColor: primaryBlue,
                     color: "#FFF",
                     fontSize: "17px",
                     textAlign: "center",

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { backgroundGrey } from "../../../global/Colors";
 const OnePagerAccountants = (props) => {
   return (
     <div
@@ -9,7 +9,7 @@ const OnePagerAccountants = (props) => {
       {props.accountants.length > 0 ? (
         <div
           className="onepager-bottomtables-table"
-          style={{ backgroundColor: "#f3f4f8" }}
+          style={{ backgroundColor: backgroundGrey }}
         >
           <div
             className="plan-profile-chartsDiv"
@@ -41,7 +41,7 @@ const OnePagerAccountants = (props) => {
       {props.trusts.length > 0 ? (
         <div
           className="onepager-bottomtables-table"
-          style={{ backgroundColor: "#f3f4f8" }}
+          style={{ backgroundColor: backgroundGrey }}
         >
           <div
             className="plan-profile-chartsDiv"

@@ -1,5 +1,7 @@
 import React from "react";
 import MaterialTable from "material-table";
+import { primaryBlue } from "../../../../global/Colors";
+import numeral from "numeral";
 
 const Contacts = ({ scoreData, year }) => {
   return (
@@ -17,7 +19,8 @@ const Contacts = ({ scoreData, year }) => {
         {
           title: "Score",
           field: "value",
-          render: (rowData) => (rowData.value ? `${rowData.value}%` : "N/A"),
+          render: (rowData) =>
+            rowData.value ? `${numeral(rowData.value).format("0.0")}%` : "N/A",
           cellStyle: (rowData) => ({
             color: rowData < 50 ? "red" : rowData > 79 ? "green" : "orange",
             fontWeight: "bold",
@@ -27,7 +30,7 @@ const Contacts = ({ scoreData, year }) => {
       data={scoreData}
       options={{
         headerStyle: {
-          backgroundColor: "#378FC3",
+          backgroundColor: primaryBlue,
           color: "#FFF",
           fontSize: 18,
         },

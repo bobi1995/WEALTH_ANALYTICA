@@ -17,16 +17,16 @@ import CloseIcon from "@material-ui/icons/Close";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import InvestmentDetails from "./Level2/InvestmentDetails";
 import { lastYear } from "../../../../../global/Years";
-
+import { primaryBlue } from "../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     marginTop: "60px",
   },
   buttonStyle: {
-    backgroundColor: "#378FC3",
+    backgroundColor: primaryBlue,
     color: "white",
     "&:hover": {
-      color: "#378FC3",
+      color: primaryBlue,
     },
     whiteSpace: "nowrap",
   },

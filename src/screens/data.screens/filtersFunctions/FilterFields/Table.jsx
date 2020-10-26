@@ -101,7 +101,8 @@ export default (props) => {
           field: "Phone",
           title: "Phone",
           sorting: false,
-          render: (rowData) => commonFunctions.phoneFormat(rowData.Phone),
+          render: (rowData) =>
+            rowData.Phone ? commonFunctions.phoneFormat(rowData.Phone) : "N/A",
           cellStyle: {
             whiteSpace: "nowrap",
           },

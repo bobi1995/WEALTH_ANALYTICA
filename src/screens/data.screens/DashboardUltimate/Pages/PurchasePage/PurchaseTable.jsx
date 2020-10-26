@@ -3,6 +3,7 @@ import MaterialTable from "material-table";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { makeStyles } from "@material-ui/core/styles";
 import numeral from "numeral";
+import { primaryBlue } from "../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
   iconStyle: {
     "&:hover": {
@@ -87,7 +88,7 @@ export default (props) => {
         paging: false,
         search: false,
         headerStyle: {
-          backgroundColor: "#378FC3",
+          backgroundColor: primaryBlue,
           color: "#FFF",
           fontSize: "17px",
           textAlign: "center",

@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 import apiAddress from "../../../../../global/endpointAddress";
+import { softRed, primaryBlue } from "../../../../../global/Colors";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     width: 100,
     flexShrink: 0,
     flexGrow: 0,
-    border: "1px solid #378FC3",
+    border: `1px solid ${primaryBlue}`,
   },
   progress: {
     marginTop: theme.spacing(2),
@@ -145,7 +146,7 @@ const AccountProfile = (props) => {
           style={
             fileUrl
               ? { backgroundColor: "#008000", color: "white" }
-              : { backgroundColor: "#CC6666", color: "white" }
+              : { backgroundColor: softRed, color: "white" }
           }
         >
           {fileUrl ? "Upload Logo" : "Remove Logo"}

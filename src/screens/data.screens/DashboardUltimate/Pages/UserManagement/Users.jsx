@@ -9,14 +9,14 @@ import apiAddress from "../../../../../global/endpointAddress";
 import axios from "axios";
 import UserStates from "./Users/UserStates";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import { primaryBlue } from "../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     textAlign: "center",
     paddingBottom: "1%",
   },
   headerStyle: {
-    color: "#378FC3",
+    color: primaryBlue,
     fontFamily: "Baskervville",
   },
   statesStyle: {
@@ -116,7 +116,7 @@ const FreeStates = () => {
           options={{
             paging: false,
             headerStyle: {
-              backgroundColor: "#378FC3",
+              backgroundColor: primaryBlue,
               color: "#FFF",
               fontSize: "17px",
               textAlign: "center",

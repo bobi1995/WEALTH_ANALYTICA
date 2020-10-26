@@ -6,13 +6,12 @@ import history from "../history/history";
 import mySvg from "../styles/images/redo.svg";
 import apiAddress from "../global/endpointAddress";
 import ForgotPassword from "./data.screens/Login/ForgotPassword";
+import AlertBox from "../components/alertBox";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-
   const [loading, setLoading] = useState(false);
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,6 +23,8 @@ const Login = () => {
   const [fileName, setFileName] = useState("");
   const [fileBase64, setFileBase64] = useState("");
   const [isBusiness, setIsBusiness] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
   const clicked = () => {
     document.querySelector(".cont").classList.toggle("s--signup");
   };
@@ -119,7 +120,7 @@ const Login = () => {
       })
       .catch((e) => {
         console.log(e);
-        alert("Wrong username or password");
+        setAlertMessage("Wrong username or password");
         setLoading(false);
       });
   };
@@ -142,10 +143,10 @@ const Login = () => {
     };
 
     if (password !== confirmPassword) {
-      alert("Passwords don't match");
+      setAlertMessage("Passwords don't match");
       setLoading(false);
     } else if (password.length < 6) {
-      alert("Password must be at least 7 symbols");
+      setAlertMessage("Password must be at least 7 symbols");
       setLoading(false);
     } else {
       axios
@@ -153,7 +154,7 @@ const Login = () => {
         .then((res) => {
           if (res.status === 200) {
             setLoading(false);
-            alert(
+            setAlertMessage(
               "You have sucessfully registered! You can login with your credentials."
             );
             window.location.reload();
@@ -422,6 +423,11 @@ const Login = () => {
           </div>
         </div>
       </div>
+      {alertMessage ? (
+        <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
       <Footer />
     </div>
   );

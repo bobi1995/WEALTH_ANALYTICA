@@ -3,6 +3,7 @@ import { makeStyles, Box, Typography, Paper } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { observations } from "../../../global/diagnosticObservations";
 import numeral from "numeral";
+
 const useStyles = makeStyles((theme) => ({
   tableBox: {
     justifyContent: "center",

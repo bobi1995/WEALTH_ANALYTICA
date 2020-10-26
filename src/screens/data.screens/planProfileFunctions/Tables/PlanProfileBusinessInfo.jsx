@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import commonFunctions from "../../commonFunctions/common";
-import Contact from "../../OnePagerFunctions/OnePagerContact";
-import { Pie } from "react-chartjs-2";
-
+import Administrator from "../../OnePagerFunctions/Mail/Administrator";
+import MaterialTable from "material-table";
+import { primaryBlue } from "../../../../global/Colors";
+import Chart from "./BusinessInfo/Chart";
+import LocationAndBusiness from "./BusinessInfo/LocationAndBusiness";
 const PlaneProfileBusinessInfo = (props) => {
   const [contribution, setContribution] = useState(0);
   const [benefit, setBenefit] = useState(0);
   const [welfare, setWelfare] = useState(0);
+  console.log(props);
   const data = {
     labels: ["Contribution", "Benefit", "Welfare"],
     datasets: [
@@ -17,6 +20,42 @@ const PlaneProfileBusinessInfo = (props) => {
       },
     ],
   };
+  const locationData = [
+    {
+      Field: "State",
+      Info: props.data.State,
+    },
+    {
+      Field: "City",
+      Info: props.data.City,
+    },
+    {
+      Field: "Address",
+      Info: props.data.Address1,
+    },
+    {
+      Field: "Zip Code",
+      Info: props.data.Zip,
+    },
+  ];
+  const businessData = [
+    {
+      Field: "Business Code",
+      Info: props.data.BusinessCode,
+    },
+    {
+      Field: "Industry",
+      Info: props.data.Industry,
+    },
+    {
+      Field: "Company Stock",
+      Info: props.erisa ? "Includes Company Stock" : "No Company Stock",
+    },
+    {
+      Field: "Insurance Cap",
+      Info: props.erisa ? "1.0 M" : "500.0 K",
+    },
+  ];
 
   useEffect(() => {
     props.types.forEach((el) => {
@@ -44,168 +83,62 @@ const PlaneProfileBusinessInfo = (props) => {
       </h1>
       <div className="chart-plan-section">
         <div style={{ width: "45%", margin: " 0, auto " }}>
-          <div className="inside-business-div ">
-            <h3 className="planProfile-header-h1">Location</h3>
-            <table className="dashboard-table table">
-              <tbody>
-                <tr>
-                  <th>State</th>
-                  <td>{props.data.State}</td>
-                </tr>
-                <tr>
-                  <th>City</th>
-                  <td>
-                    {props.data.City &&
-                      commonFunctions.formatString(props.data.City)}
-                  </td>
-                </tr>
-                <tr>
-                  <th>Address</th>
-                  <td>
-                    {props.data.Address1 &&
-                      commonFunctions.formatString(props.data.Address1)}
-                  </td>
-                </tr>
-                <tr>
-                  <th>Zip Code</th>
-                  <td>{props.data.Zip}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div className="inside-business-div">
-            <h3 className="planProfile-header-h1">Business Information</h3>
-            <table className="dashboard-table table">
-              <tbody>
-                <tr>
-                  <th>Business Code</th>
-                  <td>{props.data.BusinessCode}</td>
-                </tr>
-                <tr>
-                  <th>Industry</th>
-                  <td>{props.data.Industry}</td>
-                </tr>
-                <tr>
-                  <th className="onepager-pesion-description">
-                    Company Stock
-                    <span className="onepager-tooltip">
-                      Plan invests in the Sponsor's Company Stock Indicator
-                    </span>
-                  </th>
-                  {props.erisa ? (
-                    <td key="company_stock">Includes Company Stock</td>
-                  ) : (
-                    <td key="company_stock">No Company Stock</td>
-                  )}
-                </tr>
-                <tr>
-                  <th>Insurance Cap</th>
-                  {props.erisa ? (
-                    <td key="cap">1.0 M</td>
-                  ) : (
-                    <td key="cap">500.0 K</td>
-                  )}
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div className="inside-business-div">
-            {/* <OnePagerMap address={props.data.Address1} city={props.data.City} /> */}
-          </div>
+          <LocationAndBusiness data={locationData} title="Location" />
+          <LocationAndBusiness data={businessData} title="Business data" />
         </div>
         <div style={{ width: "45%", margin: " 0, auto " }}>
           <div>
-            <div
-              className="plan-profile-chartsDiv"
-              style={{ margin: "0 auto" }}
-            >
-              <Contact
-                contact={{
-                  Name: props.data.AdministratorName,
-                  Title: "Administrator",
-                  Phone: props.data.PhoneNumber,
-                }}
-                headWidth="35"
-              />
-            </div>
-            {props.site ? (
-              <div
-                className="plan-profile-chartsDiv"
-                style={{
-                  display: "flex",
-                  margin: "3% auto",
-                  textAlign: "center",
-                  width: "30%",
-                }}
-              >
-                <small
-                  className="form-text text-muted"
-                  style={{ textAlign: "center", margin: "0 auto" }}
-                >
-                  Visit sponsor's website at:&nbsp;
-                  <a
-                    href={"http://" + props.site}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {props.site}
-                  </a>
-                </small>
-              </div>
-            ) : (
-              ""
-            )}
-            {/* {Object.values(props.contact).some((x) => x !== null) ? (
-              <div
-                className="plan-profile-chartsDiv"
-                style={{ marginLeft: "1.5%" }}
-              >
-                <Contact contact={props.contact} headWidth="35" />
-              </div>
-            ) : (
-              ""
-            )} */}
-
             {props.contact.length > 0 ? (
-              <div
-                // className="plan-profile-chartsDiv"
-                style={{
-                  marginTop: "3%",
-                  backgroundColor: "white",
-                  borderRadius: "25px",
-                  border: "1px solid lightgray",
-                  display: "flex",
+              <MaterialTable
+                title="Executive Contacts"
+                columns={[
+                  {
+                    title: "Name",
+                    field: "Name",
+                    render: (rowData) => (rowData.Name ? rowData.Name : "N/A"),
+                  },
+                  {
+                    title: "Title",
+                    field: "Title",
+                    render: (rowData) =>
+                      rowData.Title ? rowData.Title : "N/A",
+                  },
+                  {
+                    title: "Email",
+                    field: "Email",
+                    render: (rowData) =>
+                      rowData.Email ? rowData.Email : "N/A",
+                  },
+                ]}
+                data={props.contact}
+                options={{
+                  headerStyle: {
+                    backgroundColor: primaryBlue,
+                    color: "#FFF",
+                    fontSize: 18,
+                  },
+                  paging: false,
+                  search: false,
                 }}
-              >
-                {props.contact.map((el) => (
-                  <Contact
-                    contact={el}
-                    headWidth="50"
-                    heading="Executive Contact"
-                    key={el.Name}
-                  />
-                ))}
-              </div>
+              />
             ) : (
               ""
             )}
-          </div>
-          <div className="businessplan-smallDiv">
-            <div>
-              <small className="form-text text-muted">
-                Benefit Pension: {benefit}
-              </small>
-              <small className="form-text text-muted">
-                Contribution Pension: {contribution}
-              </small>
-              <small className="form-text text-muted">Welfare: {welfare}</small>
-            </div>
-            <div>
-              <Pie data={data} width={500} />
-            </div>
           </div>
         </div>
       </div>
+      <Chart
+        data={data}
+        contribution={contribution}
+        welfare={welfare}
+        benefit={benefit}
+      />
+      <Administrator
+        administrator={{
+          admin: props.data.AdministratorName,
+          phone: props.data.PhoneNumber,
+        }}
+      />
     </div>
   );
 };

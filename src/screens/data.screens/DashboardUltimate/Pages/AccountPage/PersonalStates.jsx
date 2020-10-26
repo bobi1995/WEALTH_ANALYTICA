@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MaterialTable from "material-table";
 import common from "../../../commonFunctions/commonExtracts";
-
+import { primaryBlue } from "../../../../../global/Colors";
 export default (props) => {
   return (
     <MaterialTable
@@ -15,7 +15,7 @@ export default (props) => {
             color: "#FFF",
           },
           headerStyle: {
-            backgroundColor: "#378FC3",
+            backgroundColor: primaryBlue,
           },
         },
         {

@@ -3,7 +3,7 @@ import axios from "axios";
 import apiAddress from "../../../global/endpointAddress";
 import fileDownload from "js-file-download";
 import { Button, makeStyles, Box, Tooltip, Link } from "@material-ui/core";
-
+import { orangeColor } from "../../../global/Colors";
 const useStyles = makeStyles({
   container: {
     marginBottom: "1%",
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   heatmapBtn: {
     backgroundColor: "#c46c00",
     "&:hover": {
-      backgroundColor: "#ff9e27",
+      backgroundColor: orangeColor,
     },
     color: "white",
     fontSize: 18,

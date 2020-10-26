@@ -13,7 +13,7 @@ import { Link as ScrollLink, Element } from "react-scroll";
 import PdfList from "./PdfList";
 import EmailSent from "../../../../components/emailSent";
 import Loader2 from "../../../../components/loader2";
-
+import { backgroundGrey } from "../../../../global/Colors";
 const EmailSection = (props) => {
   const classes = useStyles();
   const [receiver, setReceiver] = useState("");
@@ -69,7 +69,7 @@ const EmailSection = (props) => {
   return (
     <Box
       className={classes.container}
-      style={{ backgroundColor: display ? "#F3F4F8" : "white" }}
+      style={{ backgroundColor: display ? backgroundGrey : "white" }}
     >
       {displayFlag ? <Loader2 text="Sending...Please wait" /> : ""}
       {result ? <EmailSent result={result} setClose={setResult} /> : ""}
@@ -175,7 +175,7 @@ const useStyles = makeStyles({
   },
   topContainer: {
     width: "100%",
-    backgroundColor: "#F3F4F8",
+    backgroundColor: backgroundGrey,
     display: "flex",
     justifyContent: "space-around",
   },

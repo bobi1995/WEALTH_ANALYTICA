@@ -1,7 +1,7 @@
 import React from "react";
 import MaterialTable from "material-table";
 import EmailIcon from "@material-ui/icons/Email";
-
+import { primaryBlue } from "../../../../global/Colors";
 const Contacts = ({ contacts }) => {
   return (
     <MaterialTable
@@ -33,12 +33,12 @@ const Contacts = ({ contacts }) => {
       ]}
       options={{
         headerStyle: {
-          backgroundColor: "#378FC3",
+          backgroundColor: primaryBlue,
           color: "#FFF",
           fontSize: 18,
         },
         actionsCellStyle: {
-          color: "#378FC3",
+          color: primaryBlue,
         },
         paging: false,
         search: false,

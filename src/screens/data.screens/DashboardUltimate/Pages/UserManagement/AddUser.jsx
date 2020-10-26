@@ -4,13 +4,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import apiAddress from "../../../../../global/endpointAddress";
 import axios from "axios";
 import TextField from "@material-ui/core/TextField";
-
+import { primaryBlue } from "../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     textAlign: "center",
   },
   headerStyle: {
-    color: "#378FC3",
+    color: primaryBlue,
     fontFamily: "Baskervville",
   },
   fieldsDiv: {

@@ -11,7 +11,7 @@ import Magellan from "./Magellan";
 import apiAddress from "../../global/endpointAddress";
 import Main from "./planProfileFunctions/Main";
 import { minYear, lastYear } from "../../global/Years";
-
+import { backgroundGrey } from "../../global/Colors";
 const PlaneProfile = (props) => {
   const [results, setResults] = useState([]);
   const [limit, setLimit] = useState(false);
@@ -80,7 +80,7 @@ const PlaneProfile = (props) => {
             types={results.PlanSummary}
             companyID={props.match.params.CompanyID}
           />
-          <div style={{ display: "flex", backgroundColor: "#F4F6F8" }}>
+          <div style={{ display: "flex", backgroundColor: backgroundGrey }}>
             <Main showing={(show) => setShowing(show)} />
             <div style={{ margin: "0 auto", width: "100%" }}>
               {showing.includes("business-include") ? (

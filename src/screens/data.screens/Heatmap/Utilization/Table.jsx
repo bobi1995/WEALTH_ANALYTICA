@@ -12,14 +12,16 @@ import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
+import { primaryBlue } from "../../../../global/Colors";
+
 const useStyles = makeStyles({
   table: {
     width: "40%",
     backgroundColor: "#E3F2FD",
     maxHeight: 440,
-    border: "1px solid #378FC3",
+    border: `1px solid ${primaryBlue}`,
   },
-  tableHeader: { color: "#378FC3", fontWeight: "bold", fontSize: 16 },
+  tableHeader: { color: primaryBlue, fontWeight: "bold", fontSize: 16 },
   negativeNum: {
     color: "red",
   },

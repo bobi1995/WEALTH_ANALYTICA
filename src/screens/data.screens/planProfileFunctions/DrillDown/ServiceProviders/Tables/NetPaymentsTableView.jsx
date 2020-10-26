@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import numeral from "numeral";
 import commonFunction from "../../../../commonFunctions/common";
+import { backgroundGrey, primaryBlue } from "../../../../../../global/Colors";
 
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
@@ -9,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   headerStyle: {
-    color: "#378FC3",
+    color: primaryBlue,
     fontFamily: "Baskervville",
   },
   tablesStyleDiv: {
@@ -17,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
   },
   sectionStyle: {
-    backgroundColor: "#F3F4F8",
+    backgroundColor: backgroundGrey,
     margin: "3% 1%",
   },
 }));

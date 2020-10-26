@@ -6,13 +6,13 @@ import { ArrowUpward, ChevronRight } from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import commonFunction from "../../../../commonFunctions/common";
-
+import { primaryBlue } from "../../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     textAlign: "center",
   },
   headerStyle: {
-    color: "#378FC3",
+    color: primaryBlue,
     fontFamily: "Baskervville",
   },
 }));
@@ -64,7 +64,7 @@ export default (props) => {
         options={{
           paging: false,
           headerStyle: {
-            backgroundColor: "#378FC3",
+            backgroundColor: primaryBlue,
             color: "#FFF",
             fontSize: "17px",
             textAlign: "center",

@@ -15,6 +15,7 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import AccessibilityIcon from "@material-ui/icons/Accessibility";
 import GroupIcon from "@material-ui/icons/Group";
 import { lastYear } from "../../global/Years";
+import { primaryBlue } from "../../global/Colors";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "3%",
   },
   headerStyle: {
-    color: "#378FC3",
+    color: primaryBlue,
     fontFamily: "Baskervville",
   },
 }));

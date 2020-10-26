@@ -9,6 +9,7 @@ import {
   tableData3,
 } from "../../../global/diagnosticTables";
 import numeral from "numeral";
+import { primaryBlue } from "../../../global/Colors";
 const useStyles = makeStyles(() => ({
   tableBox: {
     display: "flex",
@@ -67,7 +68,7 @@ const Indicators = ({ info }) => {
           data={tableData1}
           options={{
             headerStyle: {
-              backgroundColor: "#378FC3",
+              backgroundColor: primaryBlue,
               color: "#FFF",
               fontSize: 18,
             },
@@ -112,7 +113,7 @@ const Indicators = ({ info }) => {
           data={tableData2}
           options={{
             headerStyle: {
-              backgroundColor: "#378FC3",
+              backgroundColor: primaryBlue,
               color: "#FFF",
               fontSize: 18,
             },
@@ -157,7 +158,7 @@ const Indicators = ({ info }) => {
           data={tableData3}
           options={{
             headerStyle: {
-              backgroundColor: "#378FC3",
+              backgroundColor: primaryBlue,
               color: "#FFF",
               fontSize: 18,
             },

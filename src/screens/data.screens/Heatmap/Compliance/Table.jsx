@@ -11,7 +11,7 @@ import numeral from "numeral";
 import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
 import { Doughnut } from "react-chartjs-2";
-
+import { primaryBlue } from "../../../../global/Colors";
 const useStyles = makeStyles({
   container: {
     width: "100%",
@@ -22,9 +22,9 @@ const useStyles = makeStyles({
     width: "40%",
     backgroundColor: "#E3F2FD",
     maxHeight: 440,
-    border: "1px solid #378FC3",
+    border: `1px solid ${primaryBlue}`,
   },
-  tableHeader: { color: "#378FC3", fontWeight: "bold", fontSize: 16 },
+  tableHeader: { color: primaryBlue, fontWeight: "bold", fontSize: 16 },
   negativeNum: {
     color: "red",
   },

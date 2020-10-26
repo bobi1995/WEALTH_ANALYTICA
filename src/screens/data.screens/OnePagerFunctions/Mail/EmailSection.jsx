@@ -9,7 +9,7 @@ import {
 import { Send, HighlightOff } from "@material-ui/icons/";
 import apiAddress from "../../../../global/endpointAddress";
 import axios from "axios";
-
+import { backgroundGrey } from "../../../../global/Colors";
 const EmailSection = (props) => {
   const classes = useStyles();
   const [receiver, setReceiver] = useState("");
@@ -115,13 +115,13 @@ const EmailSection = (props) => {
 const useStyles = makeStyles({
   container: {
     width: "100%",
-    backgroundColor: "#F3F4F8",
+    backgroundColor: backgroundGrey,
     padding: "1%",
     marginTop: "1%",
   },
   topContainer: {
     width: "100%",
-    backgroundColor: "#F3F4F8",
+    backgroundColor: backgroundGrey,
     display: "flex",
     justifyContent: "space-around",
   },

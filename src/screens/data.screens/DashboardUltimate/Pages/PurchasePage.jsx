@@ -8,12 +8,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
-
 import StateSelect from "./PurchasePage/StateSelect";
 import TypeSelect from "./PurchasePage/TypeSelect";
 import QuantitySelect from "./PurchasePage/QuantitySelect";
 import PurchaseTable from "./PurchasePage/PurchaseTable";
 import PayPal from "./PurchasePage/PayPal";
+import { primaryBlue } from "../../../../global/Colors";
 
 const useStyles = makeStyles((theme) => ({
   gridStyle: {
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "3%",
   },
   headerStyle: {
-    color: "#378FC3",
+    color: primaryBlue,
     fontFamily: "Baskervville",
   },
   buttonStyle: {

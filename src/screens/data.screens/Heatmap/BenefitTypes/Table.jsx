@@ -6,16 +6,16 @@ import {
   invenstmentFeatures,
   equatyInterest,
   fiduciaryFeatures,
-  healthcareBenefits
+  healthcareBenefits,
 } from "../../../../global/benefitTypes";
 import SmallTable from "./SmallTable";
-
+import { primaryBlue } from "../../../../global/Colors";
 const useStyles = makeStyles({
   table: {
     width: "100%",
     maxHeight: 440,
   },
-  tableHeader: { color: "#378FC3", fontWeight: "bold", fontSize: 16 },
+  tableHeader: { color: primaryBlue, fontWeight: "bold", fontSize: 16 },
   negativeNum: {
     color: "red",
   },
@@ -25,12 +25,12 @@ const useStyles = makeStyles({
   fieldCell: {
     fontWeight: "bold",
   },
-  smallTablesContainer:{
-    display:'flex',
-    justifyContent:'space-around',
-    width:'100%',
-  marginBottom:'5%'  
-}
+  smallTablesContainer: {
+    display: "flex",
+    justifyContent: "space-around",
+    width: "100%",
+    marginBottom: "5%",
+  },
 });
 
 const ComplianceTable = ({ data }) => {
@@ -42,40 +42,40 @@ const ComplianceTable = ({ data }) => {
   return (
     <Box className={classes.table}>
       <Box className={classes.smallTablesContainer}>
-      <SmallTable
-        descriptionData={characteristicBenefit}
-        usedData={usedData}
-        industryData={industryData}
-      />
-       <SmallTable
-        descriptionData={characteristics}
-        usedData={usedData}
-        industryData={industryData}
-      /> 
+        <SmallTable
+          descriptionData={characteristicBenefit}
+          usedData={usedData}
+          industryData={industryData}
+        />
+        <SmallTable
+          descriptionData={characteristics}
+          usedData={usedData}
+          industryData={industryData}
+        />
       </Box>
       <Box className={classes.smallTablesContainer}>
-     <SmallTable
-      descriptionData={fiduciaryFeatures}
-      usedData={usedData}
-      industryData={industryData}
-    />
-       <SmallTable
-        descriptionData={equatyInterest}
-        usedData={usedData}
-        industryData={industryData}
-      /> 
+        <SmallTable
+          descriptionData={fiduciaryFeatures}
+          usedData={usedData}
+          industryData={industryData}
+        />
+        <SmallTable
+          descriptionData={equatyInterest}
+          usedData={usedData}
+          industryData={industryData}
+        />
       </Box>
       <Box className={classes.smallTablesContainer}>
-      <SmallTable
-        descriptionData={invenstmentFeatures}
-        usedData={usedData}
-        industryData={industryData}
-      />
-       <SmallTable
-        descriptionData={healthcareBenefits}
-        usedData={usedData}
-        industryData={industryData}
-      /> 
+        <SmallTable
+          descriptionData={invenstmentFeatures}
+          usedData={usedData}
+          industryData={industryData}
+        />
+        <SmallTable
+          descriptionData={healthcareBenefits}
+          usedData={usedData}
+          industryData={industryData}
+        />
       </Box>
     </Box>
   );

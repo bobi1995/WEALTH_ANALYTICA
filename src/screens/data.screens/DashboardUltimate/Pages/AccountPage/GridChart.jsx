@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardContent, Grid, Typography, Avatar } from "@material-ui/core";
 import numeral from "numeral";
+import { primaryBlue } from "../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
   root: {},
   content: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
   },
   avatar: {
-    backgroundColor: "#378FC3",
+    backgroundColor: primaryBlue,
     height: 56,
     width: 56,
   },
@@ -28,10 +29,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   differenceIcon: {
-    color: "#378FC3",
+    color: primaryBlue,
   },
   differenceValue: {
-    color: "#378FC3",
+    color: primaryBlue,
     marginRight: theme.spacing(1),
   },
 }));

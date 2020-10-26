@@ -11,10 +11,16 @@ import {
   Grid,
   Button,
   TextField,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  DialogContentText,
 } from "@material-ui/core";
 import axios from "axios";
 import apiAddress from "../../../../../global/endpointAddress";
-
+import { orangeColor } from "../../../../../global/Colors";
+import AlertBox from "../../../../../components/alertBox";
 const useStyles = makeStyles(() => ({
   root: {},
   fieldsStyle: {
@@ -23,6 +29,7 @@ const useStyles = makeStyles(() => ({
   },
   buttonStyle: {
     margin: "0 auto",
+    width: "50%",
   },
 }));
 
@@ -39,6 +46,11 @@ const AccountDetails = (props) => {
     companyphone: sessionStorage.getItem("CompanyPhone"),
     companyname: sessionStorage.getItem("CompanyName"),
   });
+  const [open, setOpen] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [repeatedPassword, setRepeatedPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
 
   const handleChange = (event) => {
     console.log(event.target.name);
@@ -66,9 +78,47 @@ const AccountDetails = (props) => {
         window.location.reload();
       })
       .catch((error) => {
-        console.log(error);
-        alert("We couldn't update the results.");
+        setAlertMessage("We couldn't update the results.");
       });
+  };
+
+  const handleOpenPassChange = () => {
+    setOpen(true);
+  };
+
+  const handleClosePassChange = () => {
+    setOpen(false);
+  };
+  const handleChangePass = () => {
+    console.log(newPassword, repeatedPassword);
+    if (newPassword !== repeatedPassword) {
+      setAlertMessage("Password does not match");
+    } else if (newPassword.length < 7) {
+      setAlertMessage("password must be at least 7 symbols");
+    } else {
+      axios
+        .post(
+          `${apiAddress}/api/Users/ChangePassword`,
+          {
+            oldpassword: oldPassword,
+            newpassword: newPassword,
+          },
+          {
+            headers: {
+              Authorization: "Basic " + sessionStorage.getItem("Token"),
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        )
+        .then((res) => {
+          setAlertMessage("Password is changed");
+          handleClosePassChange();
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+          setAlertMessage(error.response.data);
+        });
+    }
   };
 
   return (
@@ -161,8 +211,80 @@ const AccountDetails = (props) => {
           >
             Save details
           </Button>
+
+          <Button
+            color="primary"
+            variant="contained"
+            className={classes.buttonStyle}
+            style={{ backgroundColor: orangeColor }}
+            onClick={handleOpenPassChange}
+          >
+            Change password
+          </Button>
         </CardActions>
       </form>
+
+      {/************PASS CHANGE */}
+      <Dialog
+        open={open}
+        onClose={handleClosePassChange}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Change Passowrd</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Change your password for login in Wealth Analytica.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="currentpass"
+            label="Current password"
+            type="password"
+            fullWidth
+            value={oldPassword}
+            onChange={(current) => {
+              setOldPassword(current.target.value);
+            }}
+          />
+          <TextField
+            margin="dense"
+            id="changepass1"
+            label="New password"
+            type="password"
+            fullWidth
+            value={newPassword}
+            onChange={(newPass) => {
+              setNewPassword(newPass.target.value);
+            }}
+          />
+
+          <TextField
+            margin="dense"
+            id="changepass2"
+            label="Re-enter it"
+            type="password"
+            fullWidth
+            value={repeatedPassword}
+            onChange={(newPass) => {
+              setRepeatedPassword(newPass.target.value);
+            }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClosePassChange} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleChangePass} color="primary">
+            Change
+          </Button>
+        </DialogActions>
+      </Dialog>
+      {alertMessage ? (
+        <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </Card>
   );
 };

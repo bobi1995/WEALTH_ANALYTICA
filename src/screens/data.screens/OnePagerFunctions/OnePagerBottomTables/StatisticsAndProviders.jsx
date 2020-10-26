@@ -4,6 +4,7 @@ import numeral from "numeral";
 import common from "../../commonFunctions/common";
 import { Bar } from "react-chartjs-2";
 import dataReducer from "../../../../components/dataReducer";
+import { backgroundGrey } from "../../../../global/Colors";
 
 export default (props) => {
   let auhmc = {};
@@ -49,7 +50,7 @@ export default (props) => {
       {/**********************STATISTICS***************************************** */}
       <div
         className="onepager-bottomtables-table"
-        style={{ backgroundColor: "#f3f4f8", margin: "3%" }}
+        style={{ backgroundColor: backgroundGrey, margin: "3%" }}
       >
         <div
           className="plan-profile-chartsDiv"
@@ -152,7 +153,7 @@ export default (props) => {
       {/**********************Service Providers***************************************** */}
       <div
         className="onepager-bottomtables-table"
-        style={{ backgroundColor: "#f3f4f8", margin: "3%" }}
+        style={{ backgroundColor: backgroundGrey, margin: "3%" }}
       >
         <div
           className="plan-profile-chartsDiv"

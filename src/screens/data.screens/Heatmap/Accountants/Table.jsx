@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import { makeStyles, Box } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -9,7 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
-
+import { primaryBlue } from "../../../../global/Colors";
 const useStyles = makeStyles({
   container: {
     width: "100%",
@@ -20,9 +20,9 @@ const useStyles = makeStyles({
     width: "40%",
     backgroundColor: "#E3F2FD",
     maxHeight: 440,
-    border: "1px solid #378FC3",
+    border: `1px solid ${primaryBlue}`,
   },
-  tableHeader: { color: "#378FC3", fontWeight: "bold", fontSize: 16 },
+  tableHeader: { color: primaryBlue, fontWeight: "bold", fontSize: 16 },
   negativeNum: {
     color: "red",
   },
@@ -49,7 +49,6 @@ const ComplianceTable = ({ data }) => {
           item === 1 ? counter++ : ""
         )
   );
-
 
   return (
     <Box className={classes.container}>

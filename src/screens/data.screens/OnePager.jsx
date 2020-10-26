@@ -127,7 +127,11 @@ const OnePager = (props) => {
           <Loader />
         </div>
       )}
-      {alertMessage ? <AlerBox /> : ""}
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

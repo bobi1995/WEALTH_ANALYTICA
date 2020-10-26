@@ -5,9 +5,10 @@ import numeral from "numeral";
 import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import apiAddress from "../../../../../global/endpointAddress";
+import { primaryBlue } from "../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
   headerStyle: {
-    color: "#378FC3",
+    color: primaryBlue,
     fontFamily: "Baskervville",
   },
 }));

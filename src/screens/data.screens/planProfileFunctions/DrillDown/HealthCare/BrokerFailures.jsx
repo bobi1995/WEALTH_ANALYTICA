@@ -11,16 +11,17 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import BrokerFailures from "./Tables/BrokerFailures";
 import Typography from "@material-ui/core/Typography";
 import { lastYear } from "../../../../../global/Years";
+import { primaryBlue } from "../../../../../global/Colors";
 
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     marginTop: "60px",
   },
   buttonStyle: {
-    backgroundColor: "#378FC3",
+    backgroundColor: primaryBlue,
     color: "white",
     "&:hover": {
-      color: "#378FC3",
+      color: primaryBlue,
     },
     whiteSpace: "nowrap",
   },
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     top: theme.spacing(1),
   },
   headerStyle: {
-    color: "#378FC3",
+    color: primaryBlue,
     fontFamily: "Baskervville",
     textAlign: "center",
   },

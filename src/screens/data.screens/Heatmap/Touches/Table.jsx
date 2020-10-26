@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
 import { Doughnut } from "react-chartjs-2";
+import { primaryBlue } from "../../../../global/Colors";
 
 const useStyles = makeStyles({
   container: {
@@ -21,9 +22,9 @@ const useStyles = makeStyles({
     width: "40%",
     backgroundColor: "#E3F2FD",
     maxHeight: 440,
-    border: "1px solid #378FC3",
+    border: `1px solid ${primaryBlue}`,
   },
-  tableHeader: { color: "#378FC3", fontWeight: "bold", fontSize: 16 },
+  tableHeader: { color: primaryBlue, fontWeight: "bold", fontSize: 16 },
   negativeNum: {
     color: "red",
   },
@@ -39,16 +40,14 @@ const useStyles = makeStyles({
   },
 });
 
-
 const TouchesTable = ({ data }) => {
   const classes = useStyles();
   let rowCount = Object.keys(data[0].touches).length;
   let counter = 0;
 
   //COUNT FAILURES (0 - OK, 1 - FAIL)
-  data.map((el) => Object.values(el.touches).filter((item) =>
-          item === 1 ? counter++ : ""
-        )
+  data.map((el) =>
+    Object.values(el.touches).filter((item) => (item === 1 ? counter++ : ""))
   );
 
   const chartData = {
@@ -61,7 +60,6 @@ const TouchesTable = ({ data }) => {
       },
     ],
   };
-  
 
   return (
     <Box className={classes.container}>
@@ -70,15 +68,15 @@ const TouchesTable = ({ data }) => {
           <TableHead>
             <TableRow>
               <TableCell className={classes.tableHeader}>Field</TableCell>
-              {data.map((el, ind) => <TableCell key={ind} className={classes.tableHeader}>
-                    {el.year}
-                  </TableCell>
-                
-              )}
+              {data.map((el, ind) => (
+                <TableCell key={ind} className={classes.tableHeader}>
+                  {el.year}
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
-          {[...Array(rowCount)].map((_, i) => {
+            {[...Array(rowCount)].map((_, i) => {
               let current_touches_key = Object.keys(data[0].touches)[i];
 
               return (
@@ -90,7 +88,7 @@ const TouchesTable = ({ data }) => {
                   </TableCell>
                   {data.map((el, j) => {
                     let cell_content = el.touches[current_touches_key];
-                    console.log(cell_content)
+                    console.log(cell_content);
 
                     return (
                       <TableCell key={j}>
@@ -105,11 +103,11 @@ const TouchesTable = ({ data }) => {
                 </TableRow>
               );
             })}
-            </TableBody>
+          </TableBody>
         </Table>
       </TableContainer>
- {/* --------------------STATISTIC SECTION------------------------------- */}
- <Box className={classes.statsSection}>
+      {/* --------------------STATISTIC SECTION------------------------------- */}
+      <Box className={classes.statsSection}>
         <Paper className={classes.paper}>
           <Typography className={classes.title} variant="h6" component="div">
             Summary
