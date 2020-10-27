@@ -38,13 +38,33 @@ const useStyles = makeStyles(() => ({
 }));
 
 const pdfs = [
+  { name: "Plan Profile Summary", value: 29 },
   { name: "ERISA Check List", value: 1 },
   { name: "ERISA 404c Check List", value: 2 },
   { name: "401k Checklist", value: 3 },
-  { name: "Disclosure Guidelines", value: 4 },
-  { name: "Safe Harbor Explained", value: 5 },
   { name: "Auditor Checklist", value: 6 },
   { name: "Auditor Report Checklist", value: 7 },
+  { name: "Automatic Enrollment - CheckList", value: 15 },
+  //{ name: "QDIA Types of Investments", value: 9 },
+  { name: "QDIA Checklist", value: 8 },
+  { name: "Why Have a QDIA Offering?", value: 23 },
+  //{ name: "Disclosure Guidelines", value: 4 },
+  //{ name: "Safe Harbor Explained", value: 5 },
+  { name: "Target Date Fund Guidelines", value: 10 },
+  //{ name: "Target Date Funds Education", value: 11 },
+  { name: "Selecting an Annuity Provider", value: 12 },
+  { name: "Company Stock Overview", value: 13 },
+  { name: "Automatic Enrollment - Benefits", value: 14 },
+  { name: "Cash Balance Explained", value: 16 },
+  //{ name: "Contribution Matching", value: 17 },
+  //{ name: "ESOP", value: 18 },
+  { name: "Service Provider Disclosures", value: 19 },
+  { name: "Plan Fee Descriptions", value: 16 },
+  { name: "Evaluation of Plan Fees Guidelines", value: 21 },
+  //{ name: "Monitoring Service Providers", value: 22 },
+  { name: "Leakage : Explained", value: 25 },
+  { name: "Ideas to Increase Plan Participation", value: 26 },
+  { name: "Types of Bonus Incentive Plans", value: 28 },
 ];
 
 const PdfList = (props) => {

@@ -15,7 +15,7 @@ import NetIncome from "./StatisticPage/Charts/NetIncome";
 import ParticipantBalance from "./StatisticPage/Charts/ParticipantBalance";
 import TotalExpenses from "./StatisticPage/Charts/TotalExpenses";
 import TotalIncome from "./StatisticPage/Charts/TotalIncome";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import PlainLoader from "../../../../components/plainCicularLoader";
 import { minYear, lastYear } from "../../../../global/Years";
 
 const useStyles = makeStyles((theme) => ({
@@ -44,13 +44,13 @@ const useStyles = makeStyles((theme) => ({
 const StatisticsPage = (props) => {
   const classes = useStyles();
 
-  const [state, setState] = useState([]);
+  const [state, setState] = useState("");
   const [year, setYear] = useState(lastYear);
   const [data, setData] = useState({});
   const [flag, setFlag] = useState(0);
 
   useEffect(() => {
-    if (state.length > 0) {
+    if (state) {
       setFlag(1);
       axios
         .get(
@@ -87,7 +87,7 @@ const StatisticsPage = (props) => {
             <StateInput setState={(state) => setState(state)} />
           </Paper>
           <Paper className={classes.paperStyleSummary}>
-            {state.length > 0 ? (
+            {state ? (
               <DashSummary
                 result={data.FilterProfile}
                 onYearChange={(yearChange) => {
@@ -99,7 +99,7 @@ const StatisticsPage = (props) => {
             )}
           </Paper>
           {flag === 0 ? (
-            data.Statistics && state.length > 0 ? (
+            data.Statistics && state ? (
               <div>
                 <div className={classes.chartDivStyle}>
                   <NetIncome statistics={data.Statistics} />
@@ -119,15 +119,7 @@ const StatisticsPage = (props) => {
               ""
             )
           ) : (
-            <div style={{ width: "100%", textAlign: "center" }}>
-              <CircularProgress
-                size={150}
-                style={{ textAlign: "center", marginTop: "15%" }}
-              />
-              <p style={{ textAlign: "center", marginTop: "3%" }}>
-                Loading....Please wait
-              </p>
-            </div>
+            <PlainLoader />
           )}
         </Grid>
       </div>

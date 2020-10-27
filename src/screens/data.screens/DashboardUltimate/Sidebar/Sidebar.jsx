@@ -5,6 +5,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import ContactMailIcon from "@material-ui/icons/ContactMail";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import history from "../../../../history/history";
@@ -32,6 +33,12 @@ export default function NestedList(props) {
   const handlePurchaseClick = () => {
     history.push({
       pathname: `/purchase`,
+    });
+  };
+
+  const handleGraphsClick = () => {
+    history.push({
+      pathname: `/graphs`,
     });
   };
   return (
@@ -99,6 +106,18 @@ export default function NestedList(props) {
         </ListItemIcon>
         <ListItemText primary="Statistics" />
       </ListItem>
+
+      <ListItem
+        button
+        style={props.opened === "graphs" ? { backgroundColor: "#95C1DC" } : {}}
+        onClick={handleGraphsClick}
+      >
+        <ListItemIcon>
+          <TrendingUpIcon />
+        </ListItemIcon>
+        <ListItemText primary="Graphs" />
+      </ListItem>
+
       <ListItem button>
         <ListItemIcon>
           <ContactMailIcon />

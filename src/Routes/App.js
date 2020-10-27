@@ -13,7 +13,8 @@ import StatisticsPage from "../screens/data.screens/DashboardUltimate/Pages/Stat
 import PurchasePage from "../screens/data.screens/DashboardUltimate/Pages/PurchasePage";
 import UserManagement from "../screens/data.screens/DashboardUltimate/Pages/UserManagement";
 import Heatmap from "../screens/data.screens/Heatmap";
-import Diagnostic from '../screens/data.screens/Diagnostic'
+import Diagnostic from "../screens/data.screens/Diagnostic";
+import Graphs from "../screens/data.screens/Graphs";
 import Demo from "../screens/Demo";
 import "../styles/main.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -26,6 +27,7 @@ function App() {
       <Switch>
         <Route path="/" component={Login} exact />
         <Route path="/demo" component={Demo} />
+        <Route path="/graphs" component={Graphs} />
         <PrivateRoute path="/dashboard" component={DashboardUltimate} />
         <PrivateRoute path="/account" component={AccountPage} />
         <PrivateRoute path="/statistics" component={StatisticsPage} />

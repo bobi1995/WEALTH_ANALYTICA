@@ -5,7 +5,17 @@ import MaterialTable from "material-table";
 import { primaryBlue } from "../../../../global/Colors";
 import Chart from "./BusinessInfo/Chart";
 import LocationAndBusiness from "./BusinessInfo/LocationAndBusiness";
+import { Box, makeStyles } from "@material-ui/core";
+import Map from "../../OnePagerFunctions/OnePagerMap";
+const useStyles = makeStyles({
+  adminContainer: {
+    justifyContent: "space-around",
+    display: "flex",
+  },
+});
+
 const PlaneProfileBusinessInfo = (props) => {
+  const classes = useStyles();
   const [contribution, setContribution] = useState(0);
   const [benefit, setBenefit] = useState(0);
   const [welfare, setWelfare] = useState(0);
@@ -81,6 +91,7 @@ const PlaneProfileBusinessInfo = (props) => {
         {props.data.SponsorName &&
           commonFunctions.formatString(props.data.SponsorName)}
       </h1>
+
       <div className="chart-plan-section">
         <div style={{ width: "45%", margin: " 0, auto " }}>
           <LocationAndBusiness data={locationData} title="Location" />
@@ -88,57 +99,54 @@ const PlaneProfileBusinessInfo = (props) => {
         </div>
         <div style={{ width: "45%", margin: " 0, auto " }}>
           <div>
-            {props.contact.length > 0 ? (
-              <MaterialTable
-                title="Executive Contacts"
-                columns={[
-                  {
-                    title: "Name",
-                    field: "Name",
-                    render: (rowData) => (rowData.Name ? rowData.Name : "N/A"),
-                  },
-                  {
-                    title: "Title",
-                    field: "Title",
-                    render: (rowData) =>
-                      rowData.Title ? rowData.Title : "N/A",
-                  },
-                  {
-                    title: "Email",
-                    field: "Email",
-                    render: (rowData) =>
-                      rowData.Email ? rowData.Email : "N/A",
-                  },
-                ]}
-                data={props.contact}
-                options={{
-                  headerStyle: {
-                    backgroundColor: primaryBlue,
-                    color: "#FFF",
-                    fontSize: 18,
-                  },
-                  paging: false,
-                  search: false,
-                }}
-              />
-            ) : (
-              ""
-            )}
+            <MaterialTable
+              title="Executive Contacts"
+              columns={[
+                {
+                  title: "Name",
+                  field: "Name",
+                  render: (rowData) => (rowData.Name ? rowData.Name : "N/A"),
+                },
+                {
+                  title: "Title",
+                  field: "Title",
+                  render: (rowData) => (rowData.Title ? rowData.Title : "N/A"),
+                },
+                {
+                  title: "Email",
+                  field: "Email",
+                  render: (rowData) => (rowData.Email ? rowData.Email : "N/A"),
+                },
+              ]}
+              data={props.contact}
+              options={{
+                headerStyle: {
+                  backgroundColor: primaryBlue,
+                  color: "#FFF",
+                  fontSize: 18,
+                },
+                paging: false,
+                search: false,
+              }}
+            />
           </div>
+          <Map address={props.data.Address1} city={props.data.City} />
         </div>
       </div>
-      <Chart
-        data={data}
-        contribution={contribution}
-        welfare={welfare}
-        benefit={benefit}
-      />
-      <Administrator
-        administrator={{
-          admin: props.data.AdministratorName,
-          phone: props.data.PhoneNumber,
-        }}
-      />
+      <Box className={classes.adminContainer}>
+        <Administrator
+          administrator={{
+            admin: props.data.AdministratorName,
+            phone: props.data.PhoneNumber,
+          }}
+        />
+        <Chart
+          data={data}
+          contribution={contribution}
+          welfare={welfare}
+          benefit={benefit}
+        />
+      </Box>
     </div>
   );
 };

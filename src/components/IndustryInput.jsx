@@ -2,15 +2,14 @@ import React from "react";
 import { Card, CardContent, Grid, Typography } from "@material-ui/core";
 import clsx from "clsx";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
-
 import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import FilterExtract from "../../..//commonFunctions/commonExtracts";
 import { makeStyles } from "@material-ui/core/styles";
-import { primaryBlue } from "../../../../../global/Colors";
+import { primaryBlue } from "../global/Colors";
+import industryCodes from "../global/businessCode";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
@@ -50,14 +49,12 @@ const useStyles = makeStyles((theme) => ({
 
 const StatesField = (props) => {
   const { className } = props;
-
   const classes = useStyles();
-  const states = FilterExtract.paidFullNameDASHBOARD();
   const onStateChange = (e, v) => {
     if (v) {
-      props.setState(v.abbriviation);
+      props.setIndustry(v.IndustryName);
     } else {
-      props.setState("");
+      props.setIndustry("");
     }
   };
 
@@ -66,12 +63,11 @@ const StatesField = (props) => {
       <CardContent>
         <Grid container justify="space-between">
           <Autocomplete
-            id="checkboxes-tags-demo"
-            options={states}
+            id="graphs-checkbox"
+            options={industryCodes}
             disableCloseOnSelect
-            getOptionLabel={(option) => option.name}
+            getOptionLabel={(option) => option.IndustryName}
             onChange={onStateChange}
-            getOptionSelected={(option, value) => option.name === value.name}
             renderOption={(option, { selected }) => (
               <React.Fragment>
                 <Checkbox
@@ -81,7 +77,7 @@ const StatesField = (props) => {
                   checked={selected}
                 />
 
-                {option.name}
+                {option.IndustryName}
               </React.Fragment>
             )}
             style={{ width: "100%" }}
@@ -89,8 +85,8 @@ const StatesField = (props) => {
               <TextField
                 {...params}
                 variant="outlined"
-                label="State"
-                placeholder="Choose state"
+                label="Industry"
+                placeholder="Choose industry"
               />
             )}
           />
@@ -99,7 +95,7 @@ const StatesField = (props) => {
           <ArrowDownwardIcon className={classes.differenceIcon} />
 
           <Typography className={classes.caption} variant="caption">
-            Choose desired state
+            Choose desired industry
           </Typography>
         </div>
       </CardContent>
