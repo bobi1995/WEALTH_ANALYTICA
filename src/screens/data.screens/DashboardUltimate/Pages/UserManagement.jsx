@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import FreeStates from "./UserManagement/FreeStates";
 import Users from "./UserManagement/Users";
 import AddUser from "./UserManagement/AddUser";
-
+import { backgroundGrey } from "../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
   paperStyleInput: {
     margin: "3%",
@@ -28,7 +28,7 @@ const UserManagement = (props) => {
         <h1 className="clientDash-header1">Advisor Dashboard</h1>
       </section>
       <Magellan activeStep={0} />
-      <div style={{ display: "flex", backgroundColor: "#F4F6F8" }}>
+      <div style={{ display: "flex", backgroundColor: backgroundGrey }}>
         <Main opened="management" />
         <Grid className={classes.gridStyle}>
           <Paper className={classes.paperStyleInput}>

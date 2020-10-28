@@ -12,7 +12,7 @@ import GridChart from "./AccountPage/GridChart";
 import GridChartTotal from "./AccountPage/GridChartTotal";
 import Profile from "./AccountPage/Profile";
 import ProfileDetails from "./AccountPage/ProfileDetails";
-
+import { backgroundGrey } from "../../../../global/Colors";
 import BatteryFullIcon from "@material-ui/icons/BatteryFull";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import Battery50Icon from "@material-ui/icons/Battery50";
@@ -66,7 +66,7 @@ const AccountPage = (props) => {
         <h1 className="clientDash-header1">Advisor Dashboard</h1>
       </section>
       <Magellan activeStep={0} />
-      <div style={{ display: "flex", backgroundColor: "#F4F6F8" }}>
+      <div style={{ display: "flex", backgroundColor: backgroundGrey }}>
         <Main opened="account" />
 
         <Grid className={classes.gridStyle}>

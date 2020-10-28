@@ -17,6 +17,7 @@ import TotalExpenses from "./StatisticPage/Charts/TotalExpenses";
 import TotalIncome from "./StatisticPage/Charts/TotalIncome";
 import PlainLoader from "../../../../components/plainCicularLoader";
 import { minYear, lastYear } from "../../../../global/Years";
+import { backgroundGrey } from "../../../../global/Colors";
 
 const useStyles = makeStyles((theme) => ({
   gridStyle: {
@@ -80,7 +81,7 @@ const StatisticsPage = (props) => {
         <h1 className="clientDash-header1">Advisor Dashboard</h1>
       </section>
       <Magellan activeStep={0} />
-      <div style={{ display: "flex", backgroundColor: "#F4F6F8" }}>
+      <div style={{ display: "flex", backgroundColor: backgroundGrey }}>
         <Main opened="statistics" />
         <Grid className={classes.gridStyle}>
           <Paper className={classes.paperStyleInput}>

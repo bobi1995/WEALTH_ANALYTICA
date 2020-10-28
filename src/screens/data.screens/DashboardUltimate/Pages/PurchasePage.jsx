@@ -13,7 +13,7 @@ import TypeSelect from "./PurchasePage/TypeSelect";
 import QuantitySelect from "./PurchasePage/QuantitySelect";
 import PurchaseTable from "./PurchasePage/PurchaseTable";
 import PayPal from "./PurchasePage/PayPal";
-import { primaryBlue } from "../../../../global/Colors";
+import { primaryBlue, backgroundGrey } from "../../../../global/Colors";
 
 const useStyles = makeStyles((theme) => ({
   gridStyle: {
@@ -90,7 +90,7 @@ const PurchasePage = (props) => {
         <h1 className="clientDash-header1">Advisor Dashboard</h1>
       </section>
       <Magellan activeStep={0} />
-      <div style={{ display: "flex", backgroundColor: "#F4F6F8" }}>
+      <div style={{ display: "flex", backgroundColor: backgroundGrey }}>
         <Main opened="purchase" />
         <Grid className={classes.gridStyle}>
           <Typography

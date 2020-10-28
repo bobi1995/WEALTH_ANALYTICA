@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import apiAddress from "../global/endpointAddress";
 import Loader from "../components/Loader/Loader";
+import AlertBox from "../components/alertBox";
 
 const Demo = () => {
   const [loading, setLoading] = useState(false);
@@ -11,6 +12,7 @@ const Demo = () => {
   const [company, setCompany] = useState("");
   const [phone, setPhone] = useState("");
   const [comment, setComment] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
 
   const onChangeFirstName = (e) => {
     setFirstName(e.target.value);
@@ -47,16 +49,22 @@ const Demo = () => {
       .then((res) => {
         if (res.status === 200) {
           setLoading(false);
-          alert(
+          setAlertMessage(
             "Your meeting request is sent. We will reach you to schedule it."
           );
-          window.location.href = "https://wealthanalytica.com/";
+          setFirstName("");
+          setLastName("");
+          setEmail("");
+          setCompany("");
+          setPhone("");
+          setComment("");
         }
       })
       .catch((e) => {
         console.log(e);
-        alert("Something went wrong. Please try again.");
-        window.location.reload();
+        setAlertMessage(
+          "Something went wrong with requesting Demo. Please try again."
+        );
       });
   };
 
@@ -177,6 +185,11 @@ const Demo = () => {
             Back to Site
           </a>
         </div>
+      )}
+      {alertMessage ? (
+        <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
       )}
     </div>
   );

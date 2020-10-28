@@ -1,6 +1,8 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 import { Box, makeStyles } from "@material-ui/core";
+import dataReducer from "../DashboardUltimate/Pages/StatisticPage/charts";
+
 const useStyles = makeStyles(() => ({
   chartStyle: {
     width: "40%",
@@ -24,13 +26,13 @@ const Chart = ({ data, title }) => {
         borderWidth: 1,
         hoverBackgroundColor: "rgba(54,162,235,0.4)",
         hoverBorderColor: "rgba(54,162,235,1)",
-        data: graphicData,
+        data: dataReducer.arrayReducer(graphicData),
       },
     ],
   };
   return (
     <Box className={classes.chartStyle}>
-      <Bar data={chartData} />
+      <Bar data={chartData} options={dataReducer.optionReturn(graphicData)} />
     </Box>
   );
 };
