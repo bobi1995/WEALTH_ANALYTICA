@@ -8,6 +8,8 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import Switch from "@material-ui/core/Switch";
+import { green } from "@material-ui/core/colors";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -17,6 +19,17 @@ const useStyles = makeStyles((theme) => ({
     width: 200,
     height: "100%",
   },
+  switchBase: {
+    color: green[300],
+    "&$checked": {
+      color: green[500],
+    },
+    "&$checked + $track": {
+      backgroundColor: green[500],
+    },
+  },
+  checked: {},
+  track: {},
 }));
 const Main = (props) => {
   const classes = useStyles();
@@ -86,6 +99,13 @@ const Main = (props) => {
                 onChange={handleToggle("all")}
                 checked={checked.indexOf("all") !== -1}
                 inputProps={{ "aria-labelledby": "switch-list-label-all" }}
+                classes={{
+                  root: classes.root,
+                  switchBase: classes.switchBase,
+                  thumb: classes.thumb,
+                  track: classes.track,
+                  checked: classes.checked,
+                }}
               />
             </ListItemSecondaryAction>
           </ListItem>
@@ -100,6 +120,13 @@ const Main = (props) => {
                 onChange={handleToggle("business-include")}
                 checked={checked.indexOf("business-include") !== -1}
                 inputProps={{ "aria-labelledby": "switch-list-label-business" }}
+                classes={{
+                  root: classes.root,
+                  switchBase: classes.switchBase,
+                  thumb: classes.thumb,
+                  track: classes.track,
+                  checked: classes.checked,
+                }}
               />
             </ListItemSecondaryAction>
           </ListItem>
@@ -115,6 +142,13 @@ const Main = (props) => {
                 checked={checked.indexOf("financial-include") !== -1}
                 inputProps={{
                   "aria-labelledby": "switch-list-label-financial",
+                }}
+                classes={{
+                  root: classes.root,
+                  switchBase: classes.switchBase,
+                  thumb: classes.thumb,
+                  track: classes.track,
+                  checked: classes.checked,
                 }}
               />
             </ListItemSecondaryAction>
@@ -132,6 +166,13 @@ const Main = (props) => {
                 inputProps={{
                   "aria-labelledby": "switch-list-label-participants",
                 }}
+                classes={{
+                  root: classes.root,
+                  switchBase: classes.switchBase,
+                  thumb: classes.thumb,
+                  track: classes.track,
+                  checked: classes.checked,
+                }}
               />
             </ListItemSecondaryAction>
           </ListItem>
@@ -148,6 +189,13 @@ const Main = (props) => {
                 inputProps={{
                   "aria-labelledby": "switch-list-label-statistics",
                 }}
+                classes={{
+                  root: classes.root,
+                  switchBase: classes.switchBase,
+                  thumb: classes.thumb,
+                  track: classes.track,
+                  checked: classes.checked,
+                }}
               />
             </ListItemSecondaryAction>
           </ListItem>
@@ -161,6 +209,13 @@ const Main = (props) => {
                 inputProps={{
                   "aria-labelledby": "switch-list-label-heatmap",
                 }}
+                classes={{
+                  root: classes.root,
+                  switchBase: classes.switchBase,
+                  thumb: classes.thumb,
+                  track: classes.track,
+                  checked: classes.checked,
+                }}
               />
             </ListItemSecondaryAction>
           </ListItem>
@@ -173,6 +228,13 @@ const Main = (props) => {
                 checked={checked.indexOf("health-include") !== -1}
                 inputProps={{
                   "aria-labelledby": "switch-list-label-health",
+                }}
+                classes={{
+                  root: classes.root,
+                  switchBase: classes.switchBase,
+                  thumb: classes.thumb,
+                  track: classes.track,
+                  checked: classes.checked,
                 }}
               />
             </ListItemSecondaryAction>
@@ -190,6 +252,13 @@ const Main = (props) => {
                 inputProps={{
                   "aria-labelledby": "switch-list-label-service",
                 }}
+                classes={{
+                  root: classes.root,
+                  switchBase: classes.switchBase,
+                  thumb: classes.thumb,
+                  track: classes.track,
+                  checked: classes.checked,
+                }}
               />
             </ListItemSecondaryAction>
           </ListItem>
@@ -206,6 +275,13 @@ const Main = (props) => {
                 inputProps={{
                   "aria-labelledby": "switch-list-label-accountant",
                 }}
+                classes={{
+                  root: classes.root,
+                  switchBase: classes.switchBase,
+                  thumb: classes.thumb,
+                  track: classes.track,
+                  checked: classes.checked,
+                }}
               />
             </ListItemSecondaryAction>
           </ListItem>
@@ -218,6 +294,13 @@ const Main = (props) => {
                 checked={checked.indexOf("pension-include") !== -1}
                 inputProps={{
                   "aria-labelledby": "switch-list-label-pension",
+                }}
+                classes={{
+                  root: classes.root,
+                  switchBase: classes.switchBase,
+                  thumb: classes.thumb,
+                  track: classes.track,
+                  checked: classes.checked,
                 }}
               />
             </ListItemSecondaryAction>

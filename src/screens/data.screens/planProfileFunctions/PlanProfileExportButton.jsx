@@ -24,9 +24,9 @@ const useStyles = makeStyles({
     width: "10%",
   },
   heatmapBtn: {
-    backgroundColor: "#c46c00",
+    backgroundColor: orangeColor,
     "&:hover": {
-      backgroundColor: orangeColor,
+      backgroundColor: "#ffc074",
     },
     color: "white",
     fontSize: 18,
@@ -40,9 +40,9 @@ const useStyles = makeStyles({
   },
 
   diagnosticBtn: {
-    backgroundColor: "#8B4513",
+    backgroundColor: "#9E0059",
     "&:hover": {
-      backgroundColor: "#DEB887",
+      backgroundColor: "#eb0084",
     },
     color: "white",
     fontSize: 18,

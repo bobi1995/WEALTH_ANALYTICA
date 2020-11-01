@@ -6,6 +6,8 @@ import Table from "./filtersFunctions/FilterFields/Table";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles, Box } from "@material-ui/core";
 import DeleteBtn from "./SavedFilter/ConformationDialog";
+import AlertBox from "../../components/alertBox";
+
 const useStyles = makeStyles({
   buttonBox: {
     textAlign: "center",
@@ -13,10 +15,11 @@ const useStyles = makeStyles({
 });
 
 const SavedFilters = (props) => {
+  const classes = useStyles();
   const [results, setResults] = useState([]);
   const [filter, setFilter] = useState();
   const [flag, setFlag] = useState(false);
-  const classes = useStyles();
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     if (filter) {
@@ -34,8 +37,9 @@ const SavedFilters = (props) => {
         })
         .catch((e) => {
           console.log(e);
-          alert("For some reason we could not find the desired results.");
-          window.location.reload();
+          setAlertMessage(
+            "For some reason we could not find the desired results."
+          );
         });
     }
   }, [filter]);
@@ -66,6 +70,11 @@ const SavedFilters = (props) => {
         </div>
       ) : (
         <Table data={results ? results : []} setData={setResults} />
+      )}
+      {alertMessage ? (
+        <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
       )}
     </div>
   );

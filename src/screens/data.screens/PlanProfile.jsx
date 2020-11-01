@@ -12,9 +12,12 @@ import apiAddress from "../../global/endpointAddress";
 import Main from "./planProfileFunctions/Main";
 import { minYear, lastYear } from "../../global/Years";
 import { backgroundGrey } from "../../global/Colors";
+import AlertBox from "../../components/alertBox";
+
 const PlaneProfile = (props) => {
   const [results, setResults] = useState([]);
   const [limit, setLimit] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   const [showing, setShowing] = useState([
     "all",
     "business-include",
@@ -50,7 +53,9 @@ const PlaneProfile = (props) => {
           if (err.response.status === 400) {
             setLimit(true);
           } else {
-            alert("For some reason we could not find the desired results.");
+            setAlertMessage(
+              "For some reason we could not find the desired results."
+            );
           }
         }
       });
@@ -115,6 +120,11 @@ const PlaneProfile = (props) => {
         <div className="onepager-loader-style">
           <Loader />
         </div>
+      )}
+      {alertMessage ? (
+        <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
       )}
     </div>
   );
