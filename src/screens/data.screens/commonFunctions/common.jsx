@@ -8,9 +8,11 @@ const phoneFormat = (phone) => {
 };
 
 const formatString = (str) => {
-  return str
-    .replace(/(\B)[^ ]*/g, (match) => match.toLowerCase())
-    .replace(/^[^ ]/g, (match) => match.toUpperCase());
+  if (str) {
+    return str
+      .replace(/(\B)[^ ]*/g, (match) => match.toLowerCase())
+      .replace(/^[^ ]/g, (match) => match.toUpperCase());
+  }
 };
 
 const splitCapitalLetterString = (str) => {

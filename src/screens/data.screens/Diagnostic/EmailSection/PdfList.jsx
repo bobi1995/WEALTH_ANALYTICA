@@ -59,7 +59,7 @@ const pdfs = [
   //{ name: "Contribution Matching", value: 17 },
   //{ name: "ESOP", value: 18 },
   { name: "Service Provider Disclosures", value: 19 },
-  { name: "Plan Fee Descriptions", value: 16 },
+  { name: "Plan Fee Descriptions", value: 20 },
   { name: "Evaluation of Plan Fees Guidelines", value: 21 },
   //{ name: "Monitoring Service Providers", value: 22 },
   { name: "Leakage : Explained", value: 25 },
@@ -91,7 +91,6 @@ const PdfList = (props) => {
       <Box style={{ marginTop: "3%" }}>
         {pdfs.map((item) => {
           const labelId = `checkbox-list-label-${item.value}`;
-
           return (
             <ListItem
               key={item.value}
