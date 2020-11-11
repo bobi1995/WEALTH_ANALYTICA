@@ -76,19 +76,20 @@ const SmallTable = ({ descriptionData, usedData, industryData }) => {
             {descriptionData.benefitCodes.map((code, codeInd) => {
               return (
                 <TableRow key={code.code + codeInd}>
-                  {console.log(code)}
-
                   <TableCell>{code.code}</TableCell>
                   <TableCell>{code.type}</TableCell>
                   <TableCell>{code.characteristics}</TableCell>
 
-                  {usedData.map((el, code) =>
+                  {usedData.map((el, ind) =>
                     el.benefit.includes(code.code) ? (
-                      <TableCell key={el.benefit}>
+                      <TableCell key={el.year + code.code}>
+                        {console.log(code.code)}
                         <CheckIcon style={{ color: "green" }} />
                       </TableCell>
                     ) : (
-                      <TableCell key={el.benefit}>
+                      <TableCell key={el.year + code.code}>
+                        {console.log(code.code)}
+
                         <ClearIcon style={{ color: "red" }} />
                       </TableCell>
                     )

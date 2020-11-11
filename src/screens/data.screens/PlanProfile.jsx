@@ -97,6 +97,8 @@ const PlaneProfile = (props) => {
                     contact={results.Contacts}
                     types={results.PlanSummary}
                     site={results.Website}
+                    location={results.Location}
+                    companyID={props.match.params.CompanyID}
                   />
                 </div>
               ) : (

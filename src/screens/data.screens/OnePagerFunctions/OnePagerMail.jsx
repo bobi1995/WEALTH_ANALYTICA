@@ -9,7 +9,6 @@ const OnePagerMail = (props) => {
   const classes = useStyles();
   const [display, setDisplay] = useState(false);
   let available = false;
-  console.log(props);
 
   commonExtract.extractStates().forEach((el) => {
     if (props.state === el.State && el.Type === 2) {

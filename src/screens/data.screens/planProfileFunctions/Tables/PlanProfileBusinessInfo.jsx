@@ -6,7 +6,7 @@ import { primaryBlue } from "../../../../global/Colors";
 import Chart from "./BusinessInfo/Chart";
 import LocationAndBusiness from "./BusinessInfo/LocationAndBusiness";
 import { Box, makeStyles } from "@material-ui/core";
-import Map from "../../OnePagerFunctions/OnePagerMap";
+import GoogleMap from "../../../../components/GoogleMap";
 const useStyles = makeStyles({
   adminContainer: {
     justifyContent: "space-around",
@@ -19,7 +19,6 @@ const PlaneProfileBusinessInfo = (props) => {
   const [contribution, setContribution] = useState(0);
   const [benefit, setBenefit] = useState(0);
   const [welfare, setWelfare] = useState(0);
-  console.log(props);
   const data = {
     labels: ["Contribution", "Benefit", "Welfare"],
     datasets: [
@@ -130,7 +129,12 @@ const PlaneProfileBusinessInfo = (props) => {
               }}
             />
           </div>
-          <Map address={props.data.Address1} city={props.data.City} />
+          <GoogleMap
+            address={props.data.Address1}
+            city={props.data.City}
+            location={props.location}
+            companyID={props.companyID}
+          />
         </div>
       </div>
       <Box className={classes.adminContainer}>

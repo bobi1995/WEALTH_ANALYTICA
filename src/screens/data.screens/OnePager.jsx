@@ -6,7 +6,7 @@ import Loader from "../../components/Loader/Loader";
 import OnePagerBottomTables from "./OnePagerFunctions/OnePagerBottomTables";
 import OnePagerRightPane from "./OnePagerFunctions/OnePagerRightPane";
 import OnePagerMail from "./OnePagerFunctions/OnePagerMail";
-import OnePagerMap from "./OnePagerFunctions/OnePagerMap";
+import GoogleMap from "../../components/GoogleMap";
 import OnePagerPensionPlan from "./OnePagerFunctions/OnePagerPensionPlan";
 import OnePagerLogo from "./OnePagerFunctions/OnePagerLogo";
 import OnePagerAccountants from "./OnePagerFunctions/OnePagerAccountants";
@@ -120,7 +120,12 @@ const OnePager = (props) => {
             ]}
           />
 
-          <OnePagerMap address={results.Address} city={results.City} />
+          <GoogleMap
+            address={results.Address}
+            city={results.City}
+            location={results.Location}
+            companyID={props.match.params.CompanyID}
+          />
         </div>
       ) : (
         <div className="onepager-loader-style">
