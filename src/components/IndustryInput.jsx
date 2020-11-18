@@ -59,7 +59,7 @@ const StatesField = (props) => {
   };
 
   return (
-    <Card className={clsx(classes.root, className)}>
+    <Card className={clsx(classes.root, className)} elevation={21}>
       <CardContent>
         <Grid container justify="space-between">
           <Autocomplete

@@ -62,7 +62,7 @@ const GraphField = () => {
       );
       axios
         .get(
-          `${apiAddress}/api/SmallCompanies/GetCompanyGraphs?businessCategory=${industryObject.BusinessCode}&minYear=2017&maxYear=${lastYear}&state=${state}`,
+          `${apiAddress}/api/Public/GetCompanyGraphs?businessCategory=${industryObject.BusinessCode}&minYear=2017&maxYear=${lastYear}&state=${state}`,
           {
             headers: {
               Authorization: "Basic " + sessionStorage.getItem("Token"),

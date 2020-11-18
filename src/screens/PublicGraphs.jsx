@@ -1,46 +1,77 @@
-import React, { useState } from "react";
-import GraphsField from "./data.screens/Graphs/GraphField";
+import React, { useState, useEffect } from "react";
+import { Bar, Line, Pie, Polar, Doughnut } from "react-chartjs-2";
 import { Box, makeStyles, Typography, Link } from "@material-ui/core";
 import { backgroundGrey, primaryBlue, orangeColor } from "../global/Colors";
+import GraphMap from "./data.screens/Graphs/PublicGraphMap";
+import IndustryInput from "../components/IndustryInput";
+import dataReducer from "./data.screens/DashboardUltimate/Pages/StatisticPage/charts";
+import { lastYear } from "../global/Years";
+import apiAddress from "../global/endpointAddress";
+import axios from "axios";
 const useStyles = makeStyles({
-  container: {
-    backgroundColor: backgroundGrey,
-    height: "100vh",
-  },
   typographyStyle: {
     textAlign: "center",
     fontSize: 22,
     fontStyle: "italic",
     fontFamily: "Baskervville",
+    marginTop: "1%",
   },
-  linkBox: {
-    position: "fixed",
-    bottom: 0,
-    width: "100%",
+  mapContainer: {
     textAlign: "center",
-    backgroundColor: primaryBlue,
+    marginTop: "1%",
+  },
+  industryContainer: {
+    marginTop: "5%",
+    marginBottom: "5%",
+    width: "100%",
+  },
+  industryField: {
+    margin: "0 auto",
+    width: "50%",
+  },
+  graphsBox: {
     display: "flex",
     justifyContent: "space-around",
-    padding: "0.2%",
+    margin: "3%",
   },
-  linkStyle: {
-    color: "white",
-    fontSize: 18,
-    lineHeight: 2.5,
-    border: "1px solid white",
-    paddingLeft: "0.2%",
-    paddingRight: "0.2%",
-    borderRadius: 5,
-    "&:hover": {
-      color: orangeColor,
-      cursor: "pointer",
-      border: `1px solid ${orangeColor}`,
-      textDecoration: "none",
-    },
+  chartStyle: {
+    width: "40%",
+    backgroundColor: "white",
+    borderRadius: "25px",
+    border: "1px solid lightgray",
+    padding: "0%",
   },
 });
+
 const PublicGraphs = () => {
   const classes = useStyles();
+  const [selectedState, setSelectedState] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [data, setData] = useState();
+  console.log(data);
+  useEffect(() => {
+    if (selectedState && industry) {
+      axios
+        .get(
+          `${apiAddress}/api/Public/GetCompanyGraphs?businessCategory=${industry}&minYear=2017&maxYear=${lastYear}&state=${selectedState}`,
+          {
+            headers: {
+              Authorization: "Basic " + sessionStorage.getItem("Token"),
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        )
+        .then((res) => {
+          setData(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("For some reason we could not find the desired results.");
+          window.location.reload();
+        });
+    }
+  }, [selectedState, industry]);
+
   return (
     <Box className={classes.container}>
       <section className="clientDash-img">
@@ -59,24 +90,202 @@ const PublicGraphs = () => {
           Industries per States for the last years.
         </Typography>
       </Box>
-      <GraphsField />
-      <Box className={classes.linkBox}>
-        <Link
-          className={classes.linkStyle}
-          href="https://data.wealthanalytica.com/"
-        >
-          Login/Register
-        </Link>
-        <Link
-          className={classes.linkStyle}
-          href="https://data.wealthanalytica.com/demo"
-        >
-          Request a demo
-        </Link>
-        <Link className={classes.linkStyle} href="https://wealthanalytica.com/">
-          Back to Site
-        </Link>
+      <Box className={classes.industryContainer}>
+        <IndustryInput
+          className={classes.industryField}
+          setIndustry={setIndustry}
+        />
       </Box>
+      <Box className={classes.mapContainer}>
+        <GraphMap setState={setSelectedState} />
+      </Box>
+      {data && (
+        <Box>
+          <Box className={classes.graphsBox}>
+            <Box className={classes.chartStyle}>
+              <Bar
+                data={{
+                  labels: data.RateOfInvestmentReturn.map((el) => el.Year),
+                  datasets: [
+                    {
+                      label: "Rate Of Investment Return",
+                      backgroundColor: "rgba(54,162,235,0.2)",
+                      borderColor: "rgba(54,162,235,1)",
+                      borderWidth: 1,
+                      hoverBackgroundColor: "rgba(54,162,235,0.4)",
+                      hoverBorderColor: "rgba(54,162,235,1)",
+                      data: dataReducer.arrayReducer(
+                        data.RateOfInvestmentReturn.map((el) => el.Value)
+                      ),
+                    },
+                  ],
+                }}
+                options={dataReducer.optionReturn(
+                  data.RateOfInvestmentReturn.map((el) => el.Value)
+                )}
+              />
+            </Box>
+
+            <Box className={classes.chartStyle}>
+              <Line
+                data={{
+                  labels: data.PercentageOfActivePlanParticipants.map(
+                    (el) => el.Year
+                  ),
+                  datasets: [
+                    {
+                      label: "Percentage Of Active Plan Participants",
+                      fill: false,
+                      lineTension: 0.1,
+                      backgroundColor: "rgba(75,192,192,0.4)",
+                      borderColor: "rgba(75,192,192,1)",
+                      borderCapStyle: "butt",
+                      borderDash: [],
+                      borderDashOffset: 0.0,
+                      borderJoinStyle: "miter",
+                      pointBorderColor: "rgba(75,192,192,1)",
+                      pointBackgroundColor: "#fff",
+                      pointBorderWidth: 1,
+                      pointHoverRadius: 5,
+                      pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                      pointHoverBorderColor: "rgba(220,220,220,1)",
+                      pointHoverBorderWidth: 2,
+                      pointRadius: 1,
+                      pointHitRadius: 10,
+                      data: dataReducer.arrayReducer(
+                        data.PercentageOfActivePlanParticipants.map(
+                          (el) => el.Value
+                        )
+                      ),
+                    },
+                  ],
+                }}
+                options={dataReducer.optionReturn(
+                  data.PercentageOfActivePlanParticipants.map((el) => el.Value)
+                )}
+              />
+            </Box>
+          </Box>
+          {/* *********************************SECOND ROW OF GRAPHS***************************************** */}
+          <Box className={classes.graphsBox}>
+            <Box className={classes.chartStyle}>
+              <small
+                className="form-text text-muted"
+                style={{ textAlign: "center", fontSize: "17px" }}
+              >
+                Total Plan Expenses
+              </small>
+              <Pie
+                data={{
+                  labels: data.TotalPlanExpenses.map((el) => el.Year),
+                  datasets: [
+                    {
+                      data: dataReducer.arrayReducer(
+                        data.TotalPlanExpenses.map((el) => el.Value)
+                      ),
+                      backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+                      hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+                    },
+                  ],
+                }}
+              />
+            </Box>
+
+            <Box className={classes.chartStyle}>
+              <small
+                className="form-text text-muted"
+                style={{ textAlign: "center", fontSize: "17px" }}
+              >
+                Average Participant Balance
+              </small>
+              <Polar
+                data={{
+                  datasets: [
+                    {
+                      data: dataReducer.arrayReducer(
+                        data.AverageParticipantBalance.map((el) => el.Value)
+                      ),
+                      backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+                      hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+                    },
+                  ],
+
+                  labels: data.AverageParticipantBalance.map((el) => el.Year),
+                }}
+              />
+            </Box>
+          </Box>
+
+          {/* *********************************THIRD ROW OF GRAPHS***************************************** */}
+          <Box className={classes.graphsBox}>
+            <Box className={classes.chartStyle}>
+              <Line
+                data={{
+                  labels: data.PercentOfEmployeeContributions.map(
+                    (el) => el.Year
+                  ),
+                  datasets: [
+                    {
+                      label: "Percent Of Employee Contributions",
+                      fill: false,
+                      lineTension: 0.1,
+                      backgroundColor: "rgba(75,192,192,0.4)",
+                      borderColor: "rgba(75,192,192,1)",
+                      borderCapStyle: "butt",
+                      borderDash: [],
+                      borderDashOffset: 0.0,
+                      borderJoinStyle: "miter",
+                      pointBorderColor: "rgba(75,192,192,1)",
+                      pointBackgroundColor: "#fff",
+                      pointBorderWidth: 1,
+                      pointHoverRadius: 5,
+                      pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                      pointHoverBorderColor: "rgba(220,220,220,1)",
+                      pointHoverBorderWidth: 2,
+                      pointRadius: 1,
+                      pointHitRadius: 10,
+                      data: dataReducer.arrayReducer(
+                        data.PercentOfEmployeeContributions.map(
+                          (el) => el.Value
+                        )
+                      ),
+                    },
+                  ],
+                }}
+                options={dataReducer.optionReturn(
+                  data.PercentOfEmployeeContributions.map((el) => el.Value)
+                )}
+              />
+            </Box>
+            <Box className={classes.chartStyle}>
+              <small
+                className="form-text text-muted"
+                style={{ textAlign: "center", fontSize: "17px" }}
+              >
+                Percentage Of Employer Contributions
+              </small>
+              <Doughnut
+                data={{
+                  labels: data.PercentageOfEmployerContributions.map(
+                    (el) => el.Year
+                  ),
+                  datasets: [
+                    {
+                      data: dataReducer.arrayReducer(
+                        data.PercentageOfEmployerContributions.map(
+                          (el) => el.Value
+                        )
+                      ),
+                      backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+                      hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+                    },
+                  ],
+                }}
+              />
+            </Box>
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 };
