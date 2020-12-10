@@ -9,7 +9,6 @@ import apiAddress from "../global/endpointAddress";
 const OnePagerMap = (props) => {
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
-  console.log(props);
 
   useEffect(() => {
     if (
@@ -57,7 +56,7 @@ const OnePagerMap = (props) => {
       };
       asignCoordinates();
     }
-  }, []);
+  }, [props.address, props.city, props.companyID, props.location]);
 
   const position = [lat, long];
   const myIcon = L.icon({

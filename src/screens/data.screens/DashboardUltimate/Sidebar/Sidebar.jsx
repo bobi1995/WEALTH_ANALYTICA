@@ -41,6 +41,12 @@ export default function NestedList(props) {
       pathname: `/graphs`,
     });
   };
+
+  const handleConnectionsClick = () => {
+    history.push({
+      pathname: `/connections`,
+    });
+  };
   return (
     <List
       component="nav"
@@ -118,7 +124,13 @@ export default function NestedList(props) {
         <ListItemText primary="Graphs" />
       </ListItem>
 
-      <ListItem button>
+      <ListItem
+        button
+        style={
+          props.opened === "connections" ? { backgroundColor: "#95C1DC" } : {}
+        }
+        onClick={handleConnectionsClick}
+      >
         <ListItemIcon>
           <ContactMailIcon />
         </ListItemIcon>

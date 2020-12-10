@@ -20,7 +20,6 @@ export default (props) => {
           </thead>
           <tbody className="table-hover">
             {database.map((el) => {
-              console.log(el);
               const partsWeb = el.Website ? el.Website.split(":") : "";
               return (
                 <tr key={el.Name}>

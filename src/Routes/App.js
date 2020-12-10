@@ -12,10 +12,12 @@ import AccountPage from "../screens/data.screens/DashboardUltimate/Pages/Account
 import StatisticsPage from "../screens/data.screens/DashboardUltimate/Pages/StatisticsPage";
 import PurchasePage from "../screens/data.screens/DashboardUltimate/Pages/PurchasePage";
 import UserManagement from "../screens/data.screens/DashboardUltimate/Pages/UserManagement";
+import Connections from "../screens/data.screens/DashboardUltimate/Pages/Connections";
 import Heatmap from "../screens/data.screens/Heatmap";
 import Diagnostic from "../screens/data.screens/Diagnostic";
 import Graphs from "../screens/data.screens/Graphs";
 import PublicGraphs from "../screens/PublicGraphs";
+import Benchmark from "../screens/data.screens/Benchmark";
 import Demo from "../screens/Demo";
 import "../styles/main.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -34,6 +36,7 @@ function App() {
         <PrivateRoute path="/statistics" component={StatisticsPage} />
         <PrivateRoute path="/purchase" component={PurchasePage} />
         <PrivateRoute path="/management" component={UserManagement} />
+        <PrivateRoute path="/connections" component={Connections} />
         <PrivateRoute path="/filters" component={Filter2} />
         <PrivateRoute path="/bookmarks" component={Bookmarks} />
         <PrivateRoute path="/saved-filters" component={SavedFilters} />
@@ -41,6 +44,7 @@ function App() {
         <PrivateRoute path="/planprofile/:CompanyID" component={PlanProfile} />
         <PrivateRoute path="/heatmap/:CompanyID" component={Heatmap} />
         <PrivateRoute path="/diagnostic/:CompanyID" component={Diagnostic} />
+        <PrivateRoute path="/benchmark/:CompanyID" component={Benchmark} />
         <PrivateRoute path="/graphs" component={Graphs} />
         <Route component={Page404} />
       </Switch>

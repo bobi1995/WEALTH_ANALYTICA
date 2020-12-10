@@ -96,7 +96,7 @@ const OnePagerPensionPlan = (props) => {
                                             {numeral(el.Value).format("0,0")}
                                           </td>
                                         );
-                                      }
+                                      } else return null;
                                     }
                                   );
                                 } else return <td key={i}>-</td>;
@@ -125,7 +125,7 @@ const OnePagerPensionPlan = (props) => {
                                             ${common.reducer(el.Value)}
                                           </td>
                                         );
-                                      }
+                                      } else return null;
                                     }
                                   );
                                 } else return <td key={i}>-</td>;
@@ -153,7 +153,7 @@ const OnePagerPensionPlan = (props) => {
                                             ${common.reducer(el.Value)}
                                           </td>
                                         );
-                                      }
+                                      } else return null;
                                     }
                                   );
                                 } else return <td key={i}>-</td>;

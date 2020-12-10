@@ -43,7 +43,7 @@ const DataNavbar = () => {
             </li>
             <li className="dropdown">
               <div>
-                <a className="dropbtn" href="/profile">
+                <a className="dropbtn" href="/account">
                   Hi,{sessionStorage.getItem("FirstName")}
                 </a>
                 <div className="dropdown-content">

@@ -11,7 +11,7 @@ const Bookmarks = () => {
   const [tempRes, SetTempRes] = useState([]);
 
   useEffect(() => {
-    const url = `${apiAddress}/api/Bookmarks/List`;
+    const url = `${apiAddress}/api/Bookmarks/List?loadFinancialDetails=false&year=null`;
 
     axios
       .get(url, {

@@ -107,7 +107,7 @@ const PlanProfilePension = (props) => {
                                               {numeral(el.Value).format("0,0")}
                                             </td>
                                           );
-                                        }
+                                        } else return null;
                                       }
                                     );
                                   } else return <td key={i}>-</td>;
@@ -136,7 +136,7 @@ const PlanProfilePension = (props) => {
                                               ${common.reducer(el.Value)}
                                             </td>
                                           );
-                                        }
+                                        } else return null;
                                       }
                                     );
                                   } else return <td key={i}>-</td>;
@@ -164,7 +164,7 @@ const PlanProfilePension = (props) => {
                                               ${common.reducer(el.Value)}
                                             </td>
                                           );
-                                        }
+                                        } else return null;
                                       }
                                     );
                                   } else return <td key={i}>-</td>;

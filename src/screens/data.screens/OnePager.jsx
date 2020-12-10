@@ -46,9 +46,7 @@ const OnePager = (props) => {
             if (err.response.status === 400) {
               setLimit(true);
             } else {
-              setAlertMessage(
-                "For some reason we could not find the desired results."
-              );
+              setAlertMessage("Maximum request for OnePager reached.");
             }
           } else
             setAlertMessage(

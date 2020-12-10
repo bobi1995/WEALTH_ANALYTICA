@@ -84,7 +84,7 @@ const GraphField = () => {
 
   useEffect(() => {
     GetData();
-  }, [state, industry]);
+  }, [state, industry, GetData]);
 
   return (
     <Grid className={classes.gridStyle}>

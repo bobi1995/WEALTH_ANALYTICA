@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Bar, Line, Pie, Polar, Doughnut } from "react-chartjs-2";
-import { Box, makeStyles, Typography, Link } from "@material-ui/core";
-import { backgroundGrey, primaryBlue, orangeColor } from "../global/Colors";
+import { Box, makeStyles, Typography } from "@material-ui/core";
+import Legend from "./data.screens/Graphs/Legend";
 import GraphMap from "./data.screens/Graphs/PublicGraphMap";
 import IndustryInput from "../components/IndustryInput";
 import dataReducer from "./data.screens/DashboardUltimate/Pages/StatisticPage/charts";
@@ -48,7 +48,7 @@ const PublicGraphs = () => {
   const [selectedState, setSelectedState] = useState("");
   const [industry, setIndustry] = useState("");
   const [data, setData] = useState();
-  console.log(data);
+  console.log(selectedState);
   useEffect(() => {
     if (selectedState && industry) {
       axios
@@ -95,6 +95,9 @@ const PublicGraphs = () => {
           className={classes.industryField}
           setIndustry={setIndustry}
         />
+      </Box>
+      <Box className={classes.industryContainer}>
+        <Legend />
       </Box>
       <Box className={classes.mapContainer}>
         <GraphMap setState={setSelectedState} />

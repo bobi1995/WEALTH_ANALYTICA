@@ -94,8 +94,8 @@ const PurchasePage = (props) => {
         <Main opened="purchase" />
         <Grid className={classes.gridStyle}>
           <Typography
-            variant="h2"
-            component="h2"
+            variant="h4"
+            component="h4"
             className={classes.headerStyle}
             gutterBottom
           >

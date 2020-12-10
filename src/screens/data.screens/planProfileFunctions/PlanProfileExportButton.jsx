@@ -54,6 +54,22 @@ const useStyles = makeStyles({
     marginLeft: "1%",
     width: "10%",
   },
+
+  benchmarkBtn: {
+    backgroundColor: "#000072",
+    "&:hover": {
+      backgroundColor: "#6666ff",
+    },
+    color: "white",
+    fontSize: 18,
+    borderRadius: 5,
+    textAlign: "center",
+    paddingLeft: "0.5%",
+    paddingRight: "0.5%",
+    paddingTop: "0.3%",
+    marginLeft: "1%",
+    width: "10%",
+  },
 });
 
 export default (props) => {
@@ -114,6 +130,18 @@ export default (props) => {
             style={{ textDecoration: "none", color: "white" }}
           >
             DIAGNOSTIC
+          </Link>
+        </Box>
+      </Tooltip>
+
+      <Tooltip title="Go to Benchmark" className={classes.benchmarkBtn}>
+        <Box>
+          <Link
+            href={`/benchmark/${props.companyID}`}
+            target="_blank"
+            style={{ textDecoration: "none", color: "white" }}
+          >
+            BENCHMARK
           </Link>
         </Box>
       </Tooltip>
