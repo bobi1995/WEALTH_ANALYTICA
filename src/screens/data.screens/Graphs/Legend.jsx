@@ -24,7 +24,7 @@ const Legend = ({ setState }) => {
         title="Average Expense Ratio"
         columns={[
           {
-            title: "-0.95 and below",
+            title: "0.19 and below",
             field: "first",
 
             headerStyle: {
@@ -32,28 +32,28 @@ const Legend = ({ setState }) => {
             },
           },
           {
-            title: "-0.94 to -0.16",
+            title: "0.20 to 0.48",
             field: "first",
             headerStyle: {
               backgroundColor: limegreen,
             },
           },
           {
-            title: "-0.15 to 0.62",
+            title: "0.49 to 0.77",
             field: "first",
             headerStyle: {
               backgroundColor: lightgreen,
             },
           },
           {
-            title: "0.63 to 1.40",
+            title: "0.78 to 1.06",
             field: "first",
             headerStyle: {
               backgroundColor: softOrange,
             },
           },
           {
-            title: "1.43 and above",
+            title: "1.07 and above",
             field: "first",
             headerStyle: {
               backgroundColor: softRed,

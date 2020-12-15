@@ -6,14 +6,14 @@ import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import { ArrowUpward, ChevronRight } from "@material-ui/icons";
 import numeral from "numeral";
 import LoopIcon from "@material-ui/icons/Loop";
-
+import CircularProgress from "@material-ui/core/CircularProgress";
 const useStyles = makeStyles({
   table: {
     width: "90%",
     margin: "1% auto",
   },
 });
-const BenchmarkTable = ({ data, industryFlag }) => {
+const BenchmarkTable = ({ data, industryFlag, filterSearch }) => {
   const classes = useStyles();
 
   return (
@@ -78,7 +78,11 @@ const BenchmarkTable = ({ data, industryFlag }) => {
             field: "industry",
             render: (rowData) =>
               industryFlag ? (
-                `$${numeral(rowData.industry).format("0,00")}`
+                filterSearch ? (
+                  <CircularProgress size={30} style={{ textAlign: "center" }} />
+                ) : (
+                  `$${numeral(rowData.industry).format("0,00")}`
+                )
               ) : (
                 <Tooltip title="Apply some filters to see results">
                   <LoopIcon />

@@ -7,7 +7,8 @@ import PlanProfileServiceHealth from "./Tables/PlanProfileHealthCare";
 import PlanProfileServiceProviders from "./Tables/PlanProfileServiceProviders";
 import PlanProfileAccountantFrims from "./Tables/PlanProfileAccountantFirms";
 import common from "../commonFunctions/common";
-
+import Annual from "./DrillDown/Alerts/Annual";
+import Transactions from "./DrillDown/Alerts/Transactions";
 const PlanProfileTables = (props) => {
   return (
     <div>
@@ -447,6 +448,10 @@ const PlanProfileTables = (props) => {
                 </tr>
               </tbody>
             </table>
+            <div style={{ display: "flex", justifyContent: "space-around" }}>
+              <Annual companyID={props.companyID} />
+              <Transactions companyID={props.companyID} />
+            </div>
           </div>
         </div>
       ) : (

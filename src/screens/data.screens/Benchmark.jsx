@@ -14,6 +14,7 @@ import apiAddress from "../../global/endpointAddress";
 import AlerBox from "../../components/alertBox";
 import Loader from "../../components/plainCicularLoader";
 import { codes as serviceCodes } from "../../global/ServiceCodes";
+import IndustryCodes from "../../global/businessCode";
 
 const useStyles = makeStyles({
   filterBox: {
@@ -71,6 +72,7 @@ const Benchmark = (props) => {
   const [flag, setFlag] = useState(false);
   const [industryFlag, setIndustryFlag] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [filterSearch, setFilterSearch] = useState(false);
   let url = "";
 
   if (props.match) {
@@ -95,6 +97,7 @@ const Benchmark = (props) => {
         setAlertMessage(
           "For some reason we could not find the desired results."
         );
+        setFlag(0);
       });
   }, [url]);
 
@@ -156,11 +159,20 @@ const Benchmark = (props) => {
   }, [industryRes]);
 
   const applyFilter = () => {
-    setFlag(true);
+    setFilterSearch(true);
     setIndustryFlag(true);
+    let industryObject;
+    let url;
+    if (industry) {
+      industryObject = IndustryCodes.find((el) => el.IndustryName === industry);
+      url = `http://pensionswebapi-test.azurewebsites.net/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=${industryObject.BusinessCode}&state=${state}`;
+    } else
+      url = `http://pensionswebapi-test.azurewebsites.net/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=&state=${state}`;
+
+    console.log(url);
     axios({
       method: "get",
-      url: `http://pensionswebapi-test.azurewebsites.net/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart}&maxPart=${maxPart}&businessCode=${industry}&state=${state}`,
+      url,
       timeout: 60 * 4 * 1000, // Let's say you want to wait at least 4 mins
       headers: {
         Authorization: "Basic " + sessionStorage.getItem("Token"),
@@ -169,12 +181,14 @@ const Benchmark = (props) => {
     })
       .then((res) => {
         setIndustryRes(res.data);
-        setFlag(false);
+        setFilterSearch(false);
       })
       .catch((err) => {
         setAlertMessage(
-          "For some reason we could not find the desired results."
+          "For some reason we could not find the desired results. Probably the range of the filter is too big. Try to reduce the searched area."
         );
+        setFilterSearch(false);
+        setIndustryFlag(false);
       });
   };
 
@@ -219,7 +233,7 @@ const Benchmark = (props) => {
             id="right-filter-btn"
             className={classes.buttonStyle}
             startIcon={<SearchIcon />}
-            disabled={flag}
+            disabled={filterSearch && flag}
             onClick={applyFilter}
           >
             Apply Filters
@@ -235,7 +249,11 @@ const Benchmark = (props) => {
               {results.CompanyName}
             </Typography>
           </Box>
-          <BenchmarkTable data={serviceCodes} industryFlag={industryFlag} />
+          <BenchmarkTable
+            data={serviceCodes}
+            industryFlag={industryFlag}
+            filterSearch={filterSearch}
+          />
         </Box>
       ) : (
         ""
