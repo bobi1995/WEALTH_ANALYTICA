@@ -11,6 +11,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
 import { Doughnut } from "react-chartjs-2";
 import { primaryBlue } from "../../../../global/Colors";
+import { lastYear } from "../../../../global/Years";
 
 const useStyles = makeStyles({
   container: {
@@ -47,7 +48,11 @@ const TouchesTable = ({ data }) => {
 
   //COUNT FAILURES (0 - OK, 1 - FAIL)
   data.map((el) =>
-    Object.values(el.touches).filter((item) => (item === 1 ? counter++ : ""))
+    el.year === lastYear
+      ? Object.values(el.touches).filter((item) =>
+          item === 1 ? counter++ : ""
+        )
+      : ""
   );
 
   const chartData = {
@@ -110,7 +115,7 @@ const TouchesTable = ({ data }) => {
       <Box className={classes.statsSection}>
         <Paper className={classes.paper}>
           <Typography className={classes.title} variant="h6" component="div">
-            Summary
+            Summary for {lastYear}
           </Typography>
           <TableContainer>
             <Table size="small" aria-label="a dense table">
@@ -119,9 +124,9 @@ const TouchesTable = ({ data }) => {
                   <TableCell className={classes.tableHeader}>
                     All Fields
                   </TableCell>
-                  <TableCell className={classes.tableHeader}>Checks</TableCell>
+                  <TableCell className={classes.tableHeader}>Touches</TableCell>
                   <TableCell className={classes.tableHeader}>
-                    Failures
+                    No Touch
                   </TableCell>
                 </TableRow>
               </TableHead>

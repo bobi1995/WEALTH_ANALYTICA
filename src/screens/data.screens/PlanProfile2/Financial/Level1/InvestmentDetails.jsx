@@ -8,11 +8,13 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import Slide from "@material-ui/core/Slide";
-import apiAddress from "../../../../../../global/endpointAddress";
+import apiAddress from "../../../../../global/endpointAddress";
 import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Table from "../Level2/InvestmentDetails/Table";
-import { lastYear } from "../../../../../../global/Years";
+import Table from "./InvestmentDetails/Table";
+import { lastYear } from "../../../../../global/Years";
+import { primaryBlue } from "../../../../../global/Colors";
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: "relative",
@@ -22,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
   title: {
     marginLeft: theme.spacing(2),
     flex: 1,
+  },
+  buttonStyle: {
+    backgroundColor: primaryBlue,
+    color: "white",
+    "&:hover": {
+      color: primaryBlue,
+    },
+    whiteSpace: "nowrap",
   },
 }));
 
@@ -35,16 +45,19 @@ export default function FullScreenDialog(props) {
   const [results, setResults] = useState("");
   const handleClickOpen = () => {
     setOpen(true);
-    axios
-      .get(
-        `${apiAddress}/api/SmallCompanies/GetInvestmentDetails?companyID=${props.companyID}&year=${lastYear}`,
-        {
-          headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      )
+    console.log(
+      `${apiAddress}/api/SmallCompanies/GetInvestmentDetails?companyID=${props.companyID}&year=${lastYear}`
+    );
+
+    axios({
+      method: "get",
+      url: `${apiAddress}/api/SmallCompanies/GetInvestmentDetails?companyID=${props.companyID}&year=${lastYear}`,
+      timeout: 60 * 4 * 1000, // Let's say you want to wait at least 4 mins
+      headers: {
+        Authorization: "Basic " + sessionStorage.getItem("Token"),
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
       .then((res) => {
         setResults(res.data);
       })
@@ -57,11 +70,14 @@ export default function FullScreenDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
-
   return (
-    <div style={{ margin: "1% auto" }}>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Check Investment Details
+    <div>
+      <Button
+        variant="outlined"
+        className={classes.buttonStyle}
+        onClick={handleClickOpen}
+      >
+        Investment Details
       </Button>
       <Dialog
         fullScreen

@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, makeStyles } from "@material-ui/core";
 import NoDataComponent from "./Components/NoDataComponent";
-import TouchesTable from './Touches/Table'
+import TouchesTable from "./Touches/Table";
 
 const useStyles = makeStyles({
   heading: {
@@ -26,7 +26,6 @@ const Touches = (props) => {
   const classes = useStyles();
 
   const data = props.data.filter((el) => el.touches !== null);
-  console.log(data)
   return data.length > 0 ? (
     <Box>
       <Box className={classes.headingContainer}>
@@ -34,7 +33,7 @@ const Touches = (props) => {
           Touches
         </Typography>
         <Box className={classes.tablesContainer}>
-          <TouchesTable data={data}/>
+          <TouchesTable data={data} />
         </Box>
       </Box>
     </Box>

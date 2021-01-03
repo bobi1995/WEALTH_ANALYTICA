@@ -16,6 +16,7 @@ import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import ExtensionIcon from "@material-ui/icons/Extension";
 import TouchAppIcon from "@material-ui/icons/TouchApp";
 import Utilization from "./Heatmap/Utilization";
+import Retirement from "./Heatmap/Retirement";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Accountant from "./Heatmap/Accountant";
 import Compliance from "./Heatmap/Compliance";
@@ -28,6 +29,7 @@ import {
   BenefitTypesExtract,
   TouchesExtract,
 } from "./Heatmap/HeatmapDataExtract";
+import HourglassFullIcon from "@material-ui/icons/HourglassFull";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -92,6 +94,8 @@ const Heatmap = (props) => {
                 icon={<SupervisorAccountIcon />}
               />
               <Tab label="Benefit Types" value="4" icon={<ExtensionIcon />} />
+              <Tab label="Retirement" value="6" icon={<HourglassFullIcon />} />
+
               <Tab label="Touches" value="5" icon={<TouchAppIcon />} />
             </TabList>
           </AppBar>
@@ -108,6 +112,9 @@ const Heatmap = (props) => {
               </TabPanel>
               <TabPanel value="4">
                 <BenefitTypes data={BenefitTypesExtract(results.CompanyData)} />
+              </TabPanel>
+              <TabPanel value="6">
+                <Retirement companyID={props.match.params.CompanyID} />
               </TabPanel>
               <TabPanel value="5">
                 <Touches data={TouchesExtract(results.CompanyData)} />

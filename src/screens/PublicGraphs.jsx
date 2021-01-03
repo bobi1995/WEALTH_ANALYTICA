@@ -48,7 +48,6 @@ const PublicGraphs = () => {
   const [selectedState, setSelectedState] = useState("");
   const [industry, setIndustry] = useState("");
   const [data, setData] = useState();
-  console.log(selectedState);
   useEffect(() => {
     if (selectedState && industry) {
       axios

@@ -57,8 +57,6 @@ const SmallTable = ({ descriptionData, usedData, industryData }) => {
         <Table stickyHeader size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell className={classes.tableHeader}>Code</TableCell>
-              <TableCell className={classes.tableHeader}>Type</TableCell>
               <TableCell className={classes.tableHeader}>
                 Characteristic
               </TableCell>
@@ -76,20 +74,15 @@ const SmallTable = ({ descriptionData, usedData, industryData }) => {
             {descriptionData.benefitCodes.map((code, codeInd) => {
               return (
                 <TableRow key={code.code + codeInd}>
-                  <TableCell>{code.code}</TableCell>
-                  <TableCell>{code.type}</TableCell>
                   <TableCell>{code.characteristics}</TableCell>
 
                   {usedData.map((el, ind) =>
                     el.benefit.includes(code.code) ? (
                       <TableCell key={el.year + code.code}>
-                        {console.log(code.code)}
                         <CheckIcon style={{ color: "green" }} />
                       </TableCell>
                     ) : (
                       <TableCell key={el.year + code.code}>
-                        {console.log(code.code)}
-
                         <ClearIcon style={{ color: "red" }} />
                       </TableCell>
                     )

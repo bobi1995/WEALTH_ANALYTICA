@@ -4,7 +4,7 @@ import DataExtract from "../PlanProfileDataExtract";
 import dataReducer from "../../../../components/dataReducer";
 import common from "../../commonFunctions/common";
 import FinancialDetails from "../DrillDown/FinancialDetails/FinancialDetails";
-
+import InvestmentDetails from "../DrillDown/FinancialDetails/Level1/InvestmentDetails";
 export default (props) => {
   const database = props.info;
   const reducedData = dataReducer.arrayReducer(
@@ -226,6 +226,7 @@ export default (props) => {
       </div>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <FinancialDetails companyID={props.companyID} />
+        <InvestmentDetails companyID={props.companyID} />
       </div>
     </div>
   );

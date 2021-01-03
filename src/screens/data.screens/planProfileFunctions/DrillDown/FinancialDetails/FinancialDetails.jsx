@@ -15,7 +15,6 @@ import IncomeType3 from "./Level1/Type3/IncomeType3";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import InvestmentDetails from "./Level2/InvestmentDetails";
 import { lastYear } from "../../../../../global/Years";
 import { primaryBlue } from "../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
@@ -114,7 +113,7 @@ export default (props) => {
         className={classes.buttonStyle}
         onClick={handleClickOpen}
       >
-        View Details
+        Financial Details
       </Button>
       <Dialog
         open={open}
@@ -148,7 +147,7 @@ export default (props) => {
             </p>
           </div>
         )}
-        {results ? (
+        {/* {results ? (
           results.CompanyType === 1 ? (
             <InvestmentDetails companyID={props.companyID} />
           ) : (
@@ -156,7 +155,7 @@ export default (props) => {
           )
         ) : (
           ""
-        )}
+        )} */}
       </Dialog>
     </div>
   );

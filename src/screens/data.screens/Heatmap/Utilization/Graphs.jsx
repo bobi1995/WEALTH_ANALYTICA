@@ -13,7 +13,7 @@ import WAImage from "../../../../styles/images/Wealth_Analytica.png";
 
 const useStyles = makeStyles({
   graphsContainer: {
-    width: "40%",
+    width: "30%",
     minWidth: 650,
   },
   signContainer: {

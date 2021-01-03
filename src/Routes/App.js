@@ -5,7 +5,7 @@ import Login from "../screens/Login";
 import DashboardUltimate from "../screens/data.screens/DashboardUltimate";
 import Bookmarks from "../screens/data.screens/Bookmarks";
 import OnePager from "../screens/data.screens/OnePager";
-import PlanProfile from "../screens/data.screens/PlanProfile";
+import PlanProfile2 from "../screens/data.screens/PlanProfile2";
 import Filter2 from "../screens/data.screens/Filters2";
 import SavedFilters from "../screens/data.screens/SavedFilters";
 import AccountPage from "../screens/data.screens/DashboardUltimate/Pages/AccountPage";
@@ -41,7 +41,7 @@ function App() {
         <PrivateRoute path="/bookmarks" component={Bookmarks} />
         <PrivateRoute path="/saved-filters" component={SavedFilters} />
         <PrivateRoute path="/onepager/:CompanyID" component={OnePager} />
-        <PrivateRoute path="/planprofile/:CompanyID" component={PlanProfile} />
+        <PrivateRoute path="/planprofile/:CompanyID" component={PlanProfile2} />
         <PrivateRoute path="/heatmap/:CompanyID" component={Heatmap} />
         <PrivateRoute path="/diagnostic/:CompanyID" component={Diagnostic} />
         <PrivateRoute path="/benchmark/:CompanyID" component={Benchmark} />

@@ -27,8 +27,6 @@ const OnePager = (props) => {
   }
   useEffect(
     (props) => {
-      console.log(url);
-
       axios({
         method: "get",
         url: url,

@@ -7,7 +7,6 @@ import commonFunctions from "../commonFunctions/common";
 import apiAddress from "../../../global/endpointAddress";
 
 const SmallCompanies = (props) => {
-  console.log(props.singleCompany.IsBookmarked);
   const [isBookmarked, setIsBookmarked] = useState(
     props.singleCompany.IsBookmarked
   );

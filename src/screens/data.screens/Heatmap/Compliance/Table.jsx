@@ -12,6 +12,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
 import { Doughnut } from "react-chartjs-2";
 import { primaryBlue } from "../../../../global/Colors";
+import { lastYear } from "../../../../global/Years";
 const useStyles = makeStyles({
   container: {
     width: "100%",
@@ -60,7 +61,7 @@ const ComplianceTable = ({ data }) => {
   let counter = 0;
   //COUNT FAILURES (0 - OK, 1 - FAIL)
   data.map((el) =>
-    el.business
+    el.business || el.year !== lastYear
       ? ""
       : Object.values(el.compliance).filter((item) =>
           item === 1 ? counter++ : ""
@@ -140,7 +141,7 @@ const ComplianceTable = ({ data }) => {
       <Box className={classes.statsSection}>
         <Paper className={classes.paper}>
           <Typography className={classes.title} variant="h6" component="div">
-            Summary
+            Summary for {lastYear}
           </Typography>
           <TableContainer>
             <Table size="small" aria-label="a dense table">

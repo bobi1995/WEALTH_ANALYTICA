@@ -449,8 +449,8 @@ const PlanProfileTables = (props) => {
               </tbody>
             </table>
             <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <Annual companyID={props.companyID} />
               <Transactions companyID={props.companyID} />
+              <Annual companyID={props.companyID} />
             </div>
           </div>
         </div>

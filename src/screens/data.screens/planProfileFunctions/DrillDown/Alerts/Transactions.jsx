@@ -12,6 +12,7 @@ import apiAddress from "../../../../../global/endpointAddress";
 import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { lastYear } from "../../../../../global/Years";
+import { primaryBlue } from "../../../../../global/Colors";
 import Table from "./Trend/Trend";
 
 const useStyles = makeStyles((theme) => ({
@@ -23,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
   title: {
     marginLeft: theme.spacing(2),
     flex: 1,
+  },
+  buttonStyle: {
+    backgroundColor: primaryBlue,
+    color: "white",
+    "&:hover": {
+      color: primaryBlue,
+    },
+    whiteSpace: "nowrap",
   },
 }));
 
@@ -60,8 +69,12 @@ export default function FullScreenDialog(props) {
   };
   return (
     <div style={{ margin: "1% auto" }}>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Transactions Trend
+      <Button
+        variant="outlined"
+        className={classes.buttonStyle}
+        onClick={handleClickOpen}
+      >
+        Default Trends
       </Button>
       <Dialog
         fullScreen

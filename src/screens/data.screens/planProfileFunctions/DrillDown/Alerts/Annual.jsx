@@ -13,6 +13,7 @@ import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { lastYear } from "../../../../../global/Years";
 import Table from "./Annual/Table";
+import { primaryBlue } from "../../../../../global/Colors";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -23,6 +24,14 @@ const useStyles = makeStyles((theme) => ({
   title: {
     marginLeft: theme.spacing(2),
     flex: 1,
+  },
+  buttonStyle: {
+    backgroundColor: primaryBlue,
+    color: "white",
+    "&:hover": {
+      color: primaryBlue,
+    },
+    whiteSpace: "nowrap",
   },
 }));
 
@@ -60,8 +69,12 @@ export default function FullScreenDialog(props) {
   };
   return (
     <div style={{ margin: "1% auto" }}>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Transactions Annual
+      <Button
+        variant="outlined"
+        className={classes.buttonStyle}
+        onClick={handleClickOpen}
+      >
+        {lastYear} Details
       </Button>
       <Dialog
         fullScreen
