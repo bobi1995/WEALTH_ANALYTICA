@@ -441,4 +441,13 @@ export const codes = [
     Service3: "Trust",
     Service2: "Trustee - Institutional",
   },
+  {
+    id: "9999",
+    parent: true,
+    overall2017: 0,
+    overall2018: 0,
+    overall2019: 0,
+    industry: 0,
+    Service3: "Total",
+  },
 ];

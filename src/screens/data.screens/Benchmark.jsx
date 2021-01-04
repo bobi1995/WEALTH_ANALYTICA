@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Datanavbar from "./DataNavbar";
 import IndustryInput from "../../components/IndustryInput";
 import StateInput from "../../components/AllStatesInput";
 import ParticipantsFilter from "./filtersFunctions/FilterFields/RightFilter/Participants";
@@ -15,6 +14,7 @@ import AlerBox from "../../components/alertBox";
 import Loader from "../../components/plainCicularLoader";
 import { codes as serviceCodes } from "../../global/ServiceCodes";
 import IndustryCodes from "../../global/businessCode";
+import numeral from "numeral";
 
 const useStyles = makeStyles({
   filterBox: {
@@ -28,6 +28,11 @@ const useStyles = makeStyles({
   industryStateBox: {
     display: "flex",
     justifyContent: "space-between",
+  },
+
+  summaryBox: {
+    display: "flex",
+    justifyContent: "space-around",
   },
   dropdown: {
     width: "45%",
@@ -57,6 +62,12 @@ const useStyles = makeStyles({
     marginBottom: "3%",
     marginTop: "3%",
   },
+  basicInfo: {
+    color: primaryBlue,
+    fontFamily: "Slabo,serif",
+    textAlign: "center",
+    fontSize: 20,
+  },
 });
 
 const Benchmark = (props) => {
@@ -75,9 +86,10 @@ const Benchmark = (props) => {
   const [filterSearch, setFilterSearch] = useState(false);
   let url = "";
 
-  if (props.match) {
-    url = `${apiAddress}/api/SmallCompanies/GetCompanyBenchmark?companyID=${props.match.params.CompanyID}&minYear=2017&maxYear=${lastYear}`;
+  if (props.companyID) {
+    url = `${apiAddress}/api/SmallCompanies/GetCompanyBenchmark?companyID=${props.companyID}&minYear=2017&maxYear=${lastYear}`;
   }
+
   useEffect(() => {
     setFlag(true);
     axios({
@@ -130,6 +142,21 @@ const Benchmark = (props) => {
           } else return null;
         });
       });
+
+      results.ServicesByYear.map((el) => {
+        return categories.map((cat) => {
+          if (cat.Service3 === "Total") {
+            if (el.Year === 2017) {
+              cat.overall2017 = el.Total;
+            } else if (el.Year === 2018) {
+              cat.overall2018 = el.Total;
+            } else if (el.Year === 2019) {
+              cat.overall2019 = el.Total;
+            }
+          }
+          return null;
+        });
+      });
     }
   }, [results]);
 
@@ -156,6 +183,16 @@ const Benchmark = (props) => {
         } else return null;
       });
     });
+
+    categories.map((el) => {
+      if (el.id === "9999") {
+        categories.map((element) => {
+          if (element.id !== "9999") {
+            el.industry = element.industry + el.industry;
+          }
+        });
+      }
+    });
   }, [industryRes]);
 
   const applyFilter = () => {
@@ -165,10 +202,9 @@ const Benchmark = (props) => {
     let url;
     if (industry) {
       industryObject = IndustryCodes.find((el) => el.IndustryName === industry);
-      url = `http://pensionswebapi-test.azurewebsites.net/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=${industryObject.BusinessCode}&state=${state}`;
+      url = `${apiAddress}/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=${industryObject.BusinessCode}&state=${state}`;
     } else
-      url = `http://pensionswebapi-test.azurewebsites.net/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=&state=${state}`;
-
+      url = `${apiAddress}/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=&state=${state}`;
     axios({
       method: "get",
       url,
@@ -193,10 +229,6 @@ const Benchmark = (props) => {
 
   return (
     <div>
-      <Datanavbar />
-      <section className="clientDash-img">
-        <h1 className="clientDash-header1">Benchmark</h1>
-      </section>
       <Box className={classes.filterBox}>
         <Box className={classes.industryStateBox}>
           <IndustryInput
@@ -246,6 +278,20 @@ const Benchmark = (props) => {
           <Box>
             <Typography className={classes.heading}>
               {results.CompanyName}
+            </Typography>
+          </Box>
+          <Box className={classes.summaryBox}>
+            <Typography className={classes.basicInfo}>
+              State: {results.State}
+            </Typography>
+            <Typography className={classes.basicInfo}>
+              Industry: {results.Industry}
+            </Typography>
+            <Typography className={classes.basicInfo}>
+              Participants: {numeral(results.Participants).format("0,0")}
+            </Typography>
+            <Typography className={classes.basicInfo}>
+              Assets: ${numeral(results.Assets).format("0,00")}
             </Typography>
           </Box>
           <BenchmarkTable

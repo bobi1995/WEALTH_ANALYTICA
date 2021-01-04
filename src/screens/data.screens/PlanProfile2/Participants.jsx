@@ -5,7 +5,7 @@ import dataReducer from "../../../components/dataReducer";
 import common from "../commonFunctions/common";
 import { Box, Typography, makeStyles } from "@material-ui/core";
 import { primaryBlue } from "../../../global/Colors";
-
+import numeral from "numeral";
 const useStyles = makeStyles({
   heading: {
     color: " #388fc2",
@@ -161,7 +161,7 @@ export default (props) => {
               {database.map((element, index) => {
                 return (
                   <td style={{ textAlign: "center" }} key={index}>
-                    {common.reducer(element.Participants)}
+                    {numeral(element.Participants).format("0,0")}
                   </td>
                 );
               })}

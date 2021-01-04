@@ -15,7 +15,6 @@ const useStyles = makeStyles({
 });
 const BenchmarkTable = ({ data, industryFlag, filterSearch }) => {
   const classes = useStyles();
-
   return (
     <Box className={classes.table}>
       <MaterialTable

@@ -34,8 +34,8 @@ const Diagnostic = (props) => {
   const [loadingFlag, setLoadingFlag] = useState(true);
   const [err, setErr] = useState("");
   let url = "";
-  if (props.match) {
-    url = `${apiAddress}/api/SmallCompanies/GetCompanyDiagnostics?CompanyID=${props.match.params.CompanyID}&year=${lastYear}`;
+  if (props.companyID) {
+    url = `${apiAddress}/api/SmallCompanies/GetCompanyDiagnostics?CompanyID=${props.companyID}&year=${lastYear}`;
   }
   useEffect(() => {
     axios({
@@ -59,10 +59,6 @@ const Diagnostic = (props) => {
   }, [url]);
   return (
     <Box>
-      <Datanavbar />
-      <section className="clientDash-img">
-        <h1 className="clientDash-header1">Diagnostic</h1>
-      </section>
       {loadingFlag ? (
         <div style={{ width: "100%", textAlign: "center" }}>
           <CircularProgress

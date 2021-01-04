@@ -93,7 +93,6 @@ const TouchesTable = ({ data }) => {
                   </TableCell>
                   {data.map((el, j) => {
                     let cell_content = el.touches[current_touches_key];
-                    console.log(cell_content);
 
                     return (
                       <TableCell key={j}>

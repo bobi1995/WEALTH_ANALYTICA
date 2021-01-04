@@ -5,7 +5,28 @@ import dataReducer from "../../../components/dataReducer";
 import common from "../commonFunctions/common";
 import numeral from "numeral";
 
+import { makeStyles, Box, Typography } from "@material-ui/core";
+import { primaryBlue } from "../../../global/Colors";
+const useStyles = makeStyles({
+  singleChart: {
+    width: "45%",
+  },
+  chartRow: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "space-around",
+    marginBottom: "3%",
+  },
+  heading: {
+    color: primaryBlue,
+    fontFamily: "Slabo,serif",
+    textAlign: "center",
+    fontSize: 35,
+    marginTop: "3%",
+  },
+});
 export default (props) => {
+  const classes = useStyles();
   let planAssetData = {};
   let incomeStatementsData = {};
   let partMetrics = {};
@@ -235,8 +256,8 @@ export default (props) => {
 
   return (
     <div className="plan-businessInfo-2 plan-graphs">
-      <div className="chart-plan-section">
-        <div className="plan-profile-chartsDiv">
+      <div className={classes.chartRow}>
+        <div className={classes.singleChart}>
           <h2 className="onepager-h2">Plan Asset</h2>
 
           <Bar
@@ -245,8 +266,6 @@ export default (props) => {
               biggestTotalAsset,
               biggestNetAsstes,
             ])}
-            width={400}
-            height={200}
           />
           <div
             className="plan-table-section responsive-table-div"
@@ -296,12 +315,10 @@ export default (props) => {
           </div>
         </div>
 
-        <div className="plan-profile-chartsDiv">
+        <div className={classes.singleChart}>
           <h2 className="onepager-h2">Income Statements</h2>
           <Bar
             data={incomeStatementsData}
-            width={400}
-            height={200}
             options={dataReducer.optionReturn([
               biggestIncome,
               biggestExpense,
@@ -371,38 +388,24 @@ export default (props) => {
         </div>
       </div>
       {/* METRICS */}
-      <div
-        className="plan-profile-chartsDiv"
-        style={{
-          width: "90%",
-          marginTop: "3%",
-          marginLeft: "5%",
-        }}
-      >
-        <h2 className="onepager-h2">Participant Metrics</h2>
-
-        <div
-          className="chart-plan-section"
-          style={{
-            paddingLeft: "3%",
-            paddingRight: "3%",
-          }}
-        >
-          <div className="plan-profile-chartsDiv" style={{ border: "none" }}>
+      <Box>
+        <Box>
+          <Typography className={classes.heading}>
+            Participants Metrics
+          </Typography>
+        </Box>
+        <div className={classes.chartRow}>
+          <div className={classes.singleChart}>
             <Line
               data={dataParticipants}
-              width={400}
-              height={200}
               options={dataReducer.optionReturn(
                 DataExtract.totalParticipantsExtract(props.data)
               )}
             />
           </div>
-          <div className="plan-profile-chartsDiv" style={{ border: "none" }}>
+          <div className={classes.singleChart}>
             <Bar
               data={partMetrics}
-              width={400}
-              height={200}
               options={dataReducer.optionReturn([
                 biggestPartLoan,
                 biggestContribEmp,
@@ -412,88 +415,88 @@ export default (props) => {
             />
           </div>
         </div>
-        <div
-          className="plan-table-section responsive-table-div"
-          style={{ marginTop: "3%", marginRight: "3%" }}
-        >
-          <table className="table table-striped table-bordered table-sm table-hover">
-            <thead className="thead-dark">
-              <tr>
-                <th></th>
+      </Box>
+      <div
+        className="plan-table-section responsive-table-div"
+        style={{ width: "90%", margin: "0 auto" }}
+      >
+        <table className="table table-striped table-bordered table-sm table-hover">
+          <thead className="thead-dark">
+            <tr>
+              <th></th>
 
-                {DataExtract.yearsExtract(props.data).map((element) => (
-                  <th key={element}>{element}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="table-hover">
-              <tr>
-                <th className="thead-dark">Participants</th>
-                {DataExtract.totalParticipantsExtract(props.data).map(
-                  (participant, index) => (
-                    <th key={index}> {numeral(participant).format("0,0")}</th>
-                  )
-                )}
-              </tr>
-              <tr>
-                <th className="thead-dark">Participants Loans</th>
-                {DataExtract.participantLoansExtract(props.data).map(
-                  (partLoans, index) => {
-                    return partLoans >= 0 ? (
-                      <td key={index}>${common.reducer(partLoans)}</td>
-                    ) : (
-                      <td key={index} className="negative-numbers">
-                        ${common.reducer(partLoans)}
-                      </td>
-                    );
-                  }
-                )}
-              </tr>
-              <tr>
-                <th className="thead-dark">Contribution Employer</th>
-                {DataExtract.contributionEmployerExtract(props.data).map(
-                  (contriEmp, index) => {
-                    return contriEmp >= 0 ? (
-                      <td key={index}>${common.reducer(contriEmp)}</td>
-                    ) : (
-                      <td key={index} className="negative-numbers">
-                        ${common.reducer(contriEmp)}
-                      </td>
-                    );
-                  }
-                )}
-              </tr>
-              <tr>
-                <th className="thead-dark">Contribution Participants</th>
-                {DataExtract.contributionParticipantExtract(props.data).map(
-                  (contribPart, index) => {
-                    return contribPart >= 0 ? (
-                      <td key={index}>${common.reducer(contribPart)}</td>
-                    ) : (
-                      <td key={index} className="negative-numbers">
-                        ${common.reducer(contribPart)}
-                      </td>
-                    );
-                  }
-                )}
-              </tr>
-              <tr>
-                <th className="thead-dark">Distribution</th>
-                {DataExtract.totalDistributionsExtract(props.data).map(
-                  (distribution, index) => {
-                    return distribution >= 0 ? (
-                      <td key={index}>${common.reducer(distribution)}</td>
-                    ) : (
-                      <td key={index} className="negative-numbers">
-                        ${common.reducer(distribution)}
-                      </td>
-                    );
-                  }
-                )}
-              </tr>
-            </tbody>
-          </table>
-        </div>
+              {DataExtract.yearsExtract(props.data).map((element) => (
+                <th key={element}>{element}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="table-hover">
+            <tr>
+              <th className="thead-dark">Participants</th>
+              {DataExtract.totalParticipantsExtract(props.data).map(
+                (participant, index) => (
+                  <th key={index}> {numeral(participant).format("0,0")}</th>
+                )
+              )}
+            </tr>
+            <tr>
+              <th className="thead-dark">Participants Loans</th>
+              {DataExtract.participantLoansExtract(props.data).map(
+                (partLoans, index) => {
+                  return partLoans >= 0 ? (
+                    <td key={index}>${common.reducer(partLoans)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(partLoans)}
+                    </td>
+                  );
+                }
+              )}
+            </tr>
+            <tr>
+              <th className="thead-dark">Contribution Employer</th>
+              {DataExtract.contributionEmployerExtract(props.data).map(
+                (contriEmp, index) => {
+                  return contriEmp >= 0 ? (
+                    <td key={index}>${common.reducer(contriEmp)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(contriEmp)}
+                    </td>
+                  );
+                }
+              )}
+            </tr>
+            <tr>
+              <th className="thead-dark">Contribution Participants</th>
+              {DataExtract.contributionParticipantExtract(props.data).map(
+                (contribPart, index) => {
+                  return contribPart >= 0 ? (
+                    <td key={index}>${common.reducer(contribPart)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(contribPart)}
+                    </td>
+                  );
+                }
+              )}
+            </tr>
+            <tr>
+              <th className="thead-dark">Distribution</th>
+              {DataExtract.totalDistributionsExtract(props.data).map(
+                (distribution, index) => {
+                  return distribution >= 0 ? (
+                    <td key={index}>${common.reducer(distribution)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(distribution)}
+                    </td>
+                  );
+                }
+              )}
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );

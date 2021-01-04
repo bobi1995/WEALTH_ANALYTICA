@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import apiAddress from "../../../../../global/endpointAddress";
 import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import { primaryBlue } from "../../../../../global/Colors";
+import AlerBox from "../../../../../components/alertBox";
+
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     textAlign: "center",
@@ -39,6 +41,7 @@ const AddUser = () => {
   const [phone, setPhone] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [alertMessage, setAlertMessage] = useState("");
 
   const handleFirstName = (event) => {
     setFirstName(event.target.value);
@@ -74,11 +77,11 @@ const AddUser = () => {
     if (data.password !== confirmPassword) {
       setLoading(false);
 
-      alert("Passwords don't match");
+      setAlertMessage("Passwords don't match");
     } else if (data.password.length < 6) {
       setLoading(false);
 
-      alert("Password must be at least 7 symbols");
+      setAlertMessage("Password must be at least 7 symbols");
     } else {
       axios
         .post(`${apiAddress}/api/Users/CreateCompanyUser`, data, {
@@ -92,7 +95,7 @@ const AddUser = () => {
         })
         .catch((e) => {
           console.log(e);
-          alert("Еmail is already registered.");
+          setAlertMessage("Еmail is already registered.");
         });
     }
   };
@@ -141,12 +144,14 @@ const AddUser = () => {
             value={password}
             label="Password"
             onChange={handlePassword}
+            type="password"
           />
           <TextField
             name="confirmPassword"
             value={confirmPassword}
             label="Confirm Passowrd"
             onChange={handleConfirmPassword}
+            type="password"
           />
         </div>
         <div></div>
@@ -158,6 +163,11 @@ const AddUser = () => {
           Submit
         </button>
       </form>
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

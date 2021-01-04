@@ -24,24 +24,16 @@ const Contacts = ({ contacts }) => {
         },
       ]}
       data={contacts}
-      actions={[
-        {
-          icon: EmailIcon,
-          tooltip: "Send email ot selected Contact",
-          onClick: (event, rowData) => alert("You saved "),
-        },
-      ]}
       options={{
         headerStyle: {
           backgroundColor: primaryBlue,
           color: "#FFF",
           fontSize: 18,
         },
-        actionsCellStyle: {
-          color: primaryBlue,
-        },
+
         paging: false,
         search: false,
+        sorting: false,
       }}
     />
   );

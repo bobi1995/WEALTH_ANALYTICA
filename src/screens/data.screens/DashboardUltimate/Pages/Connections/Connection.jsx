@@ -15,11 +15,12 @@ import LocalPostOfficeIcon from "@material-ui/icons/LocalPostOffice";
 import commonFunctions from "../../../commonFunctions/common";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import history from "../../../../../history/history";
-import ErrorIcon from "@material-ui/icons/Error";
-import DoneAllIcon from "@material-ui/icons/DoneAll";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import numeral from "numeral";
+import EqualizerIcon from "@material-ui/icons/Equalizer";
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     margin: "3% auto",
@@ -184,6 +185,27 @@ const Connection = ({ data }) => {
                 style={{ backgroundColor: primaryBlue }}
                 onClick={() =>
                   history.push({
+                    pathname: `/onepager/${data.CompanyID}`,
+                  })
+                }
+              >
+                <EqualizerIcon className={classes.avatar} />
+              </Avatar>
+              <Typography
+                className={classes.header}
+                variant="h6"
+                component="h6"
+                gutterBottom
+              >
+                One Pager
+              </Typography>
+            </Box>
+            <Box>
+              <Avatar
+                className={classes.avatar}
+                style={{ backgroundColor: primaryBlue }}
+                onClick={() =>
+                  history.push({
                     pathname: `/planprofile/${data.CompanyID}`,
                   })
                 }
@@ -199,39 +221,14 @@ const Connection = ({ data }) => {
                 Plan Profile
               </Typography>
             </Box>
-            <Box>
-              <Avatar
-                className={classes.avatar}
-                style={{ backgroundColor: primaryBlue }}
-                onClick={() =>
-                  history.push({
-                    pathname: `/heatmap/${data.CompanyID}`,
-                  })
-                }
-              >
-                <ErrorIcon className={classes.avatar} />
-              </Avatar>
-              <Typography
-                className={classes.header}
-                variant="h6"
-                component="h6"
-                gutterBottom
-              >
-                Heatmap
-              </Typography>
-            </Box>
 
             <Box>
               <Avatar
                 className={classes.avatar}
                 style={{ backgroundColor: primaryBlue }}
-                onClick={() =>
-                  history.push({
-                    pathname: `/diagnostic/${data.CompanyID}`,
-                  })
-                }
+                onClick={() => {}}
               >
-                <DoneAllIcon className={classes.avatar} />
+                <MailOutlineIcon className={classes.avatar} />
               </Avatar>
               <Typography
                 className={classes.header}
@@ -239,7 +236,7 @@ const Connection = ({ data }) => {
                 component="h6"
                 gutterBottom
               >
-                Diagnostic
+                Contact
               </Typography>
             </Box>
           </Box>

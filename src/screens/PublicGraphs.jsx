@@ -8,6 +8,8 @@ import dataReducer from "./data.screens/DashboardUltimate/Pages/StatisticPage/ch
 import { lastYear } from "../global/Years";
 import apiAddress from "../global/endpointAddress";
 import axios from "axios";
+import AlertBox from "../components/alertBox";
+
 const useStyles = makeStyles({
   typographyStyle: {
     textAlign: "center",
@@ -48,6 +50,8 @@ const PublicGraphs = () => {
   const [selectedState, setSelectedState] = useState("");
   const [industry, setIndustry] = useState("");
   const [data, setData] = useState();
+  const [alertMessage, setAlertMessage] = useState("");
+
   useEffect(() => {
     if (selectedState && industry) {
       axios
@@ -65,7 +69,9 @@ const PublicGraphs = () => {
         })
         .catch((error) => {
           console.log(error);
-          alert("For some reason we could not find the desired results.");
+          setAlertMessage(
+            "For some reason we could not find the desired results."
+          );
           window.location.reload();
         });
     }
@@ -287,6 +293,11 @@ const PublicGraphs = () => {
             </Box>
           </Box>
         </Box>
+      )}
+      {alertMessage ? (
+        <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
       )}
     </Box>
   );

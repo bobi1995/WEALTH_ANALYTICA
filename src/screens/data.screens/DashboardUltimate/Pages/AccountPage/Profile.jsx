@@ -14,6 +14,7 @@ import {
 import axios from "axios";
 import apiAddress from "../../../../../global/endpointAddress";
 import { softRed, primaryBlue } from "../../../../../global/Colors";
+import AlerBox from "../../../../../components/alertBox";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -39,6 +40,8 @@ const useStyles = makeStyles((theme) => ({
 const AccountProfile = (props) => {
   const canUpdate = sessionStorage.getItem("CanUpdateLogo");
   const [fileUrl, setFileUrl] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+
   const classes = useStyles();
   const user = {
     firstName: sessionStorage.getItem("FirstName"),
@@ -90,13 +93,13 @@ const AccountProfile = (props) => {
         }
       )
       .then((res) => {
-        alert("The logo is updated");
+        setAlertMessage("The logo is updated");
         sessionStorage.setItem("LogoData", fileUrl);
         window.location.reload();
       })
       .catch((error) => {
         console.log(error);
-        alert("We couldn't upload the logo.");
+        setAlertMessage("We couldn't upload the logo.");
       });
   };
   return (
@@ -152,6 +155,11 @@ const AccountProfile = (props) => {
           {fileUrl ? "Upload Logo" : "Remove Logo"}
         </Button>
       </CardActions>
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </Card>
   );
 };

@@ -36,6 +36,7 @@ const Contacts = ({ scoreData, year }) => {
         },
         paging: false,
         search: false,
+        sorting: false,
       }}
     />
   );

@@ -39,6 +39,7 @@ const Location = (props) => {
           },
           paging: false,
           search: false,
+          sorting: false,
         }}
       />
     </Box>

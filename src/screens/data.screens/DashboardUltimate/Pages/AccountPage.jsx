@@ -20,6 +20,7 @@ import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import AddToPhotosIcon from "@material-ui/icons/AddToPhotos";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
+import AlerBox from "../../../../components/alertBox";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,6 +40,8 @@ const AccountPage = (props) => {
   const classes = useStyles();
   const [results, setResults] = useState("");
   const [flag, setFlag] = useState(0);
+  const [alertMessage, setAlertMessage] = useState("");
+
   useEffect(() => {
     setFlag(1);
     axios
@@ -54,7 +57,9 @@ const AccountPage = (props) => {
       })
       .catch((e) => {
         console.log(e);
-        alert("For some reason we could not find the desired results.");
+        setAlertMessage(
+          "For some reason we could not find the desired results."
+        );
         window.location.reload();
       });
   }, []);
@@ -147,6 +152,11 @@ const AccountPage = (props) => {
           )}
         </Grid>
       </div>
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

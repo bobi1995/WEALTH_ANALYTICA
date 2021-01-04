@@ -18,6 +18,7 @@ import TotalIncome from "./StatisticPage/Charts/TotalIncome";
 import PlainLoader from "../../../../components/plainCicularLoader";
 import { minYear, lastYear } from "../../../../global/Years";
 import { backgroundGrey } from "../../../../global/Colors";
+import AlerBox from "../../../../components/alertBox";
 
 const useStyles = makeStyles((theme) => ({
   gridStyle: {
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 const StatisticsPage = (props) => {
   const classes = useStyles();
-
+  const [alertMessage, setAlertMessage] = useState("");
   const [state, setState] = useState("");
   const [year, setYear] = useState(lastYear);
   const [data, setData] = useState({});
@@ -69,7 +70,9 @@ const StatisticsPage = (props) => {
         })
         .catch((error) => {
           console.log(error);
-          alert("For some reason we could not find the desired results.");
+          setAlertMessage(
+            "For some reason we could not find the desired results."
+          );
           window.location.reload();
         });
     }
@@ -124,6 +127,11 @@ const StatisticsPage = (props) => {
           )}
         </Grid>
       </div>
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

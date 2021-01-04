@@ -146,6 +146,7 @@ const BusinessInfo = (props) => {
               },
               paging: false,
               search: false,
+              sorting: false,
             }}
           />
         </Box>

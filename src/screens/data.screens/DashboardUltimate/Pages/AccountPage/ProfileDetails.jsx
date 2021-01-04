@@ -53,7 +53,6 @@ const AccountDetails = (props) => {
   const [alertMessage, setAlertMessage] = useState("");
 
   const handleChange = (event) => {
-    console.log(event.target.name);
     setValues({
       ...values,
       [event.target.name]: event.target.value,
@@ -90,7 +89,6 @@ const AccountDetails = (props) => {
     setOpen(false);
   };
   const handleChangePass = () => {
-    console.log(newPassword, repeatedPassword);
     if (newPassword !== repeatedPassword) {
       setAlertMessage("Password does not match");
     } else if (newPassword.length < 7) {
@@ -115,7 +113,6 @@ const AccountDetails = (props) => {
           handleClosePassChange();
         })
         .catch((error) => {
-          console.log(error.response.data);
           setAlertMessage(error.response.data);
         });
     }

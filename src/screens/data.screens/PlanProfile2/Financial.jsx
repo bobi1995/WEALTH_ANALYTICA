@@ -89,7 +89,6 @@ const Financial = (props) => {
     ],
   };
 
-  console.log(database);
   return (
     <Box>
       <Box className={classes.headingContainer}>

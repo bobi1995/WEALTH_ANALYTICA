@@ -14,6 +14,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Table from "./InvestmentDetails/Table";
 import { lastYear } from "../../../../../../global/Years";
 import { primaryBlue } from "../../../../../../global/Colors";
+import AlertBox from "../../../../../../components/alertBox";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -43,6 +44,8 @@ export default function FullScreenDialog(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [results, setResults] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+
   const handleClickOpen = () => {
     setOpen(true);
 
@@ -115,6 +118,11 @@ export default function FullScreenDialog(props) {
           </div>
         )}
       </Dialog>
+      {alertMessage ? (
+        <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

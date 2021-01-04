@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles, Box } from "@material-ui/core";
 import Contacts from "./EmailSection/Contacts";
 import Score from "./EmailSection/Score";
-import Email from "./EmailSection/Email";
 
 const useStyles = makeStyles((theme) => ({
   container: { width: "94%", margin: "0 auto" },
@@ -51,9 +50,6 @@ const EmailSection = ({ data }) => {
         <Box className={classes.scoreBox}>
           <Score scoreData={scoreData} year={data.Year} />
         </Box>
-      </Box>
-      <Box>
-        <Email />
       </Box>
     </Box>
   );
