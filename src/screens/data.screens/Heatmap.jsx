@@ -29,11 +29,11 @@ import {
   TouchesExtract,
 } from "./Heatmap/HeatmapDataExtract";
 import HourglassFullIcon from "@material-ui/icons/HourglassFull";
-import { limegreen } from "../../global/Colors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    width: "100%",
   },
   errorStyle: {
     color: "#388fc2",
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "5%",
   },
   tabStyle: {
-    backgroundColor: limegreen,
+    backgroundColor: "#a0c5da",
   },
 }));
 

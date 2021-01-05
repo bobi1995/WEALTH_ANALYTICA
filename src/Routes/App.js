@@ -18,6 +18,7 @@ import Diagnostic from "../screens/data.screens/Diagnostic";
 import Graphs from "../screens/data.screens/Graphs";
 import PublicGraphs from "../screens/PublicGraphs";
 import Benchmark from "../screens/data.screens/Benchmark";
+import EmailingSystem from "../screens/data.screens/EmailingSystem";
 import Demo from "../screens/Demo";
 import "../styles/main.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -45,6 +46,7 @@ function App() {
         <PrivateRoute path="/heatmap/:CompanyID" component={Heatmap} />
         <PrivateRoute path="/diagnostic/:CompanyID" component={Diagnostic} />
         <PrivateRoute path="/benchmark/:CompanyID" component={Benchmark} />
+        <PrivateRoute path="/email" component={EmailingSystem} />
         <PrivateRoute path="/graphs" component={Graphs} />
         <Route component={Page404} />
       </Switch>
