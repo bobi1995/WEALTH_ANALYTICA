@@ -177,6 +177,7 @@ const PlanProfile2 = (props) => {
               <TabPanel value="12" className={classes.tabpanelRoot}>
                 <Analytics companyID={props.match.params.CompanyID} />
               </TabPanel>
+              <EmailPopUp contact={results.Contacts} />
             </Box>
           ) : err ? (
             <Box className={classes.errorStyle}>{err}</Box>
@@ -193,7 +194,6 @@ const PlanProfile2 = (props) => {
           )}
         </TabContext>
       </Box>
-      <EmailPopUp />
     </div>
   );
 };

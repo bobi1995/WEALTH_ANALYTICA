@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
-import { makeStyles, Box, Typography, Link } from "@material-ui/core";
+import React, { useRef, useState } from "react";
+import { makeStyles, Box, Typography } from "@material-ui/core";
 import EmailIcon from "@material-ui/icons/Email";
 import "./Email/index.css";
+import EmailSystem from "../screens/data.screens/EmailingSystem";
 
 const useStyles = makeStyles({
   contactSign: {
@@ -67,9 +68,11 @@ const useStyles = makeStyles({
     fontFamily: "Raleway , Arial, sans-serif",
   },
 });
-const EmailPopUp = () => {
+const EmailPopUp = ({ contact }) => {
   const classes = useStyles();
   const chatRef = useRef(null);
+  const [display, setDisplay] = useState("block");
+
   const handleOpen = () => {
     const node = chatRef.current;
     node.classList.toggle(classes.toggle);
@@ -78,8 +81,9 @@ const EmailPopUp = () => {
     const node = chatRef.current;
     node.classList.toggle(classes.toggle);
   };
+
   return (
-    <Box className={classes.main}>
+    <Box className={classes.main} style={{ display: `${display}` }}>
       <Box ref={chatRef} className={(classes.toggle, classes.main2)}>
         <span onClick={handleClose} className={classes.closeIcon}>
           X
@@ -88,11 +92,9 @@ const EmailPopUp = () => {
           You want to email Customer? Wealth Analytica Emailing.
         </Box>
         <Box className={classes.insideTextBox}>
-          Follow the link:
+          Send Email from our System:
           <br />
-          <Link href="/email" target="_blank">
-            To Emailing System
-          </Link>
+          <EmailSystem contact={contact} setDisplay={setDisplay} />
         </Box>
       </Box>
 

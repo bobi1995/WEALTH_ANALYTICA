@@ -4,9 +4,8 @@ import { lastYear } from "../../global/Years";
 import { makeStyles, Box, Typography } from "@material-ui/core";
 import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Datanavbar from "./DataNavbar";
 import Section from "./Diagnostic/Sections";
-import EmailSection from "./Diagnostic/EmailSection";
+import Score from "./Diagnostic/Score";
 import Indicators from "./Diagnostic/Indicators";
 
 const useStyles = makeStyles((theme) => ({
@@ -76,7 +75,7 @@ const Diagnostic = (props) => {
               {results.SponsorName}
             </Typography>
           </Box>
-          <EmailSection data={results} />
+          <Score data={results} />
           <Box>
             {/******** PLAN DESIGN */}
             <Section info={results.Metrics} mainHeading="Observations" />

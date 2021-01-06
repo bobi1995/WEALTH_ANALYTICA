@@ -14,10 +14,10 @@ import Box from "@material-ui/core/Box";
 const useStyles = makeStyles(() => ({
   root: {
     width: "100%",
-    maxWidth: 360,
     border: "3px solid #388FCE",
     marginLeft: "3%",
-    maxHeight: 200,
+    maxHeight: 300,
+    maxWidth: 500,
     overflow: "auto",
     position: "relative",
   },
