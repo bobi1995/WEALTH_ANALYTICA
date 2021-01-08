@@ -29,7 +29,6 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-around",
     width: "100%",
-    marginBottom: "5%",
   },
 });
 

@@ -66,6 +66,7 @@ const useStyles = makeStyles({
     fontWeight: 300,
     fontSize: 15,
     fontFamily: "Raleway , Arial, sans-serif",
+    width: 179,
   },
 });
 const EmailPopUp = ({ contact }) => {

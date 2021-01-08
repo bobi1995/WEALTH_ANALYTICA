@@ -30,6 +30,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import ExportButton from "../../components/ExportPlanProfile";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -177,6 +178,8 @@ const PlanProfile2 = (props) => {
               <TabPanel value="12" className={classes.tabpanelRoot}>
                 <Analytics companyID={props.match.params.CompanyID} />
               </TabPanel>
+              <ExportButton companyID={props.match.params.CompanyID} />
+
               <EmailPopUp contact={results.Contacts} />
             </Box>
           ) : err ? (

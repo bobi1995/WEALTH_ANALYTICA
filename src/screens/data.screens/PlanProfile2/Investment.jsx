@@ -2,7 +2,6 @@ import React from "react";
 import { Box, Typography, makeStyles } from "@material-ui/core";
 import common from "../commonFunctions/common";
 import { primaryBlue } from "../../../global/Colors";
-import FinancialDetails from "./Financial/FinancialDetails";
 import InvestmentDetails from "./Financial/Level1/InvestmentDetails";
 
 const useStyles = makeStyles({
@@ -28,8 +27,8 @@ const Investment = (props) => {
   return (
     <Box>
       <Box className={classes.headingContainer}>
-        <Typography component="h4" variant="h4" className={classes.heading}>
-          Financial Information
+        <Typography variant="h4" component="h4" className={classes.heading}>
+          Investment Information
         </Typography>
       </Box>
 
@@ -76,8 +75,7 @@ const Investment = (props) => {
           </tbody>
         </table>
       </Box>
-      <Box style={{ display: "flex", justifyContent: "space-around" }}>
-        <FinancialDetails companyID={props.companyID} />
+      <Box>
         <InvestmentDetails companyID={props.companyID} />
       </Box>
     </Box>

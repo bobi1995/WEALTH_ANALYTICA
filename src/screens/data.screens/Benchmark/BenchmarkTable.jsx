@@ -100,7 +100,13 @@ const BenchmarkTable = ({ data, industryFlag, filterSearch }) => {
             color: "#FFF",
           },
           rowStyle: (rowData) => ({
-            backgroundColor: !!rowData.parent ? "white" : "#e0f3ff",
+            backgroundColor: !!rowData.parent
+              ? rowData.total
+                ? "#039be5"
+                : "white"
+              : "#e0f3ff",
+            color: rowData.total ? "white" : "black",
+            fontWeight: rowData.total ? "bold" : "normal",
           }),
         }}
       />

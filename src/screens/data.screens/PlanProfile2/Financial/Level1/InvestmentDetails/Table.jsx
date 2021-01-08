@@ -11,6 +11,7 @@ import { primaryBlue } from "../../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     textAlign: "center",
+    marginTop: "3%",
   },
   headerStyle: {
     color: primaryBlue,
@@ -24,8 +25,8 @@ export default (props) => {
       return (
         <div key={el.Name} className={classes.mainDiv}>
           <Typography
-            variant="h3"
-            component="h3"
+            component="h5"
+            variant="h5"
             className={classes.headerStyle}
             gutterBottom
           >

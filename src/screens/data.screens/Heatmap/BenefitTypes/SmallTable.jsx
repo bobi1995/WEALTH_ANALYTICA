@@ -44,7 +44,7 @@ const SmallTable = ({ descriptionData, usedData, industryData }) => {
   const industryBenefit = industryAll.map((el) => (el ? el.BenefitType : ""));
 
   return (
-    <Paper style={{ width: "45%" }}>
+    <Paper style={{ width: "45%", marginBottom: "3%" }}>
       <Typography
         variant="h6"
         id="tableTitle"

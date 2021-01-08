@@ -1,15 +1,12 @@
 import React from "react";
-import { Box, Typography, makeStyles } from "@material-ui/core";
 import commonFunctions from "../commonFunctions/common";
 import common from "../commonFunctions/common";
 import DataExtract from "./PlanProfileDataExtract";
 import { allYears } from "../../../global/Years";
 import numeral from "numeral";
 import PensionCharac from "./Plans/PensionCharac";
-const useStyles = makeStyles({});
 
 const Plans = (props) => {
-  const classes = useStyles();
   const uniqueYears = allYears;
 
   const checkClicked = (e) => {

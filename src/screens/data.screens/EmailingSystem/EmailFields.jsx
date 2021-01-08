@@ -1,27 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles, Box } from "@material-ui/core";
-import {
-  TextareaAutosize,
-  TextField,
-  Typography,
-  Button,
-} from "@material-ui/core";
-import { Send, HighlightOff } from "@material-ui/icons/";
+import { TextareaAutosize, TextField, Button } from "@material-ui/core";
+import { Send } from "@material-ui/icons/";
 import apiAddress from "../../../global/endpointAddress";
 import axios from "axios";
-import { Link as ScrollLink, Element } from "react-scroll";
 import EmailSent from "../../../components/emailSent";
-import Loader2 from "../../../components/loader2";
 import { backgroundGrey } from "../../../global/Colors";
 
 const EmailFields = (props) => {
   const classes = useStyles();
-  const [receiver, setReceiver] = useState("");
+  const [receiver, setReceiver] = useState(props.receivers);
   const [emailContent, setEmailContent] = useState("");
   const sender = sessionStorage.getItem("Email");
-  const [pdfs, setPdfs] = useState([]);
+  const [pdfs, setPdfs] = useState(props.pdfs);
   const [result, setResult] = useState("");
-  const [displayFlag, setDisplayFlag] = useState(false);
 
   const handleReceiverChange = (e) => {
     setReceiver(e.target.value);
@@ -30,8 +22,26 @@ const EmailFields = (props) => {
     setEmailContent(e.target.value);
   };
 
+  useEffect(() => {
+    let newReceivers = "";
+    if (receiver) {
+      console.log(receiver);
+      newReceivers = `${receiver},${props.receivers},`;
+    } else {
+      newReceivers = `${props.receivers}`;
+    }
+    setReceiver(newReceivers);
+  }, [props.receivers, receiver]);
+
   const sendEmail = (e) => {
     e.preventDefault();
+    console.log({
+      from: sender,
+      to: receiver,
+      subject: `Wealth Analytica Diagnostic`,
+      message: emailContent,
+      PdfNumbers: pdfs,
+    });
     axios
       .post(
         `${apiAddress}/api/SmallCompanies/SendDiagnosticsEmail`,
@@ -51,20 +61,26 @@ const EmailFields = (props) => {
         }
       )
       .then((res) => {
-        setResult(res.status);
         setEmailContent("");
         setReceiver("");
-        setPdfs("");
+        setPdfs([]);
+        setResult(res.status);
       })
       .catch((err) => {
         setResult(err.response.data.Message);
       });
   };
 
+  useEffect(() => {
+    setPdfs(props.pdfs);
+  }, [props.pdfs]);
+
+  console.log(result);
+
   return (
     <Box className={classes.container}>
       <Box className={classes.emailBox}>
-        <Box style={{ width: "100%" }}>
+        <Box style={{ width: "70%", margin: "0 auto" }}>
           <Box className={classes.topContainer}>
             <Box className={classes.receiverContainer}>
               <TextField
@@ -74,6 +90,7 @@ const EmailFields = (props) => {
                 autoComplete="current-password"
                 variant="outlined"
                 onChange={handleReceiverChange}
+                value={receiver}
               />
               <TextField
                 className={classes.receivers}
@@ -87,20 +104,11 @@ const EmailFields = (props) => {
               />
             </Box>
             <Box className={classes.emailContainer}>
-              <Typography
-                className={classes.heading}
-                variant="h5"
-                component="h5"
-                gutterBottom
-              >
-                Write your email to Client Quick &amp; Easy
-              </Typography>
-
               <TextareaAutosize
                 onChange={handleEmailContentChange}
                 className={classes.emailField}
                 placeholder="Start with something nice like 'Dear Customer, ...'"
-                rowsMin={3}
+                rowsMin={5}
               />
             </Box>
           </Box>
@@ -115,6 +123,7 @@ const EmailFields = (props) => {
           </Box>
         </Box>
       </Box>
+      {result ? <EmailSent result={result} setClose={setResult} /> : ""}
     </Box>
   );
 };
@@ -127,20 +136,25 @@ const useStyles = makeStyles({
     marginTop: "1%",
   },
   topContainer: {
-    width: "100%",
+    width: "80%",
     backgroundColor: backgroundGrey,
     display: "flex",
     justifyContent: "space-around",
+    margin: "0 auto",
   },
   emailContainer: {
     width: "100%",
+    textAlign: "center",
+    alignItems: "center",
+    justifyContent: "center",
   },
   emailField: {
-    width: "100%",
+    width: "90%",
+    marginTop: "1%",
   },
   receiverContainer: {
     marginTop: "1%",
-    marginRight: "1%",
+    marginLeft: "1%",
   },
   receivers: {
     backgroundColor: "white",

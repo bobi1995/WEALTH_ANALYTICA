@@ -6,7 +6,6 @@ import dataReducer from "../../../components/dataReducer";
 import DataExtract from "./PlanProfileDataExtract";
 import { primaryBlue } from "../../../global/Colors";
 import FinancialDetails from "./Financial/FinancialDetails";
-import InvestmentDetails from "./Financial/Level1/InvestmentDetails";
 
 const useStyles = makeStyles({
   heading: {
@@ -317,7 +316,6 @@ const Financial = (props) => {
       </Box>
       <Box style={{ display: "flex", justifyContent: "space-around" }}>
         <FinancialDetails companyID={props.companyID} />
-        <InvestmentDetails companyID={props.companyID} />
       </Box>
     </Box>
   );

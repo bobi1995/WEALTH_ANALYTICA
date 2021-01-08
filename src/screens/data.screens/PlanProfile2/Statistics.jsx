@@ -111,7 +111,7 @@ export default (props) => {
   };
 
   return (
-    <Box>
+    <Box style={{ marginBottom: "3%" }}>
       <Box className={classes.headingContainer}>
         <Typography component="h4" variant="h4" className={classes.heading}>
           Financial Information

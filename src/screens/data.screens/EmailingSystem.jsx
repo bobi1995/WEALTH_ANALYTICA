@@ -7,10 +7,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
 import Box from "@material-ui/core/Box";
 import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
 import { primaryBlue } from "../../global/Colors";
 import ContactsTable from "./EmailingSystem/ContactsTable";
-import TextField from "@material-ui/core/TextField";
 import PdfList from "./EmailingSystem/PdfList";
 import EmailFields from "./EmailingSystem/EmailFields";
 
@@ -57,7 +55,7 @@ const EmailingSystem = ({ contact, setDisplay }) => {
   const fullWidth = true;
   const maxWidth = "xl";
   const [pdfs, setPdfs] = useState([]);
-
+  const [receivers, setReceivers] = useState("");
   const handleClickOpen = () => {
     setOpen(true);
     setDisplay("none");
@@ -65,6 +63,7 @@ const EmailingSystem = ({ contact, setDisplay }) => {
   const handleClose = () => {
     setOpen(false);
     setDisplay("block");
+    setReceivers("");
   };
 
   return (
@@ -94,11 +93,15 @@ const EmailingSystem = ({ contact, setDisplay }) => {
           <CloseIcon />
         </IconButton>
         <Box className={classes.contactAndPDF}>
-          <ContactsTable contacts={contact} />
+          <ContactsTable
+            contacts={contact}
+            receivers={receivers}
+            setReceivers={setReceivers}
+          />
           <PdfList setPdfs={setPdfs} />
         </Box>
         <Box>
-          <EmailFields />
+          <EmailFields receivers={receivers} pdfs={pdfs} />
         </Box>
       </Dialog>
     </Box>

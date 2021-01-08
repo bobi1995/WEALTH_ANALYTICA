@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, Box, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -9,6 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import numeral from "numeral";
 import { primaryBlue } from "../../../../global/Colors";
+
 const useStyles = makeStyles({
   table: {
     width: "100%",

@@ -153,6 +153,22 @@ const Benchmark = (props) => {
             } else if (el.Year === 2019) {
               cat.overall2019 = el.Total;
             }
+          } else if (cat.id === "99991") {
+            if (el.Year === 2017) {
+              cat.overall2017 = el.CostAvgPart;
+            } else if (el.Year === 2018) {
+              cat.overall2018 = el.CostAvgPart;
+            } else if (el.Year === 2019) {
+              cat.overall2019 = el.CostAvgPart;
+            }
+          } else if (cat.id === "99992") {
+            if (el.Year === 2017) {
+              cat.overall2017 = el.CostAvgAsseets;
+            } else if (el.Year === 2018) {
+              cat.overall2018 = el.CostAvgAsseets;
+            } else if (el.Year === 2019) {
+              cat.overall2019 = el.CostAvgAsseets;
+            }
           }
           return null;
         });
@@ -190,8 +206,10 @@ const Benchmark = (props) => {
           if (element.id !== "9999") {
             el.industry = element.industry + el.industry;
           }
+          return null;
         });
-      }
+        return null;
+      } else return null;
     });
   }, [industryRes]);
 
@@ -228,7 +246,7 @@ const Benchmark = (props) => {
   };
 
   return (
-    <div>
+    <div style={{ marginBottom: "3%" }}>
       <Box className={classes.filterBox}>
         <Box className={classes.industryStateBox}>
           <IndustryInput
@@ -264,10 +282,10 @@ const Benchmark = (props) => {
             id="right-filter-btn"
             className={classes.buttonStyle}
             startIcon={<SearchIcon />}
-            disabled={filterSearch && flag}
+            disabled={filterSearch || flag}
             onClick={applyFilter}
           >
-            Apply Filters
+            {filterSearch || flag ? "Loading..." : "Apply Filters"}
           </Button>
         </Box>
       </Box>

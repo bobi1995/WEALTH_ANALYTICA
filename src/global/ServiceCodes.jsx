@@ -449,5 +449,28 @@ export const codes = [
     overall2019: 0,
     industry: 0,
     Service3: "Total",
+    total: true,
+  },
+
+  {
+    id: "99991",
+    parent: true,
+    overall2017: 0,
+    overall2018: 0,
+    overall2019: 0,
+    industry: 0,
+    Service3: "Cost Avg.Participants",
+    total: true,
+  },
+
+  {
+    id: "99992",
+    parent: true,
+    overall2017: 0,
+    overall2018: 0,
+    overall2019: 0,
+    industry: 0,
+    Service3: "Cost Avg. Asseets",
+    total: true,
   },
 ];

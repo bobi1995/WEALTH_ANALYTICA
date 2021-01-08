@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Box, Typography, makeStyles } from "@material-ui/core";
 import commonFunctions from "../commonFunctions/common";
 import LocationAndBusiness from "./BusinessInfo/LocationAndBusiness";
-import Chart from "./BusinessInfo/Chart";
 import Administrator from "../OnePagerFunctions/Mail/Administrator";
 import { primaryBlue } from "../../../global/Colors";
 import MaterialTable from "material-table";
@@ -33,20 +32,7 @@ const useStyles = makeStyles({
 
 const BusinessInfo = (props) => {
   const classes = useStyles();
-  const [contribution, setContribution] = useState(0);
-  const [benefit, setBenefit] = useState(0);
-  const [welfare, setWelfare] = useState(0);
 
-  const data = {
-    labels: ["Contribution", "Benefit", "Welfare"],
-    datasets: [
-      {
-        data: [contribution, benefit, welfare],
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-        hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-      },
-    ],
-  };
   const locationData = [
     {
       Field: "State",
@@ -83,24 +69,6 @@ const BusinessInfo = (props) => {
       Info: props.erisa ? "1.0 M" : "500.0 K",
     },
   ];
-
-  useEffect(() => {
-    props.types.forEach((el) => {
-      switch (el.Type) {
-        case "DefinedContributionPension":
-          return setContribution((contribution) => contribution + 1);
-
-        case "DefinedBenefitPension":
-          return setBenefit((benefit) => benefit + 1);
-
-        case "Welfare":
-          return setWelfare((welfare) => welfare + 1);
-
-        default:
-          return;
-      }
-    });
-  }, [props.types]);
 
   return (
     <Box>

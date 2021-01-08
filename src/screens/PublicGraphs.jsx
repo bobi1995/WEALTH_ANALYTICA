@@ -68,7 +68,6 @@ const PublicGraphs = () => {
           setData(res.data);
         })
         .catch((error) => {
-          console.log(error);
           setAlertMessage(
             "For some reason we could not find the desired results."
           );
