@@ -9,29 +9,18 @@ import { backgroundGrey } from "../../../global/Colors";
 
 const EmailFields = (props) => {
   const classes = useStyles();
-  const [receiver, setReceiver] = useState(props.receivers);
+  const [receiver, setReceiver] = useState("");
   const [emailContent, setEmailContent] = useState("");
   const sender = sessionStorage.getItem("Email");
   const [pdfs, setPdfs] = useState(props.pdfs);
   const [result, setResult] = useState("");
-
+  console.log(receiver);
   const handleReceiverChange = (e) => {
     setReceiver(e.target.value);
   };
   const handleEmailContentChange = (e) => {
     setEmailContent(e.target.value);
   };
-
-  useEffect(() => {
-    let newReceivers = "";
-    if (receiver) {
-      console.log(receiver);
-      newReceivers = `${receiver},${props.receivers},`;
-    } else {
-      newReceivers = `${props.receivers}`;
-    }
-    setReceiver(newReceivers);
-  }, [props.receivers, receiver]);
 
   const sendEmail = (e) => {
     e.preventDefault();

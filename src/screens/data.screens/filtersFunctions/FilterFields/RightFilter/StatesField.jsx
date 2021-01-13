@@ -19,7 +19,7 @@ const StatesField = (props) => {
   };
 
   return (
-    <form style={{ marginBottom: "5%", marginLeft: "1%" }}>
+    <form style={{ width: "24%" }}>
       <Autocomplete
         id="checkboxes-tags-demo"
         options={states}

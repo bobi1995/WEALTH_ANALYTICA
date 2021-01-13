@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StatesField from "./RightFilter/StatesField";
 import CityField from "./RightFilter/CityField";
-import Button from "@material-ui/core/Button";
+import { Button, Box } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import YearField from "./RightFilter/YearField";
 import searchFunction from "../searchFunction";
@@ -16,16 +16,28 @@ import { lastYear } from "../../../../global/Years";
 
 const useStyles = makeStyles(() => ({
   buttonStyle: {
-    margin: "5% 25%",
-    width: "50%",
+    width: "25%",
     backgroundColor: "#68BA54",
     color: "white",
   },
   saveButton: {
-    margin: "0 25%",
+    width: "25%",
+  },
+  mainContainer: {
+    justifyContent: "center",
+    textAlign: "center",
+  },
+  subContainer: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-around",
+    marginBottom: "1%",
+  },
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "space-around",
     width: "50%",
-    backgroundColor: "#008000",
-    color: "white",
+    margin: "0 auto",
   },
 }));
 
@@ -43,79 +55,90 @@ const RightFilters = (props) => {
   const [maxIncome, setMaxIncome] = useState("");
   const [url, setUrl] = useState("");
   return (
-    <div>
-      <StatesField setState={(state) => setSelectedState(state)} />
-      <CityField
-        state={selectedState}
-        setCity={(city) => setSelectedCity(city)}
-      />
-      <YearField setYear={(year) => setSelectedYear(year)} />
-      <BusinessCode
-        setCode={(code) => {
-          setBusinessCode(code);
-        }}
-      />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          marginBottom: "5%",
-        }}
-      >
-        <PlanEntity setEntity={(entity) => setPlanEntity(entity)} />
-        <BenefitType setBenefit={(type) => setBenefitType(type)} />
-      </div>
-      <Participants
-        setMinPart={(minPart) => setMinPart(minPart)}
-        setMaxPart={(maxPart) => setMaxPart(maxPart)}
-      />
-      <Income
-        setMinIncome={(minIncome) => setMinIncome(minIncome)}
-        setMaxIncome={(maxIncome) => setMaxIncome(maxIncome)}
-      />
+    <Box className={classes.mainContainer}>
+      <Box>
+        <Box className={classes.subContainer}>
+          <YearField setYear={(year) => setSelectedYear(year)} />
 
-      <Button
-        disabled={props.loader ? true : selectedState === "" ? true : false}
-        variant="contained"
-        id="right-filter-btn"
-        className={classes.buttonStyle}
-        startIcon={<SearchIcon />}
-        onClick={async () => {
-          props.setLoader(true);
-          const a = await searchFunction(
-            selectedYear,
-            selectedState,
-            selectedCity,
-            businessCode,
-            planEntity,
-            benefitType,
-            minPart.minimumFormat,
-            maxPart,
-            minIncome,
-            maxIncome
-          ).result;
-          const url = await searchFunction(
-            selectedYear,
-            selectedState,
-            selectedCity,
-            businessCode,
-            planEntity,
-            benefitType,
-            minPart.minimumFormat,
-            maxPart,
-            minIncome,
-            maxIncome
-          ).url;
-          props.getResults(a);
-          setUrl(url);
-          props.setLoader(false);
-        }}
-      >
-        Search
-      </Button>
+          <Participants
+            setMinPart={(minPart) => setMinPart(minPart)}
+            setMaxPart={(maxPart) => setMaxPart(maxPart)}
+          />
+          <Income
+            setMinIncome={(minIncome) => setMinIncome(minIncome)}
+            setMaxIncome={(maxIncome) => setMaxIncome(maxIncome)}
+          />
+          {/*  */}
+        </Box>
+        <Box className={classes.subContainer}>
+          <StatesField setState={(state) => setSelectedState(state)} />
+          <CityField
+            state={selectedState}
+            setCity={(city) => setSelectedCity(city)}
+          />
+          {/* */}
+          <BusinessCode
+            setCode={(code) => {
+              setBusinessCode(code);
+            }}
+          />
+          <Box
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              width: "24%",
+            }}
+          >
+            <PlanEntity setEntity={(entity) => setPlanEntity(entity)} />
+            <BenefitType setBenefit={(type) => setBenefitType(type)} />
+          </Box>
+        </Box>
+      </Box>
 
-      {props.results ? <SaveFilterDialog url={url} /> : ""}
-    </div>
+      <Box className={classes.buttonContainer}>
+        <Button
+          disabled={props.loader ? true : selectedState === "" ? true : false}
+          variant="contained"
+          id="right-filter-btn"
+          className={classes.buttonStyle}
+          startIcon={<SearchIcon />}
+          onClick={async () => {
+            props.setLoader(true);
+            const a = await searchFunction(
+              selectedYear,
+              selectedState,
+              selectedCity,
+              businessCode,
+              planEntity,
+              benefitType,
+              minPart.minimumFormat,
+              maxPart,
+              minIncome,
+              maxIncome
+            ).result;
+            const url = await searchFunction(
+              selectedYear,
+              selectedState,
+              selectedCity,
+              businessCode,
+              planEntity,
+              benefitType,
+              minPart.minimumFormat,
+              maxPart,
+              minIncome,
+              maxIncome
+            ).url;
+            props.getResults(a);
+            setUrl(url);
+            props.setLoader(false);
+          }}
+        >
+          Search
+        </Button>
+
+        <SaveFilterDialog url={url} />
+      </Box>
+    </Box>
   );
 };
 

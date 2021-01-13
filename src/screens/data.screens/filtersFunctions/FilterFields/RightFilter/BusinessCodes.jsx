@@ -19,7 +19,7 @@ const BusinessCode = (props) => {
   };
 
   return (
-    <form style={{ marginBottom: "3%", marginLeft: "1%" }}>
+    <form style={{ width: "24%" }}>
       <Autocomplete
         id="business-code-box"
         options={businessCodes}

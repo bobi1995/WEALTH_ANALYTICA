@@ -14,8 +14,7 @@ import SaveIcon from "@material-ui/icons/Save";
 
 const useStyles = makeStyles(() => ({
   saveButton: {
-    margin: "0 25%",
-    width: "50%",
+    margin: "0 auto",
     backgroundColor: "#008000",
     color: "white",
   },
@@ -71,7 +70,7 @@ export default (props) => {
   };
 
   return (
-    <div>
+    <div style={{ width: "25%" }}>
       <Button
         variant="contained"
         id="right-filter-btn"

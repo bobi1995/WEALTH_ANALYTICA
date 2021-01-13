@@ -52,7 +52,7 @@ const CityField = (props) => {
   };
 
   return (
-    <form style={{ marginBottom: "5%", marginLeft: "1%" }}>
+    <form style={{ width: "24%" }}>
       <Autocomplete
         disabled={props.state === "" ? true : false}
         multiple

@@ -26,14 +26,10 @@ const Filter2 = () => {
       <div>
         <div
           style={{
-            display: "flex",
             width: "100%",
-            marginBottom: "5%",
-            justifyContent: "space-around",
-            marginTop: "3%",
           }}
         >
-          <div style={{ width: "40%" }}>
+          <div style={{ width: "100%" }}>
             <RightFilter
               setLoader={(loader) => {
                 setLoader(loader);
@@ -46,7 +42,7 @@ const Filter2 = () => {
             />
           </div>
 
-          <div style={{ width: "100%", textAlign: "center" }}>
+          {/* <div style={{ width: "100%", textAlign: "center" }}>
             {loader ? (
               <div>
                 <CircularProgress
@@ -79,7 +75,7 @@ const Filter2 = () => {
                 title="Wealth Analytica"
               />
             )}
-          </div>
+          </div> */}
         </div>
         {results ? (
           <SummaryTable data={results ? results.FilterProfile : []} />

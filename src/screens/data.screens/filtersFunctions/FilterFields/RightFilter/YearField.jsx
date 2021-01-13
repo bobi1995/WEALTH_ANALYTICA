@@ -9,7 +9,7 @@ export default function FormControlLabelPlacement(props) {
     props.setYear(e.target.value);
   };
   return (
-    <div style={{ marginBottom: "3%", marginLeft: "1%" }}>
+    <div style={{ width: "100%" }}>
       <FormControl component="fieldset">
         <RadioGroup
           row
