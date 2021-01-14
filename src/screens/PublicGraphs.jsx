@@ -9,6 +9,7 @@ import { lastYear } from "../global/Years";
 import apiAddress from "../global/endpointAddress";
 import axios from "axios";
 import AlertBox from "../components/alertBox";
+import BackToSite from "../components/BackToSite";
 
 const useStyles = makeStyles({
   typographyStyle: {
@@ -298,6 +299,7 @@ const PublicGraphs = () => {
       ) : (
         ""
       )}
+      <BackToSite />
     </Box>
   );
 };

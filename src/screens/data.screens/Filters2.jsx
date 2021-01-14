@@ -4,12 +4,30 @@ import Magellan from "./Magellan";
 import Table from "./filtersFunctions/FilterFields/Table";
 import RightFilter from "./filtersFunctions/FilterFields/RightFilter";
 import LeftSide from "./filtersFunctions/FilterFields/LeftSide";
-import CardMedia from "@material-ui/core/CardMedia";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import SummaryTable from "./filtersFunctions/FilterFields/SummaryTable";
+import { Animated } from "react-animated-css";
+import { Button, makeStyles, Box } from "@material-ui/core";
+import { primaryBlue } from "../../global/Colors";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+const useStyle = makeStyles({
+  buttonStyle: {
+    backgroundColor: primaryBlue,
+    color: "white",
+    "&:hover": {
+      color: primaryBlue,
+    },
+    whiteSpace: "nowrap",
+  },
+});
+
 const Filter2 = () => {
+  const classes = useStyle();
   const [results, setResults] = useState();
   const [loader, setLoader] = useState(false);
+  const [visibleFilter, setVisibleFilter] = useState(true);
+  const [visibleGraph, setVisibleGraph] = useState(false);
+
   const setData = (newArr) => {
     setResults((prev) => {
       let newResults = { ...prev, Companies: newArr.slice(0) };
@@ -29,60 +47,81 @@ const Filter2 = () => {
             width: "100%",
           }}
         >
-          <div style={{ width: "100%" }}>
-            <RightFilter
-              setLoader={(loader) => {
-                setLoader(loader);
-              }}
-              loader={loader}
-              getResults={(res) => {
-                setResults(res);
-              }}
-              results={results}
-            />
-          </div>
-
-          {/* <div style={{ width: "100%", textAlign: "center" }}>
-            {loader ? (
-              <div>
-                <CircularProgress
-                  size={150}
-                  style={{ textAlign: "center", marginTop: "15%" }}
+          <div style={{ width: "100%", textAlign: "center" }}>
+            {results && !visibleFilter ? (
+              <Animated
+                animationIn="lightSpeedIn"
+                animationOut="zoomOutDown"
+                animationInDuration={1000}
+                animationOutDuration={1000}
+                isVisible={visibleGraph}
+              >
+                <Button
+                  variant="outlined"
+                  className={classes.buttonStyle}
+                  onClick={() => {
+                    setVisibleGraph(false);
+                    setTimeout(() => setVisibleFilter(true), 1100);
+                  }}
+                >
+                  New Filter
+                </Button>
+                <LeftSide
+                  NetAssetBegin={results.NetAssetBeginOfYear}
+                  NetAssetEnd={results.NetAssetEndOfYear}
+                  Distribution={results.Distributions}
+                  CorrectivrDistribution={results.CorrectivrDistribution}
+                  ServiceProviderExpenses={results.ServiceProviderExpenses}
+                  OtherExpenses={results.OtherExpenses}
+                  TotalParticipants={results.TotalParticipants}
+                  RetiredParticipants={results.RetiredParticipants}
+                  TotalParticipantsBal={results.TotalParticipantsBal}
+                  ParticipantContribution={results.ParticipantContribution}
+                  EmployerContribution={results.EmployerContribution}
                 />
-                <p style={{ textAlign: "center", marginTop: "3%" }}>
-                  Loading....Please wait
-                </p>
-              </div>
-            ) : results ? (
-              <LeftSide
-                NetAssetBegin={results.NetAssetBeginOfYear}
-                NetAssetEnd={results.NetAssetEndOfYear}
-                Distribution={results.Distributions}
-                CorrectivrDistribution={results.CorrectivrDistribution}
-                ServiceProviderExpenses={results.ServiceProviderExpenses}
-                OtherExpenses={results.OtherExpenses}
-                TotalParticipants={results.TotalParticipants}
-                RetiredParticipants={results.RetiredParticipants}
-                TotalParticipantsBal={results.TotalParticipantsBal}
-                ParticipantContribution={results.ParticipantContribution}
-                EmployerContribution={results.EmployerContribution}
-              />
+              </Animated>
             ) : (
-              <CardMedia
-                style={{ width: "70%", margin: "0 auto" }}
-                component="img"
-                image={require("../../styles/images/Wealth_Analytica.png")}
-                title="Wealth Analytica"
-              />
+              <Animated
+                animationIn="lightSpeedIn"
+                animationOut="zoomOutDown"
+                animationInDuration={1000}
+                animationOutDuration={1000}
+                isVisible={visibleFilter}
+              >
+                <div style={{ width: "100%" }}>
+                  <RightFilter
+                    setLoader={(loader) => {
+                      setLoader(loader);
+                    }}
+                    loader={loader}
+                    getResults={(res) => {
+                      setVisibleFilter(false);
+                      setTimeout(() => setVisibleGraph(true), 1100);
+                      setResults(res);
+                    }}
+                    results={results}
+                  />
+                </div>
+              </Animated>
             )}
-          </div> */}
+          </div>
         </div>
-        {results ? (
-          <SummaryTable data={results ? results.FilterProfile : []} />
-        ) : (
-          ""
-        )}
-        <Table data={results ? results.Companies : []} setData={setData} />
+        {loader ? (
+          <div style={{ width: "100%", textAlign: "center" }}>
+            <CircularProgress
+              size={140}
+              style={{ textAlign: "center", marginTop: "3%" }}
+            />
+            <p style={{ textAlign: "center", marginTop: "3%" }}>
+              Loading....Please wait
+            </p>
+          </div>
+        ) : results ? (
+          <Box>
+            <SummaryTable data={results ? results.FilterProfile : []} />
+            <Table data={results ? results.Companies : []} setData={setData} />
+          </Box>
+        ) : null}
       </div>
     </div>
   );
