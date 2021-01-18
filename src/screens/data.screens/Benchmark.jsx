@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import IndustryInput from "../../components/IndustryInput";
 import StateInput from "../../components/AllStatesInput";
-import ParticipantsFilter from "./filtersFunctions/FilterFields/RightFilter/Participants";
-import IncomeFilter from "./filtersFunctions/FilterFields/RightFilter/Income";
+import ParticipantsFilter from "./Benchmark/Participants";
+import IncomeFilter from "./Benchmark/Assets";
 import { makeStyles, Box, Typography, Button } from "@material-ui/core";
 import { primaryBlue } from "../../global/Colors";
 import SearchIcon from "@material-ui/icons/Search";
@@ -16,39 +16,46 @@ import { codes as serviceCodes } from "../../global/ServiceCodes";
 import IndustryCodes from "../../global/businessCode";
 import numeral from "numeral";
 
-const useStyles = makeStyles({
+const styles = (theme) => ({
   filterBox: {
-    width: "90%",
+    width: "100%",
     margin: "0 auto",
     border: `3px solid ${primaryBlue}`,
     borderRadius: 10,
-    marginTop: "3%",
     padding: "1%",
   },
   industryStateBox: {
     display: "flex",
+    width: "100%",
     justifyContent: "space-between",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+      margin: "0 auto",
+      justifyContent: "center",
+      textAlign: "center",
+    },
+    [theme.breakpoints.up("md")]: {
+      display: "flex",
+    },
   },
 
   summaryBox: {
     display: "flex",
     justifyContent: "space-around",
   },
-  dropdown: {
+  inputsBox: {
+    // border: `1px solid ${primaryBlue}`,
+    // borderRadius: 10,
     width: "45%",
   },
   participnatIncomeBox: {
     width: "45%",
-    border: `1px solid ${primaryBlue}`,
-    borderRadius: 10,
-    marginTop: "3%",
-    padding: "1%",
   },
   typography: {
     textAlign: "center",
     color: primaryBlue,
   },
-  buttonBox: { margin: "3% auto", textAlign: "center" },
+  buttonBox: { margin: "1% auto", textAlign: "center" },
   buttonStyle: {
     width: "15%",
     backgroundColor: "#68BA54",
@@ -68,7 +75,30 @@ const useStyles = makeStyles({
     textAlign: "center",
     fontSize: 20,
   },
+  participantsContainer: {
+    width: "40%",
+    display: "flex",
+    justifyContent: "space-between",
+
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "40%",
+    },
+  },
+  stateContainer: {
+    width: "60%",
+    display: "flex",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "60%",
+    },
+  },
 });
+const useStyles = makeStyles(styles);
 
 const Benchmark = (props) => {
   const classes = useStyles();
@@ -249,31 +279,33 @@ const Benchmark = (props) => {
     <div style={{ marginBottom: "3%" }}>
       <Box className={classes.filterBox}>
         <Box className={classes.industryStateBox}>
-          <IndustryInput
-            className={classes.dropdown}
-            setIndustry={setIndustry}
-            elevation={1}
-          />
-          <StateInput className={classes.dropdown} setState={setState} />
-        </Box>
-        <Box className={classes.industryStateBox}>
-          <Box className={classes.participnatIncomeBox}>
-            <Typography className={classes.typography} variant="h5">
-              Participants
-            </Typography>
-            <ParticipantsFilter
-              setMinPart={(minPart) => setMinPart(minPart)}
-              setMaxPart={(maxPart) => setMaxPart(maxPart)}
+          <Box className={classes.stateContainer}>
+            <IndustryInput
+              className={classes.inputsBox}
+              setIndustry={setIndustry}
+              elevation={1}
             />
+            <StateInput className={classes.inputsBox} setState={setState} />
           </Box>
-          <Box className={classes.participnatIncomeBox}>
-            <Typography className={classes.typography} variant="h5">
-              Assets
-            </Typography>
-            <IncomeFilter
-              setMinIncome={(minIncome) => setMinIncome(minIncome)}
-              setMaxIncome={(maxIncome) => setMaxIncome(maxIncome)}
-            />
+          <Box className={classes.participantsContainer}>
+            <Box className={classes.participnatIncomeBox}>
+              <Typography className={classes.typography} variant="h5">
+                Participants
+              </Typography>
+              <ParticipantsFilter
+                setMinPart={(minPart) => setMinPart(minPart)}
+                setMaxPart={(maxPart) => setMaxPart(maxPart)}
+              />
+            </Box>
+            <Box className={classes.participnatIncomeBox}>
+              <Typography className={classes.typography} variant="h5">
+                Assets
+              </Typography>
+              <IncomeFilter
+                setMinIncome={(minIncome) => setMinIncome(minIncome)}
+                setMaxIncome={(maxIncome) => setMaxIncome(maxIncome)}
+              />
+            </Box>
           </Box>
         </Box>
         <Box className={classes.buttonBox}>

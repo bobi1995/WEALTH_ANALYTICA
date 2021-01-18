@@ -9,7 +9,8 @@ import { Animated } from "react-animated-css";
 import { Button, makeStyles, Box } from "@material-ui/core";
 import { primaryBlue } from "../../global/Colors";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import SaveFilterDialog from "./filtersFunctions/FilterFields/RightFilter/SaveFilterDialog";
+import CreateIcon from "@material-ui/icons/Create";
 const useStyle = makeStyles({
   buttonStyle: {
     backgroundColor: primaryBlue,
@@ -19,6 +20,10 @@ const useStyle = makeStyles({
     },
     whiteSpace: "nowrap",
   },
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
 });
 
 const Filter2 = () => {
@@ -27,6 +32,7 @@ const Filter2 = () => {
   const [loader, setLoader] = useState(false);
   const [visibleFilter, setVisibleFilter] = useState(true);
   const [visibleGraph, setVisibleGraph] = useState(false);
+  const [url, setUrl] = useState("");
 
   const setData = (newArr) => {
     setResults((prev) => {
@@ -56,16 +62,20 @@ const Filter2 = () => {
                 animationOutDuration={1000}
                 isVisible={visibleGraph}
               >
-                <Button
-                  variant="outlined"
-                  className={classes.buttonStyle}
-                  onClick={() => {
-                    setVisibleGraph(false);
-                    setTimeout(() => setVisibleFilter(true), 1100);
-                  }}
-                >
-                  New Filter
-                </Button>
+                <Box className={classes.buttonContainer}>
+                  <Button
+                    variant="outlined"
+                    className={classes.buttonStyle}
+                    startIcon={<CreateIcon />}
+                    onClick={() => {
+                      setVisibleGraph(false);
+                      setTimeout(() => setVisibleFilter(true), 1100);
+                    }}
+                  >
+                    New Filter
+                  </Button>
+                  <SaveFilterDialog url={url} />
+                </Box>
                 <LeftSide
                   NetAssetBegin={results.NetAssetBeginOfYear}
                   NetAssetEnd={results.NetAssetEndOfYear}
@@ -90,6 +100,7 @@ const Filter2 = () => {
               >
                 <div style={{ width: "100%" }}>
                   <RightFilter
+                    setUrl={setUrl}
                     setLoader={(loader) => {
                       setLoader(loader);
                     }}

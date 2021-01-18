@@ -14,7 +14,6 @@ import SaveIcon from "@material-ui/icons/Save";
 
 const useStyles = makeStyles(() => ({
   saveButton: {
-    margin: "0 auto",
     backgroundColor: "#008000",
     color: "white",
   },

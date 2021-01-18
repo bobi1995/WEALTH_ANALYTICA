@@ -11,7 +11,6 @@ import BenefitType from "./RightFilter/BenefitType";
 import Participants from "./RightFilter/Participants";
 import Income from "./RightFilter/Income";
 import { makeStyles } from "@material-ui/core/styles";
-import SaveFilterDialog from "./RightFilter/SaveFilterDialog";
 import { lastYear } from "../../../../global/Years";
 
 const useStyles = makeStyles(() => ({
@@ -53,7 +52,6 @@ const RightFilters = (props) => {
   const [maxPart, setMaxPart] = useState("");
   const [minIncome, setMinIncome] = useState("");
   const [maxIncome, setMaxIncome] = useState("");
-  const [url, setUrl] = useState("");
   return (
     <Box className={classes.mainContainer}>
       <Box>
@@ -129,14 +127,12 @@ const RightFilters = (props) => {
               maxIncome
             ).url;
             props.getResults(a);
-            setUrl(url);
+            props.setUrl(url);
             props.setLoader(false);
           }}
         >
           Search
         </Button>
-
-        <SaveFilterDialog url={url} />
       </Box>
     </Box>
   );
