@@ -14,10 +14,8 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Slabo,serif",
     textAlign: "center",
     fontSize: 35,
-    marginBottom: "3%",
-    marginTop: "3%",
+    marginTop: "1%",
   },
-  indicatorsBox: {},
   errorStyle: {
     color: "#388fc2",
     textAlign: "center",

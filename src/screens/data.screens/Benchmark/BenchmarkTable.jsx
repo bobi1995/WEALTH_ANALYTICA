@@ -46,7 +46,9 @@ const BenchmarkTable = ({ data, industryFlag, filterSearch }) => {
             title: "2017",
             field: "2017",
             render: (rowData) =>
-              rowData.parent
+              rowData.id === "99992"
+                ? `${numeral(rowData.overall2017).format("0.00")}%`
+                : rowData.parent
                 ? `$${numeral(rowData.overall2017).format("0,00")}`
                 : rowData[2017]
                 ? `$${numeral(rowData[2017]).format("0,00")}`
@@ -56,7 +58,9 @@ const BenchmarkTable = ({ data, industryFlag, filterSearch }) => {
             title: "2018",
             field: "2018",
             render: (rowData) =>
-              rowData.parent
+              rowData.id === "99992"
+                ? `${numeral(rowData.overall2018).format("0.00")}%`
+                : rowData.parent
                 ? `$${numeral(rowData.overall2018).format("0,00")}`
                 : rowData[2018]
                 ? `$${numeral(rowData[2018]).format("0,00")}`
@@ -66,7 +70,9 @@ const BenchmarkTable = ({ data, industryFlag, filterSearch }) => {
             title: "2019",
             field: "2019",
             render: (rowData) =>
-              rowData.parent
+              rowData.id === "99992"
+                ? `${numeral(rowData.overall2019).format("0.00")}%`
+                : rowData.parent
                 ? `$${numeral(rowData.overall2019).format("0,00")}`
                 : rowData[2019]
                 ? `$${numeral(rowData[2019]).format("0,00")}`
@@ -79,6 +85,8 @@ const BenchmarkTable = ({ data, industryFlag, filterSearch }) => {
               industryFlag ? (
                 filterSearch ? (
                   <CircularProgress size={30} style={{ textAlign: "center" }} />
+                ) : rowData.id === "99992" ? (
+                  `${numeral(rowData.industry).format("0.00")}%`
                 ) : (
                   `$${numeral(rowData.industry).format("0,00")}`
                 )

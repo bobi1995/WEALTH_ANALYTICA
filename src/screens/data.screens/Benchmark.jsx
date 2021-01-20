@@ -215,32 +215,28 @@ const Benchmark = (props) => {
           } else return null;
         });
       });
-    }
 
-    const categories = serviceCodes.filter((el) => el.parent);
-    categories.map((cat) => {
-      cat.industry = 0;
-      return serviceCodes.map((service) => {
-        if (service.parent !== true && service.Service3 === cat.Service3) {
-          if (service.industry) {
-            cat.industry = cat.industry + service.industry;
-          }
-          return null;
-        } else return null;
+      const categories = serviceCodes.filter((el) => el.parent);
+      categories.map((cat) => {
+        cat.industry = 0;
+
+        if (cat.id === "9999") {
+          cat.industry = industryRes.ServicesByYear[0].Total;
+        } else if (cat.id === "99991") {
+          cat.industry = industryRes.ServicesByYear[0].CostAvgPart;
+        } else if (cat.id === "99992") {
+          cat.industry = industryRes.ServicesByYear[0].CostAvgAsseets;
+        } else
+          return serviceCodes.map((service) => {
+            if (service.parent !== true && service.Service3 === cat.Service3) {
+              if (service.industry) {
+                cat.industry = cat.industry + service.industry;
+              }
+              return null;
+            } else return null;
+          });
       });
-    });
-
-    categories.map((el) => {
-      if (el.id === "9999") {
-        categories.map((element) => {
-          if (element.id !== "9999") {
-            el.industry = element.industry + el.industry;
-          }
-          return null;
-        });
-        return null;
-      } else return null;
-    });
+    }
   }, [industryRes]);
 
   const applyFilter = () => {
@@ -253,6 +249,7 @@ const Benchmark = (props) => {
       url = `${apiAddress}/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=${industryObject.BusinessCode}&state=${state}`;
     } else
       url = `${apiAddress}/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=&state=${state}`;
+
     axios({
       method: "get",
       url,

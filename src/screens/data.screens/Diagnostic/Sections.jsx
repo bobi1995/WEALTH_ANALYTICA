@@ -3,13 +3,16 @@ import { makeStyles, Box, Typography, Paper } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { observations } from "../../../global/diagnosticObservations";
 import numeral from "numeral";
+import ClearIcon from "@material-ui/icons/Clear";
+import CheckIcon from "@material-ui/icons/Check";
+import { backgroundGrey } from "../../../global/Colors";
 
 const useStyles = makeStyles((theme) => ({
   tableBox: {
     justifyContent: "center",
     display: "flex",
     textAlign: "center",
-    marginTop: "5%",
+    marginTop: "2%",
   },
   subheading: {
     color: " #388fc2",
@@ -56,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Tables = ({ info, mainHeading }) => {
   const classes = useStyles();
+  console.log(info);
   return (
     <Box className={classes.tableBox}>
       <Paper className={classes.paperStyle} elevation={21}>
@@ -78,16 +82,32 @@ const Tables = ({ info, mainHeading }) => {
                         variant="filled"
                         className={classes.alertStyle}
                         style={
-                          el.Ind === 1
-                            ? { backgroundColor: "#FC3468" }
-                            : el.Ind === 0
-                            ? { backgroundColor: "#6ACD75" }
-                            : {}
+                          el.Type === 1
+                            ? el.CompanyValue - el.IndusrtyValue > 0
+                              ? { backgroundColor: "#6ACD75" }
+                              : { backgroundColor: "#FC3468" }
+                            : el.Type === 2
+                            ? { backgroundColor: "#DBA800" }
+                            : { backgroundColor: "#A9A9A9" }
                         }
                       >
-                        {el.Ind === null
-                          ? `$${numeral(el.Text).format("0,0")}`
-                          : el.Text}
+                        {el.Type === 1 ? (
+                          `Company has ${numeral(el.CompanyValue).format(
+                            "0,00.00"
+                          )} with average for the industy ${numeral(
+                            el.IndusrtyValue
+                          ).format("0,00.00")}`
+                        ) : el.Type === 2 ? (
+                          isNaN(el.Text) ? (
+                            el.Text
+                          ) : (
+                            `$${numeral(el.Text).format("0,00")}`
+                          )
+                        ) : el.Ind === 1 ? (
+                          <CheckIcon key={el.Ind} style={{ color: "green" }} />
+                        ) : (
+                          <ClearIcon key={el.Ind} style={{ color: "red" }} />
+                        )}
                       </Alert>
                     ) : (
                       ""

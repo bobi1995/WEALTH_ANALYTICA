@@ -19,6 +19,7 @@ const useStyle = makeStyles({
       color: primaryBlue,
     },
     whiteSpace: "nowrap",
+    marginRight: "1%",
   },
   buttonContainer: {
     display: "flex",

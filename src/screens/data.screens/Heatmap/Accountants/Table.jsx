@@ -10,6 +10,8 @@ import Paper from "@material-ui/core/Paper";
 import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
 import { primaryBlue } from "../../../../global/Colors";
+import { lastYear } from "../../../../global/Years";
+
 const useStyles = makeStyles({
   container: {
     width: "100%",
@@ -18,6 +20,7 @@ const useStyles = makeStyles({
   },
   table: {
     width: "40%",
+
     backgroundColor: "#E3F2FD",
     maxHeight: 440,
     border: `1px solid ${primaryBlue}`,
@@ -29,10 +32,7 @@ const useStyles = makeStyles({
   previewBtn: {
     textTransform: "none",
   },
-  statsSection: {
-    width: "40%",
-    maxHeight: 440,
-  },
+
   title: {
     flex: "1 1 100%",
   },
@@ -155,7 +155,33 @@ const ComplianceTable = ({ data }) => {
       </TableContainer>
 
       {/* --------------------STATISTIC SECTION------------------------------- */}
-      <Box className={classes.statsSection}>Description fo the fields!</Box>
+      <TableContainer component={Paper} className={classes.table}>
+        <Table stickyHeader size="small" aria-label="a dense table">
+          <TableHead>
+            <TableRow>
+              <TableCell
+                className={classes.tableHeader}
+                style={{ textAlign: "center" }}
+              >
+                Accountants for {lastYear}
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((row, ind) =>
+              row.year === 2019
+                ? row.accountant.AccountantNames.map((el, ind) => (
+                    <TableRow key={ind + el}>
+                      <TableCell style={{ textAlign: "center" }}>
+                        {el}
+                      </TableCell>
+                    </TableRow>
+                  ))
+                : null
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Box>
   );
 };

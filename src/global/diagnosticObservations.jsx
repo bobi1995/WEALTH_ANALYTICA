@@ -179,19 +179,169 @@ export const observations = [
     data: [
       {
         field: "Benefit Payment Failure Ind",
-        code: "D56",
+        code: "D31",
       },
       {
-        field: "Accountant Waiver",
-        code: "D59",
+        field: "Benefit Payment Failure Amt",
+        code: "D32",
+      },
+    ],
+  },
+
+  {
+    name: "Valuations",
+    data: [
+      {
+        field: "All Plan Asset Distribution Ind",
+        code: "D27",
       },
       {
-        field: "Accountant Opinion",
-        code: "D57",
+        field: "Asset Held Ind",
+        code: "D28",
       },
       {
-        field: "Accountant Audit Scope",
-        code: "D58",
+        field: "Asset Not Values Ind",
+        code: "D29",
+      },
+      {
+        field: "Asset Not Values Amt",
+        code: "D30",
+      },
+      {
+        field: "EligibleAssets",
+        code: "D55",
+      },
+    ],
+  },
+
+  {
+    name: "Blackouts",
+    data: [
+      {
+        field: "Blackout Period Ind",
+        code: "D33",
+      },
+      {
+        field: "Blackout Notice Ind",
+        code: "D34",
+      },
+    ],
+  },
+
+  {
+    name: "Concentrations",
+    data: [
+      {
+        field: "Five Percent Ind",
+        code: "D39",
+      },
+      {
+        field: "Inv Concentration 20 Ind",
+        code: "D40",
+      },
+      {
+        field: "Inv Concentration 20 Amt",
+        code: "D41",
+      },
+    ],
+  },
+
+  {
+    name: "Contributions",
+    data: [
+      {
+        field: "Contribution Failure Ind",
+        code: "D35",
+      },
+
+      {
+        field: "Contribution Failure Amt",
+        code: "D36",
+      },
+      {
+        field: "Contribution Non Cash Ind",
+        code: "D37",
+      },
+
+      {
+        field: "Contribution Non Cash Amt",
+        code: "D38",
+      },
+    ],
+  },
+
+  {
+    name: "Defaults",
+    data: [
+      {
+        field: "Leases In Default Ind",
+        code: "D42",
+      },
+      {
+        field: "Leases In Default Amt",
+        code: "D43",
+      },
+
+      {
+        field: "Loans In Defaul tInd",
+        code: "D44",
+      },
+
+      {
+        field: "Loans In Default Amt",
+        code: "D45",
+      },
+
+      {
+        field: "LossDiscoverInd",
+        code: "D46",
+      },
+
+      {
+        field: "LossDiscoverAmt",
+        code: "D47",
+      },
+    ],
+  },
+
+  {
+    name: "Conflicts",
+    data: [
+      {
+        field: "Party Int Not Reporting Ind",
+        code: "D48",
+      },
+      {
+        field: "Party Int Not Reporting Amt",
+        code: "D49",
+      },
+    ],
+  },
+  {
+    name: "Others",
+    data: [
+      {
+        field: "PBGC Insurance Ind",
+        code: "D50",
+      },
+      {
+        field: "Pension Funding 412 Amt",
+        code: "D51",
+      },
+
+      {
+        field: "Reserve Term Ind",
+        code: "D52",
+      },
+
+      {
+        field: "Reserve Term Amt",
+        code: "D53",
+      },
+
+      {
+        field: "Fidelity Bond Ind",
+        code: "D54",
       },
     ],
   },

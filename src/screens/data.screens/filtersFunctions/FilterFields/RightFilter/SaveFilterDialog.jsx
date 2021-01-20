@@ -69,7 +69,7 @@ export default (props) => {
   };
 
   return (
-    <div style={{ width: "25%" }}>
+    <div style={{ marginLeft: "1%" }}>
       <Button
         variant="contained"
         id="right-filter-btn"

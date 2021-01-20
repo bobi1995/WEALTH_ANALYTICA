@@ -25,7 +25,7 @@ const NetAssets = (props) => {
   };
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "25%" }}>
       <small
         className="form-text text-muted"
         style={{ textAlign: "center", fontSize: "17px" }}

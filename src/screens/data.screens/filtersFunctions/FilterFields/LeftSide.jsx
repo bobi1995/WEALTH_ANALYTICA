@@ -21,29 +21,12 @@ const theme = createMuiTheme({
 
 const styles = (theme) => ({
   root: {
-    // display: "flex",
-    // marginBottom: "1%",
-    // marginTop: "1%",
-    // [theme.breakpoints.down("sm")]: {
-    //   display: "block",
-    // },
-    // [theme.breakpoints.up("md")]: {
-    //   display: "flex",
-    // },
-
-    padding: theme.spacing(1),
-    [theme.breakpoints.down("sm")]: {
-      display: "block",
-    },
-    [theme.breakpoints.up("md")]: {
-      display: "flex",
-    },
-    [theme.breakpoints.up("lg")]: {
-      display: "flex",
-    },
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-around",
   },
 });
-// style={{ display: "flex", marginBottom: "1%", marginTop: "1%" }}
+
 const useStyles = makeStyles(styles);
 
 const LeftSide = (props) => {

@@ -14,7 +14,6 @@ const EmailFields = (props) => {
   const sender = sessionStorage.getItem("Email");
   const [pdfs, setPdfs] = useState(props.pdfs);
   const [result, setResult] = useState("");
-  console.log(receiver);
   const handleReceiverChange = (e) => {
     setReceiver(e.target.value);
   };
@@ -24,13 +23,7 @@ const EmailFields = (props) => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    console.log({
-      from: sender,
-      to: receiver,
-      subject: `Wealth Analytica Diagnostic`,
-      message: emailContent,
-      PdfNumbers: pdfs,
-    });
+
     axios
       .post(
         `${apiAddress}/api/SmallCompanies/SendDiagnosticsEmail`,
@@ -63,8 +56,6 @@ const EmailFields = (props) => {
   useEffect(() => {
     setPdfs(props.pdfs);
   }, [props.pdfs]);
-
-  console.log(result);
 
   return (
     <Box className={classes.container}>
