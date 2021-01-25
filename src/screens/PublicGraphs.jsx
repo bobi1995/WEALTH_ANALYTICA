@@ -95,17 +95,19 @@ const PublicGraphs = () => {
           Industries per States for the last years.
         </Typography>
       </Box>
-      <Box className={classes.industryContainer}>
-        <IndustryInput
-          className={classes.industryField}
-          setIndustry={setIndustry}
-        />
-      </Box>
-      <Box className={classes.industryContainer}>
-        <Legend />
-      </Box>
-      <Box className={classes.mapContainer}>
-        <GraphMap setState={setSelectedState} />
+      <Box style={{ display: "flex", justifyContent: "space-around" }}>
+        <Box className={classes.industryContainer}>
+          <IndustryInput
+            className={classes.industryField}
+            setIndustry={setIndustry}
+          />
+        </Box>
+
+        <Box className={classes.mapContainer}>
+          <Legend />
+
+          <GraphMap setState={setSelectedState} />
+        </Box>
       </Box>
       {data && (
         <Box>

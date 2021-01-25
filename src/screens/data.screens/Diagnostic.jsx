@@ -50,7 +50,6 @@ const Diagnostic = (props) => {
       })
       .catch((err) => {
         setLoadingFlag(false);
-
         setErr(err.response.data);
       });
   }, [url]);

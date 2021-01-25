@@ -59,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Tables = ({ info, mainHeading }) => {
   const classes = useStyles();
-  console.log(info);
   return (
     <Box className={classes.tableBox}>
       <Paper className={classes.paperStyle} elevation={21}>

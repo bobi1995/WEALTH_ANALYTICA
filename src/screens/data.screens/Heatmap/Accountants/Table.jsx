@@ -163,17 +163,35 @@ const ComplianceTable = ({ data }) => {
                 className={classes.tableHeader}
                 style={{ textAlign: "center" }}
               >
-                Accountants for {lastYear}
+                Accountant name
+              </TableCell>
+              <TableCell
+                className={classes.tableHeader}
+                style={{ textAlign: "center" }}
+              >
+                Website
+              </TableCell>
+              <TableCell
+                className={classes.tableHeader}
+                style={{ textAlign: "center" }}
+              >
+                Opinion
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.map((row, ind) =>
               row.year === 2019
-                ? row.accountant.AccountantNames.map((el, ind) => (
+                ? row.accountant.Accountants.map((el, ind) => (
                     <TableRow key={ind + el}>
                       <TableCell style={{ textAlign: "center" }}>
-                        {el}
+                        {el.Name}
+                      </TableCell>
+                      <TableCell style={{ textAlign: "center" }}>
+                        {el.Website ? el.Website : "N/A"}
+                      </TableCell>
+                      <TableCell style={{ textAlign: "center" }}>
+                        {el.Opinion ? el.Opinion : "N/A"}
                       </TableCell>
                     </TableRow>
                   ))
