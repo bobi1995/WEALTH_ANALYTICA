@@ -6,17 +6,21 @@ import numeral from "numeral";
 import Chart from "chart.js";
 
 const useStyles = makeStyles((theme) => ({
-  container: { width: 600, margin: "0 auto" },
+  container: {
+    margin: "0 auto",
+    display: "flex",
+    justifyContent: "space-around",
+    width: "100%",
+  },
 }));
 
 const EmailSection = ({ data }) => {
   const classes = useStyles();
-  console.log(data);
   const scoreData = [
-    {
-      name: "Overall Rating",
-      value: data.OverallRating,
-    },
+    // {
+    //   name: "Overall Rating",
+    //   value: data.OverallRating,
+    // },
     {
       name: "Enterprise Exposure Rating",
       value: data.EnterpriseExposureRating,
@@ -29,10 +33,10 @@ const EmailSection = ({ data }) => {
       name: "Enhanced Tax Deferral And Employee Retirement",
       value: data.EnhancedTaxDeferralAndEmployeeRetirement,
     },
-    {
-      name: "Touches",
-      value: data.Touches,
-    },
+    // {
+    //   name: "Touches",
+    //   value: data.Touches,
+    // },
   ];
 
   useEffect(() => {
@@ -41,27 +45,24 @@ const EmailSection = ({ data }) => {
     var myChart = new Chart(ctx, {
       type: "horizontalBar",
       data: {
-        labels: scoreData.map((el) => el.name),
+        labels: ["Overall rating", "Touches"],
         datasets: [
           {
-            label: "Overall in %",
-            data: scoreData.map((el) => {
-              console.log(el.value);
-              return el.value;
-            }),
+            label: "Rating in %",
+            data: [data.OverallRating, data.Touches],
             backgroundColor: [
               "rgba(75, 192, 192, 0.2)",
-              "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
               "rgba(255, 206, 86, 0.2)",
               "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 99, 132, 0.2)",
             ],
             borderColor: [
               "rgba(75, 192, 192, 1)",
-              "rgba(255, 99, 132, 1)",
               "rgba(54, 162, 235, 1)",
               "rgba(255, 206, 86, 1)",
               "rgba(153, 102, 255, 1)",
+              "rgba(255, 99, 132, 1)",
             ],
             borderWidth: 1,
           },
@@ -84,8 +85,7 @@ const EmailSection = ({ data }) => {
 
   return (
     <Box className={classes.container}>
-      <canvas id="myChart" width="800" height="400"></canvas>
-      {/* <MaterialTable
+      <MaterialTable
         title={`Wealth Analytica Score Card - ` + data.Year}
         columns={[
           {
@@ -120,7 +120,11 @@ const EmailSection = ({ data }) => {
           search: false,
           sorting: false,
         }}
-      /> */}
+      />
+
+      <Box>
+        <canvas id="myChart" width="600" height="300"></canvas>
+      </Box>
     </Box>
   );
 };

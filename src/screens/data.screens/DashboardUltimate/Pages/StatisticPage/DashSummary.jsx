@@ -1,53 +1,28 @@
 import React from "react";
 import numeral from "numeral";
-
+import { allYears } from "../../../../../global/Years";
 export default (props) => {
   return props.result !== undefined ? (
     <div className="plan-businessInfo" style={{ padding: "1%" }}>
-      <div className="switch-field">
-        <input
-          type="radio"
-          id="radio-six"
-          name="switch-two"
-          value="2015"
-          label="2015"
-          onChange={() => {
-            props.onYearChange(2015);
-          }}
-        />
-        <label htmlFor="radio-six">2015</label>
-
-        <input
-          type="radio"
-          id="radio-five"
-          name="switch-two"
-          value="no"
-          onChange={() => {
-            props.onYearChange(2016);
-          }}
-        />
-        <label htmlFor="radio-five">2016</label>
-        <input
-          type="radio"
-          id="radio-four"
-          name="switch-two"
-          value="maybe"
-          onChange={() => {
-            props.onYearChange(2017);
-          }}
-        />
-        <label htmlFor="radio-four">2017</label>
-        <input
-          type="radio"
-          id="radio-three"
-          name="switch-two"
-          value="yes"
-          onChange={() => {
-            props.onYearChange(2018);
-          }}
-          defaultChecked
-        />
-        <label htmlFor="radio-three">2018 </label>
+      <div
+        className="switch-field"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        {allYears.map((el) => (
+          <div>
+            <input
+              type="radio"
+              id={`radio-${el}`}
+              name="switch-two"
+              value={el}
+              label={el}
+              onChange={() => {
+                props.onYearChange(el);
+              }}
+            />
+            <label htmlFor={`radio-${el}`}>{el}</label>
+          </div>
+        ))}
       </div>
       <div className="plan-table-section">
         <h1 className="plan-h1">Dashboard Summary - {props.result.Year}</h1>

@@ -84,7 +84,7 @@ const BookmarkMainTable = (props) => {
             <th>Business Code</th>
             <th>Phone</th>
             <th>One Pager</th>
-            <th>Plan Profile</th>
+            <th>Plan Design</th>
             <th>Connect</th>
             <th>Bookmark</th>
           </tr>

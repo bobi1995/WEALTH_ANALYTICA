@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     justifyContent: "space-around",
   },
   table: {
-    width: "40%",
+    width: "100%",
 
     backgroundColor: "#E3F2FD",
     maxHeight: 440,

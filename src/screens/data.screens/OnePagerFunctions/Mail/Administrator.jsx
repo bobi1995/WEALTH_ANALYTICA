@@ -69,7 +69,7 @@ export default function Administrator({ administrator }) {
           pension plan, and the administration and investment of the pension
           fund.
           <br />
-          <b>Phone Number: +{administrator.phone}</b>
+          <b>+{commonFunc.phoneFormat(administrator.phone)}</b>
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

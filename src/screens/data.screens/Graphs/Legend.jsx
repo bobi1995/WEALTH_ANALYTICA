@@ -11,8 +11,8 @@ import { Box, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   container: {
-    width: "60%",
-    margin: "0 auto",
+    width: "90%",
+    margin: "1% auto",
   },
 });
 
