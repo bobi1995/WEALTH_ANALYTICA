@@ -19,6 +19,8 @@ import Statistics from "./PlanProfile2/Statistics";
 import Alerts from "./PlanProfile2/Alerts";
 import HealthCare from "./PlanProfile2/HealthCare";
 import Plans from "./PlanProfile2/Plans";
+import ServiceProviders from "./PlanProfile2/ServiceProviders";
+import SettingsApplicationsIcon from "@material-ui/icons/SettingsApplications";
 import Investment from "./PlanProfile2/Investment";
 import Analytics from "./PlanProfile2/Analytics";
 import EmailPopUp from "../../components/EmailPopUp";
@@ -31,6 +33,7 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import ExportButton from "../../components/ExportPlanProfile";
+import commonFunctions from "./commonFunctions/common";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,7 +93,12 @@ const PlanProfile2 = (props) => {
     <div>
       <Datanavbar />
       <section className="clientDash-img" data-html2canvas-ignore>
-        <h1 className="clientDash-header1">Plan Design</h1>
+        <h1 className="clientDash-header1">
+          {results &&
+            commonFunctions.formatString(
+              results.BusinessInformation.SponsorName
+            )}
+        </h1>
       </section>
       <Box className={classes.root}>
         <TabContext value={value}>
@@ -114,6 +122,12 @@ const PlanProfile2 = (props) => {
                 icon={<AccessibilityIcon />}
               />
               <Tab label="Statistics" value="4" icon={<EqualizerIcon />} />
+              <Tab
+                label="Service Providers"
+                value="14"
+                icon={<SettingsApplicationsIcon />}
+              />
+
               <Tab label="Alerts" value="5" icon={<ReportProblemIcon />} />
               <Tab label="Health Care" value="6" icon={<FavoriteIcon />} />
               <Tab label="Plans" value="7" icon={<ListAltIcon />} />
@@ -176,6 +190,13 @@ const PlanProfile2 = (props) => {
 
               <TabPanel value="12" className={classes.tabpanelRoot}>
                 <Analytics companyID={props.match.params.CompanyID} />
+              </TabPanel>
+
+              <TabPanel value="14">
+                <ServiceProviders
+                  companyID={props.match.params.CompanyID}
+                  data={results.Statistics}
+                />
               </TabPanel>
               <ExportButton companyID={props.match.params.CompanyID} />
 

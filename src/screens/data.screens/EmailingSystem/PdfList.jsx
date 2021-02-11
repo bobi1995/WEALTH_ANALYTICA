@@ -39,6 +39,7 @@ const useStyles = makeStyles(() => ({
 
 const pdfs = [
   { name: "One Pager Summary", value: 29 },
+  { name: "Plan Design", value: 30 },
   { name: "ERISA Check List", value: 1 },
   { name: "ERISA 404c Check List", value: 2 },
   { name: "401k Checklist", value: 3 },

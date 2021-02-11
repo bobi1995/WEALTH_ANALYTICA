@@ -67,11 +67,6 @@ const Diagnostic = (props) => {
         </div>
       ) : !err && results ? (
         <Box>
-          <Box>
-            <Typography className={classes.heading}>
-              {results.SponsorName}
-            </Typography>
-          </Box>
           <Score data={results} />
           <Box>
             {/******** PLAN DESIGN */}

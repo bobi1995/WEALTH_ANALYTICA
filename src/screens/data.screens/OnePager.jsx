@@ -5,10 +5,9 @@ import "../../styles/dataPages/onePager.scss";
 import Loader from "../../components/Loader/Loader";
 import OnePagerBottomTables from "./OnePagerFunctions/OnePagerBottomTables";
 import OnePagerRightPane from "./OnePagerFunctions/OnePagerRightPane";
-import OnePagerMail from "./OnePagerFunctions/OnePagerMail";
+import EmailPopUp from "../../components/EmailPopUp";
 import GoogleMap from "../../components/GoogleMap";
 import OnePagerPensionPlan from "./OnePagerFunctions/OnePagerPensionPlan";
-import OnePagerLogo from "./OnePagerFunctions/OnePagerLogo";
 import OnePagerAccountants from "./OnePagerFunctions/OnePagerAccountants";
 import commonFunctions from "../../components/commonFunctions";
 import Magellan from "./Magellan";
@@ -16,11 +15,56 @@ import apiAddress from "../../global/endpointAddress";
 import OnePagerTopStatistics from "./OnePagerFunctions/OnePagerTopStatistics";
 import { minYear, lastYear } from "../../global/Years";
 import AlerBox from "../../components/alertBox";
+import { Link, Box, makeStyles } from "@material-ui/core";
+import commonExtract from "./commonFunctions/commonExtracts";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+
+const useStyles = makeStyles({
+  main: {
+    position: "fixed",
+    zIndex: 99999999999999999,
+    bottom: 45,
+    right: "10px",
+    fontWeight: 300,
+    fontSize: 15,
+    fontFamily: "Raleway , Arial, sans-serif",
+    width: 179,
+  },
+  contactButton: {
+    backgroundColor: "#3F51B5",
+    borderRadius: "20px",
+    padding: "8px 15px",
+    cursor: "pointer",
+    color: "white",
+    maxWidth: "220px",
+    marginTop: "10px",
+    marginBottom: "10px",
+    display: "flex",
+    margin: "0 auto",
+    justifyContent: "center",
+    "&:hover": {
+      textDecoration: "none",
+      backgroundColor: "#828fd4",
+      color: "white",
+    },
+  },
+});
 
 const OnePager = (props) => {
+  const classes = useStyles();
   const [results, setResults] = useState([]);
   const [limit, setLimit] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  let available = false;
+
+  if (results) {
+    commonExtract.extractStates().forEach((el) => {
+      if (results.State === el.State && el.Type === 2) {
+        available = true;
+      }
+    });
+  }
+
   let url = "";
   if (props.match) {
     url = `${apiAddress}/api/SmallCompanies/GetOnePager?CompanyID=${props.match.params.CompanyID}&minYear=${minYear}&maxYear=${lastYear}`;
@@ -74,16 +118,6 @@ const OnePager = (props) => {
         </div>
       ) : results.PlanName ? (
         <div className="usermanagement">
-          <OnePagerMail
-            data={props.match.params.CompanyID}
-            state={results.State}
-            contact={results.Contacts}
-            site={results.Website}
-            administrator={results.AdministratorName}
-            phone={results.Phone}
-          />
-          <OnePagerLogo />
-
           <div className="plan-businessInfo-2">
             <OnePagerTopStatistics data={results.Statistics} />
             {/* 
@@ -133,6 +167,18 @@ const OnePager = (props) => {
       ) : (
         ""
       )}
+
+      <Box className={classes.main}>
+        <Link
+          disabled={available ? false : true}
+          href={`/planprofile/${props.match.params.CompanyID}`}
+          target="_blank"
+          className={classes.contactButton}
+        >
+          <ArrowForwardIcon /> PLAN DESIGN
+        </Link>
+      </Box>
+      <EmailPopUp contact={results.Contacts} />
     </div>
   );
 };

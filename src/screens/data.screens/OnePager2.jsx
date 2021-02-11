@@ -6,13 +6,26 @@ import GoogleMap from "../../components/GoogleMap";
 import commonFunctions from "../../components/commonFunctions";
 import Magellan from "./Magellan";
 import apiAddress from "../../global/endpointAddress";
-import { minYear, lastYear } from "../../global/Years";
+import { minYear, lastYear, allYears } from "../../global/Years";
 import { primaryBlue } from "../../global/Colors";
 import AlerBox from "../../components/alertBox";
-import { Box, Typography, makeStyles } from "@material-ui/core";
+import {
+  Box,
+  Typography,
+  makeStyles,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@material-ui/core";
 import "../../styles/dataPages/onePager.scss";
 import DataExtract from "./OnePagerFunctions/OnePagerDataExtract";
 import { Bar, Line } from "react-chartjs-2";
+import numeral from "numeral";
+import dataReducer from "../../components/dataReducer";
 
 const useStyles = makeStyles({
   limitSign: {
@@ -65,12 +78,41 @@ const OnePager2 = (props) => {
     },
     [url]
   );
+
   let data;
   let totalAssets = [];
+  let options = [];
+  let totalAssetsReduced = [];
+  const divideBy = (array) => {
+    const max = Math.max(...array);
+    const parts = max.toString().split(".");
+    const lengthOfAv = parts[0].toString().length;
+    if (lengthOfAv > 12) {
+      return 100000000000;
+    } else if (lengthOfAv <= 12 && lengthOfAv > 9) {
+      return 1000000000;
+    } else if (lengthOfAv <= 9 && lengthOfAv > 6) {
+      return 1000000;
+    } else if (lengthOfAv <= 6 && lengthOfAv > 3) {
+      return 1000;
+    }
+  };
   if (results.Statistics) {
     const years = DataExtract.yearsExtract(results.Statistics);
     const totalAssets = DataExtract.totalAssetsExtract(results.Statistics);
     const netAssets = DataExtract.netAssetsExtract(results.Statistics);
+    const allArrayAsset = totalAssets.concat(netAssets);
+
+    const totalAssetsReduced = totalAssets.map((element) => {
+      return element / divideBy(allArrayAsset);
+    });
+    const netAssetsReduced = netAssets.map((element) => {
+      return element / divideBy(allArrayAsset);
+    });
+
+    const biggestTotalAsset = Math.max(...totalAssets);
+    const biggestNetAsstes = Math.max(...netAssets);
+    options = dataReducer.optionReturn([biggestTotalAsset, biggestNetAsstes]);
 
     data = {
       labels: years,
@@ -81,7 +123,7 @@ const OnePager2 = (props) => {
           borderWidth: 1,
           hoverBackgroundColor: "rgba(221,160,221)",
           hoverBorderColor: "rgba(147,112,219)",
-          data: totalAssets,
+          data: totalAssetsReduced,
           stack: 1,
         },
         {
@@ -90,7 +132,7 @@ const OnePager2 = (props) => {
           borderWidth: 1,
           hoverBackgroundColor: "rgba(175,238,238)",
           hoverBorderColor: "rgba(32,178,170)",
-          data: netAssets,
+          data: netAssetsReduced,
           stack: 2,
         },
       ],
@@ -115,8 +157,55 @@ const OnePager2 = (props) => {
       ) : loader ? (
         <Loader />
       ) : (
-        <Box>
-          <Bar data={data} />
+        <Box style={{ display: "flex", width: "100%" }}>
+          <Box
+            style={{
+              display: "flex",
+              width: "100%",
+              justifyContent: "space-around",
+              textAlign: "center",
+            }}
+          >
+            <Box style={{ width: "30%" }}>
+              <Bar data={data} options={options} />
+              <TableContainer component={Paper} className={classes.table}>
+                <Table stickyHeader size="small" aria-label="a dense table">
+                  <TableHead>
+                    <TableRow>
+                      {allYears.map((el) => (
+                        <TableCell
+                          style={{ textAlign: "center" }}
+                          key={el}
+                          className={classes.tableHeader}
+                        >
+                          {el}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      {totalAssetsReduced.map((el, ind) => {
+                        console.log(el);
+                        return (
+                          <TableCell style={{ textAlign: "center" }} key={ind}>
+                            {`$${numeral(el).format("0,00")}`}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Box>
+            <Box style={{ width: "30%" }}>
+              <Bar data={data} options={options} />
+            </Box>
+            .
+            <Box style={{ width: "30%" }}>
+              <Bar data={data} options={options} />
+            </Box>
+          </Box>
         </Box>
       )}
     </Box>

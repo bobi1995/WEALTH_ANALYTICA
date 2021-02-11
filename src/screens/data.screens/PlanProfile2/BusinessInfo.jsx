@@ -72,12 +72,6 @@ const BusinessInfo = (props) => {
 
   return (
     <Box>
-      <Box className={classes.headingContainer}>
-        <Typography component="h4" variant="h4" className={classes.heading}>
-          {props.data.SponsorName &&
-            commonFunctions.formatString(props.data.SponsorName)}
-        </Typography>
-      </Box>
       <Box className={classes.tables}>
         <LocationAndBusiness data={locationData} title="Location" />
 

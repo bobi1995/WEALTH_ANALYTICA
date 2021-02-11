@@ -273,7 +273,7 @@ export default function CustomizedSteppers(props) {
               contains vital financial information, Analytics, Plan
               Characteristics, Industry and Location comparison and Heatmap
             </span>
-            PlanProfile
+            PlanDesign
           </StepLabel>
         </Step>
       </Stepper>
