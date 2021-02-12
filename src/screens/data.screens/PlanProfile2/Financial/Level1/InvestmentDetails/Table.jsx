@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
   headerStyle: {
     color: primaryBlue,
     fontFamily: "Baskervville",
+    textAlign: "center",
   },
 }));
 export default (props) => {
@@ -105,12 +106,9 @@ export default (props) => {
     })
   ) : (
     <div>
-      <h1
-        className="onepager-bottomtables-h1"
-        style={{ width: "70%", margin: "auto" }}
-      >
+      <Typography className={classes.headerStyle} variant="h3" component="h3">
         No Investment Details information for this plan
-      </h1>
+      </Typography>
     </div>
   );
 };

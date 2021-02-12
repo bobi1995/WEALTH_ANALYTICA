@@ -9,7 +9,7 @@ export default (props) => {
         style={{ display: "flex", justifyContent: "center" }}
       >
         {allYears.map((el) => (
-          <div>
+          <div key={el}>
             <input
               type="radio"
               id={`radio-${el}`}
