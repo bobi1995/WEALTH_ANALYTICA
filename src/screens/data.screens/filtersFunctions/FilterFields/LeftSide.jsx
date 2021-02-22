@@ -3,23 +3,9 @@ import NetAssets from "./LeftSide/NetAssets";
 import CashOutflow from "./LeftSide/CashOutflow";
 import Participants from "./LeftSide/Participants";
 import Contribution from "./LeftSide/Contributions";
-import {
-  Box,
-  useMediaQuery,
-  makeStyles,
-  createMuiTheme,
-} from "@material-ui/core/";
-const theme = createMuiTheme({
-  breakpoints: {
-    values: {
-      tablet: 640,
-      laptop: 1024,
-      desktop: 1280,
-    },
-  },
-});
+import { Box, makeStyles } from "@material-ui/core/";
 
-const styles = (theme) => ({
+const styles = () => ({
   root: {
     width: "100%",
     display: "flex",

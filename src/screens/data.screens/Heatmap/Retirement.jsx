@@ -7,7 +7,7 @@ import apiAddress from "../../../global/endpointAddress";
 import { lastYear } from "../../../global/Years";
 import axios from "axios";
 import Table from "./Retirement/Table";
-import CardMedia from "@material-ui/core/CardMedia";
+import AlerBox from "../../../components/alertBox";
 
 const useStyles = makeStyles({
   heading: {
@@ -142,6 +142,11 @@ const Retirement = (props) => {
           </Box>
         </Box>
       </Box>
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </Box>
   );
 };

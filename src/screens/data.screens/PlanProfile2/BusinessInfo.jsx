@@ -1,6 +1,6 @@
 import React from "react";
-import { Box, Typography, makeStyles } from "@material-ui/core";
-import commonFunctions from "../commonFunctions/common";
+import { Box, makeStyles, Link } from "@material-ui/core";
+import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import LocationAndBusiness from "./BusinessInfo/LocationAndBusiness";
 import Administrator from "../OnePagerFunctions/Mail/Administrator";
 import { primaryBlue } from "../../../global/Colors";
@@ -27,6 +27,11 @@ const useStyles = makeStyles({
   contactsContainer: { width: "70%" },
   adminContainer: {
     width: "30%",
+  },
+  linkedInBox: {
+    textAlign: "center",
+    marginTop: "3%",
+    fontSize: 20,
   },
 });
 
@@ -111,6 +116,13 @@ const BusinessInfo = (props) => {
               sorting: false,
             }}
           />
+          {/** LINKEDIN FRAME */}
+          <Box className={classes.linkedInBox}>
+            <LinkedInIcon fontSize="large" />
+            <Link href={props.data.LinkedInPage} target="_blank">
+              Visit {props.data.SponsorName} LinkedIn Profile
+            </Link>
+          </Box>
         </Box>
 
         <Administrator

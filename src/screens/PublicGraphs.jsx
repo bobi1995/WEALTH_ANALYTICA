@@ -6,7 +6,6 @@ import {
   Typography,
   Card,
   CardContent,
-  Grid,
 } from "@material-ui/core";
 import Legend from "./data.screens/Graphs/Legend";
 import GraphMap from "./data.screens/Graphs/PublicGraphMap";
@@ -75,6 +74,7 @@ const PublicGraphs = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [loader, setLoader] = useState(false);
 
+  console.log(industry);
   useEffect(() => {
     if (selectedState && industry) {
       setLoader(true);
@@ -96,7 +96,6 @@ const PublicGraphs = () => {
           setAlertMessage(
             "For some reason we could not find the desired results."
           );
-          window.location.reload();
         });
     }
   }, [selectedState, industry]);

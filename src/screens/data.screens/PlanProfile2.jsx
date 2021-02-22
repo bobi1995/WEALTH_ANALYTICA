@@ -71,6 +71,7 @@ const PlanProfile2 = (props) => {
   if (props.match) {
     url = `${apiAddress}/api/SmallCompanies/GetPlanProfile?&CompanyID=${props.match.params.CompanyID}&minYear=2015&maxYear=${lastYear}`;
   }
+  console.log(url);
   useEffect(() => {
     axios({
       method: "get",

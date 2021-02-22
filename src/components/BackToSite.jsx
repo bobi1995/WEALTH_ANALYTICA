@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles, Box, Link } from "@material-ui/core";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import "./Email/index.css";

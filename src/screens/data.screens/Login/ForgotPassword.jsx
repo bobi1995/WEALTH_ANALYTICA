@@ -12,6 +12,7 @@ import apiAddress from "../../../global/endpointAddress";
 
 const useStyles = makeStyles({
   buttonStyle: {
+    marginBottom: "3%",
     border: "none",
     fontSize: 10,
     color: "#CFD8E5",

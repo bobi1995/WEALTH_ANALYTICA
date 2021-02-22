@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import apiAddress from "../../global/endpointAddress";
 import { lastYear } from "../../global/Years";
-import { makeStyles, Box, Typography } from "@material-ui/core";
+import { makeStyles, Box } from "@material-ui/core";
 import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Section from "./Diagnostic/Sections";

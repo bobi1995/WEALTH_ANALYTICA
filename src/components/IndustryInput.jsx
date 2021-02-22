@@ -52,7 +52,7 @@ const StatesField = (props) => {
   const classes = useStyles();
   const onStateChange = (e, v) => {
     if (v) {
-      props.setIndustry(v.IndustryName);
+      props.setIndustry(v.BusinessCode);
     } else {
       props.setIndustry("");
     }

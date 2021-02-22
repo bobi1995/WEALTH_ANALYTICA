@@ -10,7 +10,6 @@ import apiAddress from "../../../global/endpointAddress";
 import { lastYear } from "../../../global/Years";
 import PlainLoader from "../../../components/plainCicularLoader";
 import Chart from "../Graphs/Chart";
-import IndustryCodes from "../../../global/businessCode";
 import { backgroundGrey } from "../../../global/Colors";
 const useStyles = makeStyles(() => ({
   gridStyle: {
@@ -57,12 +56,10 @@ const GraphField = () => {
   const GetData = useCallback(() => {
     if (state && industry) {
       setFlag(1);
-      const industryObject = IndustryCodes.find(
-        (el) => el.IndustryName === industry
-      );
+
       axios
         .get(
-          `${apiAddress}/api/Public/GetCompanyGraphs?businessCategory=${industryObject.BusinessCode}&minYear=2017&maxYear=${lastYear}&state=${state}`,
+          `${apiAddress}/api/Public/GetCompanyGraphs?businessCategory=${industry}&minYear=2017&maxYear=${lastYear}&state=${state}`,
           {
             headers: {
               Authorization: "Basic " + sessionStorage.getItem("Token"),

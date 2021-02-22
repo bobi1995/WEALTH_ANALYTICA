@@ -10,7 +10,6 @@ import Paper from "@material-ui/core/Paper";
 import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
 import { primaryBlue } from "../../../../global/Colors";
-import { lastYear } from "../../../../global/Years";
 
 const useStyles = makeStyles({
   container: {

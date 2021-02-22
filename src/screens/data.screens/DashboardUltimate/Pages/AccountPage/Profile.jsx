@@ -10,6 +10,7 @@ import {
   Divider,
   Button,
   LinearProgress,
+  Tooltip,
 } from "@material-ui/core";
 import axios from "axios";
 import apiAddress from "../../../../../global/endpointAddress";
@@ -49,14 +50,15 @@ const AccountProfile = (props) => {
     city: sessionStorage.getItem("Address"),
     country: "USA",
     company: sessionStorage.getItem("CompanyName"),
-    avatar: `data:image/png;base64,${sessionStorage.getItem("LogoData")}`,
+    avatar: sessionStorage.getItem("LogoData"),
     email: sessionStorage.getItem("Email"),
     phone: sessionStorage.getItem("CompanyPhone"),
   };
 
   const completeness = () => {
     const arr = Object.values(user);
-    return (arr.filter((el) => el !== null).length / 8) * 100;
+    console.log(arr);
+    return (arr.filter((el) => el !== "" && el !== "null").length / 8) * 100;
   };
 
   //CHOOSING PICTURE
@@ -126,7 +128,17 @@ const AccountProfile = (props) => {
               {user.company}
             </Typography>
           </div>
-          <Avatar className={classes.avatar} src={user.avatar} />
+          <Tooltip
+            title="Upload your logo"
+            open={user.avatar !== "null" && user.avatar !== "" ? false : true}
+            arrow
+            placement="right-end"
+          >
+            <Avatar
+              className={classes.avatar}
+              src={`data:image/png;base64,${user.avatar}`}
+            />
+          </Tooltip>
         </div>
         <div className={classes.progress}>
           <Typography variant="body1">

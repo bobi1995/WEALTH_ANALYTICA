@@ -72,11 +72,6 @@ const HealthCare = (props) => {
       },
     ],
   };
-  console.log(
-    DataExtract.lastYearBrokerFees(database)[0],
-    DataExtract.industryBrokerFees(database)[0],
-    DataExtract.cityBrokerFees(database)[0]
-  );
 
   return (
     <Box>

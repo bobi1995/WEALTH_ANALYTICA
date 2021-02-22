@@ -13,7 +13,6 @@ import apiAddress from "../../global/endpointAddress";
 import AlerBox from "../../components/alertBox";
 import Loader from "../../components/plainCicularLoader";
 import { codes as serviceCodes } from "../../global/ServiceCodes";
-import IndustryCodes from "../../global/businessCode";
 import numeral from "numeral";
 
 const styles = (theme) => ({
@@ -221,16 +220,16 @@ const Benchmark = (props) => {
         cat.industry = 0;
 
         if (cat.id === "9999") {
-          cat.industry = industryRes.ServicesByYear[0].Total;
+          return (cat.industry = industryRes.ServicesByYear[0].Total);
         } else if (cat.id === "99991") {
-          cat.industry = industryRes.ServicesByYear[0].CostAvgPart;
+          return (cat.industry = industryRes.ServicesByYear[0].CostAvgPart);
         } else if (cat.id === "99992") {
-          cat.industry = industryRes.ServicesByYear[0].CostAvgAsseets;
+          return (cat.industry = industryRes.ServicesByYear[0].CostAvgAsseets);
         } else
           return serviceCodes.map((service) => {
             if (service.parent !== true && service.Service3 === cat.Service3) {
               if (service.industry) {
-                cat.industry = cat.industry + service.industry;
+                return (cat.industry = cat.industry + service.industry);
               }
               return null;
             } else return null;
@@ -242,11 +241,10 @@ const Benchmark = (props) => {
   const applyFilter = () => {
     setFilterSearch(true);
     setIndustryFlag(true);
-    let industryObject;
     let url;
+    console.log(industry);
     if (industry) {
-      industryObject = IndustryCodes.find((el) => el.IndustryName === industry);
-      url = `${apiAddress}/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=${industryObject.BusinessCode}&state=${state}`;
+      url = `${apiAddress}/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=${industry}&state=${state}`;
     } else
       url = `${apiAddress}/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=&state=${state}`;
 

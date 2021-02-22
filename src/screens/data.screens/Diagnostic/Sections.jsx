@@ -5,9 +5,8 @@ import { observations } from "../../../global/diagnosticObservations";
 import numeral from "numeral";
 import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
-import { backgroundGrey } from "../../../global/Colors";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   tableBox: {
     justifyContent: "center",
     display: "flex",

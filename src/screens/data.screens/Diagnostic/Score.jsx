@@ -40,9 +40,8 @@ const EmailSection = ({ data }) => {
   ];
 
   useEffect(() => {
-    console.log("here");
     var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
+    new Chart(ctx, {
       type: "horizontalBar",
       data: {
         labels: ["Overall rating", "Touches"],

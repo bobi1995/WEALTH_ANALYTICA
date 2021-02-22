@@ -16,6 +16,7 @@ import {
   DialogContent,
   DialogTitle,
   DialogContentText,
+  Tooltip,
 } from "@material-ui/core";
 import axios from "axios";
 import apiAddress from "../../../../../global/endpointAddress";
@@ -151,14 +152,21 @@ const AccountDetails = (props) => {
             </div>
             <div className={classes.fieldsStyle}>
               <Grid>
-                <TextField
-                  label="Address"
-                  margin="dense"
-                  name="address"
-                  onChange={handleChange}
-                  value={values.address}
-                  variant="outlined"
-                />
+                <Tooltip
+                  title="Enter your Address"
+                  open={sessionStorage.getItem("Address") ? false : true}
+                  arrow
+                  placement="left-start"
+                >
+                  <TextField
+                    label="Address"
+                    margin="dense"
+                    name="address"
+                    onChange={handleChange}
+                    value={values.address}
+                    variant="outlined"
+                  />
+                </Tooltip>
               </Grid>
               <Grid>
                 <TextField
@@ -175,25 +183,39 @@ const AccountDetails = (props) => {
             </div>
             <div className={classes.fieldsStyle}>
               <Grid>
-                <TextField
-                  label="Phone Number"
-                  margin="dense"
-                  name="companyphone"
-                  onChange={handleChange}
-                  value={values.companyphone}
-                  variant="outlined"
-                />
+                <Tooltip
+                  title="Enter your Phone"
+                  open={sessionStorage.getItem("CompanyPhone") ? false : true}
+                  arrow
+                  placement="left-start"
+                >
+                  <TextField
+                    label="Phone Number"
+                    margin="dense"
+                    name="companyphone"
+                    onChange={handleChange}
+                    value={values.companyphone}
+                    variant="outlined"
+                  />
+                </Tooltip>
               </Grid>
               <Grid>
-                <TextField
-                  label="Company"
-                  margin="dense"
-                  name="companyname"
-                  onChange={handleChange}
-                  required
-                  value={values.companyname}
-                  variant="outlined"
-                />
+                <Tooltip
+                  title="Enter your Company"
+                  open={sessionStorage.getItem("CompanyName") ? false : true}
+                  arrow
+                  placement="right-end"
+                >
+                  <TextField
+                    label="Company"
+                    margin="dense"
+                    name="companyname"
+                    onChange={handleChange}
+                    required
+                    value={values.companyname}
+                    variant="outlined"
+                  />
+                </Tooltip>
               </Grid>
             </div>
           </Grid>

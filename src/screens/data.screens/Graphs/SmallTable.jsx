@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Box,
   makeStyles,
@@ -29,7 +29,6 @@ const useStyles = makeStyles({
     textAlign: "center",
     color: primaryBlue,
     fontFamily: "Slabo,serif",
-    textAlign: "center",
     fontSize: 20,
   },
 });

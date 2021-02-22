@@ -139,7 +139,6 @@ const OnePager2 = (props) => {
     };
   }
 
-  console.log(results.Statistics);
   return (
     <Box>
       <Datanavbar />
@@ -186,7 +185,6 @@ const OnePager2 = (props) => {
                   <TableBody>
                     <TableRow>
                       {totalAssetsReduced.map((el, ind) => {
-                        console.log(el);
                         return (
                           <TableCell style={{ textAlign: "center" }} key={ind}>
                             {`$${numeral(el).format("0,00")}`}

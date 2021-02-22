@@ -1,13 +1,39 @@
 import React, { useRef, useState } from "react";
-import { Box } from "@material-ui/core";
+import { Box, Button, makeStyles } from "@material-ui/core";
 import "./data.screens/SinginForm/signin.scss";
 import "@material-ui/icons/Facebook";
 import axios from "axios";
 import apiAddress from "../global/endpointAddress";
 import history from "../history/history";
 import AlertBox from "../components/alertBox";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import ForgotPassword from "./data.screens/Login/ForgotPassword";
+const useStyles = makeStyles({
+  iconBtnStyle: {
+    color: "#378fc3",
+    fontSize: 14,
+    textDecoration: "none",
+    border: 0,
+    borderRadius: "50%",
+    boxShadow: "0 3px 5px 2px rgba(22, 56, 76, .3)",
+    display: "inline-flex",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "0 5px",
+    height: "40px",
 
+    // border: 1px solid #dddddd;
+    // border-radius: 50%;
+    // display: inline-flex;
+    // justify-content: center;
+    // align-items: center;
+    // margin: 0 5px;
+    // height: 40px;
+    // width: 40px;
+  },
+});
 const SigninForm = () => {
+  const classes = useStyles();
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -15,7 +41,6 @@ const SigninForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isBusiness, setIsBusiness] = useState(false);
@@ -33,7 +58,6 @@ const SigninForm = () => {
   };
 
   const signInHandle = (e) => {
-    console.log(signInPassword, signInEmail);
     e.preventDefault();
     setLoading(true);
 
@@ -71,9 +95,8 @@ const SigninForm = () => {
         }
       })
       .catch((e) => {
-        console.log(e);
-        setAlertMessage("Wrong username or password");
         setLoading(false);
+        setAlertMessage("Wrong username or password");
       });
   };
 
@@ -87,13 +110,30 @@ const SigninForm = () => {
       email: email,
       password: password,
       IsBusinessAccount: isBusiness,
-      CompanyPhone: phone,
+      CompanyPhone: "",
       companyname: "",
       address: "",
       LogoFileName: "",
       LogoData: "",
     };
-    console.log(data);
+
+    console.log(!firstName);
+    if (!firstName) {
+      setAlertMessage("Please fill your First Name");
+      setLoading(false);
+      return 0;
+    }
+    if (!lastName) {
+      setAlertMessage("Please fill your Last Name");
+      setLoading(false);
+      return 0;
+    }
+
+    if (!email) {
+      setAlertMessage("Please fill your Email");
+      setLoading(false);
+      return 0;
+    }
 
     if (password !== confirmPassword) {
       setAlertMessage("Passwords don't match");
@@ -107,6 +147,7 @@ const SigninForm = () => {
         .then((res) => {
           if (res.status === 200) {
             setLoading(false);
+
             setAlertMessage(
               "You have sucessfully registered! You can login with your credentials."
             );
@@ -114,6 +155,8 @@ const SigninForm = () => {
           }
         })
         .catch((e) => {
+          setLoading(false);
+
           setAlertMessage(e.response.data.Message);
         });
     }
@@ -136,15 +179,36 @@ const SigninForm = () => {
               Create Account
             </h1>
             <div className="social-container">
-              <a href="#" className="aSignIn social">
+              <Button
+                onClick={() =>
+                  setAlertMessage(
+                    "Soon you will be able to make registration with your Facebook, Google or LinkedIn account. Now you can register with our registartion form down here."
+                  )
+                }
+                className={classes.iconBtnStyle}
+              >
                 <i className="fa fa-facebook"></i>
-              </a>
-              <a href="#" className="aSignIn social">
+              </Button>
+              <Button
+                className={classes.iconBtnStyle}
+                onClick={() =>
+                  setAlertMessage(
+                    "Soon you will be able to make registration with your Facebook, Google or LinkedIn account. Now you can register with our registartion form down here."
+                  )
+                }
+              >
                 <i className="fa fa-google-plus"></i>
-              </a>
-              <a href="#" className="aSignIn social">
+              </Button>
+              <Button
+                className={classes.iconBtnStyle}
+                onClick={() =>
+                  setAlertMessage(
+                    "Soon you will be able to make registration with your Facebook, Google or LinkedIn account. Now you can register with our registartion form down here."
+                  )
+                }
+              >
                 <i className="fa fa-linkedin"></i>
-              </a>
+              </Button>
             </div>
             <span className="spanSignIn">
               or use your email for registration
@@ -232,31 +296,54 @@ const SigninForm = () => {
                 style={{ width: "49%" }}
               />
             </div>
-
-            <button className="buttonSignIn" onClick={signUpHandle}>
-              Sign Up
-            </button>
+            {loading ? (
+              <CircularProgress
+                size={50}
+                style={{ textAlign: "center", marginTop: "5%" }}
+              />
+            ) : (
+              <button className="buttonSignIn" onClick={signUpHandle}>
+                Sign Up
+              </button>
+            )}
           </form>
         </div>
         <div className="form-container sign-in-container">
           <form className="formSignIn" action="#">
-            <h1
-              className="h1SingIn"
-              className="h1SingIn"
-              style={{ color: "#378fc3" }}
-            >
+            <h1 className="h1SingIn" style={{ color: "#378fc3" }}>
               Sign in
             </h1>
             <div className="social-container">
-              <a href="#" className="aSignIn social">
+              <Button
+                className={classes.iconBtnStyle}
+                onClick={() =>
+                  setAlertMessage(
+                    "Soon you will be able to make login with your Facebook, Google or LinkedIn account. Now you can login with your current registered credentials"
+                  )
+                }
+              >
                 <i className="fa fa-facebook"></i>
-              </a>
-              <a href="#" className="aSignIn social">
+              </Button>
+              <Button
+                className={classes.iconBtnStyle}
+                onClick={() =>
+                  setAlertMessage(
+                    "Soon you will be able to make login with your Facebook, Google or LinkedIn account. Now you can login with your current registered credentials"
+                  )
+                }
+              >
                 <i className="fa fa-google-plus"></i>
-              </a>
-              <a href="#" className="aSignIn social">
+              </Button>
+              <Button
+                className={classes.iconBtnStyle}
+                onClick={() =>
+                  setAlertMessage(
+                    "Soon you will be able to make login with your Facebook, Google or LinkedIn account. Now you can login with your current registered credentials"
+                  )
+                }
+              >
                 <i className="fa fa-linkedin"></i>
-              </a>
+              </Button>
             </div>
             <span className="spanSignIn">or use your account</span>
             <input
@@ -272,10 +359,17 @@ const SigninForm = () => {
               placeholder="Password"
               onChange={(text) => setSignInPassword(text.target.value)}
             />
-            <a href="#">Forgot your password?</a>
-            <button className="buttonSignIn" onClick={signInHandle}>
-              Sign In
-            </button>
+            <ForgotPassword />
+            {loading ? (
+              <CircularProgress
+                size={50}
+                style={{ textAlign: "center", marginTop: "5%" }}
+              />
+            ) : (
+              <button className="buttonSignIn" onClick={signInHandle}>
+                Sign In
+              </button>
+            )}
           </form>
         </div>
         <div className="overlay-container">
@@ -316,6 +410,7 @@ const SigninForm = () => {
           <a
             className="aSignIn"
             target="_blank"
+            rel="noopener noreferrer"
             href="https://wealthanalytica.com/"
           >
             here
