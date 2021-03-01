@@ -104,7 +104,7 @@ const PublicGraphs = () => {
     <Box className={classes.container}>
       <section className="clientDash-img">
         <h1 className="onePager-header1" style={{ fontSize: 45, padding: 0 }}>
-          Overview Graphs
+          United States Pension Plan
         </h1>
       </section>
       <Box>
@@ -165,7 +165,7 @@ const PublicGraphs = () => {
                       >
                         <SmallTable
                           data={data.TotalPlanExpenses}
-                          title="Total Plan Expenses"
+                          title="Average Plan Expenses"
                           type="dollar"
                         />
                         <SmallTable

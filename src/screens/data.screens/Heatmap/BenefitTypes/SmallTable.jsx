@@ -61,11 +61,18 @@ const SmallTable = ({ descriptionData, usedData, industryData }) => {
                 Characteristic
               </TableCell>
               {usedData.map((row, ind) => (
-                <TableCell key={row.year + ind} className={classes.tableHeader}>
+                <TableCell
+                  key={row.year + ind}
+                  className={classes.tableHeader}
+                  style={{ textAlign: "center" }}
+                >
                   {row.year}
                 </TableCell>
               ))}
-              <TableCell className={classes.tableHeader}>
+              <TableCell
+                className={classes.tableHeader}
+                style={{ textAlign: "center" }}
+              >
                 Industry in {industryData.year}
               </TableCell>
             </TableRow>
@@ -78,17 +85,23 @@ const SmallTable = ({ descriptionData, usedData, industryData }) => {
 
                   {usedData.map((el, ind) =>
                     el.benefit.includes(code.code) ? (
-                      <TableCell key={el.year + code.code}>
+                      <TableCell
+                        key={el.year + code.code}
+                        style={{ textAlign: "center" }}
+                      >
                         <CheckIcon style={{ color: "green" }} />
                       </TableCell>
                     ) : (
-                      <TableCell key={el.year + code.code}>
+                      <TableCell
+                        key={el.year + code.code}
+                        style={{ textAlign: "center" }}
+                      >
                         <ClearIcon style={{ color: "red" }} />
                       </TableCell>
                     )
                   )}
                   {industryBenefit.includes(code.code) ? (
-                    <TableCell>
+                    <TableCell style={{ textAlign: "center" }}>
                       {industryAll.map((el) =>
                         el.BenefitType === code.code
                           ? `${numeral(el.Percentage).format("0,0.00")}%`
@@ -96,7 +109,7 @@ const SmallTable = ({ descriptionData, usedData, industryData }) => {
                       )}
                     </TableCell>
                   ) : (
-                    <TableCell>0%</TableCell>
+                    <TableCell style={{ textAlign: "center" }}>0%</TableCell>
                   )}
                 </TableRow>
               );

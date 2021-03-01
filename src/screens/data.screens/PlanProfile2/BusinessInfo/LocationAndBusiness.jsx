@@ -27,7 +27,9 @@ const Location = (props) => {
             title: "Information",
             field: "Info",
             render: (rowData) =>
-              rowData.Info && commonFunctions.formatString(rowData.Info),
+              rowData.Field === "State"
+                ? rowData.Info
+                : rowData.Info && commonFunctions.formatString(rowData.Info),
           },
         ]}
         data={props.data}

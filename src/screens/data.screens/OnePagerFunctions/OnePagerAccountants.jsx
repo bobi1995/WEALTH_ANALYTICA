@@ -1,6 +1,19 @@
 import React from "react";
-import { backgroundGrey } from "../../../global/Colors";
+import { backgroundGrey, primaryBlue } from "../../../global/Colors";
+import { makeStyles, Typography } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  heading: {
+    color: primaryBlue,
+    fontFamily: "Slabo,serif",
+    textAlign: "center",
+    fontSize: 35,
+    marginTop: "3%",
+  },
+});
+
 const OnePagerAccountants = (props) => {
+  const classes = useStyles();
   return (
     <div
       className="onePager-bottom-div"
@@ -15,7 +28,9 @@ const OnePagerAccountants = (props) => {
             className="plan-profile-chartsDiv"
             style={{ width: "100%", padding: "3%" }}
           >
-            <h1 className="onepager-bottomtables-h1">Accountant Firm Names</h1>
+            <Typography className={classes.heading}>
+              Accountant Firm Names
+            </Typography>
             <table className="table table-striped table-bordered table-sm table-hover">
               <thead className="thead-dark">
                 <tr>

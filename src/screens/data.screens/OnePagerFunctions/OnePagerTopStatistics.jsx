@@ -272,7 +272,7 @@ export default (props) => {
             style={{ marginTop: "3%", marginRight: "3%" }}
           >
             <table className="table table-striped table-bordered table-sm table-hover">
-              <thead className="thead-dark">
+              <thead className="thead-dark" style={{ textAlign: "center" }}>
                 <tr>
                   <th></th>
 
@@ -282,7 +282,7 @@ export default (props) => {
                 </tr>
               </thead>
               <tbody className="table-hover">
-                <tr>
+                <tr style={{ textAlign: "center" }}>
                   <th className="thead-dark">Total Assets</th>
                   {DataExtract.totalAssetsExtract(props.data).map(
                     (totalAsset, index) => {
@@ -296,7 +296,7 @@ export default (props) => {
                     }
                   )}
                 </tr>
-                <tr>
+                <tr style={{ textAlign: "center" }}>
                   <th className="thead-dark">Net Assets</th>
                   {DataExtract.netAssetsExtract(props.data).map(
                     (netAsset, index) => {
@@ -331,7 +331,7 @@ export default (props) => {
           >
             <table className="table table-striped table-bordered table-sm table-hover">
               <thead className="thead-dark">
-                <tr>
+                <tr style={{ textAlign: "center" }}>
                   <th></th>
 
                   {DataExtract.yearsExtract(props.data).map((element) => (
@@ -340,7 +340,7 @@ export default (props) => {
                 </tr>
               </thead>
               <tbody className="table-hover">
-                <tr>
+                <tr style={{ textAlign: "center" }}>
                   <th className="thead-dark">Total Income</th>
                   {DataExtract.totalIncomeExtract(props.data).map(
                     (totalIncome, index) => {
@@ -354,7 +354,7 @@ export default (props) => {
                     }
                   )}
                 </tr>
-                <tr>
+                <tr style={{ textAlign: "center" }}>
                   <th className="thead-dark">Total Expense</th>
                   {DataExtract.totalExpensesExtract(props.data).map(
                     (totalExpense, index) => {
@@ -368,7 +368,7 @@ export default (props) => {
                     }
                   )}
                 </tr>
-                <tr>
+                <tr style={{ textAlign: "center" }}>
                   <th className="thead-dark">Net Income</th>
                   {DataExtract.netIncomeExtract(props.data).map(
                     (netIncome, index) => {
@@ -422,7 +422,7 @@ export default (props) => {
       >
         <table className="table table-striped table-bordered table-sm table-hover">
           <thead className="thead-dark">
-            <tr>
+            <tr style={{ textAlign: "center" }}>
               <th></th>
 
               {DataExtract.yearsExtract(props.data).map((element) => (
@@ -431,7 +431,7 @@ export default (props) => {
             </tr>
           </thead>
           <tbody className="table-hover">
-            <tr>
+            <tr style={{ textAlign: "center" }}>
               <th className="thead-dark">Participants</th>
               {DataExtract.totalParticipantsExtract(props.data).map(
                 (participant, index) => (
@@ -439,7 +439,7 @@ export default (props) => {
                 )
               )}
             </tr>
-            <tr>
+            <tr style={{ textAlign: "center" }}>
               <th className="thead-dark">Participants Loans</th>
               {DataExtract.participantLoansExtract(props.data).map(
                 (partLoans, index) => {
@@ -453,7 +453,7 @@ export default (props) => {
                 }
               )}
             </tr>
-            <tr>
+            <tr style={{ textAlign: "center" }}>
               <th className="thead-dark">Contribution Employer</th>
               {DataExtract.contributionEmployerExtract(props.data).map(
                 (contriEmp, index) => {
@@ -467,7 +467,7 @@ export default (props) => {
                 }
               )}
             </tr>
-            <tr>
+            <tr style={{ textAlign: "center" }}>
               <th className="thead-dark">Contribution Participants</th>
               {DataExtract.contributionParticipantExtract(props.data).map(
                 (contribPart, index) => {
@@ -481,7 +481,7 @@ export default (props) => {
                 }
               )}
             </tr>
-            <tr>
+            <tr style={{ textAlign: "center" }}>
               <th className="thead-dark">Distribution</th>
               {DataExtract.totalDistributionsExtract(props.data).map(
                 (distribution, index) => {

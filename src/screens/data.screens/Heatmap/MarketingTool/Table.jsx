@@ -97,9 +97,15 @@ const TouchesTable = ({ data }) => {
                     return (
                       <TableCell key={j}>
                         {cell_content === 0 ? (
-                          <CheckIcon style={{ color: "green" }} />
+                          <Typography
+                            style={{ color: "green", fontWeight: "bold" }}
+                          >
+                            Relevant to the Plan Design
+                          </Typography>
                         ) : (
-                          <ClearIcon style={{ color: "red" }} />
+                          <Typography style={{ color: "red" }}>
+                            Less relevant to th Plan Design
+                          </Typography>
                         )}
                       </TableCell>
                     );
@@ -121,11 +127,13 @@ const TouchesTable = ({ data }) => {
               <TableHead>
                 <TableRow>
                   <TableCell className={classes.tableHeader}>
-                    All Fields
+                    Total Opportunities
                   </TableCell>
-                  <TableCell className={classes.tableHeader}>Touches</TableCell>
                   <TableCell className={classes.tableHeader}>
-                    No Touch
+                    Relevant
+                  </TableCell>
+                  <TableCell className={classes.tableHeader}>
+                    Less Relevant
                   </TableCell>
                 </TableRow>
               </TableHead>

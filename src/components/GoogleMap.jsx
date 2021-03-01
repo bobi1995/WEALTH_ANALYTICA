@@ -9,7 +9,7 @@ import apiAddress from "../global/endpointAddress";
 const OnePagerMap = (props) => {
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
-
+  console.log(props);
   useEffect(() => {
     if (
       props.location &&

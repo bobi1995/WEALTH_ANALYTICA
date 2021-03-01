@@ -37,7 +37,7 @@ const useStyles = makeStyles({
 
 const BusinessInfo = (props) => {
   const classes = useStyles();
-
+  console.log(props.data);
   const locationData = [
     {
       Field: "State",

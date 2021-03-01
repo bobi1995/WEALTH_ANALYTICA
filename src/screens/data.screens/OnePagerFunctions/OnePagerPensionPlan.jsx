@@ -4,8 +4,21 @@ import numeral from "numeral";
 import DataExtract from "./OnePagerDataExtract";
 import common from "../commonFunctions/common";
 import { allYears } from "../../../global/Years";
-import { backgroundGrey } from "../../../global/Colors";
+import { backgroundGrey, primaryBlue } from "../../../global/Colors";
+import { makeStyles, Typography } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  heading: {
+    color: primaryBlue,
+    fontFamily: "Slabo,serif",
+    textAlign: "center",
+    fontSize: 35,
+    marginTop: "3%",
+  },
+});
+
 const OnePagerPensionPlan = (props) => {
+  const classes = useStyles();
   const uniqueYears = allYears;
 
   const checkClicked = (e) => {
@@ -36,7 +49,7 @@ const OnePagerPensionPlan = (props) => {
             className="plan-profile-chartsDiv"
             style={{ width: "100%", padding: "3%" }}
           >
-            <h1 className="onepager-bottomtables-h1">Types summary</h1>
+            <Typography className={classes.heading}>Types summary </Typography>
             <table className="table table-striped table-bordered table-sm table-hover">
               <thead className="thead-dark">
                 <tr>

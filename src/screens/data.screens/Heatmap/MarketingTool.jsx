@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, makeStyles } from "@material-ui/core";
 import NoDataComponent from "./Components/NoDataComponent";
-import TouchesTable from "./Touches/Table";
+import TouchesTable from "./MarketingTool/Table";
 
 const useStyles = makeStyles({
   heading: {
@@ -30,7 +30,7 @@ const Touches = (props) => {
     <Box>
       <Box className={classes.headingContainer}>
         <Typography component="h4" variant="h4" className={classes.heading}>
-          Touches
+          Marketing Tool
         </Typography>
         <Box className={classes.tablesContainer}>
           <TouchesTable data={data} />

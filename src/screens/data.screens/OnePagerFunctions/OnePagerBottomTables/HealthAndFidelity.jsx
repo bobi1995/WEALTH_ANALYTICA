@@ -4,8 +4,21 @@ import numeral from "numeral";
 import common from "../../commonFunctions/common";
 import { Bar } from "react-chartjs-2";
 import dataReducer from "../../../../components/dataReducer";
-import { backgroundGrey } from "../../../../global/Colors";
+import { backgroundGrey, primaryBlue } from "../../../../global/Colors";
+import { makeStyles, Typography } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  heading: {
+    color: primaryBlue,
+    fontFamily: "Slabo,serif",
+    textAlign: "center",
+    fontSize: 35,
+    marginTop: "3%",
+  },
+});
+
 export default (props) => {
+  const classes = useStyles();
   let brokerFees = {};
   let bondAmt = {};
   if (props.data) {
@@ -57,7 +70,9 @@ export default (props) => {
           className="plan-profile-chartsDiv"
           style={{ width: "100%", padding: "3%" }}
         >
-          <h1 className="onepager-bottomtables-h1">Healthcare Insurance</h1>
+          <Typography className={classes.heading}>
+            Healthcare Insurance
+          </Typography>
           <Bar
             data={brokerFees}
             options={dataReducer.optionReturn(
@@ -123,7 +138,8 @@ export default (props) => {
           className="plan-profile-chartsDiv"
           style={{ width: "100%", padding: "3%" }}
         >
-          <h1 className="onepager-bottomtables-h1">Fidelity Bond</h1>
+          {" "}
+          <Typography className={classes.heading}>Fidelity Bond</Typography>
           <Bar
             data={bondAmt}
             options={dataReducer.optionReturn(

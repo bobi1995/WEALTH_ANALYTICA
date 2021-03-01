@@ -20,7 +20,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Accountant from "./Heatmap/Accountant";
 import Compliance from "./Heatmap/Compliance";
 import BenefitTypes from "./Heatmap/BenefitTypes";
-import Touches from "./Heatmap/Touches";
+import MarketingTool from "./Heatmap/MarketingTool";
 import {
   UtilizationExtract,
   ComplianceExtract,
@@ -93,7 +93,7 @@ const Heatmap = (props) => {
             <Tab label="Benefit Types" value="4" icon={<ExtensionIcon />} />
             <Tab label="Retirement" value="6" icon={<HourglassFullIcon />} />
 
-            <Tab label="Touches" value="5" icon={<TouchAppIcon />} />
+            <Tab label="Marketing Tool" value="5" icon={<TouchAppIcon />} />
           </TabList>
         </AppBar>
         {results ? (
@@ -114,7 +114,7 @@ const Heatmap = (props) => {
               <Retirement companyID={props.companyID} />
             </TabPanel>
             <TabPanel value="5">
-              <Touches data={TouchesExtract(results.CompanyData)} />
+              <MarketingTool data={TouchesExtract(results.CompanyData)} />
             </TabPanel>
           </Box>
         ) : err ? (

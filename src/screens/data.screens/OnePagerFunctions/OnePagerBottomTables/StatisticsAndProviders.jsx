@@ -4,9 +4,21 @@ import numeral from "numeral";
 import common from "../../commonFunctions/common";
 import { Bar } from "react-chartjs-2";
 import dataReducer from "../../../../components/dataReducer";
-import { backgroundGrey } from "../../../../global/Colors";
+import { backgroundGrey, primaryBlue } from "../../../../global/Colors";
+import { makeStyles, Typography } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  heading: {
+    color: primaryBlue,
+    fontFamily: "Slabo,serif",
+    textAlign: "center",
+    fontSize: 35,
+    marginTop: "3%",
+  },
+});
 
 export default (props) => {
+  const classes = useStyles();
   let auhmc = {};
   let eligibleProviders = {};
   if (props.data) {
@@ -56,7 +68,7 @@ export default (props) => {
           className="plan-profile-chartsDiv"
           style={{ width: "100%", padding: "3%" }}
         >
-          <h1 className="onepager-bottomtables-h1">Statistics</h1>
+          <Typography className={classes.heading}>Statistics</Typography>
           <Bar
             data={auhmc}
             options={dataReducer.optionReturn(
@@ -159,7 +171,7 @@ export default (props) => {
           className="plan-profile-chartsDiv"
           style={{ width: "100%", padding: "3%" }}
         >
-          <h1 className="onepager-bottomtables-h1">Service Providers</h1>
+          <Typography className={classes.heading}>Service Providers</Typography>
           <Bar
             data={eligibleProviders}
             options={dataReducer.optionReturn(
