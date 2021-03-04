@@ -15,6 +15,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-around",
     marginTop: "3%",
+    marginBottom: "3%",
   },
   table: {
     width: "40%",

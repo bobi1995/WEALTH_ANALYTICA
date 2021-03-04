@@ -257,11 +257,17 @@ export default function CustomizedSteppers(props) {
         {/******PLAN PROFILE */}
         <Step
           disabled={false}
-          onClick={() =>
-            setAlertMessage(
-              "To open the Plan Profile you would need first to select the desired Plan/Company. It could happen from already Bookmarked result or directly from Filter table with results. Also you can open the Plan Profile from already loaded One Pager."
-            )
-          }
+          onClick={() => {
+            const parts = window.location.href.split("/");
+            if (parts[parts.length - 2] === "onepager") {
+              history.push({
+                pathname: `/planprofile/${parts[parts.length - 1]}`,
+              });
+            } else
+              return setAlertMessage(
+                "To open the Plan Profile you would need first to select the desired Plan/Company. It could happen from already Bookmarked result or directly from Filter table with results. Also you can open the Plan Profile from already loaded One Pager."
+              );
+          }}
         >
           <StepLabel
             style={{ cursor: "pointer" }}

@@ -30,11 +30,12 @@ const useStyles = makeStyles({
   mapContainer: {
     textAlign: "center",
     marginTop: "1%",
+    width: "50%",
   },
   industryContainer: {
     marginTop: "5%",
     marginBottom: "5%",
-    width: "100%",
+    width: "50%",
   },
   industryField: {
     margin: "0 auto",

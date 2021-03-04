@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     justifyContent: "space-around",
   },
   table: {
-    width: "40%",
+    width: "55%",
     backgroundColor: "#E3F2FD",
     maxHeight: 440,
     border: `1px solid ${primaryBlue}`,
@@ -59,6 +59,7 @@ const ComplianceTable = ({ data }) => {
   const classes = useStyles();
   let rowCount = Object.keys(data[0].compliance).length;
   let counter = 0;
+
   //COUNT FAILURES (0 - OK, 1 - FAIL)
   data.map((el) =>
     el.business || el.year !== lastYear
@@ -112,6 +113,12 @@ const ComplianceTable = ({ data }) => {
                   </TableCell>
                   {data.map((el, j) => {
                     let cell_content = el.compliance[current_compliance_key];
+
+                    //last 3 chars of the property name - if it is Ind or Amt (for non-industry values)
+                    const last3chars = current_compliance_key.substring(
+                      current_compliance_key.length - 3
+                    );
+
                     return (
                       <TableCell key={j}>
                         {el.business ? (
@@ -122,10 +129,16 @@ const ComplianceTable = ({ data }) => {
                           ) : (
                             `${cell_content}% Industry is in Compliance`
                           )
-                        ) : cell_content === 0 ? (
-                          <CheckIcon style={{ color: "green" }} />
+                        ) : last3chars === "Ind" ? (
+                          cell_content === 0 ? (
+                            <CheckIcon style={{ color: "green" }} />
+                          ) : cell_content === null ? (
+                            "N/A"
+                          ) : (
+                            <ClearIcon style={{ color: "red" }} />
+                          )
                         ) : (
-                          <ClearIcon style={{ color: "red" }} />
+                          `$${numeral(cell_content).format("0,0")}`
                         )}
                       </TableCell>
                     );

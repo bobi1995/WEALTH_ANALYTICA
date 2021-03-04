@@ -5,8 +5,19 @@ import DataExtract from "./PlanProfileDataExtract";
 import { allYears } from "../../../global/Years";
 import numeral from "numeral";
 import PensionCharac from "./Plans/PensionCharac";
+import { Typography, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  heading: {
+    color: " #388fc2",
+    fontFamily: "Slabo,serif",
+    textAlign: "center",
+    marginBottom: "1%",
+  },
+});
 
 const Plans = (props) => {
+  const classes = useStyles();
   const uniqueYears = allYears;
 
   const checkClicked = (e) => {
@@ -42,20 +53,25 @@ const Plans = (props) => {
                 className="plan-profile-chartsDiv"
               >
                 <div className="plan-table-section-Pension">
-                  <h1 className="onepager-bottomtables-h1">
+                  <Typography
+                    component="h4"
+                    variant="h4"
+                    className={classes.heading}
+                  >
                     {element.PlanName &&
                       commonFunctions.formatString(element.PlanName)}
-                  </h1>
+                  </Typography>
+
                   <table className="table table-striped table-bordered table-sm table-hover">
                     <thead className="thead-dark">
-                      <tr>
+                      <tr style={{ textAlign: "center" }}>
                         <th>Type</th>
                         <th data-html2canvas-ignore>More</th>
                         <th>Statistics</th>
                       </tr>
                     </thead>
                     <tbody className="table-hover">
-                      <tr>
+                      <tr style={{ textAlign: "center" }}>
                         <td className="align-middle">
                           {element.Type &&
                             commonFunctions.splitCapitalLetterString(

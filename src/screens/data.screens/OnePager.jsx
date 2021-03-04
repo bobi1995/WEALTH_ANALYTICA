@@ -172,7 +172,6 @@ const OnePager = (props) => {
         <Link
           disabled={available ? false : true}
           href={`/planprofile/${props.match.params.CompanyID}`}
-          target="_blank"
           className={classes.contactButton}
         >
           <ArrowForwardIcon /> PLAN DESIGN

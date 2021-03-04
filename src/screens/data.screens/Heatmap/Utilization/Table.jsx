@@ -90,7 +90,9 @@ const UtilizationTable = ({ setGraphs, data }) => {
                   data[data.length - 1].utilization.ActiveParticipantsPercent,
                   row.utilization.ActiveParticipantsPercent
                 )}
-                {row.utilization.ActiveParticipantsPercent}%
+                {row.utilization.ActiveParticipantsPercent !== null
+                  ? `${row.utilization.ActiveParticipantsPercent}%`
+                  : "N/A"}
               </TableCell>
             ))}
           </TableRow>
@@ -122,7 +124,9 @@ const UtilizationTable = ({ setGraphs, data }) => {
                   data[data.length - 1].utilization.SeparatedVestedParticipants,
                   row.utilization.SeparatedVestedParticipants
                 )}
-                {row.utilization.SeparatedVestedParticipants}
+                {row.utilization.SeparatedVestedParticipants !== null
+                  ? `${row.utilization.SeparatedVestedParticipants}`
+                  : "N/A"}
               </TableCell>
             ))}
           </TableRow>
@@ -156,9 +160,11 @@ const UtilizationTable = ({ setGraphs, data }) => {
                     .ParticipantsWithBenefitAccount,
                   row.utilization.ParticipantsWithBenefitAccount
                 )}
-                {numeral(row.utilization.ParticipantsWithBenefitAccount).format(
-                  "0,0"
-                )}
+                {row.utilization.ParticipantsWithBenefitAccount !== null
+                  ? `${numeral(
+                      row.utilization.ParticipantsWithBenefitAccount
+                    ).format("0,0")}`
+                  : "N/A"}
               </TableCell>
             ))}
           </TableRow>

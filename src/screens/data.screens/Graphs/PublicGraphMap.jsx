@@ -53,7 +53,13 @@ const PublicGraphMap = ({ setState }) => {
     return output;
   };
 
-  return <USAMap customize={statesFilling(selected)} onClick={mapHandler} />;
+  return (
+    <USAMap
+      width="100%"
+      customize={statesFilling(selected)}
+      onClick={mapHandler}
+    />
+  );
 };
 
 export default PublicGraphMap;

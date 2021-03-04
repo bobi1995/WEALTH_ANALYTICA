@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     justifyContent: "space-around",
   },
   table: {
-    width: "40%",
+    width: "100%",
     backgroundColor: "#E3F2FD",
     maxHeight: 440,
     border: `1px solid ${primaryBlue}`,
@@ -68,54 +68,54 @@ const TouchesTable = ({ data }) => {
 
   return (
     <Box className={classes.container}>
-      <TableContainer component={Paper} className={classes.table}>
-        <Table stickyHeader size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell className={classes.tableHeader}>Field</TableCell>
-              {data.map((el, ind) => (
-                <TableCell key={ind} className={classes.tableHeader}>
-                  {el.year}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {[...Array(rowCount)].map((_, i) => {
-              let current_touches_key = Object.keys(data[0].touches)[i];
-
-              return (
-                <TableRow key={i}>
-                  <TableCell>
-                    {current_touches_key
-                      .match(/[A-Z]+(?![a-z])|[A-Z][a-z]*|\d+[a-z]+/g)
-                      .join(" ")}
+      <Box style={{ width: "55%" }}>
+        <Box>
+          <CheckIcon style={{ color: "green" }} /> - Relevant;
+          <ClearIcon style={{ color: "red" }} /> - Less Relevant
+        </Box>
+        <TableContainer component={Paper} className={classes.table}>
+          <Table stickyHeader size="small" aria-label="a dense table">
+            <TableHead>
+              <TableRow>
+                <TableCell className={classes.tableHeader}>Field</TableCell>
+                {data.map((el, ind) => (
+                  <TableCell key={ind} className={classes.tableHeader}>
+                    {el.year}
                   </TableCell>
-                  {data.map((el, j) => {
-                    let cell_content = el.touches[current_touches_key];
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {[...Array(rowCount)].map((_, i) => {
+                let current_touches_key = Object.keys(data[0].touches)[i];
 
-                    return (
-                      <TableCell key={j}>
-                        {cell_content === 0 ? (
-                          <Typography
-                            style={{ color: "green", fontWeight: "bold" }}
-                          >
-                            Relevant to the Plan Design
-                          </Typography>
-                        ) : (
-                          <Typography style={{ color: "red" }}>
-                            Less relevant to th Plan Design
-                          </Typography>
-                        )}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                return (
+                  <TableRow key={i}>
+                    <TableCell>
+                      {current_touches_key
+                        .match(/[A-Z]+(?![a-z])|[A-Z][a-z]*|\d+[a-z]+/g)
+                        .join(" ")}
+                    </TableCell>
+                    {data.map((el, j) => {
+                      let cell_content = el.touches[current_touches_key];
+
+                      return (
+                        <TableCell key={j}>
+                          {cell_content === 0 ? (
+                            <CheckIcon style={{ color: "green" }} />
+                          ) : (
+                            <ClearIcon style={{ color: "red" }} />
+                          )}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
       {/* --------------------STATISTIC SECTION------------------------------- */}
       <Box className={classes.statsSection}>
         <Paper className={classes.paper}>

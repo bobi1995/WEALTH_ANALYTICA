@@ -71,13 +71,18 @@ const Heatmap = (props) => {
       },
     })
       .then((res) => {
-        setResults(res.data);
+        const newCompanyArr = res.data.CompanyData.filter((el) =>
+          Object.values(el.Utilization).every((x) => x !== null)
+        );
+        setResults({
+          CompanyData: newCompanyArr,
+          CompanyName: res.data.CompanyName,
+        });
       })
       .catch((err) => {
-        setErr(err.response.data);
+        setErr(err.response);
       });
   }, [url]);
-
   return (
     <Box className={classes.root}>
       <TabContext value={value}>

@@ -1,5 +1,5 @@
 import React from "react";
-import MaterialTable from "material-table";
+import MaterialTable, { MTableToolbar } from "material-table";
 import {
   softOrange,
   lightgreen,
@@ -7,21 +7,47 @@ import {
   forestgreen,
   softRed,
 } from "../../../global/Colors";
-import { Box, makeStyles } from "@material-ui/core";
+import { Box, makeStyles, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles({
   container: {
-    width: "90%",
+    width: 475,
     margin: "1% auto",
   },
 });
+
+const MyNewTitle = ({ text, variant }) => (
+  <Typography
+    variant={variant}
+    style={{
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "clip",
+    }}
+  >
+    {text}
+  </Typography>
+);
 
 const Legend = ({ setState }) => {
   const classes = useStyles();
   return (
     <Box className={classes.container}>
       <MaterialTable
-        title="Average Expense Ratio"
+        title={<MyNewTitle variant="h6" text="Average Expense Ratio %" />}
+        components={{
+          Toolbar: (props) => (
+            <div
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+              }}
+            >
+              <MTableToolbar {...props} />
+            </div>
+          ),
+        }}
         columns={[
           {
             title: "0.19 and below",
@@ -65,6 +91,8 @@ const Legend = ({ setState }) => {
           headerStyle: {
             color: "#FFF",
             textAlign: "center",
+            whiteSpace: "nowrap",
+            fontSize: 10,
           },
 
           paging: false,
