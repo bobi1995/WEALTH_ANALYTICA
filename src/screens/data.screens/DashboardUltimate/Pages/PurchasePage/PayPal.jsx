@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import numeral from "numeral";
@@ -6,6 +6,7 @@ import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import apiAddress from "../../../../../global/endpointAddress";
 import { primaryBlue } from "../../../../../global/Colors";
+import AsyncAlertBox from "../../../../../components/asyncAlertBox";
 const useStyles = makeStyles((theme) => ({
   headerStyle: {
     color: primaryBlue,
@@ -18,6 +19,7 @@ export default (props) => {
     .reduce((a, b) => a + b, 0);
 
   const classes = useStyles();
+  const [asyncMessage, setAsyncMessage] = useState("");
 
   const paypal_ids = {
     sandbox:
@@ -45,23 +47,23 @@ export default (props) => {
       })
       .then((res) => {
         if (sessionStorage.getItem("isBusiness") === "true") {
-          alert(
+          setAsyncMessage(
             "Congratulations! Your purchase is successful, states will be added to your account."
           );
-          window.location.reload();
         } else {
           const temp = JSON.parse(sessionStorage.getItem("States"));
           requestBody.map((el) => temp.push(el));
-          alert(
+          setAsyncMessage(
             "Congratulations! Your purchase is successful, states will be added to your account."
           );
 
           sessionStorage.setItem("States", JSON.stringify(temp));
-          //window.location.reload();
         }
       })
       .catch((e) => {
-        console.log(e);
+        setAsyncMessage(
+          "Someting went wrong. Do not worry, your account is NOT charged. Please try again."
+        );
       });
   };
   return (
@@ -84,6 +86,11 @@ export default (props) => {
           clientId: paypal_ids.sandbox,
         }}
       />
+      {asyncMessage ? (
+        <AsyncAlertBox text={asyncMessage} display={setAsyncMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

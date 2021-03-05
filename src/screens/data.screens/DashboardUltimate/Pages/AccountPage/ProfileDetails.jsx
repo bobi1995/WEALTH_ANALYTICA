@@ -22,6 +22,7 @@ import axios from "axios";
 import apiAddress from "../../../../../global/endpointAddress";
 import { orangeColor } from "../../../../../global/Colors";
 import AlertBox from "../../../../../components/alertBox";
+import AsyncAlertBox from "../../../../../components/asyncAlertBox";
 const useStyles = makeStyles(() => ({
   root: {},
   fieldsStyle: {
@@ -52,6 +53,7 @@ const AccountDetails = (props) => {
   const [repeatedPassword, setRepeatedPassword] = useState("");
   const [oldPassword, setOldPassword] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
+  const [asyncMessage, setAsyncMessage] = useState("");
 
   const handleChange = (event) => {
     setValues({
@@ -69,13 +71,12 @@ const AccountDetails = (props) => {
         },
       })
       .then((res) => {
-        alert("Details are updated");
+        setAsyncMessage("Details are updated");
         sessionStorage.setItem("FirstName", values.firstname);
         sessionStorage.setItem("LastName", values.lastname);
         sessionStorage.setItem("CompanyName", values.companyname);
         sessionStorage.setItem("CompanyPhone", values.companyphone);
         sessionStorage.setItem("Address", values.address);
-        window.location.reload();
       })
       .catch((error) => {
         setAlertMessage("We couldn't update the results.");
@@ -301,6 +302,11 @@ const AccountDetails = (props) => {
       </Dialog>
       {alertMessage ? (
         <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
+      {asyncMessage ? (
+        <AsyncAlertBox text={asyncMessage} display={setAsyncMessage} />
       ) : (
         ""
       )}

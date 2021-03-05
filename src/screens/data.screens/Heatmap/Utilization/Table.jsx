@@ -20,6 +20,7 @@ const useStyles = makeStyles({
     backgroundColor: "#E3F2FD",
     maxHeight: 440,
     border: `1px solid ${primaryBlue}`,
+    marginBottom: "3%",
   },
   tableHeader: { color: primaryBlue, fontWeight: "bold", fontSize: 16 },
   negativeNum: {
@@ -637,7 +638,7 @@ const UtilizationTable = ({ setGraphs, data }) => {
                   setGraphs("PercentParticipantContributionByParticipant")
                 }
               >
-                Participant Contrib. By Participant
+                Est. Employee % Contrib.
               </Button>
             </TableCell>
             {data.map((row, ind) => (
@@ -674,7 +675,7 @@ const UtilizationTable = ({ setGraphs, data }) => {
                   setGraphs("PercentEmployerContributionByParticipant")
                 }
               >
-                Employer Contrib. By Participant
+                Est. Employer % Contrib.
               </Button>
             </TableCell>
             {data.map((row, ind) => (
