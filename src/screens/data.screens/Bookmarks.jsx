@@ -5,27 +5,33 @@ import "../../styles/dataPages/bookmarks.scss";
 import BookmarkMainTable from "./bookmarksFunctions/BookmarkMainTable";
 import Magellan from "./Magellan";
 import apiAddress from "../../global/endpointAddress";
+import Loader from "../../components/plainCicularLoader";
+import AlertBox from "../../components/alertBox";
 
 const Bookmarks = () => {
   const [results, setResults] = useState([]);
   const [tempRes, SetTempRes] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     const url = `${apiAddress}/api/Bookmarks/List?loadFinancialDetails=false&year=null`;
-
+    setLoading(true);
     axios
       .get(url, {
         headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          Authorization: "Basic " + localStorage.getItem("Token"),
           "Access-Control-Allow-Origin": "*",
         },
       })
       .then((res) => {
         setResults(res.data);
         SetTempRes(res.data);
+        setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        setAlertMessage("For some reason we could not load your bookmarks.");
+        setLoading(false);
       });
   }, []);
 
@@ -81,9 +87,12 @@ const Bookmarks = () => {
         />
         <label htmlFor="radio-five">Potential Clients</label>
       </div>
-      <div>
-        <BookmarkMainTable data={tempRes} />
-      </div>
+      <div>{loading ? <Loader /> : <BookmarkMainTable data={tempRes} />}</div>
+      {alertMessage ? (
+        <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

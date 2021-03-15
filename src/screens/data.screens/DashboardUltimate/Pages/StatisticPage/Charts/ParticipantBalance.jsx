@@ -26,7 +26,20 @@ const ParticipantBalance = (props) => {
     datasets: [
       {
         data: dataReducer.arrayReducer(balanceONLY),
-        backgroundColor: ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED"],
+        backgroundColor: [
+          "#4BC0C0",
+          "#36A2EB",
+          "#FFCE56",
+          "#FF6384",
+          "#c495f0",
+        ],
+        hoverBackgroundColor: [
+          "#4BC0C0",
+          "#36A2EB",
+          "#FFCE56",
+          "#FF6384",
+          "#E7D4F9",
+        ],
         label: "My dataset",
       },
     ],

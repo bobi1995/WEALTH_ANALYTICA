@@ -41,23 +41,23 @@ export default (props) => {
     axios
       .post(`${apiAddress}/api/Users/ConfirmPayment`, requestBody, {
         headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          Authorization: "Basic " + localStorage.getItem("Token"),
           "Access-Control-Allow-Origin": "*",
         },
       })
       .then((res) => {
-        if (sessionStorage.getItem("isBusiness") === "true") {
+        if (localStorage.getItem("isBusiness") === "true") {
           setAsyncMessage(
             "Congratulations! Your purchase is successful, states will be added to your account."
           );
         } else {
-          const temp = JSON.parse(sessionStorage.getItem("States"));
+          const temp = JSON.parse(localStorage.getItem("States"));
           requestBody.map((el) => temp.push(el));
           setAsyncMessage(
             "Congratulations! Your purchase is successful, states will be added to your account."
           );
 
-          sessionStorage.setItem("States", JSON.stringify(temp));
+          localStorage.setItem("States", JSON.stringify(temp));
         }
       })
       .catch((e) => {

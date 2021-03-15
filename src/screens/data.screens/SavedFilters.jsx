@@ -27,7 +27,7 @@ const SavedFilters = (props) => {
       axios
         .get(filter.FilterParameters, {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         })
@@ -36,7 +36,6 @@ const SavedFilters = (props) => {
           setFlag(false);
         })
         .catch((e) => {
-          console.log(e);
           setAlertMessage(
             "For some reason we could not find the desired results."
           );

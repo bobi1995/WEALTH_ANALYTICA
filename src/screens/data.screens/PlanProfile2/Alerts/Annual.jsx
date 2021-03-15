@@ -11,6 +11,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { lastYear } from "../../../../global/Years";
 import Table from "./Annual/Table";
 import { primaryBlue } from "../../../../global/Colors";
+import AlerBox from "../../../../components/alertBox";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -49,6 +50,7 @@ export default function FullScreenDialog(props) {
   const [results, setResults] = useState("");
   const fullWidth = true;
   const maxWidth = "xl";
+  const [alertMessage, setAlertMessage] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -57,7 +59,7 @@ export default function FullScreenDialog(props) {
         `${apiAddress}/api/SmallCompanies/GetFinancialTransactionsAnnual?companyID=${props.companyID}&year=${lastYear}`,
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         }
@@ -66,8 +68,9 @@ export default function FullScreenDialog(props) {
         setResults(res.data);
       })
       .catch((error) => {
-        console.log(error);
-        alert("For some reason we could not find the desired results.");
+        setAlertMessage(
+          "For some reason we could not find the desired results."
+        );
       });
   };
 
@@ -112,6 +115,11 @@ export default function FullScreenDialog(props) {
           </div>
         )}
       </Dialog>
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

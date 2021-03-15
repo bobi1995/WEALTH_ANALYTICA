@@ -21,7 +21,7 @@ const SmallCompanies = (props) => {
         {},
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         }
@@ -39,7 +39,7 @@ const SmallCompanies = (props) => {
         {},
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
           },
         }
       )

@@ -29,11 +29,11 @@ export default (props) => {
       datasets: [
         {
           label: "AUM/HC",
-          backgroundColor: "rgba(0, 177, 106, 1)",
+          backgroundColor: "rgba(147,112,219)",
 
           borderWidth: 1,
-          hoverBackgroundColor: "rgba(123, 239, 178, 1)",
-          hoverBorderColor: "rgba(0, 177, 106, 1)",
+          hoverBackgroundColor: "rgba(221,160,221)",
+          hoverBorderColor: "rgba(147,112,219)",
           data: dataReducer.arrayReducer(DataExtract.AUMHCExtract(props.data)),
           stack: 1,
         },
@@ -45,10 +45,10 @@ export default (props) => {
       datasets: [
         {
           label: "Eligible Providers",
-          backgroundColor: "rgba(255,99,132, 1)",
+          backgroundColor: "rgba(32,178,170)",
           borderWidth: 1,
-          hoverBackgroundColor: "rgba(255,155,177, 1)",
-          hoverBorderColor: "rgba(255,99,132,1)",
+          hoverBackgroundColor: "rgba(175,238,238)",
+          hoverBorderColor: "rgba(32,178,170)",
           data: dataReducer.arrayReducer(
             DataExtract.providerOtherDirectCompATMExtract(props.data)
           ),

@@ -196,6 +196,22 @@ export default (props) => {
                 );
               })}
             </tr>
+
+            <tr style={{ textAlign: "center" }}>
+              <th className="thead-dark onepager-pesion-description">
+                Other Contributions
+                {/* <span className="onepager-tooltip">
+                  Contributions Made to Plan by the Participants
+                </span> */}
+              </th>
+              {database.map((element, index) => {
+                return (
+                  <td style={{ textAlign: "center" }} key={index}>
+                    ${common.reducer(element.OtherContributions)}
+                  </td>
+                );
+              })}
+            </tr>
           </tbody>
         </table>
       </Box>

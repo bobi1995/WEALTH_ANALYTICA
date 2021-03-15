@@ -92,19 +92,19 @@ const Login = () => {
       .then((res) => {
         if (res.status === 200) {
           setLoading(false);
-          sessionStorage.setItem("logged", true);
-          sessionStorage.setItem("Guid", res.data.Guid);
-          sessionStorage.setItem("FirstName", res.data.FirstName);
-          sessionStorage.setItem("Token", res.data.Token);
-          sessionStorage.setItem("LastName", res.data.LastName);
-          sessionStorage.setItem("Email", res.data.Email);
-          sessionStorage.setItem("CompanyName", res.data.CompanyName);
-          sessionStorage.setItem("CompanyPhone", res.data.CompanyPhone);
-          sessionStorage.setItem("Address", res.data.Address);
-          sessionStorage.setItem("States", JSON.stringify(res.data.States));
-          sessionStorage.setItem("LogoData", res.data.LogoData);
-          sessionStorage.setItem("isBusiness", res.data.IsBusinessAccount);
-          sessionStorage.setItem("CanUpdateLogo", res.data.CanUpdateLogo);
+          localStorage.setItem("logged", true);
+          localStorage.setItem("Guid", res.data.Guid);
+          localStorage.setItem("FirstName", res.data.FirstName);
+          localStorage.setItem("Token", res.data.Token);
+          localStorage.setItem("LastName", res.data.LastName);
+          localStorage.setItem("Email", res.data.Email);
+          localStorage.setItem("CompanyName", res.data.CompanyName);
+          localStorage.setItem("CompanyPhone", res.data.CompanyPhone);
+          localStorage.setItem("Address", res.data.Address);
+          localStorage.setItem("States", JSON.stringify(res.data.States));
+          localStorage.setItem("LogoData", res.data.LogoData);
+          localStorage.setItem("isBusiness", res.data.IsBusinessAccount);
+          localStorage.setItem("CanUpdateLogo", res.data.CanUpdateLogo);
           history.push({
             pathname:
               res.data.States.length > 0
@@ -119,7 +119,6 @@ const Login = () => {
         }
       })
       .catch((e) => {
-        console.log(e);
         setAlertMessage("Wrong username or password");
         setLoading(false);
       });
@@ -217,12 +216,14 @@ const Login = () => {
           <div className="form sign-in">
             <h2 className="login-h2 login-colored">Hello again,</h2>
             <div className="div-label">
-              <label className="login-label">
-                <span className="login-span">Email</span>
+              <label className="addUser-label">
+                <span className="addUser-span">First Name</span>
                 <input
+                  onChange={onChangeFirstName}
                   className="login-input"
-                  type="email"
-                  onChange={onLoginEmailChange}
+                  type="text"
+                  autoComplete="off"
+                  required
                 />
               </label>
             </div>

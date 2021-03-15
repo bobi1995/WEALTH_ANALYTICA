@@ -61,7 +61,6 @@ const Demo = () => {
         }
       })
       .catch((e) => {
-        console.log(e);
         setAlertMessage(
           "Something went wrong with requesting Demo. Please try again."
         );
@@ -76,81 +75,106 @@ const Demo = () => {
         </h1>
       </section>
       <div className="onepager-charts-all">
-        <div className="freestates-div-content responsive-table-div">
+        <div
+          className="freestates-div-content responsive-table-div"
+          style={{
+            width: "40%",
+            textAlign: "center",
+            margin: "0 auto",
+            paddingBottom: "1%",
+          }}
+        >
           <h1 className="purchase-totalAmount">Request a Demo</h1>
           <form onSubmit={submitRequest}>
-            <div className="div-label">
-              <label className="addUser-label">
-                <span className="addUser-span">First Name</span>
-                <input
-                  onChange={onChangeFirstName}
-                  className="login-input"
-                  type="text"
-                  autoComplete="off"
-                  required
-                />
-              </label>
-              <label className="addUser-label">
-                <span className="addUser-span">Last Name</span>
-                <input
-                  onChange={onChangeLastName}
-                  className="login-input"
-                  type="text"
-                  autoComplete="off"
-                  required
-                />
-              </label>
+            <div
+              style={{
+                display: "flex",
+                marginBottom: "3%",
+                justifyContent: "space-between",
+              }}
+            >
+              <input
+                onChange={onChangeFirstName}
+                className="inputSignIn"
+                placeholder="First Name"
+                type="text"
+                autoComplete="off"
+                required
+                style={{ width: "49%" }}
+              />
+              <input
+                onChange={onChangeLastName}
+                className="inputSignIn"
+                type="text"
+                placeholder="Last Name"
+                autoComplete="off"
+                required
+                style={{ width: "49%" }}
+              />
             </div>
-            <div className="div-label">
-              <label className="addUser-label">
-                <span className="addUser-span">Email</span>
-                <input
-                  onChange={onChangeEmail}
-                  className="login-input"
-                  type="email"
-                  autoComplete="off"
-                  required
-                />
-              </label>
-              <label className="addUser-label">
-                <span className="addUser-span">Company</span>
-                <input
-                  onChange={onChangeCompany}
-                  className="login-input"
-                  type="text"
-                  autoComplete="off"
-                  required
-                />
-              </label>
+            <div
+              style={{
+                display: "flex",
+                marginBottom: "3%",
+                justifyContent: "space-between",
+                width: "100%",
+              }}
+            >
+              <input
+                onChange={onChangeEmail}
+                type="email"
+                autoComplete="off"
+                required
+                className="inputSignIn"
+                style={{ width: "49%" }}
+                placeholder="Email"
+              />
+              <input
+                onChange={onChangeCompany}
+                type="text"
+                autoComplete="off"
+                required
+                className="inputSignIn"
+                style={{ width: "49%" }}
+                placeholder="Company"
+              />
             </div>
-            <div className="div-label">
-              <label className="addUser-label">
-                <span className="addUser-span">Phone</span>
-                <input
-                  className="login-input"
-                  type="text"
-                  autoComplete="off"
-                  onChange={onChangePhone}
-                />
-              </label>
-              <label className="addUser-label">
-                <span className="addUser-span">Comment</span>
-                <input
-                  type="text"
-                  className="login-input"
-                  autoComplete="off"
-                  onChange={onChangeComment}
-                />
-              </label>
+            <div
+              style={{
+                display: "flex",
+                marginBottom: "3%",
+                justifyContent: "space-between",
+                width: "100%",
+              }}
+            >
+              <input
+                type="text"
+                autoComplete="off"
+                onChange={onChangePhone}
+                className="inputSignIn"
+                style={{ width: "49%" }}
+                placeholder="Phone"
+              />
+              <input
+                type="text"
+                autoComplete="off"
+                onChange={onChangeComment}
+                className="inputSignIn"
+                style={{ width: "49%" }}
+                placeholder="Comment"
+              />
             </div>
             {loading ? (
               <Loader />
             ) : (
-              <input className="submit" type="submit" value="Request" />
+              <input className="buttonSignIn" type="submit" value="Request" />
             )}
           </form>
         </div>
-        <div className="freestates-div-content responsive-table-div">
+        <div
+          className="freestates-div-content responsive-table-div"
+          style={{ marginLeft: "5%" }}
+        >
           <h1 className="purchase-totalAmount">Demo Meeting Content</h1>
           <p style={{ textAlign: "left", lineHeight: 2 }}>
             Requesting a meeting will allow you to see how Wealth Analytica
@@ -170,18 +194,15 @@ const Demo = () => {
       {loading ? (
         ""
       ) : (
-        <div className="forgot-pass">
-          <a
-            className="submit"
-            style={{
-              backgroundColor: "#81AAC6",
-              paddingTop: 3,
-              marginBottom: 20,
-              marginTop: "3%",
-              color: "white",
-            }}
-            href="https://wealthanalytica.com/"
-          >
+        <div
+          className="forgot-pass"
+          style={{
+            textAlign: "center",
+            marginTop: "5%",
+            marginBottom: "1%",
+          }}
+        >
+          <a className="buttonSignIn" href="https://wealthanalytica.com/">
             Back to Site
           </a>
         </div>

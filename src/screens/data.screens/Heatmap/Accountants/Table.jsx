@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
 import { primaryBlue } from "../../../../global/Colors";
+import commonFunctions from "../../commonFunctions/common";
 
 const useStyles = makeStyles({
   container: {
@@ -184,7 +185,7 @@ const ComplianceTable = ({ data }) => {
                 ? row.accountant.Accountants.map((el, ind) => (
                     <TableRow key={ind + el}>
                       <TableCell style={{ textAlign: "center" }}>
-                        {el.Name}
+                        {commonFunctions.formatString(el.Name)}
                       </TableCell>
                       <TableCell style={{ textAlign: "center" }}>
                         {el.Website ? el.Website : "N/A"}

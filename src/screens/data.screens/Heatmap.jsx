@@ -66,13 +66,13 @@ const Heatmap = (props) => {
       url: url,
       timeout: 60 * 4 * 1000, // Let's say you want to wait at least 4 mins
       headers: {
-        Authorization: "Basic " + sessionStorage.getItem("Token"),
+        Authorization: "Basic " + localStorage.getItem("Token"),
         "Access-Control-Allow-Origin": "*",
       },
     })
       .then((res) => {
-        const newCompanyArr = res.data.CompanyData.filter((el) =>
-          Object.values(el.Utilization).every((x) => x !== null)
+        const newCompanyArr = res.data.CompanyData.filter(
+          (el) => !Object.values(el.Utilization).every((x) => x === null)
         );
         setResults({
           CompanyData: newCompanyArr,

@@ -33,7 +33,7 @@ export default function ConformationDialog({ filter }) {
     axios
       .delete(`${apiAddress}/api/Users/DeleteUserFilter?id=${filter.ID}`, {
         headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          Authorization: "Basic " + localStorage.getItem("Token"),
           "Access-Control-Allow-Origin": "*",
         },
       })

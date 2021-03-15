@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import commonFunctions from "../commonFunctions/common";
 import numeral from "numeral";
 import commonFunctionsExtract from "../commonFunctions/commonExtracts";
 import apiAddress from "../../../global/endpointAddress";
+import AlertBox from "../../../components/alertBox";
 
 const BookmarkMainTable = (props) => {
   //ALL BASIC STATES
   const basicStates = commonFunctionsExtract.extractStates();
+  const [alertMessage, setAlertMessage] = useState("");
 
   const removeBookmark = (CompanyID) => {
     axios
@@ -17,7 +19,7 @@ const BookmarkMainTable = (props) => {
         {},
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         }
@@ -26,7 +28,9 @@ const BookmarkMainTable = (props) => {
         window.location.reload();
       })
       .catch((e) => {
-        console.log(e);
+        setAlertMessage(
+          "Something went wrong with removing bookmark. Please try again."
+        );
       });
   };
 
@@ -37,7 +41,7 @@ const BookmarkMainTable = (props) => {
         {},
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         }
@@ -46,7 +50,9 @@ const BookmarkMainTable = (props) => {
         window.location.reload();
       })
       .catch((e) => {
-        console.log(e);
+        setAlertMessage(
+          "Something went wrong with adding client. Please try again."
+        );
       });
   };
 
@@ -57,7 +63,7 @@ const BookmarkMainTable = (props) => {
         {},
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         }
@@ -66,7 +72,9 @@ const BookmarkMainTable = (props) => {
         window.location.reload();
       })
       .catch((e) => {
-        console.log(e);
+        setAlertMessage(
+          "Something went wrong with removing client. Please try again."
+        );
       });
   };
 
@@ -182,6 +190,11 @@ const BookmarkMainTable = (props) => {
           <tbody></tbody>
         )}
       </table>
+      {alertMessage ? (
+        <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

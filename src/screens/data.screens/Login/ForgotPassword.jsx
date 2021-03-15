@@ -9,6 +9,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { makeStyles } from "@material-ui/core";
 import axios from "axios";
 import apiAddress from "../../../global/endpointAddress";
+import AlerBox from "../../../components/alertBox";
 
 const useStyles = makeStyles({
   buttonStyle: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles({
 export default function FormDialog() {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
 
   const classes = useStyles();
   const handleClickOpen = () => {
@@ -44,13 +46,12 @@ export default function FormDialog() {
       .post(`${apiAddress}/api/Users/ForgotPassword?email=${email}`)
       .then((res) => {
         handleClose();
-        alert(
+        setAlertMessage(
           "Email is sent and will be there in up to 5 minutes. Please check your SPAM folder also."
         );
       })
       .catch((e) => {
-        console.log(e);
-        alert("Invalid Email Address");
+        setAlertMessage("Invalid Email Address");
       });
   };
 
@@ -99,6 +100,11 @@ export default function FormDialog() {
           </Button>
         </DialogActions>
       </Dialog>
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

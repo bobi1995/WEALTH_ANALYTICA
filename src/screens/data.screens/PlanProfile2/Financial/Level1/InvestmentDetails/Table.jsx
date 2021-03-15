@@ -59,6 +59,9 @@ export default (props) => {
                   title: "Sponsor Name",
                   render: (rowData) =>
                     commonFunctions.formatString(rowData.SponsorName),
+                  cellStyle: {
+                    textAlign: "center",
+                  },
                 },
 
                 {
@@ -66,6 +69,9 @@ export default (props) => {
                   title: "Plan Name",
                   render: (rowData) =>
                     commonFunctions.formatString(rowData.PlanName),
+                  cellStyle: {
+                    textAlign: "center",
+                  },
                 },
 
                 {
@@ -73,6 +79,9 @@ export default (props) => {
                   title: "Fund Name",
                   render: (rowData) =>
                     commonFunctions.formatString(rowData.FundName),
+                  cellStyle: {
+                    textAlign: "center",
+                  },
                 },
                 {
                   field: "Amount",
@@ -81,6 +90,14 @@ export default (props) => {
                     rowData.Amount
                       ? `$${numeral(rowData.Amount).format("0,0")}`
                       : "N/A",
+                  cellStyle: {
+                    textAlign: "center",
+                  },
+                },
+                {
+                  field: "Percentage",
+                  title: "Percentage",
+                  render: (rowData) => `${rowData.Percentage}%`,
                   cellStyle: {
                     textAlign: "center",
                   },

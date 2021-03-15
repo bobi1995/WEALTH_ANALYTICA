@@ -33,8 +33,12 @@ const DataNavbar = () => {
                   Lead Generator
                 </a>
                 <div className="dropdown-content">
-                  <a href="/filters">Filters</a>
-                  <a href="/saved-filters">Saved Filters</a>
+                  <a href="/filters" style={{ fontSize: "20px" }}>
+                    Filters
+                  </a>
+                  <a href="/saved-filters" style={{ fontSize: "20px" }}>
+                    Saved Filters
+                  </a>
                 </div>
               </div>
             </li>
@@ -44,16 +48,24 @@ const DataNavbar = () => {
             <li className="dropdown">
               <div>
                 <a className="dropbtn" href="/account">
-                  Hi,{sessionStorage.getItem("FirstName")}
+                  Hi,{localStorage.getItem("FirstName")}
                 </a>
                 <div className="dropdown-content">
-                  <a href="/account">Your Profile</a>
-                  <a href="https://wealthanalytica.com/">Back to site</a>
+                  <a href="/account" style={{ fontSize: "20px" }}>
+                    Your Profile
+                  </a>
+                  <a
+                    href="https://wealthanalytica.com/"
+                    style={{ fontSize: "20px" }}
+                  >
+                    Back to site
+                  </a>
                   <a
                     href="/"
                     onClick={() => {
-                      sessionStorage.clear();
+                      localStorage.clear();
                     }}
+                    style={{ fontSize: "20px" }}
                   >
                     Sign Out
                   </a>

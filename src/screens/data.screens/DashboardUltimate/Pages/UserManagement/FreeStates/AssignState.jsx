@@ -14,9 +14,10 @@ import Checkbox from "@material-ui/core/Checkbox";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import AlerBox from "../../../../../../components/alertBox";
 import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
+
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
@@ -53,6 +54,7 @@ export default function ResponsiveDialog(props) {
   const [selectedUser, setSelectedUser] = useState("");
   const [openAuto, setOpenAuto] = useState(false);
   const loading = openAuto && users.length === 0;
+  const [alertMessage, setAlertMessage] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -69,21 +71,21 @@ export default function ResponsiveDialog(props) {
         {},
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         }
       )
       .then((res) => {
         if (selectedUser.IsBusinessAccount) {
-          const temp = JSON.parse(sessionStorage.getItem("States"));
+          const temp = JSON.parse(localStorage.getItem("States"));
           temp.push(res.data);
-          sessionStorage.setItem("States", JSON.stringify(temp));
+          localStorage.setItem("States", JSON.stringify(temp));
         }
         window.location.reload();
       })
       .catch((e) => {
-        alert("State is already assigned to this User.");
+        setAlertMessage("State is already assigned to this User.");
       });
   };
 
@@ -95,7 +97,7 @@ export default function ResponsiveDialog(props) {
       await axios
         .get(`${apiAddress}/api/Users/GetCompanyUsers`, {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         })
@@ -103,7 +105,7 @@ export default function ResponsiveDialog(props) {
           setUsers(result.data);
         })
         .catch((e) => {
-          console.log(e);
+          setAlertMessage("Cannot get users. Please try again.");
         });
     })();
   }, [loading]);
@@ -191,6 +193,11 @@ export default function ResponsiveDialog(props) {
           </Button>
         </DialogActions>
       </Dialog>
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

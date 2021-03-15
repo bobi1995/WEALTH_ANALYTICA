@@ -47,7 +47,7 @@ export default (props) => {
                 }}
                 target="_blank"
               >
-                {rowData.Name}
+                {commonFunctions.formatString(rowData.Name)}
               </Link>
             </Tooltip>
           ),
@@ -57,6 +57,7 @@ export default (props) => {
             textOverflow: "ellipsis",
             overflow: "hidden",
             maxWidth: 400,
+            textAlign: "center",
           },
         },
         {
@@ -74,7 +75,7 @@ export default (props) => {
                   color: "green",
                 }}
               >
-                {rowData.Address1}
+                {commonFunctions.formatString(rowData.Address1)}
               </NavLink>
             </Tooltip>
           ),
@@ -83,6 +84,7 @@ export default (props) => {
             maxWidth: 300,
             textOverflow: "ellipsis",
             overflow: "hidden",
+            textAlign: "center",
           },
           filterPlaceholder: "Search address",
         },
@@ -91,11 +93,20 @@ export default (props) => {
           title: "City",
           sorting: false,
           filtering: false,
+          cellStyle: {
+            textAlign: "center",
+          },
+          render: (rowData) => commonFunctions.formatString(rowData.City),
         },
         {
           field: "AdministratorName",
           title: "Administrator",
           filterPlaceholder: "Search admin",
+          cellStyle: {
+            textAlign: "center",
+          },
+          render: (rowData) =>
+            commonFunctions.formatString(rowData.AdministratorName),
         },
         {
           field: "Phone",
@@ -105,6 +116,7 @@ export default (props) => {
             rowData.Phone ? commonFunctions.phoneFormat(rowData.Phone) : "N/A",
           cellStyle: {
             whiteSpace: "nowrap",
+            textAlign: "center",
           },
           filterPlaceholder: "Search phone",
         },

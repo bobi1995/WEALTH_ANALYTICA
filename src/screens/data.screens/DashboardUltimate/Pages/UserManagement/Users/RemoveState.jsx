@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -10,6 +10,8 @@ import { useTheme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import apiAddress from "../../../../../../global/endpointAddress";
+import AlerBox from "../../../../../../components/alertBox";
+
 const useStyles = makeStyles((theme) => ({
   removeButton: {
     margin: "0 25%",
@@ -28,6 +30,7 @@ export default function ResponsiveDialog(props) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [alertMessage, setAlertMessage] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,14 +41,14 @@ export default function ResponsiveDialog(props) {
   };
 
   const removeState = () => {
-    let temp = JSON.parse(sessionStorage.getItem("States"));
+    let temp = JSON.parse(localStorage.getItem("States"));
     axios
       .post(
         `${apiAddress}/api/Users/RemoveSubscription?userGuid=${props.guid}&state=${props.data.State}&type=${props.data.Type}&paymentID=${props.data.PaymentID}`,
         {},
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         }
@@ -55,12 +58,14 @@ export default function ResponsiveDialog(props) {
           temp = temp.filter(
             (el) => el.State !== props.data.State || el.Type !== props.data.Type
           );
-          sessionStorage.setItem("States", JSON.stringify(temp));
+          localStorage.setItem("States", JSON.stringify(temp));
         }
         window.location.reload();
       })
       .catch((e) => {
-        console.log(e);
+        setAlertMessage(
+          "Subscription removed unsuccessfully. Please try again"
+        );
       });
   };
 
@@ -99,6 +104,11 @@ export default function ResponsiveDialog(props) {
           </Button>
         </DialogActions>
       </Dialog>
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

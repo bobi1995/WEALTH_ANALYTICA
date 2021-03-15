@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import apiAddress from "../../../../../global/endpointAddress";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -11,6 +11,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import SaveIcon from "@material-ui/icons/Save";
+import AlerBox from "../../../../../components/alertBox";
 
 const useStyles = makeStyles(() => ({
   saveButton: {
@@ -38,6 +39,7 @@ export default (props) => {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [alertMessage, setAlertMessage] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -57,14 +59,15 @@ export default (props) => {
     axios
       .post(`${apiAddress}/api/Users/AddUserFilter`, data, {
         headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          Authorization: "Basic " + localStorage.getItem("Token"),
         },
       })
       .then((res) => {
         handleClose();
+        setAlertMessage("Filter saved.");
       })
       .catch((e) => {
-        console.log(e);
+        setAlertMessage("Filter not saved. Please try again.");
       });
   };
 
@@ -114,6 +117,11 @@ export default (props) => {
           </Button>
         </DialogActions>
       </Dialog>
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

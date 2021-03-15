@@ -21,15 +21,6 @@ const useStyles = makeStyles({
     alignItems: "center",
     margin: "0 5px",
     height: "40px",
-
-    // border: 1px solid #dddddd;
-    // border-radius: 50%;
-    // display: inline-flex;
-    // justify-content: center;
-    // align-items: center;
-    // margin: 0 5px;
-    // height: 40px;
-    // width: 40px;
   },
 });
 const SigninForm = () => {
@@ -68,19 +59,19 @@ const SigninForm = () => {
       .then((res) => {
         if (res.status === 200) {
           setLoading(false);
-          sessionStorage.setItem("logged", true);
-          sessionStorage.setItem("Guid", res.data.Guid);
-          sessionStorage.setItem("FirstName", res.data.FirstName);
-          sessionStorage.setItem("Token", res.data.Token);
-          sessionStorage.setItem("LastName", res.data.LastName);
-          sessionStorage.setItem("Email", res.data.Email);
-          sessionStorage.setItem("CompanyName", res.data.CompanyName);
-          sessionStorage.setItem("CompanyPhone", res.data.CompanyPhone);
-          sessionStorage.setItem("Address", res.data.Address);
-          sessionStorage.setItem("States", JSON.stringify(res.data.States));
-          sessionStorage.setItem("LogoData", res.data.LogoData);
-          sessionStorage.setItem("isBusiness", res.data.IsBusinessAccount);
-          sessionStorage.setItem("CanUpdateLogo", res.data.CanUpdateLogo);
+          localStorage.setItem("logged", true);
+          localStorage.setItem("Guid", res.data.Guid);
+          localStorage.setItem("FirstName", res.data.FirstName);
+          localStorage.setItem("Token", res.data.Token);
+          localStorage.setItem("LastName", res.data.LastName);
+          localStorage.setItem("Email", res.data.Email);
+          localStorage.setItem("CompanyName", res.data.CompanyName);
+          localStorage.setItem("CompanyPhone", res.data.CompanyPhone);
+          localStorage.setItem("Address", res.data.Address);
+          localStorage.setItem("States", JSON.stringify(res.data.States));
+          localStorage.setItem("LogoData", res.data.LogoData);
+          localStorage.setItem("isBusiness", res.data.IsBusinessAccount);
+          localStorage.setItem("CanUpdateLogo", res.data.CanUpdateLogo);
           history.push({
             pathname:
               res.data.States.length > 0
@@ -117,7 +108,6 @@ const SigninForm = () => {
       LogoData: "",
     };
 
-    console.log(!firstName);
     if (!firstName) {
       setAlertMessage("Please fill your First Name");
       setLoading(false);

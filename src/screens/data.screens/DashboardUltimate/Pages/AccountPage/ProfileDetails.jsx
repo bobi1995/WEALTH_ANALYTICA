@@ -41,12 +41,12 @@ const AccountDetails = (props) => {
   const classes = useStyles();
 
   const [values, setValues] = useState({
-    firstname: sessionStorage.getItem("FirstName"),
-    lastname: sessionStorage.getItem("LastName"),
-    address: sessionStorage.getItem("Address"),
-    email: sessionStorage.getItem("Email"),
-    companyphone: sessionStorage.getItem("CompanyPhone"),
-    companyname: sessionStorage.getItem("CompanyName"),
+    firstname: localStorage.getItem("FirstName"),
+    lastname: localStorage.getItem("LastName"),
+    address: localStorage.getItem("Address"),
+    email: localStorage.getItem("Email"),
+    companyphone: localStorage.getItem("CompanyPhone"),
+    companyname: localStorage.getItem("CompanyName"),
   });
   const [open, setOpen] = useState(false);
   const [newPassword, setNewPassword] = useState("");
@@ -66,17 +66,17 @@ const AccountDetails = (props) => {
     axios
       .put(`${apiAddress}/api/Users/UpdateUser`, values, {
         headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          Authorization: "Basic " + localStorage.getItem("Token"),
           "Access-Control-Allow-Origin": "*",
         },
       })
       .then((res) => {
         setAsyncMessage("Details are updated");
-        sessionStorage.setItem("FirstName", values.firstname);
-        sessionStorage.setItem("LastName", values.lastname);
-        sessionStorage.setItem("CompanyName", values.companyname);
-        sessionStorage.setItem("CompanyPhone", values.companyphone);
-        sessionStorage.setItem("Address", values.address);
+        localStorage.setItem("FirstName", values.firstname);
+        localStorage.setItem("LastName", values.lastname);
+        localStorage.setItem("CompanyName", values.companyname);
+        localStorage.setItem("CompanyPhone", values.companyphone);
+        localStorage.setItem("Address", values.address);
       })
       .catch((error) => {
         setAlertMessage("We couldn't update the results.");
@@ -105,7 +105,7 @@ const AccountDetails = (props) => {
           },
           {
             headers: {
-              Authorization: "Basic " + sessionStorage.getItem("Token"),
+              Authorization: "Basic " + localStorage.getItem("Token"),
               "Access-Control-Allow-Origin": "*",
             },
           }
@@ -155,7 +155,7 @@ const AccountDetails = (props) => {
               <Grid>
                 <Tooltip
                   title="Enter your Address"
-                  open={sessionStorage.getItem("Address") ? false : true}
+                  open={localStorage.getItem("Address") ? false : true}
                   arrow
                   placement="left-start"
                 >
@@ -186,7 +186,7 @@ const AccountDetails = (props) => {
               <Grid>
                 <Tooltip
                   title="Enter your Phone"
-                  open={sessionStorage.getItem("CompanyPhone") ? false : true}
+                  open={localStorage.getItem("CompanyPhone") ? false : true}
                   arrow
                   placement="left-start"
                 >
@@ -203,7 +203,7 @@ const AccountDetails = (props) => {
               <Grid>
                 <Tooltip
                   title="Enter your Company"
-                  open={sessionStorage.getItem("CompanyName") ? false : true}
+                  open={localStorage.getItem("CompanyName") ? false : true}
                   arrow
                   placement="right-end"
                 >

@@ -40,7 +40,7 @@ const Diagnostic = (props) => {
       url: url,
       timeout: 60 * 4 * 1000, // Let's say you want to wait at least 4 mins
       headers: {
-        Authorization: "Basic " + sessionStorage.getItem("Token"),
+        Authorization: "Basic " + localStorage.getItem("Token"),
         "Access-Control-Allow-Origin": "*",
       },
     })

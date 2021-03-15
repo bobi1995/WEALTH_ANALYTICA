@@ -17,6 +17,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { lastYear } from "../../../../global/Years";
 import { primaryBlue } from "../../../../global/Colors";
+import AlerBox from "../../../../components/alertBox";
+
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     marginTop: "60px",
@@ -52,6 +54,7 @@ export default (props) => {
   const [results, setResults] = useState("");
   const fullWidth = true;
   const maxWidth = "lg";
+  const [alertMessage, setAlertMessage] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -60,7 +63,7 @@ export default (props) => {
         `${apiAddress}/api/SmallCompanies/GetFinancialDetails?companyID=${props.companyID}&year=${lastYear}`,
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         }
@@ -69,8 +72,7 @@ export default (props) => {
         setResults(res.data);
       })
       .catch((error) => {
-        console.log(error);
-        alert("For some reason we could not find the desired results.");
+        setAlertMessage("For some reasons cannot load the desired results");
       });
   };
 
@@ -147,16 +149,12 @@ export default (props) => {
             </p>
           </div>
         )}
-        {/* {results ? (
-          results.CompanyType === 1 ? (
-            <InvestmentDetails companyID={props.companyID} />
-          ) : (
-            ""
-          )
-        ) : (
-          ""
-        )} */}
       </Dialog>
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

@@ -21,7 +21,7 @@ export default function FullScreenDialog(props) {
       url: `${apiAddress}/api/SmallCompanies/GetInvestmentDetails?companyID=${props.companyID}&year=${lastYear}`,
       timeout: 60 * 4 * 1000, // Let's say you want to wait at least 4 mins
       headers: {
-        Authorization: "Basic " + sessionStorage.getItem("Token"),
+        Authorization: "Basic " + localStorage.getItem("Token"),
         "Access-Control-Allow-Origin": "*",
       },
     })
@@ -29,7 +29,6 @@ export default function FullScreenDialog(props) {
         setResults(res.data);
       })
       .catch((error) => {
-        console.log(error);
         setAlertMessage(
           "For some reason we could not find the desired results."
         );

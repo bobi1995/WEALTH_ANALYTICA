@@ -10,6 +10,8 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 const StatesField = (props) => {
+  const states = FilterExtract.extractPaidFullName();
+
   const onStateChange = (e, v) => {
     if (v) {
       props.setState(v.abbriviation);
@@ -52,7 +54,5 @@ const StatesField = (props) => {
     </form>
   );
 };
-
-const states = FilterExtract.extractPaidFullName();
 
 export default StatesField;

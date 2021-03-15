@@ -126,7 +126,7 @@ const Benchmark = (props) => {
       url: url,
       timeout: 60 * 4 * 1000, // Let's say you want to wait at least 4 mins
       headers: {
-        Authorization: "Basic " + sessionStorage.getItem("Token"),
+        Authorization: "Basic " + localStorage.getItem("Token"),
         "Access-Control-Allow-Origin": "*",
       },
     })
@@ -242,7 +242,6 @@ const Benchmark = (props) => {
     setFilterSearch(true);
     setIndustryFlag(true);
     let url;
-    console.log(industry);
     if (industry) {
       url = `${apiAddress}/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=${industry}&state=${state}`;
     } else
@@ -253,7 +252,7 @@ const Benchmark = (props) => {
       url,
       timeout: 60 * 4 * 1000, // Let's say you want to wait at least 4 mins
       headers: {
-        Authorization: "Basic " + sessionStorage.getItem("Token"),
+        Authorization: "Basic " + localStorage.getItem("Token"),
         "Access-Control-Allow-Origin": "*",
       },
     })

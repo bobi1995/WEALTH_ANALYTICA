@@ -62,7 +62,7 @@ const GraphField = () => {
           `${apiAddress}/api/Public/GetCompanyGraphs?businessCategory=${industry}&minYear=2017&maxYear=${lastYear}&state=${state}`,
           {
             headers: {
-              Authorization: "Basic " + sessionStorage.getItem("Token"),
+              Authorization: "Basic " + localStorage.getItem("Token"),
               "Access-Control-Allow-Origin": "*",
             },
           }
@@ -72,7 +72,6 @@ const GraphField = () => {
           setFlag(0);
         })
         .catch((error) => {
-          console.log(error);
           alert("For some reason we could not find the desired results.");
           window.location.reload();
         });

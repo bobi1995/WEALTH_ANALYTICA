@@ -88,7 +88,7 @@ const ExportPlanProfile = ({ companyID }) => {
     await axios
       .get(exportUrl, {
         headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          Authorization: "Basic " + localStorage.getItem("Token"),
           "Access-Control-Allow-Origin": "*",
         },
         responseType: "blob",
@@ -119,7 +119,7 @@ const ExportPlanProfile = ({ companyID }) => {
         },
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
           responseType: "blob",

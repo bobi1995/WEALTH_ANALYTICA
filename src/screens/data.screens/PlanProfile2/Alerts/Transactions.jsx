@@ -11,6 +11,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { lastYear } from "../../../../global/Years";
 import { primaryBlue } from "../../../../global/Colors";
 import Table from "./Trend/Trend";
+import AlerBox from "../../../../components/alertBox";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -49,6 +50,8 @@ export default function FullScreenDialog(props) {
   const [results, setResults] = useState("");
   const fullWidth = true;
   const maxWidth = "xl";
+  const [alertMessage, setAlertMessage] = useState("");
+
   const handleClickOpen = () => {
     setOpen(true);
     axios
@@ -56,7 +59,7 @@ export default function FullScreenDialog(props) {
         `${apiAddress}/api/SmallCompanies/GetFinancialTransactionsTrend?companyID=${props.companyID}&minYear=2017&maxYear=${lastYear}`,
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         }
@@ -65,8 +68,7 @@ export default function FullScreenDialog(props) {
         setResults(res.data);
       })
       .catch((error) => {
-        console.log(error);
-        alert("For some reason we could not find the desired results.");
+        setAlertMessage("Passwords don't match");
       });
   };
 
@@ -109,6 +111,11 @@ export default function FullScreenDialog(props) {
               Loading....Please wait
             </p>
           </div>
+        )}
+        {alertMessage ? (
+          <AlerBox text={alertMessage} display={setAlertMessage} />
+        ) : (
+          ""
         )}
       </Dialog>
     </div>

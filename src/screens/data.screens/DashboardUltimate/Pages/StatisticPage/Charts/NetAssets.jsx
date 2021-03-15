@@ -27,8 +27,20 @@ const NetAssets = (props) => {
     datasets: [
       {
         data: dataReducer.arrayReducer(netAssetsONLY),
-        backgroundColor: ["#4BC0C0", "#36A2EB", "#FFCE56", "#FF6384"],
-        hoverBackgroundColor: ["#4BC0C0", "#36A2EB", "#FFCE56", "#FF6384"],
+        backgroundColor: [
+          "#4BC0C0",
+          "#36A2EB",
+          "#FFCE56",
+          "#FF6384",
+          "#c495f0",
+        ],
+        hoverBackgroundColor: [
+          "#4BC0C0",
+          "#36A2EB",
+          "#FFCE56",
+          "#FF6384",
+          "#E7D4F9",
+        ],
       },
     ],
   };

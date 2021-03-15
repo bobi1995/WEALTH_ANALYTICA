@@ -26,8 +26,8 @@ const useStyles = makeStyles({
 const Utilization = (props) => {
   const classes = useStyles();
   const [graphs, setGraphs] = useState("");
+  const data = props.data;
 
-  const data = props.data.filter((el) => el.utilization !== null);
   return data.length > 0 ? (
     <Box>
       <Box className={classes.headingContainer}>

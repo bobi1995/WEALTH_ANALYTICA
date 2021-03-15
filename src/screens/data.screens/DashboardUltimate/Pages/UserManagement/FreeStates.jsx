@@ -12,6 +12,8 @@ import Moment from "react-moment";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import AssignState from "./FreeStates/AssignState";
 import { primaryBlue } from "../../../../../global/Colors";
+import AlertBox from "../../../../../components/alertBox";
+
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     textAlign: "center",
@@ -40,15 +42,16 @@ const useStyles = makeStyles((theme) => ({
 
 const FreeStates = () => {
   const classes = useStyles();
-
+  const [alertMessage, setAlertMessage] = useState("");
   const [results, setResults] = useState("");
+
   useEffect(() => {
     const url = `${apiAddress}/api/Users/GetRemainingAccounts`;
 
     axios
       .get(url, {
         headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          Authorization: "Basic " + localStorage.getItem("Token"),
           "Access-Control-Allow-Origin": "*",
         },
       })
@@ -56,7 +59,7 @@ const FreeStates = () => {
         setResults(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        setAlertMessage("Cannot load free states.");
       });
   }, []);
 
@@ -163,6 +166,11 @@ const FreeStates = () => {
           </div>
         )}
       </div>
+      {alertMessage ? (
+        <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

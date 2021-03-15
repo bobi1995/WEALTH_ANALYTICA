@@ -58,7 +58,7 @@ const PurchasePage = (props) => {
   const [selectedType, setSelectedType] = useState("");
   const [selectedQuantity, setSelectedQuantity] = useState("");
   const [data, setData] = useState([]);
-  const isBusiness = sessionStorage.getItem("isBusiness");
+  const isBusiness = localStorage.getItem("isBusiness");
 
   useEffect(() => {
     if (isBusiness === "false") {

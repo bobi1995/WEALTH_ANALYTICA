@@ -3,7 +3,7 @@ import React from "react";
 
 //******************EXTRACTS DIRECTLY ALL STATES FROM SESSION STORAGE */
 const extractStates = () => {
-  const purchsedStates = JSON.parse(sessionStorage.getItem("States"));
+  const purchsedStates = JSON.parse(localStorage.getItem("States"));
   if (purchsedStates) {
     return purchsedStates;
   } else return [];

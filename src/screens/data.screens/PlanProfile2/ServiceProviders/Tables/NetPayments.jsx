@@ -33,16 +33,7 @@ export default (props) => {
       {props.data.map((el, ind) => (
         <div key={ind} className={classes.sectionStyle}>
           <div className={classes.tablesStyleDiv}>
-            <div>
-              <Typography
-                variant="h4"
-                component="h4"
-                className={classes.headerStyle}
-                gutterBottom
-              >
-                Direct Providers
-              </Typography>
-
+            <div style={{ marginTop: "1%" }}>
               <MaterialTable
                 style={{ width: "100%" }}
                 title="Direct Providers"
@@ -67,11 +58,16 @@ export default (props) => {
                       commonFunction.formatString(rowData.Name),
                     cellStyle: {
                       whiteSpace: "nowrap",
+                      textAlign: "center",
                     },
                   },
                   {
                     field: "ProviderOtherServices",
                     title: "Services",
+                    cellStyle: {
+                      textAlign: "center",
+                    },
+
                     render: (rowData) =>
                       commonFunction.formatString(
                         rowData.ProviderOtherServices
@@ -125,15 +121,7 @@ export default (props) => {
                     ).format("0,0")}`}
               </Typography>
             </div>
-            <div>
-              <Typography
-                variant="h4"
-                component="h4"
-                className={classes.headerStyle}
-                gutterBottom
-              >
-                Indirect Providers
-              </Typography>
+            <div style={{ marginTop: "1%" }}>
               <MaterialTable
                 style={{ width: "100%" }}
                 title="Indirect Providers"
@@ -159,6 +147,7 @@ export default (props) => {
 
                     cellStyle: {
                       whiteSpace: "nowrap",
+                      textAlign: "center",
                     },
                   },
                   {
@@ -166,6 +155,9 @@ export default (props) => {
                     title: "Description",
                     render: (rowData) =>
                       commonFunction.formatString(rowData.Description),
+                    cellStyle: {
+                      textAlign: "center",
+                    },
                   },
 
                   {

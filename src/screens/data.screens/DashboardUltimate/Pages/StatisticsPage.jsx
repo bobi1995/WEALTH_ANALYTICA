@@ -59,7 +59,7 @@ const StatisticsPage = (props) => {
           `${apiAddress}/api/SmallCompanies/GetCompaniesTotals?summaryYear=${year}&minYear=${minYear}&maxYear=${lastYear}&state=${state}`,
           {
             headers: {
-              Authorization: "Basic " + sessionStorage.getItem("Token"),
+              Authorization: "Basic " + localStorage.getItem("Token"),
               "Access-Control-Allow-Origin": "*",
             },
           }
@@ -69,7 +69,6 @@ const StatisticsPage = (props) => {
           setFlag(0);
         })
         .catch((error) => {
-          console.log(error);
           setAlertMessage(
             "For some reason we could not find the desired results."
           );

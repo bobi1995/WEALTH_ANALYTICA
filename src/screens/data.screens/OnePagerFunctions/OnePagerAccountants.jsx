@@ -1,6 +1,7 @@
 import React from "react";
 import { backgroundGrey, primaryBlue } from "../../../global/Colors";
 import { makeStyles, Typography } from "@material-ui/core";
+import commonFunctions from "../commonFunctions/common";
 
 const useStyles = makeStyles({
   heading: {
@@ -41,7 +42,7 @@ const OnePagerAccountants = (props) => {
                 {props.accountants.map((acc, index) => {
                   return (
                     <tr key={index}>
-                      <td>{acc}</td>
+                      <td>{commonFunctions.formatString(acc)}</td>
                     </tr>
                   );
                 })}
@@ -73,7 +74,7 @@ const OnePagerAccountants = (props) => {
                 {props.trusts.map((trust, index) => {
                   return (
                     <tr key={index}>
-                      <td>{trust}</td>
+                      <td>{commonFunctions.formatString(trust)}</td>
                     </tr>
                   );
                 })}

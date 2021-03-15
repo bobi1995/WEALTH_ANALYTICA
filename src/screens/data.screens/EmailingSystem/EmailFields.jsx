@@ -11,7 +11,7 @@ const EmailFields = (props) => {
   const classes = useStyles();
   const [receiver, setReceiver] = useState("");
   const [emailContent, setEmailContent] = useState("");
-  const sender = sessionStorage.getItem("Email");
+  const sender = localStorage.getItem("Email");
   const [pdfs, setPdfs] = useState(props.pdfs);
   const [result, setResult] = useState("");
   const handleReceiverChange = (e) => {
@@ -36,7 +36,7 @@ const EmailFields = (props) => {
         },
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },

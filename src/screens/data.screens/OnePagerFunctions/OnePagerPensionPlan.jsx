@@ -199,10 +199,11 @@ const OnePagerPensionPlan = (props) => {
                   className="plan-profile-chartsDiv"
                   style={{ width: "100%", padding: "3%" }}
                 >
-                  <h1 className="onepager-bottomtables-h1">
+                  <Typography className={classes.heading}>
                     {element.Type &&
                       commonFunctions.splitCapitalLetterString(element.Type)}
-                  </h1>
+                  </Typography>
+
                   <table className="table table-striped table-bordered table-sm table-hover">
                     <thead className="thead-dark">
                       <tr>

@@ -75,27 +75,29 @@ const UtilizationTable = ({ setGraphs, data }) => {
                 Active Participants
               </Button>
             </TableCell>
-            {data.map((row, ind) => (
-              <TableCell
-                className={
-                  row.utilization.ActiveParticipantsPercent < 0
-                    ? classes.negativeNum
-                    : ""
-                }
-                key={ind}
-                component="th"
-                scope="row"
-              >
-                {comparingFunc(
-                  data[data.length - 2].utilization.ActiveParticipantsPercent,
-                  data[data.length - 1].utilization.ActiveParticipantsPercent,
-                  row.utilization.ActiveParticipantsPercent
-                )}
-                {row.utilization.ActiveParticipantsPercent !== null
-                  ? `${row.utilization.ActiveParticipantsPercent}%`
-                  : "N/A"}
-              </TableCell>
-            ))}
+            {data.map((row, ind) => {
+              return (
+                <TableCell
+                  className={
+                    row.utilization.ActiveParticipantsPercent < 0
+                      ? classes.negativeNum
+                      : ""
+                  }
+                  key={ind}
+                  component="th"
+                  scope="row"
+                >
+                  {comparingFunc(
+                    data[data.length - 2].utilization.ActiveParticipantsPercent,
+                    data[data.length - 1].utilization.ActiveParticipantsPercent,
+                    row.utilization.ActiveParticipantsPercent
+                  )}
+                  {row.utilization.ActiveParticipantsPercent !== null
+                    ? `${row.utilization.ActiveParticipantsPercent}%`
+                    : "N/A"}
+                </TableCell>
+              );
+            })}
           </TableRow>
           {/**SeparatedVestedParticipants */}
           <TableRow>
@@ -126,7 +128,9 @@ const UtilizationTable = ({ setGraphs, data }) => {
                   row.utilization.SeparatedVestedParticipants
                 )}
                 {row.utilization.SeparatedVestedParticipants !== null
-                  ? `${row.utilization.SeparatedVestedParticipants}`
+                  ? `${numeral(
+                      row.utilization.SeparatedVestedParticipants
+                    ).format("0,0")}`
                   : "N/A"}
               </TableCell>
             ))}
@@ -197,7 +201,9 @@ const UtilizationTable = ({ setGraphs, data }) => {
                   data[data.length - 1].utilization.AverageActiveParticipants,
                   row.utilization.AverageActiveParticipants
                 )}
-                {row.utilization.AverageActiveParticipants}
+                {numeral(row.utilization.AverageActiveParticipants).format(
+                  "0,0"
+                )}
               </TableCell>
             ))}
           </TableRow>

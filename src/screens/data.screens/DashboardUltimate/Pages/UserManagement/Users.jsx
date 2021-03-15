@@ -10,6 +10,8 @@ import axios from "axios";
 import UserStates from "./Users/UserStates";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { primaryBlue } from "../../../../../global/Colors";
+import AlerBox from "../../../../../components/alertBox";
+
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
     textAlign: "center",
@@ -41,13 +43,15 @@ const FreeStates = () => {
   const classes = useStyles();
 
   const [results, setResults] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+
   useEffect(() => {
     const url = `${apiAddress}/api/Users/GetCompanyUsers`;
 
     axios
       .get(url, {
         headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          Authorization: "Basic " + localStorage.getItem("Token"),
           "Access-Control-Allow-Origin": "*",
         },
       })
@@ -55,7 +59,7 @@ const FreeStates = () => {
         setResults(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        setAlertMessage("Cannot get users. Please try again.");
       });
   }, []);
 
@@ -134,6 +138,11 @@ const FreeStates = () => {
             Loading....Please wait
           </p>
         </div>
+      )}
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
       )}
     </div>
   );

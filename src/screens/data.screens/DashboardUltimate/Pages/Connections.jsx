@@ -11,6 +11,8 @@ import axios from "axios";
 import { backgroundGrey, primaryBlue } from "../../../../global/Colors";
 import Connection from "./Connections/Connection";
 import { lastYear } from "../../../../global/Years";
+import AlertBox from "../../../../components/alertBox";
+
 const useStyles = makeStyles((theme) => ({
   gridStyle: {
     width: "100%",
@@ -25,13 +27,14 @@ const Connections = (props) => {
   const classes = useStyles();
   const [results, setResults] = useState("");
   const [flag, setFlag] = useState(1);
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     const url = `${apiAddress}/api/Bookmarks/List?loadFinancialDetails=true&year=${lastYear}`;
     axios
       .get(url, {
         headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          Authorization: "Basic " + localStorage.getItem("Token"),
           "Access-Control-Allow-Origin": "*",
         },
       })
@@ -41,7 +44,7 @@ const Connections = (props) => {
         setFlag(0);
       })
       .catch((err) => {
-        console.log(err);
+        setAlertMessage("For some reason we could not load your connections.");
       });
   }, []);
   return (
@@ -82,6 +85,11 @@ const Connections = (props) => {
           )}
         </Grid>
       </div>
+      {alertMessage ? (
+        <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

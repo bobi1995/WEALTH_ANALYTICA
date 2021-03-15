@@ -36,7 +36,7 @@ const OnePagerTop = (props) => {
     axios
       .post(sendUrl, mailData, {
         headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          Authorization: "Basic " + localStorage.getItem("Token"),
           "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
         },
@@ -129,7 +129,7 @@ const OnePagerTop = (props) => {
           <img
             className="plan-profile-chartsDiv"
             style={{ margin: "3%", padding: "1%" }}
-            src={`data:image/png;base64,${sessionStorage.getItem("LogoData")}`}
+            src={`data:image/png;base64,${localStorage.getItem("LogoData")}`}
             alt="Upload your logo to see it"
           />
         )}
@@ -186,7 +186,7 @@ const OnePagerTop = (props) => {
                   id="fromEmail"
                   placeholder="Your email"
                   autoComplete="off"
-                  defaultValue={sessionStorage.getItem("Email")}
+                  defaultValue={localStorage.getItem("Email")}
                   required
                 />
               </div>

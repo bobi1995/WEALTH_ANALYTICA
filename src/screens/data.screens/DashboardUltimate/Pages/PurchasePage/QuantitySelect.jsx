@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const PurchasePage = (props) => {
   const classes = useStyles();
-  const isBusiness = sessionStorage.getItem("isBusiness");
+  const isBusiness = localStorage.getItem("isBusiness");
 
   const handleChange = (e) => {
     props.setQuantity(e.target.value);

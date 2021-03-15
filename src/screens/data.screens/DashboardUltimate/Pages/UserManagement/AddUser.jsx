@@ -94,7 +94,6 @@ const AddUser = () => {
           window.location.reload();
         })
         .catch((e) => {
-          console.log(e);
           setAlertMessage("Еmail is already registered.");
         });
     }

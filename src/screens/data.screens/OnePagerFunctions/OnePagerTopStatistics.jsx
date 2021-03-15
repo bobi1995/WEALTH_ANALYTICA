@@ -495,6 +495,20 @@ export default (props) => {
                 }
               )}
             </tr>
+            <tr style={{ textAlign: "center" }}>
+              <th className="thead-dark">Other Contributions</th>
+              {DataExtract.totalOtherContributions(props.data).map(
+                (other, index) => {
+                  return other >= 0 ? (
+                    <td key={index}>${common.reducer(other)}</td>
+                  ) : (
+                    <td key={index} className="negative-numbers">
+                      ${common.reducer(other)}
+                    </td>
+                  );
+                }
+              )}
+            </tr>
           </tbody>
         </table>
       </div>

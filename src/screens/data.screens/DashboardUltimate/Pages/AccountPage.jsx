@@ -47,7 +47,7 @@ const AccountPage = (props) => {
     axios
       .get(`${apiAddress}/api/Users/GetSubsDetails`, {
         headers: {
-          Authorization: "Basic " + sessionStorage.getItem("Token"),
+          Authorization: "Basic " + localStorage.getItem("Token"),
           "Access-Control-Allow-Origin": "*",
         },
       })
@@ -56,7 +56,6 @@ const AccountPage = (props) => {
         setFlag(0);
       })
       .catch((e) => {
-        console.log(e);
         setAlertMessage(
           "For some reason we could not find the desired results."
         );

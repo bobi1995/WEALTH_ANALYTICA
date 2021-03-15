@@ -4,7 +4,7 @@ export default (props) => {
   return (
     <div className="one-pager-attachment-logo" id="clientLogo">
       <img
-        src={`data:image/png;base64,${sessionStorage.getItem("LogoData")}`}
+        src={`data:image/png;base64,${localStorage.getItem("LogoData")}`}
         alt="no_image"
       />
     </div>

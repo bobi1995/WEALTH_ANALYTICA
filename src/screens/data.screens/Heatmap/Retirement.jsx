@@ -50,7 +50,7 @@ const Retirement = (props) => {
       url: `${apiAddress}/api/SmallCompanies/GetRetirement?companyID=${props.companyID}&minYear=2017&maxyear=${lastYear}&estEmlployeeContrib=${first}&replacementIncomeRate=${second}&expROR=${third}`,
       timeout: 60 * 4 * 1000, // Let's say you want to wait at least 4 mins
       headers: {
-        Authorization: "Basic " + sessionStorage.getItem("Token"),
+        Authorization: "Basic " + localStorage.getItem("Token"),
         "Access-Control-Allow-Origin": "*",
       },
     })

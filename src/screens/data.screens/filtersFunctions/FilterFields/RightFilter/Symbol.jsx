@@ -27,7 +27,7 @@ export default function ControlledOpenSelect(props) {
       await axios
         .get(`${apiAddress}/api/BenefitTypes/Get?type=${props.benefitType}`, {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         })

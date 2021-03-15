@@ -59,7 +59,7 @@ export default (props) => {
         `${apiAddress}/api/SmallCompanies/GetServiceProviderTerminations?companyID=${props.companyID}&year=${lastYear}`,
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         }

@@ -4,7 +4,7 @@ import "moment-timezone";
 
 //****************COMMON FUNCTIONS********* */
 const commonFunction = () => {
-  const allStates = JSON.parse(sessionStorage.getItem("States"));
+  const allStates = JSON.parse(localStorage.getItem("States"));
 
   const statesString = allStates.filter((el) => el.Type === 2);
   if (statesString.length > 0) {
@@ -22,7 +22,7 @@ const commonFunction = () => {
 };
 
 const commonFunctionBasics = () => {
-  const allStates = JSON.parse(sessionStorage.getItem("States"));
+  const allStates = JSON.parse(localStorage.getItem("States"));
   const statesString = allStates.filter((el) => el.Type === 1);
   if (statesString.length > 0) {
     const states = statesString.map((el) => el.State);
@@ -40,7 +40,7 @@ const commonFunctionBasics = () => {
 };
 
 const commonFunctionShortAbbrBasic = () => {
-  const allStates = JSON.parse(sessionStorage.getItem("States"));
+  const allStates = JSON.parse(localStorage.getItem("States"));
   const statesString = allStates.filter((el) => el.Type === 1);
   if (statesString.length > 0) {
     const states = statesString.map((el) => el.State);

@@ -14,7 +14,7 @@ const EmailSection = (props) => {
   const classes = useStyles();
   const [receiver, setReceiver] = useState("");
   const [emailContent, setEmailContent] = useState("");
-  const sender = sessionStorage.getItem("Email");
+  const sender = localStorage.getItem("Email");
 
   const handleReceiverChange = (e) => {
     setReceiver(e.target.value);
@@ -37,7 +37,7 @@ const EmailSection = (props) => {
         },
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
           },

@@ -39,25 +39,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AccountProfile = (props) => {
-  const canUpdate = sessionStorage.getItem("CanUpdateLogo");
+  const canUpdate = localStorage.getItem("CanUpdateLogo");
   const [fileUrl, setFileUrl] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
 
   const classes = useStyles();
   const user = {
-    firstName: sessionStorage.getItem("FirstName"),
-    lastName: sessionStorage.getItem("LastName"),
-    city: sessionStorage.getItem("Address"),
+    firstName: localStorage.getItem("FirstName"),
+    lastName: localStorage.getItem("LastName"),
+    city: localStorage.getItem("Address"),
     country: "USA",
-    company: sessionStorage.getItem("CompanyName"),
-    avatar: sessionStorage.getItem("LogoData"),
-    email: sessionStorage.getItem("Email"),
-    phone: sessionStorage.getItem("CompanyPhone"),
+    company: localStorage.getItem("CompanyName"),
+    avatar: localStorage.getItem("LogoData"),
+    email: localStorage.getItem("Email"),
+    phone: localStorage.getItem("CompanyPhone"),
   };
 
   const completeness = () => {
     const arr = Object.values(user);
-    console.log(arr);
     return (arr.filter((el) => el !== "" && el !== "null").length / 8) * 100;
   };
 
@@ -89,18 +88,17 @@ const AccountProfile = (props) => {
         },
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         }
       )
       .then((res) => {
         setAlertMessage("The logo is updated");
-        sessionStorage.setItem("LogoData", fileUrl);
+        localStorage.setItem("LogoData", fileUrl);
         window.location.reload();
       })
       .catch((error) => {
-        console.log(error);
         setAlertMessage("We couldn't upload the logo.");
       });
   };

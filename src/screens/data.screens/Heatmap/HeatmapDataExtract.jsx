@@ -39,10 +39,8 @@ export const BenefitTypesExtract = (data = []) => {
 };
 
 export const TouchesExtract = (data = []) => {
-  return data.map((el) =>({
-          year: el.Year,
-          touches: el.Touches,
-        })
-  );
+  return data.map((el) => ({
+    year: el.Year,
+    touches: el.Touches,
+  }));
 };
-

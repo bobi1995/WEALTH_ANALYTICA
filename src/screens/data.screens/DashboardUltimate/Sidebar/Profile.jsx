@@ -66,8 +66,7 @@ export default function BadgeAvatars() {
         }}
       >
         <small className="form-text text-muted">
-          {sessionStorage.getItem("FirstName")}{" "}
-          {sessionStorage.getItem("LastName")}
+          {localStorage.getItem("FirstName")} {localStorage.getItem("LastName")}
         </small>
       </div>
     </div>

@@ -67,7 +67,7 @@ export default function NestedList(props) {
         </ListItemIcon>
         <ListItemText primary="Account" />
       </ListItem>
-      {sessionStorage.getItem("isBusiness") === "true" ? (
+      {localStorage.getItem("isBusiness") === "true" ? (
         <ListItem
           style={
             props.opened === "management" ? { backgroundColor: "#95C1DC" } : {}

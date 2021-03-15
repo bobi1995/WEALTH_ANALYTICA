@@ -68,6 +68,13 @@ const totalDistributionsExtract = (data) => {
   });
 };
 
+//***************TOTAL OTHER CONTRIBUTIONS********************* */
+const totalOtherContributions = (data) => {
+  return data.map((element) => {
+    return element.OtherContributions;
+  });
+};
+
 //***************TOTAL PARTICIPANTS********************* */
 const totalParticipantsExtract = (data) => {
   return data.map((element) => {
@@ -215,4 +222,5 @@ export default {
   fiduciaryTrustNameExtract,
   fidelityBondAmtExtract,
   typesSummaryYears,
+  totalOtherContributions,
 };

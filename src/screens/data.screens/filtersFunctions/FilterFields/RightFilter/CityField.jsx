@@ -7,6 +7,7 @@ import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import apiAddress from "../../../../../global/endpointAddress";
+import AlerBox from "../../../../../components/alertBox";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -15,6 +16,7 @@ const CityField = (props) => {
   const [cities, setCities] = useState([]);
   const [open, setOpen] = useState(false);
   const loading = open && cities.length === 0;
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     if (!loading) {
@@ -25,7 +27,7 @@ const CityField = (props) => {
         await axios
           .get(`${apiAddress}/api/Cities/Get?state=${props.state}`, {
             headers: {
-              Authorization: "Basic " + sessionStorage.getItem("Token"),
+              Authorization: "Basic " + localStorage.getItem("Token"),
               "Access-Control-Allow-Origin": "*",
             },
           })
@@ -33,7 +35,9 @@ const CityField = (props) => {
             setCities(result.data);
           })
           .catch((e) => {
-            console.log(e);
+            setAlertMessage(
+              "Cannot load cities for this state. Please try again."
+            );
           });
       })();
     }
@@ -102,6 +106,11 @@ const CityField = (props) => {
           />
         )}
       />
+      {alertMessage ? (
+        <AlerBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </form>
   );
 };

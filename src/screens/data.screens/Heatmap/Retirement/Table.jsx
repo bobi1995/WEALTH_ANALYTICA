@@ -58,10 +58,10 @@ const RetirementTable = ({ data }) => {
         <TableBody>
           {/**DistributionsParticipant*/}
           <TableRow>
-            <TableCell>Distributions Participant</TableCell>
+            <TableCell>Participant Contributions</TableCell>
             {data.map((row, ind) => (
               <TableCell key={ind}>
-                ${numeral(row.DistributionsParticipant).format("0,0")}
+                ${numeral(row.ContributionsParticipant).format("0,0")}
               </TableCell>
             ))}
           </TableRow>

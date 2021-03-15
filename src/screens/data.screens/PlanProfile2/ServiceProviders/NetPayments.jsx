@@ -67,15 +67,13 @@ export default (props) => {
 
   const handleClickOpen = () => {
     setOpen(true);
-    console.log(
-      `${apiAddress}/api/SmallCompanies/GetServiceProviderPayments?companyID=${props.companyID}&year=${lastYear}`
-    );
+
     axios
       .get(
         `${apiAddress}/api/SmallCompanies/GetServiceProviderPayments?companyID=${props.companyID}&year=${lastYear}`,
         {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         }

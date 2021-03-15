@@ -75,7 +75,6 @@ const PublicGraphs = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [loader, setLoader] = useState(false);
 
-  console.log(industry);
   useEffect(() => {
     if (selectedState && industry) {
       setLoader(true);
@@ -84,7 +83,7 @@ const PublicGraphs = () => {
           `${apiAddress}/api/Public/GetCompanyGraphs?businessCategory=${industry}&minYear=2017&maxYear=${lastYear}&state=${selectedState}`,
           {
             headers: {
-              Authorization: "Basic " + sessionStorage.getItem("Token"),
+              Authorization: "Basic " + localStorage.getItem("Token"),
               "Access-Control-Allow-Origin": "*",
             },
           }
