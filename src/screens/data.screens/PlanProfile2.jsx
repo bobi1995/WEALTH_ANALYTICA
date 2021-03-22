@@ -200,7 +200,10 @@ const PlanProfile2 = (props) => {
               </TabPanel>
               <ExportButton companyID={props.match.params.CompanyID} />
 
-              <EmailPopUp contact={results.Contacts} />
+              <EmailPopUp
+                contact={results.Contacts}
+                companyID={props.match.params.CompanyID}
+              />
             </Box>
           ) : err ? (
             <Box className={classes.errorStyle}>{err}</Box>

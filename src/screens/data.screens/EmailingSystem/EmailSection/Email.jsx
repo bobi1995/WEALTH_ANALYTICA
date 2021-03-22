@@ -23,7 +23,6 @@ const EmailSection = (props) => {
   const [pdfs, setPdfs] = useState([]);
   const [result, setResult] = useState("");
   const [displayFlag, setDisplayFlag] = useState(false);
-
   const handleReceiverChange = (e) => {
     setReceiver(e.target.value);
   };

@@ -3,6 +3,7 @@ import axios from "axios";
 import apiAddress from "../global/endpointAddress";
 import Loader from "../components/Loader/Loader";
 import AlertBox from "../components/alertBox";
+import BigCalendar from "../components/BigCalendar";
 
 const Demo = () => {
   const [loading, setLoading] = useState(false);
@@ -191,6 +192,8 @@ const Demo = () => {
           </p>
         </div>
       </div>
+      <BigCalendar />
+
       {loading ? (
         ""
       ) : (

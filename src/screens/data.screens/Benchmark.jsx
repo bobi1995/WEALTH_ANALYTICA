@@ -247,6 +247,7 @@ const Benchmark = (props) => {
     } else
       url = `${apiAddress}/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=&state=${state}`;
 
+    console.log(url);
     axios({
       method: "get",
       url,

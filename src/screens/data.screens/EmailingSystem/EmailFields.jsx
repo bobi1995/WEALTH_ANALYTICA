@@ -6,7 +6,7 @@ import apiAddress from "../../../global/endpointAddress";
 import axios from "axios";
 import EmailSent from "../../../components/emailSent";
 import { backgroundGrey } from "../../../global/Colors";
-
+import Loader from "../../../components/plainCicularLoader";
 const EmailFields = (props) => {
   const classes = useStyles();
   const [receiver, setReceiver] = useState("");
@@ -14,6 +14,7 @@ const EmailFields = (props) => {
   const sender = localStorage.getItem("Email");
   const [pdfs, setPdfs] = useState(props.pdfs);
   const [result, setResult] = useState("");
+  const [loading, setLoading] = useState(false);
   const handleReceiverChange = (e) => {
     setReceiver(e.target.value);
   };
@@ -23,7 +24,7 @@ const EmailFields = (props) => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-
+    setLoading(true);
     axios
       .post(
         `${apiAddress}/api/SmallCompanies/SendDiagnosticsEmail`,
@@ -33,6 +34,7 @@ const EmailFields = (props) => {
           subject: `Wealth Analytica Diagnostic`,
           message: emailContent,
           PdfNumbers: pdfs,
+          CompanyID: props.companyID,
         },
         {
           headers: {
@@ -47,9 +49,11 @@ const EmailFields = (props) => {
         setReceiver("");
         setPdfs([]);
         setResult(res.status);
+        setLoading(false);
       })
       .catch((err) => {
         setResult(err.response.data.Message);
+        setLoading(false);
       });
   };
 
@@ -59,50 +63,54 @@ const EmailFields = (props) => {
 
   return (
     <Box className={classes.container}>
-      <Box className={classes.emailBox}>
-        <Box style={{ width: "70%", margin: "0 auto" }}>
-          <Box className={classes.topContainer}>
-            <Box className={classes.receiverContainer}>
-              <TextField
-                className={classes.receivers}
-                label="To"
-                type="email"
-                autoComplete="current-password"
-                variant="outlined"
-                onChange={handleReceiverChange}
-                value={receiver}
-              />
-              <TextField
-                className={classes.receivers}
-                style={{ marginTop: "2%" }}
-                label="From"
-                type="email"
-                autoComplete="current-password"
-                variant="outlined"
-                defaultValue={sender}
-                disabled
-              />
+      {loading ? (
+        <Loader />
+      ) : (
+        <Box className={classes.emailBox}>
+          <Box style={{ width: "70%", margin: "0 auto" }}>
+            <Box className={classes.topContainer}>
+              <Box className={classes.receiverContainer}>
+                <TextField
+                  className={classes.receivers}
+                  label="To"
+                  type="email"
+                  autoComplete="current-password"
+                  variant="outlined"
+                  onChange={handleReceiverChange}
+                  value={receiver}
+                />
+                <TextField
+                  className={classes.receivers}
+                  style={{ marginTop: "2%" }}
+                  label="From"
+                  type="email"
+                  autoComplete="current-password"
+                  variant="outlined"
+                  defaultValue={sender}
+                  disabled
+                />
+              </Box>
+              <Box className={classes.emailContainer}>
+                <TextareaAutosize
+                  onChange={handleEmailContentChange}
+                  className={classes.emailField}
+                  placeholder="Start with something nice like 'Dear Customer, ...'"
+                  rowsMin={5}
+                />
+              </Box>
             </Box>
-            <Box className={classes.emailContainer}>
-              <TextareaAutosize
-                onChange={handleEmailContentChange}
-                className={classes.emailField}
-                placeholder="Start with something nice like 'Dear Customer, ...'"
-                rowsMin={5}
-              />
+            <Box className={classes.buttonContainer}>
+              <Button
+                className={classes.greenButton}
+                onClick={sendEmail}
+                startIcon={<Send />}
+              >
+                Send
+              </Button>
             </Box>
-          </Box>
-          <Box className={classes.buttonContainer}>
-            <Button
-              className={classes.greenButton}
-              onClick={sendEmail}
-              startIcon={<Send />}
-            >
-              Send
-            </Button>
           </Box>
         </Box>
-      </Box>
+      )}
       {result ? <EmailSent result={result} setClose={setResult} /> : ""}
     </Box>
   );

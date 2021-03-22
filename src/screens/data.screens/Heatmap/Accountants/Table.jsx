@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, Box } from "@material-ui/core";
+import { makeStyles, Box, Link } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -11,6 +11,7 @@ import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
 import { primaryBlue } from "../../../../global/Colors";
 import commonFunctions from "../../commonFunctions/common";
+import AccountantInfo from "../../../../components/AccountatInfo";
 
 const useStyles = makeStyles({
   container: {
@@ -177,6 +178,12 @@ const ComplianceTable = ({ data }) => {
               >
                 Opinion
               </TableCell>
+              <TableCell
+                className={classes.tableHeader}
+                style={{ textAlign: "center" }}
+              >
+                Info
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -188,10 +195,34 @@ const ComplianceTable = ({ data }) => {
                         {commonFunctions.formatString(el.Name)}
                       </TableCell>
                       <TableCell style={{ textAlign: "center" }}>
-                        {el.Website ? el.Website : "N/A"}
+                        {el.Website ? (
+                          <Link
+                            href={
+                              el.Website.startsWith("htt")
+                                ? el.Website
+                                : `https://${el.Website}`
+                            }
+                            target="_blank"
+                          >
+                            {el.Website.startsWith("htt")
+                              ? el.Website
+                              : `https://${el.Website}`}
+                          </Link>
+                        ) : (
+                          "N/A"
+                        )}
                       </TableCell>
                       <TableCell style={{ textAlign: "center" }}>
                         {el.Opinion ? el.Opinion : "N/A"}
+                      </TableCell>
+                      <TableCell style={{ textAlign: "center" }}>
+                        <AccountantInfo
+                          name={commonFunctions.formatString(el.Name)}
+                          opinionDescription={el.OpinionDescription}
+                          auditScoreDescription={el.AuditScoreDescription}
+                          opinion={el.Opinion}
+                          auditScope={el.AuditScope}
+                        />
                       </TableCell>
                     </TableRow>
                   ))

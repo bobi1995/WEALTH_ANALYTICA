@@ -17,7 +17,11 @@ const useStyles = makeStyles({
     maxHeight: 440,
     border: `1px solid ${primaryBlue}`,
   },
-  tableHeader: { color: primaryBlue, fontWeight: "bold", fontSize: 16 },
+  tableHeader: {
+    color: primaryBlue,
+    fontWeight: "bold",
+    fontSize: 16,
+  },
   negativeNum: {
     color: "red",
   },

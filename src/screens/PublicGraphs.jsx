@@ -114,8 +114,7 @@ const PublicGraphs = () => {
           color="textSecondary"
           component="p"
         >
-          Wealth Analytica gives you opportunity to make overview of the
-          Industries per States for the last years.
+          Analyze your States Pension Plan Analytics Trends by Industry.
         </Typography>
       </Box>
       <Box style={{ display: "flex", justifyContent: "space-around" }}>

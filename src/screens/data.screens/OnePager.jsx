@@ -98,7 +98,6 @@ const OnePager = (props) => {
     },
     [url]
   );
-
   return (
     <div>
       <Datanavbar />
@@ -177,7 +176,10 @@ const OnePager = (props) => {
           <ArrowForwardIcon /> PLAN DESIGN
         </Link>
       </Box>
-      <EmailPopUp contact={results.Contacts} />
+      <EmailPopUp
+        contact={results.Contacts}
+        companyID={props.match.params.CompanyID}
+      />
     </div>
   );
 };

@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
   },
 }));
-const EmailingSystem = ({ contact, setDisplay }) => {
+const EmailingSystem = ({ contact, setDisplay, companyID }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const fullWidth = true;
@@ -101,7 +101,11 @@ const EmailingSystem = ({ contact, setDisplay }) => {
           <PdfList setPdfs={setPdfs} />
         </Box>
         <Box>
-          <EmailFields receivers={receivers} pdfs={pdfs} />
+          <EmailFields
+            receivers={receivers}
+            pdfs={pdfs}
+            companyID={companyID}
+          />
         </Box>
       </Dialog>
     </Box>

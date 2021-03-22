@@ -66,6 +66,8 @@ const pdfs = [
   { name: "Leakage : Explained", value: 25 },
   { name: "Ideas to Increase Plan Participation", value: 26 },
   { name: "Types of Bonus Incentive Plans", value: 28 },
+  { name: "Disclosure Guidelines", value: 4 },
+  { name: "QDIA Investment types", value: 9 },
 ];
 
 const PdfList = (props) => {

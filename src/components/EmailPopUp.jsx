@@ -69,11 +69,10 @@ const useStyles = makeStyles({
     width: 179,
   },
 });
-const EmailPopUp = ({ contact }) => {
+const EmailPopUp = ({ contact, companyID }) => {
   const classes = useStyles();
   const chatRef = useRef(null);
   const [display, setDisplay] = useState("block");
-
   const handleOpen = () => {
     const node = chatRef.current;
     node.classList.toggle(classes.toggle);
@@ -95,7 +94,11 @@ const EmailPopUp = ({ contact }) => {
         <Box className={classes.insideTextBox}>
           Send Email from our System:
           <br />
-          <EmailSystem contact={contact} setDisplay={setDisplay} />
+          <EmailSystem
+            contact={contact}
+            setDisplay={setDisplay}
+            companyID={companyID}
+          />
         </Box>
       </Box>
 

@@ -12,10 +12,6 @@ export default function FullScreenDialog(props) {
   const [alertFlag, setAlertFlag] = useState(false);
 
   useEffect(() => {
-    console.log(
-      `${apiAddress}/api/SmallCompanies/GetInvestmentDetails?companyID=${props.companyID}&year=${lastYear}`
-    );
-
     axios({
       method: "get",
       url: `${apiAddress}/api/SmallCompanies/GetInvestmentDetails?companyID=${props.companyID}&year=${lastYear}`,

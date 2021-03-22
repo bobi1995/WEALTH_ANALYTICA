@@ -60,6 +60,7 @@ const Heatmap = (props) => {
   if (props.companyID) {
     url = `${apiAddress}/api/SmallCompanies/GetHeatmap?&CompanyID=${props.companyID}&minYear=2015&maxYear=${lastYear}`;
   }
+
   useEffect(() => {
     axios({
       method: "get",

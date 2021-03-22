@@ -53,7 +53,7 @@ export const invenstmentFeatures = {
 
 
 export const equatyInterest = {
-  BenefitName: "Equality Interest",
+  BenefitName: "Equity Interest",
   benefitCodes: [
     { code: "2I", type: "DC", characteristics: "Stock Bonus" },
     { code: "3I", type: "DC", characteristics: "Employer Securities" },
