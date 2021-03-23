@@ -14,6 +14,7 @@ import AlerBox from "../../components/alertBox";
 import Loader from "../../components/plainCicularLoader";
 import { codes as serviceCodes } from "../../global/ServiceCodes";
 import numeral from "numeral";
+import CompaniesTable from "./Benchmark/CompaniesTable";
 
 const styles = (theme) => ({
   filterBox: {
@@ -241,6 +242,7 @@ const Benchmark = (props) => {
   const applyFilter = () => {
     setFilterSearch(true);
     setIndustryFlag(true);
+    setIndustryRes();
     let url;
     if (industry) {
       url = `${apiAddress}/api/SmallCompanies/GetFilterBenchmark?year=${lastYear}&minAssets=${minIncome}&maxAssets=${maxIncome}&minPart=${minPart.minimumFormat}&maxPart=${maxPart}&businessCode=${industry}&state=${state}`;
@@ -344,6 +346,7 @@ const Benchmark = (props) => {
             industryFlag={industryFlag}
             filterSearch={filterSearch}
           />
+          {industryRes ? <CompaniesTable data={industryRes.Companies} /> : ""}
         </Box>
       ) : (
         ""
