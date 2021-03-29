@@ -77,9 +77,9 @@ const BusinessInfo = (props) => {
   return (
     <Box>
       <Box className={classes.tables}>
-        <LocationAndBusiness data={locationData} title="Location" />
-
         <LocationAndBusiness data={businessData} title="Business data" />
+
+        <LocationAndBusiness data={locationData} title="Location" />
       </Box>
 
       <Box className={classes.adminAndContacts}>

@@ -18,23 +18,12 @@ const useStyles = makeStyles({
     border: `1px solid ${primaryBlue}`,
     marginBottom: "3%",
   },
-  tableHeader: {
-    color: primaryBlue,
-    fontWeight: "bold",
-    fontSize: 16,
-  },
+  tableHeader: { color: primaryBlue, fontWeight: "bold", fontSize: 16 },
   negativeNum: {
     color: "red",
   },
   previewBtn: {
     textTransform: "none",
-  },
-  statsSection: {
-    width: "40%",
-    maxHeight: 440,
-  },
-  title: {
-    flex: "1 1 100%",
   },
   heading: {
     color: " #388fc2",
@@ -42,13 +31,13 @@ const useStyles = makeStyles({
   },
 });
 
-const RetirementTable = ({ data }) => {
+const PreCalculatedTable = ({ data }) => {
   const classes = useStyles();
 
   return (
     <Box>
       <Typography component="h4" variant="h4" className={classes.heading}>
-        Retirement Analytics
+        Plan Design
       </Typography>
       <TableContainer component={Paper} className={classes.table}>
         <Table stickyHeader size="small" aria-label="a dense table">
@@ -69,47 +58,42 @@ const RetirementTable = ({ data }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {/**EstAnnualIncome*/}
+            {/**AvgParticipantBalance*/}
             <TableRow>
-              <TableCell>Est. Annual Income</TableCell>
+              <TableCell>Avg. Participant Balance</TableCell>
               {data.map((row, ind) => (
                 <TableCell key={ind}>
-                  ${numeral(row.EstAnnualIncome).format("0,0")}
+                  ${numeral(row.AvgParticipantBalance).format("0,0")}
                 </TableCell>
               ))}
             </TableRow>
 
-            {/**RetirementIncome*/}
+            {/**TotalContributions*/}
             <TableRow>
-              <TableCell>Retirement Income</TableCell>
+              <TableCell>Total Contributions</TableCell>
               {data.map((row, ind) => (
                 <TableCell key={ind}>
-                  ${numeral(row.RetirementIncome).format("0,0")}
+                  ${numeral(row.TotalContributions).format("0,0")}
                 </TableCell>
               ))}
             </TableRow>
 
-            {/**WAEstimatedAverageParticipantBalance*/}
+            {/**TotalDistributions*/}
             <TableRow>
-              <TableCell>WA Future Bal. Est.</TableCell>
+              <TableCell>Total Distributions</TableCell>
               {data.map((row, ind) => (
                 <TableCell key={ind}>
-                  $
-                  {numeral(row.WAEstimatedAverageParticipantBalance).format(
-                    "0,0"
-                  )}
+                  ${numeral(row.TotalDistributions).format("0,0")}
                 </TableCell>
               ))}
             </TableRow>
 
-            {/**WAEstimatedYearsToRetirementReadiness*/}
+            {/**NetPartFlow*/}
             <TableRow>
-              <TableCell>WA Years To Readiness</TableCell>
+              <TableCell>Net Part. Flow</TableCell>
               {data.map((row, ind) => (
                 <TableCell key={ind}>
-                  {numeral(row.WAEstimatedYearsToRetirementReadiness).format(
-                    "0,0"
-                  )}
+                  ${numeral(row.NetPartFlow).format("0,0")}
                 </TableCell>
               ))}
             </TableRow>
@@ -119,4 +103,5 @@ const RetirementTable = ({ data }) => {
     </Box>
   );
 };
-export default RetirementTable;
+
+export default PreCalculatedTable;

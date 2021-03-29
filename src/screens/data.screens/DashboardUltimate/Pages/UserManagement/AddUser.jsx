@@ -72,7 +72,7 @@ const AddUser = () => {
       email,
       CompanyPhone: phone,
       password,
-      Guid: sessionStorage.getItem("Guid"),
+      Guid: localStorage.getItem("Guid"),
     };
     if (data.password !== confirmPassword) {
       setLoading(false);
@@ -86,7 +86,7 @@ const AddUser = () => {
       axios
         .post(`${apiAddress}/api/Users/CreateCompanyUser`, data, {
           headers: {
-            Authorization: "Basic " + sessionStorage.getItem("Token"),
+            Authorization: "Basic " + localStorage.getItem("Token"),
             "Access-Control-Allow-Origin": "*",
           },
         })

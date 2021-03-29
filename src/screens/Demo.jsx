@@ -3,7 +3,6 @@ import axios from "axios";
 import apiAddress from "../global/endpointAddress";
 import Loader from "../components/Loader/Loader";
 import AlertBox from "../components/alertBox";
-import BigCalendar from "../components/BigCalendar";
 
 const Demo = () => {
   const [loading, setLoading] = useState(false);
@@ -192,7 +191,17 @@ const Demo = () => {
           </p>
         </div>
       </div>
-      <BigCalendar />
+      {/* <iframe
+        src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Europe%2FSofia&amp;src=Y3MyNGFtamwybmJmNmw1cHUydGpyYWJtOWtAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;color=%234285F4"
+        style={{
+          border: "solid 1px #777",
+          margin: "0 auto",
+        }}
+        width="800"
+        height="600"
+        frameborder="0"
+        scrolling="no"
+      ></iframe> */}
 
       {loading ? (
         ""

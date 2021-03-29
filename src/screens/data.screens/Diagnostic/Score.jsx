@@ -103,7 +103,8 @@ const EmailSection = ({ data }) => {
                 ? `${numeral(rowData.value).format("0.0")}%`
                 : "N/A",
             cellStyle: (rowData) => ({
-              color: rowData < 50 ? "red" : rowData > 79 ? "green" : "orange",
+              color:
+                rowData < 50 ? "#FF7E79" : rowData > 79 ? "#C6E0B4" : "#FFD579",
               fontWeight: "bold",
             }),
           },

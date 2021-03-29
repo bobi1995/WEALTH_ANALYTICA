@@ -29,6 +29,7 @@ import {
   TouchesExtract,
 } from "./Heatmap/HeatmapDataExtract";
 import HourglassFullIcon from "@material-ui/icons/HourglassFull";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -97,7 +98,14 @@ const Heatmap = (props) => {
               icon={<SupervisorAccountIcon />}
             />
             <Tab label="Benefit Types" value="4" icon={<ExtensionIcon />} />
-            <Tab label="Retirement" value="6" icon={<HourglassFullIcon />} />
+            <Tooltip title="Coming Soon">
+              <Tab
+                disabled
+                label="Retirement"
+                value="6"
+                icon={<HourglassFullIcon />}
+              />
+            </Tooltip>
 
             <Tab label="Marketing Tool" value="5" icon={<TouchAppIcon />} />
           </TabList>

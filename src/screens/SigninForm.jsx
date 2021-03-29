@@ -80,7 +80,7 @@ const SigninForm = () => {
                   }).length > 0
                   ? "/dashboard"
                   : "/filters"
-                : "/account",
+                : "/purchase",
             state: res.data,
           });
         }

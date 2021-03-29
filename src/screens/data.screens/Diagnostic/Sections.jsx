@@ -53,7 +53,7 @@ const useStyles = makeStyles(() => ({
   paperStyle: {
     width: "94%",
   },
-  alertStyle: { width: "100%", fontSize: 15 },
+  alertStyle: { width: "100%", fontSize: 15, color: "black" },
 }));
 
 const Tables = ({ info, mainHeading }) => {
@@ -71,40 +71,68 @@ const Tables = ({ info, mainHeading }) => {
                   <Typography className={classes.fieldLabel}>
                     {item.field}
                   </Typography>
-                  {info.map((el) =>
-                    el.Name === item.code ? (
+                  {info.map((receivedElement) =>
+                    receivedElement.Name === item.code ? (
                       <Alert
-                        key={el.Name}
+                        key={receivedElement.Name}
                         severity="info"
                         elevation={6}
                         variant="filled"
                         className={classes.alertStyle}
                         style={
-                          el.Type === 1
-                            ? el.CompanyValue - el.IndusrtyValue > 0
-                              ? { backgroundColor: "#6ACD75" }
-                              : { backgroundColor: "#FC3468" }
-                            : el.Type === 2
-                            ? { backgroundColor: "#DBA800" }
+                          receivedElement.Type === 1
+                            ? receivedElement.CompanyValue -
+                                receivedElement.IndusrtyValue >
+                              0
+                              ? { backgroundColor: "#C6E0B4" }
+                              : { backgroundColor: "#FF7E79" }
+                            : receivedElement.Type === 2
+                            ? { backgroundColor: "#FFD579" }
                             : { backgroundColor: "#A9A9A9" }
                         }
                       >
-                        {el.Type === 1 ? (
-                          `Company has ${numeral(el.CompanyValue).format(
-                            "0,00.00"
-                          )} with average for the industy ${numeral(
-                            el.IndusrtyValue
-                          ).format("0,00.00")}`
-                        ) : el.Type === 2 ? (
-                          isNaN(el.Text) ? (
-                            el.Text
+                        {receivedElement.Type === 1 ? (
+                          item.prefix === 1 ? (
+                            `Company has ${numeral(
+                              receivedElement.CompanyValue
+                            ).format(
+                              "0,0.0"
+                            )}% with average for the industy ${numeral(
+                              receivedElement.IndusrtyValue
+                            ).format("0,0.0")}%`
+                          ) : item.prefix === 2 ? (
+                            `Company has $${numeral(
+                              receivedElement.CompanyValue
+                            ).format(
+                              "0,0"
+                            )} with average for the industy $${numeral(
+                              receivedElement.IndusrtyValue
+                            ).format("0,0")}`
                           ) : (
-                            `$${numeral(el.Text).format("0,00")}`
+                            `Company has ${numeral(
+                              receivedElement.CompanyValue
+                            ).format(
+                              "0,0"
+                            )} with average for the industy ${numeral(
+                              receivedElement.IndusrtyValue
+                            ).format("0,0")}`
                           )
-                        ) : el.Ind === 1 ? (
-                          <CheckIcon key={el.Ind} style={{ color: "green" }} />
+                        ) : receivedElement.Type === 2 ? (
+                          isNaN(receivedElement.Text) ? (
+                            receivedElement.Text
+                          ) : (
+                            `$${numeral(receivedElement.Text).format("0,00")}`
+                          )
+                        ) : receivedElement.Ind === 1 ? (
+                          <CheckIcon
+                            key={receivedElement.Ind}
+                            style={{ color: "green" }}
+                          />
                         ) : (
-                          <ClearIcon key={el.Ind} style={{ color: "red" }} />
+                          <ClearIcon
+                            key={receivedElement.Ind}
+                            style={{ color: "red" }}
+                          />
                         )}
                       </Alert>
                     ) : (

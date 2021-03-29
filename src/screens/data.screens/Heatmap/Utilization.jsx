@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, makeStyles } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
 import UtilizationTable from "./Utilization/Table";
 import Graphs from "./Utilization/Graphs";
 import NoDataComponent from "./Components/NoDataComponent";
@@ -31,9 +31,9 @@ const Utilization = (props) => {
   return data.length > 0 ? (
     <Box>
       <Box className={classes.headingContainer}>
-        <Typography component="h4" variant="h4" className={classes.heading}>
+        {/* <Typography component="h4" variant="h4" className={classes.heading}>
           Utilization
-        </Typography>
+        </Typography> */}
         <Box className={classes.tablesContainer}>
           <UtilizationTable data={data} setGraphs={setGraphs} />
           <Graphs graphData={graphs} data={data} />

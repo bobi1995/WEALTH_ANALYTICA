@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, makeStyles } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
 import NoDataComponent from "./Components/NoDataComponent";
 import AccountantTable from "./Accountants/Table";
 
@@ -28,9 +28,9 @@ const Accountant = (props) => {
   return data.length > 0 ? (
     <Box>
       <Box className={classes.headingContainer}>
-        <Typography component="h4" variant="h4" className={classes.heading}>
+        {/* <Typography component="h4" variant="h4" className={classes.heading}>
           Accountant
-        </Typography>
+        </Typography> */}
         <Box className={classes.tablesContainer}>
           <AccountantTable data={data} />
         </Box>

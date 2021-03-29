@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, makeStyles } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
 import ComplianceTable from "./Compliance/Table";
 import NoDataComponent from "./Components/NoDataComponent";
 
@@ -30,9 +30,9 @@ const Compliance = (props) => {
   return data.length > 0 ? (
     <Box>
       <Box className={classes.headingContainer}>
-        <Typography component="h4" variant="h4" className={classes.heading}>
+        {/* <Typography component="h4" variant="h4" className={classes.heading}>
           Compliance
-        </Typography>
+        </Typography> */}
         <Box className={classes.tablesContainer}>
           <ComplianceTable data={data} />
         </Box>

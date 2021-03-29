@@ -1,9 +1,11 @@
+//prefix 1 - percent; 2 - dollar; 3 - number; 4 - none
+
 export const observations = [
   {
     name: "Performance",
     data: [
-      { field: "Return Of Investment", code: "D1" },
-      { field: "Return Of Assets", code: "D2" },
+      { field: "Return Of Investment", code: "D1", prefix: 1 },
+      { field: "Return Of Assets", code: "D2", prefix: 1 },
     ],
   },
   {
@@ -52,25 +54,29 @@ export const observations = [
       {
         field: "Average Active Participants",
         code: "D6",
+        prefix: 3,
       },
-      { field: "ActiveParticipants", code: "D3" },
+      { field: "Active Participants", code: "D3", prefix: 3 },
       {
-        field: "Participants WithBenefit Account",
+        field: "Participants With Benefit Account",
         code: "D5",
+        prefix: 3,
       },
     ],
   },
   {
     name: "Plan Assets",
     data: [
-      { field: "Average Assets", code: "D12" },
+      { field: "Average Assets", code: "D12", prefix: 2 },
       {
         field: "Average Participant Balance",
         code: "D18",
+        prefix: 2,
       },
       {
         field: "Separated Vested Participants",
         code: "D4",
+        prefix: 3,
       },
     ],
   },
@@ -78,30 +84,35 @@ export const observations = [
   {
     name: "Contributions",
     data: [
-      { field: "Total Contributions", code: "D7" },
+      { field: "Total Contributions", code: "D7", prefix: 2 },
       {
         field: "Contribution Yield",
         code: "D11",
+        prefix: 1,
       },
       {
         field: "Employee Contributions",
         code: "D9",
+        prefix: 1,
       },
 
-      { field: "Participant Contributions", code: "D10" },
+      { field: "Participant Contributions", code: "D10", prefix: 1 },
 
       {
         field: "Total Contributions Participant",
         code: "D8",
+        prefix: 2,
       },
 
       {
         field: "Participant Contribution By Participant",
         code: "D19",
+        prefix: 1,
       },
       {
         field: "Employee Contribution By Participant",
         code: "D20",
+        prefix: 1,
       },
     ],
   },
@@ -109,14 +120,16 @@ export const observations = [
   {
     name: "Leakage",
     data: [
-      { field: "Total Loans", code: "D15" },
+      { field: "Total Loans", code: "D15", prefix: 2 },
       {
         field: "Loan/Participants",
         code: "D14",
+        prefix: 2,
       },
       {
         field: "Loans/Assets",
         code: "D13",
+        prefix: 1,
       },
 
       { field: "Total Distbibutions", code: "D16" },
@@ -129,10 +142,7 @@ export const observations = [
       {
         field: "Distribution/Assets",
         code: "D17",
-      },
-      {
-        field: "Distribution By Participants",
-        code: "D21",
+        prefix: 1,
       },
     ],
   },
@@ -144,10 +154,12 @@ export const observations = [
       {
         field: "Cost/Participants",
         code: "D24",
+        prefix: 2,
       },
       {
         field: "Expense Ratio",
         code: "D25",
+        prefix: 1,
       },
     ],
   },

@@ -5,7 +5,7 @@ const cityFunction = async (state) => {
   const res = await axios
     .get(`${apiAddress}/api/Cities/Get?state=${state}`, {
       headers: {
-        Authorization: "Basic " + sessionStorage.getItem("Token"),
+        Authorization: "Basic " + localStorage.getItem("Token"),
         "Access-Control-Allow-Origin": "*",
       },
     })
@@ -31,7 +31,7 @@ const cityReducer = async (state, array) => {
   const res = await axios
     .get(url, {
       headers: {
-        Authorization: "Basic " + sessionStorage.getItem("Token"),
+        Authorization: "Basic " + localStorage.getItem("Token"),
         "Access-Control-Allow-Origin": "*",
       },
     })

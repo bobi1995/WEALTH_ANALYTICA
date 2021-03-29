@@ -122,7 +122,7 @@ export default (props) => {
         },
         {
           field: "Participants",
-          title: "Participants",
+          title: "Active Part.",
           type: "numeric",
           filterPlaceholder: "Minimum",
           filtering: false,

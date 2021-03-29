@@ -1,11 +1,8 @@
 import React from "react";
 import MaterialTable from "material-table";
-import { makeStyles, Box, Tooltip } from "@material-ui/core";
+import { makeStyles, Box } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";
-import numeral from "numeral";
-import LoopIcon from "@material-ui/icons/Loop";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import {
   ArrowUpward,
   FirstPage,
