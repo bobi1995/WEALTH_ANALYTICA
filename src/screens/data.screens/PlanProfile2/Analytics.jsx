@@ -44,20 +44,20 @@ const Analytics = (props) => {
               onChange={handleChange}
               aria-label="simple tabs example"
             >
-              <Tab label="Benchmark" value="1" icon={<ArchiveIcon />} />
-              <Tab label="Heatmap" value="2" icon={<MapIcon />} />
-              <Tab label="Diagnostic" value="3" icon={<TimelineIcon />} />
+              <Tab label="Heatmap" value="1" icon={<MapIcon />} />
+              <Tab label="Diagnostic" value="2" icon={<TimelineIcon />} />
+              <Tab label="Benchmark" value="3" icon={<ArchiveIcon />} />
             </TabList>
           </AppBar>
           <Box>
-            <TabPanel value="1">
-              <Benchmark companyID={props.companyID} />
-            </TabPanel>
-            <TabPanel value="2" className={classes.tabpanelRoot}>
+            <TabPanel value="1" className={classes.tabpanelRoot}>
               <Heatmap companyID={props.companyID} />
             </TabPanel>
-            <TabPanel value="3">
+            <TabPanel value="2">
               <Diagnostic companyID={props.companyID} />
+            </TabPanel>
+            <TabPanel value="3">
+              <Benchmark companyID={props.companyID} />
             </TabPanel>
           </Box>
         </TabContext>

@@ -10,6 +10,9 @@ import PlanEntity from "./RightFilter/PlanEntity";
 import BenefitType from "./RightFilter/BenefitType";
 import Participants from "./RightFilter/Participants";
 import Income from "./RightFilter/Income";
+import TotalParticipants from "./RightFilter/totals/TotalParticipants";
+import TotalAssets from "./RightFilter/totals/TotalAssets";
+import NameField from "./RightFilter/Name";
 import { makeStyles } from "@material-ui/core/styles";
 import { lastYear } from "../../../../global/Years";
 
@@ -30,7 +33,7 @@ const useStyles = makeStyles(() => ({
     width: "100%",
     display: "flex",
     justifyContent: "space-around",
-    marginBottom: "1%",
+    marginBottom: "3%",
   },
   buttonContainer: {
     display: "flex",
@@ -50,14 +53,20 @@ const RightFilters = (props) => {
   const [benefitType, setBenefitType] = useState("");
   const [minPart, setMinPart] = useState("");
   const [maxPart, setMaxPart] = useState("");
+  const [totalMinPart, setTotalMinPart] = useState("");
+  const [totalMaxPart, setTotalMaxPart] = useState("");
+  const [totalMinAssets, setTotalMinAssets] = useState("");
+  const [totalMaxAssets, setTotalMaxAssets] = useState("");
   const [minIncome, setMinIncome] = useState("");
   const [maxIncome, setMaxIncome] = useState("");
+  const [sponsor, setSponsor] = useState("");
   return (
     <Box className={classes.mainContainer}>
       <Box>
+        {/* Plan Participants and Plan Assets */}
+
         <Box className={classes.subContainer}>
           <YearField setYear={(year) => setSelectedYear(year)} />
-
           <Participants
             setMinPart={(minPart) => setMinPart(minPart)}
             setMaxPart={(maxPart) => setMaxPart(maxPart)}
@@ -67,6 +76,18 @@ const RightFilters = (props) => {
             setMaxIncome={(maxIncome) => setMaxIncome(maxIncome)}
           />
           {/*  */}
+        </Box>
+        {/* Total Participants and Assets */}
+        <Box className={classes.subContainer}>
+          <NameField setSponsor={(sponsor) => setSponsor(sponsor)} />
+          <TotalParticipants
+            setTotalMinPart={(minPart) => setTotalMinPart(minPart)}
+            setTotalMaxPart={(maxPart) => setTotalMaxPart(maxPart)}
+          />
+          <TotalAssets
+            setTotalMinAssets={(minIncome) => setTotalMinAssets(minIncome)}
+            setTotalMaxAssets={(maxIncome) => setTotalMaxAssets(maxIncome)}
+          />
         </Box>
         <Box className={classes.subContainer}>
           <StatesField setState={(state) => setSelectedState(state)} />
@@ -112,7 +133,12 @@ const RightFilters = (props) => {
               minPart.minimumFormat,
               maxPart,
               minIncome,
-              maxIncome
+              maxIncome,
+              totalMinPart,
+              totalMaxPart,
+              totalMinAssets,
+              totalMaxAssets,
+              sponsor
             ).result;
             const url = await searchFunction(
               selectedYear,
@@ -124,7 +150,12 @@ const RightFilters = (props) => {
               minPart.minimumFormat,
               maxPart,
               minIncome,
-              maxIncome
+              maxIncome,
+              totalMinPart,
+              totalMaxPart,
+              totalMinAssets,
+              totalMaxAssets,
+              sponsor
             ).url;
             props.getResults(a);
             props.setUrl(url);

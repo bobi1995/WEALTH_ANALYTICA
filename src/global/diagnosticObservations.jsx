@@ -110,7 +110,7 @@ export const observations = [
         prefix: 1,
       },
       {
-        field: "Employee Contribution By Participant",
+        field: "Employer Contribution By Participant",
         code: "D20",
         prefix: 1,
       },

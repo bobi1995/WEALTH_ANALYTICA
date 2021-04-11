@@ -76,14 +76,11 @@ export default (props) => {
                   {
                     field: "Payment",
                     title: "Payment",
-                    render: (rowData) =>
-                      rowData.Payment ? (
-                        <p style={rowData.Payment < 0 ? { color: "red" } : {}}>
-                          ${numeral(rowData.Payment).format("0,0")}
-                        </p>
-                      ) : (
-                        "N/A"
-                      ),
+                    render: (rowData) => (
+                      <p style={rowData.Payment < 0 ? { color: "red" } : {}}>
+                        ${numeral(rowData.Payment).format("0,0")}
+                      </p>
+                    ),
                     cellStyle: { textAlign: "center" },
                   },
                 ]}
@@ -163,14 +160,11 @@ export default (props) => {
                   {
                     field: "Payment",
                     title: "Payment",
-                    render: (rowData) =>
-                      rowData.Payment ? (
-                        <p style={rowData.Payment < 0 ? { color: "red" } : {}}>
-                          ${numeral(rowData.Payment).format("0,0")}
-                        </p>
-                      ) : (
-                        "N/A"
-                      ),
+                    render: (rowData) => (
+                      <p style={rowData.Payment < 0 ? { color: "red" } : {}}>
+                        ${numeral(rowData.Payment).format("0,0")}
+                      </p>
+                    ),
                     cellStyle: {
                       textAlign: "center",
                     },

@@ -114,7 +114,7 @@ export default (props) => {
     <Box style={{ marginBottom: "3%" }}>
       <Box className={classes.headingContainer}>
         <Typography component="h4" variant="h4" className={classes.heading}>
-          Financial Information
+          Statistics Information
         </Typography>
       </Box>
       <Box className={classes.charteSection}>

@@ -18,6 +18,7 @@ import Heatmap from "../screens/data.screens/Heatmap";
 import Diagnostic from "../screens/data.screens/Diagnostic";
 import Graphs from "../screens/data.screens/Graphs";
 import PublicGraphs from "../screens/PublicGraphs";
+import Marketing from "../screens/data.screens/DashboardUltimate/Pages/Marketing";
 import Benchmark from "../screens/data.screens/Benchmark";
 import EmailingSystem from "../screens/data.screens/EmailingSystem";
 import Demo from "../screens/Demo";
@@ -39,6 +40,7 @@ function App() {
         <PrivateRoute path="/purchase" component={PurchasePage} />
         <PrivateRoute path="/management" component={UserManagement} />
         <PrivateRoute path="/connections" component={Connections} />
+        <PrivateRoute path="/marketing" component={Marketing} />
         <PrivateRoute path="/filters" component={Filter2} />
         <PrivateRoute path="/bookmarks" component={Bookmarks} />
         <PrivateRoute path="/saved-filters" component={SavedFilters} />

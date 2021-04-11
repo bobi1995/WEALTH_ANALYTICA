@@ -4,40 +4,38 @@ import { makeStyles } from "@material-ui/core/styles";
 import numeral from "numeral";
 import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
-import apiAddress from "../../../../../global/endpointAddress";
-import { primaryBlue } from "../../../../../global/Colors";
-import AsyncAlertBox from "../../../../../components/asyncAlertBox";
+import apiAddress from "../../../../../../../global/endpointAddress";
+import { primaryBlue } from "../../../../../../../global/Colors";
+import AsyncAlertBox from "../../../../../../../components/asyncAlertBox";
+
 const useStyles = makeStyles((theme) => ({
   headerStyle: {
     color: primaryBlue,
     fontFamily: "Baskervville",
   },
 }));
-export default (props) => {
-  const total = props.data
-    .map((el) => el.totalPrice)
-    .reduce((a, b) => a + b, 0);
-
+export default ({ states, type }) => {
   const classes = useStyles();
   const [asyncMessage, setAsyncMessage] = useState("");
-
+  const total = type === 1 ? 1399 : 1999;
   const paypal_ids = {
     sandbox:
       "ASFagTGTUJ79HlIsU_agQiClLj1nA0oFpLFAzDAQUICReFXr-SLieQstyfa5MaGy69vUjOvfvYZ7HC_C",
-    production:
-      "AVC4JRhxccFuPpNX6eop5w7BkBz84OxouXhmwm4EzUFe5X0skwLZC-33-fdUJofbVMNKiqFrN1vrXc3s",
+    businessId:
+      "Ad60VuRwoGdOCouR9WmrzKYsWxUSHOpjomEOrh7A-m4cQaY0VZbo1lB10Eyc4NLW1FoWWa4R-xVdsnWQ",
   };
 
-  const onSuccess = (details, data) => {
-    const requestBody = props.data.map((el) => {
+  const onSuccess = (details, states, type) => {
+    const requestBody = states.map((el) => {
       return {
-        State: el.state.abbriviation,
-        Type: el.type,
-        value: el.type === 1 ? 999 : 1899,
-        Accounts: el.quantity,
-        TotalPrice: el.totalPrice,
+        State: el,
+        Type: type,
+        //value: el.type === 1 ? 999 : 1899,
+        Accounts: 1,
+        TotalPrice: total,
       };
     });
+    console.log(requestBody);
     axios
       .post(`${apiAddress}/api/Users/ConfirmPayment`, requestBody, {
         headers: {
@@ -81,7 +79,7 @@ export default (props) => {
         PayPalButton
         amount={total}
         currency={"USD"}
-        onSuccess={(details, data) => onSuccess(details, data)}
+        onSuccess={(details, data) => onSuccess(details, states, type)}
         options={{
           clientId: paypal_ids.sandbox,
         }}

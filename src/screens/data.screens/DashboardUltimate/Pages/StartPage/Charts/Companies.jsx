@@ -16,7 +16,7 @@ const styles = makeStyles(() => ({
     margin: "1%",
   },
 }));
-const Companies = () => {
+const Companies = ({ chartData }) => {
   const classes = styles();
 
   const data = {
@@ -29,19 +29,22 @@ const Companies = () => {
         borderWidth: 1,
         hoverBackgroundColor: "rgba(54,162,235,0.4)",
         hoverBorderColor: "rgba(54,162,235,1)",
-        data: dataReducer.arrayReducer([585828, 71331]),
+        data: dataReducer.arrayReducer(chartData),
       },
     ],
   };
 
+  const sumOfCompanies = (accumulator, currentValue) =>
+    accumulator + currentValue;
+
   return (
     <div className={classes.chartStyle}>
       <GridChart
-        data={numeral(657159).format(0, 0)}
+        data={numeral(chartData.reduce(sumOfCompanies)).format(0, 0)}
         name="Companies"
         icon={EmojiTransportationIcon}
         staticon={NetworkCheckIcon}
-        smalltext=" most of the Companies in USA."
+        smalltext="all Companies you have access to"
       />
       <small
         className="form-text text-muted"
@@ -49,7 +52,7 @@ const Companies = () => {
       >
         Companies Type
       </small>
-      <Bar data={data} options={dataReducer.optionReturn([585828, 71331])} />
+      <Bar data={data} options={dataReducer.optionReturn(chartData)} />
       <small className="form-text text-muted" style={{ textAlign: "center" }}>
         Companies with over 100 participants are considered as Large.
       </small>

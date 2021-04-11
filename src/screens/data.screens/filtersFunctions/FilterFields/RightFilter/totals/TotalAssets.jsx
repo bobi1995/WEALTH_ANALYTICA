@@ -29,7 +29,7 @@ function NumberFormatCustom(props) {
       }}
       thousandSeparator
       isNumericString
-      //prefix="$"
+      prefix="$"
     />
   );
 }
@@ -40,46 +40,41 @@ NumberFormatCustom.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default function Participants(props) {
+export default function TotalAssets(props) {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    minimumFormat: "",
-  });
-  const [maximumParticipants, setMaximumParticipants] = React.useState("");
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
-    props.setMinPart({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
+  const [maxTotalIncome, setMaxTotalIncome] = React.useState("");
+
+  const [minTotalIncome, setMinTotalIncome] = React.useState("");
+
+  const handleChangeMinimum = (e) => {
+    setMinTotalIncome(e.target.value);
+
+    props.setTotalMinAssets(e.target.value);
   };
 
   const handleChangeMaximum = (e) => {
-    setMaximumParticipants(e.target.value);
-    props.setMaxPart(e.target.value);
+    setMaxTotalIncome(e.target.value);
+    props.setTotalMaxAssets(e.target.value);
   };
 
   return (
     <div className={classes.root}>
       <TextField
-        label="Min Plan Participants"
-        value={values.minimumFormat}
-        onChange={handleChange}
-        name="minimumFormat"
-        id="Minimum-Participants-filter"
+        label="Min Total Assets"
+        value={minTotalIncome}
+        onChange={handleChangeMinimum}
+        name="minIncome"
+        id="Minimum-Income-filter"
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}
       />
       <TextField
-        label="Max Plan Participants"
-        value={maximumParticipants}
+        label="Max Total Assets"
+        value={maxTotalIncome}
         onChange={handleChangeMaximum}
-        name="maximumFormat"
-        id="Maximum-Participants-filter"
+        name="maxIncome"
+        id="Maximum-Income-filter"
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}

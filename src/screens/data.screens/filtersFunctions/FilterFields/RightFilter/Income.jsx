@@ -59,7 +59,7 @@ export default function Participants(props) {
   return (
     <div className={classes.root}>
       <TextField
-        label="Minimum Assets"
+        label="Min Plan Assets"
         value={minIncome}
         onChange={handleChangeMinimum}
         name="minIncome"
@@ -69,7 +69,7 @@ export default function Participants(props) {
         }}
       />
       <TextField
-        label="Maximum Assets"
+        label="Max Plan Assets"
         value={maxIncome}
         onChange={handleChangeMaximum}
         name="maxIncome"

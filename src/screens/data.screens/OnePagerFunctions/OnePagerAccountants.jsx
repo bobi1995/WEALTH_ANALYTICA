@@ -30,12 +30,12 @@ const OnePagerAccountants = (props) => {
             style={{ width: "100%", padding: "3%" }}
           >
             <Typography className={classes.heading}>
-              Accountant Firm Names
+              Accountant Firms
             </Typography>
             <table className="table table-striped table-bordered table-sm table-hover">
               <thead className="thead-dark">
                 <tr>
-                  <th>Name Of The Accountant</th>
+                  <th>Name</th>
                 </tr>
               </thead>
               <tbody className="table-hover">

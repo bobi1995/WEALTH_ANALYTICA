@@ -40,34 +40,26 @@ NumberFormatCustom.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default function Participants(props) {
+export default function TotalParticipants(props) {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    minimumFormat: "",
-  });
-  const [maximumParticipants, setMaximumParticipants] = React.useState("");
-  const handleChange = (event) => {
-    setValues({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
-    props.setMinPart({
-      ...values,
-      [event.target.name]: event.target.value,
-    });
+  const [minTotalParticipants, setMinTotalParticipants] = React.useState("");
+  const [maxTotalParticipants, setMaxTotalParticipants] = React.useState("");
+  const handleChangeMinimum = (event) => {
+    setMinTotalParticipants(event.target.value);
+    props.setTotalMaxPart(event.target.value);
   };
 
   const handleChangeMaximum = (e) => {
-    setMaximumParticipants(e.target.value);
-    props.setMaxPart(e.target.value);
+    setMaxTotalParticipants(e.target.value);
+    props.setTotalMinPart(e.target.value);
   };
 
   return (
     <div className={classes.root}>
       <TextField
-        label="Min Plan Participants"
-        value={values.minimumFormat}
-        onChange={handleChange}
+        label="Min Total Participants"
+        value={minTotalParticipants}
+        onChange={handleChangeMinimum}
         name="minimumFormat"
         id="Minimum-Participants-filter"
         InputProps={{
@@ -75,8 +67,8 @@ export default function Participants(props) {
         }}
       />
       <TextField
-        label="Max Plan Participants"
-        value={maximumParticipants}
+        label="Max Total Participants"
+        value={maxTotalParticipants}
         onChange={handleChangeMaximum}
         name="maximumFormat"
         id="Maximum-Participants-filter"

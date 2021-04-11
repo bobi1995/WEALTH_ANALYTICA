@@ -32,6 +32,11 @@ const SearchFunction = (
   maxParticipants = "",
   minIncome = "",
   maxIncome = "",
+  maxTotalPart = "",
+  minTotalPart = "",
+  minTotalAssets = "",
+  maxTotalAssets = "",
+  sponsor = "",
   dfeoption = ""
 ) => {
   let url;
@@ -69,6 +74,21 @@ const SearchFunction = (
     if (dfeoption) {
       url = url.concat(`planEntity=${dfeoption}&`);
     }
+    if (minTotalPart) {
+      url = url.concat(`minTotalPart=${minTotalPart}&`);
+    }
+    if (maxTotalPart) {
+      url = url.concat(`maxTotalPart=${maxTotalPart}&`);
+    }
+    if (minTotalAssets) {
+      url = url.concat(`minTotalAssets=${minTotalAssets}&`);
+    }
+    if (maxTotalAssets) {
+      url = url.concat(`maxTotalAssets=${maxTotalAssets}&`);
+    }
+    if (sponsor) {
+      url = url.concat(`sponsNamе=${sponsor}`);
+    }
   } else {
     url = `${apiAddress}/api/SmallCompanies/GetCompaniesByCity?year=${year}&`;
     if (states) {
@@ -103,7 +123,24 @@ const SearchFunction = (
     if (dfeoption) {
       url = url.concat(`planEntity=${dfeoption}&`);
     }
+    if (minTotalPart) {
+      url = url.concat(`minTotalPart=${minTotalPart}&`);
+    }
+    if (maxTotalPart) {
+      url = url.concat(`maxTotalPart=${maxTotalPart}&`);
+    }
+    if (minTotalAssets) {
+      url = url.concat(`minTotalAssets=${minTotalAssets}&`);
+    }
+    if (maxTotalAssets) {
+      url = url.concat(`maxTotalAssets=${maxTotalAssets}&`);
+    }
+    if (sponsor) {
+      url = url.concat(`sponsName=${sponsor}`);
+    }
   }
+
+  console.log(url);
   result = fetching(url);
 
   return { result, url };

@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
-import states from "../../../../../global/variables";
+import states from "../../../../../../../global/variables";
 
 const useStyles = makeStyles((theme) => ({
   inputStyle: {

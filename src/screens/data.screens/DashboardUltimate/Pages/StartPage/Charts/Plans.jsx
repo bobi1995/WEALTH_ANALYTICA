@@ -17,33 +17,31 @@ const styles = makeStyles(() => ({
     margin: "1%",
   },
 }));
-const Plans = () => {
+const Plans = ({ chartData, percentage, totalPlans }) => {
   const classes = styles();
-
-  //const netAssetsONLY = netAssets.map((el) => el.NetAssets);
 
   const data = {
     labels: ["Benefit Plans", "Contribution Plans", "Welfare"],
     datasets: [
       {
-        data: dataReducer.arrayReducer([687742, 754876, 67134]),
+        data: dataReducer.arrayReducer(chartData),
         backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
         hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
       },
     ],
   };
 
-  const categoryAsstes = dataReducer.arrayCategory([687742, 754876, 67134]);
+  const categoryAsstes = dataReducer.arrayCategory(chartData);
 
   return (
     <div className={classes.chartStyle}>
       <GridChart
-        data={numeral(752264).format(0, 0)}
-        name="Plans"
+        data={numeral(totalPlans).format(0, 0)}
+        name="Plans in your subscription"
         icon={ImportContactsIcon}
-        smallstat={100}
+        smallstat={percentage}
         staticon={TrendingUpIcon}
-        smalltext="of All Plans in USA"
+        smalltext="of the plans in USA"
       />
       <small
         className="form-text text-muted"

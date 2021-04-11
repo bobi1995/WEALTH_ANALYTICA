@@ -43,6 +43,29 @@ const reducer = (number) => {
     }
   } else return numeral(number).format("0,0");
 };
+
+const longReducer = (number) => {
+  if (number) {
+    const parts = number.toString().split(".");
+    let lengthOfAv = 0;
+    if (number < 0) {
+      const negative = parts[0].toString().split("-");
+      lengthOfAv = negative[1].toString().length;
+    } else lengthOfAv = parts[0].toString().length;
+    if (lengthOfAv > 12) {
+      return (parts[0] / 100000000000).toFixed(1) + " Trilllions";
+    } else if (lengthOfAv <= 12 && lengthOfAv > 9) {
+      return (parts[0] / 1000000000).toFixed(1) + " Billions";
+    } else if (lengthOfAv <= 9 && lengthOfAv > 6) {
+      return (parts[0] / 1000000).toFixed(1) + " Millions";
+    } else if (lengthOfAv <= 6 && lengthOfAv > 3) {
+      return (parts[0] / 1000).toFixed(1) + "Thousands";
+    } else {
+      return parts[0];
+    }
+  } else return numeral(number).format("0,0");
+};
+
 const stateNameReducer = (arr) => {
   const newArr = [];
   if (arr.length > 0) {
@@ -59,4 +82,5 @@ export default {
   splitCapitalLetterString,
   reducer,
   stateNameReducer,
+  longReducer,
 };

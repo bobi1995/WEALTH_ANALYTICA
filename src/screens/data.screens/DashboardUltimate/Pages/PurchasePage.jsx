@@ -1,24 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Datanavbar from "../../DataNavbar";
 import Magellan from "../../Magellan";
 import Main from "../Main";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import AddIcon from "@material-ui/icons/Add";
-import StateSelect from "./PurchasePage/StateSelect";
-import TypeSelect from "./PurchasePage/TypeSelect";
-import QuantitySelect from "./PurchasePage/QuantitySelect";
-import PurchaseTable from "./PurchasePage/PurchaseTable";
-import PayPal from "./PurchasePage/PayPal";
+import Box from "@material-ui/core/Box";
 import { primaryBlue, backgroundGrey } from "../../../../global/Colors";
+import SingleState from "./PurchasePage/SingleState";
+import National from "./PurchasePage/National";
+import Regional from "./PurchasePage/Regional";
+import SingleStateView from "./PurchasePage/SingleState/SingleStateView";
+import RegionalView from "./PurchasePage/Regional/RegionalView";
+import BackBtn from "./PurchasePage/components/BackBtn";
 
 const useStyles = makeStyles((theme) => ({
   gridStyle: {
     width: "100%",
     textAlign: "center",
+  },
+  typeContainer: {
+    display: "flex",
+    justifyContent: "space-around",
+    marginTop: "5%",
+  },
+  paperType: {
+    width: "30%",
+    height: "100px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#B5D3E7",
+    borderWidth: 3,
+    borderColor: "white",
+    borderStyle: "solid",
+    "&:hover": {
+      backgroundColor: primaryBlue,
+      cursor: "pointer",
+    },
+  },
+  typeHeader: {
+    color: "white",
+    fontSize: 17,
   },
   paperStyleInput: {
     width: "90%",
@@ -54,35 +77,47 @@ const useStyles = makeStyles((theme) => ({
 }));
 const PurchasePage = (props) => {
   const classes = useStyles();
-  const [selectedState, setSelectedState] = useState([""]);
-  const [selectedType, setSelectedType] = useState("");
-  const [selectedQuantity, setSelectedQuantity] = useState("");
-  const [data, setData] = useState([]);
-  const isBusiness = localStorage.getItem("isBusiness");
+  const [view, setView] = useState();
 
-  useEffect(() => {
-    if (isBusiness === "false") {
-      setSelectedQuantity(1);
-    } else {
-      setSelectedQuantity("");
+  const switchViews = () => {
+    switch (view) {
+      case "SingleState":
+        return (
+          <Grid className={classes.gridStyle}>
+            <BackBtn setView={setView} />
+            <SingleStateView />
+          </Grid>
+        );
+      case "Regional":
+        return (
+          <Grid className={classes.gridStyle}>
+            <BackBtn setView={setView} />
+            <RegionalView />
+          </Grid>
+        );
+      default:
+        return (
+          <Grid className={classes.gridStyle}>
+            <Typography
+              variant="h4"
+              component="h4"
+              className={classes.headerStyle}
+              gutterBottom
+            >
+              Choose Subscription's Type
+            </Typography>
+            <Box className={classes.typeContainer}>
+              <SingleState setView={setView} />
+
+              <Regional setView={setView} />
+
+              <National />
+            </Box>
+          </Grid>
+        );
     }
-
-    setSelectedState("");
-    setSelectedType("");
-  }, [data, isBusiness]);
-
-  const handleClick = () => {
-    setData([
-      ...data,
-      {
-        state: selectedState,
-        type: selectedType,
-        quantity: selectedQuantity,
-        totalPrice:
-          selectedType === 1 ? selectedQuantity * 899 : selectedQuantity * 1899,
-      },
-    ]);
   };
+
   return (
     <div>
       <Datanavbar />
@@ -92,59 +127,7 @@ const PurchasePage = (props) => {
       <Magellan activeStep={0} />
       <div style={{ display: "flex", backgroundColor: backgroundGrey }}>
         <Main opened="purchase" />
-        <Grid className={classes.gridStyle}>
-          <Typography
-            variant="h4"
-            component="h4"
-            className={classes.headerStyle}
-            gutterBottom
-          >
-            Purchase Subscriptions
-          </Typography>
-          <Paper className={classes.paperStyleInput}>
-            <div className={classes.divStyle}>
-              <StateSelect
-                state={selectedState}
-                setState={(state) => setSelectedState(state)}
-              />
-              <TypeSelect
-                type={selectedType}
-                setType={(type) => setSelectedType(type)}
-              />
-              <QuantitySelect
-                quantity={selectedQuantity}
-                setQuantity={(quantity) => setSelectedQuantity(quantity)}
-              />
-            </div>
-
-            <Button
-              disabled={
-                selectedQuantity && selectedState && selectedType ? false : true
-              }
-              variant="contained"
-              id="right-filter-btn"
-              className={classes.buttonStyle}
-              startIcon={<AddIcon />}
-              onClick={handleClick}
-            >
-              Add
-            </Button>
-          </Paper>
-          {data.length > 0 ? (
-            <Paper className={classes.paperStyleInput}>
-              <PurchaseTable data={data} setData={(data) => setData(data)} />
-            </Paper>
-          ) : (
-            ""
-          )}
-          {data.length > 0 ? (
-            <Paper className={classes.paperStyleInput}>
-              <PayPal data={data} />
-            </Paper>
-          ) : (
-            ""
-          )}
-        </Grid>
+        {switchViews()}
       </div>
     </div>
   );

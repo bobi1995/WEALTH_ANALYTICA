@@ -10,7 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import CommentIcon from "@material-ui/icons/Comment";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-
+import { pdfs } from "../../../global/pdfList";
 const useStyles = makeStyles(() => ({
   root: {
     width: "100%",
@@ -36,36 +36,6 @@ const useStyles = makeStyles(() => ({
     textAlign: "center",
   },
 }));
-
-const pdfs = [
-  { name: "Pension Summary", value: 29 },
-  { name: "Marketing Teaser", value: 31 },
-  { name: "Plan Design", value: 30 },
-  { name: "ERISA Check List", value: 1 },
-  { name: "ERISA 404c Check List", value: 2 },
-  { name: "401k Checklist", value: 3 },
-  { name: "Auditor Checklist", value: 6 },
-  { name: "Auditor Report Checklist", value: 7 },
-  { name: "Automatic Enrollment - CheckList", value: 15 },
-  { name: "QDIA Checklist", value: 8 },
-  { name: "Why Have a QDIA Offering?", value: 23 },
-  { name: "Target Date Fund Guidelines", value: 10 },
-  { name: "Selecting an Annuity Provider", value: 12 },
-  { name: "Company Stock Overview", value: 13 },
-  { name: "Automatic Enrollment - Benefits", value: 14 },
-  { name: "Cash Balance Explained", value: 16 },
-  { name: "Service Provider Disclosures", value: 19 },
-  { name: "Plan Fee Descriptions", value: 20 },
-  { name: "Evaluation of Plan Fees Guidelines", value: 21 },
-  { name: "Leakage : Explained", value: 25 },
-  { name: "Ideas to Increase Plan Participation", value: 26 },
-  { name: "Types of Bonus Incentive Plans", value: 28 },
-  { name: "Disclosure Guidelines", value: 4 },
-  { name: "QDIA Investment types", value: 9 },
-  { name: "Disclosure Guidelines", value: 4 },
-  { name: "TDF Basics", value: 24 },
-  { name: "TDF Summary Guidelines", value: 27 },
-];
 
 const PdfList = (props) => {
   const classes = useStyles();

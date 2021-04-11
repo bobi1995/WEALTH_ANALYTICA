@@ -57,23 +57,18 @@ export default (props) => {
             },
           },
 
-          {
-            field: "Service",
-            title: "Service",
-            render: (rowData) => (rowData.Service ? rowData.Service : "N/A"),
-            cellStyle: {
-              textAlign: "center",
-            },
-          },
+          // {
+          //   field: "Service",
+          //   title: "Service",
+          //   render: (rowData) => (rowData.Service ? rowData.Service : "N/A"),
+          //   cellStyle: {
+          //     textAlign: "center",
+          //   },
+          // },
           {
             field: "ServiceFailure",
             title: "Service Failure",
-            render: (rowData) =>
-              rowData.ServiceFailure ? (
-                <CheckIcon style={{ color: "green" }} />
-              ) : (
-                <CloseIcon style={{ color: "red" }} />
-              ),
+            render: (rowData) => (rowData.ServiceFailure ? "Yes" : "No"),
             cellStyle: {
               textAlign: "center",
             },

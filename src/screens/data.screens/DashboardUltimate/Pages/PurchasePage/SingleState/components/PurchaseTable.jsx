@@ -3,7 +3,7 @@ import MaterialTable from "material-table";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { makeStyles } from "@material-ui/core/styles";
 import numeral from "numeral";
-import { primaryBlue } from "../../../../../global/Colors";
+import { primaryBlue } from "../../../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({
   iconStyle: {
     "&:hover": {

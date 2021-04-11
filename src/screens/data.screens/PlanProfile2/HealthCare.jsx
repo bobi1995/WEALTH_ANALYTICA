@@ -77,7 +77,7 @@ const HealthCare = (props) => {
     <Box>
       <Box className={classes.headingContainer}>
         <Typography component="h4" variant="h4" className={classes.heading}>
-          Financial Information
+          Health Care Information
         </Typography>
       </Box>
       <Box className={classes.charteSection}>

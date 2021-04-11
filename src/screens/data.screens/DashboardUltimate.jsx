@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Datanavbar from "./DataNavbar";
 import Magellan from "./Magellan";
 import Main from "./DashboardUltimate/Main";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Box } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import GridChart from "./DashboardUltimate/Pages/AccountPage/GridChart";
-import numeral from "numeral";
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import Plans from "./DashboardUltimate/Pages/StartPage/Charts/Plans";
 import Companies from "./DashboardUltimate/Pages/StartPage/Charts/Companies";
@@ -16,6 +15,11 @@ import AccessibilityIcon from "@material-ui/icons/Accessibility";
 import GroupIcon from "@material-ui/icons/Group";
 import { lastYear } from "../../global/Years";
 import { primaryBlue, backgroundGrey } from "../../global/Colors";
+import apiAddress from "../../global/endpointAddress";
+import axios from "axios";
+import Loader from "../../components/plainCicularLoader";
+import AlertBox from "../../components/alertBox";
+import common from "./commonFunctions/common";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,6 +46,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Dashboard = (props) => {
   const classes = useStyles();
+  const [results, setResults] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
+  useEffect(() => {
+    setIsLoading(true);
+    setAlertMessage("");
+    axios({
+      method: "get",
+      url: `${apiAddress}/api/SmallCompanies/GetAdvisorDashboardData?year=${lastYear}`,
+      timeout: 60 * 4 * 1000, // Let's say you want to wait at least 4 mins
+      headers: {
+        Authorization: "Basic " + localStorage.getItem("Token"),
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+      .then((res) => {
+        setResults(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setAlertMessage("Cannot load your personal results of subscriptions.");
+      });
+  }, []);
   return (
     <div>
       <Datanavbar />
@@ -58,75 +87,88 @@ const Dashboard = (props) => {
             className={classes.headerStyle}
             gutterBottom
           >
-            Welcome To Wealth Analytica
+            Total Addressable Market
           </Typography>
-          <div className={classes.chartDivStyle}>
-            <Paper>
-              <GridChart
-                data={`$ 8 Trillions`}
-                name="Total Assets"
-                icon={AttachMoneyIcon}
-                smalltext="Total assets not including liabilities"
-                staticon={AccountBalanceIcon}
-              />
-            </Paper>
-            <Paper>
-              <GridChart
-                data={`$ 8 Trillions`}
-                name="Net Assets"
-                icon={AttachMoneyIcon}
-                smalltext="Total Assets less Liabilities"
-                staticon={AccountBalanceIcon}
-              />
-            </Paper>
-            <Paper>
-              <GridChart
-                data={`${numeral(179114708).format("0,0")}`}
-                name="Participants"
-                icon={AccessibilityIcon}
-                smalltext="Total Participants in Plans"
-                staticon={GroupIcon}
-              />
-            </Paper>
-          </div>
-          <div>
-            <div className={classes.chartDivStyle}>
-              <Plans />
-              <Companies />
-            </div>
-          </div>
-          <div className={classes.chartDivStyle}>
-            <Paper>
-              <GridChart
-                data={`$ 290 Billions`}
-                name="Total Income"
-                icon={AttachMoneyIcon}
-                smalltext={`Total Income for ${lastYear}`}
-                staticon={AccountBalanceIcon}
-              />
-            </Paper>
-            <Paper>
-              <GridChart
-                data={`$  -561 Billions`}
-                name="Net Assets"
-                icon={AttachMoneyIcon}
-                smalltext={`Net Assets for ${lastYear}`}
-                staticon={AccountBalanceIcon}
-                colornegative="true"
-              />
-            </Paper>
-            <Paper>
-              <GridChart
-                data={`$ 826 Billions`}
-                name="Total Distribution"
-                icon={AttachMoneyIcon}
-                smalltext={`Total Distribution for ${lastYear}`}
-                staticon={AccountBalanceIcon}
-              />
-            </Paper>
-          </div>
+          {isLoading ? (
+            <Loader />
+          ) : results ? (
+            <Box>
+              <div className={classes.chartDivStyle}>
+                <Paper>
+                  <GridChart
+                    data={`$${common.longReducer(results.NetAssets)}`}
+                    name="Net Assets"
+                    icon={AttachMoneyIcon}
+                    smalltext="Total Assets less Liabilities"
+                    staticon={AccountBalanceIcon}
+                  />
+                </Paper>
+                <Paper>
+                  <GridChart
+                    data={`${common.longReducer(results.Participants)}`}
+                    name="Participants"
+                    icon={AccessibilityIcon}
+                    smalltext="Total Participants in Plans"
+                    staticon={GroupIcon}
+                  />
+                </Paper>
+              </div>
+              <div>
+                <div className={classes.chartDivStyle}>
+                  <Plans
+                    totalPlans={results.TotalPlans}
+                    percentage={results.PlansPercentage}
+                    chartData={[
+                      results.BenefitPlans,
+                      results.ContributionPlans,
+                      results.WelfarePlans,
+                    ]}
+                  />
+                  <Companies
+                    chartData={[results.SmallCompanies, results.LargeCompanies]}
+                  />
+                </div>
+              </div>
+              <div className={classes.chartDivStyle}>
+                <Paper>
+                  <GridChart
+                    data={`${common.longReducer(results.TotalIncome)}`}
+                    name="Total Income"
+                    icon={AttachMoneyIcon}
+                    smalltext={`Total Income for ${lastYear}`}
+                    staticon={AccountBalanceIcon}
+                  />
+                </Paper>
+                <Paper>
+                  <GridChart
+                    data={`${common.longReducer(results.TotalDistribution)}`}
+                    name="Total Distributions"
+                    icon={AttachMoneyIcon}
+                    smalltext={`Total Distributions for ${lastYear}`}
+                    staticon={AccountBalanceIcon}
+                  />
+                </Paper>
+                <Paper>
+                  <GridChart
+                    data={`${common.longReducer(results.TotalExpenses)}`}
+                    name="Total Expenses"
+                    icon={AttachMoneyIcon}
+                    smalltext={`Total Expenses for ${lastYear}`}
+                    staticon={AccountBalanceIcon}
+                  />
+                </Paper>
+              </div>
+            </Box>
+          ) : (
+            "No results"
+          )}
         </Grid>
       </div>
+      {alertMessage ? (
+        <AlertBox text={alertMessage} display={setAlertMessage} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

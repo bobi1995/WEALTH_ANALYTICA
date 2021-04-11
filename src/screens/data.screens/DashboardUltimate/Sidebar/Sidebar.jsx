@@ -12,41 +12,53 @@ import history from "../../../../history/history";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import Tooltip from "@material-ui/core/Tooltip";
+import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
 
 export default function NestedList(props) {
-  const handleAccountClick = () => {
+  const handleChange = (page) => {
     history.push({
-      pathname: `/account`,
-    });
-  };
-  const handleManagementClick = () => {
-    history.push({
-      pathname: `/management`,
-    });
-  };
-  const handleStatisticsClick = () => {
-    history.push({
-      pathname: `/statistics`,
+      pathname: page,
     });
   };
 
-  const handlePurchaseClick = () => {
-    history.push({
-      pathname: `/purchase`,
-    });
-  };
+  // const handleAccountClick = () => {
+  //   history.push({
+  //     pathname: `/account`,
+  //   });
+  // };
+  // const handleManagementClick = () => {
+  //   history.push({
+  //     pathname: `/management`,
+  //   });
+  // };
+  // const handleStatisticsClick = () => {
+  //   history.push({
+  //     pathname: `/statistics`,
+  //   });
+  // };
 
-  const handleGraphsClick = () => {
-    history.push({
-      pathname: `/graphs`,
-    });
-  };
+  // const handlePurchaseClick = () => {
+  //   history.push({
+  //     pathname: `/purchase`,
+  //   });
+  // };
 
-  const handleConnectionsClick = () => {
-    history.push({
-      pathname: `/connections`,
-    });
-  };
+  // const handleMarketingClick = () => {
+  //   history.push({
+  //     pathname: `/marketing`,
+  //   });
+  // };
+  // const handleGraphsClick = () => {
+  //   history.push({
+  //     pathname: `/graphs`,
+  //   });
+  // };
+
+  // const handleConnectionsClick = () => {
+  //   history.push({
+  //     pathname: `/connections`,
+  //   });
+  // };
   return (
     <List
       component="nav"
@@ -60,7 +72,7 @@ export default function NestedList(props) {
       <ListItem
         style={props.opened === "account" ? { backgroundColor: "#95C1DC" } : {}}
         button
-        onClick={handleAccountClick}
+        onClick={() => handleChange("account")}
       >
         <ListItemIcon>
           <AccountCircleIcon />
@@ -73,7 +85,7 @@ export default function NestedList(props) {
             props.opened === "management" ? { backgroundColor: "#95C1DC" } : {}
           }
           button
-          onClick={handleManagementClick}
+          onClick={() => handleChange("management")}
         >
           <ListItemIcon>
             <GroupAddIcon />
@@ -105,7 +117,7 @@ export default function NestedList(props) {
         style={
           props.opened === "statistics" ? { backgroundColor: "#95C1DC" } : {}
         }
-        onClick={handleStatisticsClick}
+        onClick={() => handleChange("statistics")}
       >
         <ListItemIcon>
           <EqualizerIcon />
@@ -116,7 +128,7 @@ export default function NestedList(props) {
       <ListItem
         button
         style={props.opened === "graphs" ? { backgroundColor: "#95C1DC" } : {}}
-        onClick={handleGraphsClick}
+        onClick={() => handleChange("graphs")}
       >
         <ListItemIcon>
           <TrendingUpIcon />
@@ -129,7 +141,7 @@ export default function NestedList(props) {
         style={
           props.opened === "connections" ? { backgroundColor: "#95C1DC" } : {}
         }
-        onClick={handleConnectionsClick}
+        onClick={() => handleChange("connections")}
       >
         <ListItemIcon>
           <ContactMailIcon />
@@ -141,12 +153,25 @@ export default function NestedList(props) {
         style={
           props.opened === "purchase" ? { backgroundColor: "#95C1DC" } : {}
         }
-        onClick={handlePurchaseClick}
+        onClick={() => handleChange("purchase")}
       >
         <ListItemIcon>
           <ShoppingCartIcon />
         </ListItemIcon>
         <ListItemText primary="Purchase" />
+      </ListItem>
+
+      <ListItem
+        button
+        style={
+          props.opened === "marketing" ? { backgroundColor: "#95C1DC" } : {}
+        }
+        onClick={() => handleChange("marketing")}
+      >
+        <ListItemIcon>
+          <PictureAsPdfIcon />
+        </ListItemIcon>
+        <ListItemText primary="Marketing" />
       </ListItem>
     </List>
   );
