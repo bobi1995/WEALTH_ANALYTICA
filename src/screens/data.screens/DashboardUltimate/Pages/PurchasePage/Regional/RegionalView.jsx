@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import AddIcon from "@material-ui/icons/Add";
 import TypeSelect from "../SingleState/components/TypeSelect";
 import USAMap from "react-usa-map";
 import { Typography, Box } from "@material-ui/core";
@@ -48,7 +46,7 @@ const RegionalView = (props) => {
   const statesFilling = (states) => {
     const output = states.reduce((acc, val) => {
       acc[val] = {
-        fill: "blue",
+        fill: "green",
       };
       return acc;
     }, {});

@@ -93,8 +93,8 @@ const Marketing = (props) => {
                 columnCount: 3,
               }}
             >
-              {marketingPdfs.map((el) => (
-                <ListItem disabled={el.future ? true : false}>
+              {marketingPdfs.map((el, index) => (
+                <ListItem key={index} disabled={el.future ? true : false}>
                   <ListItemIcon
                     onClick={el.future ? null : () => handleDownload(el.value)}
                   >

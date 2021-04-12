@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+export default function RecipeReviewCard({ setView }) {
   const classes = useStyles();
 
   return (
@@ -80,7 +80,11 @@ export default function RecipeReviewCard() {
           width: "100%",
         }}
       >
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => setView("National")}
+        >
           Subscribe
         </Button>
         <Button size="small" color="primary">

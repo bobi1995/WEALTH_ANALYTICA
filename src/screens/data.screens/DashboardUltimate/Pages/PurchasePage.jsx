@@ -12,6 +12,7 @@ import National from "./PurchasePage/National";
 import Regional from "./PurchasePage/Regional";
 import SingleStateView from "./PurchasePage/SingleState/SingleStateView";
 import RegionalView from "./PurchasePage/Regional/RegionalView";
+import NationalView from "./PurchasePage/National/NationalView";
 import BackBtn from "./PurchasePage/components/BackBtn";
 
 const useStyles = makeStyles((theme) => ({
@@ -95,6 +96,13 @@ const PurchasePage = (props) => {
             <RegionalView />
           </Grid>
         );
+      case "National":
+        return (
+          <Grid className={classes.gridStyle}>
+            <BackBtn setView={setView} />
+            <NationalView />
+          </Grid>
+        );
       default:
         return (
           <Grid className={classes.gridStyle}>
@@ -111,7 +119,7 @@ const PurchasePage = (props) => {
 
               <Regional setView={setView} />
 
-              <National />
+              <National setView={setView} />
             </Box>
           </Grid>
         );

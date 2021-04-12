@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -15,11 +15,12 @@ import LocalPostOfficeIcon from "@material-ui/icons/LocalPostOffice";
 import commonFunctions from "../../../commonFunctions/common";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 import history from "../../../../../history/history";
-import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import numeral from "numeral";
 import EqualizerIcon from "@material-ui/icons/Equalizer";
+import RemoveBox from "./components/removeBox";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -68,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 const Connection = ({ data }) => {
   const classes = useStyles();
   const avatarAbbr = data.Name.charAt(0);
+  const [remove, setRemove] = useState(false);
 
   return (
     <Paper className={classes.paper}>
@@ -218,7 +220,7 @@ const Connection = ({ data }) => {
                 component="h6"
                 gutterBottom
               >
-                Plan Profile
+                Plan Design
               </Typography>
             </Box>
 
@@ -226,9 +228,11 @@ const Connection = ({ data }) => {
               <Avatar
                 className={classes.avatar}
                 style={{ backgroundColor: primaryBlue }}
-                onClick={() => {}}
+                onClick={() => {
+                  setRemove(true);
+                }}
               >
-                <MailOutlineIcon className={classes.avatar} />
+                <DeleteForeverIcon className={classes.avatar} />
               </Avatar>
               <Typography
                 className={classes.header}
@@ -236,7 +240,7 @@ const Connection = ({ data }) => {
                 component="h6"
                 gutterBottom
               >
-                Contact
+                Remove
               </Typography>
             </Box>
           </Box>
@@ -306,6 +310,15 @@ const Connection = ({ data }) => {
           </Box>
         </Paper>
       </Box>
+      {remove ? (
+        <RemoveBox
+          companyName={data.Name}
+          companyID={data.CompanyID}
+          display={setRemove}
+        />
+      ) : (
+        "'"
+      )}
     </Paper>
   );
 };

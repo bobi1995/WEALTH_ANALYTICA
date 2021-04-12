@@ -7,6 +7,8 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import CancelIcon from "@material-ui/icons/Cancel";
 
 export default function ResponsiveDialog(props) {
   const [open, setOpen] = React.useState(props.result ? true : false);
@@ -34,6 +36,16 @@ export default function ResponsiveDialog(props) {
             {props.result === 200
               ? "Email has been sent successfully to the Client. Thanks for using Wealth Analytica services!"
               : "An error has occured! For some reason email is not sent. Please check receiver's email once again"}
+          </DialogContentText>
+          <DialogContentText style={{ textAlign: "center" }}>
+            {props.result === 200 ? (
+              <CheckCircleIcon
+                size={100}
+                style={{ color: "green", fontSize: 70 }}
+              />
+            ) : (
+              <CancelIcon size={100} style={{ color: "red", fontSize: 70 }} />
+            )}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
