@@ -13,6 +13,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import AssignState from "./FreeStates/AssignState";
 import { primaryBlue } from "../../../../../global/Colors";
 import AlertBox from "../../../../../components/alertBox";
+import SingleState from "./FreeStates/SingleState";
 
 const useStyles = makeStyles((theme) => ({
   mainDiv: {
@@ -22,15 +23,11 @@ const useStyles = makeStyles((theme) => ({
     color: primaryBlue,
     fontFamily: "Baskervville",
   },
-  statesStyle: {
-    display: "grid",
-    gridGap: "1rem",
-    gridTemplateColumns: "repeat(auto-fit, minmax(40%, 1fr))",
-  },
+  statesStyle: { marginBottom: "1%" },
   singleState: {
     textAlign: "center",
-    border: "1px solid grey",
     borderRadius: "20px",
+    marginBottom: "1%",
   },
   saveButton: {
     margin: "0 25%",
@@ -46,7 +43,7 @@ const FreeStates = () => {
   const [results, setResults] = useState("");
 
   useEffect(() => {
-    const url = `${apiAddress}/api/Users/GetRemainingAccounts`;
+    const url = `${apiAddress}/api/Users/GetPaymentsAndsubscriptions`;
 
     axios
       .get(url, {
@@ -63,6 +60,7 @@ const FreeStates = () => {
       });
   }, []);
 
+  console.log(results);
   return (
     <div className={classes.mainDiv}>
       <Typography
@@ -77,81 +75,8 @@ const FreeStates = () => {
       <div className={classes.statesStyle}>
         {results ? (
           results.map((el) => (
-            <div key={el.State} className={classes.singleState}>
-              <Typography
-                variant="h4"
-                component="h4"
-                className={classes.headerStyle}
-                gutterBottom
-              >
-                {common.fullNameByAbbr(el.State)} - {el.State}
-              </Typography>
-              <MaterialTable
-                style={{ margin: "3%" }}
-                title="Free States"
-                icons={{
-                  Filter: React.forwardRef((props, ref) => (
-                    <SearchIcon ref={ref} />
-                  )),
-                  Search: React.forwardRef((props, ref) => (
-                    <SearchIcon ref={ref} />
-                  )),
-                  ResetSearch: React.forwardRef((props, ref) => (
-                    <RotateLeftIcon ref={ref} />
-                  )),
-                  SortArrow: ArrowUpward,
-                  DetailPanel: ChevronRight,
-                }}
-                columns={[
-                  {
-                    field: "Type",
-                    title: "Type",
-                    render: (rowData) =>
-                      rowData.Type === 1 ? "Basic" : "Premium",
-                    cellStyle: {
-                      textAlign: "center",
-                    },
-                  },
-                  {
-                    field: "Count",
-                    title: "Quantity",
-                    cellStyle: {
-                      textAlign: "center",
-                    },
-                  },
-                  {
-                    field: "ExpireDate",
-                    title: "Expires",
-                    render: (rowData) => (
-                      <Moment format="MMM/DD/YYYY">{rowData.ExpireDate}</Moment>
-                    ),
-                    cellStyle: {
-                      textAlign: "center",
-                    },
-                  },
-                  {
-                    field: "Assign",
-                    title: "Assign",
-                    sorting: false,
-
-                    render: (rowData) => (
-                      <AssignState data={rowData} state={el.State} />
-                    ),
-                  },
-                ]}
-                data={el.Details}
-                options={{
-                  paging: false,
-                  search: false,
-                  headerStyle: {
-                    backgroundColor: primaryBlue,
-                    color: "#FFF",
-                    fontSize: "17px",
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  },
-                }}
-              />
+            <div key={el.PaymentID} className={classes.singleState}>
+              <SingleState subscription={el} />
             </div>
           ))
         ) : (

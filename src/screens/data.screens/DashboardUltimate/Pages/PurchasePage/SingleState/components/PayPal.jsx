@@ -34,9 +34,10 @@ export default (props) => {
       return {
         State: el.state.abbriviation,
         Type: el.type,
-        value: el.type === 1 ? 999 : 1899,
         Accounts: el.quantity,
         TotalPrice: el.totalPrice,
+        IsNational: false,
+        IsAddUser: false,
       };
     });
     console.log(requestBody);

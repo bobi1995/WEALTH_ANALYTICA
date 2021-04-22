@@ -26,15 +26,16 @@ export default ({ states, type }) => {
   };
 
   const onSuccess = (details, states, type) => {
-    const requestBody = states.map((el) => {
-      return {
-        State: el,
+    const requestBody = [
+      {
+        State: states.join(","),
         Type: type,
-        //value: el.type === 1 ? 999 : 1899,
-        Accounts: 1,
+        Accounts: 2,
         TotalPrice: total,
-      };
-    });
+        IsNational: false,
+        IsAddUser: false,
+      },
+    ];
     console.log(requestBody);
     axios
       .post(`${apiAddress}/api/Users/ConfirmPayment`, requestBody, {

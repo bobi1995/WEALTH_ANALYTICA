@@ -141,7 +141,6 @@ const SigninForm = () => {
             setAlertMessage(
               "You have sucessfully registered! You can login with your credentials."
             );
-            window.location.reload();
           }
         })
         .catch((e) => {
