@@ -45,7 +45,6 @@ function SimpleDialog(props) {
       });
   }, []);
 
-  console.log(users);
   const handleClose = () => {
     onClose(selectedValue);
   };
@@ -69,7 +68,7 @@ function SimpleDialog(props) {
         {users.map((el) => (
           <ListItem
             button
-            onClick={() => handleListItemClick(el.Guid)}
+            onClick={() => handleListItemClick(el)}
             key={el.Guid}
             style={{ textAlign: "center" }}
           >
@@ -92,9 +91,9 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function SimpleDialogDemo() {
+export default function SimpleDialogDemo({ setUser }) {
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const [selectedValue, setSelectedValue] = React.useState({});
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -103,6 +102,7 @@ export default function SimpleDialogDemo() {
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
+    setUser(value);
   };
 
   return (
@@ -110,11 +110,7 @@ export default function SimpleDialogDemo() {
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Select User
       </Button>
-      <SimpleDialog
-        selectedValue={selectedValue}
-        open={open}
-        onClose={handleClose}
-      />
+      <SimpleDialog selectedValue="none" open={open} onClose={handleClose} />
     </div>
   );
 }

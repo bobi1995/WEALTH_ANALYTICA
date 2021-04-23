@@ -60,7 +60,6 @@ const FreeStates = () => {
       });
   }, []);
 
-  console.log(results);
   return (
     <div className={classes.mainDiv}>
       <Typography

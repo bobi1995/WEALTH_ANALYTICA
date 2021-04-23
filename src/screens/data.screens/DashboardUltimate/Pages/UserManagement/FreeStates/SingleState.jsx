@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography, makeStyles, Button, Paper } from "@material-ui/core";
 import Moment from "react-moment";
 import User from "./components/User";
+import AddUserBtn from "./components/AddUserBtn";
 import { primaryBlue } from "../../../../../../global/Colors";
 const useStyles = makeStyles({
   root: {
@@ -47,6 +48,7 @@ const useStyles = makeStyles({
 
 const SingleState = ({ subscription }) => {
   const classes = useStyles();
+  //console.log(subscription);
   return (
     <Paper className={classes.root} elevation={21}>
       <Box className={classes.detailsContainer}>
@@ -68,7 +70,6 @@ const SingleState = ({ subscription }) => {
           <Typography className={classes.heading2}>States:</Typography>
           <Box style={{ display: "flex", justifyContent: "center" }}>
             {subscription.States.map((el, ind) => {
-              console.log(ind, subscription.States.length);
               return (
                 <Typography key={el} className={classes.heading2}>
                   {ind + 1 === subscription.States.length ? `${el}` : `${el} /`}
@@ -81,11 +82,17 @@ const SingleState = ({ subscription }) => {
       </Box>
       <Box className={classes.usersContainer}>
         {subscription.Users.map((el, ind) => (
-          <User key={ind} data={el} />
+          <User
+            key={ind}
+            data={el}
+            states={subscription.States}
+            type={subscription.Type}
+            payId={subscription.PaymentID}
+          />
         ))}
       </Box>
       <Box className={classes.buttonContainer}>
-        <Button>Add User</Button>
+        <AddUserBtn />
       </Box>
     </Paper>
   );
