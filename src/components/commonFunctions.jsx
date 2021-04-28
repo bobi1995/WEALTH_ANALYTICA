@@ -65,6 +65,10 @@ const fullNameByAbbr = (abbr) => {
   });
 };
 
+const fullNameReturn = (abbr) => {
+  return AllStates.filter((el) => abbr && el.abbriviation === abbr);
+};
+
 //*************INPUT FIELD FOR CITIES***************** */
 const dataListCities = (arr) => {
   return arr.map((city, index) => {
@@ -86,4 +90,5 @@ export default {
   commonFunctionBasics,
   commonFunctionShortAbbrBasic,
   fullNameByAbbr,
+  fullNameReturn,
 };

@@ -3,7 +3,10 @@ import axios from "axios";
 import Datanavbar from "./DataNavbar";
 import { lastYear } from "../../global/Years";
 import apiAddress from "../../global/endpointAddress";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, Paper, Typography } from "@material-ui/core";
+import StarIcon from "@material-ui/icons/Star";
+import { primaryBlue } from "../../global/Colors";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
 import AppBar from "@material-ui/core/AppBar";
 import Tab from "@material-ui/core/Tab";
 import TabContext from "@material-ui/lab/TabContext";
@@ -34,11 +37,23 @@ import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import ExportButton from "../../components/ExportPlanProfile";
 import commonFunctions from "./commonFunctions/common";
-
+import { addBookmark, removeBookmark } from "./OnePagerFunctions/Bookmark";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     //backgroundColor: "orange",
+  },
+  main2: {
+    position: "fixed",
+    zIndex: 99999999999999999,
+    bottom: 5,
+    left: "10px",
+    fontWeight: 300,
+    fontSize: 15,
+    fontFamily: "Raleway , Arial, sans-serif",
+    width: 179,
+    display: "flex",
+    justifyContent: "space-around",
   },
   tabpanelRoot: {
     padding: 0,
@@ -198,6 +213,44 @@ const PlanProfile2 = (props) => {
                   data={results.Statistics}
                 />
               </TabPanel>
+
+              <Paper className={classes.main2} elevation={21}>
+                <Typography
+                  style={{
+                    fontSize: 22,
+                    color: primaryBlue,
+                    fontFamily: "Baskervville",
+                    fontWeight: 300,
+                  }}
+                >
+                  {results.BookmarkUserGuid
+                    ? results.BookmarkUserGuid === localStorage.getItem("Guid")
+                      ? "REMOVE"
+                      : "CONNECTED"
+                    : "BOOKMARK"}
+                </Typography>
+                {results.BookmarkUserGuid ? (
+                  <StarIcon
+                    fontSize="large"
+                    onClick={
+                      results.BookmarkUserGuid === localStorage.getItem("Guid")
+                        ? () => removeBookmark(props.match.params.CompanyID)
+                        : null
+                    }
+                    style={
+                      results.BookmarkUserGuid === localStorage.getItem("Guid")
+                        ? { color: "#e6e600" }
+                        : { color: "red" }
+                    }
+                  />
+                ) : (
+                  <StarBorderIcon
+                    fontSize="large"
+                    onClick={() => addBookmark(props.match.params.CompanyID)}
+                  />
+                )}
+              </Paper>
+
               <ExportButton companyID={props.match.params.CompanyID} />
 
               <EmailPopUp

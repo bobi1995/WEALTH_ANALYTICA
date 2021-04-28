@@ -1,9 +1,7 @@
 import React from "react";
-import MaterialTable from "material-table";
-import DeleteIcon from "@material-ui/icons/Delete";
 import { makeStyles, Typography, Box } from "@material-ui/core";
-import numeral from "numeral";
 import { primaryBlue } from "../../../../../../../global/Colors";
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",

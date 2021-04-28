@@ -157,19 +157,33 @@ export default (props) => {
           sorting: false,
           filtering: false,
           render: (rowData) =>
-            rowData.IsBookmarked ? (
-              <StarIcon
-                style={{ color: "#e6e600" }}
-                onClick={() =>
-                  removeBookmark(rowData.CompanyID, props.data, props.setData)
-                }
-              />
+            rowData.BookmarkUserGuid ? (
+              rowData.BookmarkUserGuid === localStorage.getItem("Guid") ? (
+                <Tooltip title="Remove Bookmark">
+                  <StarIcon
+                    style={{ color: "#e6e600" }}
+                    onClick={() =>
+                      removeBookmark(
+                        rowData.CompanyID,
+                        props.data,
+                        props.setData
+                      )
+                    }
+                  />
+                </Tooltip>
+              ) : (
+                <Tooltip title="Booked by another User">
+                  <StarIcon style={{ color: "red" }} />
+                </Tooltip>
+              )
             ) : (
-              <StarBorderIcon
-                onClick={() =>
-                  addBookmark(rowData.CompanyID, props.data, props.setData)
-                }
-              />
+              <Tooltip title="Add Bookmark">
+                <StarBorderIcon
+                  onClick={() =>
+                    addBookmark(rowData.CompanyID, props.data, props.setData)
+                  }
+                />
+              </Tooltip>
             ),
           cellStyle: {
             textAlign: "center",

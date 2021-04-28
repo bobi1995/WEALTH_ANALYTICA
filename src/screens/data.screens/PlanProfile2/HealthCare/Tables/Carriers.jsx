@@ -6,8 +6,6 @@ import { ArrowUpward, ChevronRight } from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import numeral from "numeral";
-import CloseIcon from "@material-ui/icons/Close";
-import CheckIcon from "@material-ui/icons/Check";
 import commonFunction from "../../../commonFunctions/common";
 import { primaryBlue } from "../../../../../global/Colors";
 const useStyles = makeStyles((theme) => ({

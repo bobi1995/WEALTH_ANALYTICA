@@ -20,6 +20,8 @@ import fileDownload from "js-file-download";
 import AlertBox from "../../../../components/alertBox";
 //import Loader from "../../../../plainCicularLoader";
 import axios from "axios";
+import AdvisorBtn from "./Marketing/AdvisorBtn";
+
 const useStyles = makeStyles((theme) => ({
   gridStyle: {
     width: "100%",
@@ -40,24 +42,28 @@ const Marketing = (props) => {
   const classes = useStyles();
   const [secondary, setSecondary] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-
+  const [openAdvisor, setOpenAdvisor] = useState(false);
   const handleDownload = (pdfId) => {
-    const url = `${apiAddress}/api/SmallCompanies/GetMarketingFile?pdfNumber=${pdfId}`;
-    axios
-      .get(url, {
-        headers: {
-          Authorization: "Basic " + localStorage.getItem("Token"),
-          "Access-Control-Allow-Origin": "*",
-        },
-        responseType: "blob",
-      })
-      .then((res) => {
-        console.log(res.data);
-        fileDownload(res.data, "report.pdf");
-      })
-      .catch((err) => {
-        setAlertMessage("For some reason we could not export the document");
-      });
+    if (pdfId === 33) {
+      setOpenAdvisor(true);
+    } else {
+      const url = `${apiAddress}/api/SmallCompanies/GetMarketingFile?pdfNumber=${pdfId}`;
+      axios
+        .get(url, {
+          headers: {
+            Authorization: "Basic " + localStorage.getItem("Token"),
+            "Access-Control-Allow-Origin": "*",
+          },
+          responseType: "blob",
+        })
+        .then((res) => {
+          console.log(res.data);
+          fileDownload(res.data, "report.pdf");
+        })
+        .catch((err) => {
+          setAlertMessage("For some reason we could not export the document");
+        });
+    }
   };
 
   return (
@@ -94,10 +100,8 @@ const Marketing = (props) => {
               }}
             >
               {marketingPdfs.map((el, index) => (
-                <ListItem key={index} disabled={el.future ? true : false}>
-                  <ListItemIcon
-                    onClick={el.future ? null : () => handleDownload(el.value)}
-                  >
+                <ListItem key={index}>
+                  <ListItemIcon onClick={() => handleDownload(el.value)}>
                     <GetAppIcon />
                   </ListItemIcon>
                   <ListItemText
@@ -113,6 +117,7 @@ const Marketing = (props) => {
       {alertMessage ? (
         <AlertBox text={alertMessage} display={setAlertMessage} />
       ) : null}
+      <AdvisorBtn open={openAdvisor} setOpen={setOpenAdvisor} />
     </div>
   );
 };

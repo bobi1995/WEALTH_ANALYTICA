@@ -1,9 +1,10 @@
 import React from "react";
-import { Box, Typography, makeStyles, Button, Paper } from "@material-ui/core";
+import { Box, Typography, makeStyles, Paper } from "@material-ui/core";
 import Moment from "react-moment";
 import User from "./components/User";
 import AddUserBtn from "./components/AddUserBtn";
 import { primaryBlue } from "../../../../../../global/Colors";
+import SeeMore from "./components/SeeMore";
 const useStyles = makeStyles({
   root: {
     display: "flex",
@@ -21,14 +22,11 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "space-around",
     width: "60%",
-    // backgroundImage: `linear-gradient(to bottom left, ${primaryBlue}, #e8f4f8)`,
     margin: "1%",
     borderRadius: 15,
   },
   buttonContainer: {
     width: "20%",
-    // backgroundImage: `linear-gradient(to bottom right, ${primaryBlue}, #e8f4f8)`,
-    margin: "1%",
     borderRadius: 15,
     justifyContent: "center",
     display: "flex",
@@ -48,7 +46,6 @@ const useStyles = makeStyles({
 
 const SingleState = ({ subscription }) => {
   const classes = useStyles();
-  //console.log(subscription);
   return (
     <Paper className={classes.root} elevation={21}>
       <Box className={classes.detailsContainer}>
@@ -60,7 +57,7 @@ const SingleState = ({ subscription }) => {
             : "National"}
         </Typography>
         <Typography className={classes.heading2}>
-          Type: {subscription.type === 2 ? "Premium" : "Basic"}
+          Type: {subscription.type === 1 ? "Basic" : "Premium"}
         </Typography>
         <Typography className={classes.heading2}>
           Valid to:{" "}
@@ -81,18 +78,53 @@ const SingleState = ({ subscription }) => {
         </Box>
       </Box>
       <Box className={classes.usersContainer}>
-        {subscription.Users.map((el, ind) => (
-          <User
-            key={ind}
-            data={el}
-            states={subscription.States}
-            type={subscription.Type}
-            payId={subscription.PaymentID}
-          />
-        ))}
+        {subscription.Users.length < 6 ? (
+          subscription.Users.map((el, ind) => (
+            <User
+              key={ind}
+              data={el}
+              states={subscription.States}
+              type={subscription.Type}
+              payId={subscription.PaymentID}
+            />
+          ))
+        ) : (
+          <Box style={{ width: "100%" }}>
+            <Box
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                width: "100%",
+                flexWrap: "wrap",
+              }}
+            >
+              {subscription.Users.slice(0, 5).map((el, ind) => (
+                <User
+                  key={ind}
+                  data={el}
+                  states={subscription.States}
+                  type={subscription.Type}
+                  payId={subscription.PaymentID}
+                />
+              ))}
+            </Box>
+            <SeeMore
+              users={subscription.Users}
+              states={subscription.States}
+              type={subscription.Type}
+              payId={subscription.PaymentID}
+              count={subscription.Users.length}
+            />
+          </Box>
+        )}
       </Box>
       <Box className={classes.buttonContainer}>
-        <AddUserBtn />
+        <AddUserBtn
+          states={subscription.States}
+          type={subscription.Type}
+          regionType={subscription.RegionType}
+          payId={subscription.PaymentID}
+        />
       </Box>
     </Paper>
   );

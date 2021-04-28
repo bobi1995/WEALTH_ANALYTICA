@@ -1,6 +1,7 @@
-import apiAddress from "../../../../../global/endpointAddress";
+import apiAddress from "../../../global/endpointAddress";
 import axios from "axios";
-const addBookmark = (companyID, data, setData) => {
+
+const addBookmark = (companyID) => {
   axios
     .post(
       `${apiAddress}/api/Bookmarks/add?CompanyID=${companyID}`,
@@ -12,20 +13,10 @@ const addBookmark = (companyID, data, setData) => {
       }
     )
     .then((res) => {
-      const arr = data.map((el) => {
-        if (el.CompanyID === companyID) {
-          el.BookmarkUserGuid = localStorage.getItem("Guid");
-        }
-        return el;
-      });
-      setData(arr);
+      window.location.reload();
     })
     .catch((err) => {
-      if (err.response && err.response.status === 400) {
-        alert(
-          "You have reached your maximum of 30 bookmarks for the Basic States. To add more you should upgrade to Premium version."
-        );
-      }
+      alert("Error.");
     });
 };
 
@@ -42,13 +33,7 @@ const removeBookmark = (companyID, data, setData) => {
       }
     )
     .then((res) => {
-      const arr = data.map((el) => {
-        if (el.CompanyID === companyID) {
-          el.BookmarkUserGuid = null;
-        }
-        return el;
-      });
-      setData(arr);
+      window.location.reload();
     })
     .catch((err) => console.log(err));
 };

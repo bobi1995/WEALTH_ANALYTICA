@@ -7,9 +7,7 @@ import {
   ListItem,
   ListItemSecondaryAction,
   ListItemText,
-  ListItemAvatar,
   Checkbox,
-  Avatar,
 } from "@material-ui/core";
 import Moment from "react-moment";
 import axios from "axios";
@@ -29,9 +27,15 @@ const useStyles = makeStyles({
     fontSize: 17,
     fontWeight: "bold",
   },
+  expireTypograph: {
+    fontSize: 15,
+    fontStyle: "italic",
+    color: "grey",
+    fontWeight: 400,
+  },
 });
 
-const User = ({ data, states, type, payId }) => {
+const User = ({ data, states, type }) => {
   const classes = useStyles();
   const [user, setUser] = useState({});
   const [alertMessage, setAlertMessage] = useState("");
@@ -45,15 +49,14 @@ const User = ({ data, states, type, payId }) => {
     }
   };
   //   console.log(user);
-  //   console.log(data);
   //console.log(states);
 
   const AssignState = (state) => {
     let url = "";
     if (data.UserGuid) {
-      url = `${apiAddress}/api/Users/AddSubscription?userGuid=${data.UserGuid}&state=${state}&type=${type}&paymentID=${payId}`;
+      url = `${apiAddress}/api/Users/AddSubscription?userGuid=${data.UserGuid}&state=${state}&type=${type}&paymentID=${data.PaymentID}`;
     } else
-      url = `${apiAddress}/api/Users/AddSubscription?userGuid=${user.Guid}&state=${state}&type=${type}&paymentID=${payId}`;
+      url = `${apiAddress}/api/Users/AddSubscription?userGuid=${user.Guid}&state=${state}&type=${type}&paymentID=${data.PaymentID}`;
 
     axios
       .post(
@@ -84,9 +87,9 @@ const User = ({ data, states, type, payId }) => {
 
     let url = "";
     if (data.UserGuid) {
-      url = `${apiAddress}/api/Users/RemoveSubscription?userGuid=${data.UserGuid}&state=${state}&type=${type}&paymentID=${payId}`;
+      url = `${apiAddress}/api/Users/RemoveSubscription?userGuid=${data.UserGuid}&state=${state}&type=${type}&paymentID=${data.PaymentID}`;
     } else
-      url = `${apiAddress}/api/Users/RemoveSubscription?userGuid=${user.Guid}&state=${state}&type=${type}&paymentID=${payId}`;
+      url = `${apiAddress}/api/Users/RemoveSubscription?userGuid=${user.Guid}&state=${state}&type=${type}&paymentID=${data.PaymentID}`;
 
     axios
       .post(
@@ -117,12 +120,17 @@ const User = ({ data, states, type, payId }) => {
   return (
     <Box className={classes.root}>
       <Typography className={classes.heading1}>
-        {data.IsAdditionalUser ? "Additional User" : "Subscription User"}
+        {data.IsAdditionalUser ? "Additional User" : "Original User"}
       </Typography>
-
+      {data.IsAdditionalUser ? (
+        <Typography className={classes.expireTypograph}>
+          <Moment format="MMM/DD/YYYY">{data.ExpireDate}</Moment>
+        </Typography>
+      ) : null}
       {data.UserGuid ? (
         <Box className={classes.usersContainer}>
           <Typography>{data.Name}</Typography>
+
           <List>
             {states.map((el) => (
               <ListItem key={el} style={{ height: 5, marginTop: "5%" }}>
@@ -148,6 +156,7 @@ const User = ({ data, states, type, payId }) => {
               <Typography>
                 {user.FirstName} {user.LastName}
               </Typography>
+
               <List style={{}}>
                 {states.map((el) => (
                   <ListItem key={el} style={{ height: 5, marginTop: "5%" }}>

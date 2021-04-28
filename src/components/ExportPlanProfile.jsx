@@ -43,7 +43,7 @@ const useStyles = makeStyles({
     position: "fixed",
     zIndex: 99999999999999999,
     bottom: 0,
-    left: "10px",
+    left: "45%",
     fontWeight: 300,
     fontSize: 15,
     fontFamily: "Raleway , Arial, sans-serif",

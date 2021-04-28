@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Box,
   Button,
   makeStyles,
   TextField,
@@ -10,13 +9,21 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@material-ui/core";
-import Moment from "react-moment";
-import axios from "axios";
-import apiAddress from "../../../../../../../global/endpointAddress";
-import AlertBox from "../../../../../../../components/alertBox";
+import UsersPaypal from "../components/UsersPaypal";
 
-const AddUserBtn = () => {
-  const [open, setOpen] = React.useState(false);
+const useStyles = makeStyles({
+  buttonStyle: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "70%",
+  },
+});
+const AddUserBtn = (props) => {
+  const [open, setOpen] = useState(false);
+  const [usersNumber, setUsersNumber] = useState();
+  const maxWidth = "sm";
+  const [nextScreen, setNextScreen] = useState(false);
+  const classes = useStyles();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,39 +31,67 @@ const AddUserBtn = () => {
 
   const handleClose = () => {
     setOpen(false);
+    setUsersNumber("");
+    setNextScreen(false);
+  };
+
+  const nextBtnHandler = () => {
+    setNextScreen(true);
   };
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={handleClickOpen}
+        className={classes.buttonStyle}
+      >
         Add User
       </Button>
       <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
+        fullWidth={true}
+        maxWidth={maxWidth}
       >
         <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Add Users to use this subscription.
+          <DialogContentText style={{ textAlign: "center" }}>
+            {nextScreen
+              ? `Price for ${usersNumber} users`
+              : "Add Users to use this subscription."}
           </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-          />
+          {nextScreen ? (
+            <UsersPaypal data={props} accounts={usersNumber} />
+          ) : (
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Number of Users"
+              type="number"
+              fullWidth
+              onChange={(num) => {
+                setUsersNumber(num.target.value);
+              }}
+            />
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleClose} color="primary">
-            Subscribe
-          </Button>
+          {!nextScreen ? (
+            <Button
+              onClick={nextBtnHandler}
+              color="primary"
+              disabled={usersNumber ? false : true}
+            >
+              Next
+            </Button>
+          ) : null}
         </DialogActions>
       </Dialog>
     </div>

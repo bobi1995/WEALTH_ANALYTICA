@@ -15,10 +15,13 @@ import apiAddress from "../../global/endpointAddress";
 import OnePagerTopStatistics from "./OnePagerFunctions/OnePagerTopStatistics";
 import { minYear, lastYear } from "../../global/Years";
 import AlerBox from "../../components/alertBox";
-import { Link, Box, makeStyles } from "@material-ui/core";
+import { Link, Box, makeStyles, Paper, Typography } from "@material-ui/core";
 import commonExtract from "./commonFunctions/commonExtracts";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-
+import StarIcon from "@material-ui/icons/Star";
+import { primaryBlue } from "../../global/Colors";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import { addBookmark, removeBookmark } from "./OnePagerFunctions/Bookmark";
 const useStyles = makeStyles({
   main: {
     position: "fixed",
@@ -29,6 +32,18 @@ const useStyles = makeStyles({
     fontSize: 15,
     fontFamily: "Raleway , Arial, sans-serif",
     width: 179,
+  },
+  main2: {
+    position: "fixed",
+    zIndex: 99999999999999999,
+    bottom: 5,
+    left: "10px",
+    fontWeight: 300,
+    fontSize: 15,
+    fontFamily: "Raleway , Arial, sans-serif",
+    width: 179,
+    display: "flex",
+    justifyContent: "space-around",
   },
   contactButton: {
     backgroundColor: "#3F51B5",
@@ -98,6 +113,7 @@ const OnePager = (props) => {
     },
     [url]
   );
+  console.log(results);
   return (
     <div>
       <Datanavbar />
@@ -166,7 +182,42 @@ const OnePager = (props) => {
       ) : (
         ""
       )}
-
+      <Paper className={classes.main2} elevation={21}>
+        <Typography
+          style={{
+            fontSize: 22,
+            color: primaryBlue,
+            fontFamily: "Baskervville",
+            fontWeight: 300,
+          }}
+        >
+          {results.BookmarkUserGuid
+            ? results.BookmarkUserGuid === localStorage.getItem("Guid")
+              ? "REMOVE"
+              : "CONNECTED"
+            : "BOOKMARK"}
+        </Typography>
+        {results.BookmarkUserGuid ? (
+          <StarIcon
+            fontSize="large"
+            onClick={
+              results.BookmarkUserGuid === localStorage.getItem("Guid")
+                ? () => removeBookmark(props.match.params.CompanyID)
+                : null
+            }
+            style={
+              results.BookmarkUserGuid === localStorage.getItem("Guid")
+                ? { color: "#e6e600" }
+                : { color: "red" }
+            }
+          />
+        ) : (
+          <StarBorderIcon
+            fontSize="large"
+            onClick={() => addBookmark(props.match.params.CompanyID)}
+          />
+        )}
+      </Paper>
       <Box className={classes.main}>
         <Link
           disabled={available ? false : true}

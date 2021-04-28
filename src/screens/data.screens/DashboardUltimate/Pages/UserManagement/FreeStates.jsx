@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
-import MaterialTable from "material-table";
-import SearchIcon from "@material-ui/icons/Search";
-import RotateLeftIcon from "@material-ui/icons/RotateLeft";
-import { ArrowUpward, ChevronRight } from "@material-ui/icons";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import common from "../../../commonFunctions/commonExtracts";
 import apiAddress from "../../../../../global/endpointAddress";
 import axios from "axios";
-import Moment from "react-moment";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import AssignState from "./FreeStates/AssignState";
 import { primaryBlue } from "../../../../../global/Colors";
 import AlertBox from "../../../../../components/alertBox";
 import SingleState from "./FreeStates/SingleState";

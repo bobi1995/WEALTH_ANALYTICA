@@ -10,12 +10,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Dialog from "@material-ui/core/Dialog";
 import PersonIcon from "@material-ui/icons/Person";
-import AddIcon from "@material-ui/icons/Add";
 import axios from "axios";
 import apiAddress from "../../../../../../../global/endpointAddress";
 import { blue } from "@material-ui/core/colors";
 
-const emails = ["username@gmail.com", "user02@gmail.com"];
 const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[100],
@@ -93,7 +91,6 @@ SimpleDialog.propTypes = {
 
 export default function SimpleDialogDemo({ setUser }) {
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState({});
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -101,14 +98,13 @@ export default function SimpleDialogDemo({ setUser }) {
 
   const handleClose = (value) => {
     setOpen(false);
-    setSelectedValue(value);
     setUser(value);
   };
 
   return (
     <div style={{ marginTop: "25%" }}>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Select User
+        Select
       </Button>
       <SimpleDialog selectedValue="none" open={open} onClose={handleClose} />
     </div>
