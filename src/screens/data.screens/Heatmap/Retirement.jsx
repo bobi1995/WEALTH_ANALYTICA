@@ -73,9 +73,6 @@ const Retirement = (props) => {
   }, [props.companyID]);
 
   const handleButtonClick = () => {
-    console.log(
-      `${apiAddress}/api/SmallCompanies/GetRetirement?companyID=${props.companyID}&minYear=2017&maxyear=${lastYear}&estEmlployeeContrib=${first}&replacementIncomeRate=${second}&expROR=${third}`
-    );
     axios({
       method: "get",
       url: `${apiAddress}/api/SmallCompanies/GetRetirement?companyID=${props.companyID}&minYear=2017&maxyear=${lastYear}&estEmlployeeContrib=${first}&replacementIncomeRate=${second}&expROR=${third}`,

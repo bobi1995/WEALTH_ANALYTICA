@@ -12,12 +12,14 @@ import CheckIcon from "@material-ui/icons/Check";
 import { primaryBlue } from "../../../../global/Colors";
 import commonFunctions from "../../commonFunctions/common";
 import AccountantInfo from "../../../../components/AccountatInfo";
-
+import GetAppIcon from "@material-ui/icons/GetApp";
+import DownloadAudit from "./DownloadAudit";
 const useStyles = makeStyles({
   container: {
     width: "100%",
     display: "flex",
     justifyContent: "space-around",
+    marginBottom: "3%",
   },
   table: {
     width: "45%",
@@ -50,7 +52,6 @@ const ComplianceTable = ({ data }) => {
           item === 1 ? counter++ : ""
         )
   );
-
   return (
     <Box className={classes.container}>
       <TableContainer component={Paper} className={classes.table}>
@@ -79,7 +80,7 @@ const ComplianceTable = ({ data }) => {
                 <TableCell key={ind}>
                   {row.business ? (
                     `${row.accountant.EligibleAssets} Plans are with Ineligible Asset`
-                  ) : row.accountant.EligibleAssets === 0 ? (
+                  ) : row.accountant.EligibleAssets === 1 ? (
                     <CheckIcon style={{ color: "green" }} />
                   ) : (
                     <ClearIcon style={{ color: "red" }} />
@@ -90,12 +91,12 @@ const ComplianceTable = ({ data }) => {
 
             {/**AccountantTotalParticipants*/}
             <TableRow>
-              <TableCell>Accountant Total Participants</TableCell>
+              <TableCell>Waiver vs. Total Participants</TableCell>
               {data.map((row, ind) => (
                 <TableCell key={ind}>
                   {row.business ? (
                     `${row.accountant.AccountantTotalParticipants}% have less than 100 participants`
-                  ) : row.accountant.AccountantTotalParticipants === 0 ? (
+                  ) : row.accountant.AccountantTotalParticipants === 1 ? (
                     <CheckIcon style={{ color: "green" }} />
                   ) : (
                     <ClearIcon style={{ color: "red" }} />
@@ -111,7 +112,7 @@ const ComplianceTable = ({ data }) => {
                 <TableCell key={ind}>
                   {row.business ? (
                     `${row.accountant.AccountantAuditScope}% the scope remained intact`
-                  ) : row.accountant.AccountantAuditScope === 0 ? (
+                  ) : row.accountant.AccountantAuditScope === 1 ? (
                     <CheckIcon style={{ color: "green" }} />
                   ) : (
                     <ClearIcon style={{ color: "red" }} />
@@ -127,7 +128,7 @@ const ComplianceTable = ({ data }) => {
                 <TableCell key={ind}>
                   {row.business ? (
                     `${row.accountant.AccountantOpinion}%  has a positive opinion`
-                  ) : row.accountant.AccountantOpinion === 0 ? (
+                  ) : row.accountant.AccountantOpinion === 1 ? (
                     <CheckIcon style={{ color: "green" }} />
                   ) : (
                     <ClearIcon style={{ color: "red" }} />
@@ -143,10 +144,42 @@ const ComplianceTable = ({ data }) => {
                 <TableCell key={ind}>
                   {row.business ? (
                     `${row.accountant.AccountantWaiver}% applied for the waiver`
-                  ) : row.accountant.AccountantWaiver === 0 ? (
+                  ) : row.accountant.AccountantWaiver === 1 ? (
                     <CheckIcon style={{ color: "green" }} />
                   ) : (
                     <ClearIcon style={{ color: "red" }} />
+                  )}
+                </TableCell>
+              ))}
+            </TableRow>
+
+            {/**Audit Report */}
+            <TableRow>
+              <TableCell>Audit Report</TableCell>
+              {data.map((row, ind) => (
+                <TableCell key={ind}>
+                  {row.business ? (
+                    `${row.accountant.AuditReport}% of the Industy has this report `
+                  ) : row.accountant.AuditReport === 0 ? (
+                    <ClearIcon style={{ color: "red" }} />
+                  ) : (
+                    <CheckIcon style={{ color: "green" }} />
+                  )}
+                </TableCell>
+              ))}
+            </TableRow>
+
+            {/**Audit Reports Download*/}
+            <TableRow>
+              <TableCell>Audit Report Download</TableCell>
+              {data.map((row, ind) => (
+                <TableCell key={ind}>
+                  {row.business ? (
+                    `-`
+                  ) : row.accountant.AuditReports.length > 0 ? (
+                    <DownloadAudit reports={row.accountant.AuditReports} />
+                  ) : (
+                    <GetAppIcon style={{ color: "B2B9BF" }} />
                   )}
                 </TableCell>
               ))}
@@ -188,7 +221,7 @@ const ComplianceTable = ({ data }) => {
           </TableHead>
           <TableBody>
             {data.map((row, ind) =>
-              row.year === 2019
+              row.year === 2019 && !row.business
                 ? row.accountant.Accountants.map((el, ind) => (
                     <TableRow key={ind + el}>
                       <TableCell style={{ textAlign: "center" }}>

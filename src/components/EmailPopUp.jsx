@@ -69,7 +69,7 @@ const useStyles = makeStyles({
     width: 179,
   },
 });
-const EmailPopUp = ({ contact, companyID }) => {
+const EmailPopUp = ({ contact, companyID, busy }) => {
   const classes = useStyles();
   const chatRef = useRef(null);
   const [display, setDisplay] = useState("block");
@@ -89,12 +89,18 @@ const EmailPopUp = ({ contact, companyID }) => {
           X
         </span>
         <Box className={classes.insideHeaderBox}>
-          You want to email Customer? Wealth Analytica Emailing.
+          {busy
+            ? "Already bookmarked by another User in your Company"
+            : "You want to email Customer? Wealth Analytica Emailing."}
         </Box>
         <Box className={classes.insideTextBox}>
-          Send Email from our System:
+          {busy
+            ? "You are not allowed to send Email"
+            : "Send Email from our System:"}
+
           <br />
           <EmailSystem
+            busy={busy}
             contact={contact}
             setDisplay={setDisplay}
             companyID={companyID}

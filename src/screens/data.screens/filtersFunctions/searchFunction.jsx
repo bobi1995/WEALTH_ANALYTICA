@@ -140,7 +140,6 @@ const SearchFunction = (
     }
   }
 
-  console.log(url);
   result = fetching(url);
 
   return { result, url };

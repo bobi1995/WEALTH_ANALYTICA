@@ -41,15 +41,12 @@ const User = ({ data, states, type }) => {
   const [alertMessage, setAlertMessage] = useState("");
 
   const handleStateSet = (value, included) => {
-    console.log(value, included);
     if (included) {
       removeState(value);
     } else {
       AssignState(value);
     }
   };
-  //   console.log(user);
-  //console.log(states);
 
   const AssignState = (state) => {
     let url = "";
@@ -103,7 +100,6 @@ const User = ({ data, states, type }) => {
         }
       )
       .then((res) => {
-        console.log(data);
         if (localStorage.getItem("isBusiness")) {
           temp = temp.filter((el) => el.State !== state || el.Type !== type);
           localStorage.setItem("States", JSON.stringify(temp));

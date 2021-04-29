@@ -25,6 +25,7 @@ const useStyles = makeStyles({
 const Accountant = (props) => {
   const classes = useStyles();
   const data = props.data.filter((el) => el.accountant !== null);
+
   return data.length > 0 ? (
     <Box>
       <Box className={classes.headingContainer}>

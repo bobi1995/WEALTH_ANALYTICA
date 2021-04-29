@@ -110,7 +110,7 @@ export const marketingPdfs = [
   {
     name: "WA Advisor Advantage",
     value: 33,
-    hint: "Coming soon",
+    hint: "Industry & State Analytical Info",
     future: true,
   },
 ];

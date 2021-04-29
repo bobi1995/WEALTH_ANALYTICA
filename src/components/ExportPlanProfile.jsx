@@ -126,7 +126,6 @@ const ExportPlanProfile = ({ companyID }) => {
         }
       )
       .then((res) => {
-        console.log(res.data);
         fileDownload(res.data, "selected-report.pdf");
         setLoading(false);
         handleClose();

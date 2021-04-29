@@ -15,9 +15,7 @@ const WACalendar = () => {
   useEffect(() => {
     axios
       .get(url)
-      .then((res) => {
-        console.log(res);
-      })
+      .then((res) => {})
       .catch((e) => {
         console.log(e);
         //setAlertMessage("Wrong username or password");

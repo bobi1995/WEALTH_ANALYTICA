@@ -36,7 +36,6 @@ export default ({ states, type }) => {
         IsAddUser: false,
       },
     ];
-    console.log(requestBody);
     axios
       .post(`${apiAddress}/api/Users/ConfirmPayment`, requestBody, {
         headers: {

@@ -113,7 +113,6 @@ const OnePager = (props) => {
     },
     [url]
   );
-  console.log(results);
   return (
     <div>
       <Datanavbar />
@@ -230,6 +229,12 @@ const OnePager = (props) => {
       <EmailPopUp
         contact={results.Contacts}
         companyID={props.match.params.CompanyID}
+        busy={
+          results.BookmarkUserGuid &&
+          results.BookmarkUserGuid !== localStorage.getItem("Guid")
+            ? true
+            : false
+        }
       />
     </div>
   );

@@ -25,7 +25,7 @@ const Investment = (props) => {
   const database = props.data;
 
   return (
-    <Box>
+    <Box style={{ marginBottom: "3%" }}>
       <Box className={classes.headingContainer}>
         <Typography variant="h4" component="h4" className={classes.heading}>
           Investment Information

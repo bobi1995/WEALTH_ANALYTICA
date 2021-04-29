@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, Box, Typography, Paper } from "@material-ui/core";
+import { makeStyles, Box, Typography, Paper, Tooltip } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { observations } from "../../../global/diagnosticObservations";
 import numeral from "numeral";
@@ -73,68 +73,83 @@ const Tables = ({ info, mainHeading }) => {
                   </Typography>
                   {info.map((receivedElement) =>
                     receivedElement.Name === item.code ? (
-                      <Alert
+                      <Tooltip
+                        placement="left-start"
                         key={receivedElement.Name}
-                        severity="info"
-                        elevation={6}
-                        variant="filled"
-                        className={classes.alertStyle}
-                        style={
-                          receivedElement.Type === 1
-                            ? receivedElement.CompanyValue -
-                                receivedElement.IndusrtyValue >
-                              0
-                              ? { backgroundColor: "#C6E0B4" }
-                              : { backgroundColor: "#FF7E79" }
-                            : receivedElement.Type === 2
-                            ? { backgroundColor: "#FFD579" }
-                            : { backgroundColor: "#A9A9A9" }
+                        title={
+                          receivedElement.Description
+                            ? receivedElement.Description
+                            : ""
                         }
                       >
-                        {receivedElement.Type === 1 ? (
-                          item.prefix === 1 ? (
-                            `Company has ${numeral(
-                              receivedElement.CompanyValue
-                            ).format(
-                              "0,0.0"
-                            )}% with average for the industy ${numeral(
-                              receivedElement.IndusrtyValue
-                            ).format("0,0.0")}%`
-                          ) : item.prefix === 2 ? (
-                            `Company has $${numeral(
-                              receivedElement.CompanyValue
-                            ).format(
-                              "0,0"
-                            )} with average for the industy $${numeral(
-                              receivedElement.IndusrtyValue
-                            ).format("0,0")}`
+                        <Alert
+                          severity="info"
+                          elevation={6}
+                          variant="filled"
+                          className={classes.alertStyle}
+                          style={
+                            receivedElement.TextColor
+                              ? receivedElement.TextColor === "RED"
+                                ? { backgroundColor: "#FF7E79" }
+                                : receivedElement.TextColor === "GREEN"
+                                ? { backgroundColor: "#C6E0B4" }
+                                : { backgroundColor: "#FFD579" }
+                              : receivedElement.Type === 1
+                              ? receivedElement.CompanyValue -
+                                  receivedElement.IndusrtyValue >
+                                0
+                                ? { backgroundColor: "#C6E0B4" }
+                                : { backgroundColor: "#FF7E79" }
+                              : receivedElement.Type === 2
+                              ? { backgroundColor: "#FFD579" }
+                              : { backgroundColor: "#A9A9A9" }
+                          }
+                        >
+                          {receivedElement.Type === 1 ? (
+                            item.prefix === 1 ? (
+                              `Company has ${numeral(
+                                receivedElement.CompanyValue
+                              ).format(
+                                "0,0.0"
+                              )}% with average for the industy ${numeral(
+                                receivedElement.IndusrtyValue
+                              ).format("0,0.0")}%`
+                            ) : item.prefix === 2 ? (
+                              `Company has $${numeral(
+                                receivedElement.CompanyValue
+                              ).format(
+                                "0,0"
+                              )} with average for the industy $${numeral(
+                                receivedElement.IndusrtyValue
+                              ).format("0,0")}`
+                            ) : (
+                              `Company has ${numeral(
+                                receivedElement.CompanyValue
+                              ).format(
+                                "0,0"
+                              )} with average for the industy ${numeral(
+                                receivedElement.IndusrtyValue
+                              ).format("0,0")}`
+                            )
+                          ) : receivedElement.Type === 2 ? (
+                            isNaN(receivedElement.Text) ? (
+                              receivedElement.Text
+                            ) : (
+                              `$${numeral(receivedElement.Text).format("0,00")}`
+                            )
+                          ) : receivedElement.Ind === 1 ? (
+                            <CheckIcon
+                              key={receivedElement.Ind}
+                              style={{ color: "green" }}
+                            />
                           ) : (
-                            `Company has ${numeral(
-                              receivedElement.CompanyValue
-                            ).format(
-                              "0,0"
-                            )} with average for the industy ${numeral(
-                              receivedElement.IndusrtyValue
-                            ).format("0,0")}`
-                          )
-                        ) : receivedElement.Type === 2 ? (
-                          isNaN(receivedElement.Text) ? (
-                            receivedElement.Text
-                          ) : (
-                            `$${numeral(receivedElement.Text).format("0,00")}`
-                          )
-                        ) : receivedElement.Ind === 1 ? (
-                          <CheckIcon
-                            key={receivedElement.Ind}
-                            style={{ color: "green" }}
-                          />
-                        ) : (
-                          <ClearIcon
-                            key={receivedElement.Ind}
-                            style={{ color: "red" }}
-                          />
-                        )}
-                      </Alert>
+                            <ClearIcon
+                              key={receivedElement.Ind}
+                              style={{ color: "red" }}
+                            />
+                          )}
+                        </Alert>
+                      </Tooltip>
                     ) : (
                       ""
                     )

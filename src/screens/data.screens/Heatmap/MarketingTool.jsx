@@ -27,7 +27,7 @@ const Touches = (props) => {
 
   const data = props.data.filter((el) => el.touches !== null);
   return data.length > 0 ? (
-    <Box>
+    <Box style={{ marginBottom: "3%" }}>
       <Box className={classes.headingContainer}>
         {/* <Typography component="h4" variant="h4" className={classes.heading}>
           Marketing Tool

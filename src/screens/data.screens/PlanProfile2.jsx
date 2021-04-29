@@ -256,6 +256,12 @@ const PlanProfile2 = (props) => {
               <EmailPopUp
                 contact={results.Contacts}
                 companyID={props.match.params.CompanyID}
+                busy={
+                  results.BookmarkUserGuid &&
+                  results.BookmarkUserGuid !== localStorage.getItem("Guid")
+                    ? true
+                    : false
+                }
               />
             </Box>
           ) : err ? (

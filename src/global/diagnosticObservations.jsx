@@ -168,7 +168,7 @@ export const observations = [
     name: "Accountant",
     data: [
       {
-        field: "Accountant Total Participants",
+        field: "Waiver vs. Total Participants",
         code: "D56",
       },
       {
@@ -182,6 +182,10 @@ export const observations = [
       {
         field: "Accountant Audit Scope",
         code: "D58",
+      },
+      {
+        field: "Audit report",
+        code: "D79",
       },
     ],
   },

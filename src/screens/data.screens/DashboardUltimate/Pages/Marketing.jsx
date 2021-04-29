@@ -57,7 +57,6 @@ const Marketing = (props) => {
           responseType: "blob",
         })
         .then((res) => {
-          console.log(res.data);
           fileDownload(res.data, "report.pdf");
         })
         .catch((err) => {

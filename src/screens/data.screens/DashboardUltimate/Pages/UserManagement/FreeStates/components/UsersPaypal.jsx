@@ -63,7 +63,6 @@ export default (props) => {
       },
     ];
 
-    console.log(requestBody);
     axios
       .post(`${apiAddress}/api/Users/ConfirmPayment`, requestBody, {
         headers: {

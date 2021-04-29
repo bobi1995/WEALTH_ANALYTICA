@@ -40,7 +40,6 @@ export default (props) => {
         IsAddUser: false,
       };
     });
-    console.log(requestBody);
     axios
       .post(`${apiAddress}/api/Users/ConfirmPayment`, requestBody, {
         headers: {

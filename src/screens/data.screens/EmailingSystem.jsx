@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-around",
   },
 }));
-const EmailingSystem = ({ contact, setDisplay, companyID }) => {
+const EmailingSystem = ({ contact, setDisplay, companyID, busy }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const fullWidth = true;
@@ -72,8 +72,10 @@ const EmailingSystem = ({ contact, setDisplay, companyID }) => {
         variant="outlined"
         className={classes.buttonStyle}
         onClick={handleClickOpen}
+        disabled={busy}
       >
-        <EmailIcon /> Open
+        <EmailIcon />
+        OPEN
       </Button>
       <Dialog
         open={open}

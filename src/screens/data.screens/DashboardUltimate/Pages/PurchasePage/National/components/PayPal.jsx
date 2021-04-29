@@ -29,15 +29,6 @@ export default (props) => {
       "Ad60VuRwoGdOCouR9WmrzKYsWxUSHOpjomEOrh7A-m4cQaY0VZbo1lB10Eyc4NLW1FoWWa4R-xVdsnWQ",
   };
 
-  console.log(
-    props.data.map((el) => {
-      return {
-        Type: el.type,
-        Accounts: el.quantity,
-      };
-    })
-  );
-
   const onSuccess = (details, data) => {
     const requestBody = props.data.map((el) => {
       return {

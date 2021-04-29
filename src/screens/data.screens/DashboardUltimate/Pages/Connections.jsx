@@ -72,8 +72,8 @@ const Connections = (props) => {
             ) : (
               <div>
                 <h1
-                  className="onepager-bottomtables-h1"
-                  style={{ width: "70%", margin: "auto" }}
+                  className={classes.header}
+                  style={{ width: "70%", margin: "7% auto" }}
                 >
                   You do not have any connections. Please add some to see the
                   results
