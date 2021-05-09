@@ -14,19 +14,19 @@ const useStyles = makeStyles({
   },
   detailsContainer: {
     backgroundImage: `linear-gradient(to bottom right, ${primaryBlue}, #e8f4f8)`,
-    width: "20%",
+    width: "15%",
     margin: "1%",
     borderRadius: 15,
   },
   usersContainer: {
     display: "flex",
     justifyContent: "space-around",
-    width: "60%",
+    width: "75%",
     margin: "1%",
     borderRadius: 15,
   },
   buttonContainer: {
-    width: "20%",
+    width: "10%",
     borderRadius: 15,
     justifyContent: "center",
     display: "flex",
@@ -78,7 +78,7 @@ const SingleState = ({ subscription }) => {
         </Box>
       </Box>
       <Box className={classes.usersContainer}>
-        {subscription.Users.length < 6 ? (
+        {subscription.Users.length < 5 ? (
           subscription.Users.map((el, ind) => (
             <User
               key={ind}
@@ -98,7 +98,7 @@ const SingleState = ({ subscription }) => {
                 flexWrap: "wrap",
               }}
             >
-              {subscription.Users.slice(0, 5).map((el, ind) => (
+              {subscription.Users.slice(0, 4).map((el, ind) => (
                 <User
                   key={ind}
                   data={el}

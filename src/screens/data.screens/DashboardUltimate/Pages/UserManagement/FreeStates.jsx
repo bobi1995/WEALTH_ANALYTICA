@@ -61,7 +61,7 @@ const FreeStates = () => {
         className={classes.headerStyle}
         gutterBottom
       >
-        Free States Available
+        User Assingments
       </Typography>
 
       <div className={classes.statesStyle}>

@@ -88,7 +88,23 @@ const Tables = ({ info, mainHeading }) => {
                           variant="filled"
                           className={classes.alertStyle}
                           style={
-                            receivedElement.TextColor
+                            el.backward
+                              ? receivedElement.TextColor
+                                ? receivedElement.TextColor === "RED"
+                                  ? { backgroundColor: "#FF7E79" }
+                                  : receivedElement.TextColor === "GREEN"
+                                  ? { backgroundColor: "#C6E0B4" }
+                                  : { backgroundColor: "#FFD579" }
+                                : receivedElement.Type === 1
+                                ? receivedElement.CompanyValue -
+                                    receivedElement.IndusrtyValue >
+                                  0
+                                  ? { backgroundColor: "#FF7E79" }
+                                  : { backgroundColor: "#C6E0B4" }
+                                : receivedElement.Type === 2
+                                ? { backgroundColor: "#FFD579" }
+                                : { backgroundColor: "#A9A9A9" }
+                              : receivedElement.TextColor
                               ? receivedElement.TextColor === "RED"
                                 ? { backgroundColor: "#FF7E79" }
                                 : receivedElement.TextColor === "GREEN"

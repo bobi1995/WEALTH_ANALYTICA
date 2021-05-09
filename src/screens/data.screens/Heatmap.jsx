@@ -83,6 +83,7 @@ const Heatmap = (props) => {
       })
       .catch((err) => {
         setErr(err.response);
+        console.log(err.reponse);
       });
   }, [url]);
   return (

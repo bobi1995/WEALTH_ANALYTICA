@@ -119,6 +119,7 @@ export const observations = [
 
   {
     name: "Leakage",
+    backward: true,
     data: [
       { field: "Total Loans", code: "D15", prefix: 2 },
       {
@@ -149,6 +150,8 @@ export const observations = [
 
   {
     name: "Plan Expenses",
+    backward: true,
+
     data: [
       { field: "Total Expenses", code: "D23" },
       {

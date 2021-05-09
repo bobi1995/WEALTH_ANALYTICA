@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 export default ({ states, type }) => {
   const classes = useStyles();
   const [asyncMessage, setAsyncMessage] = useState("");
-  const total = type === 1 ? 1399 : 1999;
+  const total = type === 1 ? 1700 : 2100;
   const paypal_ids = {
     sandbox:
       "ASFagTGTUJ79HlIsU_agQiClLj1nA0oFpLFAzDAQUICReFXr-SLieQstyfa5MaGy69vUjOvfvYZ7HC_C",
@@ -36,6 +36,7 @@ export default ({ states, type }) => {
         IsAddUser: false,
       },
     ];
+
     axios
       .post(`${apiAddress}/api/Users/ConfirmPayment`, requestBody, {
         headers: {
@@ -81,7 +82,7 @@ export default ({ states, type }) => {
         currency={"USD"}
         onSuccess={(details, data) => onSuccess(details, states, type)}
         options={{
-          clientId: paypal_ids.sandbox,
+          clientId: paypal_ids.businessId,
         }}
       />
       {asyncMessage ? (

@@ -103,7 +103,7 @@ export default (props) => {
           currency={"USD"}
           onSuccess={(details, data) => onSuccess(details, data)}
           options={{
-            clientId: paypal_ids.sandbox,
+            clientId: paypal_ids.businessId,
           }}
         />
       )}

@@ -8,12 +8,15 @@ import {
   ListItemSecondaryAction,
   ListItemText,
   Checkbox,
+  Button,
 } from "@material-ui/core";
 import Moment from "react-moment";
 import axios from "axios";
 import apiAddress from "../../../../../../../global/endpointAddress";
 import SelectUserDialog from "./SelectUserDialog";
 import AlertBox from "../../../../../../../components/alertBox";
+import TransfertSubscription from "./User/TransferSubscription";
+import TransferBookmarks from "./User/TransferBookmarks";
 
 const useStyles = makeStyles({
   root: { border: "1px solid grey", borderRadius: 15, padding: "1%" },
@@ -39,6 +42,14 @@ const User = ({ data, states, type }) => {
   const classes = useStyles();
   const [user, setUser] = useState({});
   const [alertMessage, setAlertMessage] = useState("");
+  const [openTransferBookmarks, setOpenTransferBookmarks] = useState({
+    open: false,
+    bookmarkNum: 0,
+    state: "",
+    type: 0,
+    paymentId: "",
+    userGuid: "",
+  });
 
   const handleStateSet = (value, included) => {
     if (included) {
@@ -48,6 +59,7 @@ const User = ({ data, states, type }) => {
     }
   };
 
+  //************************** ASSIGN SUBSCRIPTION TO USER *******************************
   const AssignState = (state) => {
     let url = "";
     if (data.UserGuid) {
@@ -79,39 +91,77 @@ const User = ({ data, states, type }) => {
       });
   };
 
-  const removeState = (state) => {
+  //************************** REMOVE SUBSCRIPTION TO USER *******************************
+  const removeState = async (state) => {
     let temp = JSON.parse(localStorage.getItem("States"));
-
-    let url = "";
+    let getUserBookmarkUrl = "";
+    let removeWithoutBookmark = "";
     if (data.UserGuid) {
-      url = `${apiAddress}/api/Users/RemoveSubscription?userGuid=${data.UserGuid}&state=${state}&type=${type}&paymentID=${data.PaymentID}`;
-    } else
-      url = `${apiAddress}/api/Users/RemoveSubscription?userGuid=${user.Guid}&state=${state}&type=${type}&paymentID=${data.PaymentID}`;
+      getUserBookmarkUrl = `${apiAddress}/api/Users/GetUserBookmarksInRemoveState?userGuid=${data.UserGuid}&state=${state}`;
+      removeWithoutBookmark = `${apiAddress}/api/Users/RemoveSubscription?userGuid=${data.UserGuid}&state=${state}&type=${type}&paymentID=${data.PaymentID}`;
+    } else {
+      getUserBookmarkUrl = `${apiAddress}/api/Users/RemoveSubscription?userGuid=${user.Guid}&state=${state}&type=${type}&paymentID=${data.PaymentID}`;
+      removeWithoutBookmark = `${apiAddress}/api/Users/RemoveSubscription?userGuid=${user.Guid}&state=${state}&type=${type}&paymentID=${data.PaymentID}`;
+    }
 
-    axios
-      .post(
-        url,
-        {},
-        {
-          headers: {
-            Authorization: "Basic " + localStorage.getItem("Token"),
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      )
-      .then((res) => {
-        if (localStorage.getItem("isBusiness")) {
-          temp = temp.filter((el) => el.State !== state || el.Type !== type);
-          localStorage.setItem("States", JSON.stringify(temp));
-        }
-        window.location.reload();
+    const getBookmarkInd = await axios
+      .get(getUserBookmarkUrl, {
+        headers: {
+          Authorization: "Basic " + localStorage.getItem("Token"),
+          "Access-Control-Allow-Origin": "*",
+        },
       })
-      .catch((e) => {
-        setAlertMessage(
-          "Subscription removed unsuccessfully. Please try again"
-        );
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        setAlertMessage("Cannot get users. Please try again.");
       });
+
+    if (getBookmarkInd) {
+      console.log(data.UserGuid ? data.UserGuid : user.Guid);
+      setOpenTransferBookmarks({
+        open: true,
+        bookmarkNum: getBookmarkInd,
+        state: state,
+        type: type,
+        paymentId: data.PaymentID,
+        userGuid: data.UserGuid ? data.UserGuid : user.Guid,
+      });
+    } else {
+      axios
+        .post(
+          removeWithoutBookmark,
+          {},
+          {
+            headers: {
+              Authorization: "Basic " + localStorage.getItem("Token"),
+              "Access-Control-Allow-Origin": "*",
+            },
+          }
+        )
+        .then((res) => {
+          if (localStorage.getItem("isBusiness")) {
+            temp = temp.filter((el) => el.State !== state || el.Type !== type);
+            localStorage.setItem("States", JSON.stringify(temp));
+          }
+          window.location.reload();
+        })
+        .catch((e) => {
+          setAlertMessage(
+            "Subscription removed unsuccessfully. Please try again"
+          );
+        });
+    }
   };
+
+  // let temp = JSON.parse(localStorage.getItem("States"));
+
+  // let url = "";
+  // if (data.UserGuid) {
+  //   url = `${apiAddress}/api/Users/RemoveSubscription?userGuid=${data.UserGuid}&state=${state}&type=${type}&paymentID=${data.PaymentID}`;
+  // } else
+  //   url = `${apiAddress}/api/Users/RemoveSubscription?userGuid=${user.Guid}&state=${state}&type=${type}&paymentID=${data.PaymentID}`;
 
   return (
     <Box className={classes.root}>
@@ -129,7 +179,7 @@ const User = ({ data, states, type }) => {
 
           <List>
             {states.map((el) => (
-              <ListItem key={el} style={{ height: 5, marginTop: "5%" }}>
+              <ListItem key={el} style={{ height: 5, marginTop: "10%" }}>
                 <ListItemText primary={`${el}`} />
                 <ListItemSecondaryAction>
                   <Checkbox
@@ -138,12 +188,17 @@ const User = ({ data, states, type }) => {
                       handleStateSet(el, data.States.includes(el))
                     }
                     checked={data.States.includes(el)}
-                    //inputProps={{ "aria-labelledby": labelId }}
                   />
                 </ListItemSecondaryAction>
               </ListItem>
             ))}
           </List>
+          <Box>
+            <TransfertSubscription
+              guid={data.UserGuid}
+              paymentId={data.PaymentID}
+            />
+          </Box>
         </Box>
       ) : (
         <Box className={classes.noUserContainer}>
@@ -176,6 +231,17 @@ const User = ({ data, states, type }) => {
           )}
         </Box>
       )}
+      {openTransferBookmarks.open ? (
+        <TransferBookmarks
+          open={openTransferBookmarks.open}
+          setOpen={setOpenTransferBookmarks}
+          count={openTransferBookmarks.bookmarkNum}
+          state={openTransferBookmarks.state}
+          type={openTransferBookmarks.type}
+          paymentId={openTransferBookmarks.paymentId}
+          guid={openTransferBookmarks.userGuid}
+        />
+      ) : null}
       {alertMessage ? (
         <AlertBox text={alertMessage} display={setAlertMessage} />
       ) : (

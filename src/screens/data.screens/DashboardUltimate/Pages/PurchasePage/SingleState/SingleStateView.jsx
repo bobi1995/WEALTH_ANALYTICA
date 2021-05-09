@@ -52,7 +52,7 @@ const SingleStateView = (props) => {
         type: selectedType,
         quantity: selectedQuantity,
         totalPrice:
-          selectedType === 1 ? selectedQuantity * 699 : selectedQuantity * 899,
+          selectedType === 1 ? selectedQuantity * 840 : selectedQuantity * 1099,
       },
     ]);
   };
