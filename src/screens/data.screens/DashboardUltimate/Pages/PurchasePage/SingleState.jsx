@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -11,6 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Button from "@material-ui/core/Button";
 import { primaryBlue } from "../../../../../global/Colors";
+import LearnMore from "./components/LearnMore";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RecipeReviewCard({ setView }) {
   const classes = useStyles();
-
+  const [learnMore, setLearnMore] = useState("");
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -62,9 +63,8 @@ export default function RecipeReviewCard({ setView }) {
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          Add new States to your account immediately from here. You can purchase
-          as many states as you want with mixed subscriptions - Basic or
-          Premium.
+          Subscribe for 1 or more states by your own choice. You can have access
+          to the data of one or more states if you purchase it individually.
         </Typography>
       </CardContent>
       <CardActions
@@ -79,9 +79,22 @@ export default function RecipeReviewCard({ setView }) {
         >
           Subscribe
         </Button>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          onClick={() =>
+            setLearnMore({
+              title: "Single State Subscription",
+              text:
+                "Effortlessly access essential qualified plan information that leverages your Advisory expertise for the State of your choice.  You will access to the Plans, Analysis, Benchmarking & more.",
+            })
+          }
+        >
           Learn More
         </Button>
+        {learnMore ? (
+          <LearnMore learnMore={learnMore} setLearnMore={setLearnMore} />
+        ) : null}
       </CardActions>
     </Card>
   );

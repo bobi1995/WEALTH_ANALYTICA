@@ -68,6 +68,7 @@ const ExportPlanProfile = ({ companyID }) => {
   const [alertMessage, setAlertMessage] = useState("");
   const [open, setOpen] = React.useState(false);
   const [selectedState, setSelectedState] = useState([]);
+
   const fullWidth = true;
   const maxWidth = "lg";
 
@@ -200,7 +201,11 @@ const ExportPlanProfile = ({ companyID }) => {
         )}
       </Dialog>
       {alertMessage ? (
-        <AlertBox text={alertMessage} display={setAlertMessage} />
+        <AlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={false}
+        />
       ) : (
         ""
       )}

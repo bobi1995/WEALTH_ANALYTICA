@@ -9,9 +9,8 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import Button from "@material-ui/core/Button";
 import { primaryBlue } from "../../../../../global/Colors";
-
+import Link from "@material-ui/core/Link";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -74,16 +73,13 @@ export default function RecipeReviewCard({ setView }) {
           width: "100%",
         }}
       >
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => setView("National")}
+        <Link
+          //onClick={() => setView("National")}
+          href="https://wealthanalytica.com/contact/"
+          target="_blank"
         >
-          Subscribe
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+          CONTACT US
+        </Link>
       </CardActions>
     </Card>
   );

@@ -29,7 +29,7 @@ export default ({ states, type }) => {
         Type of Subscription: {type === 1 ? "Basic" : "Premium"}
       </Typography>
       <Typography className={classes.basicInfo}>
-        Total Price: {type === 1 ? "$1,399" : "$1,999"}
+        Total Price: {type === 1 ? "$1,700" : "$2,100"}
       </Typography>
     </Box>
   );

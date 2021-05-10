@@ -41,9 +41,9 @@ function SimpleDialog(props) {
         setUsers(arr);
       })
       .catch((err) => {
-        //setAlertMessage("Cannot get users. Please try again.");
+        setAlertMessage("Cannot get users. Please try again.");
       });
-  }, []);
+  }, [guid]);
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -104,7 +104,11 @@ function SimpleDialog(props) {
         ))}
       </List>
       {alertMessage ? (
-        <AlertBox text={alertMessage} display={setAlertMessage} />
+        <AlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={false}
+        />
       ) : (
         ""
       )}

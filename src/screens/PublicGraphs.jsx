@@ -394,7 +394,11 @@ const PublicGraphs = () => {
         )
       ) : null}
       {alertMessage ? (
-        <AlertBox text={alertMessage} display={setAlertMessage} />
+        <AlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={false}
+        />
       ) : (
         ""
       )}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -10,6 +10,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Button from "@material-ui/core/Button";
+import LearnMore from "./components/LearnMore";
 import { primaryBlue } from "../../../../../global/Colors";
 
 const useStyles = makeStyles((theme) => ({
@@ -38,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RecipeReviewCard({ setView }) {
   const classes = useStyles();
+  const [learnMore, setLearnMore] = useState("");
 
   return (
     <Card className={classes.root}>
@@ -82,9 +84,22 @@ export default function RecipeReviewCard({ setView }) {
         >
           Subscribe
         </Button>
-        <Button size="small" color="primary">
+        <Button
+          size="small"
+          color="primary"
+          onClick={() =>
+            setLearnMore({
+              title: "Regional Subscription",
+              text:
+                "Effortlessly access essential qualified plan information that leverages your Advisory expertise for 3 States of your choice with 2 users.  You will access to the Plans, Analysis, Benchmarking & more.",
+            })
+          }
+        >
           Learn More
         </Button>
+        {learnMore ? (
+          <LearnMore learnMore={learnMore} setLearnMore={setLearnMore} />
+        ) : null}
       </CardActions>
     </Card>
   );

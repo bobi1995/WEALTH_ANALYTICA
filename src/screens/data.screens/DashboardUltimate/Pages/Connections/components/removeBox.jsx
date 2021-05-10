@@ -70,7 +70,11 @@ const RemoveBox = ({ companyName, companyID, display }) => {
         </Button>
       </DialogActions>
       {alertMessage ? (
-        <AlertBox text={alertMessage} display={setAlertMessage} />
+        <AlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={false}
+        />
       ) : (
         ""
       )}

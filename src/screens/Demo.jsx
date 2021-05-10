@@ -13,6 +13,7 @@ const Demo = () => {
   const [phone, setPhone] = useState("");
   const [comment, setComment] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const onChangeFirstName = (e) => {
     setFirstName(e.target.value);
@@ -49,6 +50,8 @@ const Demo = () => {
       .then((res) => {
         if (res.status === 200) {
           setLoading(false);
+          setSuccess(true);
+
           setAlertMessage(
             "Your meeting request is sent. We will reach you to schedule it."
           );
@@ -61,6 +64,8 @@ const Demo = () => {
         }
       })
       .catch((e) => {
+        setSuccess(false);
+
         setAlertMessage(
           "Something went wrong with requesting Demo. Please try again."
         );
@@ -220,7 +225,11 @@ const Demo = () => {
         </div>
       )}
       {alertMessage ? (
-        <AlertBox text={alertMessage} display={setAlertMessage} />
+        <AlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={success}
+        />
       ) : (
         ""
       )}

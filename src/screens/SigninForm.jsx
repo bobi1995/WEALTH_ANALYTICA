@@ -35,6 +35,7 @@ const SigninForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isBusiness, setIsBusiness] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const chatRef = useRef(null);
 
@@ -72,6 +73,11 @@ const SigninForm = () => {
           localStorage.setItem("LogoData", res.data.LogoData);
           localStorage.setItem("isBusiness", res.data.IsBusinessAccount);
           localStorage.setItem("CanUpdateLogo", res.data.CanUpdateLogo);
+          localStorage.setItem(
+            "IsChildToBusinessAccount",
+            res.data.IsChildToBusinessAccount
+          );
+
           history.push({
             pathname:
               res.data.States.length > 0
@@ -87,6 +93,7 @@ const SigninForm = () => {
       })
       .catch((e) => {
         setLoading(false);
+        setSuccess(false);
         setAlertMessage("Wrong username or password");
       });
   };
@@ -109,11 +116,15 @@ const SigninForm = () => {
     };
 
     if (!firstName) {
+      setSuccess(false);
+
       setAlertMessage("Please fill your First Name");
       setLoading(false);
       return 0;
     }
     if (!lastName) {
+      setSuccess(false);
+
       setAlertMessage("Please fill your Last Name");
       setLoading(false);
       return 0;
@@ -126,9 +137,13 @@ const SigninForm = () => {
     }
 
     if (password !== confirmPassword) {
+      setSuccess(false);
+
       setAlertMessage("Passwords don't match");
       setLoading(false);
     } else if (password.length < 6) {
+      setSuccess(false);
+
       setAlertMessage("Password must be at least 7 symbols");
       setLoading(false);
     } else {
@@ -136,7 +151,7 @@ const SigninForm = () => {
         .post(`${apiAddress}/api/Users`, data)
         .then((res) => {
           if (res.status === 200) {
-            setLoading(false);
+            setLoading(true);
 
             setAlertMessage(
               "You have sucessfully registered! You can login with your credentials."
@@ -145,6 +160,7 @@ const SigninForm = () => {
         })
         .catch((e) => {
           setLoading(false);
+          setSuccess(false);
 
           setAlertMessage(e.response.data.Message);
         });
@@ -408,7 +424,11 @@ const SigninForm = () => {
         </p>
       </footer>
       {alertMessage ? (
-        <AlertBox text={alertMessage} display={setAlertMessage} />
+        <AlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={success}
+        />
       ) : (
         ""
       )}

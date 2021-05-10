@@ -191,7 +191,11 @@ const BookmarkMainTable = (props) => {
         )}
       </table>
       {alertMessage ? (
-        <AlertBox text={alertMessage} display={setAlertMessage} />
+        <AlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={false}
+        />
       ) : (
         ""
       )}

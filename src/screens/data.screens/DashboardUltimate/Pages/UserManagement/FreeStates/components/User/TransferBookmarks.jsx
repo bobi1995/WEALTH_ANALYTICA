@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -11,19 +10,10 @@ import Dialog from "@material-ui/core/Dialog";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import axios from "axios";
 import apiAddress from "../../../../../../../../global/endpointAddress";
-import { blue } from "@material-ui/core/colors";
 import AlertBox from "../../../../../../../../components/alertBox";
 import DialogActions from "@material-ui/core/DialogActions";
 
-const useStyles = makeStyles({
-  avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
-  },
-});
-
 function SimpleDialog(props) {
-  const classes = useStyles();
   const {
     onClose,
     selectedValue,
@@ -51,9 +41,9 @@ function SimpleDialog(props) {
         setUsers(arr);
       })
       .catch((err) => {
-        //setAlertMessage("Cannot get users. Please try again.");
+        setAlertMessage("Cannot get users. Please try again.");
       });
-  }, []);
+  }, [guid]);
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -169,7 +159,11 @@ function SimpleDialog(props) {
         </Button>
       </DialogActions>
       {alertMessage ? (
-        <AlertBox text={alertMessage} display={setAlertMessage} />
+        <AlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={false}
+        />
       ) : (
         ""
       )}

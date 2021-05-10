@@ -89,7 +89,11 @@ const Bookmarks = () => {
       </div>
       <div>{loading ? <Loader /> : <BookmarkMainTable data={tempRes} />}</div>
       {alertMessage ? (
-        <AlertBox text={alertMessage} display={setAlertMessage} />
+        <AlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={false}
+        />
       ) : (
         ""
       )}

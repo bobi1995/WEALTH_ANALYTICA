@@ -8,7 +8,6 @@ import {
   ListItemSecondaryAction,
   ListItemText,
   Checkbox,
-  Button,
 } from "@material-ui/core";
 import Moment from "react-moment";
 import axios from "axios";
@@ -179,7 +178,7 @@ const User = ({ data, states, type }) => {
 
           <List>
             {states.map((el) => (
-              <ListItem key={el} style={{ height: 5, marginTop: "10%" }}>
+              <ListItem key={el} style={{ height: 5, marginTop: "15%" }}>
                 <ListItemText primary={`${el}`} />
                 <ListItemSecondaryAction>
                   <Checkbox
@@ -210,7 +209,7 @@ const User = ({ data, states, type }) => {
 
               <List style={{}}>
                 {states.map((el) => (
-                  <ListItem key={el} style={{ height: 5, marginTop: "5%" }}>
+                  <ListItem key={el} style={{ height: 5, marginTop: "15%" }}>
                     <ListItemText primary={`${el}`} />
                     <ListItemSecondaryAction>
                       <Checkbox
@@ -243,7 +242,11 @@ const User = ({ data, states, type }) => {
         />
       ) : null}
       {alertMessage ? (
-        <AlertBox text={alertMessage} display={setAlertMessage} />
+        <AlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={false}
+        />
       ) : (
         ""
       )}

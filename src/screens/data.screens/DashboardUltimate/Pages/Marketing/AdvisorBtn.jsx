@@ -124,7 +124,11 @@ function SimpleDialog(props) {
         )}
       </DialogContent>
       {alertMessage ? (
-        <AlertBox text={alertMessage} display={setAlertMessage} />
+        <AlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={false}
+        />
       ) : null}
     </Dialog>
   );

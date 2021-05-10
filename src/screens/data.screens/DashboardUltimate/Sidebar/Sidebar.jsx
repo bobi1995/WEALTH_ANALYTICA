@@ -148,18 +148,38 @@ export default function NestedList(props) {
         </ListItemIcon>
         <ListItemText primary="Connections" />
       </ListItem>
-      <ListItem
-        button
-        style={
-          props.opened === "purchase" ? { backgroundColor: "#95C1DC" } : {}
-        }
-        onClick={() => handleChange("purchase")}
-      >
-        <ListItemIcon>
-          <ShoppingCartIcon />
-        </ListItemIcon>
-        <ListItemText primary="Purchase" />
-      </ListItem>
+      {localStorage.getItem("IsChildToBusinessAccount") === "false" ? (
+        <ListItem
+          button
+          style={
+            props.opened === "purchase" ? { backgroundColor: "#95C1DC" } : {}
+          }
+          onClick={() => handleChange("purchase")}
+        >
+          <ListItemIcon>
+            <ShoppingCartIcon />
+          </ListItemIcon>
+          <ListItemText primary="Purchase" />
+        </ListItem>
+      ) : (
+        <Tooltip
+          title="Purchase is available only for The Manager of the Accounts"
+          arrow
+        >
+          <ListItem
+            button
+            style={
+              props.opened === "purchase" ? { backgroundColor: "#95C1DC" } : {}
+            }
+            disabled
+          >
+            <ListItemIcon>
+              <ShoppingCartIcon />
+            </ListItemIcon>
+            <ListItemText primary="Purchase" />
+          </ListItem>
+        </Tooltip>
+      )}
 
       <ListItem
         button

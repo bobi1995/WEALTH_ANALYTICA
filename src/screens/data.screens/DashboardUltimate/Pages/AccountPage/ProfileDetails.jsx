@@ -54,6 +54,7 @@ const AccountDetails = (props) => {
   const [oldPassword, setOldPassword] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const [asyncMessage, setAsyncMessage] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const handleChange = (event) => {
     setValues({
@@ -79,6 +80,7 @@ const AccountDetails = (props) => {
         localStorage.setItem("Address", values.address);
       })
       .catch((error) => {
+        setSuccess(false);
         setAlertMessage("We couldn't update the results.");
       });
   };
@@ -92,9 +94,11 @@ const AccountDetails = (props) => {
   };
   const handleChangePass = () => {
     if (newPassword !== repeatedPassword) {
+      setSuccess(false);
       setAlertMessage("Password does not match");
     } else if (newPassword.length < 7) {
-      setAlertMessage("password must be at least 7 symbols");
+      setSuccess(false);
+      setAlertMessage("Password must be at least 7 symbols");
     } else {
       axios
         .post(
@@ -111,10 +115,12 @@ const AccountDetails = (props) => {
           }
         )
         .then((res) => {
+          setSuccess(true);
           setAlertMessage("Password is changed");
           handleClosePassChange();
         })
         .catch((error) => {
+          setSuccess(false);
           setAlertMessage(error.response.data);
         });
     }
@@ -301,12 +307,20 @@ const AccountDetails = (props) => {
         </DialogActions>
       </Dialog>
       {alertMessage ? (
-        <AlertBox text={alertMessage} display={setAlertMessage} />
+        <AlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={success}
+        />
       ) : (
         ""
       )}
       {asyncMessage ? (
-        <AsyncAlertBox text={asyncMessage} display={setAsyncMessage} />
+        <AsyncAlertBox
+          text={asyncMessage}
+          display={setAsyncMessage}
+          success={success}
+        />
       ) : (
         ""
       )}

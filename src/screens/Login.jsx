@@ -24,6 +24,7 @@ const Login = () => {
   const [fileBase64, setFileBase64] = useState("");
   const [isBusiness, setIsBusiness] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const clicked = () => {
     document.querySelector(".cont").classList.toggle("s--signup");
@@ -119,6 +120,7 @@ const Login = () => {
         }
       })
       .catch((e) => {
+        setSuccess(false);
         setAlertMessage("Wrong username or password");
         setLoading(false);
       });
@@ -142,9 +144,13 @@ const Login = () => {
     };
 
     if (password !== confirmPassword) {
+      setSuccess(false);
+
       setAlertMessage("Passwords don't match");
       setLoading(false);
     } else if (password.length < 6) {
+      setSuccess(false);
+
       setAlertMessage("Password must be at least 7 symbols");
       setLoading(false);
     } else {
@@ -152,6 +158,8 @@ const Login = () => {
         .post(`${apiAddress}/api/Users`, data)
         .then((res) => {
           if (res.status === 200) {
+            setSuccess(false);
+
             setLoading(false);
             setAlertMessage(
               "You have sucessfully registered! You can login with your credentials."
@@ -425,7 +433,11 @@ const Login = () => {
         </div>
       </div>
       {alertMessage ? (
-        <AlertBox text={alertMessage} display={setAlertMessage} />
+        <AlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={success}
+        />
       ) : (
         ""
       )}
