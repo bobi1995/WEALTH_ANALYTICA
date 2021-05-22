@@ -133,7 +133,7 @@ export const observations = [
         prefix: 1,
       },
 
-      { field: "Total Distbibutions", code: "D16" },
+      { field: "Total Distbibutions", code: "D16", prefix: 2 },
 
       {
         field: "Distributions/Participant",
@@ -153,7 +153,7 @@ export const observations = [
     backward: true,
 
     data: [
-      { field: "Total Expenses", code: "D23" },
+      { field: "Total Expenses", code: "D23", prefix: 2 },
       {
         field: "Cost/Participants",
         code: "D24",

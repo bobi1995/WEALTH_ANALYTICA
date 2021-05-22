@@ -77,6 +77,7 @@ const SigninForm = () => {
             "IsChildToBusinessAccount",
             res.data.IsChildToBusinessAccount
           );
+          localStorage.setItem("Color", res.data.Color);
 
           history.push({
             pathname:

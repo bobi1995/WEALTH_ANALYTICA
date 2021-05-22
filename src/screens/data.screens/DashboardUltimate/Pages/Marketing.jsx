@@ -37,6 +37,12 @@ const useStyles = makeStyles((theme) => ({
     margin: "3% auto",
     width: "95%",
   },
+  subHeader: {
+    color: "grey",
+    fontSize: 15,
+    fontWeight: 300,
+    fontStyle: "italic",
+  },
 }));
 const Marketing = (props) => {
   const classes = useStyles();
@@ -82,6 +88,14 @@ const Marketing = (props) => {
             gutterBottom
           >
             Download PDFs
+          </Typography>
+          <Typography
+            className={classes.subHeader}
+            variant="h4"
+            component="h4"
+            gutterBottom
+          >
+            You can choose label color from Account section
           </Typography>
           <FormControlLabel
             control={

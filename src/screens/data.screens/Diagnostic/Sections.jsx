@@ -117,8 +117,10 @@ const Tables = ({ info, mainHeading }) => {
                                 ? { backgroundColor: "#C6E0B4" }
                                 : { backgroundColor: "#FF7E79" }
                               : receivedElement.Type === 2
-                              ? { backgroundColor: "#FFD579" }
-                              : { backgroundColor: "#A9A9A9" }
+                              ? receivedElement.Text === "Good Standing"
+                                ? { backgroundColor: "#C6E0B4" }
+                                : { backgroundColor: "#FF7E79" }
+                              : { backgroundColor: "#FFD579" }
                           }
                         >
                           {receivedElement.Type === 1 ? (
@@ -148,10 +150,16 @@ const Tables = ({ info, mainHeading }) => {
                               ).format("0,0")}`
                             )
                           ) : receivedElement.Type === 2 ? (
-                            isNaN(receivedElement.Text) ? (
-                              receivedElement.Text
+                            receivedElement.Text ? (
+                              isNaN(receivedElement.Text) ? (
+                                receivedElement.Text
+                              ) : (
+                                `$${numeral(receivedElement.Text).format(
+                                  "0,00"
+                                )}`
+                              )
                             ) : (
-                              `$${numeral(receivedElement.Text).format("0,00")}`
+                              "N/A"
                             )
                           ) : receivedElement.Ind === 1 ? (
                             <CheckIcon
