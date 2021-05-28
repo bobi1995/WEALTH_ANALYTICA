@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-const BenchmarkTable = ({ data }) => {
+const BenchmarkTable = ({ data, compareIds, setCompareIds }) => {
   const classes = useStyles();
   return (
     <Box className={classes.table}>
@@ -65,7 +65,9 @@ const BenchmarkTable = ({ data }) => {
             backgroundColor: "#01579b",
             color: "#FFF",
           },
+          selection: true,
         }}
+        onSelectionChange={(rows) => setCompareIds(rows)}
       />
     </Box>
   );

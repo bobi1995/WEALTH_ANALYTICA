@@ -15,6 +15,7 @@ import Loader from "../../components/plainCicularLoader";
 import { codes as serviceCodes } from "../../global/ServiceCodes";
 import numeral from "numeral";
 import CompaniesTable from "./Benchmark/CompaniesTable";
+import Compare from "./Benchmark/Compare";
 
 const styles = (theme) => ({
   filterBox: {
@@ -114,6 +115,7 @@ const Benchmark = (props) => {
   const [industryFlag, setIndustryFlag] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [filterSearch, setFilterSearch] = useState(false);
+  const [compareIds, setCompareIds] = useState([]);
   let url = "";
 
   if (props.companyID) {
@@ -345,7 +347,15 @@ const Benchmark = (props) => {
             industryFlag={industryFlag}
             filterSearch={filterSearch}
           />
-          {industryRes ? <CompaniesTable data={industryRes.Companies} /> : ""}
+          {industryRes ? (
+            <CompaniesTable
+              data={industryRes.Companies}
+              compareIds={compareIds}
+              setCompareIds={setCompareIds}
+            />
+          ) : (
+            ""
+          )}
         </Box>
       ) : (
         ""
@@ -355,6 +365,7 @@ const Benchmark = (props) => {
       ) : (
         ""
       )}
+      {compareIds.length > 0 ? <Compare data={compareIds} /> : ""}
     </div>
   );
 };
