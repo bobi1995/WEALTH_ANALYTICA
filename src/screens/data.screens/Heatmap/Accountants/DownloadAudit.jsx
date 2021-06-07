@@ -125,7 +125,6 @@ export default function SimpleDialogDemo({ reports }) {
   const handleOpen = (value) => {
     setOpen(true);
   };
-  console.log(reports);
   return (
     <div>
       <GetAppIcon onClick={handleOpen} />

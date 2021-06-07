@@ -73,7 +73,6 @@ export default function FullScreenDialog({ data }) {
         },
       })
         .then((res) => {
-          console.log(url);
           setResults(res.data);
         })
         .catch((err) => {
@@ -84,7 +83,6 @@ export default function FullScreenDialog({ data }) {
     }
   }, [open]);
 
-  //console.log(results);
   return (
     <Box style={{ width: "100%", justifyContent: "center", display: "flex" }}>
       <Button

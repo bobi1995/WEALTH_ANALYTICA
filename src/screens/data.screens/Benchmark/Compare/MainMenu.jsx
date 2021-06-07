@@ -12,7 +12,7 @@ import Participants from "./Participants";
 import Statistics from "./Statistics";
 import Alerts from "./Alerts";
 import HealthCare from "./HealthCare";
-import Plans from "./Plans";
+import Plans from "./BenefitTypes";
 import ServiceProviders from "./ServiceProviders";
 import Utilization from "./Utilization";
 import Compliance from "./Compliance";
@@ -24,6 +24,7 @@ import ReportProblemIcon from "@material-ui/icons/ReportProblem";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
+import commonFunctions from "../../commonFunctions/common";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +50,8 @@ const MainMenu = ({ data }) => {
     setValue(newValue);
   };
 
-  //console.log(data);
+  const companies = data.map((el) => el.CompanyName);
+
   return (
     <Box className={classes.root}>
       <TabContext value={value}>
@@ -79,11 +81,12 @@ const MainMenu = ({ data }) => {
           </TabList>
         </AppBar>
         <Box>
-          <TabPanel value="1" className={classes.tabpanelRoot}>
+          <TabPanel value="1">
             <Financial
+              companies={companies}
               data={data.map((el) => {
                 return {
-                  name: el.CompanyName,
+                  name: commonFunctions.formatString(el.CompanyName),
                   industry: el.Industry,
                   finance: el.FinancialInfo,
                 };
@@ -91,28 +94,99 @@ const MainMenu = ({ data }) => {
             />
           </TabPanel>
           <TabPanel value="2">
-            <Participants />
+            <Participants
+              companies={companies}
+              data={data.map((el) => {
+                return {
+                  name: commonFunctions.formatString(el.CompanyName),
+                  industry: el.Industry,
+                  info: el.Participants,
+                };
+              })}
+            />
           </TabPanel>
           <TabPanel value="3">
-            <Statistics />
+            <Statistics
+              companies={companies}
+              data={data.map((el) => {
+                return {
+                  name: commonFunctions.formatString(el.CompanyName),
+                  industry: el.Industry,
+                  info: el.Statistics,
+                };
+              })}
+            />
           </TabPanel>
           <TabPanel value="4">
-            <ServiceProviders />
+            <ServiceProviders
+              data={data.map((el) => {
+                return {
+                  name: commonFunctions.formatString(el.CompanyName),
+                  industry: el.Industry,
+                  info: el.ServiceProviders,
+                };
+              })}
+            />
           </TabPanel>
           <TabPanel value="5">
-            <Alerts />
+            <Alerts
+              companies={companies}
+              data={data.map((el) => {
+                return {
+                  name: commonFunctions.formatString(el.CompanyName),
+                  industry: el.Industry,
+                  info: el.Alerts,
+                };
+              })}
+            />
           </TabPanel>
           <TabPanel value="6">
-            <HealthCare />
+            <HealthCare
+              companies={companies}
+              data={data.map((el) => {
+                return {
+                  name: commonFunctions.formatString(el.CompanyName),
+                  industry: el.Industry,
+                  info: el.Healthcare,
+                };
+              })}
+            />
           </TabPanel>
           <TabPanel value="7">
-            <Plans />
+            <Plans
+              companies={companies}
+              data={data.map((el) => {
+                return {
+                  name: commonFunctions.formatString(el.CompanyName),
+                  industry: el.Industry,
+                  info: el.BenefitTypes,
+                };
+              })}
+            />
           </TabPanel>
           <TabPanel value="8">
-            <Utilization />
+            <Utilization
+              companies={companies}
+              data={data.map((el) => {
+                return {
+                  name: commonFunctions.formatString(el.CompanyName),
+                  industry: el.Industry,
+                  info: el.Utilization,
+                };
+              })}
+            />
           </TabPanel>
           <TabPanel value="9">
-            <Compliance />
+            <Compliance
+              companies={companies}
+              data={data.map((el) => {
+                return {
+                  name: commonFunctions.formatString(el.CompanyName),
+                  industry: el.Industry,
+                  info: el.Compliance,
+                };
+              })}
+            />
           </TabPanel>
           <TabPanel value="10">
             <Accountant />

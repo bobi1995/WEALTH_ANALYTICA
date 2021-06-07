@@ -34,7 +34,6 @@ const Diagnostic = (props) => {
   if (props.companyID) {
     url = `${apiAddress}/api/SmallCompanies/GetCompanyDiagnostics?CompanyID=${props.companyID}&year=${lastYear}`;
   }
-  console.log(url);
   useEffect(() => {
     axios({
       method: "get",

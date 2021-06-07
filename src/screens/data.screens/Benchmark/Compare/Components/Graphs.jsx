@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Bar } from "react-chartjs-2";
-import WAImage from "../../../../styles/images/Wealth_Analytica.png";
+import WAImage from "../../../../../styles/images/Wealth_Analytica.png";
 
 const useStyles = makeStyles({
   graphsContainer: {
@@ -26,15 +26,13 @@ const useStyles = makeStyles({
   },
 });
 
-const Graphs = ({ graphData, companies }) => {
+const Graphs = ({ graphData, companies, labelData }) => {
   const classes = useStyles();
-  //let inputData = data.map((el) => el.utilization[graphData]);
-  //let dataGr;
   const data = {
     labels: companies,
     datasets: [
       {
-        label: "# of Votes",
+        label: labelData,
         data: graphData,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
@@ -57,7 +55,6 @@ const Graphs = ({ graphData, companies }) => {
     ],
   };
 
-  console.log(companies);
   return (
     <Box className={classes.graphsContainer}>
       {graphData ? (

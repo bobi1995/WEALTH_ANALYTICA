@@ -1,4 +1,80 @@
 export default [
+  {
+    state: "AL",
+    industries: [
+      {
+        BusinessCode: "721",
+        IndustryName: "Accommodation",
+      },
+      {
+        BusinessCode: "561",
+        IndustryName: "Administrative and Support Services",
+      },
+      {
+        BusinessCode: "713",
+        IndustryName: "Amusement, Gambling, and Recreation Industries",
+      },
+      {
+        BusinessCode: "112",
+        IndustryName: "Animal Production and Aquaculture",
+      },
+      {
+        BusinessCode: "315",
+        IndustryName: "Apparel Manufacturing",
+      },
+      {
+        BusinessCode: "325",
+        IndustryName: "Chemical Manufacturing",
+      },
+      {
+        BusinessCode: "334",
+        IndustryName: "Computer and Electronic Product Manufacturing",
+      },
+      {
+        BusinessCode: "522",
+        IndustryName: "Credit Intermediation and Related Activities",
+      },
+      {
+        BusinessCode: "518",
+        IndustryName: "Data Processing, Hosting, and Related Services",
+      },
+      {
+        BusinessCode: "921",
+        IndustryName:
+          "Executive, Legislative, and Other General Government Suppor",
+      },
+      {
+        BusinessCode: "332",
+        IndustryName: "Fabricated Metal Product Manufacturing",
+      },
+      {
+        BusinessCode: "337",
+        IndustryName: "Furniture and Related Product Manufacturing",
+      },
+      {
+        BusinessCode: "423",
+        IndustryName: "Merchant Wholesalers, Durable Goods",
+      },
+      {
+        BusinessCode: "424",
+        IndustryName: "Merchant Wholesalers, Nondurable Goods",
+      },
+      {
+        BusinessCode: "327",
+        IndustryName: "Nonmetallic Mineral Product Manufacturing",
+      },
+      {
+        BusinessCode: "711",
+        IndustryName:
+          "Performing Arts, Spectator Sports, and Related Industries",
+      },
+      {
+        BusinessCode: "541",
+        IndustryName: "Professional, Scientific, and Technical Services",
+      },
+    ],
+  },
+
   //MARYLAND
   {
     state: "MD",

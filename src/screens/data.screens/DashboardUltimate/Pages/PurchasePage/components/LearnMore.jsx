@@ -9,7 +9,6 @@ import Link from "@material-ui/core/Link";
 
 const LearnMore = ({ learnMore, setLearnMore }) => {
   const [open, setOpen] = React.useState(true);
-  console.log(learnMore);
   const handleClose = () => {
     setOpen(false);
     setLearnMore("");

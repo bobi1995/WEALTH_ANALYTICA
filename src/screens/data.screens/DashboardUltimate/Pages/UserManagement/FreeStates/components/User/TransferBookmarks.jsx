@@ -193,7 +193,6 @@ export default function SimpleDialogDemo({
     });
   };
 
-  console.log(guid);
   return (
     <div style={{ marginTop: "25%" }}>
       <SimpleDialog
