@@ -19,6 +19,7 @@ import axios from "axios";
 import AlerBox from "../../../components/alertBox";
 import Loader from "../../../components/plainCicularLoader";
 import MainMenu from "./Compare/MainMenu";
+import ExportCompare from "./Compare/Components/ExportCompare";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -118,6 +119,7 @@ export default function FullScreenDialog({ data }) {
           </Toolbar>
         </AppBar>
         {results ? <MainMenu data={results} /> : <Loader />}
+        <ExportCompare data={data} />
       </Dialog>
     </Box>
   );

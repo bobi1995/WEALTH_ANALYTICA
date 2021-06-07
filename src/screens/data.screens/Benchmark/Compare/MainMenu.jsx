@@ -189,7 +189,15 @@ const MainMenu = ({ data }) => {
             />
           </TabPanel>
           <TabPanel value="10">
-            <Accountant />
+            <Accountant
+              data={data.map((el) => {
+                return {
+                  name: commonFunctions.formatString(el.CompanyName),
+                  industry: el.Industry,
+                  info: el.Accountant,
+                };
+              })}
+            />
           </TabPanel>
         </Box>
       </TabContext>

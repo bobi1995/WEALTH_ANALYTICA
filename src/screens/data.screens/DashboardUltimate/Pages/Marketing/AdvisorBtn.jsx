@@ -89,7 +89,7 @@ function SimpleDialog(props) {
               ? JSON.parse(localStorage.getItem("States")).map((el) =>
                   AdvisorList.filter((report) => report.state === el.State)
                     .length > 0 ? (
-                    <Box key={el.State}>
+                    <Box key={el.State} style={{ flex: "50%" }}>
                       <Typography className={classes.stateName}>
                         {commonFunction.fullNameReturn(el.State)[0].name}
                       </Typography>

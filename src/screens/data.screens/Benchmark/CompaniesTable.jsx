@@ -11,6 +11,7 @@ import {
   ChevronRight,
 } from "@material-ui/icons";
 import commonFunctions from "../commonFunctions/common";
+import numeral from "numeral";
 
 const useStyles = makeStyles({
   table: {
@@ -19,8 +20,9 @@ const useStyles = makeStyles({
   },
 });
 
-const BenchmarkTable = ({ data, compareIds, setCompareIds }) => {
+const BenchmarkTable = ({ data, setCompareIds }) => {
   const classes = useStyles();
+  console.log(data);
   return (
     <Box className={classes.table}>
       <MaterialTable
@@ -53,9 +55,16 @@ const BenchmarkTable = ({ data, compareIds, setCompareIds }) => {
             render: (rowData) => commonFunctions.formatString(rowData.City),
           },
           {
-            title: "Address",
-            field: "Address",
-            render: (rowData) => commonFunctions.formatString(rowData.Address),
+            title: "Average Participants",
+            field: "AverageParticipants",
+            render: (rowData) =>
+              numeral(rowData.AverageParticipants).format("0,0"),
+          },
+          {
+            title: "Total Assets",
+            field: "TotalAssets",
+            render: (rowData) =>
+              `$${numeral(rowData.TotalAssets).format("0,0")}`,
           },
         ]}
         data={data}

@@ -6,6 +6,7 @@ import RotateLeftIcon from "@material-ui/icons/RotateLeft";
 import { ArrowUpward, ChevronRight } from "@material-ui/icons";
 import MaterialTable from "material-table";
 import numeral from "numeral";
+import commonFunctions from "../../commonFunctions/common";
 
 const useStyles = makeStyles({
   root: {
@@ -32,15 +33,19 @@ const useStyles = makeStyles({
 });
 const ServiceProviders = ({ data }) => {
   const classes = useStyles();
-  const [graphData, setGraphData] = useState();
-  const [label, setLabel] = useState("");
 
   const headArr = data.map((el, index) => {
+    const totalTemp = el.info.Payments.map((provider) => {
+      return provider.TotalNetPayments;
+    });
     return {
       id: index,
       company: el.name,
       providerName: "",
-      total: "",
+      service: "",
+      total: totalTemp.reduce(function(acc, val) {
+        return acc + val;
+      }, 0),
       failures: el.info.FailuresCount,
       terminations: el.info.TerminationsCount,
     };
@@ -51,7 +56,8 @@ const ServiceProviders = ({ data }) => {
       return {
         id: index + ind + 100,
         company: "",
-        providerName: payment.Name,
+        providerName: commonFunctions.formatString(payment.Name),
+        service: commonFunctions.formatString(payment.ServiceName),
         total: payment.TotalNetPayments,
         failures: "",
         terminations: "",
@@ -79,28 +85,26 @@ const ServiceProviders = ({ data }) => {
         columns={[
           { title: "Company", field: "company" },
           { title: "Provider Name", field: "providerName" },
+          { title: "Service", field: "service" },
           {
             title: "Total",
             field: "total",
-            render: (rowData) =>
-              rowData.parentId !== undefined
-                ? `$${numeral(rowData.total).format("0,0")}`
-                : "",
+            render: (rowData) => `$${numeral(rowData.total).format("0,0")}`,
           },
           {
-            title: "Failures",
+            title: "Failures Count",
             field: "failures",
             render: (rowData) =>
               rowData.parentId === undefined
-                ? `$${numeral(rowData.failures).format("0,0")}`
+                ? `${numeral(rowData.failures).format("0,0")}`
                 : "",
           },
           {
-            title: "Terminations",
+            title: "Terminations Count",
             field: "terminations",
             render: (rowData) =>
               rowData.parentId === undefined
-                ? `$${numeral(rowData.terminations).format("0,0")}`
+                ? `${numeral(rowData.terminations).format("0,0")}`
                 : "",
           },
         ]}
