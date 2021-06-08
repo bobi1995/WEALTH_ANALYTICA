@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItem from "@material-ui/core/ListItem";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -16,7 +12,7 @@ import Box from "@material-ui/core/Box";
 import apiAddress from "../../../global/endpointAddress";
 import { lastYear } from "../../../global/Years";
 import axios from "axios";
-import AlerBox from "../../../components/alertBox";
+import AlertBox from "../../../components/alertBox";
 import Loader from "../../../components/plainCicularLoader";
 import MainMenu from "./Compare/MainMenu";
 import ExportCompare from "./Compare/Components/ExportCompare";
@@ -82,7 +78,7 @@ export default function FullScreenDialog({ data }) {
           );
         });
     }
-  }, [open]);
+  }, [open, data]);
 
   return (
     <Box style={{ width: "100%", justifyContent: "center", display: "flex" }}>
@@ -120,6 +116,15 @@ export default function FullScreenDialog({ data }) {
         </AppBar>
         {results ? <MainMenu data={results} /> : <Loader />}
         <ExportCompare data={data} />
+        {alertMessage ? (
+          <AlertBox
+            text={alertMessage}
+            display={setAlertMessage}
+            success={false}
+          />
+        ) : (
+          ""
+        )}
       </Dialog>
     </Box>
   );

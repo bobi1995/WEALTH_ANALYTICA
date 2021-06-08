@@ -34,6 +34,7 @@ const Indicators = ({ info }) => {
       <Paper className={classes.paperStyle} elevation={21}>
         <MaterialTable
           title="Compliance Indicators"
+          style={{ width: "30%" }}
           columns={[
             {
               title: "Field",
@@ -79,6 +80,7 @@ const Indicators = ({ info }) => {
 
         <MaterialTable
           title="Compliance Indicators"
+          style={{ width: "30%" }}
           columns={[
             {
               title: "Field",
@@ -124,6 +126,7 @@ const Indicators = ({ info }) => {
 
         <MaterialTable
           title="Compliance Indicators"
+          style={{ width: "30%" }}
           columns={[
             {
               title: "Field",

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles, Paper, Typography } from "@material-ui/core";
+import React from "react";
+import { makeStyles } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import Tab from "@material-ui/core/Tab";
 import TabContext from "@material-ui/lab/TabContext";

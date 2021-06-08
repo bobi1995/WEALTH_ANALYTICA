@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Button, makeStyles, Paper, Typography } from "@material-ui/core";
 import { primaryBlue } from "../../../../global/Colors";
 import Table from "@material-ui/core/Table";
@@ -41,9 +41,6 @@ const useStyles = makeStyles({
 });
 const Financial = ({ data, companies }) => {
   const classes = useStyles();
-  const [graphData, setGraphData] = useState();
-  const [label, setLabel] = useState("");
-  // const [open, setOpen] = useState(false);
   return (
     <Box className={classes.root}>
       <Box>
@@ -485,18 +482,13 @@ const Financial = ({ data, companies }) => {
         <Typography className={classes.headerStyle}>Income</Typography>
 
         <TableContainer component={Paper} className={classes.table}>
-          <Table
-            stickyHeader
-            size="small"
-            aria-label="a dense table"
-            stickyHeader
-          >
+          <Table stickyHeader size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
                 <TableCell className={classes.tableHeader}>Field</TableCell>
                 {data.map((el, id) => (
                   <TableCell
-                    key={el.name}
+                    key={el.name + id}
                     className={classes.tableHeader}
                     style={{
                       backgroundColor:
@@ -1257,18 +1249,13 @@ const Financial = ({ data, companies }) => {
       <Box>
         <Typography className={classes.headerStyle}>Net Assets</Typography>
         <TableContainer component={Paper} className={classes.table}>
-          <Table
-            stickyHeader
-            size="small"
-            aria-label="a dense table"
-            stickyHeader
-          >
+          <Table stickyHeader size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
                 <TableCell className={classes.tableHeader}>Field</TableCell>
                 {data.map((el, id) => (
                   <TableCell
-                    key={el.name}
+                    key={el.name + id}
                     className={classes.tableHeader}
                     style={{
                       backgroundColor:
@@ -1354,18 +1341,13 @@ const Financial = ({ data, companies }) => {
       <Box>
         <Typography className={classes.headerStyle}>Liabilites</Typography>
         <TableContainer component={Paper} className={classes.table}>
-          <Table
-            stickyHeader
-            size="small"
-            aria-label="a dense table"
-            stickyHeader
-          >
+          <Table stickyHeader size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
                 <TableCell className={classes.tableHeader}>Field</TableCell>
                 {data.map((el, id) => (
                   <TableCell
-                    key={el.name}
+                    key={el.name + id}
                     className={classes.tableHeader}
                     style={{
                       backgroundColor:
@@ -2576,18 +2558,13 @@ const Financial = ({ data, companies }) => {
       <Box>
         <Typography className={classes.headerStyle}>Others</Typography>
         <TableContainer component={Paper} className={classes.table}>
-          <Table
-            stickyHeader
-            size="small"
-            aria-label="a dense table"
-            stickyHeader
-          >
+          <Table stickyHeader size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
                 <TableCell className={classes.tableHeader}>Field</TableCell>
                 {data.map((el, id) => (
                   <TableCell
-                    key={el.name}
+                    key={el.name + id}
                     className={classes.tableHeader}
                     style={{
                       backgroundColor:

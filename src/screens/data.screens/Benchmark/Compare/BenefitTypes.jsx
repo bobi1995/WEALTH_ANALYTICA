@@ -9,7 +9,6 @@ import {
   healthcareBenefits,
 } from "../../../../global/benefitTypes";
 import BenefitTable from "./Components/BenefitTable";
-import { primaryBlue } from "../../../../global/Colors";
 const useStyles = makeStyles({
   table: {
     width: "100%",

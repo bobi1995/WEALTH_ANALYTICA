@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Box, Button, makeStyles, Paper, Typography } from "@material-ui/core";
+import React from "react";
+import { Box, makeStyles } from "@material-ui/core";
 import { primaryBlue } from "../../../../global/Colors";
 import SearchIcon from "@material-ui/icons/Search";
 import RotateLeftIcon from "@material-ui/icons/RotateLeft";

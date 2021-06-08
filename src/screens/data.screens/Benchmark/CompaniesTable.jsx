@@ -22,7 +22,6 @@ const useStyles = makeStyles({
 
 const BenchmarkTable = ({ data, setCompareIds }) => {
   const classes = useStyles();
-  console.log(data);
   return (
     <Box className={classes.table}>
       <MaterialTable

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Box, Button, makeStyles, Paper, Typography } from "@material-ui/core";
+import React from "react";
+import { Box, Button, makeStyles, Paper } from "@material-ui/core";
 import { primaryBlue } from "../../../../global/Colors";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -41,12 +41,7 @@ const HealthCare = ({ data, companies }) => {
   return (
     <Box className={classes.root}>
       <TableContainer component={Paper} className={classes.table}>
-        <Table
-          stickyHeader
-          size="small"
-          aria-label="a dense table"
-          stickyHeader
-        >
+        <Table size="small" aria-label="a dense table" stickyHeader>
           <TableHead>
             <TableRow>
               <TableCell className={classes.tableHeader}>Field</TableCell>

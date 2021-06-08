@@ -9,7 +9,6 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
-import numeral from "numeral";
 import { primaryBlue } from "../../../../../global/Colors";
 const useStyles = makeStyles({
   table: {
@@ -36,7 +35,6 @@ const useStyles = makeStyles({
 const SmallTable = ({ descriptionData, usedData }) => {
   const classes = useStyles();
 
-  console.log(usedData);
   return (
     <Paper>
       <Typography className={classes.headerStyle}>
@@ -53,7 +51,6 @@ const SmallTable = ({ descriptionData, usedData }) => {
                 <TableCell
                   key={row.name}
                   className={classes.tableHeader}
-                  style={{ textAlign: "center" }}
                   style={{
                     backgroundColor:
                       id === 0
@@ -63,6 +60,7 @@ const SmallTable = ({ descriptionData, usedData }) => {
                         : id === 2
                         ? "rgba(255, 206, 86, 0.2)"
                         : "rgba(75, 192, 192, 0.2)",
+                    textAlign: "center",
                   }}
                 >
                   {row.name}
