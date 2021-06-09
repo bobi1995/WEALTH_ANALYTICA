@@ -7,7 +7,7 @@ import Dialog from "@material-ui/core/Dialog";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import NetPayments from "./Tables/NetPayments";
+//import NetPayments from "./Tables/NetPayments";
 import NetPaymentsTableView from "./Tables/NetPaymentsTableView";
 import Typography from "@material-ui/core/Typography";
 import { lastYear } from "../../../../global/Years";
@@ -61,7 +61,7 @@ export default (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [results, setResults] = useState("");
-  const [tableView, SetTableView] = useState(false);
+  //const [tableView, SetTableView] = useState(false);
   const fullWidth = true;
   const maxWidth = "xl";
 
@@ -108,14 +108,14 @@ export default (props) => {
         maxWidth={maxWidth}
         className={classes.mainDiv}
       >
-        <Button
+        {/* <Button
           className={classes.viewButton}
           onClick={() => {
             SetTableView(!tableView);
           }}
         >
           {tableView ? "Normal View" : "Table View"}
-        </Button>
+        </Button> */}
         <Typography
           variant="h3"
           component="h3"
@@ -135,13 +135,14 @@ export default (props) => {
         {results ? (
           <div>
             {results.length > 0 ? (
-              <div>
-                {tableView ? (
-                  <NetPaymentsTableView data={results} />
-                ) : (
-                  <NetPayments data={results} />
-                )}
-              </div>
+              //     <div>
+              //       {tableView ? (
+              //         <NetPaymentsTableView data={results} />
+              //       ) : (
+              //         <NetPayments data={results} />
+              //       )}
+              //     </div>
+              <NetPaymentsTableView data={results} />
             ) : (
               <Typography
                 variant="h3"

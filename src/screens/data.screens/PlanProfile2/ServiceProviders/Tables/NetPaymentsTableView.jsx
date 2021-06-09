@@ -30,6 +30,7 @@ export default ({ data }) => {
         <thead className="thead-dark">
           <tr>
             <th>Direct Provider</th>
+            <th>Type</th>
             <th>Service</th>
             <th>Direct Payments</th>
             <th>Indirect Provider</th>
@@ -41,19 +42,55 @@ export default ({ data }) => {
         <tbody className="table-hover">
           {data.map((result, index) => (
             <>
-              {result.DirectPayments.map((el, ind) => (
-                <tr key={index + ind}>
-                  <td>{commonFunction.formatString(el.Name)}</td>
-                  <td>
-                    {commonFunction.formatString(el.ProviderOtherServices)}
-                  </td>
-                  <td style={el.Payment < 0 ? { color: "red" } : {}}>
-                    ${numeral(el.Payment).format("0,0")}
-                  </td>
-                </tr>
-              ))}
+              {result.DirectPayments.map((el, ind) => {
+                if (el.Services.length > 1) {
+                  el.Services.push("Total");
+                }
+
+                return el.Services.map((service, i) =>
+                  el.Services.length > 1 ? (
+                    i === 0 ? (
+                      <tr key={index + ind + i}>
+                        <td>{commonFunction.formatString(el.Name)}</td>
+                        <td>
+                          {el.Services.length > 1 ? "Bundled Fee" : "Fee"}
+                        </td>
+                        <td>{commonFunction.formatString(service)}</td>
+                        <td></td>
+                      </tr>
+                    ) : i === el.Services.length - 1 ? (
+                      <tr key={index + ind + i}>
+                        <td></td>
+                        <td></td>
+                        <td>{service}</td>
+                        <td style={el.Payment < 0 ? { color: "red" } : {}}>
+                          ${numeral(el.Payment).format("0,0")}
+                        </td>
+                      </tr>
+                    ) : (
+                      <tr key={index + ind + i}>
+                        <td></td>
+                        <td></td>
+                        <td>{commonFunction.formatString(service)}</td>
+                        <td></td>
+                      </tr>
+                    )
+                  ) : (
+                    <tr key={index + ind + i}>
+                      <td>{commonFunction.formatString(el.Name)}</td>
+                      <td>Fee</td>
+
+                      <td>{commonFunction.formatString(service)}</td>
+                      <td style={el.Payment < 0 ? { color: "red" } : {}}>
+                        ${numeral(el.Payment).format("0,0")}
+                      </td>
+                    </tr>
+                  )
+                );
+              })}
               {result.IndirectPayments.map((el, ind) => (
                 <tr key={index + ind} style={{ backgroundColor: "#D7E9F3" }}>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -70,6 +107,8 @@ export default ({ data }) => {
               >
                 <td></td>
                 <td></td>
+                <td></td>
+
                 <td
                   style={
                     result.TotalNetPayments - result.TotalIndirectPayments < 0
@@ -96,6 +135,7 @@ export default ({ data }) => {
                 </td>
               </tr>
               <tr style={{ backgroundColor: "black" }} key={index}>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
