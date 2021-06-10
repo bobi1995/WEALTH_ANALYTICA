@@ -11,6 +11,7 @@ import Slide from "@material-ui/core/Slide";
 import Box from "@material-ui/core/Box";
 import apiAddress from "../../../global/endpointAddress";
 import { lastYear } from "../../../global/Years";
+
 import axios from "axios";
 import AlertBox from "../../../components/alertBox";
 import Loader from "../../../components/plainCicularLoader";
@@ -30,6 +31,13 @@ const useStyles = makeStyles((theme) => ({
   btnStyle: {
     textAlign: "center",
     margin: "0 auto",
+    width: "15%",
+    backgroundColor: "#4951B5",
+    fontSize: 21,
+    color: "white",
+    "&:hover": {
+      color: "#4951B5",
+    },
   },
 }));
 
@@ -87,6 +95,7 @@ export default function FullScreenDialog({ data }) {
         color="primary"
         onClick={handleClickOpen}
         className={classes.btnStyle}
+        disabled={data.length > 4 ? true : false}
       >
         Compare
       </Button>

@@ -123,6 +123,12 @@ const Benchmark = (props) => {
   }
 
   useEffect(() => {
+    if (compareIds.length > 4) {
+      setAlertMessage("Select up to 4 companies to compare");
+    }
+  }, [compareIds]);
+
+  useEffect(() => {
     setFlag(true);
     axios({
       method: "get",
@@ -347,6 +353,8 @@ const Benchmark = (props) => {
             industryFlag={industryFlag}
             filterSearch={filterSearch}
           />
+          {compareIds.length > 0 ? <Compare data={compareIds} /> : ""}
+
           {industryRes ? (
             <CompaniesTable
               data={industryRes.Companies}
@@ -365,7 +373,6 @@ const Benchmark = (props) => {
       ) : (
         ""
       )}
-      {compareIds.length > 0 ? <Compare data={compareIds} /> : ""}
     </div>
   );
 };

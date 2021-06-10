@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import { Bar } from "react-chartjs-2";
 import WAImage from "../../../../../styles/images/Wealth_Analytica.png";
+import dataReducer from "../../../../../components/dataReducer";
 
 const useStyles = makeStyles({
   graphsContainer: {
@@ -28,12 +29,15 @@ const useStyles = makeStyles({
 
 const Graphs = ({ graphData, companies, labelData }) => {
   const classes = useStyles();
+
+  const reducedData = dataReducer.arrayReducer(graphData);
+
   const data = {
     labels: companies,
     datasets: [
       {
         label: labelData,
-        data: graphData,
+        data: reducedData,
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",
           "rgba(54, 162, 235, 0.2)",
@@ -58,7 +62,7 @@ const Graphs = ({ graphData, companies, labelData }) => {
   return (
     <Box className={classes.graphsContainer}>
       {graphData ? (
-        <Bar data={data} />
+        <Bar data={data} options={dataReducer.optionReturn(graphData)} />
       ) : (
         <Box className={classes.signContainer}>
           <Card>

@@ -16,7 +16,7 @@ import numeral from "numeral";
 const useStyles = makeStyles({
   table: {
     width: "90%",
-    margin: "3% auto",
+    margin: "1% auto",
   },
 });
 

@@ -57,7 +57,11 @@ const ServiceProviders = ({ data }) => {
         id: index + ind + 100,
         company: "",
         providerName: commonFunctions.formatString(payment.Name),
-        service: commonFunctions.formatString(payment.ServiceName),
+        service: payment.Services.map((service, servInd) =>
+          servInd === payment.Services.length - 1
+            ? `${service}`
+            : `${service} , `
+        ),
         total: payment.TotalNetPayments,
         failures: "",
         terminations: "",
@@ -68,6 +72,7 @@ const ServiceProviders = ({ data }) => {
 
   const newArr = headArr.concat(...rowArr);
 
+  console.log(data);
   return (
     <Box className={classes.root}>
       <MaterialTable

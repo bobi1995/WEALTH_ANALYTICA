@@ -44,442 +44,9 @@ const Financial = ({ data, companies }) => {
   return (
     <Box className={classes.root}>
       <Box>
-        <Typography className={classes.headerStyle}>Expenses</Typography>
-        <TableContainer component={Paper} className={classes.table}>
-          <Table stickyHeader size="small" aria-label="a dense table">
-            <TableHead>
-              <TableRow>
-                <TableCell className={classes.tableHeader}>Field</TableCell>
-                {data.map((el, id) => (
-                  <TableCell
-                    key={el.name}
-                    className={classes.tableHeader}
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    {el.name}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              <TableRow>
-                <TableCell className={classes.cellStyle}>
-                  <DialogBox
-                    title="Admin Fees"
-                    graphData={data.map((row) => row.finance.AdminFees)}
-                    companies={companies}
-                  />
-                </TableCell>
-                {data.map((row, id) => (
-                  <TableCell
-                    className={classes.cellStyle}
-                    key={row.name}
-                    component="th"
-                    scope="row"
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    ${numeral(row.finance.AdminFees).format("0,0")}
-                  </TableCell>
-                ))}
-              </TableRow>
-
-              <TableRow>
-                <TableCell className={classes.cellStyle}>
-                  <DialogBox
-                    title="Distribution"
-                    graphData={data.map((row) => row.finance.Distribution)}
-                    companies={companies}
-                  />
-                </TableCell>
-                {data.map((row, id) => (
-                  <TableCell
-                    className={classes.cellStyle}
-                    key={row.name}
-                    component="th"
-                    scope="row"
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    ${numeral(row.finance.Distribution).format("0,0")}
-                  </TableCell>
-                ))}
-              </TableRow>
-
-              <TableRow>
-                <TableCell className={classes.cellStyle}>
-                  <DialogBox
-                    title="Investment Management Fees"
-                    graphData={data.map(
-                      (row) => row.finance.InvestmentManagementFees
-                    )}
-                    companies={companies}
-                  />
-                </TableCell>
-                {data.map((row, id) => (
-                  <TableCell
-                    className={classes.cellStyle}
-                    key={row.name}
-                    component="th"
-                    scope="row"
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    $
-                    {numeral(row.finance.InvestmentManagementFees).format(
-                      "0,0"
-                    )}
-                  </TableCell>
-                ))}
-              </TableRow>
-
-              <TableRow>
-                <TableCell className={classes.cellStyle}>
-                  <DialogBox
-                    title="Other Fees"
-                    graphData={data.map((row) => row.finance.OtherFees)}
-                    companies={companies}
-                  />
-                </TableCell>
-                {data.map((row, id) => (
-                  <TableCell
-                    className={classes.cellStyle}
-                    key={row.name}
-                    component="th"
-                    scope="row"
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    ${numeral(row.finance.OtherFees).format("0,0")}
-                  </TableCell>
-                ))}
-              </TableRow>
-
-              <TableRow>
-                <TableCell className={classes.cellStyle}>
-                  <DialogBox
-                    title="Professional Fees"
-                    graphData={data.map((row) => row.finance.ProfessionalFees)}
-                    companies={companies}
-                  />
-                </TableCell>
-                {data.map((row, id) => (
-                  <TableCell
-                    className={classes.cellStyle}
-                    key={row.name}
-                    component="th"
-                    scope="row"
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    ${numeral(row.finance.ProfessionalFees).format("0,0")}
-                  </TableCell>
-                ))}
-              </TableRow>
-
-              <TableRow>
-                <TableCell className={classes.cellStyle}>
-                  <DialogBox
-                    title="Total Admin Expenses"
-                    graphData={data.map((row) => row.finance.TotalAdminExp)}
-                    companies={companies}
-                  />
-                </TableCell>
-                {data.map((row, id) => (
-                  <TableCell
-                    className={classes.cellStyle}
-                    key={row.name}
-                    component="th"
-                    scope="row"
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    ${numeral(row.finance.TotalAdminExp).format("0,0")}
-                  </TableCell>
-                ))}
-              </TableRow>
-
-              <TableRow>
-                <TableCell className={classes.cellStyle}>
-                  <DialogBox
-                    title="Total Cost"
-                    graphData={data.map((row) => row.finance.TotalCost)}
-                    companies={companies}
-                  />
-                </TableCell>
-                {data.map((row, id) => (
-                  <TableCell
-                    className={classes.cellStyle}
-                    key={row.name}
-                    component="th"
-                    scope="row"
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    ${numeral(row.finance.TotalCost).format("0,0")}
-                  </TableCell>
-                ))}
-              </TableRow>
-
-              <TableRow>
-                <TableCell className={classes.cellStyle}>
-                  <DialogBox
-                    title="Total Distribution"
-                    graphData={data.map((row) => row.finance.TotalDistribution)}
-                    companies={companies}
-                  />
-                </TableCell>
-                {data.map((row, id) => (
-                  <TableCell
-                    className={classes.cellStyle}
-                    key={row.name}
-                    component="th"
-                    scope="row"
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    ${numeral(row.finance.TotalDistribution).format("0,0")}
-                  </TableCell>
-                ))}
-              </TableRow>
-
-              <TableRow>
-                <TableCell className={classes.cellStyle}>
-                  <DialogBox
-                    title="Total Distribution Correction"
-                    graphData={data.map(
-                      (row) => row.finance.TotalDistributionCorrection
-                    )}
-                    companies={companies}
-                  />
-                </TableCell>
-                {data.map((row, id) => (
-                  <TableCell
-                    className={classes.cellStyle}
-                    key={row.name}
-                    component="th"
-                    scope="row"
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    $
-                    {numeral(row.finance.TotalDistributionCorrection).format(
-                      "0,0"
-                    )}
-                  </TableCell>
-                ))}
-              </TableRow>
-
-              <TableRow>
-                <TableCell className={classes.cellStyle}>
-                  <DialogBox
-                    title="Total Expenses"
-                    graphData={data.map((row) => row.finance.TotalExpenses)}
-                    companies={companies}
-                  />
-                </TableCell>
-                {data.map((row, id) => (
-                  <TableCell
-                    className={classes.cellStyle}
-                    key={row.name}
-                    component="th"
-                    scope="row"
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    ${numeral(row.finance.TotalExpenses).format("0,0")}
-                  </TableCell>
-                ))}
-              </TableRow>
-
-              <TableRow>
-                <TableCell className={classes.cellStyle}>
-                  <DialogBox
-                    title="Total Gain On Sale"
-                    graphData={data.map((row) => row.finance.TotalGainOnSale)}
-                    companies={companies}
-                  />
-                </TableCell>
-                {data.map((row, id) => (
-                  <TableCell
-                    className={classes.cellStyle}
-                    key={row.name}
-                    component="th"
-                    scope="row"
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    ${numeral(row.finance.TotalGainOnSale).format("0,0")}
-                  </TableCell>
-                ))}
-              </TableRow>
-
-              <TableRow>
-                <TableCell className={classes.cellStyle}>
-                  <DialogBox
-                    title="Total Interest"
-                    graphData={data.map((row) => row.finance.TotalInterest)}
-                    companies={companies}
-                  />
-                </TableCell>
-                {data.map((row, id) => (
-                  <TableCell
-                    className={classes.cellStyle}
-                    key={row.name}
-                    component="th"
-                    scope="row"
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    ${numeral(row.finance.TotalInterest).format("0,0")}
-                  </TableCell>
-                ))}
-              </TableRow>
-
-              <TableRow>
-                <TableCell className={classes.cellStyle}>
-                  <DialogBox
-                    title="Total Participating Loans"
-                    graphData={data.map(
-                      (row) => row.finance.TotalParticipatingLoans
-                    )}
-                    companies={companies}
-                  />
-                </TableCell>
-                {data.map((row, id) => (
-                  <TableCell
-                    className={classes.cellStyle}
-                    key={row.name}
-                    component="th"
-                    scope="row"
-                    style={{
-                      backgroundColor:
-                        id === 0
-                          ? "rgba(255, 99, 132, 0.2)"
-                          : id === 1
-                          ? "rgba(54, 162, 235, 0.2)"
-                          : id === 2
-                          ? "rgba(255, 206, 86, 0.2)"
-                          : "rgba(75, 192, 192, 0.2)",
-                    }}
-                  >
-                    $
-                    {numeral(row.finance.TotalParticipatingLoans).format("0,0")}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-
-      <Box>
-        <Typography className={classes.headerStyle}>Income</Typography>
+        <Typography className={classes.headerStyle}>
+          Income Statement - Income
+        </Typography>
 
         <TableContainer component={Paper} className={classes.table}>
           <Table stickyHeader size="small" aria-label="a dense table">
@@ -1245,9 +812,447 @@ const Financial = ({ data, companies }) => {
           </Table>
         </TableContainer>
       </Box>
+      <Box>
+        <Typography className={classes.headerStyle}>
+          Income Statement - Expenses
+        </Typography>
+        <TableContainer component={Paper} className={classes.table}>
+          <Table stickyHeader size="small" aria-label="a dense table">
+            <TableHead>
+              <TableRow>
+                <TableCell className={classes.tableHeader}>Field</TableCell>
+                {data.map((el, id) => (
+                  <TableCell
+                    key={el.name}
+                    className={classes.tableHeader}
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    {el.name}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell className={classes.cellStyle}>
+                  <DialogBox
+                    title="Admin Fees"
+                    graphData={data.map((row) => row.finance.AdminFees)}
+                    companies={companies}
+                  />
+                </TableCell>
+                {data.map((row, id) => (
+                  <TableCell
+                    className={classes.cellStyle}
+                    key={row.name}
+                    component="th"
+                    scope="row"
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    ${numeral(row.finance.AdminFees).format("0,0")}
+                  </TableCell>
+                ))}
+              </TableRow>
+
+              <TableRow>
+                <TableCell className={classes.cellStyle}>
+                  <DialogBox
+                    title="Distribution"
+                    graphData={data.map((row) => row.finance.Distribution)}
+                    companies={companies}
+                  />
+                </TableCell>
+                {data.map((row, id) => (
+                  <TableCell
+                    className={classes.cellStyle}
+                    key={row.name}
+                    component="th"
+                    scope="row"
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    ${numeral(row.finance.Distribution).format("0,0")}
+                  </TableCell>
+                ))}
+              </TableRow>
+
+              <TableRow>
+                <TableCell className={classes.cellStyle}>
+                  <DialogBox
+                    title="Investment Management Fees"
+                    graphData={data.map(
+                      (row) => row.finance.InvestmentManagementFees
+                    )}
+                    companies={companies}
+                  />
+                </TableCell>
+                {data.map((row, id) => (
+                  <TableCell
+                    className={classes.cellStyle}
+                    key={row.name}
+                    component="th"
+                    scope="row"
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    $
+                    {numeral(row.finance.InvestmentManagementFees).format(
+                      "0,0"
+                    )}
+                  </TableCell>
+                ))}
+              </TableRow>
+
+              <TableRow>
+                <TableCell className={classes.cellStyle}>
+                  <DialogBox
+                    title="Other Fees"
+                    graphData={data.map((row) => row.finance.OtherFees)}
+                    companies={companies}
+                  />
+                </TableCell>
+                {data.map((row, id) => (
+                  <TableCell
+                    className={classes.cellStyle}
+                    key={row.name}
+                    component="th"
+                    scope="row"
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    ${numeral(row.finance.OtherFees).format("0,0")}
+                  </TableCell>
+                ))}
+              </TableRow>
+
+              <TableRow>
+                <TableCell className={classes.cellStyle}>
+                  <DialogBox
+                    title="Professional Fees"
+                    graphData={data.map((row) => row.finance.ProfessionalFees)}
+                    companies={companies}
+                  />
+                </TableCell>
+                {data.map((row, id) => (
+                  <TableCell
+                    className={classes.cellStyle}
+                    key={row.name}
+                    component="th"
+                    scope="row"
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    ${numeral(row.finance.ProfessionalFees).format("0,0")}
+                  </TableCell>
+                ))}
+              </TableRow>
+
+              <TableRow>
+                <TableCell className={classes.cellStyle}>
+                  <DialogBox
+                    title="Total Admin Expenses"
+                    graphData={data.map((row) => row.finance.TotalAdminExp)}
+                    companies={companies}
+                  />
+                </TableCell>
+                {data.map((row, id) => (
+                  <TableCell
+                    className={classes.cellStyle}
+                    key={row.name}
+                    component="th"
+                    scope="row"
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    ${numeral(row.finance.TotalAdminExp).format("0,0")}
+                  </TableCell>
+                ))}
+              </TableRow>
+
+              <TableRow>
+                <TableCell className={classes.cellStyle}>
+                  <DialogBox
+                    title="Total Cost"
+                    graphData={data.map((row) => row.finance.TotalCost)}
+                    companies={companies}
+                  />
+                </TableCell>
+                {data.map((row, id) => (
+                  <TableCell
+                    className={classes.cellStyle}
+                    key={row.name}
+                    component="th"
+                    scope="row"
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    ${numeral(row.finance.TotalCost).format("0,0")}
+                  </TableCell>
+                ))}
+              </TableRow>
+
+              <TableRow>
+                <TableCell className={classes.cellStyle}>
+                  <DialogBox
+                    title="Total Distribution"
+                    graphData={data.map((row) => row.finance.TotalDistribution)}
+                    companies={companies}
+                  />
+                </TableCell>
+                {data.map((row, id) => (
+                  <TableCell
+                    className={classes.cellStyle}
+                    key={row.name}
+                    component="th"
+                    scope="row"
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    ${numeral(row.finance.TotalDistribution).format("0,0")}
+                  </TableCell>
+                ))}
+              </TableRow>
+
+              <TableRow>
+                <TableCell className={classes.cellStyle}>
+                  <DialogBox
+                    title="Total Distribution Correction"
+                    graphData={data.map(
+                      (row) => row.finance.TotalDistributionCorrection
+                    )}
+                    companies={companies}
+                  />
+                </TableCell>
+                {data.map((row, id) => (
+                  <TableCell
+                    className={classes.cellStyle}
+                    key={row.name}
+                    component="th"
+                    scope="row"
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    $
+                    {numeral(row.finance.TotalDistributionCorrection).format(
+                      "0,0"
+                    )}
+                  </TableCell>
+                ))}
+              </TableRow>
+
+              <TableRow>
+                <TableCell className={classes.cellStyle}>
+                  <DialogBox
+                    title="Total Expenses"
+                    graphData={data.map((row) => row.finance.TotalExpenses)}
+                    companies={companies}
+                  />
+                </TableCell>
+                {data.map((row, id) => (
+                  <TableCell
+                    className={classes.cellStyle}
+                    key={row.name}
+                    component="th"
+                    scope="row"
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    ${numeral(row.finance.TotalExpenses).format("0,0")}
+                  </TableCell>
+                ))}
+              </TableRow>
+
+              <TableRow>
+                <TableCell className={classes.cellStyle}>
+                  <DialogBox
+                    title="Total Gain On Sale"
+                    graphData={data.map((row) => row.finance.TotalGainOnSale)}
+                    companies={companies}
+                  />
+                </TableCell>
+                {data.map((row, id) => (
+                  <TableCell
+                    className={classes.cellStyle}
+                    key={row.name}
+                    component="th"
+                    scope="row"
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    ${numeral(row.finance.TotalGainOnSale).format("0,0")}
+                  </TableCell>
+                ))}
+              </TableRow>
+
+              <TableRow>
+                <TableCell className={classes.cellStyle}>
+                  <DialogBox
+                    title="Total Interest"
+                    graphData={data.map((row) => row.finance.TotalInterest)}
+                    companies={companies}
+                  />
+                </TableCell>
+                {data.map((row, id) => (
+                  <TableCell
+                    className={classes.cellStyle}
+                    key={row.name}
+                    component="th"
+                    scope="row"
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    ${numeral(row.finance.TotalInterest).format("0,0")}
+                  </TableCell>
+                ))}
+              </TableRow>
+
+              <TableRow>
+                <TableCell className={classes.cellStyle}>
+                  <DialogBox
+                    title="Total Participating Loans"
+                    graphData={data.map(
+                      (row) => row.finance.TotalParticipatingLoans
+                    )}
+                    companies={companies}
+                  />
+                </TableCell>
+                {data.map((row, id) => (
+                  <TableCell
+                    className={classes.cellStyle}
+                    key={row.name}
+                    component="th"
+                    scope="row"
+                    style={{
+                      backgroundColor:
+                        id === 0
+                          ? "rgba(255, 99, 132, 0.2)"
+                          : id === 1
+                          ? "rgba(54, 162, 235, 0.2)"
+                          : id === 2
+                          ? "rgba(255, 206, 86, 0.2)"
+                          : "rgba(75, 192, 192, 0.2)",
+                    }}
+                  >
+                    $
+                    {numeral(row.finance.TotalParticipatingLoans).format("0,0")}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
 
       <Box>
-        <Typography className={classes.headerStyle}>Net Assets</Typography>
+        <Typography className={classes.headerStyle}>
+          Income Statement - Net Assets
+        </Typography>
         <TableContainer component={Paper} className={classes.table}>
           <Table stickyHeader size="small" aria-label="a dense table">
             <TableHead>
@@ -1339,7 +1344,9 @@ const Financial = ({ data, companies }) => {
       </Box>
 
       <Box>
-        <Typography className={classes.headerStyle}>Liabilites</Typography>
+        <Typography className={classes.headerStyle}>
+          Balance Sheet - Liabilites
+        </Typography>
         <TableContainer component={Paper} className={classes.table}>
           <Table stickyHeader size="small" aria-label="a dense table">
             <TableHead>
@@ -1521,7 +1528,9 @@ const Financial = ({ data, companies }) => {
       </Box>
 
       <Box>
-        <Typography className={classes.headerStyle}>Total Assets</Typography>
+        <Typography className={classes.headerStyle}>
+          Balance Sheet - Total Assets
+        </Typography>
         <TableContainer component={Paper} className={classes.table}>
           <Table stickyHeader size="small" aria-label="a dense table">
             <TableHead>

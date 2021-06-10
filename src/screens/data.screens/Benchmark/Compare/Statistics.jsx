@@ -66,7 +66,7 @@ const Participants = ({ data, companies }) => {
             <TableRow>
               <TableCell className={classes.cellStyle}>
                 <DialogBox
-                  title="AUMHC"
+                  title="AUM/HC"
                   graphData={data.map((row) => row.info.AUMHC)}
                   companies={companies}
                 />
@@ -96,7 +96,7 @@ const Participants = ({ data, companies }) => {
             <TableRow>
               <TableCell className={classes.cellStyle}>
                 <DialogBox
-                  title="Yield"
+                  title="Distribution Yield"
                   graphData={data.map((row) => row.info.Yield)}
                   companies={companies}
                 />
