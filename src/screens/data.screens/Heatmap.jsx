@@ -58,7 +58,7 @@ const Heatmap = (props) => {
 
   let url = "";
   if (props.companyID) {
-    url = `${apiAddress}/api/SmallCompanies/GetHeatmap?&CompanyID=${props.companyID}&minYear=2015&maxYear=${lastYear}`;
+    url = `${apiAddress}/api/SmallCompanies/GetHeatmap?&CompanyID=${props.companyID}&minYear=2017&maxYear=${lastYear}`;
   }
 
   useEffect(() => {
