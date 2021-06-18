@@ -27,7 +27,7 @@ const SearchFunction = (
   cities = "",
   businessCode = "",
   planEntity = "",
-  benefitType = "",
+  benefitType = [],
   minParticipants = "",
   maxParticipants = "",
   minIncome = "",
@@ -43,7 +43,6 @@ const SearchFunction = (
   let result;
   if (cities.length < 1) {
     url = `${apiAddress}/api/SmallCompanies/GetCompaniesByState?year=${year}&`;
-
     if (states) {
       url = url.concat(`state=${states}&`);
     }
@@ -65,8 +64,8 @@ const SearchFunction = (
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}&`);
     }
-    if (benefitType) {
-      url = url.concat(`benefitType=${benefitType}&`);
+    if (benefitType.length > 0) {
+      benefitType.map((el) => url.concat(`benefitType=${el}&`));
     }
     if (planEntity) {
       url = url.concat(`planEntity=${planEntity}&`);
@@ -91,6 +90,7 @@ const SearchFunction = (
     }
   } else {
     url = `${apiAddress}/api/SmallCompanies/GetCompaniesByCity?year=${year}&`;
+
     if (states) {
       url = url.concat(`state=${states}&`);
     }
@@ -114,8 +114,10 @@ const SearchFunction = (
     if (businessCode) {
       url = url.concat(`businessCode=${businessCode}&`);
     }
-    if (benefitType) {
-      url = url.concat(`benefitType=${benefitType}&`);
+    if (benefitType.length > 0) {
+      benefitType.forEach(
+        (element) => (url = url.concat(`benefitType=${element}&`))
+      );
     }
     if (planEntity) {
       url = url.concat(`planEntity=${planEntity}&`);

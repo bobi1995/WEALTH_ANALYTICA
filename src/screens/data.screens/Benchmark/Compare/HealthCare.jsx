@@ -282,7 +282,6 @@ const HealthCare = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Broker Failures Indicator
                 </Button>

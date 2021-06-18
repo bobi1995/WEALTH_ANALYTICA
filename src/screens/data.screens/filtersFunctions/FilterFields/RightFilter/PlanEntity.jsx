@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    width: "50%",
   },
 }));
 
@@ -34,7 +34,7 @@ export default function PlanEntity(props) {
   };
 
   return (
-    <div>
+    <div style={{ marginTop: "3%" }}>
       <FormControl className={classes.formControl}>
         <InputLabel id="plan-entity-select-label">Plan Entity</InputLabel>
         <Select

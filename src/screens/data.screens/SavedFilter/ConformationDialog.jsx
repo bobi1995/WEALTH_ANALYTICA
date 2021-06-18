@@ -11,6 +11,8 @@ import { makeStyles } from "@material-ui/core";
 import apiAddress from "../../../global/endpointAddress";
 import axios from "axios";
 import { softRed } from "../../../global/Colors";
+import AsyncAlertBox from "../../../components/asyncAlertBox";
+import { useState } from "react";
 
 const useStyles = makeStyles({
   deleteBtn: {
@@ -28,6 +30,8 @@ export default function ConformationDialog({ filter }) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const [alertMessage, setAlertMessage] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const deleteFilter = () => {
     axios
@@ -39,11 +43,12 @@ export default function ConformationDialog({ filter }) {
       })
       .then((result) => {
         window.location.reload();
-        alert("Filter was deleted.");
+        setAlertMessage("Filter was deleted.");
+        setSuccess(true);
       })
       .catch((e) => {
         console.log(e);
-        alert("Could not delete the filter. Try again.");
+        setAlertMessage("Could not delete the filter. Try again.");
         window.location.reload();
       });
   };
@@ -85,6 +90,16 @@ export default function ConformationDialog({ filter }) {
           </Button>
         </DialogActions>
       </Dialog>
+
+      {alertMessage ? (
+        <AsyncAlertBox
+          text={alertMessage}
+          display={setAlertMessage}
+          success={success}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

@@ -63,6 +63,7 @@ export default (props) => {
         {
           field: "Address1",
           title: "Address",
+          sorting: false,
           render: (rowData) => (
             <Tooltip title={rowData.Address1}>
               <NavLink
@@ -101,6 +102,7 @@ export default (props) => {
         {
           field: "AdministratorName",
           title: "Administrator",
+          sorting: false,
           filterPlaceholder: "Search admin",
           cellStyle: {
             textAlign: "center",

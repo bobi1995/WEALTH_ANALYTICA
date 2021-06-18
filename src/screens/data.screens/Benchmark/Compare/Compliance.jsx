@@ -70,7 +70,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Contribution Failure
                 </Button>
@@ -107,7 +106,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   All Plan Asset Distribution
                 </Button>
@@ -144,7 +142,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Asset Held
                 </Button>
@@ -181,7 +178,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Asset Not Values
                 </Button>
@@ -248,7 +244,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Benefit Payment Failure
                 </Button>
@@ -317,7 +312,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Blackout Period
                 </Button>
@@ -354,7 +348,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Blackout Notice
                 </Button>
@@ -391,7 +384,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Contribution Failure
                 </Button>
@@ -458,7 +450,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Contribution Non Cash
                 </Button>
@@ -525,7 +516,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Five Percent
                 </Button>
@@ -562,7 +552,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Inv. Concentration 20
                 </Button>
@@ -629,7 +618,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Leases In Default
                 </Button>
@@ -696,7 +684,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Loans In Default
                 </Button>
@@ -763,7 +750,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Loss Discover
                 </Button>
@@ -830,7 +816,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Party Int. Not Reporting
                 </Button>
@@ -899,7 +884,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   PBGC Insurance
                 </Button>
@@ -966,7 +950,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Reserve Term
                 </Button>
@@ -1033,7 +1016,6 @@ const Compliance = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Fidelity Bond
                 </Button>

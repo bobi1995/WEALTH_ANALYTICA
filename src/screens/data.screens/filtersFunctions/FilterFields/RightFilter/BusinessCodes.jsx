@@ -19,7 +19,7 @@ const BusinessCode = (props) => {
   };
 
   return (
-    <form style={{ width: "24%" }}>
+    <form>
       <Autocomplete
         id="business-code-box"
         options={businessCodes}
@@ -38,7 +38,6 @@ const BusinessCode = (props) => {
             {option.IndustryName}
           </React.Fragment>
         )}
-        style={{ width: "100%" }}
         renderInput={(params) => (
           <TextField
             {...params}

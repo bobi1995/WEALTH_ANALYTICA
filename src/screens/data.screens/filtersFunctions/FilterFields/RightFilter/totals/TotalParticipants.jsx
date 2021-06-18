@@ -61,7 +61,6 @@ export default function TotalParticipants(props) {
         value={minTotalParticipants}
         onChange={handleChangeMinimum}
         name="minimumFormat"
-        id="Minimum-Participants-filter"
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}
@@ -71,7 +70,6 @@ export default function TotalParticipants(props) {
         value={maxTotalParticipants}
         onChange={handleChangeMaximum}
         name="maximumFormat"
-        id="Maximum-Participants-filter"
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}

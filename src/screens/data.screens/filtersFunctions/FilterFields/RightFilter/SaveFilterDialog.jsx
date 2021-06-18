@@ -118,7 +118,7 @@ export default (props) => {
         </DialogActions>
       </Dialog>
       {alertMessage ? (
-        <AlerBox text={alertMessage} display={setAlertMessage} />
+        <AlerBox text={alertMessage} display={setAlertMessage} success={true} />
       ) : (
         ""
       )}

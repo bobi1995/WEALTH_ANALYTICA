@@ -69,7 +69,6 @@ export default function Participants(props) {
         value={values.minimumFormat}
         onChange={handleChange}
         name="minimumFormat"
-        id="Minimum-Participants-filter"
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}

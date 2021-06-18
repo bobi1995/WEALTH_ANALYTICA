@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 
 const SavedFilters = (props) => {
   const classes = useStyles();
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState();
   const [filter, setFilter] = useState();
   const [flag, setFlag] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
@@ -36,6 +36,7 @@ const SavedFilters = (props) => {
           setFlag(false);
         })
         .catch((e) => {
+          setFlag(false);
           setAlertMessage(
             "For some reason we could not find the desired results."
           );
@@ -50,7 +51,7 @@ const SavedFilters = (props) => {
         <h1 className="clientDash-header1">Saved Filters</h1>
       </section>
       <SelectFilter flag={flag} setFilter={(filter) => setFilter(filter)} />
-      {results.length > 0 && !flag ? (
+      {results !== undefined && !flag ? (
         <Box className={classes.buttonBox}>
           <DeleteBtn filter={filter} />
         </Box>

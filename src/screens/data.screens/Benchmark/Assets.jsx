@@ -73,7 +73,6 @@ export default function Participants(props) {
         value={maxIncome}
         onChange={handleChangeMaximum}
         name="maxIncome"
-        id="Maximum-Income-filter"
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}

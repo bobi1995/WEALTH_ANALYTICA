@@ -72,7 +72,6 @@ const Alerts = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Contribution Failure Ind.
                 </Button>
@@ -139,7 +138,6 @@ const Alerts = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Leases In Default Ind.
                 </Button>
@@ -206,7 +204,6 @@ const Alerts = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   Loans In Default Ind.
                 </Button>
@@ -303,7 +300,6 @@ const Alerts = ({ data, companies }) => {
                   startIcon={<EqualizerIcon />}
                   color="default"
                   className={classes.previewBtn}
-                  disabled
                 >
                   DFVC Ind.
                 </Button>

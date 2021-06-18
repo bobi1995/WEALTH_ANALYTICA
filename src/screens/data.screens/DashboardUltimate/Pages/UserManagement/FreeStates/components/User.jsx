@@ -118,7 +118,6 @@ const User = ({ data, states, type }) => {
       });
 
     if (getBookmarkInd) {
-      console.log(data.UserGuid ? data.UserGuid : user.Guid);
       setOpenTransferBookmarks({
         open: true,
         bookmarkNum: getBookmarkInd,

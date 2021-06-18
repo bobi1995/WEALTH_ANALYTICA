@@ -56,7 +56,7 @@ const CityField = (props) => {
   };
 
   return (
-    <form style={{ width: "24%" }}>
+    <form>
       <Autocomplete
         disabled={props.state === "" ? true : false}
         multiple
@@ -67,7 +67,6 @@ const CityField = (props) => {
         onClose={() => {
           setOpen(false);
         }}
-        id="city-checkbox"
         loading={loading}
         options={cities}
         disableCloseOnSelect
@@ -84,7 +83,6 @@ const CityField = (props) => {
             {option}
           </React.Fragment>
         )}
-        style={{ width: "100%" }}
         renderInput={(params) => (
           <TextField
             {...params}

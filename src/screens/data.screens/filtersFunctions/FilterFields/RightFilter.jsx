@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import StatesField from "./RightFilter/StatesField";
 import CityField from "./RightFilter/CityField";
-import { Button, Box } from "@material-ui/core";
+import { Button, Box, Typography } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import YearField from "./RightFilter/YearField";
 import searchFunction from "../searchFunction";
@@ -15,6 +15,7 @@ import TotalAssets from "./RightFilter/totals/TotalAssets";
 import NameField from "./RightFilter/Name";
 import { makeStyles } from "@material-ui/core/styles";
 import { lastYear } from "../../../../global/Years";
+import { primaryBlue } from "../../../../global/Colors";
 
 const useStyles = makeStyles(() => ({
   buttonStyle: {
@@ -26,20 +27,30 @@ const useStyles = makeStyles(() => ({
     width: "25%",
   },
   mainContainer: {
-    justifyContent: "center",
     textAlign: "center",
-  },
-  subContainer: {
     width: "100%",
     display: "flex",
     justifyContent: "space-around",
+  },
+  subContainer: {
+    width: "33%",
     marginBottom: "3%",
+    border: `3px solid ${primaryBlue}`,
+    padding: "1%",
   },
   buttonContainer: {
     display: "flex",
     justifyContent: "space-around",
     width: "50%",
     margin: "0 auto",
+  },
+  headerStyle: {
+    color: primaryBlue,
+    fontSize: "25px",
+    textAlign: "center",
+    fontWeight: "bold",
+    fontFamily: "Baskervville",
+    marginBottom: "1%",
   },
 }));
 
@@ -50,7 +61,7 @@ const RightFilters = (props) => {
   const [selectedYear, setSelectedYear] = useState(lastYear);
   const [businessCode, setBusinessCode] = useState("");
   const [planEntity, setPlanEntity] = useState("");
-  const [benefitType, setBenefitType] = useState("");
+  const [benefitType, setBenefitType] = useState([]);
   const [minPart, setMinPart] = useState("");
   const [maxPart, setMaxPart] = useState("");
   const [totalMinPart, setTotalMinPart] = useState("");
@@ -60,57 +71,78 @@ const RightFilters = (props) => {
   const [minIncome, setMinIncome] = useState("");
   const [maxIncome, setMaxIncome] = useState("");
   const [sponsor, setSponsor] = useState("");
+
   return (
-    <Box className={classes.mainContainer}>
-      <Box>
-        {/* Plan Participants and Plan Assets */}
+    <Box>
+      <Box className={classes.mainContainer}>
+        <Box className={classes.subContainer}>
+          <Typography className={classes.headerStyle}>Main Metrics</Typography>
+          <YearField setYear={(year) => setSelectedYear(year)} />
+          <Box
+            style={{
+              width: "85%",
+              margin: "1% auto",
+            }}
+          >
+            <StatesField setState={(state) => setSelectedState(state)} />
+          </Box>
+
+          <Box
+            style={{
+              width: "85%",
+              margin: "1% auto",
+            }}
+          >
+            <CityField
+              state={selectedState}
+              setCity={(city) => setSelectedCity(city)}
+            />
+          </Box>
+          <Box
+            style={{
+              width: "85%",
+              margin: "1% auto",
+            }}
+          >
+            <BusinessCode
+              setCode={(code) => {
+                setBusinessCode(code);
+              }}
+            />
+          </Box>
+          <NameField setSponsor={(sponsor) => setSponsor(sponsor)} />
+        </Box>
 
         <Box className={classes.subContainer}>
-          <YearField setYear={(year) => setSelectedYear(year)} />
+          <Typography className={classes.headerStyle}>Participants</Typography>
           <Participants
             setMinPart={(minPart) => setMinPart(minPart)}
             setMaxPart={(maxPart) => setMaxPart(maxPart)}
           />
-          <Income
-            setMinIncome={(minIncome) => setMinIncome(minIncome)}
-            setMaxIncome={(maxIncome) => setMaxIncome(maxIncome)}
-          />
-          {/*  */}
-        </Box>
-        {/* Total Participants and Assets */}
-        <Box className={classes.subContainer}>
-          <NameField setSponsor={(sponsor) => setSponsor(sponsor)} />
           <TotalParticipants
             setTotalMinPart={(minPart) => setTotalMinPart(minPart)}
             setTotalMaxPart={(maxPart) => setTotalMaxPart(maxPart)}
+          />
+
+          <Typography
+            className={classes.headerStyle}
+            style={{ marginTop: "5%" }}
+          >
+            Assets
+          </Typography>
+          <Income
+            setMinIncome={(minIncome) => setMinIncome(minIncome)}
+            setMaxIncome={(maxIncome) => setMaxIncome(maxIncome)}
           />
           <TotalAssets
             setTotalMinAssets={(minIncome) => setTotalMinAssets(minIncome)}
             setTotalMaxAssets={(maxIncome) => setTotalMaxAssets(maxIncome)}
           />
         </Box>
+
         <Box className={classes.subContainer}>
-          <StatesField setState={(state) => setSelectedState(state)} />
-          <CityField
-            state={selectedState}
-            setCity={(city) => setSelectedCity(city)}
-          />
-          {/* */}
-          <BusinessCode
-            setCode={(code) => {
-              setBusinessCode(code);
-            }}
-          />
-          <Box
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-              width: "24%",
-            }}
-          >
-            <PlanEntity setEntity={(entity) => setPlanEntity(entity)} />
-            <BenefitType setBenefit={(type) => setBenefitType(type)} />
-          </Box>
+          <BenefitType setBenefit={(type) => setBenefitType(type)} />
+          <PlanEntity setEntity={(entity) => setPlanEntity(entity)} />
         </Box>
       </Box>
 

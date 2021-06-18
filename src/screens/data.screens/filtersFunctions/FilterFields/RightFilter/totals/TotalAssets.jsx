@@ -64,7 +64,6 @@ export default function TotalAssets(props) {
         value={minTotalIncome}
         onChange={handleChangeMinimum}
         name="minIncome"
-        id="Minimum-Income-filter"
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}
@@ -74,7 +73,6 @@ export default function TotalAssets(props) {
         value={maxTotalIncome}
         onChange={handleChangeMaximum}
         name="maxIncome"
-        id="Maximum-Income-filter"
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}

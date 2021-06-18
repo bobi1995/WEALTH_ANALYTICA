@@ -63,7 +63,6 @@ export default function Participants(props) {
         value={minIncome}
         onChange={handleChangeMinimum}
         name="minIncome"
-        id="Minimum-Income-filter"
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}

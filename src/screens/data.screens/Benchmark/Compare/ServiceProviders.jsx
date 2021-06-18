@@ -72,7 +72,6 @@ const ServiceProviders = ({ data }) => {
 
   const newArr = headArr.concat(...rowArr);
 
-  console.log(data);
   return (
     <Box className={classes.root}>
       <MaterialTable

@@ -79,7 +79,6 @@ export default function Participants(props) {
         value={maximumParticipants}
         onChange={handleChangeMaximum}
         name="maximumFormat"
-        id="Maximum-Participants-filter"
         InputProps={{
           inputComponent: NumberFormatCustom,
         }}

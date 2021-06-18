@@ -21,7 +21,7 @@ const StatesField = (props) => {
   };
 
   return (
-    <form style={{ width: "24%" }}>
+    <form>
       <Autocomplete
         id="checkboxes-tags-demo"
         options={states}
@@ -40,7 +40,6 @@ const StatesField = (props) => {
             {option.name}
           </React.Fragment>
         )}
-        style={{ width: "100%" }}
         renderInput={(params) => (
           <TextField
             {...params}
