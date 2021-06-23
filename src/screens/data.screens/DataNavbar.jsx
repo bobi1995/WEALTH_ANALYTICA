@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/dataPages/DataNavbar.scss";
 import $ from "jquery";
+import { NavLink } from "react-router-dom";
 
 const DataNavbar = () => {
   window.addEventListener("scroll", (e) => {
@@ -25,50 +26,50 @@ const DataNavbar = () => {
         <div id="data-mainListDiv" className="data-main_list">
           <ul className="data-navlinks">
             <li>
-              <a href="/dashboard">Dashboard</a>
+              <NavLink to="/dashboard">Dashboard</NavLink>
             </li>
             <li className="dropdown">
               <div>
-                <a className="dropbtn" href="/filters">
+                <NavLink className="dropbtn" to="/filters">
                   Lead Generator
-                </a>
+                </NavLink>
                 <div className="dropdown-content">
-                  <a href="/filters" style={{ fontSize: "23px" }}>
+                  <NavLink to="/filters" style={{ fontSize: "23px" }}>
                     Filters
-                  </a>
-                  <a href="/saved-filters" style={{ fontSize: "23px" }}>
+                  </NavLink>
+                  <NavLink to="/saved-filters" style={{ fontSize: "23px" }}>
                     Saved Filters
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </li>
             <li>
-              <a href="/bookmarks">Bookmarks</a>
+              <NavLink to="/bookmarks">Bookmarks</NavLink>
             </li>
             <li className="dropdown">
               <div>
-                <a className="dropbtn" href="/account">
+                <NavLink className="dropbtn" to="/account">
                   Hi,{localStorage.getItem("FirstName")}
-                </a>
+                </NavLink>
                 <div className="dropdown-content">
-                  <a href="/account" style={{ fontSize: "23px" }}>
+                  <NavLink to="/account" style={{ fontSize: "23px" }}>
                     Your Profile
-                  </a>
-                  <a
-                    href="https://wealthanalytica.com/"
+                  </NavLink>
+                  <NavLink
+                    to="https://wealthanalytica.com/"
                     style={{ fontSize: "23px" }}
                   >
                     Back to site
-                  </a>
-                  <a
-                    href="/"
+                  </NavLink>
+                  <NavLink
+                    to="/"
                     onClick={() => {
                       localStorage.clear();
                     }}
                     style={{ fontSize: "23px" }}
                   >
                     Sign Out
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </li>
