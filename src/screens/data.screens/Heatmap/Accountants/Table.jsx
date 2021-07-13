@@ -153,22 +153,6 @@ const ComplianceTable = ({ data }) => {
               ))}
             </TableRow>
 
-            {/**Audit Report */}
-            <TableRow>
-              <TableCell>Audit Report</TableCell>
-              {data.map((row, ind) => (
-                <TableCell key={ind}>
-                  {row.business ? (
-                    `${row.accountant.AuditReport}% of the Industy has this report `
-                  ) : row.accountant.AuditReport === 0 ? (
-                    <ClearIcon style={{ color: "red" }} />
-                  ) : (
-                    <CheckIcon style={{ color: "green" }} />
-                  )}
-                </TableCell>
-              ))}
-            </TableRow>
-
             {/**Audit Reports Download*/}
             <TableRow>
               <TableCell>Audit Report Download</TableCell>
